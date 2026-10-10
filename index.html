@@ -15,7 +15,7 @@ nav button{background:var(--panel);color:var(--mut);border:1px solid var(--line)
 nav button.on{background:var(--acc);color:#06210f;border-color:var(--acc)}nav button small{opacity:.7;font-weight:600;margin-left:6px}
 .bar{display:flex;gap:10px;padding:0 20px 12px;flex-wrap:wrap;align-items:center}
 .bar input,.bar select{background:var(--panel);border:1px solid var(--line);color:var(--txt);padding:8px 10px;border-radius:8px}
-.bar input{min-width:220px}.bar label{color:var(--mut);font-size:12px;display:flex;gap:6px;align-items:center}
+.bar input{min-width:220px}.bar input[type=checkbox]{min-width:0;accent-color:var(--acc)}.bar label{color:var(--mut);font-size:12px;display:flex;gap:6px;align-items:center}
 main{padding:0 20px 20px}.wrap{overflow:auto;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
 table{width:100%;border-collapse:collapse;min-width:980px}
 th{position:sticky;top:0;background:var(--panel2);color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:.5px;text-align:left;padding:10px;cursor:pointer;user-select:none;white-space:nowrap}
@@ -30,7 +30,7 @@ tbody tr{cursor:pointer}tbody tr:hover{background:#1b2438}
 .x{float:right;background:none;border:0;color:var(--mut);font-size:22px;cursor:pointer}
 .chart{display:flex;align-items:flex-end;gap:4px;height:200px;position:relative;margin:18px 0 6px;border-bottom:1px solid var(--line)}
 .chart .b{flex:1;border-radius:4px 4px 0 0;position:relative;min-height:2px}.chart .b span{position:absolute;top:-16px;left:0;right:0;text-align:center;font-size:10px;color:var(--mut)}
-.chart .ln{position:absolute;left:0;right:0;border-top:2px dashed var(--mid)}.chart .ln i{position:absolute;right:0;top:-18px;font-size:11px;color:var(--mid);font-style:normal}
+.chart .ln{position:absolute;left:0;right:0;border-top:2px dashed var(--mid)}.chart .ln i{position:absolute;right:-4px;top:-9px;background:var(--panel);padding:0 3px;font-size:11px;color:var(--mid);font-style:normal}
 .xl{display:flex;gap:4px;font-size:9px;color:var(--mut)}.xl div{flex:1;text-align:center;overflow:hidden}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}.stats div{background:var(--panel2);border-radius:8px;padding:10px;text-align:center}.stats b{display:block;font-size:18px}
 .mk{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}.mk button{background:var(--panel2);border:1px solid var(--line);color:var(--txt);padding:5px 9px;border-radius:7px;cursor:pointer;font-size:12px}.mk button.on{border-color:var(--acc);color:var(--acc)}
