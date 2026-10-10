@@ -58,7 +58,8 @@ footer{color:var(--mut);font-size:12px;padding:16px 20px 30px;border-top:1px sol
 <label>Min H2H % <input id="minh2h" type="number" min="0" max="100" step="10" value="0" style="width:64px;min-width:0"></label>
 <label><input type="checkbox" id="onlyHR"> Only with hit rates</label>
 <label>Min L10 hit % <input id="minhr" type="number" min="0" max="100" step="10" value="0" style="width:64px;min-width:0"></label>
-<span id="count" class="mut"></span>
+<span id="count" class="mut"></span></div>
+<div class="bar"><div class="chips" id="poss" style="margin:0"></div>
 </div>
 <section id="dash"></section><main id="tablev"><div class="wrap"><table><thead><tr id="th"></tr></thead><tbody id="tb"></tbody></table><div id="empty" class="empty" hidden></div></div></main>
 <div id="shade"></div><aside id="drawer"></aside>
@@ -68,7 +69,7 @@ const SPORTS=[["nfl","NFL"],["cfb","CFB"],["nba","NBA"],["nhl","NHL"],["mlb","ML
 const LS="betlab:v1:";const st=JSON.parse(localStorage.getItem(LS+"state")||"{}");
 let sport=st.sport||"nfl",sortK=st.sortK||"time",sortD=st.sortD||1,DATA={},rows=[];
 const $=id=>document.getElementById(id);
-const save=()=>localStorage.setItem(LS+"state",JSON.stringify({sport,sortK,sortD,view,tier,win}));
+const save=()=>localStorage.setItem(LS+"state",JSON.stringify({sport,sortK,sortD,view,tier,win,posX}));
 const et=t=>new Date(t).toLocaleString("en-US",{timeZone:"America/New_York",weekday:"short",hour:"numeric",minute:"2-digit"})+" ET";
 async function j(u,fb){try{const r=await fetch(u+"?v="+Date.now());if(!r.ok)throw 0;return await r.json()}catch(e){return fb}}
 function val(g,stat){let s=0;for(const k of stat){const neg=k[0]=="-",kk=k.replace(/^-/,"");if(!(kk in g.s))return null;s+=neg?-g.s[kk]:g.s[kk]}return s}
@@ -85,7 +86,7 @@ function hrCell(h){if(!h)return'<span class="mut">—</span>';const p=h.h/h.n,c=
 const COLS=[["player","Player"],["team","Team / Opp"],["market","Market"],["line","Line"],["ou","Over / Under"],["l5","L5"],["l10","L10"],["l20","L20"],["os","Streak"],["h2h","H2H"],["ven","Venue"],["avg","Season avg"],["time","Game (ET)"]];
 const PCT=["l5","l10","l20","h2h","ven"];
 function key(r,k){return PCT.includes(k)?(r[k]?pct(r[k])+r[k].n*1e-4:-1):k=="avg"?(r.avg??-1e9):k=="os"?(r.os??-1):k=="ou"?0:r[k]}
-let view=st.view||"dash",tier=st.tier||60,win=st.win||"l10";
+let posX=st.posX||{};let view=st.view||"dash",tier=st.tier||60,win=st.win||"l10";
 const ok=(h,min=0)=>h&&h.n>0&&h.h/h.n>=min;
 function cardList(list,fmt){return list.length?list.map(r=>`<div class="it" data-k="${r.aid}|${r.market}"><div class="n"><b>${r.player}</b> <span class="pos">${r.pos} · ${r.team} ${r.opp}</span><div>${r.market} · line ${r.line}</div></div><div class="v">${fmt(r)}</div></div>`).join(""):'<div class="mut" style="padding:8px">Nothing qualifies right now.</div>'}
 function dash(){const d=filtered(),W={l5:"L5",l10:"L10",l20:"L20"}[win];
@@ -107,7 +108,7 @@ function dash(){const d=filtered(),W={l5:"L5",l10:"L10",l20:"L20"}[win];
  ${ustreak.length?`<div class="sub" style="margin-top:10px">Under streaks</div>`+cardList(ustreak,r=>`<span class="dn">${r.us} straight</span>`):""}</div>`;
  if(!d.length)$("dash").innerHTML=`<div class="card empty">${(DATA[sport]||[]).length?"No props match your filters.":"No lines yet for "+SPORTS.find(s=>s[0]==sport)[1]+"."}</div>`;}
 function filtered(){const q=$("q").value.toLowerCase(),m=$("mkt").value,gm=$("game").value,tm=$("team").value,pl=$("player").value.toLowerCase(),vn=$("venue").value,only=$("onlyHR").checked,min=+$("minhr").value/100,mh=+$("minh2h").value/100;
- return (DATA[sport]||[]).filter(r=>(!q||(r.player+" "+r.team+" "+r.opp).toLowerCase().includes(q))&&(!m||r.market==m)&&(!gm||r.game==gm)&&(!tm||r.team==tm)&&(!pl||r.player.toLowerCase().includes(pl))&&(!vn||(vn=="home")==!!r.home)&&(!only||r.l10)&&(!min||pct(r.l10)>=min)&&(!mh||(r.h2h&&pct(r.h2h)>=mh)))}
+ return (DATA[sport]||[]).filter(r=>(!q||(r.player+" "+r.team+" "+r.opp).toLowerCase().includes(q))&&(!m||r.market==m)&&(!gm||r.game==gm)&&(!tm||r.team==tm)&&(!pl||r.player.toLowerCase().includes(pl))&&(!vn||(vn=="home")==!!r.home)&&(!only||r.l10)&&(!min||pct(r.l10)>=min)&&(!mh||(r.h2h&&pct(r.h2h)>=mh))&&!(posX[sport]||[]).includes(r.pos||"?"))}
 function render(){$("views").querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.v==view));$("dash").hidden=view!="dash";$("tablev").hidden=view=="dash";if(view=="dash")dash();
  $("tabs").innerHTML=SPORTS.map(([k,n])=>`<button class="${k==sport?"on":""}" data-s="${k}">${n}<small>${(DATA[k]||[]).length}</small></button>`).join("");
  $("th").innerHTML=COLS.map(([k,n])=>`<th data-k="${k}" class="${k==sortK?"sorted":""}">${n}${k==sortK?(sortD>0?" ▲":" ▼"):""}</th>`).join("");
@@ -117,7 +118,9 @@ function render(){$("views").querySelectorAll("button").forEach(b=>b.classList.t
  $("tb").innerHTML=rows.slice(0,800).map((r,i)=>{const d=r.open!=null&&r.open!=r.line?`<span class="mv ${r.line>r.open?"up":"dn"}">${r.line>r.open?"▲":"▼"} from ${r.open}</span>`:"";
   return `<tr data-i="${i}"><td><span class="pl">${r.player}</span><span class="pos">${r.pos}</span></td><td>${r.team} <span class="mut">${r.opp}</span></td><td>${r.market}</td><td><span class="line">${r.line}</span>${d}</td><td class="mut" title="Prices not in the free ESPN feed">— / —</td><td>${hrCell(r.l5)}</td><td>${hrCell(r.l10)}</td><td>${hrCell(r.l20)}</td><td>${r.os?`<span class="fire">${r.os}🔥</span>`:'<span class="mut">0</span>'}</td><td>${hrCell(r.h2h)}</td><td>${hrCell(r.ven)} <small class="mut">${r.home?"H":"A"}</small></td><td>${r.avg==null?'<span class="mut">—</span>':r.avg.toFixed(1)}</td><td class="mut">${et(r.time)}</td></tr>`}).join("");
  const e=$("empty");e.hidden=rows.length>0;e.textContent=(DATA[sport]||[]).length?"No props match your filters.":"No lines yet for "+SPORTS.find(s=>s[0]==sport)[1]+". DraftKings hasn't posted player props for upcoming games, or the season hasn't started.";}
-function fillFilters(){const d=DATA[sport]||[];
+function posChips(){const d=DATA[sport]||[],ps=[...new Set(d.map(r=>r.pos||"?"))].sort(),x=posX[sport]||[];
+ $("poss").innerHTML=ps.length?`<span class="mut" style="font-size:12px;align-self:center">Positions:</span>`+ps.map(p=>`<button data-p="${p}" class="${x.includes(p)?"":"on"}">${p}</button>`).join("")+(sport=="mlb"?`<button data-p="#bat">Batters</button><button data-p="#pit">Pitchers</button>`:"")+(x.length?`<button data-p="*">All</button>`:""):""}
+function fillFilters(){const d=DATA[sport]||[];posChips();
  $("team").innerHTML='<option value="">All teams</option>'+[...new Set(d.map(r=>r.team).filter(Boolean))].sort().map(t=>`<option>${t}</option>`).join("");
  $("plist").innerHTML=[...new Set(d.map(r=>r.player))].sort().map(p=>`<option value="${p}">`).join("");$("player").value="";
  $("mkt").innerHTML='<option value="">All markets</option>'+[...new Set(d.map(r=>r.market))].sort().map(m=>`<option>${m}</option>`).join("");
@@ -147,6 +150,8 @@ async function init(){
  fillFilters();render()}
 $("tabs").onclick=e=>{const b=e.target.closest("button");if(!b)return;sport=b.dataset.s;save();fillFilters();render()};
 $("th").onclick=e=>{const k=e.target.closest("th")?.dataset.k;if(!k||k=="ou")return;sortD=k==sortK?-sortD:([...PCT,"avg","os"].includes(k)?-1:1);sortK=k;save();render()};
+$("poss").onclick=e=>{const p=e.target.dataset.p;if(!p)return;let x=posX[sport]||[];const ps=[...new Set((DATA[sport]||[]).map(r=>r.pos||"?"))],PIT=["SP","RP","P"];
+ x=p=="*"?[]:p=="#bat"?ps.filter(y=>PIT.includes(y)):p=="#pit"?ps.filter(y=>!PIT.includes(y)):x.includes(p)?x.filter(y=>y!=p):[...x,p];posX[sport]=x;save();posChips();render()};
 $("views").onclick=e=>{const v=e.target.dataset.v;if(v){view=v;save();render()}};
 $("dash").onclick=e=>{const b=e.target.closest("button");if(b&&b.dataset.t){tier=+b.dataset.t;save();render();return}if(b&&b.dataset.w){win=b.dataset.w;save();render();return}
  const it=e.target.closest(".it");if(it){const[a,m]=it.dataset.k.split("|");drawer(DATA[sport].find(r=>r.aid==a&&r.market==m))}};
