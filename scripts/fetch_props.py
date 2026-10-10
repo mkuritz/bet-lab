@@ -268,9 +268,14 @@ def run_sport(key, cfg, full_logs):
 
 def main():
     full = "--logs" in sys.argv
+    # --only nfl,nhl,soccer:eng.1  -> targeted pre-game refresh of just those sports / soccer leagues
+    only = None
+    if "--only" in sys.argv:
+        only = set(sys.argv[sys.argv.index("--only") + 1].split(",")) - {""}
     meta = load("meta.json", {})
     meta.setdefault("sports", {})
     for key, cfg in SPORTS.items():
+        if only is not None and key not in only: continue
         try:
             n, nl = run_sport(key, cfg, full)
             meta["sports"][key] = {"props": n, "ok": True, "at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")}
@@ -279,14 +284,20 @@ def main():
             meta["sports"].setdefault(key, {})["ok"] = False
             meta["sports"][key]["error"] = str(e)[:200]
             print(key, "ERROR", e)
+    lgs = None if only is None else sorted(x.split(":", 1)[1] for x in only if x.startswith("soccer:"))
+    if only is not None and "soccer" in only: lgs = None
     try:
+        if only is not None and lgs == [] and "soccer" not in only: raise StopIteration
         import soccer
-        n, counts = soccer.run(full)
+        n, counts = soccer.run(full, lgs)
         meta["sports"]["soccer"] = {"props": n, "ok": True, "leagues": counts, "at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")}
         print("soccer props", n, counts)
+    except StopIteration:
+        pass
     except Exception as e:
         meta["sports"].setdefault("soccer", {})["ok"] = False
         print("soccer ERROR", e)
+    meta["mode"] = "full" if only is None else "pregame:" + ",".join(sorted(only))
     meta["updated"] = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
     meta["odds_api"] = bool(os.environ.get("ODDS_API_KEY"))  # placeholder: multi-book lines not implemented yet
     save("meta.json", meta)

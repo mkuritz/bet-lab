@@ -1,12 +1,12 @@
 name: Update props
 
+# Event-driven: a 15-min dispatcher exits in seconds unless a window is due.
+#  - Full refresh: overnight ~2:30 AM ET (with full game-log refresh) and morning ~7:00 AM ET (3-hour catch windows).
+#  - Pre-game: ~90 and ~30 min before each event start (NFL, CFB, NBA, NHL, MLB, each soccer league),
+#    refreshing only the sports/leagues with games in that window. Each window fires once (data/refresh_state.json).
 on:
   schedule:
-    - cron: "0 10 * * *"            # daily full game-log refresh (~6 AM ET)
-    - cron: "30 */3 * * *"          # props every 3h
-    - cron: "15 * * * 0,1,4,5,6"    # hourly on game days (Thu/Sat/Sun/Mon ET; UTC days widened for evening games)
-    - cron: "5 11-17 * * 0,6"       # soccer weekend mornings/afternoons ET (hourly ~7 AM-1 PM ET)
-    - cron: "45 21-23,0-2 * * *"    # NHL/NBA/MLB evenings: hourly ~5:45-10:45 PM ET, when day-of skater/goalie lines post
+    - cron: "*/15 * * * *"
   workflow_dispatch:
     inputs:
       full_logs:
@@ -27,25 +27,39 @@ jobs:
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Dispatch
+        id: d
+        env:
+          FORCE_FULL: ${{ github.event_name == 'workflow_dispatch' }}
+        run: python3 scripts/dispatch.py
       - uses: actions/setup-python@v5
+        if: steps.d.outputs.mode != 'none'
         with:
           python-version: "3.12"
       - name: Fetch props
+        if: steps.d.outputs.mode != 'none'
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}   # optional placeholder; unused if absent
+          MODE: ${{ steps.d.outputs.mode }}
+          TARGETS: ${{ steps.d.outputs.targets }}
         run: |
-          if [ "${{ github.event.schedule }}" = "0 10 * * *" ] || [ "${{ inputs.full_logs }}" = "true" ]; then
+          if [ "$MODE" = "pregame" ]; then
+            python scripts/fetch_props.py --only "$TARGETS"
+          elif [ "${{ inputs.full_logs }}" = "true" ] || [ "$(TZ=America/New_York date +%H)" -lt 6 ]; then
             python scripts/fetch_props.py --logs
           else
             python scripts/fetch_props.py
           fi
       - name: Commit if data changed
+        if: steps.d.outputs.mode != 'none'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898475+github-actions[bot]@users.noreply.github.com"
           git add data/
-          if git diff --cached --quiet -- data/ ':!data/meta.json'; then
+          if git diff --cached --quiet; then
             echo "No data changes"; exit 0
           fi
-          git commit -m "Update props $(TZ=America/New_York date '+%Y-%m-%d %H:%M %Z')"
-          git push
+          git commit -m "Update props (${{ steps.d.outputs.mode }} ${{ steps.d.outputs.targets }}) $(TZ=America/New_York date '+%Y-%m-%d %H:%M %Z')"
+          for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done

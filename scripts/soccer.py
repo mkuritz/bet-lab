@@ -174,11 +174,20 @@ def props_for(lg, ev, info, cache):
                     "game": ev["id"], "time": ev["date"], "lg": lg, "open": None})
     return out
 
-def run(full=False):
+def run(full=False, leagues=None):
+    """leagues: optional subset (targeted pre-game run); other leagues' props/games/logs are kept from the last run."""
     import extras
     allp, games, logs_all, counts = [], [], {}, {}
     cache = {}
-    for lg in LEAGUES:
+    if leagues:
+        keep = set(LEAGUES) - set(leagues)
+        nowz = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
+        allp = [p for p in F.load("props_soccer.json", []) if p.get("lg") in keep and p.get("time", "") > nowz]
+        games = [g for g in F.load("games_soccer.json", []) if g.get("lg") in keep and g.get("time", "") > nowz]
+        old_logs = F.load("logs_soccer.json", {})
+        logs_all = {p["aid"]: old_logs[p["aid"]] for p in allp if p["aid"] in old_logs}
+        counts = {lg: sum(1 for p in allp if p.get("lg") == lg) for lg in keep}
+    for lg in (leagues or LEAGUES):
         try:
             db, nnew = update_box(lg)
             logs, info = player_logs(db)
