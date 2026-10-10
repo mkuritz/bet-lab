@@ -44,8 +44,9 @@ MAP = {
             "Points + Assists + Rebounds": ["points", "assists", "totalRebounds"],
             "Points + Rebounds": ["points", "totalRebounds"], "Points + Assists": ["points", "assists"],
             "Rebounds + Assists": ["totalRebounds", "assists"]},
-    "nhl": {"Points": ["points"], "Assists": ["assists"], "Goals": ["goals"],
-            "Shots on Goal": ["shotsTotal"], "Saves": ["saves"], "Blocked Shots": ["blockedShots"]},
+    "nhl": {"Points": ["points"], "Assists": ["assists"], "Goals": ["goals"], "Anytime Goal": ["goals"],
+            "Shots on Goal": ["shotsTotal"], "Saves": ["saves"], "Blocked Shots": ["blockedShots"],
+            "Powerplay Points": ["powerPlayPoints"]},
     "mlb": {"Hits": ["hits"], "Runs Scored": ["runs"], "RBIs": ["RBIs"], "Walks (Batter)": ["walks"],
             "Hits + Runs + RBIs": ["hits", "runs", "RBIs"], "Doubles Hit": ["doubles"],
             "Home Runs": ["homeRuns"], "Stolen Bases": ["stolenBases"],
@@ -81,6 +82,7 @@ def market_name(t):
     t = re.sub(r"\s*\((incl\.|excl\.?)[^)]*\)", "", t, flags=re.I).strip()
     if "Milestone" in t: return None
     if t == "Anytime Touchdown Scorer": return "Anytime TD"
+    if t == "Anytime Goalscorer": return "Anytime Goal"
     return t[6:] if t.startswith("Total ") else None  # ladders/milestones/team markets skipped
 
 def events_for(key, cfg):
@@ -122,6 +124,7 @@ def script_for(g, ha):
     sp = g.get("spread")
     me, op = ("home", "away") if ha == "home" else ("away", "home")
     return {"tot": g["total"], "sp": (sp if ha == "home" else -sp) if sp is not None else None,
+            "ml": g.get("mlh" if ha == "home" else "mla"),
             "itt": g.get("itt_" + me), "oitt": g.get("itt_" + op)}
 
 def athlete(sport, ref, cache):
@@ -171,6 +174,14 @@ def statval(g, stat):
         t += -g["s"][kk] if k.startswith("-") else g["s"][kk]
     return t
 
+def current_season(vals):
+    """newest-first (game, v) pairs up to the first 60+ day gap (offseason)."""
+    out = []
+    for i, x in enumerate(vals):
+        if i and (dt.date.fromisoformat(vals[i - 1][0]["d"]) - dt.date.fromisoformat(x[0]["d"])).days > 60: break
+        out.append(x)
+    return out
+
 def summarize(p, games):
     """Precompute hit rates, streaks, H2H and home/away splits for one prop."""
     vals = [(g, statval(g, p["stat"])) for g in games] if p["stat"] else []
@@ -186,9 +197,9 @@ def summarize(p, games):
     for _, v in vals:
         if v < L: under += 1
         else: break
-    yr = vals[0][0]["d"][:4]
+    cur = current_season(vals)
     return {"l5": agg(vals[:5]), "l10": agg(vals[:10]), "l20": agg(vals[:20]),
-            "szn": agg([x for x in vals if x[0]["d"][:4] == yr]), "all": agg(vals),
+            "szn": agg(cur), "all": agg(vals),
             "os": over, "us": under,
             "h2h": agg([x for x in vals if x[0]["o"] == p.get("oa")]),
             "home": agg([x for x in vals if x[0]["at"] != "@"]),
@@ -209,7 +220,7 @@ def run_sport(key, cfg, full_logs):
         for it in data.get("items", []):
             tgt = (it.get("current") or {}).get("target", {}).get("value")
             mk = market_name(it["type"]["name"])
-            if mk == "Anytime TD": tgt = 0.5  # yes/no market: scores 1+ rushing/receiving TD
+            if mk in ("Anytime TD", "Anytime Goal"): tgt = 0.5  # yes/no market: scores 1+ rushing/receiving TD
             if tgt is None or not mk or "athlete" not in it:
                 continue
             aid = athlete(key, it["athlete"]["$ref"], cache)
@@ -228,10 +239,17 @@ def run_sport(key, cfg, full_logs):
                           "gs": script_for(gs, team.get("ha"))})
     need = sorted({p["aid"] for p in props if p["stat"] and (full_logs or p["aid"] not in logs)})
     with ThreadPoolExecutor(4) as ex:
-        for aid, g in zip(need, ex.map(lambda a: gamelog(cfg["path"], a), need)):
+        if key == "nhl":
+            import nhl
+            info = {p["aid"]: (p["player"], p["team"]) for p in props}
+            nhl.prepare(set(t for _, t in info.values()))
+            fn = lambda a: nhl.gamelog(a, *info[a])
+        else:
+            fn = lambda a: gamelog(cfg["path"], a)
+        for aid, g in zip(need, ex.map(fn, need)):
             logs[aid] = g
     active = {p["aid"] for p in props}
-    keep = {k.lstrip("-") for v in MAP[key].values() for k in v} | {"minutes", "atBats", "hitByPitch", "walks"}
+    keep = {k.lstrip("-") for v in MAP[key].values() for k in v} | {"minutes", "atBats", "hitByPitch", "walks", "toi"}
     logs = {a: [dict(g, s={k: v for k, v in g["s"].items() if k in keep}) for g in gs] for a, gs in logs.items() if a in active}
     save("athletes_%s.json" % key, {a: v for a, v in cache.items() if a in active})
     save("logs_%s.json" % key, logs)

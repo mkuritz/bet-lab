@@ -5,6 +5,7 @@ on:
     - cron: "0 10 * * *"            # daily full game-log refresh (~6 AM ET)
     - cron: "30 */3 * * *"          # props every 3h
     - cron: "15 * * * 0,1,4,5,6"    # hourly on game days (Thu/Sat/Sun/Mon ET; UTC days widened for evening games)
+    - cron: "45 21-23,0-2 * * *"    # NHL/NBA/MLB evenings: hourly ~5:45-10:45 PM ET, when day-of skater/goalie lines post
   workflow_dispatch:
     inputs:
       full_logs:
@@ -22,7 +23,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

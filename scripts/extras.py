@@ -85,8 +85,7 @@ def nfl_usage(stats, snaps):
     return res
 
 def log_usage(sport, games):
-    yr = games[0]["d"][:4] if games else None
-    cur = [g for g in games if g["d"][:4] == yr]
+    cur = [g for g, _ in F.current_season([(g, 0) for g in games])]
     if sport == "nba": key, fn, lab = "min", lambda g: g["s"].get("minutes"), "Minutes"
     elif sport == "mlb": key, fn, lab = "pa", lambda g: (g["s"].get("atBats", 0) + g["s"].get("walks", 0) + g["s"].get("hitByPitch", 0)) if "atBats" in g["s"] else None, "PA (AB+BB+HBP)"
     else: return None
@@ -189,6 +188,9 @@ def enrich(sport, cfg, props, logs, full):
             if p.get("stat"):
                 ws = without_splits(p, logs.get(p["aid"], []), inj, ilogs)
                 if ws: p["inj"] = ws
+    elif sport == "nhl":
+        import nhl
+        nhl.enrich(props, logs)
     elif sport in ("nba", "mlb"):
         for p in props:
             u = log_usage(sport, logs.get(p["aid"], []))

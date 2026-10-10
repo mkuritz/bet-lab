@@ -181,15 +181,15 @@ init();
 <script>
 const mv=r=>r.mv24!=null?r.mv24:(r.open!=null?+(r.line-r.open).toFixed(2):null);
 const TR=t=>t>0?'<span class="up">▲</span>':t<0?'<span class="dn">▼</span>':'<span class="mut">▬</span>';
-function useMain(r){const u=r.u;if(!u)return null;for(const k of["sn","min","pa","tg","ca"])if(u[k])return[k,u[k]];return null}
-const ULAB={sn:"Snap %",tg:"Targets",ca:"Carries",min:"Minutes",pa:"PA (AB+BB+HBP)"};
-function useTr(r){const u=r.u;if(!u)return -9;return ["sn","tg","ca","min","pa"].reduce((a,k)=>a+(u[k]?u[k].tr:0),0)}
+function useMain(r){const u=r.u;if(!u)return null;for(const k of["sn","min","pa","toi","tg","ca"])if(u[k])return[k,u[k]];return null}
+const ULAB={toi:"TOI (min)",ppp:"PP pts/g",sn:"Snap %",tg:"Targets",ca:"Carries",min:"Minutes",pa:"PA (AB+BB+HBP)"};
+function useTr(r){const u=r.u;if(!u)return -9;return ["sn","tg","ca","min","pa","toi"].reduce((a,k)=>a+(u[k]?u[k].tr:0),0)}
 function useCell(r){const m=useMain(r);if(!m)return'<span class="mut">—</span>';const[k,v]=m;return `${TR(v.tr)} <small class="mut">${ULAB[k]} ${v.l3??v.l5}/${v.szn}</small>`}
 function dvpCell(r){const d=r.dvp;if(!d)return'<span class="mut">—</span>';return `${d.r}<small class="mut">/${d.of}</small>${d.tag?`<span class="tag ${d.tag}">${d.tag}</span>`:""}`}
 function mvCell(r){const m=mv(r);if(!m)return'<span class="mut">—</span>';return `<span class="${m>0?"up":"dn"}">${m>0?"+":""}${m}</span>`}
 function drawerExtras(r){let h="";
- if(r.dvp)h+=`<h3 style="margin:18px 0 4px;font-size:14px">Matchup: ${r.oa} vs ${r.pos}</h3><div class="mut" style="font-size:13px">${r.oa} allows <b style="color:var(--txt)">${r.dvp.v}</b> ${r.market.toLowerCase()} per game to ${r.pos}s, which ranks <b style="color:var(--txt)">${r.dvp.r} of ${r.dvp.of}</b> (1 = softest)${r.dvp.tag?`<span class="tag ${r.dvp.tag}">${r.dvp.tag}</span>`:""}. Based on ${r.dvp.g} games this season (nflverse)${r.dvp.g<6?". Early-season sample":""}.</div>`;
- if(r.u){const rows=["sn","tg","ca","min","pa"].filter(k=>r.u[k]).map(k=>`<span>${ULAB[k]}: last ${k=="sn"||k=="tg"||k=="ca"?"3":"5"} ${r.u[k].l3??r.u[k].l5} vs season ${r.u[k].szn} ${TR(r.u[k].tr)}</span>`).join("");
+ if(r.dvp)h+=`<h3 style="margin:18px 0 4px;font-size:14px">Matchup: ${r.oa} vs ${r.pos}</h3><div class="mut" style="font-size:13px">${r.dvp.what?(r.pos=="G"?`${r.oa} averages <b style="color:var(--txt)">${r.dvp.v}</b> ${r.dvp.what}`:`${r.oa} allows <b style="color:var(--txt)">${r.dvp.v}</b> ${r.dvp.what}`):`${r.oa} allows <b style="color:var(--txt)">${r.dvp.v}</b> ${r.market.toLowerCase()} per game to ${r.pos}s`}, which ranks <b style="color:var(--txt)">${r.dvp.r} of ${r.dvp.of}</b> (1 = softest)${r.dvp.tag?`<span class="tag ${r.dvp.tag}">${r.dvp.tag}</span>`:""}. Based on ${r.dvp.g} games this season (${sport=="nhl"?"NHL boxscores":"nflverse"})${r.dvp.g<6?". Early-season sample":""}.</div>`;
+ if(r.u){const rows=["sn","tg","ca","min","pa","toi","ppp"].filter(k=>r.u[k]).map(k=>`<span>${ULAB[k]}: last ${k=="sn"||k=="tg"||k=="ca"?"3":"5"} ${r.u[k].l3??r.u[k].l5} vs season ${r.u[k].szn} ${TR(r.u[k].tr)}</span>`).join("");
   if(rows)h+=`<h3 style="margin:18px 0 4px;font-size:14px">Usage trend</h3><div class="tl">${rows}</div><div class="mut" style="font-size:11px;margin-top:4px">${r.u.n} games this season${sport=="nfl"?" (nflverse snaps/stats)":" (ESPN logs)"}. ▲/▼ = recent average 10%+ above/below the season average.</div>`}
  if(r.lh&&r.lh.length){h+=`<h3 style="margin:18px 0 4px;font-size:14px">Line movement</h3><div class="tl">${r.open!=null?`<span>Open ${r.open}</span>`:""}${r.lh.filter(x=>x[0]!="open").map(x=>`<span>${new Date(x[0]).toLocaleString("en-US",{timeZone:"America/New_York",month:"numeric",day:"numeric",hour:"numeric",minute:"2-digit"})}: <b>${x[1]}</b></span>`).join("")}</div><div class="mut" style="font-size:11px;margin-top:4px">Tracked on each data refresh since Oct 10, 2026.</div>`}
  if(r.inj)h+=`<h3 style="margin:18px 0 4px;font-size:14px">Injury impact</h3>`+r.inj.map(x=>`<div style="font-size:13px;margin:4px 0"><b>${x.name}</b> (${x.pos}, ${x.status}): without him ${x.wo?`<b class="${x.wo[0]/x.wo[1]>=.5?"up":"dn"}">${Math.round(x.wo[0]/x.wo[1]*100)}%</b> over (${x.wo[0]}/${x.wo[1]}, avg ${x.wo[2]})`:'<span class="mut">no games</span>'} · with him ${x.w?`${Math.round(x.w[0]/x.w[1]*100)}% (${x.w[0]}/${x.w[1]}, avg ${x.w[2]})`:'<span class="mut">no games</span>'}${x.wo&&x.wo[1]<4?' <span class="warn">small sample</span>':""}</div>`).join("");
@@ -261,10 +261,11 @@ function gameTag(g,all){const t=all.filter(x=>x.total!=null).map(x=>x.total).sor
  return g.total>=t[Math.floor(q*2/3)]?"Shootout":g.total<=t[Math.floor((q-1)/3)]?"Grinder":""}
 function gameScriptCard(){const G=(GAMES[sport]||[]).filter(g=>g.total!=null&&new Date(g.time)>Date.now()-3*3600e3).sort((a,b)=>b.total-a.total);
  if(!G.length)return"";
- return `<div class="card"><h3>🎬 Game script</h3><div class="sub">DraftKings totals and spreads via ESPN${G[0].itt_home!=null?". Implied team total = (total ± spread) / 2":""}. Top third of totals = Shootout, bottom third = Grinder.</div><div class="gs">${G.map(g=>{const tag=gameTag(g,G);const fav=g.spread==null?"":g.spread<0?g.home+" "+g.spread:g.spread>0?g.away+" -"+g.spread:"PK";
+ return `<div class="card"><h3>🎬 Game script</h3><div class="sub">DraftKings totals and spreads via ESPN${G[0].itt_home!=null?". Implied team total = (total ± spread) / 2":""}. Top third of totals = Shootout, bottom third = Grinder.</div><div class="gs">${G.map(g=>{const tag=gameTag(g,G);const fav=ML()?(g.details||""):g.spread==null?"":g.spread<0?g.home+" "+g.spread:g.spread>0?g.away+" -"+g.spread:"PK";
  return `<div class="t">${g.away} @ ${g.home} ${tag?`<span class="tag ${tag=="Shootout"?"soft":"tough"}">${tag}</span>`:""}<div class="mut" style="font-weight:400">${et(g.time)}</div></div><div>O/U <b>${g.total}</b><div class="mut">${fav}</div></div><div class="mut">${g.itt_home!=null?`${g.away} ${g.itt_away}<br>${g.home} ${g.itt_home}`:""}</div>`}).join("")}</div></div>`}
-function ctx(r){const g=r.gs;const p=[];if(g){if(g.itt!=null)p.push(`${r.team} implied ${g.itt}`);if(g.sp!=null)p.push(g.sp<0?`fav ${g.sp}`:g.sp>0?`dog +${g.sp}`:"pick'em");p.push(`O/U ${g.tot}`)}return p.join(", ")}
-function legWhy(r){const b=[`${lastN(r)} ${r.l10.h}/${r.l10.n} over ${r.line} L10`];if(r.dvp&&r.dvp.r<=10)b.push(`${r.oa} allows ${ord(r.dvp.r)}-most ${r.market.toLowerCase()} to ${r.pos}s`);if(r.h2h&&r.h2h.n>=2&&rate(r.h2h)>=.75)b.push(`${r.h2h.h}/${r.h2h.n} vs ${r.oa}`);return b.join(", ")}
+const ML=()=>sport=="nhl"||sport=="mlb";
+function ctx(r){const g=r.gs;const p=[];if(g){if(g.itt!=null)p.push(`${r.team} implied ${g.itt}`);if(ML()){if(g.ml!=null)p.push(`${r.team} ML ${g.ml>0?"+":""}${g.ml}`)}else if(g.sp!=null)p.push(g.sp<0?`fav ${g.sp}`:g.sp>0?`dog +${g.sp}`:"pick'em");p.push(`O/U ${g.tot}`)}return p.join(", ")}
+function legWhy(r){const b=[`${lastN(r)} ${r.l10.h}/${r.l10.n} over ${r.line} L10`];if(r.dvp&&r.dvp.r<=10)b.push(r.dvp.what?(r.pos=="G"?`${r.oa} ranks ${ord(r.dvp.r)} in shots per game`:`${r.oa} allows ${ord(r.dvp.r)}-most ${r.dvp.what}`):`${r.oa} allows ${ord(r.dvp.r)}-most ${r.market.toLowerCase()} to ${r.pos}s`);if(r.h2h&&r.h2h.n>=2&&rate(r.h2h)>=.75)b.push(`${r.h2h.h}/${r.h2h.n} vs ${r.oa}`);return b.join(", ")}
 function mkBundle(theme,icon,legs,head,why,opts={}){const p=legs.reduce((a,r)=>a*legProb(r),1),games=new Set(legs.map(r=>r.game)),sg=games.size<legs.length;
  const minN=Math.min(...legs.map(r=>r.l10.n)),minR=Math.min(...legs.map(rate.bind(null)).map((_,i)=>rate(legs[i].l10)));
  const conf=p>=.45&&minR>=.8&&minN>=8?"High":p>=.2&&minR>=.6?"Medium":"Speculative";
@@ -280,7 +281,7 @@ function buildRecs(d){
  const sorted=(f,k=r=>rate(r.l10))=>P.filter(f).sort((a,b)=>k(b)-k(a)||b.l10.n-a.l10.n);
  const tag=r=>gmap[r.game]?gameTag(gmap[r.game],G):"";
  const MK=(...m)=>r=>m.includes(r.market);
- const series=(theme,icon,pool,n,count,head,why,o)=>{for(let i=0;i<count;i++){const legs=pickDistinct(pool,n,used,o);if(!legs)break;take(mkBundle(theme,icon,legs,head(legs,i),why(legs),o))}};
+ const sigs=new Set();const series=(theme,icon,pool,n,count,head,why,o)=>{let made=0;for(let t=0;t<count*4&&made<count;t++){const legs=pickDistinct(pool,n,used,o);if(!legs)break;const sig=legs.map(legKey).sort().join();if(sigs.has(sig)){used.set(legKey(legs[0]),9);continue}sigs.add(sig);take(mkBundle(theme,icon,legs,head(legs,made),why(legs),o));made++}};
  if(sport=="nfl"||sport=="cfb"){
   // Shootout stack: same-game QB pass yds + his top receiver
   const shoot=G.filter(g=>gameTag(g,G)=="Shootout").sort((a,b)=>b.total-a.total);
@@ -309,6 +310,14 @@ function buildRecs(d){
   // grinder low hurdles
   series("Grinder low hurdles","🧱",sorted(r=>tag(r)=="Grinder"&&r.line<=2.5&&r.market!="Anytime TD"&&rate(r.l10)>=.8),3,3,
    (l,i)=>`Low-total games, low bars #${i+1}`,l=>`Grinder-tier totals favor small, steady lines. `+l.map(r=>`${legWhy(r)} (O/U ${r.gs?.tot})`).join("; ")+".");
+ }
+ if(sport=="nhl"){
+  const hi=r=>r.gs&&(tag(r)=="Shootout"||r.gs.tot>=6.5);
+  series("Shots stack","🏒",sorted(r=>hi(r)&&r.market=="Shots on Goal"&&r.pos!="G"&&rate(r.l10)>=.7),3,5,(l,i)=>`Shots in high-total games #${i+1}`,l=>l.map(r=>`${legWhy(r)} (${ctx(r)})`).join("; ")+".");
+  series("Points in high totals","⭐",sorted(r=>hi(r)&&r.market=="Points"&&rate(r.l10)>=.6),2,5,(l,i)=>`Points where the goals are #${i+1}`,l=>l.map(r=>`${legWhy(r)} (${ctx(r)})`).join("; ")+".");
+  series("Goalie saves","🧤",sorted(r=>r.pos=="G"&&r.market=="Saves"&&rate(r.l10)>=.6,r=>rate(r.l10)+(r.dvp?(33-r.dvp.r)/100:0)),2,5,(l,i)=>`Goalies facing volume #${i+1}`,l=>l.map(r=>`${legWhy(r)}${r.dvp?` (${r.oa} ${r.dvp.v} shots/g, ${r.dvp.g} games)`:""}`).join("; ")+".");
+  series("Anytime goal","🚨",sorted(r=>r.market=="Anytime Goal"&&r.l10.n>=8&&rate(r.l10)>=.35&&sz(r)&&sz(r).n>=1,r=>rate(r.l10)+rate(r.l20)/2+(r.gs&&r.gs.ml<0?.05:0)+(r.dvp?(33-r.dvp.r)/400:0)),2,5,
+   (l,i)=>`Goal scorers #${i+1}`,l=>l.map(r=>`${lastN(r)} scored in ${r.l10.h}/${r.l10.n} L10, ${r.l20?r.l20.h+"/"+r.l20.n+" L20":""} (${ctx(r)})${r.dvp&&r.dvp.r<=10?`, ${r.oa} allows ${ord(r.dvp.r)}-most ${r.dvp.what}`:""}`).join("; ")+".");
  }
  // generic themes (all sports)
  series("Easy hurdles ladder","🪜",sorted(r=>r.market!="Anytime TD"&&rate(r.l10)>=.8&&sz(r)&&sz(r).n>=4&&rate(sz(r))>=.75&&r.l10.avg>=r.line*1.25,r=>rate(r.l10)+r.l10.avg/r.line/10),4,5,
