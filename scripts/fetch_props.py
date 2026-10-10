@@ -6,6 +6,7 @@ Usage: python scripts/fetch_props.py [--logs]   (--logs = refresh every game log
 Be polite: small thread pool, short sleeps, large page sizes, cached athletes.
 """
 import json, os, re, sys, time, datetime as dt
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from concurrent.futures import ThreadPoolExecutor
 from urllib.request import Request, urlopen
 
@@ -128,7 +129,8 @@ def gamelog(path, aid):
                         try: stats[n] = float(str(v).split("-")[0]) if "-" in n else float(v)
                         except ValueError: pass
                     games.append({"d": meta.get("gameDate", "")[:10], "o": (meta.get("opponent") or {}).get("abbreviation", ""),
-                                  "at": meta.get("atVs", ""), "s": stats})
+                                  "at": meta.get("atVs", ""), "e": ev["eventId"],
+                                  "t": (meta.get("team") or {}).get("abbreviation", ""), "s": stats})
     eat(d)
     if d:  # always add the prior season for head-to-head / split samples
         seasons = [f["value"] for f in d.get("filters", []) if f.get("name") == "season"]
@@ -200,12 +202,18 @@ def run_sport(key, cfg, full_logs):
         for aid, g in zip(need, ex.map(lambda a: gamelog(cfg["path"], a), need)):
             logs[aid] = g
     active = {p["aid"] for p in props}
-    keep = {k.lstrip("-") for v in MAP[key].values() for k in v}
+    keep = {k.lstrip("-") for v in MAP[key].values() for k in v} | {"minutes", "atBats", "hitByPitch", "walks"}
     logs = {a: [dict(g, s={k: v for k, v in g["s"].items() if k in keep}) for g in gs] for a, gs in logs.items() if a in active}
     save("athletes_%s.json" % key, {a: v for a, v in cache.items() if a in active})
     save("logs_%s.json" % key, logs)
     for p in props:
         p["x"] = summarize(p, logs.get(p["aid"], []))
+    try:
+        import extras
+        extras.enrich(key, cfg, props, logs, full_logs)
+    except Exception as e:  # extras are best-effort; core props still ship
+        import traceback; traceback.print_exc()
+        print(key, "extras ERROR", e)
     props.sort(key=lambda p: (p["time"], p["player"], p["market"]))
     save("props_%s.json" % key, props)
     return len(props), len(need)
