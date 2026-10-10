@@ -34,6 +34,7 @@ FB = {
     "Longest Passing Completion": ["longPassing"], "Field Goals Made": ["fieldGoalsMade-fieldGoalAttempts"],
     "Extra Points Made": ["extraPointsMade-extraPointAttempts"], "Kicking Points": ["totalKickingPoints"], "Tackles": ["soloTackles"],
     "Tackles Plus Assists": ["totalTackles"], "Sacks": ["sacks"],
+    "Anytime TD": ["rushingTouchdowns", "receivingTouchdowns"],
 }
 MAP = {
     "nfl": FB, "cfb": FB,
@@ -79,6 +80,7 @@ def save(name, obj):
 def market_name(t):
     t = re.sub(r"\s*\((incl\.|excl\.?)[^)]*\)", "", t, flags=re.I).strip()
     if "Milestone" in t: return None
+    if t == "Anytime Touchdown Scorer": return "Anytime TD"
     return t[6:] if t.startswith("Total ") else None  # ladders/milestones/team markets skipped
 
 def events_for(key, cfg):
@@ -99,6 +101,28 @@ def events_for(key, cfg):
         teams = {c["team"]["id"]: {"abbr": c["team"].get("abbreviation", "?"), "ha": c["homeAway"]} for c in comp["competitors"]}
         out.append({"id": e["id"], "date": e["date"], "name": e.get("shortName", e["name"]), "teams": teams})
     return out
+
+def game_odds(s, l, ev):
+    """DraftKings total/spread for one game via ESPN; implied team totals."""
+    home = next((t["abbr"] for t in ev["teams"].values() if t["ha"] == "home"), "")
+    away = next((t["abbr"] for t in ev["teams"].values() if t["ha"] == "away"), "")
+    g = {"id": ev["id"], "time": ev["date"], "home": home, "away": away}
+    d = get(CORE.format(s=s, l=l) + "/events/{0}/competitions/{0}/odds".format(ev["id"])) or {}
+    it = next((i for i in d.get("items", []) if str(i.get("provider", {}).get("id")) == str(DK)), None)
+    if it and it.get("overUnder") is not None:
+        tot, sp = it["overUnder"], it.get("spread")  # spread is the home team's line
+        g.update(total=tot, spread=sp, details=it.get("details"),
+                 mlh=(it.get("homeTeamOdds") or {}).get("moneyLine"), mla=(it.get("awayTeamOdds") or {}).get("moneyLine"))
+        if sp is not None and s in ("football", "basketball"):  # MLB/NHL spreads are run/puck lines
+            g.update(itt_home=round((tot - sp) / 2, 2), itt_away=round((tot + sp) / 2, 2))
+    return g
+
+def script_for(g, ha):
+    if "total" not in g or ha not in ("home", "away"): return None
+    sp = g.get("spread")
+    me, op = ("home", "away") if ha == "home" else ("away", "home")
+    return {"tot": g["total"], "sp": (sp if ha == "home" else -sp) if sp is not None else None,
+            "itt": g.get("itt_" + me), "oitt": g.get("itt_" + op)}
 
 def athlete(sport, ref, cache):
     aid = re.search(r"athletes/(\d+)", ref).group(1)
@@ -175,13 +199,17 @@ def run_sport(key, cfg, full_logs):
     cache = load("athletes_%s.json" % key, {})
     logs = load("logs_%s.json" % key, {})
     props = []
+    games = []
     for ev in events_for(key, cfg):
+        gs = game_odds(s, l, ev)
+        games.append(gs)
         url = CORE.format(s=s, l=l) + "/events/{0}/competitions/{0}/odds/{1}/propBets?limit=1000".format(ev["id"], DK)
         data = get(url) or {"items": []}
         seen = set()
         for it in data.get("items", []):
             tgt = (it.get("current") or {}).get("target", {}).get("value")
             mk = market_name(it["type"]["name"])
+            if mk == "Anytime TD": tgt = 0.5  # yes/no market: scores 1+ rushing/receiving TD
             if tgt is None or not mk or "athlete" not in it:
                 continue
             aid = athlete(key, it["athlete"]["$ref"], cache)
@@ -196,7 +224,8 @@ def run_sport(key, cfg, full_logs):
                           "opp": (("@" if team.get("ha") == "away" else "vs ") + opp[0]["abbr"]) if team and opp else ev["name"],
                           "market": mk, "stat": MAP[key].get(mk), "line": tgt,
                           "open": (it.get("open") or {}).get("target", {}).get("value"),
-                          "game": ev["id"], "time": ev["date"], "upd": it.get("lastUpdated")})
+                          "game": ev["id"], "time": ev["date"], "upd": it.get("lastUpdated"),
+                          "gs": script_for(gs, team.get("ha"))})
     need = sorted({p["aid"] for p in props if p["stat"] and (full_logs or p["aid"] not in logs)})
     with ThreadPoolExecutor(4) as ex:
         for aid, g in zip(need, ex.map(lambda a: gamelog(cfg["path"], a), need)):
@@ -216,6 +245,7 @@ def run_sport(key, cfg, full_logs):
         print(key, "extras ERROR", e)
     props.sort(key=lambda p: (p["time"], p["player"], p["market"]))
     save("props_%s.json" % key, props)
+    save("games_%s.json" % key, sorted(games, key=lambda g: g["time"]))
     return len(props), len(need)
 
 def main():
