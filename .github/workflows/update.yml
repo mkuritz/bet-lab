@@ -5,6 +5,7 @@ on:
     - cron: "0 10 * * *"            # daily full game-log refresh (~6 AM ET)
     - cron: "30 */3 * * *"          # props every 3h
     - cron: "15 * * * 0,1,4,5,6"    # hourly on game days (Thu/Sat/Sun/Mon ET; UTC days widened for evening games)
+    - cron: "5 11-17 * * 0,6"       # soccer weekend mornings/afternoons ET (hourly ~7 AM-1 PM ET)
     - cron: "45 21-23,0-2 * * *"    # NHL/NBA/MLB evenings: hourly ~5:45-10:45 PM ET, when day-of skater/goalie lines post
   workflow_dispatch:
     inputs:

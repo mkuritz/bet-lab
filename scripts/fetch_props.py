@@ -279,6 +279,14 @@ def main():
             meta["sports"].setdefault(key, {})["ok"] = False
             meta["sports"][key]["error"] = str(e)[:200]
             print(key, "ERROR", e)
+    try:
+        import soccer
+        n, counts = soccer.run(full)
+        meta["sports"]["soccer"] = {"props": n, "ok": True, "leagues": counts, "at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")}
+        print("soccer props", n, counts)
+    except Exception as e:
+        meta["sports"].setdefault("soccer", {})["ok"] = False
+        print("soccer ERROR", e)
     meta["updated"] = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
     meta["odds_api"] = bool(os.environ.get("ODDS_API_KEY"))  # placeholder: multi-book lines not implemented yet
     save("meta.json", meta)
