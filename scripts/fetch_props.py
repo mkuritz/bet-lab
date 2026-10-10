@@ -130,12 +130,43 @@ def gamelog(path, aid):
                     games.append({"d": meta.get("gameDate", "")[:10], "o": (meta.get("opponent") or {}).get("abbreviation", ""),
                                   "at": meta.get("atVs", ""), "s": stats})
     eat(d)
-    if d and len(games) < 20:
+    if d:  # always add the prior season for head-to-head / split samples
         seasons = [f["value"] for f in d.get("filters", []) if f.get("name") == "season"]
         if seasons and seasons[0].isdigit():
             eat(get(GLOG.format(p=path, a=aid) + "?season=" + str(int(seasons[0]) - 1)))
     games.sort(key=lambda g: g["d"], reverse=True)
-    return games[:40]
+    return games[:70]
+
+def statval(g, stat):
+    t = 0
+    for k in stat:
+        kk = k.lstrip("-")
+        if kk not in g["s"]: return None
+        t += -g["s"][kk] if k.startswith("-") else g["s"][kk]
+    return t
+
+def summarize(p, games):
+    """Precompute hit rates, streaks, H2H and home/away splits for one prop."""
+    vals = [(g, statval(g, p["stat"])) for g in games] if p["stat"] else []
+    vals = [(g, v) for g, v in vals if v is not None]
+    if not vals: return None
+    L = p["line"]
+    def agg(xs):
+        return [sum(v > L for _, v in xs), len(xs), round(sum(v for _, v in xs) / len(xs), 2)] if xs else None
+    over = under = 0
+    for _, v in vals:
+        if v > L: over += 1
+        else: break
+    for _, v in vals:
+        if v < L: under += 1
+        else: break
+    yr = vals[0][0]["d"][:4]
+    return {"l5": agg(vals[:5]), "l10": agg(vals[:10]), "l20": agg(vals[:20]),
+            "szn": agg([x for x in vals if x[0]["d"][:4] == yr]), "all": agg(vals),
+            "os": over, "us": under,
+            "h2h": agg([x for x in vals if x[0]["o"] == p.get("oa")]),
+            "home": agg([x for x in vals if x[0]["at"] != "@"]),
+            "away": agg([x for x in vals if x[0]["at"] == "@"])}
 
 def run_sport(key, cfg, full_logs):
     s, l = cfg["path"].split("/")
@@ -159,6 +190,7 @@ def run_sport(key, cfg, full_logs):
             team = ev["teams"].get(a["team"] or "", {})
             opp = [t for tid, t in ev["teams"].items() if tid != a["team"]]
             props.append({"aid": aid, "player": a["name"], "pos": a["pos"], "team": team.get("abbr", ""),
+                          "oa": opp[0]["abbr"] if opp else "", "home": team.get("ha") == "home",
                           "opp": (("@" if team.get("ha") == "away" else "vs ") + opp[0]["abbr"]) if team and opp else ev["name"],
                           "market": mk, "stat": MAP[key].get(mk), "line": tgt,
                           "open": (it.get("open") or {}).get("target", {}).get("value"),
@@ -172,6 +204,8 @@ def run_sport(key, cfg, full_logs):
     logs = {a: [dict(g, s={k: v for k, v in g["s"].items() if k in keep}) for g in gs] for a, gs in logs.items() if a in active}
     save("athletes_%s.json" % key, {a: v for a, v in cache.items() if a in active})
     save("logs_%s.json" % key, logs)
+    for p in props:
+        p["x"] = summarize(p, logs.get(p["aid"], []))
     props.sort(key=lambda p: (p["time"], p["player"], p["market"]))
     save("props_%s.json" % key, props)
     return len(props), len(need)
