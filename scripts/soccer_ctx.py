@@ -59,6 +59,7 @@ def enrich(props, games):
     # per prop: splits, callout, match type
     gmap = {g["id"]: g for g in games}
     for p in props:
+        p.pop("co", None); p.pop("sp", None)
         s = sp.get(p["aid"])
         g = gmap.get(p["game"], {})
         lg = p.get("lg", "")
@@ -74,8 +75,8 @@ def enrich(props, games):
             for lab, X in (("vs big opponents", B), ("in UEFA knockout games", K), ("in UEFA", U)):
                 if X and X["n"] >= 5 and X["g"] / X["n"] <= 0.5 * L["g"] / L["n"]:
                     co.append("Crushes %s (%d G in %d), quiet %s: %d G in %d" % (LGN.get(lg if lg in DOM else team_lg.get(p["team"], ""), "league"), L["g"], L["n"], lab, X["g"], X["n"])); break
-        if B and B["n"] >= 5 and L and L["n"] >= 8 and B["g"] / B["n"] >= 1.3 * max(0.05, L["g"] / L["n"]) and B["g"] >= 3:
-            co.append("Big-game player: %d G in %d vs big opponents (%.2f/app) vs %.2f/app overall league" % (B["g"], B["n"], B["g"] / B["n"], L["g"] / L["n"]))
+        if B and B["n"] >= 6 and L and L["n"] >= 8 and B["g"] / B["n"] >= 0.3 and B["g"] / B["n"] >= 1.3 * L["g"] / L["n"] and B["g"] >= 5:
+            co.append("Big-game player: %d G in %d vs big opponents (%.2f/app) vs %.2f/app in league play" % (B["g"], B["n"], B["g"] / B["n"], L["g"] / L["n"]))
         if co: p["co"] = co[:2]
     # per game context: travel, fatigue, altitude, weather
     for g in games:
@@ -112,7 +113,7 @@ def enrich(props, games):
             for t, o, ha in ((h, a, "h"), (a, h, "a")):
                 e = tg.setdefault(t, {"h": [0, 0, 0], "a": [0, 0, 0]})[ha]
                 e[0] += gl[t]; e[1] += gl[o]; e[2] += 1
-    rate = lambda t, ha, i: (lambda e: e[i] / e[2] if e[2] >= 2 else None)(tg.get(t, {}).get(ha, [0, 0, 0]))
+    rate = lambda t, ha, i: (lambda e: (e[i] + 1.35 * 3) / (e[2] + 3) if e[2] >= 2 else None)(tg.get(t, {}).get(ha, [0, 0, 0]))  # shrunk toward 1.35 goals/side with 3 phantom games
     for g in games:
         h, a = g["home"], g["away"]
         hf, aa, af, ha_ = rate(h, "h", 0), rate(a, "a", 1), rate(a, "a", 0), rate(h, "h", 1)
@@ -158,7 +159,8 @@ def enrich(props, games):
         elif striker:
             legs.append(striker)
             cr = max((p for p in ast.values() if p["aid"] != striker["aid"]), key=lambda p: (p.get("u") or {}).get("ga", {}).get("a", 0), default=None)
-            if cr: legs.append(cr); why.append("%s leads %s prop players in assists this season (%d)" % (cr["player"], fav, (cr.get("u") or {}).get("ga", {}).get("a", 0)))
+            if cr: legs.append(cr)
+            if cr and (cr.get("u") or {}).get("ga", {}).get("a", 0): why.append("%s leads %s prop players in assists this season (%d)" % (cr["player"], fav, (cr.get("u") or {}).get("ga", {}).get("a", 0)))
         if striker and striker["aid"] in sot: legs.append(sot[striker["aid"]])
         rate = lambda p: hr(p)[0] / hr(p)[1] if hr(p)[1] else 0
         legs = [p for p in legs if rate(p) >= 0.3]  # each leg must have hit 3+ of its last 10 (or 30%+)
