@@ -168,6 +168,7 @@ def enrich(sport, cfg, props, logs, full):
         snaps = csv_rows(NV + "snap_counts/snap_counts_%d.csv" % yr)
         dvp, use = nfl_dvp(stats), nfl_usage(stats, snaps)
         inj, ilogs = injuries_nfl(snaps, full)
+        _snaps, _stats = snaps, stats
         for p in props:
             cols = DVP_STAT.get(p["market"])
             if cols and p["pos"] in SKILL:
@@ -188,6 +189,11 @@ def enrich(sport, cfg, props, logs, full):
             if p.get("stat"):
                 ws = without_splits(p, logs.get(p["aid"], []), inj, ilogs)
                 if ws: p["inj"] = ws
+        try:  # Sports Analyst tab (needs games_nfl.json written this run; see fetch_props.run_sport)
+            import analyst
+            F._analyst = lambda: analyst.run(_stats, _snaps, props)
+        except Exception as e:
+            print("analyst setup ERROR", e)
     elif sport == "nhl":
         import nhl
         nhl.enrich(props, logs)

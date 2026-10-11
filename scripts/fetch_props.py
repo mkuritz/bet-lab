@@ -264,6 +264,11 @@ def run_sport(key, cfg, full_logs):
     props.sort(key=lambda p: (p["time"], p["player"], p["market"]))
     save("props_%s.json" % key, props)
     save("games_%s.json" % key, sorted(games, key=lambda g: g["time"]))
+    import fetch_props as _fp  # extras registers the hook on the imported module
+    if key == "nfl" and getattr(_fp, "_analyst", None):
+        try: _fp._analyst(); _fp._analyst = None
+        except Exception as e:
+            import traceback; traceback.print_exc(); print("analyst ERROR", e)
     return len(props), len(need)
 
 def main():
