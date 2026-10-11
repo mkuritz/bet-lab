@@ -89,6 +89,19 @@ def build(snaps, props, games):
                      2 if len(back) >= 2 else 1, {"team": team, "markets": sorted(PASS_M | {"Anytime TD"}), "pos": ["QB", "WR", "TE"]})
         if front: add(team, "DEF-FRONT", "helps %s run game & protection" % team, "%s front seven: %d starter%s out — %s" % (o, len(front), "" if len(front) == 1 else "s", "; ".join(tag(x) for x in front)),
                       2 if len(front) >= 2 else 1, {"team": team, "markets": sorted(RUSH_M | {"Anytime TD", "Sacks"}), "pos": ["RB", "QB"]})
+    # weather (Open-Meteo at kickoff; domes skipped)
+    for g in upcoming:
+        w = g.get("wx") or {}
+        for t in w.get("flags", []):
+            for team in (g["home"], g["away"]):
+                if t.startswith("High wind"):
+                    add(team, "WX", "hurts pass game & kicking", "%s @ %s: %s" % (g["away"], g["home"], t.split(":")[0]), 2,
+                        {"team": team, "markets": sorted(PASS_M | {"Field Goals Made", "Kicking Points", "Extra Points Made"}), "pos": ["QB", "WR", "TE", "PK", "K"]})
+                elif t.startswith("Rain"):
+                    add(team, "WX", "rain: lowers totals, favors run game", "%s @ %s: %s" % (g["away"], g["home"], t.split(":")[0]), 1,
+                        {"team": team, "markets": sorted(PASS_M), "pos": ["QB", "WR", "TE"]})
+                elif team == g["home"]:
+                    add(team, "WX", "weather", "%s @ %s: %s" % (g["away"], g["home"], t), 1, {})
     # player's own listing (offense or defense props): injury tracking on the prop itself
     for p in props:
         x = inj.get((X.norm(p["player"]), p["team"]))

@@ -161,7 +161,13 @@ def run(stats, snaps, props, dvp_unused=None):
         else: txt += "No offensive-line injuries listed. "
         dk_out = [x for x in c["inj_def"] if x["status"] in ("Out", "Doubtful", "Injured Reserve")]
         if dk_out: txt += "%s's defense is without %s, widening the edge." % (c["def"], ", ".join(x["name"] + " (" + x["pos"] + ")" for x in dk_out[:4]))
-        fx = [f for f in flags if f["team"] == c["off"] and f["kind"] != "SELF"]
+        gw = next((g for g in games if g["id"] == c["game"]), {}).get("wx") or {}
+        c["wx"] = gw or None
+        if gw.get("dome"): txt += "Weather: none (%s). " % gw["dome"]
+        elif gw.get("temp") is not None:
+            txt += "Kickoff forecast (Open-Meteo): %d°F, wind %d mph, %d%% rain chance. " % (gw["temp"], gw["wind"], gw["pop"] or 0)
+            if gw.get("flags"): txt += "Weather flag: " + "; ".join(gw["flags"]) + ". "
+        fx = [f for f in flags if f["team"] == c["off"] and f["kind"] not in ("SELF", "WX")]
         if fx: txt += " Impact flags: " + " | ".join("%s (%s)" % (f["text"], f["dir"]) for f in fx[:4]) + "."
         c["flags"] = [f["id"] for f in fx]
         c["text"] = txt.strip()

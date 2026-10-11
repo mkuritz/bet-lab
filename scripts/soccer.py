@@ -5,7 +5,9 @@ from concurrent.futures import ThreadPoolExecutor
 import fetch_props as F
 
 LEAGUES = {"eng.1": "EPL", "esp.1": "La Liga", "ita.1": "Serie A", "ger.1": "Bundesliga", "fra.1": "Ligue 1",
-           "usa.1": "MLS", "por.1": "Primeira Liga", "ned.1": "Eredivisie", "tur.1": "Süper Lig"}
+           "usa.1": "MLS", "por.1": "Primeira Liga", "ned.1": "Eredivisie", "tur.1": "Süper Lig",
+           "ksa.1": "Saudi Pro League", "uefa.champions": "Champions League", "uefa.europa": "Europa League", "uefa.europa.conf": "Conference League"}
+UEFA = ("uefa.champions", "uefa.europa", "uefa.europa.conf")
 SITE = "https://site.api.espn.com/apis/site/v2/sports/soccer/%s"
 CORE = "https://sports.core.api.espn.com/v2/sports/soccer/leagues/%s"
 POS = {"G": "GK", "D": "DF", "M": "MF", "F": "FW"}
@@ -19,6 +21,7 @@ SMAP = {"totalGoals": "g", "goalAssists": "a", "totalShots": "sh", "shotsOnTarge
         "foulsCommitted": "fc", "yellowCards": "yc", "redCards": "rc"}
 
 def cutoff(lg):
+    if lg in UEFA: return "2024-07-01"
     return "2025-02-01" if lg == "usa.1" else "2025-07-01"
 
 def season_start(lg):
@@ -44,7 +47,14 @@ def implied(a):
 def summary(lg, eid):
     d = F.get(SITE % lg + "/summary?event=" + eid) or {}
     comp = (d.get("header") or {}).get("competitions", [{}])[0]
-    rec = {"d": (comp.get("date") or "")[:10], "p": {}, "t": {}}
+    rec = {"d": (comp.get("date") or "")[:10], "p": {}, "t": {}, "ga": [], "c": lg,
+           "ph": ((d.get("header") or {}).get("season") or {}).get("slug") or "",
+           "v": [((d.get("gameInfo") or {}).get("venue") or {}).get("address", {}).get(k) for k in ("city", "country")]}
+    for k in d.get("keyEvents", []):  # [team abbr later, scorer id, assister id or None]
+        if not k.get("scoringPlay"): continue
+        ps = [x.get("athlete", {}).get("id") for x in k.get("participants", [])]
+        if "own goal" in (k.get("type") or {}).get("text", "").lower() or not ps: continue
+        rec["ga"].append([(k.get("team") or {}).get("id"), ps[0], ps[1] if len(ps) > 1 and "Assisted" in (k.get("text") or "") else None])
     for r in d.get("rosters", []):
         ab = r["team"].get("abbreviation", "?")
         rec["t"][r["homeAway"]] = ab
@@ -59,11 +69,12 @@ def summary(lg, eid):
 def update_box(lg):
     db = F.load("soccer/%s_box.json" % lg, {})
     evs = []
-    for y in (2025, 2026):
+    for y in ((2024, 2025, 2026) if lg in UEFA else (2025, 2026)):
         sb = F.get(SITE % lg + "/scoreboard?dates=%d&limit=1000" % y) or {}
         for e in sb.get("events", []):
             if e["status"]["type"].get("completed") and e["date"][:10] >= cutoff(lg) and e["id"] not in db:
                 evs.append(e["id"])
+    evs += [k for k, m in db.items() if "ga" not in m][:300]  # backfill scorer/assister pairs, venue, phase
     with ThreadPoolExecutor(6) as ex:
         for eid, rec in zip(evs, ex.map(lambda e: summary(lg, e), evs)):
             if rec: db[eid] = rec
@@ -120,14 +131,19 @@ def fixtures(lg, days=4):
             if e["id"] in seen or e["status"]["type"]["state"] != "pre": continue
             seen.add(e["id"])
             c = e["competitions"][0]
-            teams = {t["team"]["id"]: {"abbr": t["team"].get("abbreviation", "?"), "ha": t["homeAway"]} for t in c["competitors"]}
-            out.append({"id": e["id"], "date": e["date"], "name": e.get("shortName", e["name"]), "teams": teams})
+            teams = {t["team"]["id"]: {"abbr": t["team"].get("abbreviation", "?"), "ha": t["homeAway"], "name": t["team"].get("displayName"),
+                                       "color": t["team"].get("color"), "alt": t["team"].get("alternateColor"), "logo": t["team"].get("logo")} for t in c["competitors"]}
+            v = (c.get("venue") or {}).get("address") or {}
+            out.append({"id": e["id"], "date": e["date"], "name": e.get("shortName", e["name"]), "teams": teams,
+                        "venue": [(c.get("venue") or {}).get("fullName"), v.get("city"), v.get("country")],
+                        "ph": (e.get("season") or {}).get("slug") or ""})
     return out
 
 def game_odds(lg, ev):
     home = next(t["abbr"] for t in ev["teams"].values() if t["ha"] == "home")
     away = next(t["abbr"] for t in ev["teams"].values() if t["ha"] == "away")
-    g = {"id": ev["id"], "time": ev["date"], "home": home, "away": away, "lg": lg}
+    g = {"id": ev["id"], "time": ev["date"], "home": home, "away": away, "lg": lg, "venue": ev.get("venue"), "ph": ev.get("ph"),
+         "clubs": {t["abbr"]: {"name": t.get("name"), "color": t.get("color"), "alt": t.get("alt"), "logo": t.get("logo")} for t in ev["teams"].values()}}
     d = F.get(CORE % lg + "/events/{0}/competitions/{0}/odds".format(ev["id"])) or {}
     it = next((i for i in d.get("items", []) if str(i.get("provider", {}).get("id")) == "100"), None)
     if it:
@@ -231,6 +247,11 @@ def run(full=False, leagues=None):
         t = teams.get((p["lg"], p["team"]), {})
         rk = sorted(t, key=lambda a: t[a], reverse=True)
         p["top"] = p["aid"] in rk[:3] and t[p["aid"]][1] >= 60
+    try:
+        import soccer_ctx
+        soccer_ctx.enrich(allp, games)
+    except Exception as e:
+        import traceback; traceback.print_exc(); print("soccer ctx ERROR", e)
     extras.line_history("soccer", allp)
     allp.sort(key=lambda p: (p["time"], p["player"], p["market"]))
     F.save("props_soccer.json", allp)

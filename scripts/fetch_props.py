@@ -102,7 +102,10 @@ def events_for(key, cfg):
             continue
         comp = e["competitions"][0]
         teams = {c["team"]["id"]: {"abbr": c["team"].get("abbreviation", "?"), "ha": c["homeAway"]} for c in comp["competitors"]}
-        out.append({"id": e["id"], "date": e["date"], "name": e.get("shortName", e["name"]), "teams": teams})
+        v = comp.get("venue") or {}
+        out.append({"id": e["id"], "date": e["date"], "name": e.get("shortName", e["name"]), "teams": teams,
+                    "venue": {"name": v.get("fullName"), "city": (v.get("address") or {}).get("city"), "state": (v.get("address") or {}).get("state"),
+                              "country": (v.get("address") or {}).get("country"), "indoor": v.get("indoor")}})
     return out
 
 def game_odds(s, l, ev):
@@ -118,6 +121,18 @@ def game_odds(s, l, ev):
                  mlh=(it.get("homeTeamOdds") or {}).get("moneyLine"), mla=(it.get("awayTeamOdds") or {}).get("moneyLine"))
         if sp is not None and s in ("football", "basketball"):  # MLB/NHL spreads are run/puck lines
             g.update(itt_home=round((tot - sp) / 2, 2), itt_away=round((tot + sp) / 2, 2))
+    if l == "nfl":
+        try:
+            import weather as W
+            v = ev.get("venue") or {}
+            g["venue"] = v.get("name")
+            if home in W.ROOF_NFL and (v.get("country") in (None, "USA", "United States")):
+                g["wx"] = {"dome": W.ROOF_NFL[home]}
+            elif v.get("indoor"):
+                g["wx"] = {"dome": "indoor"}
+            elif v.get("city"):
+                g["wx"] = W.forecast(W.geo(v["city"], "" if v.get("country") in (None, "USA") else v["country"]), ev["date"])
+        except Exception as e: print("weather", e)
     return g
 
 def script_for(g, ha):
