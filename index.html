@@ -67,10 +67,18 @@ tbody tr{cursor:pointer}tbody tr:hover{background:#1b2438}
 .mm p{font-size:13px;line-height:1.55;margin:8px 0}.olf{background:#3a1520;border:1px solid var(--bad);border-radius:8px;padding:8px 10px;font-size:12px;margin:6px 0}
 .olf b{color:#ff9aa5}.tdl{width:100%;min-width:0}.tdl td,.tdl th{padding:6px;font-size:12px}.an table{min-width:0}.an .wrap{max-height:520px}
 .bar2{display:inline-block;height:6px;border-radius:3px;background:var(--acc);vertical-align:middle;margin-right:6px}
+#tablev td{padding:6px 8px}#tablev .line{font-size:14px}.morebtn{display:block;margin:10px auto;background:var(--panel2);border:1px solid var(--line);color:var(--acc);padding:8px 18px;border-radius:8px;font-weight:700;cursor:pointer}
+.fb{display:inline-block;font-size:10px;font-weight:800;padding:1px 5px;border-radius:5px;margin-left:5px;vertical-align:1px;cursor:help}.fb.h{background:#3a1520;color:#ff9aa5;border:1px solid #6b2532}.fb.p{background:#0f3324;color:var(--acc);border:1px solid #1d5b40}.fb.q{background:#3a2e0e;color:var(--mid);border:1px solid #6b5520}
+.imp{display:flex;gap:8px;align-items:flex-start;font-size:12px;padding:5px 0;border-top:1px solid var(--line)}.imp:first-of-type{border-top:0}.imp .tx{flex:1}
+.lg{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px}.lg .sc{display:flex;gap:14px;align-items:center;font-weight:800;font-size:18px}.lg .clk{color:var(--bad);font-size:13px;font-weight:800}
+.lp{display:grid;grid-template-columns:minmax(150px,1.2fr) minmax(120px,1fr) minmax(220px,2fr);gap:10px;align-items:center;border-top:1px solid var(--line);padding:8px 0;font-size:12px}
+.pb{height:8px;background:var(--panel2);border-radius:4px;overflow:hidden;margin-top:4px}.pb i{display:block;height:100%;background:var(--acc2)}.pb i.ok{background:var(--acc)}.pb i.dead{background:#55607a}
+.st{font-size:10px;font-weight:800;padding:1px 6px;border-radius:5px;margin-left:4px}.st.hit{background:var(--acc);color:#06210f}.st.dead{background:#55607a;color:#fff}.st.mo{background:#5b2bd1;color:#fff}
+@media(max-width:700px){.lp{grid-template-columns:1fr}}
 footer{color:var(--mut);font-size:12px;padding:16px 20px 30px;border-top:1px solid var(--line)}
 </style></head><body>
 <header><div class="logo">Bet <b>Lab</b></div><span class="mut">Player prop research</span><span id="badge">Loading…</span></header>
-<nav id="tabs"></nav><div class="bar" style="padding-bottom:6px"><div class="views" id="views"><button data-v="dash">Dashboard</button><button data-v="table">All props</button><button data-v="analyst" id="anbtn">🎙️ Sports Analyst</button></div></div>
+<nav id="tabs"></nav><div class="bar" style="padding-bottom:6px"><div class="views" id="views"><button data-v="dash">Dashboard</button><button data-v="table">All props</button><button data-v="live" id="livebtn">🔴 Live</button><button data-v="analyst" id="anbtn">🎙️ Sports Analyst</button></div></div>
 <div class="bar">
 <input id="q" placeholder="Search player or team…">
 <select id="mkt"><option value="">All markets</option></select>
@@ -84,7 +92,7 @@ footer{color:var(--mut);font-size:12px;padding:16px 20px 30px;border-top:1px sol
 <span id="count" class="mut"></span></div>
 <div class="bar"><div class="chips" id="poss" style="margin:0"></div>
 </div>
-<section id="dash"></section><section id="analyst" hidden></section><main id="tablev"><div class="wrap"><table><thead><tr id="th"></tr></thead><tbody id="tb"></tbody></table><div id="empty" class="empty" hidden></div></div></main>
+<section id="dash"></section><section id="analyst" hidden></section><section id="live" hidden></section><main id="tablev"><div class="chips" id="tctl" style="margin:0 0 8px"></div><div class="wrap"><table><thead><tr id="th"></tr></thead><tbody id="tb"></tbody></table><div id="empty" class="empty" hidden></div></div><button id="more" class="morebtn" hidden>Show more</button></main>
 <div id="shade"></div><aside id="drawer"></aside>
 <footer>Personal research demo. Unofficial data: DraftKings lines via ESPN's public feed, game logs via ESPN. Over/under prices are not in the free feed. Hit rates are based on past games only. Not betting advice. 21+ only; if you or someone you know has a gambling problem, call 1-800-GAMBLER.</footer>
 <script>
@@ -101,7 +109,7 @@ async function j(u,fb){try{const r=await fetch(u+"?v="+Date.now());if(!r.ok)thro
 function val(g,stat){let s=0;for(const k of stat){const neg=k[0]=="-",kk=k.replace(/^-/,"");if(!(kk in g.s))return null;s+=neg?-g.s[kk]:g.s[kk]}return s}
 function enrich(p,logs){const r=enrich0(p,logs),x=p.x;if(x){const A=a=>a?{h:a[0],n:a[1],avg:a[2]}:null;
  Object.assign(r,{l5:A(x.l5),l10:A(x.l10),l20:A(x.l20),avg:x.szn?x.szn[2]:r.avg,os:x.os,us:x.us,h2h:A(x.h2h),hm:A(x.home),aw:A(x.away)})}
- r.ven=r.home?r.hm:r.aw;return r}
+ r.ven=r.home?r.hm:r.aw;r.grp=p.grp||"off";r.fl=p.fl||null;return r}
 function enrich0(p,logs){const g=(logs[p.aid]||[]).map(x=>({...x,v:p.stat?val(x,p.stat):null})).filter(x=>x.v!=null);
  const hr=n=>{const a=g.slice(0,n);return a.length?{h:a.filter(x=>x.v>p.line).length,n:a.length}:null};
  const yr=g.length?g[0].d.slice(0,4):null;const ss=g.filter(x=>x.d.slice(0,4)==yr);
@@ -112,7 +120,7 @@ function hrCell(h){if(!h)return'<span class="mut">—</span>';const p=h.h/h.n,c=
 const COLS=[["player","Player"],["team","Team / Opp"],["market","Market"],["line","Line"],["ou","Over / Under"],["l5","L5"],["l10","L10"],["l20","L20"],["os","Streak"],["h2h","H2H"],["ven","Venue"],["dvp","Matchup"],["use","Usage"],["mv","Move"],["avg","Season avg"],["time","Game (ET)"]];
 const PCT=["l5","l10","l20","h2h","ven"];
 function key(r,k){return PCT.includes(k)?(r[k]?pct(r[k])+r[k].n*1e-4:-1):k=="avg"?(r.avg??-1e9):k=="os"?(r.os??-1):k=="dvp"?(r.dvp?-r.dvp.r:-99):k=="use"?useTr(r):k=="mv"?Math.abs(mv(r)??0):k=="ou"?0:r[k]}
-let posX=st.posX||{};let view=st.view||"dash",tier=st.tier||60,win=st.win||"l10";
+let posX=st.posX||{};let grp="off",slate="next",showStarted=false,LIM=100;let view=st.view||"dash",tier=st.tier||60,win=st.win||"l10";
 const ok=(h,min=0)=>h&&h.n>0&&h.h/h.n>=min;
 function cardList(list,fmt){return list.length?list.map(r=>`<div class="it" data-k="${r.aid}|${r.market}"><div class="n"><b>${r.player}</b> <span class="pos">${r.pos} · ${r.team} ${r.opp}</span><div>${r.market} · line ${r.line}</div></div><div class="v">${fmt(r)}</div>${addBtn(r)}</div>`).join(""):'<div class="mut" style="padding:8px">Nothing qualifies right now.</div>'}
 function dash(){const d=filtered(),W={l5:"L5",l10:"L10",l20:"L20"}[win];
@@ -124,7 +132,7 @@ function dash(){const d=filtered(),W={l5:"L5",l10:"L10",l20:"L20"}[win];
  const ven=d.filter(r=>r.ven&&r.ven.n>=4&&pct(r.ven)>=.6).sort((a,b)=>pct(b.ven)-pct(a.ven)||b.ven.n-a.ven.n);
  const h2h=d.filter(r=>r.h2h&&r.h2h.n>=2&&pct(r.h2h)>=.75).sort((a,b)=>pct(b.h2h)-pct(a.h2h)||b.h2h.n-a.h2h.n).slice(0,15);
  const P=(h)=>Math.round(pct(h)*100)+"%";
- $("dash").innerHTML=recsSection(d)+gameScriptCard()+`<div class="card" style="grid-row:span 2"><h3>🔥 Hot List: overs</h3><div class="sub">Props hitting the over at ${tier}%+ over the ${W} window · <b id="hotn">${hotN}</b> qualify (top 25 shown)</div>
+ $("dash").innerHTML=impactCard()+recsSection(d)+gameScriptCard()+`<div class="card" style="grid-row:span 2"><h3>🔥 Hot List: overs</h3><div class="sub">Props hitting the over at ${tier}%+ over the ${W} window · <b id="hotn">${hotN}</b> qualify (top 25 shown)</div>
  <div class="chips" id="tiers">${[50,60,70,80].map(t=>`<button data-t="${t}" class="${t==tier?"on":""}">${t}%+</button>`).join("")}<span style="width:8px"></span>${["l5","l10","l20"].map(w=>`<button data-w="${w}" class="${w==win?"on":""}">${w.toUpperCase()}</button>`).join("")}</div>
  ${cardList(hot,r=>`<span class="up">${P(r[win])}</span><div>${r[win].h}/${r[win].n} · avg ${r[win].avg}</div>`)}</div>
  <div class="card"><h3>📈 Active over streaks</h3><div class="sub">Consecutive most-recent games over today's line</div>${cardList(streak,r=>`<span class="fire">${r.os} straight</span><div>L10 ${r.l10?P(r.l10):"—"}</div>`)}</div>
@@ -135,15 +143,17 @@ function dash(){const d=filtered(),W={l5:"L5",l10:"L10",l20:"L20"}[win];
  ${ustreak.length?`<div class="sub" style="margin-top:10px">Under streaks</div>`+cardList(ustreak,r=>`<span class="dn">${r.us} straight</span>`):""}</div>`;
  if(!d.length)$("dash").innerHTML=`<div class="card empty">${SRC().length?"No props match your filters.":"No lines yet for "+SPORTS.find(s=>s[0]==sport)[1]+"."}</div>`;}
 function filtered(){const q=$("q").value.toLowerCase(),m=$("mkt").value,gm=$("game").value,tm=$("team").value,pl=$("player").value.toLowerCase(),vn=$("venue").value,only=$("onlyHR").checked,min=+$("minhr").value/100,mh=+$("minh2h").value/100;
- return SRC().filter(r=>(!q||(r.player+" "+r.team+" "+r.opp).toLowerCase().includes(q))&&(!m||r.market==m)&&(!gm||r.game==gm)&&(!tm||r.team==tm)&&(!pl||r.player.toLowerCase().includes(pl))&&(!vn||(vn=="home")==!!r.home)&&(!only||r.l10)&&(!min||pct(r.l10)>=min)&&(!mh||(r.h2h&&pct(r.h2h)>=mh))&&!(posX[sport]||[]).includes(r.pos||"?"))}
-function render(){if(view=="analyst"&&sport!="nfl")view="dash";$("views").querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.v==view));$("anbtn").hidden=sport!="nfl";$("dash").hidden=view!="dash";$("analyst").hidden=view!="analyst";$("tablev").hidden=view!="table";if(view=="dash")dash();if(view=="analyst")analyst();
+ const nowT=Date.now(),tv=view=="table",up=SRC().filter(r=>new Date(r.time)>nowT),t0=up.length?Math.min(...up.map(r=>+new Date(r.time))):0;
+ return SRC().filter(r=>(sport!="nfl"||r.grp==(tv?grp:"off"))&&(showStarted&&tv||new Date(r.time)>nowT)&&(!tv||slate=="all"||+new Date(r.time)<=t0+3.5*3600e3)&&(!q||(r.player+" "+r.team+" "+r.opp).toLowerCase().includes(q))&&(!m||r.market==m)&&(!gm||r.game==gm)&&(!tm||r.team==tm)&&(!pl||r.player.toLowerCase().includes(pl))&&(!vn||(vn=="home")==!!r.home)&&(!only||r.l10)&&(!min||pct(r.l10)>=min)&&(!mh||(r.h2h&&pct(r.h2h)>=mh))&&!(posX[sport]||[]).includes(r.pos||"?"))}
+function render(){if((view=="analyst"||view=="live")&&sport!="nfl")view="dash";$("views").querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.v==view));$("anbtn").hidden=sport!="nfl";$("dash").hidden=view!="dash";$("analyst").hidden=view!="analyst";$("live").hidden=view!="live";$("livebtn").hidden=sport!="nfl";if(view=="live")liveView();$("tablev").hidden=view!="table";if(view=="dash")dash();if(view=="analyst")analyst();
  $("tabs").innerHTML=SPORTS.map(([k,n])=>`<button class="${k==sport?"on":""}" data-s="${k}">${n}<small>${(DATA[k]||[]).length}</small></button>`).join("");
  $("th").innerHTML=COLS.map(([k,n])=>`<th data-k="${k}" class="${k==sortK?"sorted":""}">${n}${k==sortK?(sortD>0?" ▲":" ▼"):""}</th>`).join("")+"<th>Slip</th>";
  rows=filtered();
  rows.sort((a,b)=>{const x=key(a,sortK),y=key(b,sortK);return (x>y?1:x<y?-1:0)*sortD||a.player.localeCompare(b.player)});
  $("count").textContent=rows.length+" props";
- $("tb").innerHTML=rows.slice(0,800).map((r,i)=>{const d=r.open!=null&&r.open!=r.line?`<span class="mv ${r.line>r.open?"up":"dn"}">${r.line>r.open?"▲":"▼"} from ${r.open}</span>`:"";
-  return `<tr data-i="${i}"><td><span class="pl">${r.player}</span><span class="pos">${r.pos}</span></td><td>${r.team} <span class="mut">${r.opp}</span></td><td>${r.market}</td><td><span class="line">${r.line}</span>${d}</td><td class="${r.ov!=null?"":"mut"}" title="${r.ov!=null?"DraftKings over price via ESPN":"Prices not in the free ESPN feed"}">${r.ov!=null?`<b>${r.ov>0?"+":""}${r.ov}</b> / —`:"— / —"}</td><td>${hrCell(r.l5)}</td><td>${hrCell(r.l10)}</td><td>${hrCell(r.l20)}</td><td>${r.os?`<span class="fire">${r.os}🔥</span>`:'<span class="mut">0</span>'}</td><td>${hrCell(r.h2h)}</td><td>${hrCell(r.ven)} <small class="mut">${r.home?"H":"A"}</small></td><td>${dvpCell(r)}</td><td>${useCell(r)}</td><td>${mvCell(r)}</td><td>${r.avg==null?'<span class="mut">—</span>':r.avg.toFixed(1)}</td><td class="mut">${et(r.time)}</td><td>${addBtn(r)}</td></tr>`}).join("");
+ renderCtl();$("tb").innerHTML=rows.slice(0,LIM).map((r,i)=>{const d=r.open!=null&&r.open!=r.line?`<span class="mv ${r.line>r.open?"up":"dn"}">${r.line>r.open?"▲":"▼"} from ${r.open}</span>`:"";
+  return `<tr data-i="${i}"><td><span class="pl">${r.player}</span><span class="pos">${r.pos}</span>${flagBadges(r)}</td><td>${r.team} <span class="mut">${r.opp}</span></td><td>${r.market}</td><td><span class="line">${r.line}</span>${d}</td><td class="${r.ov!=null?"":"mut"}" title="${r.ov!=null?"DraftKings over price via ESPN":"Prices not in the free ESPN feed"}">${r.ov!=null?`<b>${r.ov>0?"+":""}${r.ov}</b> / —`:"— / —"}</td><td>${hrCell(r.l5)}</td><td>${hrCell(r.l10)}</td><td>${hrCell(r.l20)}</td><td>${r.os?`<span class="fire">${r.os}🔥</span>`:'<span class="mut">0</span>'}</td><td>${hrCell(r.h2h)}</td><td>${hrCell(r.ven)} <small class="mut">${r.home?"H":"A"}</small></td><td>${dvpCell(r)}</td><td>${useCell(r)}</td><td>${mvCell(r)}</td><td>${r.avg==null?'<span class="mut">—</span>':r.avg.toFixed(1)}</td><td class="mut">${et(r.time)}</td><td>${addBtn(r)}</td></tr>`}).join("");
+ $("more").hidden=rows.length<=LIM;$("more").textContent=`Show more (${Math.min(100,rows.length-LIM)} of ${rows.length-LIM} remaining)`;
  const e=$("empty");e.hidden=rows.length>0;e.textContent=SRC().length?"No props match your filters.":"No lines yet for "+SPORTS.find(s=>s[0]==sport)[1]+". DraftKings hasn't posted player props for upcoming games, or the season hasn't started.";}
 function posChips(){const d=SRC(),ps=[...new Set(d.map(r=>r.pos||"?"))].sort(),x=posX[sport]||[];
  $("poss").innerHTML=ps.length?`<span class="mut" style="font-size:12px;align-self:center">Positions:</span>`+ps.map(p=>`<button data-p="${p}" class="${x.includes(p)?"":"on"}">${p}</button>`).join("")+(sport=="mlb"?`<button data-p="#bat">Batters</button><button data-p="#pit">Pitchers</button>`:"")+(x.length?`<button data-p="*">All</button>`:""):""}
@@ -174,9 +184,9 @@ function drawer(r){const all=SRC().filter(x=>x.aid==r.aid);
  $("cls").onclick=close;$("drawer").querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>drawer(all.find(x=>x.market==b.dataset.m)))}
 function close(){$("drawer").classList.remove("open");$("shade").classList.remove("open")}
 async function init(){window.GAMES={};await Promise.all(SPORTS.map(async([k])=>GAMES[k]=await j(`data/games_${k}.json`,[])));
- const meta=await j("data/meta.json",{});
+ const meta=await j("data/meta.json",{});window.IMP=await j("data/impact_nfl.json",{flags:[]});window.IMPM=Object.fromEntries((IMP.flags||[]).map(f=>[f.id,f]));
  await Promise.all(SPORTS.map(async([k])=>{const [p,l]=await Promise.all([j(`data/props_${k}.json`,[]),j(`data/logs_${k}.json`,{})]);
-  const now=Date.now()-3*3600e3;DATA[k]=(Array.isArray(p)?p:[]).filter(r=>new Date(r.time)>now).map(r=>enrich(r,l))}));
+  const now=Date.now()-5*3600e3;DATA[k]=(Array.isArray(p)?p:[]).filter(r=>new Date(r.time)>now).map(r=>enrich(r,l))}));
  const b=$("badge");if(meta.updated){const age=(Date.now()-new Date(meta.updated))/36e5;b.textContent="Data updated "+new Date(meta.updated).toLocaleString("en-US",{timeZone:"America/New_York",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})+" ET";if(age>12)b.classList.add("stale")}else b.textContent="Data unavailable";
  loadSlipFromURL();fillFilters();render();renderSlip()}
 $("tabs").onclick=e=>{const b=e.target.closest("button");if(!b)return;sport=b.dataset.s;save();fillFilters();render()};
@@ -245,6 +255,74 @@ function renderSlip(open){const legs=SLIP.map(l=>({...l,r:find(l.s,l.k)}));
 function loadSlipFromURL(){const m=location.hash.match(/slip=([^&]+)/);if(!m)return;SLIP=decodeURIComponent(m[1]).split(",").filter(Boolean).map(x=>{const[s,k]=x.split("~");return{s,k}});saveSlip()}
 $("slipbtn").onclick=()=>{renderSlip();$("slip").classList.toggle("open")};
 
+
+
+// ---- Live tab (client-side ESPN polling; CORS: access-control-allow-origin *) ----
+const ESPN_SB="https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",ESPN_SUM="https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event=";
+let LIVE={games:[],box:{},err:null,at:null,timer:null,hist:null,sim:/livesim/.test(location.hash)};
+const HIDX={rushingYards:[0],receivingYards:[1],passingYards:[2],receptions:[4],rushingAttempts:[5],passingTouchdowns:[6]};
+function histIdx(r){if(r.market=="Anytime TD")return[3];if(!r.stat)return null;const ix=r.stat.map(k=>HIDX[k]);return ix.every(x=>x)?ix.flat():null}
+async function jx(u){const r=await fetch(u+(u.includes("?")?"&":"?")+"_="+Math.floor(Date.now()/30000));if(!r.ok)throw new Error(r.status);return r.json()}
+async function livePoll(){clearTimeout(LIVE.timer);
+ try{if(!LIVE.hist)LIVE.hist=await j("data/live_hist_nfl.json",{});
+  const sb=await jx(ESPN_SB);let ev=(sb.events||[]).map(e=>{const c=e.competitions[0],st=c.status;return{id:e.id,name:e.shortName,state:st.type.state,detail:st.type.shortDetail,period:st.period,clock:st.displayClock,
+   teams:c.competitors.map(t=>({ab:t.team.abbreviation,score:t.score,ha:t.homeAway}))}});
+  if(LIVE.sim&&!ev.some(e=>e.state=="in")){const ids=new Set((DATA.nfl||[]).map(r=>r.game));const g=ev.find(e=>e.state=="post"&&ids.has(e.id))||ev.find(e=>ids.has(e.id));if(g){Object.assign(g,{state:"in",period:3,clock:"9:12",detail:"3rd 9:12",sim:true})}}
+  LIVE.games=ev;const live=ev.filter(e=>e.state=="in");
+  await Promise.all(live.map(async e=>{const d=await jx(ESPN_SUM+e.id),m={};
+   for(const t of d.boxscore?.players||[])for(const c of t.statistics||[])for(const a of c.athletes||[]){const o=m[a.athlete.id]||(m[a.athlete.id]={});
+    c.keys.forEach((k,i)=>{const v=a.stats[i];if(k.includes("/")){const[x,y]=k.split("/"),[p,q]=String(v).split("/");o[x]=+p;o[y]=+q}else if(!(k=="interceptions"&&c.name!="passing"))o[k]=+v||0})}
+   if(e.sim)for(const a in m)for(const k in m[a])m[a][k]=Math.round(m[a][k]*0.6);  // simulation: ~60% of the final box score
+   LIVE.box[e.id]=m}));
+  LIVE.err=null;LIVE.at=new Date();
+  if(live.length&&!LIVE.sim)LIVE.timer=setTimeout(livePoll,75000);else if(!LIVE.sim)LIVE.timer=setTimeout(livePoll,15*60000); // paused: light 15-min check for kickoffs
+ }catch(e){LIVE.err=String(e.message||e);LIVE.timer=setTimeout(livePoll,120000)}
+ if(view=="live")liveDraw()}
+function liveView(){if(!LIVE.at&&!LIVE.err){$("live").innerHTML=`<div class="card empty">Connecting to ESPN live scoreboard…</div>`;livePoll()}else liveDraw()}
+const secLeft=c=>{const[m,s]=String(c||"0:00").split(":").map(Number);return(m||0)*60+(s||0)};
+function pois(l,k){if(k<=0)return 1;let p=Math.exp(-l),c=p;for(let i=1;i<k;i++){p*=l/i;c+=p}return Math.max(0,1-c)}
+function ncdf(z){const t=1/(1+.2316419*Math.abs(z)),d=.3989423*Math.exp(-z*z/2),p=d*t*(.3193815+t*(-.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));return z>0?1-p:p}
+const COUNT=new Set(["Anytime TD","Receptions","Carries","Pass Completions","Passing Attempts","Passing Touchdowns","Passing Interceptions","Field Goals Made","Extra Points Made"]);
+function liveCalc(r,cur,e){const done=Math.min(1,((e.period-1)*900+(900-secLeft(e.clock)))/3600),rem=Math.max(0,1-done);
+ const isTD=r.market=="Anytime TD",target=isTD?Math.max(1,cur+1):Math.floor(r.line)+1,need=target-cur;
+ const vs=(r.games||[]).slice(0,20).map(g=>g.v),n=vs.length,m=n?vs.reduce((a,b)=>a+b,0)/n:0,sd=n>1?Math.sqrt(vs.reduce((a,b)=>a+(b-m)**2,0)/(n-1)):m;
+ const model=need<=0?1:!n?null:COUNT.has(r.market)?pois(m*rem,need):(rem<=0?0:1-ncdf((need-.5-m*rem)/Math.max(1,sd*Math.sqrt(rem))));
+ const hist=n?{h:vs.filter(v=>v>=target).length,n}:null;
+ // conditional: past games where he had >= cur by the end of the last completed quarter
+ let cond=null;const H=LIVE.hist&&LIVE.hist[r.aid],ix=histIdx(r),k=Math.max(1,Math.min(4,secLeft(e.clock)==0?e.period:e.period-1));
+ if(H&&ix&&cur>0&&need>0){const cum=(qs,upto)=>qs.slice(0,upto).reduce((a,q)=>a+ix.reduce((s,i)=>s+q[i],0),0);
+  const pool=H.filter(([g,qs])=>cum(qs,k)>=cur);cond={n:pool.length,h:pool.filter(([g,qs])=>cum(qs,4)>=target).length,lab:k==2?"by halftime":"by end of Q"+k}}
+ let blend=model;if(cond&&cond.n>=4&&model!=null){const w=cond.n/(cond.n+8);blend=w*cond.h/cond.n+(1-w)*model}
+ const mo=cond&&cond.n>=5&&model!=null&&cond.h/cond.n>=.6&&cond.h/cond.n-model>=.15;
+ return{done,rem,target,need,model,hist,cond,blend,mo,mean:m}}
+function liveDraw(){const el=$("live"),L=LIVE,P=x=>x==null?"—":Math.round(x*100)+"%";
+ const live=L.games.filter(e=>e.state=="in"),nxt=L.games.filter(e=>e.state=="pre");
+ let h=`<div class="an" style="padding:0 20px 20px"><div class="kick">NFL · Live tracker</div><h2>In-game prop tracker</h2><div class="sub mut" style="font-size:12px">Your browser polls ESPN's public scoreboard + box scores every 75 s while games are live (paused otherwise; 15-min kickoff check). ${L.at?"Last update "+L.at.toLocaleTimeString("en-US",{timeZone:"America/New_York",hour:"numeric",minute:"2-digit",second:"2-digit"})+" ET":""} ${L.err?`<b class="dn">ESPN unreachable (${escA(L.err)}); retrying in 2 min.</b>`:""}<br>
+ <b>Live chance</b> = model estimate: player's per-game average (last ≤20 games) scaled to the time left — Poisson for counts/TDs, normal for yards — plus what he already has. Blended with his <b>conditional history</b> (2 seasons of nflverse play-by-play by quarter) when that sample is 4+ games. Estimates, not odds. <span class="st mo">MOMENTUM</span> = conditional history beats the model by 15+ pts on 5+ games.</div>
+ ${L.sim?`<div class="olf"><b>SIMULATION MODE</b> (#livesim): a real game is replayed as if live at Q3 9:12 using ~60% of its final box score.</div>`:""}`;
+ if(!live.length)h+=`<div class="card empty">No NFL games in progress — polling paused.${nxt.length?`<br>Next: ${nxt.slice(0,4).map(e=>escA(e.name+" · "+e.detail)).join(" · ")}`:""}</div>`;
+ for(const e of live){const box=L.box[e.id]||{},props=(DATA.nfl||[]).filter(r=>r.game==e.id&&r.grp=="off"&&r.stat);
+  const rows=props.map(r=>{const st=box[r.aid];const cur=st?r.stat.reduce((a,k)=>a+(k[0]=="-"?-1:1)*(st[k.replace(/^-/,"").split("-")[0]]||0),0):0;return{r,cur,c:liveCalc(r,cur,e)}})
+   .sort((a,b)=>{const H=x=>x.r.market=="Anytime TD"?x.cur>=x.c.target:x.cur>x.r.line;return H(a)-H(b)||(b.c.blend??0)-(a.c.blend??0)}).filter(x=>x.cur>0||x.c.blend>=.15||x.r.market=="Anytime TD"&&(x.c.blend??0)>=.25).slice(0,40);
+  h+=`<div class="lg"><div class="sc">${e.teams.map(t=>`<span>${t.ab} ${t.score}</span>`).join('<span class="mut">–</span>')}<span class="clk">● Q${e.period} ${escA(e.clock)}</span>${e.sim?'<span class="pill y">SIM</span>':""}</div>
+  ${rows.map(({r,cur,c})=>{const isTD=r.market=="Anytime TD",hit=isTD?cur>=1:cur>r.line,dead=!hit&&c.rem<=0;const tgt=isTD?(cur>=1?`${c.target}+ TDs (next tier)`:"1+ TD"):`over ${r.line}`;
+   const pct=Math.min(100,Math.round(100*cur/Math.max(1,isTD?c.target:r.line)));
+   return `<div class="lp"><div><span class="pl">${escA(r.player)}</span><span class="pos">${r.pos} ${r.team}</span><br><span class="mut">${r.market} ${isTD?"":r.line}</span>${hit?'<span class="st hit">✓ HIT</span>':dead?'<span class="st dead">DEAD</span>':""}${c.mo?'<span class="st mo">MOMENTUM</span>':""}</div>
+   <div><b>${cur}</b> <span class="mut">now · Q${e.period} ${escA(e.clock)}</span><div class="pb"><i class="${hit?"ok":dead?"dead":""}" style="width:${pct}%"></i></div></div>
+   <div><b>${P(c.blend)}</b> <span class="mut">to reach ${tgt}</span>${addBtn(r)}<br><span class="mut">Model ${P(c.model)} (avg ${c.mean.toFixed(1)}/g, ${Math.round(c.rem*100)}% of game left)${c.cond&&c.cond.n?` · ${c.cond.lab} with ${cur}+: ${c.cond.h}/${c.cond.n} went on to ${tgt}${c.cond.n?" ("+P(c.cond.h/c.cond.n)+")":""}`:""}${c.hist?` · reached ${isTD?c.target+"+ TD":c.target+"+"} in ${c.hist.h}/${c.hist.n} full games`:""}</span></div></div>`}).join("")||'<div class="mut">No props tracked for this game.</div>'}</div>`}
+ el.innerHTML=h+"</div>"}
+// ---- Impact flags ----
+const fCls=f=>/^helps/.test(f.dir)?"p":/risk/.test(f.dir)&&f.sev<2?"q":"h";
+const fLab=f=>({OL:"OL",QB:"QB",WR1:"WR1",RB1:"RB1",TE1:"TE1","DEF-DB":"DB out","DEF-FRONT":"DL/LB out",SELF:"INJ"}[f.kind]||f.kind);
+const escA=s=>String(s??"").replace(/[<>&"]/g,c=>({"<":"&lt;",">":"&gt;","&":"&amp;",'"':"&quot;"}[c]));
+function flagBadges(r){if(sport!="nfl"||!r.fl)return"";return r.fl.map(id=>window.IMPM&&IMPM[id]).filter(Boolean).slice(0,3).map(f=>`<span class="fb ${fCls(f)}" title="${escA(f.text+" — "+f.dir)}">${fCls(f)=="p"?"▲":"▼"} ${fLab(f)}</span>`).join("")}
+function impactCard(){if(sport!="nfl")return"";const now=Date.now(),live=new Set((DATA.nfl||[]).filter(r=>new Date(r.time)>now).map(r=>r.team));
+ const F=(window.IMP&&IMP.flags||[]).filter(f=>f.kind!="SELF"&&live.has(f.team)).slice(0,8);if(!F.length)return"";
+ return `<div class="card" style="grid-column:1/-1"><h3>⚑ Impact flags</h3><div class="sub">Rules from the ESPN injury report + nflverse snap shares (starter = 50%+ of snaps). ▲ helps / ▼ hurts. Affected props carry the same badge.</div>${F.map(f=>`<div class="imp"><span class="fb ${fCls(f)}">${fCls(f)=="p"?"▲":"▼"} ${fLab(f)}</span><div class="tx">${escA(f.text)} <span class="mut">· ${escA(f.dir)}</span></div></div>`).join("")}</div>`}
+function renderCtl(){const b=(k,v,l,on)=>`<button data-c="${k}" data-v="${v}" class="${on?"on":""}">${l}</button>`;
+ $("tctl").innerHTML=(sport=="nfl"?b("grp","off","Offense (QB/RB/WR/TE/K)",grp=="off")+b("grp","def","Defense",grp=="def")+'<span style="width:10px"></span>':"")+b("slate","next","Next kickoff window",slate=="next")+b("slate","all","All upcoming",slate=="all")+'<span style="width:10px"></span>'+b("st","1",showStarted?"Showing started games":"Started games hidden",showStarted)}
+document.addEventListener("click",e=>{const c=e.target.closest("#tctl button");if(c){const k=c.dataset.c,v=c.dataset.v;if(k=="grp")grp=v;if(k=="slate")slate=v;if(k=="st")showStarted=!showStarted;LIM=100;render();return}
+ if(e.target.id=="more"){LIM+=100;render()}});
 // ---- Sports Analyst (NFL) ----
 let AN=null,anSort={k:"opy_r",d:1};
 async function analyst(){const el=$("analyst");if(!AN){el.innerHTML=`<div class="card empty">Loading analyst report…</div>`;AN=await j("data/analyst_nfl.json",{});}

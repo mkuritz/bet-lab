@@ -15,6 +15,7 @@ UA = {"User-Agent": "Mozilla/5.0 (BetLab personal research demo)"}
 SITE = "https://site.api.espn.com/apis/site/v2/sports/{p}/scoreboard"
 CORE = "https://sports.core.api.espn.com/v2/sports/{s}/leagues/{l}"
 GLOG = "https://site.web.api.espn.com/apis/common/v3/sports/{p}/athletes/{a}/gamelog"
+NFL_DEF = {"DE", "DT", "NT", "DL", "LB", "ILB", "OLB", "MLB", "CB", "S", "FS", "SS", "DB", "EDGE"}
 DK = 100  # ESPN provider id for DraftKings
 SPORTS = {
     "nfl": {"path": "football/nfl", "days": 7},
@@ -33,7 +34,7 @@ FB = {
     "Longest Reception": ["longReception"], "Longest Rush": ["longRushing"],
     "Longest Passing Completion": ["longPassing"], "Field Goals Made": ["fieldGoalsMade-fieldGoalAttempts"],
     "Extra Points Made": ["extraPointsMade-extraPointAttempts"], "Kicking Points": ["totalKickingPoints"], "Tackles": ["soloTackles"],
-    "Tackles Plus Assists": ["totalTackles"], "Sacks": ["sacks"],
+    "Tackles Plus Assists": ["totalTackles"], "Sacks": ["sacks"], "Assists": ["assistTackles"], "Interceptions": ["interceptions"],
     "Anytime TD": ["rushingTouchdowns", "receivingTouchdowns"],
 }
 MAP = {
@@ -261,7 +262,14 @@ def run_sport(key, cfg, full_logs):
     except Exception as e:  # extras are best-effort; core props still ship
         import traceback; traceback.print_exc()
         print(key, "extras ERROR", e)
+    if key == "nfl":  # keep in-progress games' props (pre-kickoff lines) for the client-side Live tab
+        cut = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=5)).strftime("%Y-%m-%dT%H:%MZ")
+        have = {g["id"] for g in games}
+        props += [p for p in load("props_nfl.json", []) if p["game"] not in have and p["time"] >= cut]
     props.sort(key=lambda p: (p["time"], p["player"], p["market"]))
+    if key == "nfl":  # primary scope QB/RB/WR/TE/K; punters dropped; defensive players -> 'def' group
+        props[:] = [p for p in props if p["pos"] not in ("P", "LS")]
+        for p in props: p["grp"] = "def" if p["pos"] in NFL_DEF else "off"
     save("props_%s.json" % key, props)
     save("games_%s.json" % key, sorted(games, key=lambda g: g["time"]))
     import fetch_props as _fp  # extras registers the hook on the imported module

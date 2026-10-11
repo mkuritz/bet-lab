@@ -88,6 +88,15 @@ def run(stats, snaps, props, dvp_unused=None):
     except Exception as e: print("redzone ERROR", e); rz, rzt = {}, {}
     gsis = {(X.norm(r["player_display_name"]), X.NV2ESPN.get(r["team"], r["team"])): r["player_id"] for r in stats}
     inj = injuries(snaps)
+    import impact
+    try: flags = impact.build(snaps, props, games)
+    except Exception as e: print("impact ERROR", e); flags = []
+    import sys
+    if "--only" not in sys.argv:  # full refreshes only (pbp download)
+        try:
+            import live_hist; live_hist.build(props)
+        except Exception as e: print("live_hist ERROR", e)
+    F.save("props_nfl.json", props)  # re-save with impact-flag ids attached
     itts = [g[k] for g in games for k in ("itt_home", "itt_away") if g.get(k)]
     avg = sum(itts) / len(itts) if itts else 22.0
     now = dt.datetime.now(dt.timezone.utc)
@@ -152,6 +161,9 @@ def run(stats, snaps, props, dvp_unused=None):
         else: txt += "No offensive-line injuries listed. "
         dk_out = [x for x in c["inj_def"] if x["status"] in ("Out", "Doubtful", "Injured Reserve")]
         if dk_out: txt += "%s's defense is without %s, widening the edge." % (c["def"], ", ".join(x["name"] + " (" + x["pos"] + ")" for x in dk_out[:4]))
+        fx = [f for f in flags if f["team"] == c["off"] and f["kind"] != "SELF"]
+        if fx: txt += " Impact flags: " + " | ".join("%s (%s)" % (f["text"], f["dir"]) for f in fx[:4]) + "."
+        c["flags"] = [f["id"] for f in fx]
         c["text"] = txt.strip()
         c["outlook"] = "Edge dampened by OL injuries" if olout else "Strong edge" if c["strict"] else "Moderate edge"
         c["tds"] = sorted((est(p, c["kind"]) for p in td if p["game"] == c["game"] and p["team"] == c["off"]), key=lambda e: -e["prob"])[:6]
