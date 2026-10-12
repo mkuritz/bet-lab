@@ -1,21 +1,21 @@
 {
- "generated": "2026-10-12T17:46:52-04:00",
+ "generated": "2026-10-12T18:07:08-04:00",
  "seasons": {
   "nfl": 2026,
   "mlb": 2026,
   "nhl": 20262027
  },
- "checked": 194,
- "conflicts": [
-  {
-   "src": "props_nhl.json",
-   "sport": "nhl",
-   "player": "Hoyt Stanley",
-   "team": "OTT",
-   "why": "not on OTT live 20262027 roster for 2026-10-12"
-  }
- ],
+ "checked": 195,
+ "conflicts": [],
  "unverified": [],
  "stale": [],
- "notes": []
+ "notes": [],
+ "resolved": [
+  {
+   "src": "props_nhl.json",
+   "player": "Hoyt Stanley",
+   "team": "OTT",
+   "via": "nhl org (reserve/AHL list)"
+  }
+ ]
 }
