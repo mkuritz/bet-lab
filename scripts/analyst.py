@@ -209,6 +209,19 @@ def run(stats, snaps, props, dvp_unused=None):
                              "ladders": lad, "why": why, "score": round(score, 3)})
     qb_plays.sort(key=lambda q: -q["score"])
     cascades_active = [{"team": t, "kind": k, "pair": casc.get(t)} for (t, k) in out_kinds if casc.get(t)]
+    try:
+        import inj_cascade; injc = inj_cascade.build(props, games, rz, rzt, week)
+    except Exception as e: print("inj_cascade ERROR", e); injc = []
+    boost_plays = []
+    for c in injc:
+        for a in c["affected"]:
+            if a["d_td"] >= 0.06:
+                pa = next((p for p in props if p["market"] == "Anytime TD" and X.norm(p["player"]) == X.norm(a["player"]) and p["team"] == c["team"]), None)
+                if pa:
+                    e0 = est(pa); boost_plays.append({"player": a["player"], "team": c["team"], "game": pa["game"], "time": pa["time"], "aid": pa["aid"],
+                        "prob": e0["prob"], "adj": round(min(0.8, e0["prob"] + a["d_td"]), 3), "d_td": a["d_td"],
+                        "why": "%s %s (%s): %+.1f targets, %+.1f carries/g projected" % (c["player"], c["status"], c["role"], a["d_tg"], a["d_ca"])})
+    boost_plays.sort(key=lambda b: -b["d_td"])
     allest = sorted((est(p, next((c["kind"] for c in top if c["game"] == p["game"] and c["off"] == p["team"]), None)) for p in td), key=lambda e: -e["prob"])
     try:
         import outcomes as O
@@ -230,7 +243,7 @@ def run(stats, snaps, props, dvp_unused=None):
                                 "teams": tr, "mismatches": top, "n_strict": sum(c["strict"] for c in cands),
                                 "candidates": cands[:20], "top_td": allest[:20], "injuries": inj,
                                 "rz_ok": bool(rz), "dk_td_price": False,
-                                "qb_plays": qb_plays, "cascades": casc, "cascades_active": cascades_active})
+                                "qb_plays": qb_plays, "cascades": casc, "cascades_active": cascades_active, "inj_cascades": injc, "boost_plays": boost_plays})
     print("analyst week", week, "mismatches", [(c["off"], c["kind"], c["def"], c["strict"]) for c in top])
 
 def fair(p):
