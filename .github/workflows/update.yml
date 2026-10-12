@@ -80,6 +80,8 @@ jobs:
         if: steps.d.outputs.mode != 'none'
         continue-on-error: true
         timeout-minutes: 4
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}   # closing prices; tracker cap 40 credits/mo + Arb Lab budget guard
         run: python scripts/edge_tracker.py
       - name: Commit if data changed
         if: steps.d.outputs.mode != 'none'

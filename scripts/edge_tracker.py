@@ -114,6 +114,81 @@ def mlb_game(pk):
         except Exception: _sched[pk] = None
     return _sched[pk]
 
+# ---------------- extra signal tags (injury cascade / role change / injury matchup) ----------------
+def _norm(n): return "".join(c for c in (n or "").lower() if c.isalpha())
+def tag_signals(log):
+    """Tags written to data/edge_tags.json ONLY before start (log file stays append-only). Sources:
+    analyst_nfl.json inj_cascades (ESPN injury report + nflverse with/without splits), props u (usage trend), props fl (impact flags)."""
+    Tg = load("edge_tags.json", {}); recs = {r["id"]: r for r in load("recs_history.json", {"recs": []})["recs"]}
+    an = load("analyst_nfl.json", {}); casc = {}
+    for c in an.get("inj_cascades", []):
+        for a in c.get("affected", []):
+            if (a.get("d_td") or 0) > 0 or (a.get("d_tg") or 0) >= 0.5 or (a.get("d_ca") or 0) >= 2: casc[_norm(a["player"])] = a.get("how")
+    props = {}
+    for e in log:
+        if not e["id"].startswith("bl|") or T(e["start"]) <= NOW: continue
+        r = recs.get(e["ref"]["rec"]); 
+        if not r: continue
+        tags = set(Tg.get(e["id"], {}).get("signals", []))
+        for l in r["legs"]:
+            if _norm(l["player"]) in casc: tags.add("injury_cascade")
+            if l["sport"] not in props: props[l["sport"]] = {(q["aid"], q["market"]): q for q in load("props_%s.json" % l["sport"], [])}
+            q = props[l["sport"]].get((l["aid"], l["market"]))
+            if not q: continue
+            u = q.get("u") or {}
+            for k in ("tg", "ca"):  # recent usage well above season = role change
+                v = u.get(k) or {}
+                if v.get("szn") and v.get("l3") is not None and v["l3"] >= 1.25 * v["szn"] and v["l3"] - v["szn"] >= 1: tags.add("role_change")
+            if q.get("fl"): tags.add("injury_matchup")
+        if tags - set(e["signals"]): Tg[e["id"]] = {"signals": sorted(tags - set(e["signals"])), "at": NOW.isoformat(timespec="minutes")}
+    save("edge_tags.json", Tg); return Tg
+
+# ---------------- Odds API closing prices (frugal; NFL props only) ----------------
+OA_CAP = 40  # tracker's own monthly credit cap, on top of Arb Lab's published budget guard
+OA_MK = {"Anytime TD": "player_anytime_td", "Receptions": "player_receptions", "Rushing Yards": "player_rush_yds", "Receiving Yards": "player_reception_yds", "Passing Yards": "player_pass_yds"}
+def odds_api_close(log, C):
+    st = load("edge_oddsapi.json", {}); mon = NOW.strftime("%Y-%m"); use = st.get("usage") if (st.get("usage") or {}).get("month") == mon else {"month": mon, "used": 0, "polls": []}
+    def done(msg): st.update(status=msg, checked=NOW.isoformat(timespec="minutes"), usage=use); save("edge_oddsapi.json", st); return msg
+    key = os.environ.get("ODDS_API_KEY")
+    if not key: return done("no key")
+    recs = {r["id"]: r for r in load("recs_history.json", {"recs": []})["recs"]}
+    want = {}  # (home, away, kickoff) -> {market: [entries]}
+    for e in log:
+        if e["sport"] != "nfl" or e["id"] in C or e.get("legs") != 1 or e["market"] not in OA_MK: continue
+        mins = (T(e["start"]) - NOW).total_seconds() / 60
+        if not 0 < mins <= 45: continue  # one pull per game, inside 45 min of kickoff
+        want.setdefault(e["start"][:16], {}).setdefault(OA_MK[e["market"]], []).append(e)
+    done_games = {p["k"] for p in use["polls"]}; want = {k: v for k, v in want.items() if k not in done_games}
+    if not want: return done("nothing due")
+    try:
+        b = get("https://mkuritz.github.io/arb-lab/data/odds_budget.json"); rem, used = b.get("remaining"), b.get("used") or 0
+    except Exception: return done("arb budget unreadable, skipping")
+    if rem is None: return done("arb budget has no remaining figure, skipping")
+    nxt = (NOW.date().replace(day=28) + dt.timedelta(days=4)).replace(day=1); left = (nxt - NOW.date()).days
+    try: ev = get("https://api.the-odds-api.com/v4/sports/americanfootball_nfl/events?apiKey=" + key)  # 0 credits
+    except Exception as x: return done("events error %s" % x)
+    for k, mk in want.items():
+        cost = len(mk)
+        if use["used"] + cost > OA_CAP: return done("tracker monthly cap reached")
+        if rem - cost - used / max(NOW.day, 1) * left < 100: return done("budget guard (arb remaining %s)" % rem)
+        evs = [x for x in ev if x["commence_time"][:16] == k]
+        if not evs: continue
+        try: o = get("https://api.the-odds-api.com/v4/sports/americanfootball_nfl/events/%s/odds?apiKey=%s&regions=us&bookmakers=draftkings&oddsFormat=decimal&markets=%s" % (evs[0]["id"], key, ",".join(mk)))
+        except Exception as x: print("odds api", x); continue
+        use["used"] += cost; rem -= cost; use["polls"].append({"k": k, "t": NOW.isoformat(timespec="minutes"), "cost": cost})
+        px = {}
+        for bk in o.get("bookmakers", []):
+            for m in bk.get("markets", []):
+                for c in m.get("outcomes", []):
+                    if c.get("name") in ("Over", "Yes"): px[(m["key"], _norm(c.get("description")), c.get("point"))] = c["price"]
+        recs_ = {r["id"]: r for r in recs.values()}
+        for m, es in mk.items():
+            for e in es:
+                l = recs_[e["ref"]["rec"]]["legs"][0]
+                d = px.get((m, _norm(l["player"]), None if m == "player_anytime_td" else l["line"]))
+                if d: C[e["id"]] = {"implied": rnd(1 / d), "at": NOW.isoformat(timespec="minutes"), "src": "Odds API (DraftKings)"}
+    return done("ok")
+
 # ---------------- steps ----------------
 def log_step(stats):
     have = {e["id"] for e in read_log()}; status = signal_status(stats); new = []
@@ -148,7 +223,9 @@ def close_step(log):
                 m = get(KALSHI + e["ref"]["ticker"])["market"]; a = m.get("yes_ask") or m.get("last_price")
                 imp = a / 100 if a else None
             except Exception: pass
-        if imp: C[e["id"]] = {"implied": rnd(imp), "at": NOW.isoformat(timespec="minutes")}
+        if imp: C[e["id"]] = {"implied": rnd(imp), "at": NOW.isoformat(timespec="minutes"), "src": "Kalshi" if e["ref"].get("ticker") else "DraftKings via ESPN"}
+    try: print("odds api:", odds_api_close(log, C))
+    except Exception as x: print("odds api skipped:", x)
     save("edge_close.json", C)
 
 def grade_step(log):
@@ -199,6 +276,8 @@ def agg(rows):
             "brier_mkt": rnd(sum((r["imp"] - r["y"]) ** 2 for r in bm) / len(bm)) if bm else None}
 
 def stats_step(log):
+    Tg = load("edge_tags.json", {})
+    log = [dict(e, signals=e["signals"] + Tg.get(e["id"], {}).get("signals", [])) for e in log]
     G, C = load("edge_grades.json", {}), load("edge_close.json", {}); rows = []
     for e in log:
         g = G.get(e["id"])
@@ -226,11 +305,11 @@ def stats_step(log):
            "pending": sum(1 for e in log if e["id"] not in G), "void": sum(1 for g in G.values() if g["result"] in ("void", "push")),
            "overall": agg(rows), "by_sport": by(lambda r: r["e"]["sport"]), "by_market": by(lambda r: r["e"]["market"]),
            "by_tag": by(lambda r: r["e"].get("tag") or "standard"), "signals": sig, "calibration": cal, "min_n": MIN_N,
-           "closing_available": len(C), "odds_api": "not used (no ODDS_API_KEY configured; closing prices from ESPN/DK feed + Kalshi only)"}
+           "closing_available": len(C), "odds_api": load("edge_oddsapi.json", {}).get("status")}
     save("edge_stats.json", out); return out
 
 if __name__ == "__main__":
     stats = load("edge_stats.json", {})
     n = log_step(stats); log = read_log()
-    close_step(log); grade_step(log); s = stats_step(log)
+    tag_signals(log); close_step(log); grade_step(log); s = stats_step(log)
     print("logged +%d (total %d), graded %d, pending %d" % (n, s["logged"], s["graded"], s["pending"]))
