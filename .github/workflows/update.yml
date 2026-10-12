@@ -59,6 +59,11 @@ jobs:
           else
             python scripts/fetch_props.py
           fi
+      - name: Market cross-check (optional)
+        if: steps.d.outputs.mode != 'none'
+        continue-on-error: true
+        timeout-minutes: 3
+        run: python scripts/bl_xcheck.py
       - name: Commit if data changed
         if: steps.d.outputs.mode != 'none'
         run: |
