@@ -178,11 +178,43 @@ def run(stats, snaps, props, dvp_unused=None):
         c["text"] = txt.strip()
         c["outlook"] = "Edge dampened by OL injuries" if olout else "Strong edge" if c["strict"] else "Moderate edge"
         c["tds"] = sorted((est(p, c["kind"]) for p in td if p["game"] == c["game"] and p["team"] == c["off"]), key=lambda e: -e["prob"])[:6]
+    # ---- QB advantage plays + injury cascades (historical with/without splits; estimates labelled) ----
+    try:
+        import cascade; casc = cascade.run(yr)
+    except Exception as e: print("cascade ERROR", e); casc = {}
+    out_kinds = {(f["team"], f["kind"]) for f in flags if f["kind"] in ("QB", "RB1") and "out" in f["text"].lower()}
+    qb_plays = []
+    for g in games:
+        for team, opp in ((g["home"], g["away"]), (g["away"], g["home"])):
+            qp = [p for p in props if p["game"] == g["id"] and p["team"] == team and p["pos"] == "QB"]
+            atd = next((p for p in qp if p["market"] == "Anytime TD"), None)
+            if not atd: continue
+            e = est(atd)
+            lad = [{"aid": p["aid"], "market": p["market"], "l10": ((p.get("x") or {}).get("l10") or [0, 0])[:2]} for p in qp if p["market"].startswith("Passing TDs ")]
+            why, score = [], e["prob"]
+            w = g.get("wx") or {}
+            if any(f.startswith(("Rain", "High wind")) for f in w.get("flags", [])):
+                why.append("Weather: %s, which favors designed runs/scrambles over the deep pass" % "; ".join(f.split(":")[0] for f in w["flags"])); score += 0.05
+            if opp in tr:
+                o = tr[opp]
+                if o["drtd_r"] <= 8: why.append("%s allows %.1f rushing TDs/g (#%d most) and %.1f rush yds/g (#%d)" % (opp, o["drtd"], o["drtd_r"], o["dry"], o["dry_r"])); score += 0.04
+                if o["dptd_r"] <= 8: why.append("%s allows %.1f passing TDs/g (#%d most): TD-ladder spot" % (opp, o["dptd"], o["dptd_r"]))
+            if g.get("total") and g["total"] >= 47: why.append("High total %.1f (team implied %s)" % (g["total"], e["itt"]))
+            c = casc.get(team)
+            if c and (team, "RB1") in out_kinds:
+                wo = c["qb_vs_rb"]["without"]
+                why.append("Cascade: RB1 %s is OUT. %s without him: %s" % (c["rb"], c["qb"], ("%.1f carries, %.2f rush TD/g in %d games" % (wo["carries"], wo["rushing_tds"], wo["g"])) if wo["g"] else "no games without him in the 2-season sample")); score += 0.05
+            why.append("Model: %s" % "; ".join(e["why"][:3]))
+            qb_plays.append({"player": atd["player"], "team": team, "opp": opp, "game": g["id"], "time": g["time"], "atd": {"aid": atd["aid"], "market": "Anytime TD", "prob": e["prob"], "hit": e["hit"]},
+                             "ladders": lad, "why": why, "score": round(score, 3)})
+    qb_plays.sort(key=lambda q: -q["score"])
+    cascades_active = [{"team": t, "kind": k, "pair": casc.get(t)} for (t, k) in out_kinds if casc.get(t)]
     allest = sorted((est(p, next((c["kind"] for c in top if c["game"] == p["game"] and c["off"] == p["team"]), None)) for p in td), key=lambda e: -e["prob"])
     F.save("analyst_nfl.json", {"week": week, "season": yr, "updated": now.isoformat(timespec="seconds"), "slate_avg_itt": round(avg, 1),
                                 "teams": tr, "mismatches": top, "n_strict": sum(c["strict"] for c in cands),
                                 "candidates": cands[:20], "top_td": allest[:20], "injuries": inj,
-                                "rz_ok": bool(rz), "dk_td_price": False})
+                                "rz_ok": bool(rz), "dk_td_price": False,
+                                "qb_plays": qb_plays, "cascades": casc, "cascades_active": cascades_active})
     print("analyst week", week, "mismatches", [(c["off"], c["kind"], c["def"], c["strict"]) for c in top])
 
 def fair(p):
