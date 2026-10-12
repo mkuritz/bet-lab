@@ -210,6 +210,16 @@ def run(stats, snaps, props, dvp_unused=None):
     qb_plays.sort(key=lambda q: -q["score"])
     cascades_active = [{"team": t, "kind": k, "pair": casc.get(t)} for (t, k) in out_kinds if casc.get(t)]
     allest = sorted((est(p, next((c["kind"] for c in top if c["game"] == p["game"] and c["off"] == p["team"]), None)) for p in td), key=lambda e: -e["prob"])
+    try:
+        import outcomes as O
+        nowz = now.strftime("%Y-%m-%dT%H:%MZ")
+        byk = {(p["aid"], p["market"]): p for p in props if p["time"] > nowz}
+        items = [{"src": "analyst_td", "title": "%s anytime TD (analyst)" % e["player"], "legs": [byk[(e["aid"], "Anytime TD")]], "est": e["prob"]}
+                 for e in allest[:10] if (e["aid"], "Anytime TD") in byk]
+        items += [{"src": "qb_play", "title": "%s anytime TD (QB play)" % q["player"], "legs": [byk[(q["atd"]["aid"], "Anytime TD")]], "est": q["atd"]["prob"]}
+                  for q in qb_plays[:5] if (q["atd"]["aid"], "Anytime TD") in byk and q["atd"]["prob"] >= 0.2]
+        O.log_recs("nfl", items)
+    except Exception as e: print("analyst recs ERROR", e)
     F.save("analyst_nfl.json", {"week": week, "season": yr, "updated": now.isoformat(timespec="seconds"), "slate_avg_itt": round(avg, 1),
                                 "teams": tr, "mismatches": top, "n_strict": sum(c["strict"] for c in cands),
                                 "candidates": cands[:20], "top_td": allest[:20], "injuries": inj,

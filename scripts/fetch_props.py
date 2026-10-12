@@ -304,6 +304,15 @@ def run_sport(key, cfg, full_logs):
     old_g = carry(load("games_%s.json" % key, []), games)
     props += carry(load("props_%s.json" % key, []), props, {g["id"] for g in games})
     games += old_g
+    try:  # results tracker: outcomes + our logged picks (real results only)
+        import outcomes as O
+        O.record(key, props)
+        if key == "nhl": O.resolve(key, logs)
+        else: O.resolve(key, logs, fetch=lambda a: gamelog(cfg["path"], a))
+        O.log_recs(key, O.hot_picks(key, [p for p in props if p["time"] > dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%MZ")]))
+        O.closing(props, key)
+    except Exception as e:
+        import traceback; traceback.print_exc(); print("outcomes ERROR", e)
     props.sort(key=lambda p: (p["time"], p["player"], p["market"]))
     if key == "nfl":  # primary scope QB/RB/WR/TE/K; punters dropped; defensive players -> 'def' group
         props[:] = [p for p in props if p["pos"] not in ("P", "LS")]

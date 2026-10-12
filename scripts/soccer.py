@@ -194,6 +194,7 @@ def run(full=False, leagues=None):
     """leagues: optional subset (targeted pre-game run); other leagues' props/games/logs are kept from the last run."""
     import extras
     allp, games, logs_all, counts = [], [], {}, {}
+    all_logs = {}
     cache = {}
     if leagues:
         keep = set(LEAGUES) - set(leagues)
@@ -207,6 +208,7 @@ def run(full=False, leagues=None):
         try:
             db, nnew = update_box(lg)
             logs, info = player_logs(db)
+            for k_, v_ in logs.items(): all_logs.setdefault(k_, []).extend(v_)
             dv = dvp(db, lg)
             n = 0
             for ev in fixtures(lg):
@@ -252,6 +254,21 @@ def run(full=False, leagues=None):
         soccer_ctx.enrich(allp, games)
     except Exception as e:
         import traceback; traceback.print_exc(); print("soccer ctx ERROR", e)
+    try:
+        import outcomes as O, json as _j
+        O.record("soccer", allp)
+        if not leagues: O.resolve("soccer", all_logs)
+        nowz = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
+        up = [p for p in allp if p["time"] > nowz]
+        items = O.hot_picks("soccer", up)
+        sg = F.load("soccer_sgp.json", {}).get("cards", [])
+        byk = {(p["aid"], p["market"], p["game"]): p for p in up}
+        for c in sg:
+            legs = [byk.get((l["aid"], l["market"], c["game"])) for l in c["legs"]]
+            if all(legs): items.append({"src": "sgp", "title": c["title"], "legs": legs, "est": c.get("est")})
+        O.log_recs("soccer", items); O.closing(allp, "soccer")
+    except Exception as e:
+        import traceback; traceback.print_exc(); print("soccer outcomes ERROR", e)
     ids = {g["id"] for g in games}
     allp += F.carry(F.load("props_soccer.json", []), allp, ids)
     games += F.carry(F.load("games_soccer.json", []), games)
