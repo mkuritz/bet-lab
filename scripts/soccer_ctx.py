@@ -1,6 +1,8 @@
 """Soccer context: competition-type splits (league / UEFA / UEFA knockout / big opponent), scorer-assister partnerships,
 travel + midweek-UEFA fatigue + altitude + weather per match, and correlated same-game-parlay cards for lopsided matches.
 Sources: ESPN match summaries (cached box files), ESPN standings, DK prices via ESPN, Open-Meteo. Estimates labelled."""
+import datetime as _dtm
+TD = _dtm.date.today()
 import os, glob, json, datetime as dt
 import fetch_props as F
 import weather as W
@@ -104,7 +106,7 @@ def enrich(props, games):
     tg = {}
     for lg, db in dbs.items():
         for m in db.values():
-            if m["d"] < ("2026-02-01" if lg == "usa.1" else "2026-07-01"): continue
+            if m["d"] < ("%d-02-01" % TD.year if lg == "usa.1" else "%d-07-01" % (TD.year if TD.month >= 7 else TD.year - 1)): continue  # current season only
             h, a = m["t"].get("home"), m["t"].get("away")
             if not h or not a: continue
             gl = {h: 0, a: 0}

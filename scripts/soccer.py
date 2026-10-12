@@ -20,12 +20,15 @@ FIELDS = ["g", "a", "sh", "sot", "sv", "fc", "yc", "rc"]
 SMAP = {"totalGoals": "g", "goalAssists": "a", "totalShots": "sh", "shotsOnTarget": "sot", "saves": "sv",
         "foulsCommitted": "fc", "yellowCards": "yc", "redCards": "rc"}
 
-def cutoff(lg):
-    if lg in UEFA: return "2024-07-01"
-    return "2025-02-01" if lg == "usa.1" else "2025-07-01"
-
 def season_start(lg):
-    return "2026-02-01" if lg == "usa.1" else "2026-07-01"
+    # current season start derived from today's date (MLS Feb, Europe Jul)
+    t = dt.date.today()
+    if lg == "usa.1": return "%d-02-01" % t.year
+    return "%d-07-01" % (t.year if t.month >= 7 else t.year - 1)
+
+def cutoff(lg):
+    # HISTORICAL: match-history window for priors/assist pairs (UEFA 2 seasons back, leagues 1 back)
+    y = int(season_start(lg)[:4]); return "%d%s" % (y - (2 if lg in UEFA else 1), season_start(lg)[4:])
 
 def posmap(a):
     a = (a or "").upper()
@@ -69,7 +72,7 @@ def summary(lg, eid):
 def update_box(lg):
     db = F.load("soccer/%s_box.json" % lg, {})
     evs = []
-    for y in ((2024, 2025, 2026) if lg in UEFA else (2025, 2026)):
+    for y in range(int(cutoff(lg)[:4]), dt.date.today().year + 1):  # HISTORICAL window + current
         sb = F.get(SITE % lg + "/scoreboard?dates=%d&limit=1000" % y) or {}
         for e in sb.get("events", []):
             if e["status"]["type"].get("completed") and e["date"][:10] >= cutoff(lg) and e["id"] not in db:
@@ -174,7 +177,7 @@ def props_for(lg, ev, info, cache):
         priced = [r for r in rungs if r[1] is not None]
         main = min(priced, key=lambda r: abs(implied(r[1]) - 0.5)) if priced else rungs[0]
         if aid not in info and aid not in cache:
-            a = F.get(CORE % lg + "/seasons/2026/athletes/" + aid) or {}
+            a = F.get(CORE % lg + "/seasons/%d/athletes/" % dt.date.today().year + aid) or {}
             cache[aid] = (a.get("displayName", "Unknown"), posmap((a.get("position") or {}).get("abbreviation")) or "?", None, "")
         name, pos, team, _ = info.get(aid) or cache[aid]
         side = ev["teams"].get(v["tid"] or "")

@@ -83,6 +83,9 @@ jobs:
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}   # closing prices; tracker cap 40 credits/mo + Arb Lab budget guard
         run: python scripts/edge_tracker.py
+      - name: Season guard (current season from date + same-day live roster check)
+        continue-on-error: true
+        run: python scripts/season_guard.py
       - name: Commit if data changed
         if: steps.d.outputs.mode != 'none'
         run: |

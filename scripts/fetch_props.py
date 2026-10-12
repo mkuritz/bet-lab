@@ -146,12 +146,13 @@ def script_for(g, ha):
 
 def athlete(sport, ref, cache):
     aid = re.search(r"athletes/(\d+)", ref).group(1)
-    if aid not in cache:
+    today = dt.date.today().isoformat()
+    if aid not in cache or cache[aid].get("asof") != today:  # current team re-read daily; never trust a cached team
         d = get(ref.replace("http://", "https://")) or {}
         tm = re.search(r"teams/(\d+)", (d.get("team") or {}).get("$ref", ""))
         cache[aid] = {"name": d.get("displayName", "Unknown"), "pos": (d.get("position") or {}).get("abbreviation", ""),
                       "team": tm.group(1) if tm else None,
-                      "head": (d.get("headshot") or {}).get("href")}
+                      "head": (d.get("headshot") or {}).get("href"), "asof": today}
     return aid
 
 def gamelog(path, aid):
