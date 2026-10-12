@@ -69,6 +69,13 @@ jobs:
         continue-on-error: true
         timeout-minutes: 4
         run: python scripts/statcast_mlb.py
+      - name: MLB Lab DK props (optional; strict credit guard)
+        if: steps.d.outputs.mode != 'none'
+        continue-on-error: true
+        timeout-minutes: 3
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: python scripts/mlb_dk_props.py
       - name: Commit if data changed
         if: steps.d.outputs.mode != 'none'
         run: |
