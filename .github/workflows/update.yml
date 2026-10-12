@@ -64,6 +64,11 @@ jobs:
         continue-on-error: true
         timeout-minutes: 3
         run: python scripts/bl_xcheck.py
+      - name: MLB Statcast tab (optional; full refreshes only)
+        if: steps.d.outputs.mode == 'full'
+        continue-on-error: true
+        timeout-minutes: 4
+        run: python scripts/statcast_mlb.py
       - name: Commit if data changed
         if: steps.d.outputs.mode != 'none'
         run: |

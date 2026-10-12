@@ -18,7 +18,7 @@ input{background:#0e1428;border:1px solid var(--line);color:var(--tx);border-rad
 <script>
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const pill=s=>`<span class="pill ${s==='ok'||s==='agree'?'ok':s==='failed'||s==='blocked'||s==='disagree'?'bad':'warn'}">${esc(s)}</span>`;
-fetch('data/xcheck.json?'+Date.now()).then(r=>r.json()).then(d=>{
+fetch('data/'+(document.body.dataset.src||'xcheck')+'.json?'+Date.now()).then(r=>r.json()).then(d=>{
  if(d.title)document.getElementById('ttl').textContent=d.title;
  document.getElementById('gen').textContent='Updated '+new Date(d.generated).toLocaleString([], {dateStyle:'medium',timeStyle:'short'});
  document.getElementById('kp').innerHTML=(d.summary||[]).map(k=>`<div><span class="mu">${esc(k[0])}</span><b>${esc(k[1])}</b><span class="mu">${esc(k[2]||'')}</span></div>`).join('');
