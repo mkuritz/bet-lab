@@ -76,6 +76,11 @@ jobs:
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: python scripts/mlb_dk_props.py
+      - name: Edge Tracker (log picks pre-start, closing prices, grade, stats)
+        if: steps.d.outputs.mode != 'none'
+        continue-on-error: true
+        timeout-minutes: 4
+        run: python scripts/edge_tracker.py
       - name: Commit if data changed
         if: steps.d.outputs.mode != 'none'
         run: |
