@@ -9,7 +9,8 @@ from zoneinfo import ZoneInfo
 ET = ZoneInfo("America/New_York"); UTC = dt.timezone.utc
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATE = os.path.join(ROOT, "data", "refresh_state.json")
-FULL = [("overnight", 2, 30), ("morning", 7, 0)]   # ET; window = target .. target+3h
+FULL = [("overnight", 2, 30), ("morning", 7, 0)]
+LINES = [("noon", 12, 0), ("afternoon", 16, 0), ("evening", 20, 0), ("late", 23, 0)]  # ET light refreshes: pick up newly posted lines (all sports)   # ET; window = target .. target+3h
 FULL_SPAN = dt.timedelta(hours=3)
 PRE = {90: (dt.timedelta(minutes=150), dt.timedelta(minutes=45)),   # widened: GitHub often runs */15 crons only every 1-2 h   # fire when start-105m <= now < start-45m
        30: (dt.timedelta(minutes=40), dt.timedelta(minutes=0))}     # fire when start-40m  <= now < start
@@ -30,6 +31,14 @@ def decide(now, events, state):
         for w, (a, b) in PRE.items():
             key = f"pre{w}:{ek}"
             if start - a <= now < start - b and key not in fired: due_pre.append((key, target))
+    due_lines = []
+    for name, h, m in LINES:
+        d = now.astimezone(ET).date()
+        t = dt.datetime(d.year, d.month, d.day, h, m, tzinfo=ET)
+        key = f"lines:{name}:{d.isoformat()}"
+        if t <= now < t + dt.timedelta(minutes=170 if name != "late" else 55) and key not in fired: due_lines.append(key)
+    if due_lines and not due_full:
+        due_pre += [(k, t) for k in due_lines for t in ("nfl", "cfb", "nba", "nhl", "mlb", "soccer")]
     if due_full:
         mode, targets, keys = "full", [], due_full + [k for k, _ in due_pre]   # full covers any pre-game window too
     elif due_pre:

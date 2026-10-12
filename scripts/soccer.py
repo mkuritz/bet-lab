@@ -252,6 +252,9 @@ def run(full=False, leagues=None):
         soccer_ctx.enrich(allp, games)
     except Exception as e:
         import traceback; traceback.print_exc(); print("soccer ctx ERROR", e)
+    ids = {g["id"] for g in games}
+    allp += F.carry(F.load("props_soccer.json", []), allp, ids)
+    games += F.carry(F.load("games_soccer.json", []), games)
     extras.line_history("soccer", allp)
     allp.sort(key=lambda p: (p["time"], p["player"], p["market"]))
     F.save("props_soccer.json", allp)

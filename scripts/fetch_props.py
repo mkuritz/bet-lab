@@ -221,6 +221,24 @@ def summarize(p, games):
             "home": agg([x for x in vals if x[0]["at"] != "@"]),
             "away": agg([x for x in vals if x[0]["at"] == "@"])}
 
+def et_day(iso):
+    from zoneinfo import ZoneInfo
+    return dt.datetime.fromisoformat(iso.replace("Z", "+00:00")).astimezone(ZoneInfo("America/New_York")).date()
+
+def carry(old, new, have=None):
+    """Keep started/finished items from today (ET) until midnight; if nothing new is posted at all,
+    keep the most recent slate (labelled Final client-side). Items keyed by 'game' (props) or 'id' (games)."""
+    from zoneinfo import ZoneInfo
+    today = dt.datetime.now(ZoneInfo("America/New_York")).date()
+    k = "game" if old and "game" in old[0] else "id"
+    have = have if have is not None else {x["id"] for x in new}
+    rest = [x for x in old if x.get(k) not in have and x.get("time")]
+    keep = [x for x in rest if et_day(x["time"]) == today]
+    if not new and not keep and rest:
+        last = max(et_day(x["time"]) for x in rest)
+        keep = [x for x in rest if et_day(x["time"]) == last]
+    return keep
+
 def run_sport(key, cfg, full_logs):
     s, l = cfg["path"].split("/")
     cache = load("athletes_%s.json" % key, {})
@@ -277,10 +295,9 @@ def run_sport(key, cfg, full_logs):
     except Exception as e:  # extras are best-effort; core props still ship
         import traceback; traceback.print_exc()
         print(key, "extras ERROR", e)
-    if key == "nfl":  # keep in-progress games' props (pre-kickoff lines) for the client-side Live tab
-        cut = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=5)).strftime("%Y-%m-%dT%H:%MZ")
-        have = {g["id"] for g in games}
-        props += [p for p in load("props_nfl.json", []) if p["game"] not in have and p["time"] >= cut]
+    old_g = carry(load("games_%s.json" % key, []), games)
+    props += carry(load("props_%s.json" % key, []), props, {g["id"] for g in games})
+    games += old_g
     props.sort(key=lambda p: (p["time"], p["player"], p["market"]))
     if key == "nfl":  # primary scope QB/RB/WR/TE/K; punters dropped; defensive players -> 'def' group
         props[:] = [p for p in props if p["pos"] not in ("P", "LS")]
