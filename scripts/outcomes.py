@@ -93,7 +93,7 @@ def log_recs(sport, items):
             else: dec *= d
         H["recs"].append({"id": rid, "sport": sport, "src": it["src"], "title": it.get("title"), "at": now.isoformat(timespec="minutes"),
                           "est": round(it["est"], 4) if it.get("est") is not None else None,
-                          "odds_dec": round(dec, 3) if priced else None, "time": min(p["time"] for p in legs),
+                          "odds_dec": round(dec, 3) if priced else None, "kalshi": it.get("kalshi"), "time": min(p["time"] for p in legs),
                           "legs": [{"sport": sport, "aid": p["aid"], "player": p["player"], "market": p["market"], "line": p["line"], "stat": p["stat"],
                                     "game": p["game"], "time": p["time"], "team": p.get("team"), "opp": p.get("opp"), "ov": p.get("ov"),
                                     "lh0": p["line"]} for p in legs]})

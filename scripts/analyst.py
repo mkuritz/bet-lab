@@ -218,7 +218,13 @@ def run(stats, snaps, props, dvp_unused=None):
                  for e in allest[:10] if (e["aid"], "Anytime TD") in byk]
         items += [{"src": "qb_play", "title": "%s anytime TD (QB play)" % q["player"], "legs": [byk[(q["atd"]["aid"], "Anytime TD")]], "est": q["atd"]["prob"]}
                   for q in qb_plays[:5] if (q["atd"]["aid"], "Anytime TD") in byk and q["atd"]["prob"] >= 0.2]
+        try:
+            import kalshi; kp = kalshi.atd_prices()
+        except Exception: kp = {}
+        for it in items: it["kalshi"] = kp.get(X.norm(it["legs"][0]["player"]))
+        for e in allest: e["kalshi"] = kp.get(X.norm(e["player"]))
         O.log_recs("nfl", items)
+        import backtest_atd; backtest_atd.maybe_refresh()
     except Exception as e: print("analyst recs ERROR", e)
     F.save("analyst_nfl.json", {"week": week, "season": yr, "updated": now.isoformat(timespec="seconds"), "slate_avg_itt": round(avg, 1),
                                 "teams": tr, "mismatches": top, "n_strict": sum(c["strict"] for c in cands),
