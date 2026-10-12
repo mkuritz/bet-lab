@@ -36,6 +36,8 @@ def build(props, games, rz, rzt, week, yr=None):
                     nxt[X.NV2ESPN.get(t, t)] = {"opp": X.NV2ESPN.get(o, o), "day": g["gameday"], "week": g["week"]}
     except Exception as e: print("inj_cascade sched", e)
     onboard |= set(nxt)
+    wk = max([int(v["week"]) for v in nxt.values()] or [int(week or 0)])
+    prac_next = _practice(yr, wk) if wk else {}  # this week's Wed-Fri report (nflverse); empty until posted
     rows = _rows(yr); cur = [r for r in rows if r["season"] == str(yr)]
     # usage this season
     U, T = {}, {}
@@ -56,7 +58,6 @@ def build(props, games, rz, rzt, week, yr=None):
         if u["tgs"] >= 0.15 or u["cas"] >= 0.35 or u["rzs"] >= 0.15: return u["pos"]
         return None
     byname = {(X.norm(u["name"]), u["team"]): pid for pid, u in U.items()}
-    prac = {**(_practice(yr, week) if week else {}), **(_practice(yr, int(week) + 1) if week else {})}  # next week overrides (posted Wed)
     d = F.get("https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries") or {}
     games_by = {}
     for (s, w, t), _ in []: pass
@@ -79,7 +80,7 @@ def build(props, games, rz, rzt, week, yr=None):
             gm = [(k, ps) for k, ps in G.items() if k[2] == team and k[0] in seasons]
             mates = [k for k, v in U.items() if v["team"] == team and k != pid and v["pos"] in ("QB", "RB", "WR", "TE")]
             vt, vc = u["tg"] / u["g"], u["ca"] / u["g"]
-            restT = sum(U[m]["tg"] for m in mates) or 1; restC = sum(U[m]["ca"] for m in mates if U[m]["pos"] in ("RB", "QB")) or 1
+            restT = sum(U[m]["tg"] for m in mates) or 1; restC = sum(U[m]["ca"] for m in mates if U[m]["pos"] == "RB") or 1
             aff = []
             for m in mates:
                 mu = U[m]
@@ -93,16 +94,24 @@ def build(props, games, rz, rzt, week, yr=None):
                 tdw = av([dict(x, _td=X.f(x["rushing_tds"]) + X.f(x["receiving_tds"])) for x in W], "_td") if W else None
                 tdo = av([dict(x, _td=X.f(x["rushing_tds"]) + X.f(x["receiving_tds"])) for x in WO], "_td") if WO else None
                 pt = vt * mu["tg"] / restT if mu["pos"] != "QB" else 0
-                pc = vc * mu["ca"] / restC if mu["pos"] in ("RB", "QB") else 0
-                if len(WO) >= 3 and W:
-                    dT = 0.5 * pt + 0.5 * (so["targets"] - sw["targets"]); dC = 0.5 * pc + 0.5 * (so["carries"] - sw["carries"]); how = "split+proportional"
-                else: dT, dC, how = pt, pc, "proportional"
+                if mu["pos"] == "RB": pc = vc * mu["ca"] / restC
+                elif mu["pos"] == "QB" and u["pos"] == "RB": pc = min(1.0, 0.05 * vc)  # QB: small scramble/design bump only
+                else: pc = 0
+                if WO and W:  # Bayesian weight on the split: n/(n+4), rest on the share-out
+                    wt = len(WO) / (len(WO) + 4.0)
+                    sT, sC = so["targets"] - sw["targets"], so["carries"] - sw["carries"]
+                    if mu["pos"] == "QB" and u["pos"] == "RB": sC = min(sC, 1.0)
+                    dT = (1 - wt) * pt + wt * sT; dC = (1 - wt) * pc + wt * sC; how = "split %d%% / share-out" % round(100 * wt)
+                else: dT, dC, how = pt, pc, "share-out"
+                dT = max(-vt, min(vt, dT)); dC = max(-vc, min(vc, dC))
                 base = (mu["tg"] + mu["ca"]) / mu["g"]
                 tdr = sum(X.f(x["rushing_tds"]) + X.f(x["receiving_tds"]) for x in W) / max(1, sum(X.f(x["targets"]) + X.f(x["carries"]) for x in W)) if W else 0.04
                 tdr = tdr or 0.03
                 lam0 = (tdw if tdw is not None else base * tdr) or 0.01
                 lam1 = lam0 + (dT + dC) * tdr
-                dP = (1 - math.exp(-lam1)) - (1 - math.exp(-lam0))
+                tdr = min(tdr, 0.06)  # per-opportunity TD rate cap (league RB ~0.03-0.04)
+                lam1 = lam0 + (dT + dC) * tdr
+                dP = max(-0.15, min(0.15, (1 - math.exp(-lam1)) - (1 - math.exp(-lam0))))
                 pyd = (so["passing_yards"] - sw["passing_yards"]) if mu["pos"] == "QB" and len(WO) >= 3 and W else None
                 if abs(dT) < 0.4 and abs(dC) < 0.8 and pyd is None: continue
                 mp = [{"aid": p["aid"], "market": p["market"], "line": p["line"],
@@ -115,10 +124,11 @@ def build(props, games, rz, rzt, week, yr=None):
                             "without": {"g": len(WO), "tg": so["targets"] and round(so["targets"], 1), "ca": so["carries"] and round(so["carries"], 1), "td": tdo and round(tdo, 2)},
                             "props": mp})
             aff.sort(key=lambda x: -(abs(x["d_tg"]) + abs(x["d_ca"]) + 20 * abs(x["d_td"]) + abs(x["d_pass_yds"] or 0) / 20))
-            pr = prac.get((X.norm(a.get("displayName", "")), team))
+            pr = prac_next.get((X.norm(a.get("displayName", "")), team))
+            gd = "inactive" in (i.get("shortComment") or "").lower() or "game" in (i.get("shortComment") or "").lower()
             imp = vt + vc + 10 * u["rzs"] + (15 if rl == "QB1" else 0)
             out.append({"team": team, "player": u["name"], "pos": u["pos"], "role": rl, "status": st, "date": i.get("date"),
-                        "note": (i.get("shortComment") or "")[:240], "practice": ("%s (%s; %s)" % pr) if pr else None,
+                        "note": (i.get("shortComment") or "")[:240], "practice": ("%s (%s; %s)" % pr) if pr else None, "src": "this week's practice report" if pr else ("last game-day status" if gd else "ESPN report"),
                         "usage": {"tg_g": round(vt, 1), "ca_g": round(vc, 1), "tg_share": round(100 * u["tgs"]), "ca_share": round(100 * u["cas"]), "rz_share": round(100 * u["rzs"]), "g": u["g"]},
                         "scenarios": ["plays", "sits"] if st == "Questionable" else ["sits"],
                         "impact": round(imp, 1), "next": nxt.get(team), "on_board": team in {g["home"] for g in games} | {g["away"] for g in games}, "affected": aff[:6]})
