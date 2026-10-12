@@ -35,7 +35,8 @@ FB = {
     "Longest Passing Completion": ["longPassing"], "Field Goals Made": ["fieldGoalsMade-fieldGoalAttempts"],
     "Extra Points Made": ["extraPointsMade-extraPointAttempts"], "Kicking Points": ["totalKickingPoints"], "Tackles": ["soloTackles"],
     "Tackles Plus Assists": ["totalTackles"], "Sacks": ["sacks"], "Assists": ["assistTackles"], "Interceptions": ["interceptions"],
-    "Anytime TD": ["rushingTouchdowns", "receivingTouchdowns"],
+    "Anytime TD": ["rushingTouchdowns", "receivingTouchdowns"], "2+ TDs": ["rushingTouchdowns", "receivingTouchdowns"],
+    "Passing TDs 1+": ["passingTouchdowns"], "Passing TDs 2+": ["passingTouchdowns"], "Passing TDs 3+": ["passingTouchdowns"], "Passing TDs 4+": ["passingTouchdowns"],
 }
 MAP = {
     "nfl": FB, "cfb": FB,
@@ -186,9 +187,9 @@ def statval(g, stat):
     t = 0
     for k in stat:
         kk = k.lstrip("-")
-        if kk not in g["s"]: return None
+        if kk not in g["s"]: continue  # e.g. QB has rushingTouchdowns but no receivingTouchdowns -> counts as 0
         t += -g["s"][kk] if k.startswith("-") else g["s"][kk]
-    return t
+    return t if any(k.lstrip("-") in g["s"] for k in stat) else None
 
 def current_season(vals):
     """newest-first (game, v) pairs up to the first 60+ day gap (offseason)."""
@@ -253,7 +254,12 @@ def run_sport(key, cfg, full_logs):
         seen = set()
         for it in data.get("items", []):
             tgt = (it.get("current") or {}).get("target", {}).get("value")
-            mk = market_name(it["type"]["name"])
+            tn = it["type"]["name"]
+            mk = market_name(tn)
+            if key in ("nfl", "cfb") and tn == "Passing Touchdown Milestones" and tgt in (1.0, 2.0, 3.0, 4.0):
+                mk, tgt = "Passing TDs %d+" % tgt, tgt - 0.5  # alt ladder rung: 'throws N+ TDs' = over N-0.5
+            elif key in ("nfl", "cfb") and tn == "Player to score 2 or more touchdowns":
+                mk, tgt = "2+ TDs", 1.5
             if mk in ("Anytime TD", "Anytime Goal"): tgt = 0.5  # yes/no market: scores 1+ rushing/receiving TD
             if tgt is None or not mk or "athlete" not in it:
                 continue

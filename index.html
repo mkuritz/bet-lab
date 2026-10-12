@@ -108,7 +108,7 @@ const DUR={nfl:3.6,cfb:3.8,nba:2.6,nhl:2.8,mlb:3.4,soccer:2.1};const etDay=t=>ne
 const keepT=t=>new Date(t)>Date.now()||etDay(t)==etDay(Date.now());const gstate=(t,sp)=>{const s=(Date.now()-new Date(t))/36e5;return s<0?"":s<(DUR[sp||sport]||3)?"live":"final"};
 const et=t=>{const g=gstate(t);return new Date(t).toLocaleString("en-US",{timeZone:"America/New_York",weekday:"short",hour:"numeric",minute:"2-digit"})+" ET"+(g=="live"?' <span class="st hit" style="background:var(--bad);color:#fff">LIVE</span>':g=="final"?' <span class="st dead">FINAL</span>':"")};
 async function j(u,fb){try{const r=await fetch(u+"?v="+Date.now());if(!r.ok)throw 0;return await r.json()}catch(e){return fb}}
-function val(g,stat){let s=0;for(const k of stat){const neg=k[0]=="-",kk=k.replace(/^-/,"");if(!(kk in g.s))return null;s+=neg?-g.s[kk]:g.s[kk]}return s}
+function val(g,stat){let s=0,any=false;for(const k of stat){const neg=k[0]=="-",kk=k.replace(/^-/,"");if(!(kk in g.s))continue;any=true;s+=neg?-g.s[kk]:g.s[kk]}return any?s:null}
 function enrich(p,logs){const r=enrich0(p,logs),x=p.x;if(x){const A=a=>a?{h:a[0],n:a[1],avg:a[2]}:null;
  Object.assign(r,{l5:A(x.l5),l10:A(x.l10),l20:A(x.l20),avg:x.szn?x.szn[2]:r.avg,os:x.os,us:x.us,h2h:A(x.h2h),hm:A(x.home),aw:A(x.away)})}
  r.ven=r.home?r.hm:r.aw;r.grp=p.grp||"off";r.fl=p.fl||null;return r}
@@ -292,7 +292,7 @@ const COUNT=new Set(["Anytime TD","Receptions","Carries","Pass Completions","Pas
 function liveCalc(r,cur,e){const done=Math.min(1,((e.period-1)*900+(900-secLeft(e.clock)))/3600),rem=Math.max(0,1-done);
  const isTD=r.market=="Anytime TD",target=isTD?Math.max(1,cur+1):Math.floor(r.line)+1,need=target-cur;
  const vs=(r.games||[]).slice(0,20).map(g=>g.v),n=vs.length,m=n?vs.reduce((a,b)=>a+b,0)/n:0,sd=n>1?Math.sqrt(vs.reduce((a,b)=>a+(b-m)**2,0)/(n-1)):m;
- const model=need<=0?1:!n?null:COUNT.has(r.market)?pois(m*rem,need):(rem<=0?0:1-ncdf((need-.5-m*rem)/Math.max(1,sd*Math.sqrt(rem))));
+ const model=need<=0?1:!n?null:(COUNT.has(r.market)||/TDs/.test(r.market))?pois(m*rem,need):(rem<=0?0:1-ncdf((need-.5-m*rem)/Math.max(1,sd*Math.sqrt(rem))));
  const hist=n?{h:vs.filter(v=>v>=target).length,n}:null;
  // conditional: past games where he had >= cur by the end of the last completed quarter
  let cond=null;const H=LIVE.hist&&LIVE.hist[r.aid],ix=histIdx(r),k=Math.max(1,Math.min(4,secLeft(e.clock)==0?e.period:e.period-1));
@@ -426,7 +426,7 @@ function pickDistinct(pool,n,used,{sameGame=false}={}){const legs=[],pl=new Set(
  return legs.length==n?legs:null}
 function buildRecs(d){
  const G=(GAMES[sport]||[]).filter(g=>sport!="soccer"||!LG||g.lg==LG),gmap=Object.fromEntries(G.map(g=>[g.id,g]));
- const ok=r=>r.l10&&r.l10.n>=6&&r.market!="Passing Interceptions"&&(sport!="nfl"||OFF.has(r.pos))&&(sport!="soccer"||r.pos!="GK"||r.market=="Saves");
+ const ok=r=>r.l10&&r.l10.n>=(r.pos=="QB"?4:6)&&r.market!="Passing Interceptions"&&(sport!="nfl"||OFF.has(r.pos))&&(sport!="soccer"||r.pos!="GK"||r.market=="Saves");
  const P=d.filter(ok),out=[],used=new Map();
  const take=b=>{if(!b)return;b.legs.forEach(r=>used.set(legKey(r),(used.get(legKey(r))||0)+1));out.push(b)};
  const sorted=(f,k=r=>rate(r.l10))=>P.filter(f).sort((a,b)=>k(b)-k(a)||b.l10.n-a.l10.n);
@@ -440,6 +440,11 @@ function buildRecs(d){
    const qb=sorted(r=>r.game==g.id&&r.team==side&&r.pos=="QB"&&MK("Passing Yards","Pass Completions")(r)&&rate(r.l10)>=.5)[0];
    const rec=sorted(r=>r.game==g.id&&r.team==side&&(r.pos=="WR"||r.pos=="TE")&&MK("Receiving Yards","Receptions")(r)&&rate(r.l10)>=.6)[0];
    if(qb&&rec)take(mkBundle("Shootout stack","💥",[qb,rec],`${side} air raid in a ${g.total}-point game`,`${g.away} @ ${g.home} has one of the highest totals on the slate (${g.total}); ${ctx(qb)}. ${legWhy(qb)}; ${legWhy(rec)}.`,{corr:true}))}}
+  // QB themes: passing TD ladders in shootouts, QB rushing TDs
+  series("QB passing TD ladder","🎯",sorted(r=>r.pos=="QB"&&/^Passing TDs [12]\+$/.test(r.market)&&(tag(r)=="Shootout"||(r.gs?.tot??0)>=47)&&rate(r.l10)>=.6),2,3,
+   (l,i)=>`Shootout QBs throw for TDs #${i+1}`,l=>l.map(r=>`${r.player} ${r.market} (O/U ${r.gs?.tot}): ${legWhy(r)}`).join("; ")+".");
+  series("QB rushing TD","🏃",sorted(r=>r.pos=="QB"&&r.market=="Anytime TD"&&rate(r.l10)>=.3,r=>rate(r.l10)+(r.gs?.itt??0)/200),2,2,
+   (l,i)=>`Mobile QBs at the goal line #${i+1}`,l=>l.map(r=>`${r.player} rushing TD: ${legWhy(r)}${r.gs?.itt?`, team total ${r.gs.itt}`:""}`).join("; ")+".");
   // high totals pass volume
   series("Pass volume","🎯",sorted(r=>tag(r)=="Shootout"&&["QB","WR","TE"].includes(r.pos)&&MK("Passing Yards","Pass Completions","Passing Attempts","Receptions","Receiving Yards")(r)&&rate(r.l10)>=.7),3,4,
    (l,i)=>`High-total passing volume #${i+1}`,l=>`All legs from Shootout-tier games. `+l.map(r=>`${legWhy(r)} (O/U ${r.gs?.tot})`).join("; ")+".");

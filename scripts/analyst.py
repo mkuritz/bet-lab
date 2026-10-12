@@ -130,7 +130,11 @@ def run(stats, snaps, props, dvp_unused=None):
         if boost and p["pos"] in (PASSPOS if boost == "pass" else RUSHPOS): fm = 1.1
         ol = [x for x in inj.get(p["team"], []) if x["grp"] == "OL" and x["starter"] and x["status"] != "Questionable"]
         fo = 0.95 if len(ol) >= 2 else 1.0
-        pr = min(0.70, base * fi * fm * fo)
+        dk = "drtd" if p["pos"] in ("QB", "RB") else "dptd"  # QBs/RBs score mostly rushing; WR/TE receiving
+        lav = sum(t[dk] for t in tr.values()) / len(tr) if tr else 0
+        od = tr.get(p.get("oa"), {}).get(dk)
+        fd = max(0.8, min(1.25, (od / lav) ** 0.5)) if od is not None and lav else 1.0
+        pr = min(0.70, base * fi * fm * fo * fd)
         pid = gsis.get((X.norm(p["player"]), p["team"]))
         r = rz.get(pid) if pid else None
         rzs = {"opp": r["ru"] + r["tg"], "ru": r["ru"], "tg": r["tg"], "td": r["td"],
@@ -138,6 +142,7 @@ def run(stats, snaps, props, dvp_unused=None):
         why = ["%d of %d games with a TD (last %d)" % (a[0], a[1], a[1]) if a[1] else "no game-log sample",
                "team implied total %.1f vs slate avg %.1f" % (itt, avg) if itt else "no implied total"]
         if rzs: why.append("%d red-zone opps (%d rushes, %d targets, %d%% of team) and %d RZ TDs" % (rzs["opp"], rzs["ru"], rzs["tg"], rzs["share"] or 0, rzs["td"]))
+        if od is not None and fd != 1.0: why.append("%s allows %.1f %s TDs/g (league %.1f)" % (p.get("oa"), od, "rushing" if dk == "drtd" else "passing", lav))
         if fm > 1: why.append("+10%% matchup factor (%s mismatch)" % boost)
         if fo < 1: why.append("-5%%: %d OL starters out/doubtful" % len(ol))
         return {"aid": p["aid"], "player": p["player"], "pos": p["pos"], "team": p["team"], "opp": p["opp"], "game": p["game"],
