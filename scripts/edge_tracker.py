@@ -124,14 +124,21 @@ def tag_signals(log):
     for c in an.get("inj_cascades", []):
         for a in c.get("affected", []):
             if (a.get("d_td") or 0) > 0 or (a.get("d_tg") or 0) >= 0.5 or (a.get("d_ca") or 0) >= 2: casc[_norm(a["player"])] = a.get("how")
-    props = {}
+    props = {}; nhot = None
     for e in log:
         if not e["id"].startswith("bl|") or T(e["start"]) <= NOW: continue
+        if e["sport"] == "nhl" and nhot is None:
+            try: nhot = {_norm(h["name"]): h for h in get("https://raw.githubusercontent.com/mkuritz/nhl-lab/main/data/hot.json") if h.get("hotScore") is not None}
+            except Exception: nhot = {}
         r = recs.get(e["ref"]["rec"]); 
         if not r: continue
         tags = set(Tg.get(e["id"], {}).get("signals", []))
         for l in r["legs"]:
             if _norm(l["player"]) in casc: tags.add("injury_cascade")
+            if l["sport"] == "nhl" and nhot:  # NHL Lab shrunk recent-form multiplier + opportunity notes
+                h = nhot.get(_norm(l["player"]))
+                if h and (h.get("formMult") or {}).get("p", 1) >= 1.04 and h["hotScore"] >= 10: tags.add("hot_form")
+                if h and h.get("oppNotes"): tags.add("role_change")
             if l["sport"] not in props: props[l["sport"]] = {(q["aid"], q["market"]): q for q in load("props_%s.json" % l["sport"], [])}
             q = props[l["sport"]].get((l["aid"], l["market"]))
             if not q: continue
