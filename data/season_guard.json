@@ -1,11 +1,11 @@
 {
- "generated": "2026-10-13T15:54:02-04:00",
+ "generated": "2026-10-13T18:06:09-04:00",
  "seasons": {
   "nfl": 2026,
   "mlb": 2026,
   "nhl": 20262027
  },
- "checked": 633,
+ "checked": 642,
  "conflicts": [
   {
    "src": "props_nhl.json",
@@ -48,14 +48,14 @@
   },
   {
    "src": "props_nhl.json",
-   "player": "Hoyt Stanley",
-   "team": "OTT",
+   "player": "Justin Holl",
+   "team": "WSH",
    "via": "nhl org (reserve/AHL list)"
   },
   {
    "src": "props_nhl.json",
-   "player": "Dominic Toninato",
-   "team": "CHI",
+   "player": "Hoyt Stanley",
+   "team": "OTT",
    "via": "nhl org (reserve/AHL list)"
   }
  ]
