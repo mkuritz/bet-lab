@@ -1,12 +1,19 @@
 {
- "generated": "2026-10-13T12:46:43-04:00",
+ "generated": "2026-10-13T15:54:02-04:00",
  "seasons": {
   "nfl": 2026,
   "mlb": 2026,
   "nhl": 20262027
  },
- "checked": 588,
+ "checked": 633,
  "conflicts": [
+  {
+   "src": "props_nhl.json",
+   "sport": "nhl",
+   "player": "Zack Bolduc",
+   "team": "MTL",
+   "why": "not on MTL live 20262027 roster for 2026-10-13"
+  },
   {
    "src": "props_nhl.json",
    "sport": "nhl",
@@ -20,6 +27,13 @@
    "player": "Elias N. Pettersson",
    "team": "VAN",
    "why": "not on VAN live 20262027 roster for 2026-10-13"
+  },
+  {
+   "src": "props_nhl.json",
+   "sport": "nhl",
+   "player": "Roger McQueen",
+   "team": "ANA",
+   "why": "not on ANA live 20262027 roster for 2026-10-13"
   }
  ],
  "unverified": [],
