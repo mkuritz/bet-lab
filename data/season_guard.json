@@ -1,20 +1,39 @@
 {
- "generated": "2026-10-12T18:07:08-04:00",
+ "generated": "2026-10-12T22:49:09-04:00",
  "seasons": {
   "nfl": 2026,
   "mlb": 2026,
   "nhl": 20262027
  },
- "checked": 195,
- "conflicts": [],
+ "checked": 234,
+ "conflicts": [
+  {
+   "src": "props_nhl.json",
+   "sport": "nhl",
+   "player": "Zack Bolduc",
+   "team": "MTL",
+   "why": "not on MTL live 20262027 roster for 2026-10-12"
+  }
+ ],
  "unverified": [],
- "stale": [],
+ "stale": [
+  {
+   "src": "props_nhl.json",
+   "why": "fetched 2026-10-13, not today 2026-10-12"
+  }
+ ],
  "notes": [],
  "resolved": [
   {
    "src": "props_nhl.json",
    "player": "Hoyt Stanley",
    "team": "OTT",
+   "via": "nhl org (reserve/AHL list)"
+  },
+  {
+   "src": "props_nhl.json",
+   "player": "Damon Severson",
+   "team": "CBJ",
    "via": "nhl org (reserve/AHL list)"
   }
  ]
