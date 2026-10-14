@@ -1,11 +1,11 @@
 {
- "generated": "2026-10-14T13:16:06-04:00",
+ "generated": "2026-10-14T18:48:21-04:00",
  "seasons": {
   "nfl": 2026,
   "mlb": 2026,
   "nhl": 20262027
  },
- "checked": 440,
+ "checked": 444,
  "conflicts": [
   {
    "src": "props_nhl.json",
