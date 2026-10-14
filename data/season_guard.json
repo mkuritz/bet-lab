@@ -1,39 +1,18 @@
 {
- "generated": "2026-10-13T20:55:29-04:00",
+ "generated": "2026-10-14T06:54:01-04:00",
  "seasons": {
   "nfl": 2026,
   "mlb": 2026,
   "nhl": 20262027
  },
- "checked": 641,
+ "checked": 391,
  "conflicts": [
   {
    "src": "props_nhl.json",
    "sport": "nhl",
    "player": "Zack Bolduc",
    "team": "MTL",
-   "why": "not on MTL live 20262027 roster for 2026-10-13"
-  },
-  {
-   "src": "props_nhl.json",
-   "sport": "nhl",
-   "player": "Maxwell Crozier",
-   "team": "TB",
-   "why": "not on TB live 20262027 roster for 2026-10-13"
-  },
-  {
-   "src": "props_nhl.json",
-   "sport": "nhl",
-   "player": "Elias N. Pettersson",
-   "team": "VAN",
-   "why": "not on VAN live 20262027 roster for 2026-10-13"
-  },
-  {
-   "src": "props_nhl.json",
-   "sport": "nhl",
-   "player": "Roger McQueen",
-   "team": "ANA",
-   "why": "not on ANA live 20262027 roster for 2026-10-13"
+   "why": "not on MTL live 20262027 roster for 2026-10-14"
   }
  ],
  "unverified": [],
@@ -42,20 +21,8 @@
  "resolved": [
   {
    "src": "props_nhl.json",
-   "player": "Damon Severson",
-   "team": "CBJ",
-   "via": "nhl org (reserve/AHL list)"
-  },
-  {
-   "src": "props_nhl.json",
    "player": "Justin Holl",
    "team": "WSH",
-   "via": "nhl org (reserve/AHL list)"
-  },
-  {
-   "src": "props_nhl.json",
-   "player": "Hoyt Stanley",
-   "team": "OTT",
    "via": "nhl org (reserve/AHL list)"
   }
  ]
