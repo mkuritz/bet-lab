@@ -31,6 +31,52 @@ def team_ranks(rows):
                 out[t][pre + k] = round(v, 1); out[t][pre + k + "_r"] = i + 1  # off: 1 = most gained; def: 1 = most allowed (worst)
     return out
 
+
+def team_power_index(tr, season):
+    """NFL Team Power Index 1–32 from nflverse yards ranks + SOS from completed REG games.
+    OffStr = (33−opy_r + 33−ory_r)/2; DefStr = (dpy_r + dry_r)/2 (higher = fewer yds allowed);
+    SOS = avg opponent (OffStr+DefStr)/2; TPI raw = 0.4*Off + 0.4*Def + 0.2*SOS, min–max to 0–100."""
+    import csv, io
+    from urllib.request import Request, urlopen
+    url = "https://github.com/nflverse/nfldata/raw/master/data/games.csv"
+    try:
+        with urlopen(Request(url, headers=F.UA), timeout=60) as r:
+            games = [x for x in csv.DictReader(io.TextIOWrapper(r, "utf-8"))
+                     if x["season"] == str(season) and x["game_type"] == "REG" and x["home_score"]]
+    except Exception as e:
+        print("tpi games ERROR", e); games = []
+    def ab(t): return X.NV2ESPN.get(t, t)
+    def off_str(t):
+        v = tr.get(t); return 16.5 if not v else (33 - v["opy_r"] + 33 - v["ory_r"]) / 2
+    def def_str(t):
+        v = tr.get(t); return 16.5 if not v else (v["dpy_r"] + v["dry_r"]) / 2
+    opp = {t: [] for t in tr}; pf, pa, w, l, gp = {}, {}, {}, {}, {}
+    for g in games:
+        h, a = ab(g["home_team"]), ab(g["away_team"]); hs, as_ = int(g["home_score"]), int(g["away_score"])
+        for t, s_, o in ((h, hs, as_), (a, as_, hs)):
+            pf[t] = pf.get(t, 0) + s_; pa[t] = pa.get(t, 0) + o; gp[t] = gp.get(t, 0) + 1
+            if s_ > o: w[t] = w.get(t, 0) + 1
+            elif s_ < o: l[t] = l.get(t, 0) + 1
+        if h in opp: opp[h].append((off_str(a) + def_str(a)) / 2)
+        if a in opp: opp[a].append((off_str(h) + def_str(h)) / 2)
+    rows = []
+    for t, v in tr.items():
+        o, d = off_str(t), def_str(t); sos = sum(opp[t]) / len(opp[t]) if opp[t] else 16.5
+        rows.append({"team": t, "g": v["g"], "off": round(o, 2), "def": round(d, 2), "sos": round(sos, 2),
+                     "raw": round(0.4 * o + 0.4 * d + 0.2 * sos, 3), "opy_r": v["opy_r"], "ory_r": v["ory_r"],
+                     "dpy_r": v["dpy_r"], "dry_r": v["dry_r"],
+                     "pf_g": round(pf.get(t, 0) / max(gp.get(t, 1), 1), 1), "pa_g": round(pa.get(t, 0) / max(gp.get(t, 1), 1), 1),
+                     "w": w.get(t, 0), "l": l.get(t, 0)})
+    rows.sort(key=lambda r: -r["raw"]); mn, mx = rows[-1]["raw"], rows[0]["raw"]
+    for i, r in enumerate(rows):
+        r["rank"] = i + 1; r["tpi"] = round(100 * (r["raw"] - mn) / max(mx - mn, 1e-9), 1)
+    method = {"formula": "TPI = 0.4*OffStr + 0.4*DefStr + 0.2*SOS",
+              "OffStr": "(33−pass-off-rank + 33−rush-off-rank)/2 from nflverse REG yards/g",
+              "DefStr": "(pass-yds-allowed-rank + rush-yds-allowed-rank)/2 (higher = fewer yds allowed)",
+              "SOS": "average opponent (OffStr+DefStr)/2 over completed REG games (nflverse/nfldata)",
+              "scale": "min–max to 0–100 after ranking", "season": season, "games_used": len(games)}
+    return rows, method
+
 def redzone(yr):
     """per gsis id: inside-20 rushes, targets, TDs; plus team inside-20 opportunities."""
     url = X.NV + "pbp/play_by_play_%d.csv.gz" % yr
@@ -239,8 +285,9 @@ def run(stats, snaps, props, dvp_unused=None):
         O.log_recs("nfl", items)
         import backtest_atd; backtest_atd.maybe_refresh()
     except Exception as e: print("analyst recs ERROR", e)
+    tpi, tpi_method = team_power_index(tr, yr)
     F.save("analyst_nfl.json", {"week": week, "season": yr, "updated": now.isoformat(timespec="seconds"), "slate_avg_itt": round(avg, 1),
-                                "teams": tr, "mismatches": top, "n_strict": sum(c["strict"] for c in cands),
+                                "teams": tr, "tpi": tpi, "tpi_method": tpi_method, "mismatches": top, "n_strict": sum(c["strict"] for c in cands),
                                 "candidates": cands[:20], "top_td": allest[:20], "injuries": inj,
                                 "rz_ok": bool(rz), "dk_td_price": False,
                                 "qb_plays": qb_plays, "cascades": casc, "cascades_active": cascades_active, "inj_cascades": injc, "boost_plays": boost_plays})

@@ -139,6 +139,16 @@ def tag_signals(log):
                 h = nhot.get(_norm(l["player"]))
                 if h and (h.get("formMult") or {}).get("p", 1) >= 1.04 and h["hotScore"] >= 10: tags.add("hot_form")
                 if h and h.get("oppNotes"): tags.add("role_change")
+                # Rivalry tag (NHL Lab): label only — never adjusts model/projections until Edge Tracker proves it.
+                try:
+                    if not hasattr(tag_signals, "riv_pairs"):
+                        gg = get("https://raw.githubusercontent.com/mkuritz/nhl-lab/main/data/games.json")
+                        tag_signals.riv_pairs = {(g["date"], frozenset((g["away"], g["home"]))): g["riv"] for g in gg if g.get("riv")}
+                    day = (e.get("start") or "")[:10]
+                    for (dt_, pair), lab in tag_signals.riv_pairs.items():
+                        if dt_ == day and l.get("team") in pair:
+                            tags.add("rivalry"); break
+                except Exception: pass
             if l["sport"] not in props: props[l["sport"]] = {(q["aid"], q["market"]): q for q in load("props_%s.json" % l["sport"], [])}
             q = props[l["sport"]].get((l["aid"], l["market"]))
             if not q: continue
@@ -195,6 +205,51 @@ def odds_api_close(log, C):
                 d = px.get((m, _norm(l["player"]), None if m == "player_anytime_td" else l["line"]))
                 if d: C[e["id"]] = {"implied": rnd(1 / d), "at": NOW.isoformat(timespec="minutes"), "src": "Odds API (DraftKings)"}
     return done("ok")
+
+# ---------------- Sports Labs Recommended tier (strict, rules-based gate; fixed pre-start) ----------------
+MIN_EDGE = 0.04          # calibrated p minus entry implied, in probability points
+CAP_PER_SPORT_DAY = 3    # cream rises to the top
+NON_SUPPORT = BASE | {"market_underpriced", "analyst_td", "sgp"}  # model outputs / tautological edge flags aren't independent support
+MODEL_SIG = {"hr_model", "k_model", "analyst_td", "sgp"}
+def _et_day(iso): return (T(iso) - dt.timedelta(hours=4)).date().isoformat()
+def tier_step(log, stats):
+    """Assign tier ONCE per pick while it is still pre-start; written to data/edge_tiers.json (log stays append-only).
+    recommended = priced AND calibrated edge >= MIN_EDGE AND no LOSING signal AND >=1 PROVEN independent signal
+                  (bootstrap until 3 independent signals are proven: >=1 independent signal ranked top-3 by weight with n>=10, not losing)
+                  AND within the top CAP_PER_SPORT_DAY by edge x signal weight for that sport and ET day.
+    research    = everything else (tracked separately, never counts toward the official record)."""
+    import edge_calib
+    TI = load("edge_tiers.json", {}); cal = load("edge_calib.json", {}); Tg = load("edge_tags.json", {})
+    S = stats.get("signals") or {}; status = signal_status(stats)
+    indep = {k: v for k, v in S.items() if k not in NON_SUPPORT}
+    proven = [k for k, v in indep.items() if v.get("status") == "proven"]
+    boot = len(proven) < 3
+    top3 = [k for k, v in sorted(indep.items(), key=lambda kv: -(kv[1].get("weight") or 1)) if v.get("n", 0) >= 10 and v.get("status") != "losing"][:3]
+    cands = {}
+    for e in log:
+        if e["id"] in TI or T(e["start"]) <= NOW: continue
+        sigs = e["signals"] + Tg.get(e["id"], {}).get("signals", [])
+        pc = edge_calib.apply(e.get("p_model"), cal); edge = None if (pc is None or e.get("implied") is None) else pc - e["implied"]
+        basis = "model" if (set(sigs) & MODEL_SIG) else "rules"
+        lose = [x for x in sigs if status.get(x) == "losing"]
+        sup = [x for x in sigs if x not in NON_SUPPORT and (status.get(x) == "proven" or (boot and x in top3))]
+        why = []
+        if edge is None: why.append("no market price")
+        elif edge < MIN_EDGE: why.append("calibrated edge %.1f pts < %.0f" % (edge * 100, MIN_EDGE * 100))
+        if lose: why.append("losing signal: " + ",".join(lose))
+        if not sup: why.append("no proven%s independent signal" % (" or top-ranked" if boot else ""))
+        w = 1.0
+        for x in sigs: w *= (S.get(x) or {}).get("weight") or 1
+        rec = {"tier": "research", "basis": basis, "p_cal": rnd(pc), "edge": rnd(edge), "support": sup, "bootstrap": boot,
+               "why": "; ".join(why) or None, "score": rnd((edge or 0) * w), "at": NOW.isoformat(timespec="minutes")}
+        if not why: cands.setdefault((e["sport"], _et_day(e["start"])), []).append((rec["score"], e["id"]))
+        TI[e["id"]] = rec
+    for key, lst in cands.items():
+        taken = sum(1 for k, v in TI.items() if v.get("tier") == "recommended" and v.get("day") == key[1] and v.get("sport") == key[0])
+        for sc, i in sorted(lst, reverse=True):
+            if taken < CAP_PER_SPORT_DAY: TI[i].update(tier="recommended", sport=key[0], day=key[1]); taken += 1
+            else: TI[i]["why"] = "outside daily top %d for %s" % (CAP_PER_SPORT_DAY, key[0].upper())
+    save("edge_tiers.json", TI); return TI
 
 # ---------------- steps ----------------
 def log_step(stats):
@@ -285,7 +340,7 @@ def agg(rows):
 def stats_step(log):
     Tg = load("edge_tags.json", {})
     log = [dict(e, signals=e["signals"] + Tg.get(e["id"], {}).get("signals", [])) for e in log]
-    G, C = load("edge_grades.json", {}), load("edge_close.json", {}); rows = []
+    G, C = load("edge_grades.json", {}), load("edge_close.json", {}); rows = []; TI = load("edge_tiers.json", {})
     for e in log:
         g = G.get(e["id"])
         if not g or g["result"] not in ("win", "loss"): continue
@@ -302,6 +357,7 @@ def stats_step(log):
         a["status"] = "unproven" if a["n"] < MIN_N else "proven" if good else "losing" if bad else "unproven"
         # weight used by Bet Lab to rank recs: shrunk toward 1.0 until the sample is big
         sh = min(a["n"] / 100, 1); a["weight"] = round(1 + sh * max(-0.5, min(0.5, a["roi"] or 0)), 3)
+        if a["status"] == "losing": a["weight"] = round(min(a["weight"], 0.85), 3)  # downweight losers even before the sample is large
         sig[s] = a
     cal = []
     for lo in [i / 10 for i in range(10)]:
@@ -312,11 +368,26 @@ def stats_step(log):
            "pending": sum(1 for e in log if e["id"] not in G), "void": sum(1 for g in G.values() if g["result"] in ("void", "push")),
            "overall": agg(rows), "by_sport": by(lambda r: r["e"]["sport"]), "by_market": by(lambda r: r["e"]["market"]),
            "by_tag": by(lambda r: r["e"].get("tag") or "standard"), "signals": sig, "calibration": cal, "min_n": MIN_N,
-           "closing_available": len(C), "odds_api": load("edge_oddsapi.json", {}).get("status")}
+           "closing_available": len(C), "odds_api": load("edge_oddsapi.json", {}).get("status"),
+           "by_tier": by(lambda r: (TI.get(r["e"]["id"]) or {}).get("tier") or "untiered (pre-gate)"),
+           "by_basis": by(lambda r: (TI.get(r["e"]["id"]) or {}).get("basis") or ("model" if set(r["e"]["signals"]) & MODEL_SIG else "rules")),
+           "official": agg([r for r in rows if (TI.get(r["e"]["id"]) or {}).get("tier") == "recommended"]),
+           "tier_counts": {"recommended": sum(1 for v in TI.values() if v.get("tier") == "recommended"), "research": sum(1 for v in TI.values() if v.get("tier") == "research")},
+           "gate": {"min_edge": MIN_EDGE, "cap_per_sport_day": CAP_PER_SPORT_DAY, "calibrator": load("edge_calib.json", {}).get("active")}}
     save("edge_stats.json", out); return out
 
 if __name__ == "__main__":
     stats = load("edge_stats.json", {})
     n = log_step(stats); log = read_log()
-    tag_signals(log); close_step(log); grade_step(log); s = stats_step(log)
+    tag_signals(log)
+    try: tier_step(log, stats)
+    except Exception as x: print("tier step ERROR", x)
+    close_step(log); grade_step(log)
+    try:
+        import edge_calib; edge_calib.run(log, load("edge_grades.json", {}), load("edge_close.json", {}))
+    except Exception as x: print("calib ERROR", x)
+    s = stats_step(log)
+    for mod in ("log_game_scripts", "called_it"):
+        try: __import__(mod).main() if mod == "called_it" else __import__(mod).run()
+        except Exception as x: print(mod, "ERROR", x)
     print("logged +%d (total %d), graded %d, pending %d" % (n, s["logged"], s["graded"], s["pending"]))
