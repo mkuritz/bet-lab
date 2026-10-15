@@ -106,6 +106,7 @@ def run(log, G, C):
            "thresholds_raw_insample": thr, "thresholds_oos": thr_oos,
            "note": "Calibrator only ships if out-of-sample Brier and log-loss both beat raw. Samples under ~100 are noise-dominated."}
     json.dump(out, open(p_("edge_calib.json"), "w"), separators=(",", ":"), sort_keys=True)
+    json.dump({"updated": out["updated"], "graded": out["graded"], "walk_forward": res}, open(p_("edge_calib_public.json"), "w"), separators=(",", ":"))
     return out
 
 def apply(p, cal):

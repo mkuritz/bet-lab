@@ -130,9 +130,8 @@ def enrich(props, games):
         pr = ml_prob(g) if g.get("mld") is not None and g.get("mlh") is not None and g.get("mla") is not None else None
         tags = (["Shootout"] if tot >= 3.2 else ["Grinder"] if tot <= 2.2 else []) + (["Lopsided"] if pr and max(pr["mlh"], pr["mla"]) >= 0.65 else [])
         edge = round(tot - g["total"], 2) if g.get("total") is not None else None
-        g["proj"] = {"h": round(lh, 2), "a": round(la, 2), "tot": round(tot, 2), "edge": edge, "tags": tags, "adj": adj,
-                     "lean": None if edge is None or abs(edge) < 0.3 else ("over lean" if edge > 0 else "under lean"),
-                     "basis": "avg(%s home GF %.2f, %s away GA %.2f) / avg(%s away GF %.2f, %s home GA %.2f)" % (h, hf, a, aa, a, af, h, ha_)}
+        g["proj"] = {"h": round(lh, 2), "a": round(la, 2), "tot": round(tot, 2), "edge": edge, "tags": tags,
+                     "lean": None if edge is None or abs(edge) < 0.3 else ("over lean" if edge > 0 else "under lean")}
     # hot scorers: goals in consecutive recent appearances (this season, all comps)
     # SGP cards
     cards = []

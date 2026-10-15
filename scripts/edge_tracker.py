@@ -235,7 +235,7 @@ def tier_step(log, stats):
         sup = [x for x in sigs if x not in NON_SUPPORT and (status.get(x) == "proven" or (boot and x in top3))]
         why = []
         if edge is None: why.append("no market price")
-        elif edge < MIN_EDGE: why.append("calibrated edge %.1f pts < %.0f" % (edge * 100, MIN_EDGE * 100))
+        elif edge < MIN_EDGE: why.append("edge below our bar")
         if lose: why.append("losing signal: " + ",".join(lose))
         if not sup: why.append("no proven%s independent signal" % (" or top-ranked" if boot else ""))
         w = 1.0
@@ -248,7 +248,7 @@ def tier_step(log, stats):
         taken = sum(1 for k, v in TI.items() if v.get("tier") == "recommended" and v.get("day") == key[1] and v.get("sport") == key[0])
         for sc, i in sorted(lst, reverse=True):
             if taken < CAP_PER_SPORT_DAY: TI[i].update(tier="recommended", sport=key[0], day=key[1]); taken += 1
-            else: TI[i]["why"] = "outside daily top %d for %s" % (CAP_PER_SPORT_DAY, key[0].upper())
+            else: TI[i]["why"] = "outside today's top %s picks" % key[0].upper()
     save("edge_tiers.json", TI); return TI
 
 # ---------------- steps ----------------
@@ -372,8 +372,7 @@ def stats_step(log):
            "by_tier": by(lambda r: (TI.get(r["e"]["id"]) or {}).get("tier") or "untiered (pre-gate)"),
            "by_basis": by(lambda r: (TI.get(r["e"]["id"]) or {}).get("basis") or ("model" if set(r["e"]["signals"]) & MODEL_SIG else "rules")),
            "official": agg([r for r in rows if (TI.get(r["e"]["id"]) or {}).get("tier") == "recommended"]),
-           "tier_counts": {"recommended": sum(1 for v in TI.values() if v.get("tier") == "recommended"), "research": sum(1 for v in TI.values() if v.get("tier") == "research")},
-           "gate": {"min_edge": MIN_EDGE, "cap_per_sport_day": CAP_PER_SPORT_DAY, "calibrator": load("edge_calib.json", {}).get("active")}}
+           "tier_counts": {"recommended": sum(1 for v in TI.values() if v.get("tier") == "recommended"), "research": sum(1 for v in TI.values() if v.get("tier") == "research")}}
     save("edge_stats.json", out); return out
 
 if __name__ == "__main__":
