@@ -1,7 +1,7 @@
 /* Shared Bet Lab sidebar: one component for every page. State in localStorage("bl-sidebar"). */
 (function(){
   var H='https://mkuritz.github.io/';
-  var G=[['Bet Lab',[['Props','./index.html','props'],['Sharp Picks','./sharp.html','sharp'],['Edge Tracker','./edge.html','edge'],['Sports Analyst','./index.html#view=analyst','analyst'],['MLB Statcast','./statcast.html','statcast'],['Market check','./sources.html','sources']]],
+  var G=[['Bet Lab',[['Props','./index.html','props'],['Sharp Picks','./sharp.html','sharp'],['Edge Tracker','./edge.html','edge'],['Sports Analyst','./index.html#view=analyst','analyst'],['MLB Statcast','./statcast.html','statcast'],['Market check','./sources.html','sources'],['📈 Betting Trends',H+'nfl-lab/#betting-trends']]],
          ['Sport Hubs',[['🏈 NFL Hub',H+'nfl-lab/'],['⚾ MLB Lab',H+'mlb-lab/'],['🏒 NHL Lab',H+'nhl-lab/'],['⚽ Soccer Hub',H+'soccer-lab/']]],
          ['Tools',[['⚡ Arb Lab',H+'arb-lab/']]],
          ['',[['Sports Labs home',H+'sports-labs/']]]];
