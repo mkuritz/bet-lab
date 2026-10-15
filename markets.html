@@ -1,0 +1,32 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>Market Board · Bet Lab</title>
+<style>:root{--bg:#0b0f17;--panel:#121826;--panel2:#182033;--line:#243049;--txt:#e6ebf5;--mut:#8b97b0;--acc:#53e3a6;--acc2:#3fa9ff;--bad:#ff5d6c;--mid:#f5c451}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}a{color:var(--acc2)}
+.w{max-width:1100px;margin:0 auto;padding:16px}header{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.logo{font-weight:800;font-size:20px}.logo b{color:var(--acc)}
+header a{color:var(--mut);font-weight:700;font-size:13px;text-decoration:none}.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px}
+.mut{color:var(--mut)}table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:7px 6px;border-bottom:1px solid var(--line);text-align:left}th{color:var(--mut);font-size:11px;text-transform:uppercase}
+.wrap{overflow-x:auto}.k{display:inline-block;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:0 8px 8px 0}.k b{display:block;font-size:18px}
+.win{color:var(--acc)}.loss{color:var(--bad)}.pill{font-size:10px;font-weight:800;padding:2px 7px;border-radius:999px;background:#53e3a622;color:var(--acc)}.f{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.f button,.f select,.f input{background:var(--panel2);border:1px solid var(--line);color:var(--txt);border-radius:8px;padding:8px 12px;font:inherit;min-height:40px}.f button.on{border-color:var(--acc);color:var(--acc)}
+.up{color:var(--acc)}.dn{color:var(--bad)}.bk{font-size:11px;color:var(--mut)}.g{font-size:12px;color:var(--mut);margin-top:2px}
+@media(max-width:760px){table.rsp thead{display:none}table.rsp tr{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:10px 0;border-bottom:1px solid var(--line)}table.rsp td{border:0;padding:2px 0}table.rsp td[data-l]::before{content:attr(data-l)" · ";color:var(--mut);font-size:11px}}</style><link rel="stylesheet" href="nav.css"></head>
+<body><div class="w"><header><a class="logo" href="./" style="color:var(--txt)">Bet <b>Lab</b></a></header>
+<h1 style="margin:4px 0">📊 Market Board</h1><div class="mut" id="upd">Loading…</div>
+<div class="card"><div class="mut" style="font-size:12px">Player props shopped across up to 10 legal US sportsbooks and exchanges. <b>Best price</b> is the top payout anywhere for the over/yes side. <b>Open → now</b> tracks the reference book from the first price we saw today, so you can see where money is moving. ▲ = the price shortened (market leaning over), ▼ = it drifted.</div>
+<div class="f" id="sp"></div><div class="f"><input id="q" placeholder="Search player or team" style="flex:1;min-width:180px"><select id="mk"></select><select id="mv"><option value="">All movement</option><option value="shorter">▲ Shortened</option><option value="longer">▼ Drifted</option></select></div>
+<div class="wrap"><table class="rsp"><thead><tr><th>Player · prop</th><th>Line</th><th>Best price</th><th>Open → now</th><th>Books</th><th>Start</th></tr></thead><tbody id="tb"></tbody></table></div><div id="more"></div></div>
+<div class="mut" style="font-size:11px;margin:18px 0">Prices via The Odds API (licensed feed). Lines change fast; confirm at the book before betting. Not betting advice. 21+ only. If you or someone you know has a gambling problem, call 1-800-GAMBLER.<br>Bet Lab · A <a href="https://mkuritz.github.io/sports-labs/">Sports Labs</a> Product · Property of Michael Kuritz</div></div>
+<script>
+const $=id=>document.getElementById(id),esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const et=t=>new Date(t).toLocaleString("en-US",{timeZone:"America/New_York",weekday:"short",hour:"numeric",minute:"2-digit"})+" ET";
+const am=a=>a==null?"—":(a>0?"+":"")+a;let D=[],sp="all",lim=60;
+const SP=[["all","All"],["mlb","⚾ MLB"],["nfl","🏈 NFL"],["nhl","🏒 NHL"]];
+function draw(){const q=$("q").value.toLowerCase(),mk=$("mk").value,mv=$("mv").value;
+ const R=D.filter(r=>(sp=="all"||r.sport==sp)&&(!mk||r.market==mk)&&(!mv||r.move==mv)&&(!q||(r.player+" "+r.game).toLowerCase().includes(q)));
+ $("sp").innerHTML=SP.map(([k,n])=>`<button class="${k==sp?"on":""}" data-s="${k}">${n} <span class="mut">${k=="all"?D.length:D.filter(r=>r.sport==k).length}</span></button>`).join("");
+ $("tb").innerHTML=R.slice(0,lim).map(r=>{const mvh=r.open==null?'<span class="mut">new</span>':`${r.open_line!=r.line&&r.open_line!=null?`o${r.open_line} `:""}${am(r.open)} → ${am(r.now)} ${r.move=="shorter"?'<b class="up">▲</b>':r.move=="longer"?'<b class="dn">▼</b>':'<span class="mut">·</span>'}<div class="bk">${esc(r.ref_book)}</div>`;
+  return `<tr><td><b>${esc(r.player)}</b> <span class="mut">${esc(r.market)}</span><div class="g">${esc(r.game)}</div></td><td data-l="Line">${r.line==null?"Yes":"o"+r.line}</td><td data-l="Best"><b class="up">${am(r.best)}</b> <span class="bk">${esc(r.best_book)}</span></td><td data-l="Open → now">${mvh}</td><td data-l="Books">${r.books}</td><td data-l="Start" class="mut">${et(r.start)}</td></tr>`}).join("")||'<tr><td class="mut">No props match. Lines post a few hours before games.</td></tr>';
+ $("more").innerHTML=R.length>lim?`<button style="display:block;margin:12px auto;background:var(--panel2);border:1px solid var(--line);color:var(--acc);padding:10px 20px;border-radius:8px;font-weight:700" onclick="lim+=60;draw()">Show more (${R.length-lim})</button>`:""}
+fetch("data/market_board.json?t="+Date.now()).then(r=>r.json()).then(d=>{D=d.rows||[];$("upd").textContent=`Updated ${et(d.updated)} · ${D.length} props on the board`;
+ $("mk").innerHTML='<option value="">All props</option>'+[...new Set(D.map(r=>r.market))].sort().map(m=>`<option>${esc(m)}</option>`).join("");draw()}).catch(()=>$("upd").textContent="Market board unavailable right now.");
+$("sp").onclick=e=>{const b=e.target.closest("button");if(b){sp=b.dataset.s;lim=60;draw()}};["q","mk","mv"].forEach(i=>$(i).oninput=()=>{lim=60;draw()});
+</script><script src="nav.js"></script></body></html>
