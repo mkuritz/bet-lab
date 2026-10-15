@@ -28,7 +28,7 @@ footer{color:var(--mut);font-size:12px;padding:16px 20px 30px;border-top:1px sol
 <h2>Live record <span class="mut" style="font-size:12px;font-weight:400" id="upd"></span></h2><div class="kpis" id="kpis"></div>
 <h2>Sports Labs Recommended vs research</h2>
 <div class="card" id="tiersdoc">
-<div class="mut" style="font-size:13px"><b>Cream rises to the top.</b> A pick counts as <span class="pill p-star">SPORTS LABS RECOMMENDED</span> only when it clears a strict, rules-based gate <b>before the game starts</b> (logged in <code>data/edge_tiers.json</code>; the pick log itself stays append-only):
+<div class="mut" style="font-size:13px"><b>Cream rises to the top.</b> A pick counts as <span class="pill p-star">SPORTS LABS RECOMMENDED</span> only when it clears a strict, rules-based gate <b>before the game starts</b> (tiered before the game starts; the pick log itself stays append-only):
 <ol style="margin:8px 0 8px 18px;padding:0">
 <li>Priced at a market (DraftKings via ESPN or Kalshi).</li>
 <li>Calibrated model probability minus entry implied ≥ <b id="minedge">4</b> percentage points (calibrator from walk-forward Platt/isotonic; ships only when OOS Brier and log-loss beat raw).</li>
