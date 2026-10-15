@@ -1,0 +1,20 @@
+name: Grade All In Cousins picks
+on:
+  schedule:
+    - cron: "40 7 * * *"   # ~3:40 AM ET after late games
+    - cron: "10 14 * * *"  # backup ~10:10 AM ET
+  push:
+    paths: ["data/allin_picks.json"]
+  workflow_dispatch:
+concurrency: { group: allin-grade, cancel-in-progress: false }
+permissions: { contents: write }
+jobs:
+  grade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python scripts/grade_allin.py
+      - run: |
+          git config user.name "sports-labs-bot"; git config user.email "actions@users.noreply.github.com"
+          git add data/allin_picks.json
+          git diff --cached --quiet || (git commit -m "Grade All In Cousins picks" && git pull --rebase && git push)

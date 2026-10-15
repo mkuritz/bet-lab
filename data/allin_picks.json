@@ -1,0 +1,30 @@
+{
+ "handicapper": "Marco Piemonte (\"Million Dollar Marco\")",
+ "show": "All In Sports w/ Million Dollar Marco & Tony Sharp",
+ "source_url": "https://cousinsallin.podbean.com/",
+ "tracked_since": null,
+ "note": "Picks are entered by hand from publicly posted episodes/posts, each with its source link. No pick is entered without a public source. Graded automatically against ESPN final scores.",
+ "picks": [],
+ "record": {
+  "overall": {
+   "w": 0,
+   "l": 0,
+   "p": 0,
+   "units": 0
+  },
+  "nfl": {
+   "w": 0,
+   "l": 0,
+   "p": 0,
+   "units": 0
+  },
+  "mlb": {
+   "w": 0,
+   "l": 0,
+   "p": 0,
+   "units": 0
+  },
+  "pending": 0,
+  "units_note": "1 unit per pick; -110 assumed when no price was stated"
+ }
+}

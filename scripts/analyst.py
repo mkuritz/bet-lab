@@ -70,11 +70,7 @@ def team_power_index(tr, season):
     rows.sort(key=lambda r: -r["raw"]); mn, mx = rows[-1]["raw"], rows[0]["raw"]
     for i, r in enumerate(rows):
         r["rank"] = i + 1; r["tpi"] = round(100 * (r["raw"] - mn) / max(mx - mn, 1e-9), 1)
-    method = {"formula": "TPI = 0.4*OffStr + 0.4*DefStr + 0.2*SOS",
-              "OffStr": "(33−pass-off-rank + 33−rush-off-rank)/2 from nflverse REG yards/g",
-              "DefStr": "(pass-yds-allowed-rank + rush-yds-allowed-rank)/2 (higher = fewer yds allowed)",
-              "SOS": "average opponent (OffStr+DefStr)/2 over completed REG games (nflverse/nfldata)",
-              "scale": "min–max to 0–100 after ranking", "season": season, "games_used": len(games)}
+    method = {"summary": "Blends offense, defense and schedule strength into one 0-100 rating", "season": season, "games_used": len(games)}
     return rows, method
 
 def redzone(yr):
