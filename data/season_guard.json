@@ -1,11 +1,11 @@
 {
- "generated": "2026-10-15T09:05:26-04:00",
+ "generated": "2026-10-15T11:40:36-04:00",
  "seasons": {
   "nfl": 2026,
   "mlb": 2026,
   "nhl": 20262027
  },
- "checked": 808,
+ "checked": 786,
  "conflicts": [
   {
    "src": "props_nhl.json",
@@ -24,19 +24,5 @@
  ],
  "unverified": [],
  "stale": [],
- "notes": [],
- "resolved": [
-  {
-   "src": "props_nhl.json",
-   "player": "Hoyt Stanley",
-   "team": "OTT",
-   "via": "nhl org (reserve/AHL list)"
-  },
-  {
-   "src": "props_nhl.json",
-   "player": "Jorian Donovan",
-   "team": "OTT",
-   "via": "nhl org (reserve/AHL list)"
-  }
- ]
+ "notes": []
 }
