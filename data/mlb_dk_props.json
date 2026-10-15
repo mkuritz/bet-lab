@@ -1,1 +1,1 @@
-{"status":"outside pull window (-2.5h to first pitch)","checked":"2026-10-15T19:41:43+00:00","usage":{"month":"2026-10","used":0,"polls":[]}}
+{"status":"ok","checked":"2026-10-15T19:50:55+00:00","usage":{"month":"2026-10","used":0,"polls":[]},"pulled":"2026-10-15T19:34+00:00","date":"2026-10-15","hr":{},"k":{"tyler glasnow":{"line":5.5,"game":"ab3e5655be6b32e0853d683e51a60baa","over":-154,"under":121}},"src":"The Odds API (DraftKings) via Bet Lab market snapshots"}
