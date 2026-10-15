@@ -308,7 +308,17 @@ def run_sport(key, cfg, full_logs):
     try:  # results tracker: outcomes + our logged picks (real results only)
         import outcomes as O
         O.record(key, props)
-        if key == "nhl": O.resolve(key, logs)
+        if key == "nhl":
+            # players whose pick/bet is pending but who have no prop on today's board aren't in `logs`;
+            # fetch their official NHL game log by name/team (from logged recs + props) instead of letting them void.
+            import nhl as _nhl
+            who = {p["aid"]: (p["player"], p["team"]) for p in props}
+            for r in load("recs_history.json", {"recs": []}).get("recs", []):
+                for l in r["legs"]:
+                    if l.get("sport") == "nhl": who.setdefault(l["aid"], (l["player"], l["team"]))
+            try: _nhl.prepare(set(t for _, t in who.values()))
+            except Exception as e: print("nhl prepare for resolve", e)
+            O.resolve(key, logs, fetch=lambda a: _nhl.gamelog(a, *who[a]) if a in who else None)
         else: O.resolve(key, logs, fetch=lambda a: gamelog(cfg["path"], a))
         O.log_recs(key, O.hot_picks(key, [p for p in props if p["time"] > dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%MZ")]))
         O.closing(props, key)
