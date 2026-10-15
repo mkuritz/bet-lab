@@ -59,6 +59,14 @@ def main():
             if r: p["result"] = r
             if f: p["final"] = f
         except Exception as e: print("skip", p.get("id"), e)
+    L = []
+    for p in d["picks"]:
+        if p.get("type") == "parlay":
+            lr = [l.get("result") for l in p["legs"]]
+            p["legs_total"] = len(lr); p["legs_graded"] = sum(r in ("win", "loss", "push") for r in lr)
+            p["legs_hit"] = sum(r == "win" for r in lr); p["legs_push"] = sum(r == "push" for r in lr)
+            p["sunk_by"] = [l["desc"] for l in p["legs"] if l.get("result") == "loss"]
+            L += [l for l in p["legs"] if l.get("result") in ("win", "loss", "push")]
     g = [p for p in d["picks"] if p.get("result")]
     R = {}
     for kind in ("straight", "parlay"):
@@ -66,6 +74,7 @@ def main():
         R[kind] = {"overall": rec([p for p in gk if p["sport"] in ("nfl", "mlb")]), "nfl": rec([p for p in gk if p["sport"] == "nfl"]),
                    "mlb": rec([p for p in gk if p["sport"] == "mlb"]), "ncaaf": rec([p for p in gk if p["sport"] == "ncaaf"])}
     R["overall"] = R["straight"]["overall"]; R["nfl"] = R["straight"]["nfl"]; R["mlb"] = R["straight"]["mlb"]
+    R["parlay_legs"] = rec(L) | {"units": None, "units_n": 0}
     R["pending"] = len(d["picks"]) - len(g)
     R["units_note"] = "1 unit per pick. Units count only picks with a stated price, or spreads/totals marked -110 (assumed standard price). Parlays without a stated price are W/L only."
     d["record"] = R
