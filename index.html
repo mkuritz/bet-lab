@@ -182,7 +182,7 @@ function dash(){if(sport=="cfb"){loadCfb();if(CFBD&&!CFBD.err){$("dash").innerHT
  const TDM=r=>/TD/i.test(r.market||r.m||"");
  const hot=d.filter(r=>!(r.unav&&TDM(r))&&ok(r[win],tier/100)&&r[win].n>=Math.min(5,{l5:5,l10:8,l20:12}[win])).sort((a,b)=>pct(b[win])-pct(a[win])||b[win].n-a[win].n);
  const hotN=hot.length;
- const cold=d.filter(r=>r[win]&&r[win].n>=5&&pct(r[win])<=1-tier/100).sort((a,b)=>pct(a[win])-pct(b[win]));
+ const cold=d.filter(r=>r[win]&&r[win].n>=5&&pct(r[win])<=1-tier/100&&!r.unav&&!(TDM(r)&&(!r.all||pct(r.all)<.2))).sort((a,b)=>pct(a[win])-pct(b[win]));
  const trivU=r=>TDM(r)&&r.all&&r.all.n>=8&&pct(r.all)<.15; // never-scores players: an "under streak" on a TD prop carries no signal
  const streak=d.filter(r=>r.os>=2&&!r.unav).sort((a,b)=>b.os-a.os||pct(b.l10)-pct(a.l10));
  const ustreak=d.filter(r=>r.us>=3&&!r.unav&&!trivU(r)).sort((a,b)=>b.us-a.us);
