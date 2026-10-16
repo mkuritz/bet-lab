@@ -1,7 +1,7 @@
 name: Grade All In Cousins picks
 on:
   schedule:
-    - cron: "40 7 * * *"   # ~3:40 AM ET after late games
+    # primary 3:40 AM ET run is dispatched by the Cloudflare sl-scheduler; this is the backup
     - cron: "10 14 * * *"  # backup ~10:10 AM ET
   push:
     paths: ["data/allin_picks.json"]
