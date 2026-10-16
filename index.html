@@ -97,7 +97,7 @@ footer{color:var(--mut);font-size:12px;padding:16px 20px 30px;border-top:1px sol
 </div>
 <div data-slhero id="slhero"></div><section id="dash"></section><section id="analyst" hidden></section><section id="live" hidden></section><section id="tracker" hidden></section><main id="tablev"><div class="chips" id="tctl" style="margin:0 0 8px"></div><div class="wrap"><table><thead><tr id="th"></tr></thead><tbody id="tb"></tbody></table><div id="empty" class="empty" hidden></div></div><div class="pg" id="tblpg"></div></main>
 <div id="shade"></div><aside id="drawer"></aside>
-<footer>Personal research demo. Unofficial data: DraftKings lines via ESPN's public feed, game logs via ESPN. Over/under prices are not in the free feed. Hit rates are based on past games only. Not betting advice. 21+ only; if you or someone you know has a gambling problem, call 1-800-GAMBLER.<br>Bet Lab · A <a href="https://mkuritz.github.io/sports-labs/" style="color:inherit;text-decoration:underline">Sports Labs</a> Product · Property of Michael Kuritz · <a href="#" data-lead="contact" style="color:inherit;text-decoration:underline">Contact</a> · <a href="#" data-lead="support" style="color:inherit;text-decoration:underline">Support</a> · <a href="#" data-lead="demo" style="color:inherit;text-decoration:underline">Request a demo</a></footer>
+<footer>Personal research demo. Unofficial data: DraftKings lines via ESPN's public feed, game logs via ESPN. Over/under prices are not in the free feed. Hit rates are based on past games only. Not betting advice. 21+ only; if you or someone you know has a gambling problem, call 1-800-GAMBLER.<br>Bet Lab · A <a href="https://sportslabshq.com/" style="color:inherit;text-decoration:underline">Sports Labs</a> Product · Property of Michael Kuritz · <a href="#" data-lead="contact" style="color:inherit;text-decoration:underline">Contact</a> · <a href="#" data-lead="support" style="color:inherit;text-decoration:underline">Support</a> · <a href="#" data-lead="demo" style="color:inherit;text-decoration:underline">Request a demo</a></footer>
 <script>
 const SPORTS=[["nfl","NFL"],["cfb","CFB"],["nba","NBA"],["nhl","NHL"],["mlb","MLB"],["soccer","Soccer"]];
 const LEAGUES=[["eng.1","EPL"],["esp.1","La Liga"],["ita.1","Serie A"],["ger.1","Bundesliga"],["fra.1","Ligue 1"],["usa.1","MLS"],["por.1","Primeira Liga"],["ned.1","Eredivisie"],["tur.1","Süper Lig"],["ksa.1","Saudi Pro League"],["uefa.champions","Champions League"],["uefa.europa","Europa League"],["uefa.europa.conf","Conference League"]];
@@ -199,10 +199,10 @@ function dash(){if(sport=="cfb"){loadCfb();if(CFBD&&!CFBD.err){$("dash").innerHT
  ${ustreak.length?`<div class="sub" style="margin-top:10px">Under streaks</div>`+pagedList("ustreak",ustreak,r=>`<span class="dn">${r.us} straight under</span>`):""}</div>`;
  if(!d.length)$("dash").innerHTML=`<div class="card empty">${SRC().length?"No props match your filters.":"No lines yet for "+SPORTS.find(s=>s[0]==sport)[1]+"."}</div>`;}
 
-// ---- MLB Lab picks (consumes mkuritz.github.io/mlb-lab/data/hr_scores.json + k_projections.json) ----
+// ---- MLB Lab picks (consumes mlblab.sportslabshq.com/data/hr_scores.json + k_projections.json) ----
 let MLBLAB=null,MLBLAB_T=0;
-function loadMlbLab(){if(MLBLAB||MLBLAB_T)return;MLBLAB_T=1;const u="https://mkuritz.github.io/mlb-lab/data/";Promise.all(["hr_scores","k_projections"].map(k=>fetch(u+k+".json?v="+Date.now()).then(r=>r.ok?r.json():null))).then(([h,k])=>{MLBLAB={h,k};if(sport=="mlb"&&view=="dash")dash()}).catch(e=>{MLBLAB={err:1};console.warn("MLB Lab feed unavailable",e)})}
-function mlbLabCard(){loadMlbLab();const lnk='<a href="https://mkuritz.github.io/mlb-lab/" target="_blank" rel="noopener">Open MLB Lab →</a>';
+function loadMlbLab(){if(MLBLAB||MLBLAB_T)return;MLBLAB_T=1;const u="https://mlblab.sportslabshq.com/data/";Promise.all(["hr_scores","k_projections"].map(k=>fetch(u+k+".json?v="+Date.now()).then(r=>r.ok?r.json():null))).then(([h,k])=>{MLBLAB={h,k};if(sport=="mlb"&&view=="dash")dash()}).catch(e=>{MLBLAB={err:1};console.warn("MLB Lab feed unavailable",e)})}
+function mlbLabCard(){loadMlbLab();const lnk='<a href="https://mlblab.sportslabshq.com/" target="_blank" rel="noopener">Open MLB Lab →</a>';
  if(!MLBLAB)return `<div class="card"><h3>⚾ MLB Lab picks</h3><div class="sub">Loading MLB Lab's Home Run Score and Strikeout King…</div></div>`;
  if(MLBLAB.err||!MLBLAB.h)return `<div class="card"><h3>⚾ MLB Lab picks</h3><div class="sub">MLB Lab feed unavailable right now. ${lnk}</div></div>`;
  const H=MLBLAB.h,K=MLBLAB.k||{},nm=s=>(s||"").normalize("NFKD").replace(/[^\w ]/g,"").toLowerCase();
@@ -765,4 +765,4 @@ function recsSection(d){const all=buildRecs(d),themes=[...new Set(all.map(b=>b.t
  <button data-bundle="${i}" style="background:var(--acc);color:#06210f;border:0;border-radius:8px;padding:7px;font-weight:800;cursor:pointer">Load into slip</button></div>`).join("")}</div>`:'<div class="mut" style="padding:8px">No bundles qualify with the current filters/sport.</div>'}</div>`}
 document.addEventListener("click",e=>{const b=e.target.closest("[data-th]");if(!b)return;THEME=b.dataset.th;localStorage.setItem(LS+"theme",THEME);render()});
 </script>
-<script src="https://mkuritz.github.io/sports-labs/js/leads-config.js"></script><script src="https://mkuritz.github.io/sports-labs/js/leads.js" data-product="Bet Lab" data-float="1"></script><script src="nav.js"></script></body></html>
+<script src="https://sportslabshq.com/js/leads-config.js"></script><script src="https://sportslabshq.com/js/leads.js" data-product="Bet Lab" data-float="1"></script><script src="nav.js"></script></body></html>

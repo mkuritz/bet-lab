@@ -32,7 +32,7 @@ footer{color:var(--mut);font-size:12px;padding:16px 20px 30px;border-top:1px sol
 
 <h2 id="dfs">DFS lineup track record <span class="mut" style="font-size:12px;font-weight:400">from Fantasy Frontier</span></h2><div class="card" id="dfsbox"><span class="mut">Loading…</span></div>
 <script>(async()=>{const b=document.getElementById("dfsbox");const e=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-try{const base="https://mkuritz.github.io/fantasy-frontier/data/track/";const t=await fetch(base+"lineups.jsonl?t="+Date.now()).then(r=>r.ok?r.text():"");const R=await fetch(base+"results.json?t="+Date.now()).then(r=>r.ok?r.json():{slates:{}}).catch(()=>({slates:{}}));
+try{const base="https://fantasyfrontier.sportslabshq.com/data/track/";const t=await fetch(base+"lineups.jsonl?t="+Date.now()).then(r=>r.ok?r.text():"");const R=await fetch(base+"results.json?t="+Date.now()).then(r=>r.ok?r.json():{slates:{}}).catch(()=>({slates:{}}));
 const S=t.trim().split("\n").filter(Boolean).map(JSON.parse).filter(x=>x.logged_at<x.lock);const g={};S.forEach(x=>g[x.kind+"-"+x.dg]=x);const ks=Object.keys(g).sort((a,c)=>g[c].lock.localeCompare(g[a].lock));
 if(!ks.length){b.innerHTML='<span class="mut">No DFS lineups logged yet.</span>';return}
 const NM={safe:"Safe",bal:"Balanced",up:"Upside"};let h='<div class="wrap"><table><thead><tr><th>Slate</th><th>Lineup</th><th>Captain</th><th>Proj</th><th>Actual</th><th>vs chalk</th><th>% of optimal</th></tr></thead><tbody>';
@@ -41,7 +41,7 @@ h+=`<tr><td>${e(o.game||o.label)}</td><td>${NM[t]||t}</td><td>${e(lu.rows[0].slo
 b.innerHTML=h+'</tbody></table></div><div class="mut" style="font-size:12px;margin-top:6px">Logged before lock in an append-only file; graded from ESPN\'s public box score. Contest field results unavailable (no permitted source).</div>'}catch(err){b.innerHTML='<span class="mut">DFS track record unavailable right now.</span>'}})();</script>
 <h2>📒 Official record</h2><div class="card" id="offrec"><span class="mut">Loading…</span></div>
 </main>
-<footer>Prices: DraftKings (via ESPN public feed and The Odds API) and Kalshi public API; book % shown with the vig removed. Results: MLB Stats API, NHL and ESPN box scores. Official picks are logged before start to an append-only file and graded against the result; misses stay on the record. Not betting advice. 21+. Gambling problem? Call 1-800-GAMBLER. <a href="https://mkuritz.github.io/sports-labs/about.html">How it works</a></footer>
+<footer>Prices: DraftKings (via ESPN public feed and The Odds API) and Kalshi public API; book % shown with the vig removed. Results: MLB Stats API, NHL and ESPN box scores. Official picks are logged before start to an append-only file and graded against the result; misses stay on the record. Not betting advice. 21+. Gambling problem? Call 1-800-GAMBLER. <a href="https://sportslabshq.com/about.html">How it works</a></footer>
 <script>
 const $=id=>document.getElementById(id),sg=x=>x==null?"—":(x>0?"+":"")+(x*100).toFixed(1)+"%";
 const j=async(u,d)=>{try{const r=await fetch(u+"?t="+Date.now());if(!r.ok)throw 0;return await r.json()}catch(e){return d}};
@@ -51,5 +51,5 @@ const cards=(CI.cards||[]).filter(c=>c.official&&(c.kind==="game_script"?(c.resu
 $("called").innerHTML=(CC.map(c=>`<div style="border-top:1px solid var(--line);padding:10px 0"><span class="pill p-fun">${c.label||"Called in chat"}</span> <b>${c.title}</b><div class="mut" style="font-size:13px">${c.result_line||""}</div></div>`).join("")+cards.map(c=>`<div style="border-top:1px solid var(--line);padding:10px 0"><span class="pill p-star">CALLED IT</span> <b>${c.title}</b><div class="mut" style="font-size:13px">${c.actual||""}</div></div>`).join(""))||'<span class="mut">Called-it cards appear here after official picks hit.</span>'})();
 </script>
 
-<script src="https://mkuritz.github.io/sports-labs/js/leads-config.js"></script><script src="https://mkuritz.github.io/sports-labs/js/leads.js" data-product="Bet Lab" data-float="1"></script>
+<script src="https://sportslabshq.com/js/leads-config.js"></script><script src="https://sportslabshq.com/js/leads.js" data-product="Bet Lab" data-float="1"></script>
 <script src="nav.js"></script></body></html>

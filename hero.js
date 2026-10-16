@@ -1,6 +1,6 @@
 /* Sports Labs hero: official top picks, recent hits, proven numbers. Shared by Bet Lab, Edge Tracker, MLB Lab, Sports Labs home. */
 (function(){
-const BL="https://mkuritz.github.io/bet-lab/data/",ML="https://mkuritz.github.io/mlb-lab/data/";
+const BL="https://betlab.sportslabshq.com/data/",ML="https://mlblab.sportslabshq.com/data/";
 const css=`.slh{font:14px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#e6ebf5;background:linear-gradient(135deg,#0f1a2e,#0b1220);border:1px solid #2a3a5c;border-radius:16px;padding:16px;margin:12px auto;max-width:1150px;box-sizing:border-box}
 .slh *{box-sizing:border-box}.slh h2{margin:0 0 2px;font-size:19px}.slh h3{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#8b97b0;margin:14px 0 6px}
 .slh .sub{color:#8b97b0;font-size:12px}.slh .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px}
@@ -36,7 +36,7 @@ async function render(el){const SP=el.dataset.sport||"";if(SP==="analyst"){el.hi
     const NM={hr_model:"HR model",market_underpriced:"Market underpriced",recent_form:"Recent form"};
     h+=`<h3>📈 Tracked results</h3><div class="grid">`;
     if(hr&&hr.n)h+=`<div class="c"><span class="big">${hr.units>0?"+":""}${hr.units.toFixed(1)}u</span><b>HR picks, flat 1u</b><small>${hr.wins}-${hr.losses} on ${hr.n} graded picks at real prices · ROI ${sg(hr.roi)}</small></div>`;
-    const o=stats.official;h+=`<div class="c"><span class="big">${o.n?o.wins+"-"+o.losses:"Started Oct 12"}</span><b>Official Recommended record</b><small>${o.n?o.n+" graded"+(o.roi!=null?" · ROI "+sg(o.roi):""):"First Recommended picks are grading now"} · append-only, losses stay on the board · <a href="https://mkuritz.github.io/bet-lab/edge.html">full record</a></small></div></div>`;}
+    const o=stats.official;h+=`<div class="c"><span class="big">${o.n?o.wins+"-"+o.losses:"Started Oct 12"}</span><b>Official Recommended record</b><small>${o.n?o.n+" graded"+(o.roi!=null?" · ROI "+sg(o.roi):""):"First Recommended picks are grading now"} · append-only, losses stay on the board · <a href="https://betlab.sportslabshq.com/edge.html">full record</a></small></div></div>`;}
   h+=`<div class="sub" style="margin-top:10px">Results from MLB Stats API and ESPN box scores. Not betting advice. 21+. Problem? 1-800-GAMBLER.</div>`;
   el.innerHTML=h;
 }
