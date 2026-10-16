@@ -160,7 +160,24 @@ function nbaPre(){const P=NBAP,E=s=>escH(s),T=t=>new Date(t).toLocaleString("en-
  +(inj?`<div class="card"><h3>🚑 Out to start the season</h3>${inj}</div>`:"")+(mv?`<div class="card"><h3>🔁 Trades & moves</h3>${mv}</div>`:"")
  +`<div class="card"><h3>🏆 Season expectations</h3><div class="sub">ESPN BPI projected record and odds for 2026-27.</div><table class="tbl"><tr><th>#</th><th>Team</th><th>Proj</th><th>Playoffs</th><th>Title</th></tr>${exp}</table></div>`
  +`<div class="card"><h3>⭐ Player baselines</h3><div class="sub">2025-26 per-game averages, current team. Starting point for our projections.</div><table class="tbl"><tr><th>Player</th><th>Min</th><th>Pts</th><th>Reb</th><th>Ast</th><th>3PM</th></tr>${pl}</table></div>`}
-function dash(){if(sport=="nba"){loadNbaP();if(NBAP&&!NBAP.err&&NBAP.mode=="preseason"){$("dash").innerHTML=nbaPre();return}}const d=filtered(),W={l5:"L5",l10:"L10",l20:"L20"}[win];
+let CFBD=null,CFBD_T=0;
+function loadCfb(){if(CFBD||CFBD_T)return;CFBD_T=1;fetch("data/cfb_desk.json?v="+Date.now()).then(r=>r.ok?r.json():null).then(x=>{CFBD=x||{err:1};if(sport=="cfb"&&view=="dash")dash()}).catch(()=>{CFBD={err:1};if(sport=="cfb"&&view=="dash")dash()})}
+function cfbDesk(){const D=CFBD,E=s=>escH(String(s??"")),A=a=>a==null?"—":(a>0?"+"+a:""+a),Pc=p=>p==null?"—":Math.round(p*100)+"%",
+ T=t=>new Date(t).toLocaleString("en-US",{timeZone:"America/New_York",weekday:"short",hour:"numeric",minute:"2-digit"})+" ET",
+ AS=t=>t?"as of "+new Date(t).toLocaleString("en-US",{timeZone:"America/New_York",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})+" ET":"",
+ R=(r,ab)=>(r?`<b>#${r}</b> `:"")+E(ab);
+ const G=(D.games||[]).filter(g=>g.state=="pre"&&g.lines);const picks=D.picks||[];let h="";
+ if(picks.length)h+=`<div class="card" style="grid-column:1/-1"><h3>🏈 Top CFB picks</h3><div class="sub">Real book prices (Odds API). Book % = no-vig consensus. Logged before kickoff and graded in Edge Tracker.</div>`+
+  picks.map(p=>`<div class="row" style="display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-top:1px solid var(--line,#2a2f3a)"><div><b>${E(p.title)}</b><div class="sub">${E(p.kind)} · ${T(p.start)} · ${E(p.src)}</div></div><div style="text-align:right;white-space:nowrap"><b>${A(p.price)}</b> at ${E(p.book)}<div class="sub">ours ${Pc(p.ours)} · book ${Pc(p.nv)} · ${AS(p.as_of)}</div></div></div>`).join("")+`</div>`;
+ if(G.length)h+=`<div class="card" style="grid-column:1/-1"><h3>📋 Top 25 board</h3><div class="sub">${E((D.poll||"AP Top 25").replace(/.*- */,""))} teams + ABC/CBS/FOX/NBC big games · best price across 10 books</div>`+G.map(g=>{const L=g.lines,mh=L.ml_home,ma=L.ml_away,sp=L.spread,to=L.total,oh=g.ours&&g.ours.home;
+  return `<div style="padding:10px 0;border-top:1px solid var(--line,#2a2f3a)"><div style="display:flex;justify-content:space-between;gap:8px"><div><b>${R(g.away_rank,g.away_ab)} @ ${R(g.home_rank,g.home_ab)}</b> ${(g.tags||[]).map(t=>`<span class="sub" style="border:1px solid #445;border-radius:8px;padding:0 6px">${E(t)}</span>`).join(" ")}</div><div class="sub">${T(g.start)}${g.tv&&g.tv.length?" · "+E(g.tv.join("/")):""}</div></div>
+  <div class="sub" style="margin-top:4px">ML ${E(g.away_ab)} ${A(ma&&ma.best)}${ma?" ("+E(ma.book)+")":""} · ${E(g.home_ab)} ${A(mh&&mh.best)}${mh?" ("+E(mh.book)+")":""}${sp?` · Spread ${E(g.home_ab)} ${sp.point>0?"+":""}${sp.point} ${A(sp.best)}`:""}${to?` · Total ${to.point} o${A(to.best)}`:""}</div>
+  ${oh!=null&&mh&&mh.nv!=null?`<div class="sub">${E(g.home_ab)} win: ours ${Pc(oh)} · book ${Pc(mh.nv)} · ${E(g.away_ab)}: ours ${Pc(1-oh)} · book ${Pc(1-mh.nv)}</div>`:""}
+  ${(g.props||[]).length?`<details style="margin-top:4px"><summary class="sub">Props snapshot (${g.props.length}) · ${AS(g.props[0].as_of)}</summary>${g.props.map(p=>`<div class="sub">${E(p.player)} (${E(p.team)}) ${E(p.market)}${p.line!=null?" o"+p.line:""}: <b>${A(p.best)}</b> at ${E(p.book)}${p.nv!=null?" · book "+Pc(p.nv):""}${p.ours!=null?" · ours "+Pc(p.ours):""}${p.season&&p.season[1]?` · season ${p.season[0]}/${p.season[1]}`:""}</div>`).join("")}</details>`:""}
+  ${(g.injuries||[]).length?`<div class="sub">Injuries: ${g.injuries.map(i=>E(i.player)+" ("+E(i.team)+", "+E(i.status)+")").join(", ")}</div>`:""}
+  <div class="sub">${AS(L.as_of)}${L.closed?" · closing line":""}</div></div>`}).join("")+`</div>`;
+ return h||`<div class="card empty">No Top 25 college football lines posted yet. Lines appear here as books post them.</div>`}
+function dash(){if(sport=="cfb"){loadCfb();if(CFBD&&!CFBD.err){$("dash").innerHTML=cfbDesk();return}}if(sport=="nba"){loadNbaP();if(NBAP&&!NBAP.err&&NBAP.mode=="preseason"){$("dash").innerHTML=nbaPre();return}}const d=filtered(),W={l5:"L5",l10:"L10",l20:"L20"}[win];
  const hot=d.filter(r=>ok(r[win],tier/100)&&r[win].n>=Math.min(5,{l5:5,l10:8,l20:12}[win])).sort((a,b)=>pct(b[win])-pct(a[win])||b[win].n-a[win].n);
  const hotN=hot.length;
  const cold=d.filter(r=>r[win]&&r[win].n>=5&&pct(r[win])<=1-tier/100).sort((a,b)=>pct(a[win])-pct(b[win]));
