@@ -113,7 +113,7 @@ const et=t=>{const g=gstate(t);return new Date(t).toLocaleString("en-US",{timeZo
 async function j(u,fb){try{const r=await fetch(u+"?v="+Date.now());if(!r.ok)throw 0;return await r.json()}catch(e){return fb}}
 function val(g,stat){let s=0,any=false;for(const k of stat){const neg=k[0]=="-",kk=k.replace(/^-/,"");if(!(kk in g.s))continue;any=true;s+=neg?-g.s[kk]:g.s[kk]}return any?s:null}
 function enrich(p,logs){const r=enrich0(p,logs),x=p.x;if(x){const A=a=>a?{h:a[0],n:a[1],avg:a[2]}:null;
- Object.assign(r,{l5:A(x.l5),l10:A(x.l10),l20:A(x.l20),avg:x.szn?x.szn[2]:r.avg,os:x.os,us:x.us,h2h:A(x.h2h),hm:A(x.home),aw:A(x.away)})}
+ Object.assign(r,{l5:A(x.l5),l10:A(x.l10),l20:A(x.l20),avg:x.szn?x.szn[2]:r.avg,os:x.os,us:x.us,h2h:A(x.h2h),hm:A(x.home),aw:A(x.away),all:A(x.all)})}r.unav=p.unav||null;
  r.ven=r.home?r.hm:r.aw;r.grp=p.grp||"off";r.fl=p.fl||null;return r}
 function enrich0(p,logs){const g=(logs[p.aid]||[]).map(x=>({...x,v:p.stat?val(x,p.stat):null})).filter(x=>x.v!=null);
  const hr=n=>{const a=g.slice(0,n);return a.length?{h:a.filter(x=>x.v>p.line).length,n:a.length}:null};
@@ -178,10 +178,11 @@ function cfbDesk(){const D=CFBD,E=s=>escH(String(s??"")),A=a=>a==null?"—":(a>0
   <div class="sub">${AS(L.as_of)}${L.closed?" · closing line":""}</div></div>`}).join("")+`</div>`;
  return h||`<div class="card empty">No Top 25 college football lines posted yet. Lines appear here as books post them.</div>`}
 function dash(){if(sport=="cfb"){loadCfb();if(CFBD&&!CFBD.err){$("dash").innerHTML=cfbDesk();document.body.classList.add("v-cfb");return}}document.body.classList.remove("v-cfb");if(sport=="nba"){loadNbaP();if(NBAP&&!NBAP.err&&NBAP.mode=="preseason"){$("dash").innerHTML=nbaPre();return}}const d=filtered(),W={l5:"L5",l10:"L10",l20:"L20"}[win];
- const hot=d.filter(r=>ok(r[win],tier/100)&&r[win].n>=Math.min(5,{l5:5,l10:8,l20:12}[win])).sort((a,b)=>pct(b[win])-pct(a[win])||b[win].n-a[win].n);
+ const TDM=r=>/TD/i.test(r.market||r.m||"");
+ const hot=d.filter(r=>!(r.unav&&TDM(r))&&ok(r[win],tier/100)&&r[win].n>=Math.min(5,{l5:5,l10:8,l20:12}[win])).sort((a,b)=>pct(b[win])-pct(a[win])||b[win].n-a[win].n);
  const hotN=hot.length;
  const cold=d.filter(r=>r[win]&&r[win].n>=5&&pct(r[win])<=1-tier/100).sort((a,b)=>pct(a[win])-pct(b[win]));
- const TDM=r=>/TD/i.test(r.market||r.m||""),trivU=r=>TDM(r)&&r.all&&r.all.n>=8&&pct(r.all)<.15; // never-scores players: an "under streak" on a TD prop carries no signal
+ const trivU=r=>TDM(r)&&r.all&&r.all.n>=8&&pct(r.all)<.15; // never-scores players: an "under streak" on a TD prop carries no signal
  const streak=d.filter(r=>r.os>=2&&!r.unav).sort((a,b)=>b.os-a.os||pct(b.l10)-pct(a.l10));
  const ustreak=d.filter(r=>r.us>=3&&!r.unav&&!trivU(r)).sort((a,b)=>b.us-a.us);
  const ven=d.filter(r=>r.ven&&r.ven.n>=4&&pct(r.ven)>=.6).sort((a,b)=>pct(b.ven)-pct(a.ven)||b.ven.n-a.ven.n);
