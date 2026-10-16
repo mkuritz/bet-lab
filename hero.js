@@ -23,16 +23,16 @@ async function render(el){
   const hitT=new Set(mlbHits.map(h=>h.t.split(": ").pop()));
   let h=`<h2>🎯 Sports Labs Recommended</h2><div class="sub">Our top picks, locked in before the game at a real market price. Updated ${stats?new Date(stats.updated).toLocaleString("en-US",{timeZone:"America/New_York",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})+" ET":""}</div>`;
   h+=`<h3>${day===today?"Today's top picks":"Latest top picks ("+e(day||"—")+")"}</h3><div class="grid">`;
-  h+=top.length?top.map(([k,v])=>{const x=L[k],g=(grades||{})[k],won=(g&&g.result==="win")||[...hitT].some(n=>x.title.startsWith(n));
-    return `<div class="c${won?" win":""}"><b>${e(x.title)}</b><small>${e(x.market)} · ${am(x.price_dec)} (${e(x.price_src||"")}) · our ${pc(v.p_cal||x.p_model)} vs ${pc(x.implied)} implied</small>${won?' <span class="tag">✅ HIT</span>':g&&g.result==="loss"?' <small>· missed</small>':""}</div>`}).join(""):`<div class="c"><small>Today's Recommended picks post before first pitch / puck drop.</small></div>`;
+  const tm=x=>new Date(x).toLocaleString("en-US",{timeZone:"America/New_York",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"});
+  h+=top.length?top.map(([k,v])=>{const x=L[k],g=(grades||{})[k],won=(g&&g.result==="win")||[...hitT].some(n=>x.title.startsWith(n)),our=v.p_cal||x.p_model,ln=x.ref&&x.ref.line!=null?(x.market.includes("HR")?"Yes (1+ HR)":"Over "+x.ref.line):"";
+    return `<div class="c${won?" win":""}"><b>${e(x.title)}</b><small>${e(x.market)}${ln?" · line "+e(ln):""} · <b style="display:inline">${am(x.price_dec)}</b> at ${e((x.price_src||"book").replace(/\s*\(.*\)/,""))}</small><div style="display:flex;gap:10px;margin:6px 0;flex-wrap:wrap"><span><small>Book (no-vig)</small><br><b style="display:inline">${pc(x.implied)}</b></span><span><small>Ours</small><br><b style="display:inline">${pc(our)}</b></span><span><small>Edge</small><br><b style="display:inline;color:#53e3a6">${((our-x.implied)*100>0?"+":"")+((our-x.implied)*100).toFixed(1)} pts</b></span></div><small>as of ${tm(x.logged_at)} ET</small>${won?' <span class="tag">✅ HIT</span>':g&&g.result==="loss"?' <small>· missed</small>':""}</div>`}).join(""):`<div class="c"><small>Today's Recommended picks post before first pitch / puck drop.</small></div>`;
   h+=`</div>`;
   const hits=mlbHits.slice(0,4).concat((cCH||[]).slice(0,2).map(c=>({t:c.title,s:c.result_line,d:"",lab:c.label+" (not in official record)"})));
   h+=`<h3>✅ Recent hits</h3><div class="grid">`+hits.map(x=>`<div class="c win"><b>${e(x.t)}</b><small>${e(x.s)}</small><br><small>${e(x.lab)}${x.d?" · "+e(x.d):""}</small></div>`).join("")+`</div>`;
   if(stats){const hr=stats.by_market&&stats.by_market["HR (1+)"];const sigs=Object.entries(stats.signals||{}).filter(([k,v])=>v.status==="proven").sort((a,b)=>(b[1].roi||0)-(a[1].roi||0));
     const NM={hr_model:"HR model",market_underpriced:"Market underpriced",recent_form:"Recent form"};
-    h+=`<h3>📈 Proven numbers</h3><div class="grid">`;
+    h+=`<h3>📈 Tracked results</h3><div class="grid">`;
     if(hr&&hr.n)h+=`<div class="c"><span class="big">${hr.units>0?"+":""}${hr.units.toFixed(1)}u</span><b>HR picks, flat 1u</b><small>${hr.wins}-${hr.losses} on ${hr.n} graded picks at real prices · ROI ${sg(hr.roi)}</small></div>`;
-    sigs.forEach(([k,v])=>h+=`<div class="c"><span class="big">${sg(v.roi)} ROI</span><b>${e(NM[k]||k.replace(/_/g," "))} <span class="tag">PROVEN</span></b><small>${v.n} graded picks · hit ${pc(v.hit)}</small></div>`);
     const o=stats.official;h+=`<div class="c"><span class="big">${o.n?o.wins+"-"+o.losses:"Started Oct 12"}</span><b>Official Recommended record</b><small>${o.n?o.n+" graded"+(o.roi!=null?" · ROI "+sg(o.roi):""):"First Recommended picks are grading now"} · append-only, losses stay on the board · <a href="https://mkuritz.github.io/bet-lab/edge.html">full record</a></small></div></div>`;}
   h+=`<div class="sub" style="margin-top:10px">Results from MLB Stats API and ESPN box scores. Not betting advice. 21+. Problem? 1-800-GAMBLER.</div>`;
   el.innerHTML=h;
