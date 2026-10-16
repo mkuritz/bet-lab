@@ -13,7 +13,7 @@ const j=u=>fetch(u+"?t="+Date.now()).then(r=>r.ok?(u.endsWith(".jsonl")?r.text()
 const am=d=>!d?"":d>=2?"+"+Math.round((d-1)*100):"-"+Math.round(100/(d-1));
 const pc=x=>(x*100).toFixed(1)+"%",sg=x=>(x>0?"+":"")+(x*100).toFixed(1)+"%";
 const today=new Date().toLocaleDateString("en-CA",{timeZone:"America/New_York"});
-const ONLY=new Set(["mlb","nhl","nba","soccer"]);let CACHE=null;
+const ONLY=new Set(["mlb","nhl","nba","soccer","cfb"]);let CACHE=null;
 async function render(el){const SP=el.dataset.sport||"";if(SP==="analyst"){el.hidden=true;el.innerHTML="";return}
   CACHE=CACHE||Promise.all([j(BL+"edge_tiers.json"),j(BL+"edge_log.jsonl"),j(BL+"edge_grades.json"),j(BL+"edge_stats.json"),j(BL+"called_it.json"),j(ML+"called_it_mlb.json"),j(BL+"chat_calls.json")]);const [tiers,log,grades,stats,cBL,cML,cCH]=await CACHE;if((el.dataset.sport||"")!==SP)return;
   const L={};(log||[]).forEach(x=>L[x.id]=x);
