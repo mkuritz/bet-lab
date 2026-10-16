@@ -937,7 +937,12 @@
    "kind": "straight",
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-6-dont-use-this-sportsbook-all-in-sports/",
    "timestamp": "28:00",
-   "episode_date": "2026-10-14"
+   "episode_date": "2026-10-14",
+   "result": "loss",
+   "final": {
+    "DEN": 17.0,
+    "SEA": 14.0
+   }
   },
   {
    "sport": "nfl",
@@ -1473,14 +1478,14 @@
   "straight": {
    "overall": {
     "w": 30,
-    "l": 14,
+    "l": 15,
     "p": 2,
     "units": 8.08,
     "units_n": 29
    },
    "nfl": {
     "w": 28,
-    "l": 14,
+    "l": 15,
     "p": 2,
     "units": 8.08,
     "units_n": 29
@@ -1532,14 +1537,14 @@
   },
   "overall": {
    "w": 30,
-   "l": 14,
+   "l": 15,
    "p": 2,
    "units": 8.08,
    "units_n": 29
   },
   "nfl": {
    "w": 28,
-   "l": 14,
+   "l": 15,
    "p": 2,
    "units": 8.08,
    "units_n": 29
@@ -1558,7 +1563,7 @@
    "units": null,
    "units_n": 0
   },
-  "pending": 11,
+  "pending": 10,
   "units_note": "1 unit per pick. Units count only picks with a stated price, or spreads/totals marked -110 (assumed standard price). Parlays without a stated price are W/L only."
  }
 }
