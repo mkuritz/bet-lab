@@ -20,10 +20,26 @@ main{padding:16px 20px;max-width:1150px;margin:0 auto}h2{font-size:16px;margin:2
 .cal{width:100%;max-width:520px;display:block}
 footer{color:var(--mut);font-size:12px;padding:16px 20px 30px;border-top:1px solid var(--line);margin-top:30px}footer a{color:inherit}
 @media(max-width:600px){main{padding:12px 10px}.kpi b{font-size:18px}}
-</style><link rel="stylesheet" href="nav.css"></head><body>
+</style><link rel="stylesheet" href="nav.css"><script src="hero.js" defer></script></head><body>
 <header><div class="logo">🎯 Edge <b>Tracker</b></div></header>
 <main>
 <p class="mut" style="margin-top:0">Every Bet Lab and MLB Lab pick is logged <b>before the game starts</b> to an append-only record. We grade each pick against the result and the closing price. Losses stay on the board.</p>
+<div data-slhero></div>
+<h2>🎯 Called it</h2>
+<div class="card"><div class="mut" style="font-size:13px">After grading, we auto-generate cards for Recommended picks that hit, with the real stat line that night and the signals that flagged them. Game-script calls (shootout/over, grinder/under) logged pre-game get the same treatment. Calls made in chat are shown as “Called in chat” and never count toward the official record.</div>
+<div id="called" style="margin-top:8px"></div>
+</div>
+
+<h2 id="dfs">DFS lineup track record <span class="mut" style="font-size:12px;font-weight:400">from Fantasy Frontier</span></h2><div class="card" id="dfsbox"><span class="mut">Loading…</span></div>
+<script>(async()=>{const b=document.getElementById("dfsbox");const e=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+try{const base="https://mkuritz.github.io/fantasy-frontier/data/track/";const t=await fetch(base+"lineups.jsonl?t="+Date.now()).then(r=>r.ok?r.text():"");const R=await fetch(base+"results.json?t="+Date.now()).then(r=>r.ok?r.json():{slates:{}}).catch(()=>({slates:{}}));
+const S=t.trim().split("\n").filter(Boolean).map(JSON.parse).filter(x=>x.logged_at<x.lock);const g={};S.forEach(x=>g[x.kind+"-"+x.dg]=x);const ks=Object.keys(g).sort((a,c)=>g[c].lock.localeCompare(g[a].lock));
+if(!ks.length){b.innerHTML='<span class="mut">No DFS lineups logged yet.</span>';return}
+const NM={safe:"Safe",bal:"Balanced",up:"Upside"};let h='<div class="wrap"><table><thead><tr><th>Slate</th><th>Lineup</th><th>Captain</th><th>Proj</th><th>Actual</th><th>vs chalk</th><th>% of optimal</th></tr></thead><tbody>';
+for(const k of ks){const o=g[k],r=(R.slates||{})[k]||{};for(const [t,lu] of Object.entries(o.lineups)){const a=r.lineups&&r.lineups[t];const ch=r.baselines&&r.baselines.chalk;
+h+=`<tr><td>${e(o.game||o.label)}</td><td>${NM[t]||t}</td><td>${e(lu.rows[0].slot==="CPT"?lu.rows[0].name:"–")}</td><td>${lu.proj.toFixed(1)}</td><td>${a&&r.final?a.actual.toFixed(1):(a?a.actual.toFixed(1)+" (live)":"pending")}</td><td>${a&&ch&&r.final?(a.actual-ch.actual>=0?"+":"")+(a.actual-ch.actual).toFixed(1):"–"}</td><td>${a&&a.pct_of_optimal!=null?a.pct_of_optimal+"%":"–"}</td></tr>`}}
+b.innerHTML=h+'</tbody></table></div><div class="mut" style="font-size:12px;margin-top:6px">Logged before lock in an append-only file; graded from ESPN\'s public box score. Contest field results unavailable (no permitted source).</div>'}catch(err){b.innerHTML='<span class="mut">DFS track record unavailable right now.</span>'}})();</script>
+<details class="card" id="research" style="margin-top:22px"><summary style="cursor:pointer;font-weight:800;font-size:15px">🔬 Research &amp; methodology <span class="mut" style="font-weight:400;font-size:12px">all logged picks incl. research tier, calibration, signal scoreboards, backtests</span></summary>
 <div id="warn"></div>
 <h2>Live record <span class="mut" style="font-size:12px;font-weight:400" id="upd"></span></h2><div class="kpis" id="kpis"></div>
 <h2>Sports Labs Recommended vs research</h2>
@@ -33,11 +49,6 @@ footer{color:var(--mut);font-size:12px;padding:16px 20px 30px;border-top:1px sol
 Everything else is <span class="pill p-fun">RESEARCH ONLY</span>: still logged and graded, shown for curiosity, and <b>never</b> counted in the official Edge Tracker record. Both rule-based and model-based picks are labeled. Misses stay on the board.</div>
 <div class="kpis" id="tierkpis" style="margin-top:10px"></div>
 </div>
-<h2>🎯 Called it</h2>
-<div class="card"><div class="mut" style="font-size:13px">After grading, we auto-generate cards for Recommended picks that hit, with the real stat line that night and the signals that flagged them. Game-script calls (shootout/over, grinder/under) logged pre-game get the same treatment. Calls made in chat are shown as “Called in chat” and never count toward the official record.</div>
-<div id="called" style="margin-top:8px"></div>
-</div>
-
 <h2>Stars Align &amp; upside plays</h2>
 <div class="card"><div class="mut" style="font-size:13px">A longshot, parlay or boosted bet gets <span class="pill p-star">⭐ STARS ALIGN</span> only when it's +EV at our estimate <b>and</b> at least 2 independent signals with a <b>proven</b> record (≥<span class="minn"></span> graded picks, positive ROI and CLV) back it. Suggested stakes stay small relative to bankroll. Everything else is <span class="pill p-fun">FUN MONEY · NOT +EV</span>.</div>
 <div class="chips"><label class="mut" style="font-size:12px;align-self:center">Your profit boost %</label><input id="boost" type="number" min="0" max="200" step="5" value="0" style="width:80px"><span class="mut" style="font-size:12px;align-self:center">A boost raises the payout and is used in the EV math below. Signals still have to be proven.</span></div>
@@ -51,16 +62,8 @@ Everything else is <span class="pill p-fun">RESEARCH ONLY</span>: still logged a
 <h2>Breakdowns</h2><div class="card"><div class="wrap"><table><thead><tr><th>Group</th><th>Picks</th><th>W-L</th><th>Hit</th><th>Units</th><th>ROI</th><th>CLV</th><th>Brier us / mkt</th></tr></thead><tbody id="brk"></tbody></table></div></div>
 <h2>Full pick log</h2><div class="card"><div class="chips"><select id="fs"><option value="">All sports</option></select><select id="fm"><option value="">All markets</option></select><select id="fr"><option value="">All results</option><option>win</option><option>loss</option><option>pending</option><option>void</option></select></div>
 <div class="wrap"><table><thead><tr><th>Logged (ET)</th><th>Pick</th><th>Sport</th><th>Market</th><th>Our p</th><th>Entry implied</th><th>Close implied</th><th>CLV</th><th>Result</th><th>Source</th></tr></thead><tbody id="log"></tbody></table></div></div>
-<h2 id="dfs">DFS lineup track record <span class="mut" style="font-size:12px;font-weight:400">from Fantasy Frontier</span></h2><div class="card" id="dfsbox"><span class="mut">Loading…</span></div>
-<script>(async()=>{const b=document.getElementById("dfsbox");const e=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-try{const base="https://mkuritz.github.io/fantasy-frontier/data/track/";const t=await fetch(base+"lineups.jsonl?t="+Date.now()).then(r=>r.ok?r.text():"");const R=await fetch(base+"results.json?t="+Date.now()).then(r=>r.ok?r.json():{slates:{}}).catch(()=>({slates:{}}));
-const S=t.trim().split("\n").filter(Boolean).map(JSON.parse).filter(x=>x.logged_at<x.lock);const g={};S.forEach(x=>g[x.kind+"-"+x.dg]=x);const ks=Object.keys(g).sort((a,c)=>g[c].lock.localeCompare(g[a].lock));
-if(!ks.length){b.innerHTML='<span class="mut">No DFS lineups logged yet.</span>';return}
-const NM={safe:"Safe",bal:"Balanced",up:"Upside"};let h='<div class="wrap"><table><thead><tr><th>Slate</th><th>Lineup</th><th>Captain</th><th>Proj</th><th>Actual</th><th>vs chalk</th><th>% of optimal</th></tr></thead><tbody>';
-for(const k of ks){const o=g[k],r=(R.slates||{})[k]||{};for(const [t,lu] of Object.entries(o.lineups)){const a=r.lineups&&r.lineups[t];const ch=r.baselines&&r.baselines.chalk;
-h+=`<tr><td>${e(o.game||o.label)}</td><td>${NM[t]||t}</td><td>${e(lu.rows[0].slot==="CPT"?lu.rows[0].name:"–")}</td><td>${lu.proj.toFixed(1)}</td><td>${a&&r.final?a.actual.toFixed(1):(a?a.actual.toFixed(1)+" (live)":"pending")}</td><td>${a&&ch&&r.final?(a.actual-ch.actual>=0?"+":"")+(a.actual-ch.actual).toFixed(1):"–"}</td><td>${a&&a.pct_of_optimal!=null?a.pct_of_optimal+"%":"–"}</td></tr>`}}
-b.innerHTML=h+'</tbody></table></div><div class="mut" style="font-size:12px;margin-top:6px">Logged before lock in an append-only file; graded from ESPN\'s public box score. Contest field results unavailable (no permitted source).</div>'}catch(err){b.innerHTML='<span class="mut">DFS track record unavailable right now.</span>'}})();</script>
 <h2>Historical backtest (separate from the live record)</h2><div class="card" id="bt"><span class="mut">Loading…</span></div>
+</details>
 </main>
 <footer>Edge Tracker shows research results, not betting advice. Prices come from DraftKings via ESPN's public feed and from Kalshi's public API. Closing prices we couldn't get are marked "unavailable" and never filled in. Results come from MLB Stats API and ESPN box scores. Past results don't guarantee future results. 21+ only. If you or someone you know has a gambling problem, call 1-800-GAMBLER.<br>Bet Lab · A <a href="https://mkuritz.github.io/sports-labs/">Sports Labs</a> Product · Property of Michael Kuritz · <a href="#" data-lead="contact">Contact</a> · <a href="#" data-lead="support">Support</a> · <a href="#" data-lead="demo">Request a demo</a></footer>
 <script>
