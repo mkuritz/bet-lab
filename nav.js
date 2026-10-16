@@ -4,6 +4,7 @@
   var G=[['Bet Lab',[['Props','./index.html','props'],['Sharp Picks','./sharp.html','sharp'],['📊 Market Board','./markets.html','markets'],['Edge Tracker','./edge.html','edge'],['Sports Analyst','./index.html#view=analyst','analyst'],['MLB Statcast','./statcast.html','statcast'],['Market check','./sources.html','sources'],['📈 Betting Trends',H+'nfl-lab/trends.html']]],
          ['Sport Hubs',[['🏈 NFL Hub',H+'nfl-lab/'],['⚾ MLB Lab',H+'mlb-lab/'],['🏒 NHL Lab',H+'nhl-lab/'],['⚽ Soccer Hub',H+'soccer-lab/']]],
          ['Tools',[['⚡ Arb Lab',H+'arb-lab/']]],
+         ['Research',[['🔬 Research & bet log','./research.html','research'],['📐 Calibration','./research.html#cal','research-cal'],['📋 Signal scoreboard','./research.html#sig','research-sig'],['⚾ MLB model check',H+'mlb-lab/#backtest']]],
          ['',[['Sports Labs home',H+'sports-labs/'],['Request a demo','#','demo-lead']]]];
   var f=(location.pathname.split('/').pop()||'index.html').replace('.html','')||'index';
   var cur=f==='index'?(/view=analyst/.test(location.hash)?'analyst':'props'):f;
