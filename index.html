@@ -521,6 +521,14 @@ function hotScorers(){const d=(DATA.soccer||[]).filter(r=>(!LG||r.lg==LG)&&r.mar
 // ---- Results tracker ----
 const myBets=()=>{try{return JSON.parse(localStorage.getItem(LS+"taken")||"[]")}catch(e){return[]}};
 let TRK={out:null,recs:null};
+// Server grades (one grader: sl-scheduler overnight, Supabase bets). Signed-in users see saved server results; signed-out fall back to local grading.
+async function srvBets(){try{const sb=window.SL_SB;if(!sb)return null;const ss=await sb.auth.getSession(),u=ss&&ss.data&&ss.data.session&&ss.data.session.user;if(!u)return null;
+ const r=await sb.from("bets").select("client_key,legs,result,price_dec,stake,placed_at,graded_by").eq("status","taken").eq("lab","bet-lab").order("placed_at",{ascending:true}).limit(1000);return r.error?null:r.data}catch(e){return null}}
+function mergedBets(S){const L=myBets();if(!S)return L;const m={};L.forEach(b=>m[b.id]=b);
+ for(const r of S){const id=String(r.client_key||"").replace(/^betlab:/,""),b=m[id]||(m[id]={id,legs:r.legs||[],at:r.placed_at,stake:r.stake==null?1:+r.stake,dec:r.price_dec?+r.price_dec:null});
+  if(r.result&&r.result!="pending"){b.srvRes=r.result;b.legs=(r.legs&&r.legs.length?r.legs:b.legs).map(l=>({...l,result:l.res&&l.res!="pending"?l.res:l.result}))}}
+ return Object.values(m)}
+
 function lval(s,stat){const ks=stat.map(k=>k.replace(/^-/,""));if(!ks.some(k=>k in s))return null;return stat.reduce((a,k)=>a+(k[0]=="-"?-1:1)*(s[k.replace(/^-/,"")]||0),0)}
 function gradeLeg(l,O){if(l.result)return l.result;const o=O[`${l.sport}|${l.aid}|${l.game}`];if(!o)return null;if(o.void)return"void";const v=lval(o.s,l.stat||[]);if(v==null)return"void";l.actual=v;return v>l.line?"win":v==l.line?"push":"loss"}
 function gradeBet(b,O){const rs=b.legs.map(l=>l.result||gradeLeg(l,O));b.legs.forEach((l,i)=>l.res=rs[i]);if(rs.includes(null))return null;const lv=rs.filter(x=>x!="void");return!lv.length?"void":lv.includes("loss")?"loss":lv.every(x=>x=="push")?"push":"win"}
@@ -554,8 +562,9 @@ function vsBubble(mine,picks,lab){const P=x=>x==null?"—":Math.round(x*100)+"%"
  return `<div style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px">${row("Your "+escA(lab)+" bets (marked taken)",mine,false)}${row("Sports Labs "+escA(lab)+" recs",picks,true)}</div>`}
 document.addEventListener("click",e=>{const b=e.target.closest("#tkscope button");if(b){TRK.scope=b.dataset.k;trackerView()}});
 async function trackerView(){const el=$("tracker");if(!TRK.out){el.innerHTML=`<div class="card empty">Loading results…</div>`;[TRK.out,TRK.recs,TRK.cal]=await Promise.all([j("data/outcomes.json",{}),j("data/recs_history.json",{recs:[]}),j("data/atd_calibration.json",null)])}
+ TRK.srv=await srvBets();
  const O=TRK.out,SPS=b=>[...new Set((b.legs||[]).map(l=>l.sport).filter(Boolean))],
-  mineAll=myBets().map(b=>{const ss=SPS(b);return{...b,dec:amToDec(b.odds),res:gradeBet(b,O),sports:ss,multi:ss.length>1,sport:ss.length>1?"Multi-sport parlay":ss[0]}}),
+  mineAll=mergedBets(TRK.srv).map(b=>{const ss=SPS(b);return{...b,dec:b.dec||amToDec(b.odds),res:b.srvRes||gradeBet(b,O),sports:ss,multi:ss.length>1,sport:ss.length>1?"Multi-sport parlay":ss[0]}}),
   picksAll=(TRK.recs.recs||[]).map(r=>{const ss=r.sport?[r.sport]:SPS(r);return{...r,dec:r.odds_dec,stake:1,res:r.result||gradeBet(r,O),sports:ss,sport:r.sport||ss[0]}});
  const scope=TRK.scope||"sport",SN=(SPORTS.find(([k])=>k==sport)||[,sport.toUpperCase()])[1],inS=b=>scope=="all"||b.sports.includes(sport);
  const mine=mineAll.filter(inS),picks=picksAll.filter(inS); // all = each bet once (no double count); sport scope = any bet with a leg in that sport
