@@ -1,7 +1,7 @@
 /* Shared Bet Lab sidebar: one component for every page. State in localStorage("bl-sidebar"). */
 (function(){
   var H=function(x){return 'https://'+x+'.sportslabshq.com/'};
-  var G=[['Bet Lab',[['Props','./index.html','props'],['⚡ Today\'s Edge','./index.html#view=edge','edge-z'],['⚽ Soccer SGPs & Blowouts','./index.html#view=sgp','sgp-z'],['📊 Market Board','./markets.html','markets'],['🎯 Results','./edge.html','edge'],['Sports Analyst','./index.html#view=analyst','analyst'],['MLB Statcast','./statcast.html','statcast'],['📈 Betting Trends',H('nfllab')+'trends.html']]],
+  var G=[['Bet Lab',[['Props','./index.html','props'],['⚡ Today\'s Edge','./index.html#view=edge','edge-z'],['⚽ Soccer SGPs & Blowouts','./index.html#view=sgp','sgp-z'],['📊 Market Board','./markets.html','markets'],['🎯 Results','./edge.html','edge'],['🌙 Overnight','./overnight.html','overnight'],['Sports Analyst','./index.html#view=analyst','analyst'],['MLB Statcast','./statcast.html','statcast'],['📈 Betting Trends',H('nfllab')+'trends.html']]],
          ['Sport Hubs',[['🏈 NFL Hub',H('nfllab')],['⚾ MLB Lab',H('mlblab')],['🏒 NHL Lab',H('nhllab')],['⚽ Soccer Hub',H('soccerlab')]]],
          ['Tools',[['⚡ Arb Lab',H('arblab')]]],
          ['',[['Sports Labs home','https://sportslabshq.com/'],['Request a demo','#','demo-lead']]]];
