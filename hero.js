@@ -17,7 +17,8 @@ const ONLY=new Set(["mlb","nhl","nba","soccer","cfb"]);let CACHE=null;
 async function render(el){const SP=el.dataset.sport||"";if(SP==="analyst"){el.hidden=true;el.innerHTML="";return}
   CACHE=CACHE||Promise.all([j(BL+"edge_tiers.json"),j(BL+"edge_log.jsonl"),j(BL+"edge_grades.json"),j(BL+"edge_stats.json"),j(BL+"called_it.json"),j(ML+"called_it_mlb.json"),j(BL+"chat_calls.json")]);const [tiers,log,grades,stats,cBL,cML,cCH]=await CACHE;if((el.dataset.sport||"")!==SP)return;
   const L={};(log||[]).forEach(x=>L[x.id]=x);
-  const mlbHits=(cML||[]).map(c=>({t:c.title,s:c.stat,p:c.pick,d:c.date,lab:"Official · posted pre-game"}));
+  const YD=new Date(Date.now()-864e5).toLocaleDateString("en-CA",{timeZone:"America/New_York"});
+  const mlbHits=(cML||[]).filter(c=>(c.date||"")>=YD).map(c=>({t:c.title,s:c.stat,p:c.pick,d:c.date,lab:"Official · posted pre-game"}));
   const rec=Object.entries(tiers||{}).filter(([k,v])=>v.tier==="recommended"&&L[k]);
   const days=[...new Set(rec.map(([k,v])=>v.day||L[k].start.slice(0,10)))].sort();const day=days.includes(today)?today:days[days.length-1];
   const top=rec.filter(([k,v])=>(v.day||L[k].start.slice(0,10))===day&&(!ONLY.has(SP)||L[k].sport===SP)).sort((a,b)=>(b[1].score||0)-(a[1].score||0)).slice(0,5);
@@ -29,14 +30,10 @@ async function render(el){const SP=el.dataset.sport||"";if(SP==="analyst"){el.hi
   h+=top.length?top.map(([k,v])=>{const x=L[k],g=(grades||{})[k],won=(g&&g.result==="win")||[...hitT].some(n=>x.title.startsWith(n)),our=v.p_cal||x.p_model,ln=x.ref&&x.ref.line!=null?(x.market.includes("HR")?"Yes (1+ HR)":"Over "+x.ref.line):"";
     return `<div class="c${won?" win":""}"><b>${e(x.title)}</b><small>${e(x.market)}${ln?" · line "+e(ln):""} · <b style="display:inline">${am(x.price_dec)}</b> at ${e((x.price_src||"book").replace(/\s*\(.*\)/,""))}</small><div style="display:flex;gap:10px;margin:6px 0;flex-wrap:wrap"><span><small>Book (no-vig)</small><br><b style="display:inline">${pc(x.implied)}</b></span><span><small>Ours</small><br><b style="display:inline">${pc(our)}</b></span><span><small>Edge</small><br><b style="display:inline;color:#53e3a6">${((our-x.implied)*100>0?"+":"")+((our-x.implied)*100).toFixed(1)} pts</b></span></div><small>as of ${tm(x.logged_at)} ET</small>${won?' <span class="slh-tag">✅ HIT</span>':g&&g.result==="loss"?' <small>· missed</small>':""}</div>`}).join(""):`<div class="c"><small>Today's Recommended picks post before first pitch / puck drop.</small></div>`;
   h+=`</div>`;
-  const hits=mlbHits.slice(0,4).concat((cCH||[]).slice(0,2).map(c=>({t:c.title,s:c.result_line,d:"",lab:c.label+" (not in official record)"})));
+  const hits=mlbHits.slice(0,4).concat((cCH||[]).filter(c=>(c.start||"")>=YD).slice(0,2).map(c=>({t:c.title,s:c.result_line,d:"",lab:c.label+" (not in official record)"})));
   if(ONLY.has(SP)){el.innerHTML=h;return}
-  h+=`<h3>✅ Recent hits</h3><div class="grid">`+hits.map(x=>`<div class="c win"><b>${e(x.t)}</b><small>${e(x.s)}</small><br><small>${e(x.lab)}${x.d?" · "+e(x.d):""}</small></div>`).join("")+`</div>`;
-  if(stats){const hr=stats.by_market&&stats.by_market["HR (1+)"];const sigs=Object.entries(stats.signals||{}).filter(([k,v])=>v.status==="proven").sort((a,b)=>(b[1].roi||0)-(a[1].roi||0));
-    const NM={hr_model:"HR model",market_underpriced:"Market underpriced",recent_form:"Recent form"};
-    h+=`<h3>📈 Tracked results</h3><div class="grid">`;
-    if(hr&&hr.n)h+=`<div class="c"><span class="big">${hr.units>0?"+":""}${hr.units.toFixed(1)}u</span><b>HR picks, flat 1u</b><small>${hr.wins}-${hr.losses} on ${hr.n} graded picks at real prices · ROI ${sg(hr.roi)}</small></div>`;
-    const o=stats.official;h+=`<div class="c"><span class="big">${o.n?o.wins+"-"+o.losses:"Started Oct 12"}</span><b>Official Recommended record</b><small>${o.n?o.n+" graded"+(o.roi!=null?" · ROI "+sg(o.roi):""):"First Recommended picks are grading now"} · append-only, losses stay on the board · <a href="https://betlab.sportslabshq.com/edge.html">full record</a></small></div></div>`;}
+  h+=`${hits.length?`<h3>✅ Yesterday's hits</h3>`:""}<div class="grid">`+hits.map(x=>`<div class="c win"><b>${e(x.t)}</b><small>${e(x.s)}</small><br><small>${e(x.lab)}${x.d?" · "+e(x.d):""}</small></div>`).join("")+`</div>`;
+  const o=stats&&stats.official;if(o&&o.n)h+=`<h3>📈 Official record</h3><div class="grid"><div class="c"><span class="big">${o.wins}-${o.losses}</span><b>Official Recommended record</b><small>${o.n} graded</small></div></div>`;   // only present when public_flags.show_overall_record is on
   h+=`<div class="sub" style="margin-top:10px">Results from MLB Stats API and ESPN box scores. Not betting advice. 21+. Problem? 1-800-GAMBLER.</div>`;
   el.innerHTML=h;
 }

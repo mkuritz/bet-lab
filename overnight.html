@@ -4,30 +4,29 @@
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font:14px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}a{color:var(--acc2)}
 .w{max-width:960px;margin:0 auto;padding:16px}header{margin-bottom:10px}.logo{font-weight:800;font-size:20px;color:var(--txt);text-decoration:none}.logo b{color:var(--acc)}
 .top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}h1{margin:0;font-size:22px}
-.days{display:flex;gap:6px;flex-wrap:wrap}.days button{background:var(--panel2);border:1px solid var(--line);color:var(--mut);border-radius:999px;padding:5px 11px;font:600 12px system-ui;cursor:pointer}
+.dt{color:var(--mut);font-weight:600}.ml{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 2px}.ml span{background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:12px}.ml b{color:var(--acc)}.days{display:flex;gap:6px;flex-wrap:wrap}.days button{background:var(--panel2);border:1px solid var(--line);color:var(--mut);border-radius:999px;padding:5px 11px;font:600 12px system-ui;cursor:pointer}
 .days button.on{background:var(--acc);color:#06120c;border-color:var(--acc)}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:12px}
 .hd{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}.hd h2{margin:0;font-size:16px}.rec{font-weight:800;font-size:15px}.rec small{color:var(--mut);font-weight:600;font-size:11px;margin-left:6px}
-.r{display:grid;grid-template-columns:22px 1fr 110px 150px;gap:8px;align-items:center;padding:7px 0;border-top:1px solid var(--line);font-size:13px}
+.r{display:grid;grid-template-columns:22px 1fr 150px 150px;gap:8px;align-items:center;padding:7px 0;border-top:1px solid var(--line);font-size:13px}
 .r .ck{color:var(--acc);font-weight:900}.r .t b{font-weight:600}.sp{color:var(--mut);font-size:10px;font-weight:800;margin-right:5px}
 .pr{font-variant-numeric:tabular-nums}.pr .us{color:var(--acc);font-weight:700}.pr .bk{color:var(--mut)}.st{font-variant-numeric:tabular-nums;text-align:right}
 .lh{color:var(--mut);font-size:10px;text-transform:uppercase;font-weight:700;border-top:0}.none{color:var(--mut);font-size:13px;padding:6px 0}
 @media(max-width:640px){.r{grid-template-columns:20px 1fr auto;row-gap:2px}.r .st{grid-column:2/4;text-align:left;color:var(--mut);font-size:12px}.lh{display:none}}
 </style><link rel="stylesheet" href="nav.css"><script src="https://sportslabshq.com/sl/sl.js?v=7" defer></script></head>
 <body><div class="w"><header><a class="logo" href="./">Bet <b>Lab</b></a></header>
-<div class="top"><h1>🌙 Overnight</h1><div class="days" id="days"></div></div>
+<div class="top"><h1>🌙 Overnight</h1><span class="dt" id="dt"></span></div>
 <div id="out"><div class="none">Loading…</div></div>
 <div class="mut" style="color:var(--mut);font-size:11px;margin:18px 0">Not betting advice. 21+ only. 1-800-GAMBLER.<br>Bet Lab · A <a href="https://sportslabshq.com/">Sports Labs</a> Product · Property of Michael Kuritz</div></div>
 <script>
-const $=id=>document.getElementById(id),esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const am=d=>d?(d>=2?"+"+Math.round((d-1)*100):String(Math.round(-100/(d-1)))):"—",pc=x=>Math.round(x*100)+"%";
-const lbl=d=>new Date(d+"T12:00:00Z").toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric",timeZone:"UTC"});
-let D={};
-function sec(name,S){const rec=`${S.w}-${S.l}${S.pending?`<small>${S.pending} pending</small>`:""}`;
- return `<div class="card"><div class="hd"><h2>${name}</h2><div class="rec">${rec}</div></div>`+(S.rows.length?`<div class="r lh"><span></span><span>Pick</span><span>Us · Book</span><span class="st">Final</span></div>`+S.rows.map(r=>`<div class="r"><span class="ck">✓</span><span class="t"><span class="sp">${esc(r.sport.toUpperCase())}</span><b>${esc(r.title)}</b></span><span class="pr"><span class="us">${pc(r.p)}</span> <span class="bk">· ${pc(r.imp)} (${am(r.dec)})</span></span><span class="st">${esc(r.line||"Final")}</span></div>`).join(""):`<div class="none">No hits${S.w+S.l?"":" graded"} yet.</div>`)+`</div>`}
-function show(d){[...$("days").children].forEach(b=>b.classList.toggle("on",b.dataset.d===d));const v=D.days[d];history.replaceState(null,"","#d="+d);
- $("out").innerHTML=sec("✅ As expected",v.expected)+sec("🎯 Called it",v.called)}
-fetch("data/overnight.json?t="+Date.now()).then(r=>r.json()).then(j=>{D=j;const ks=Object.keys(j.days||{});if(!ks.length){$("out").innerHTML='<div class="none">No graded nights yet.</div>';return}
- $("days").innerHTML=ks.slice(0,14).map(k=>`<button data-d="${k}">${lbl(k)}</button>`).join("");$("days").onclick=e=>{const b=e.target.closest("button");if(b)show(b.dataset.d)};
- const h=(location.hash.match(/d=([\d-]+)/)||[])[1];show(ks.includes(h)?h:ks[0])}).catch(()=>{$("out").innerHTML='<div class="none">Unavailable right now.</div>'});
+const $=id=>document.getElementById(id),esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])),pc=x=>Math.round(x*100)+"%";
+const row=(r,pr)=>`<div class="r"><span class="ck">✓</span><span class="t"><span class="sp">${esc(r.sport.toUpperCase())}</span><b>${esc(r.title)}</b></span><span class="pr">${pr}</span><span class="st">${esc(r.line||"Final")}</span></div>`;
+fetch("data/overnight.json?t="+Date.now()).then(r=>r.json()).then(O=>{
+ $("dt").textContent=new Date(O.date+"T12:00:00Z").toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric",timeZone:"UTC"});
+ const C=O.called||[],B=O.beat||[],M=O.most_likely||[],ct=O.called_tally||[0,0];
+ let h=`<div class="card"><div class="hd"><h2>🎯 Called it</h2>${ct[1]?`<div class="rec">${ct[0]}/${ct[1]}<small>60%+ picks</small></div>`:""}</div>`;
+ if(M.length)h+=`<div class="ml">${M.map(m=>`<span>${esc(m.label.replace("NHL Most likely · ","NHL top "+m.of+" "))} <b>${m.hit}/${m.of}</b></span>`).join("")}</div>`;
+ h+=C.length?C.map(r=>row(r,`<span class="us">Us ${pc(r.p)}</span>`)).join(""):`<div class="none">No 60%+ hits.</div>`;h+=`</div>`;
+ if(B.length)h+=`<div class="card"><div class="hd"><h2>📉 Beat the book</h2></div>`+B.map(r=>row(r,`<span class="bk">Book ${pc(r.imp)}</span> · <span class="us">Us ${pc(r.p)}</span>`)).join("")+`</div>`;
+ $("out").innerHTML=h}).catch(()=>{$("out").innerHTML='<div class="none">Unavailable right now.</div>'});
 </script><script src="https://sportslabshq.com/js/leads-config.js"></script><script src="https://sportslabshq.com/js/leads.js" data-product="Bet Lab"></script><script src="nav.js"></script></body></html>
