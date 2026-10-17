@@ -260,7 +260,7 @@ function cfbDesk(){const D=CFBD,E=s=>escH(String(s??"")),A=a=>a==null?"—":(a>0
  return h+progCard(D._prog)+draftCards(D._draft)}
 function dash(){if(sport=="cfb"){loadCfb();if(CFBD&&!CFBD.err){$("dash").innerHTML=cfbDesk();document.body.classList.add("v-cfb");return}}document.body.classList.remove("v-cfb");if(sport=="nba"){loadNbaP();if(NBAP&&!NBAP.err&&NBAP.mode=="preseason"){$("dash").innerHTML=nbaPre();return}}const d=filtered(),W={l5:"L5",l10:"L10",l20:"L20"}[win];
  const TDM=r=>/TD/i.test(r.market||r.m||"");
- const hot=d.filter(r=>!(r.unav&&TDM(r))&&ok(r[win],tier/100)&&r[win].n>=Math.min(5,{l5:5,l10:8,l20:12}[win])).sort((a,b)=>pct(b[win])-pct(a[win])||b[win].n-a[win].n);
+ const hot=d.filter(r=>!(r.unav&&TDM(r))&&ok(r[win],tier/100)&&r[win].n>=Math.min(5,{l5:5,l10:8,l20:12}[win])).sort((a,b)=>pct(b[win])*(.9+.2*(b.ms??.5))-pct(a[win])*(.9+.2*(a.ms??.5))||b[win].n-a[win].n);
  const hotN=hot.length;
  const cold=d.filter(r=>r[win]&&r[win].n>=5&&pct(r[win])<=1-tier/100&&!r.unav&&!(TDM(r)&&(!r.all||pct(r.all)<.2))).sort((a,b)=>pct(a[win])-pct(b[win]));
  const trivU=r=>TDM(r)&&r.all&&r.all.n>=8&&pct(r.all)<.15; // never-scores players: an "under streak" on a TD prop carries no signal
@@ -834,7 +834,7 @@ function buildRecs(d){
  const ok=r=>r.l10&&r.l10.n>=(r.pos=="QB"?4:6)&&r.market!="Passing Interceptions"&&(sport!="nfl"||OFF.has(r.pos))&&(sport!="soccer"||r.pos!="GK"||r.market=="Saves");
  const P=d.filter(ok),out=[],used=new Map();
  const take=b=>{if(!b)return;b.legs.forEach(r=>used.set(legKey(r),(used.get(legKey(r))||0)+1));out.push(b)};
- const sorted=(f,k=r=>rate(r.l10))=>P.filter(f).sort((a,b)=>k(b)-k(a)||b.l10.n-a.l10.n);
+ const MSW=r=>.8+.4*(r.ms??.5),sorted=(f,k=r=>rate(r.l10))=>P.filter(f).sort((a,b)=>k(b)*MSW(b)-k(a)*MSW(a)||b.l10.n-a.l10.n);/* mainstream factor: big leagues, big clubs, stars, mainstream markets first */
  const tag=r=>gmap[r.game]?gameTag(gmap[r.game],G):"";
  const MK=(...m)=>r=>m.includes(r.market);
  const sigs=new Set();const series=(theme,icon,pool,n,count,head,why,o)=>{let made=0;for(let t=0;t<count*4&&made<count;t++){const legs=pickDistinct(pool,n,used,o);if(!legs)break;const sig=legs.map(legKey).sort().join();if(sigs.has(sig)){used.set(legKey(legs[0]),9);continue}sigs.add(sig);take(mkBundle(theme,icon,legs,head(legs,made),why(legs),o));made++}};
