@@ -43,7 +43,7 @@ async function poll(){if(S.busy)return;S.busy=true;clearTimeout(S.timer);
    const path=sp=="soccer"?PATH.soccer+(l.lg||"eng.1"):PATH[sp];if(!path)return;
    try{const d=await jx(`https://site.api.espn.com/apis/site/v2/sports/${path}/summary?event=${l.game}`);const c=d.header?.competitions?.[0],st=c?.status;
     S.gm[k]={state:st?.type?.state||"pre",detail:st?.type?.shortDetail||"",period:st?.period,clock:st?.displayClock,teams:(c?.competitors||[]).map(t=>({ab:t.team?.abbreviation,score:t.score,ha:t.homeAway})),start:c?.date};
-    if(S.gm[k].state!="pre")S.box[k]=parseBox(sp,d)}catch(e){}}));
+    if(S.gm[k].state!="pre"){S.box[k]=parseBox(sp,d);if(window.LiveEv)LiveEv.ingest("ls|"+k,sp,d)}}catch(e){}}));
   S.at=new Date();S.err=null}catch(e){S.err=String(e.message||e)}
  S.busy=false;const live=Object.values(S.gm).some(g=>g.state=="in");S.timer=setTimeout(()=>{if(window.view=="lslips"||(typeof view!="undefined"&&view=="lslips"))poll()},live?30000:5*60000);draw()}
 function legState(l){const k=l.sport+"|"+l.game,g=S.gm[k];if(!g)return{st:"pre",html:`<span class="mut">${l.game?"waiting for ESPN":"no game id"}</span>`};
@@ -58,6 +58,7 @@ function slipHtml(s){const L=s.legs.map(l=>({l,x:legState(l)}));const n=L.length
  const status=m?'<span class="st dead">LOST</span>':h==n?'<span class="st hit">✓ CASHED</span>':lv?`<span class="st mo">LIVE · ${h}/${n} hit</span>`:h?`<span class="st mo">${h}/${n} hit</span>`:'<span class="pill">Pending</span>';
  s._st=m?"lost":h==n?"won":lv||h?"live":"pre";
  return `<div class="bun lsb" style="padding:10px 0;border-top:1px solid var(--line,rgba(148,163,184,.2))"><div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><div><b>${s.title}</b><br><span class="mut" style="font-size:12px">${s.sub}</span></div><div>${status}</div></div>
+ ${window.LiveEv?[...new Set(s.legs.map(l=>l.sport+"|"+l.game))].filter(k=>S.gm[k]&&S.gm[k].state!="pre").map(k=>{const g=S.gm[k],sp=k.split("|")[0],lg=s.legs.filter(l=>l.sport+"|"+l.game==k);return `<div style="margin-top:6px">${LiveEv.head(sp,g,"ls|"+k)}${LiveEv.panel("ls|"+k+"#"+(s.title+s.sub).length+lg.map(l=>l.aid).join(""),{ids:lg.map(l=>l.aid),names:lg.map(l=>l.player)})}</div>`}).join(""):""}
  ${L.map(({l,x})=>`<div class="lp" style="display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:8px;padding:6px 0;font-size:13px"><div><span class="pl">${E(l.player)}</span> <span class="pill" style="font-size:10px">${NAME[l.sport]||E(l.sport)}</span><br><span class="mut">${E(l.market)}${l.line!=null&&!/Anytime/.test(l.market)?" o"+l.line:""}</span></div><div>${x.html}${x.pct!=null?`<div class="pb"><i style="width:${x.pct}%"></i></div>`:""}</div></div>`).join("")}</div>`}
 function draw(){const el=document.getElementById("lslips");if(!el||el.hidden)return;if(!S.slips){el.innerHTML='<div class="card empty">Loading every slip and connecting to ESPN live box scores…</div>';return}
  const F=S.filter,ok=s=>F=="all"||(F=="live"?s._st=="live":F=="pre"?s._st=="pre":s._st=="won"||s._st=="lost");

@@ -159,8 +159,11 @@ function boxFor(d,aid){var out=null,bp=(d.boxscore&&d.boxscore.players)||[];
 function liveBlock(x,g,el){var u="https://site.api.espn.com/apis/site/v2/sports/"+slug(x.s,g.lg)+"/summary?event="+g.id;
  return EJ(u).then(function(d){if(CUR!==x.aid)return;var c=d.header&&d.header.competitions&&d.header.competitions[0];if(!c)return;var st=c.status.type,state=st.state;
   var T=c.competitors.slice().sort(function(a){return a.homeAway=="away"?-1:1});
+  var LK="pf|"+x.s+"|"+g.id;if(window.LiveEv&&state!="pre")LiveEv.ingest(LK,x.s,d);
+  if(window.LiveEv&&state!="pre"){var gg={state:state,detail:st.shortDetail||st.detail,period:c.status.period,clock:c.status.displayClock,teams:c.competitors.map(function(t){return{ab:t.team.abbreviation,score:t.score,ha:t.homeAway}})};
+   var h=LiveEv.head(x.s,gg,LK)+LiveEv.panel(LK,{ids:[x.aid],names:[x.name]});}else{
   var h='<div class="mut" style="font-size:12px">'+(state=="in"?'<span class="slp-live">LIVE</span>'+E(st.shortDetail||st.detail):state=="post"?"FINAL":"Next game")+" · "+etT(c.date)+'</div>';
-  h+='<div class="slp-sc">'+T.map(function(t){return '<span>'+E(t.team.abbreviation)+(state!="pre"?" "+E(t.score==null?"":t.score):"")+'</span>'}).join('<span class="mut" style="font-weight:400">'+(state=="pre"?"vs":"–")+'</span>')+'</div>';
+  h+='<div class="slp-sc">'+T.map(function(t){return '<span>'+E(t.team.abbreviation)+(state!="pre"?" "+E(t.score==null?"":t.score):"")+'</span>'}).join('<span class="mut" style="font-weight:400">'+(state=="pre"?"vs":"–")+'</span>')+'</div>';}
   var b=state!="pre"?boxFor(d,x.aid):null;LIVE_D={id:g.id,state:state,box:b,period:c.status.period,clock:c.status.displayClock,detail:st.shortDetail||st.detail};
   if(state!="pre"){h+=b&&b.length?'<div class="mut" style="font-size:12px;margin-top:6px">'+E(x.name)+' '+(state=="in"?"so far":"final line")+' (ESPN box score)</div><div class="slp-bx">'+b.slice(0,18).map(function(s){return '<div>'+E((s.g?s.g.charAt(0).toUpperCase()+s.g.slice(1)+" ":"")+s.l)+'<b>'+E(s.v)+'</b></div>'}).join("")+'</div>':'<div class="mut" style="font-size:12px;margin-top:6px">No box-score line for '+E(x.name)+' yet (hasn\'t recorded a stat, or ESPN hasn\'t posted it).</div>'}
   var pc=(d.pickcenter||[])[0];if(pc&&(pc.details||pc.overUnder!=null))h+='<div class="mut" style="font-size:12px;margin-top:8px">Game line'+(state=="in"?" (as last posted on ESPN; may not be live)":"")+': '+E(pc.details||"")+(pc.overUnder!=null?" · O/U "+E(pc.overUnder):"")+' · '+E((pc.provider&&pc.provider.name)||"ESPN")+'</div>';

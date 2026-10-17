@@ -25,7 +25,7 @@ async function loadPicks(sp){if(S[sp].picks)return S[sp].picks;let L=[];
  return S[sp].picks=L}
 const gameOf=e=>e.ref?.game||(e.legs&&e.legs[0]&&e.legs[0].game);
 function parseEv(e,sp){const c=e.competitions[0],st=c.status;return{id:e.id,name:e.shortName,state:st.type.state,detail:st.type.shortDetail,period:st.period,clock:st.displayClock,start:e.date,lg:e._lg,
- teams:c.competitors.map(t=>({ab:t.team.abbreviation,id:t.team.id,name:t.team.displayName,score:+t.score||0,ha:t.homeAway,rank:t.curatedRank&&t.curatedRank.current<26?t.curatedRank.current:null}))}}
+ teams:c.competitors.map(t=>({ab:t.team.abbreviation,id:t.team.id,name:t.team.displayName,score:+t.score||0,ha:t.homeAway,rank:t.curatedRank&&t.curatedRank.current<26?t.curatedRank.current:null})),sit:window.LiveEv?LiveEv.sbSit(c):null}}
 function done(g,sp){if(g.state=="post")return 1;if(g.state!="in")return 0;
  if(sp=="cfb"){const[m,s]=String(g.clock||"0:00").split(":").map(Number);return Math.min(1,((g.period-1)*900+(900-((m||0)*60+(s||0))))/3600)}
  const mm=String(g.clock||"").match(/(\d+)'(?:\+(\d+))?/);let m=mm?+mm[1]:0;if(/HT/.test(g.detail))m=45;return Math.min(1,m/90)}
@@ -49,7 +49,7 @@ async function poll(sp){const L=S[sp];clearTimeout(L.timer);
   ev.forEach(g=>g.tracked=want.has(g.id));
   L.games=ev;const live=ev.filter(g=>g.tracked&&(g.state=="in"||(g.state=="post"&&Date.now()-new Date(g.start)<4*36e5))).slice(0,16);
   await Promise.all(live.map(async g=>{if(g.state=="post"&&L.box[g.id]&&L.box[g.id]._final)return;try{const d=await jx(sp=="cfb"?SUM.cfb(g.id):SUM.soccer(g.lg,g.id));
-   L.box[g.id]=sp=="cfb"?boxCfb(d):boxSoc(d);L.ev[g.id]=sp=="cfb"?evCfb(d):evSoc(d);if(g.state=="post")L.box[g.id]._final=1}catch(e){}}));
+   L.box[g.id]=sp=="cfb"?boxCfb(d):boxSoc(d);L.ev[g.id]=sp=="cfb"?evCfb(d):evSoc(d);if(window.LiveEv)LiveEv.ingest(sp+"|"+g.id,sp,d);if(g.state=="post")L.box[g.id]._final=1}catch(e){}}));
   L.err=null;L.at=new Date();L.timer=setTimeout(()=>poll(sp),ev.some(g=>g.tracked&&g.state=="in")?60000:10*60000);
  }catch(e){L.err=String(e.message||e);L.timer=setTimeout(()=>poll(sp),120000)}
  if(view=="live"&&sport==sp)draw(sp)}
@@ -94,6 +94,12 @@ function draw(sp){const el=$("live"),L=S[sp];if(!el)return;const lab=sp=="cfb"?"
  h+=slipsCard(sp);
  const card=g=>{const ps=picks.filter(e=>gameOf(e)==g.id),box=L.box[g.id]||{},evs=(L.ev[g.id]||[]).slice(-6).reverse();
   const tm=g.teams.slice().sort((a,b)=>a.ha=="away"?-1:1);
+  const trk={ids:[],names:[]},addT=l=>{if(l&&l.aid){trk.ids.push(l.aid);trk.names.push(l.player)}};ps.forEach(e=>(e.legs||[]).forEach(addT));slipsFor(sp).forEach(b=>b.legs.forEach(l=>{if(l.sport==sp&&String(l.game)==g.id)addT(l)}));
+  trk.wids=[];trk.wnames=[];const addW=l=>{if(l&&l.aid){trk.wids.push(l.aid);trk.wnames.push(l.player)}};
+  if(sp=="soccer")(DATA.soccer||[]).filter(r=>r.game==g.id).forEach(addT);else if(typeof CFBD!="undefined"&&CFBD&&CFBD.games){const G=CFBD.games.find(x=>x.id==g.id);((G&&G.td)||[]).forEach(addW)}
+  if(window.LiveEv&&LiveEv.cache[sp+"|"+g.id])return `<div class="lg">${LiveEv.head(sp,g,sp+"|"+g.id)}${sp=="soccer"?`<div class="mut" style="font-size:11px">${E((LEAGUES.find(l=>l[0]==g.lg)||[0,g.lg])[1])}</div>`:""}
+  ${leaders(box,sp)?`<div style="font-size:12px;margin:6px 0">${leaders(box,sp)}</div>`:""}${LiveEv.panel(sp+"|"+g.id,trk)}
+  ${ps.map(e=>e.legs&&e.legs.length?(e.legs.length>1?`<div class="mut" style="font-size:12px;margin-top:6px">🎯 ${E(e.title)}${tierTag(e)}</div>`:"")+e.legs.map(l=>legRow(sp,l,g,e.legs.length>1?"":tierTag(e))).join(""):teamPick(sp,e,g)).join("")||'<div class="mut" style="font-size:12px">No Bet Lab picks logged for this game.</div>'}${propsBlock(sp,g)}</div>`;
   return `<div class="lg"><div class="sc" style="flex-wrap:wrap">${tm.map(t=>`<span>${t.rank?'<span class="mut" style="font-size:12px">#'+t.rank+"</span> ":""}${E(t.ab)} ${t.score}</span>`).join('<span class="mut">–</span>')}<span class="clk">${g.state=="in"?"● "+E(clk(g,sp)):"FINAL"}</span>${sp=="soccer"?`<span class="mut" style="font-size:12px;font-weight:600">${E((LEAGUES.find(l=>l[0]==g.lg)||[0,g.lg])[1])}</span>`:""}</div>
   ${leaders(box,sp)?`<div style="font-size:12px;margin:6px 0">${leaders(box,sp)}</div>`:""}
   ${evs.length?`<details style="font-size:12px;margin:4px 0"><summary class="mut">${sp=="cfb"?"Scoring plays":"Goals & cards"} (${(L.ev[g.id]||[]).length})</summary>${evs.map(x=>`<div>${E(x.t)} · <b>${E(x.x)}</b> ${E(x.txt).slice(0,140)}</div>`).join("")}</details>`:""}
