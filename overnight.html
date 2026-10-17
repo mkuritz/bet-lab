@@ -4,7 +4,7 @@
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font:14px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}a{color:var(--acc2)}
 .w{max-width:960px;margin:0 auto;padding:16px}header{margin-bottom:10px}.logo{font-weight:800;font-size:20px;color:var(--txt);text-decoration:none}.logo b{color:var(--acc)}
 .top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}h1{margin:0;font-size:22px}
-.dt{color:var(--mut);font-weight:600}.ml{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 2px}.ml span{background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:12px}.ml b{color:var(--acc)}.days{display:flex;gap:6px;flex-wrap:wrap}.days button{background:var(--panel2);border:1px solid var(--line);color:var(--mut);border-radius:999px;padding:5px 11px;font:600 12px system-ui;cursor:pointer}
+.sub2{color:var(--mut);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin:2px 0 2px}.dt{color:var(--mut);font-weight:600}.ml{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 2px}.ml span{background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:12px}.ml b{color:var(--acc)}.days{display:flex;gap:6px;flex-wrap:wrap}.days button{background:var(--panel2);border:1px solid var(--line);color:var(--mut);border-radius:999px;padding:5px 11px;font:600 12px system-ui;cursor:pointer}
 .days button.on{background:var(--acc);color:#06120c;border-color:var(--acc)}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:12px}
 .hd{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}.hd h2{margin:0;font-size:16px}.rec{font-weight:800;font-size:15px}.rec small{color:var(--mut);font-weight:600;font-size:11px;margin-left:6px}
@@ -21,12 +21,17 @@
 <script>
 const $=id=>document.getElementById(id),esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])),pc=x=>Math.round(x*100)+"%";
 const row=(r,pr)=>`<div class="r"><span class="ck">✓</span><span class="t"><span class="sp">${esc(r.sport.toUpperCase())}</span><b>${esc(r.title)}</b></span><span class="pr">${pr}</span><span class="st">${esc(r.line||"Final")}</span></div>`;
+const SP=[["nhl","🏒 NHL"],["cfb","🏈 CFB"],["nfl","🏈 NFL"],["mlb","⚾ MLB"],["soccer","⚽ Soccer"],["nba","🏀 NBA"]];
+const row2=(r,pr)=>`<div class="r"><span class="ck">✓</span><span class="t"><b>${esc(r.title)}</b></span><span class="pr">${pr}</span><span class="st">${esc(r.line||"Final")}</span></div>`;
 fetch("data/overnight.json?t="+Date.now()).then(r=>r.json()).then(O=>{
  $("dt").textContent=new Date(O.date+"T12:00:00Z").toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric",timeZone:"UTC"});
- const C=O.called||[],B=O.beat||[],M=O.most_likely||[],ct=O.called_tally||[0,0];
- let h=`<div class="card"><div class="hd"><h2>🎯 Called it</h2>${ct[1]?`<div class="rec">${ct[0]}/${ct[1]}<small>60%+ picks</small></div>`:""}</div>`;
- if(M.length)h+=`<div class="ml">${M.map(m=>`<span>${esc(m.label.replace("NHL Most likely · ","NHL top "+m.of+" "))} <b>${m.hit}/${m.of}</b></span>`).join("")}</div>`;
- h+=C.length?C.map(r=>row(r,`<span class="us">Us ${pc(r.p)}</span>`)).join(""):`<div class="none">No 60%+ hits.</div>`;h+=`</div>`;
- if(B.length)h+=`<div class="card"><div class="hd"><h2>📉 Beat the book</h2></div>`+B.map(r=>row(r,`<span class="bk">Book ${pc(r.imp)}</span> · <span class="us">Us ${pc(r.p)}</span>`)).join("")+`</div>`;
- $("out").innerHTML=h}).catch(()=>{$("out").innerHTML='<div class="none">Unavailable right now.</div>'});
+ const C=O.called||[],B=O.beat||[],M=O.most_likely||[],G=O.graded||{};let h="";
+ for(const [k,lab] of SP){const c=C.filter(r=>r.sport==k),u=B.filter(r=>r.sport==k),m=k=="nhl"?M:[];
+  if(!G[k]&&!c.length&&!u.length&&!m.length)continue;
+  h+=`<div class="card"><div class="hd"><h2>${lab}</h2></div><div class="sub2">🎯 Called it</div>`;
+  if(m.length)h+=`<div class="ml">${m.map(x=>`<span>${esc(x.label.replace("NHL Most likely · ","Top "+x.of+" "))} <b>${x.hit}/${x.of}</b></span>`).join("")}</div>`;
+  h+=c.length?c.map(r=>row2(r,`<span class="us">Us ${pc(r.p)}</span>`)).join(""):`<div class="none">—</div>`;
+  if(u.length)h+=`<div class="sub2" style="margin-top:8px">📉 Underdog</div>`+u.map(r=>row2(r,`<span class="bk">Book ${pc(r.imp)}</span> · <span class="us">Us ${pc(r.p)}</span>`)).join("");
+  h+=`</div>`}
+ $("out").innerHTML=h||'<div class="none">No graded picks last night.</div>'}).catch(()=>{$("out").innerHTML='<div class="none">Unavailable right now.</div>'});
 </script><script src="https://sportslabshq.com/js/leads-config.js"></script><script src="https://sportslabshq.com/js/leads.js" data-product="Bet Lab"></script><script src="nav.js"></script></body></html>
