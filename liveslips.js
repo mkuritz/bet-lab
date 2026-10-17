@@ -64,7 +64,7 @@ function draw(){const el=document.getElementById("lslips");if(!el||el.hidden)ret
  const F=S.filter,ok=s=>F=="all"||(F=="live"?s._st=="live":F=="pre"?s._st=="pre":s._st=="won"||s._st=="lost");
  const tk=S.slips.filter(s=>s.kind=="taken"),rc=S.slips.filter(s=>s.kind=="rec");const th=tk.map(slipHtml),rh=rc.map(slipHtml);
  const tk2=tk.map((s,i)=>ok(s)?th[i]:"").join(""),rc2=rc.map((s,i)=>ok(s)?rh[i]:"").join("");
- el.innerHTML=`<div style="padding:0 20px 20px"><div class="kick">All sports · live slip feed</div><h2 style="margin:4px 0">🧾 Live slips</h2>
+ el.innerHTML=`<div style="padding:0 20px 20px"><div class="kick">All sports · live slip feed</div><h2 style="margin:4px 0">🔴 Live</h2>
  <div class="mut" style="font-size:12px">Every slip you've taken plus today's Bet Lab recommended slips, soccer SGPs and logged parlays, across NFL, CFB, NHL, MLB, NBA and soccer. Leg stats come from ESPN's free box scores${S.at?` · updated ${etT(S.at)}`:""}; refreshes every 30s while games are live. Pace is straight-line, an estimate only.</div>
  <div class="chips" style="margin:10px 0">${[["all","All"],["live","Live"],["pre","Not started"],["done","Settled"]].map(([k,t])=>`<button data-lsf="${k}" class="${F==k?"on":""}">${t}</button>`).join("")}</div>
  <div class="card" data-sl-public style="margin-bottom:12px"><h3>My taken slips</h3>${tk2||`<div class="mut">${tk.length?"No taken slips in this filter.":"No open taken slips. Mark a slip as taken and it shows up here live."}</div>`}</div>
