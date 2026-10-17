@@ -23,3 +23,4 @@
   set(mob()?false:open,true);
   if(cur==='analyst')addEventListener('load',function(){var b=document.querySelector('[data-v="analyst"]');if(b)b.click()});
 })();
+(function(){if(document.querySelector('script[src*="search.js"]'))return;var s=document.createElement('script');s.src='./search.js?v=1';s.defer=true;document.head.appendChild(s)})();
