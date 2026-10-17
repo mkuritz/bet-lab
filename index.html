@@ -80,6 +80,7 @@ html,body{overflow-x:hidden;max-width:100%}
 footer{color:var(--mut);font-size:12px;padding:16px 20px 30px;border-top:1px solid var(--line)}
 .pg{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:space-between;margin-top:8px;padding-top:8px;border-top:1px solid var(--line);font-size:12px}.pg .pgn{display:flex;flex-wrap:wrap;gap:4px}.pg button{background:var(--panel2);border:1px solid var(--line);color:var(--mut);min-width:30px;height:30px;padding:0 8px;border-radius:7px;font-weight:700;cursor:pointer;font-size:12px}.pg button.on{border-color:var(--acc);color:var(--acc)}.pg button:disabled{opacity:.35;cursor:default}.pg .ps{display:flex;gap:4px;align-items:center}
 .sfam{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.04em;padding:2px 7px;border-radius:99px;background:rgba(34,211,238,.15);color:#22d3ee;vertical-align:middle;margin-right:4px}.pbx{background:var(--panel2,#182033);border-radius:10px;padding:8px 10px;margin:6px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:6px}.pbx .pr span{display:block;font-size:10.5px;color:var(--mut)}.pbx .pr b{font-size:15px}.pbx .ed.pos b{color:var(--acc)}.pbx .ed.neg b{color:var(--bad,#ff5d6c)}.pbx .pnote{grid-column:1/-1;font-size:11px;color:var(--mut)}.ppl{font-size:11.5px;margin-top:2px}.prec{font-size:12px;margin:6px 0 8px;padding:6px 9px;border-radius:8px;background:rgba(83,227,166,.08)}.v-analyst #fbar,.v-analyst #pos,.v-cfb #fbar,.v-cfb #pos{display:none!important}.v-cfb .card a,.sl-prog a{color:#7cc4ff}
+.dlgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px}.dl{display:flex;flex-direction:column;padding:7px 9px;border-radius:8px;border:1px solid #2a3550;text-decoration:none;color:inherit;background:rgba(255,255,255,.03)}.dl b{font-size:13px}.dl small{font-size:10.5px;opacity:.8}.dl-full{border-color:#2fbf71;background:rgba(47,191,113,.10)}.dl-full small{color:#5fe39a;opacity:1}.dl-part{border-color:#c9a227}.dl-part small{color:#e8c55a;opacity:1}.dl-none{opacity:.7}.dl.dis{opacity:.45;cursor:not-allowed}#dlstate{background:#0f1626;color:inherit;border:1px solid #2a3550;border-radius:6px;padding:2px 4px}
 </style><link rel="stylesheet" href="nav.css"><script src="hero.js" defer></script><script src="https://sportslabshq.com/sl/sl.js" defer></script>
 </head><body>
 <header><div class="logo">Bet <b>Lab</b></div><span class="mut">Player prop research</span><span id="badge">Loading…</span></header>
@@ -421,6 +422,38 @@ function saveSlip(){localStorage.setItem(LS+"slip",JSON.stringify(SLIP))}
 const find=(s,k)=>(DATA[s]||[]).find(r=>legKey(r)==k);
 const legP=r=>r.l10&&r.l10.n?r.l10.h/r.l10.n:null;
 function fair(p){if(p==null)return"—";if(p>=.999)return"n/a (100%)";if(p<=0)return"n/a";return p>=.5?"-"+Math.round(100*p/(1-p)):"+"+Math.round(100*(1-p)/p)}
+// ---- Bet this at: sportsbook betslip deep links (links/ids from our existing Odds API prop pulls; 0 extra credits) ----
+const BOOKS_DL=[["dk","DraftKings"],["fd","FanDuel"],["mgm","BetMGM"],["czr","Caesars"],["espn","theScore / ESPN Bet"],["br","BetRivers"],["hr","Hard Rock Bet"]];
+const DL_PARLAY={dk:1,fd:1,czr:1,espn:1,mgm:1};   // books whose betslip URL takes multiple selections
+const DL_HOME={dk:"https://sportsbook.draftkings.com/",fd:"https://sportsbook.fanduel.com/",mgm:"https://sports.{state}.betmgm.com/en/sports",czr:"https://sportsbook.caesars.com/us/{state}/bet/",espn:"https://sportsbook.thescore.bet/",br:"https://{state}.betrivers.com/?page=sportsbook",hr:"https://app.hardrock.bet/"};
+const STATES="AZ CO CT DC IL IN IA KS KY LA MA MD MI NC NH NJ NY OH PA TN VA VT WV WY".split(" ");
+const dlNorm=x=>(x||"").normalize("NFKD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/ jr/g,"").replace(/ sr/g,"").replace(/[^a-z]/g,"");
+function dlRow(s,r){const R=(window.PP&&PP.rows)||{},b=s+"|"+r.market+"|"+dlNorm(r.player)+"|";const ln=parseFloat(r.line);return R[b+(isNaN(ln)?"":ln.toFixed(1))]||R[b+(isNaN(ln)?"":String(ln))]||R[b]||null}
+const qp=(u,k)=>{try{return new URL(u.replace(/\{state\}/g,"xx")).searchParams.get(k)}catch(e){return null}};
+function dlBuild(bk,links,st){const S=u=>u.replace(/\{state\}/g,st||"{state}");
+ if(links.length==1&&bk!="br")return S(links[0]);
+ if(bk=="dk")return "https://sportsbook.draftkings.com/?outcomes="+links.map(u=>encodeURIComponent(qp(u,"outcomes"))).join("+");
+ if(bk=="fd")return "https://sportsbook.fanduel.com/addToBetslip?"+links.map((u,i)=>`marketId[${i}]=${encodeURIComponent(qp(u,"marketId"))}&selectionId[${i}]=${encodeURIComponent(qp(u,"selectionId"))}`).join("&");
+ if(bk=="czr")return S("https://sportsbook.caesars.com/us/{state}/bet/betslip?selectionIds=")+links.map(u=>encodeURIComponent(qp(u,"selectionIds"))).join("%2C");
+ if(bk=="espn")return "https://sportsbook.thescore.bet/?"+links.map((u,i)=>`market_selection_id[${i}]=${encodeURIComponent(qp(u,"market_selection_id[0]"))}&odds_numerator[${i}]=${qp(u,"odds_numerator[0]")||2}&odds_denominator[${i}]=${qp(u,"odds_denominator[0]")||1}`).join("&");
+ if(bk=="mgm")return S("https://sports.{state}.betmgm.com/en/sports?options=")+links.map(u=>encodeURIComponent(qp(u,"options"))).join(",")+"&type=Combo";
+ if(bk=="br")return S(links[0]).replace("{pickType}","single").replace("{wagerAmount}","");
+ return S(links[0])}
+function betAtHtml(live){const st=localStorage.getItem(LS+"dlstate")||"",n=live.length,EV=(window.PP&&PP.ev)||{};
+ const rows=live.map(l=>dlRow(l.s,l.r));
+ const items=BOOKS_DL.map(([bk,name])=>{const got=rows.map(p=>p&&p.lk&&p.lk[bk]).filter(Boolean),k=got.length,needS=/\{state\}/.test(got[0]||DL_HOME[bk]);
+  let url,tag,cls;
+  if(k&&k==n&&(DL_PARLAY[bk]||n==1)){url=dlBuild(bk,got,st);tag=n==1?"Leg preloaded":"All "+n+" legs preloaded"+(bk=="mgm"?" (beta)":"");cls="full"}
+  else if(k&&DL_PARLAY[bk]){url=dlBuild(bk,got,st);tag=`Partial: ${k} of ${n} legs preloaded`;cls="part"}
+  else if(k){url=dlBuild(bk,got.slice(0,1),st);tag=`Partial: first leg only (no multi-leg link)`;cls="part"}
+  else{const g=rows.find(p=>p&&EV[p.game]&&EV[p.game][bk]);url=g?EV[g.game][bk]:DL_HOME[bk];tag=g?"Not listed: opens the game":"Not listed: opens the book";cls="none";url=url.replace(/\{state\}/g,st||"{state}")}
+  const dis=needS&&!st;
+  return `<a class="dl dl-${cls}${dis?" dis":""}" ${dis?"":`href="${escA(url)}" target="_blank" rel="noopener nofollow"`} data-bk="${bk}"><b>${name}</b><small>${dis?"Pick your state first":tag}</small></a>`}).sort((a,b)=>(/dl-full/.test(b)-/dl-full/.test(a))||(/dl-part/.test(b)-/dl-part/.test(a)));
+ return `<div class="est" id="betat" style="margin-top:10px"><b>🔗 Bet this at</b> <span class="mut" style="font-size:11px">opens the book's app on your phone (website on desktop) with the slip loaded</span>
+ <div style="margin:6px 0;font-size:12px" class="mut">Your state <select id="dlstate"><option value="">pick</option>${STATES.map(x=>`<option value="${x.toLowerCase()}" ${st==x.toLowerCase()?"selected":""}>${x}</option>`).join("")}</select> <span style="font-size:11px">(BetMGM, Caesars, BetRivers use state sites)</span></div>
+ <div class="dlgrid">${items.join("")}</div>
+ <div class="warn" style="margin-top:6px;font-size:11px">Always check the slip in the book before placing: prices move, and a book can reject or reprice a leg. Leg availability comes from each book's own listing at our last price check${PP&&PP.as_of?" ("+new Date(PP.as_of).toLocaleString([], {month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})+")":""}. Not every book is legal in every state. 21+. Gambling problem? Call 1-800-GAMBLER.</div></div>`}
+function wireBetAt(){const sel=$("dlstate");if(sel)sel.onchange=()=>{localStorage.setItem(LS+"dlstate",sel.value);renderSlip(true)}}
 function renderSlip(open){const legs=SLIP.map(l=>({...l,r:find(l.s,l.k)}));
  $("slipbtn").textContent=`🧾 Slip (${SLIP.length})`;
  const live=legs.filter(l=>l.r),ps=live.map(l=>legP(l.r)),comb=ps.length&&ps.every(p=>p!=null)?ps.reduce((a,b)=>a*b,1):null;
@@ -430,6 +463,7 @@ function renderSlip(open){const legs=SLIP.map(l=>({...l,r:find(l.s,l.k)}));
  ${live.length?`<div class="est">Naive combined hit chance: <b>${comb==null?"—":(comb*100).toFixed(1)+"%"}</b> · estimated fair odds <b>${fair(comb)}</b>
  <div class="warn" style="margin-top:6px">Estimate only: product of each leg's L10 over rate, assuming the legs are independent. These are estimated fair odds from hit rates, not sportsbook prices or odds, and not betting advice.${dp?" Includes multiple legs on the same player, which are correlated, so the estimate is less reliable.":""}</div></div>`:""}`;
  if(live.length){const pr=live.every(l=>l.r.ov!=null)?live.reduce((a,l)=>a*(l.r.ov>0?1+l.r.ov/100:1+100/-l.r.ov),1):null;
+  $("slip").insertAdjacentHTML("beforeend",betAtHtml(live));wireBetAt();
   $("slip").insertAdjacentHTML("beforeend",`<div class="est" style="margin-top:10px"><b>Mark as taken</b> <span class="mut">(only bets you actually placed; saved in this browser)</span><div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px">
   ${live.map((l,i)=>`<label class="mut" style="font-size:11px;display:flex;gap:4px;align-items:center;width:100%">${escA(l.r.player)} ${escA(l.r.market)} o${l.r.line} <input class="tk_leg" data-i="${i}" placeholder="Leg odds" value="${l.r.ov!=null?(l.r.ov>0?"+":"")+l.r.ov:""}" style="width:80px"></label>`).join("")}<input id="tk_odds" placeholder="Parlay odds (American)" value="${pr?(pr>=2?"+"+Math.round((pr-1)*100):"-"+Math.round(100/(pr-1))):""}" style="width:140px" title="Combined price as shown on your book's slip; edit to the actual price"><input id="tk_boost" placeholder="Boost %" style="width:70px" title="Profit boost %, e.g. 25"><input id="tk_stake" placeholder="Stake $" value="${unitSize()}" style="width:80px" title="Dollars. 1 unit = $${unitSize()}"><input id="tk_book" placeholder="Book (optional)" style="width:120px"><button id="tk_go" class="morebtn" style="margin:0">✓ Mark as taken</button></div><div class="mut" id="tk_msg" style="font-size:11px"></div></div>`);
   const recomb=()=>{const v=[...document.querySelectorAll(".tk_leg")].map(x=>amIn(x.value));if(v.length&&v.every(x=>x!=null)){const d=v.reduce((a,o)=>a*amToDec(o),1);$("tk_odds").value=decToAm(d)}};document.querySelectorAll(".tk_leg").forEach(x=>x.oninput=recomb);
