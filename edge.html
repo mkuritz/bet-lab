@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Edge Tracker · Bet Lab</title>
+<title>Results · Bet Lab</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
 <style>
 :root{--bg:#0b0f17;--panel:#121826;--panel2:#182033;--line:#243049;--txt:#e6ebf5;--mut:#8b97b0;--acc:#53e3a6;--acc2:#3fa9ff;--bad:#ff5d6c;--mid:#f5c451}
@@ -20,37 +20,20 @@ main{padding:16px 20px;max-width:1150px;margin:0 auto}h2{font-size:16px;margin:2
 .cal{width:100%;max-width:520px;display:block}
 footer{color:var(--mut);font-size:12px;padding:16px 20px 30px;border-top:1px solid var(--line);margin-top:30px}footer a{color:inherit}
 @media(max-width:600px){main{padding:12px 10px}.kpi b{font-size:18px}}
-</style><link rel="stylesheet" href="nav.css"><script src="hero.js" defer></script><script src="https://sportslabshq.com/sl/sl.js?v=7" defer></script>
-</head><body>
-<header><div class="logo">🎯 Edge <b>Tracker</b></div></header>
+</style><link rel="stylesheet" href="nav.css"><script src="https://sportslabshq.com/sl/sl.js?v=7" defer></script>
+</head><body><header><div class="logo">🎯 Bet Lab <b>Results</b></div></header>
 <main>
-<p class="mut" style="margin-top:0">Every Bet Lab and MLB Lab pick is logged <b>before the game starts</b> to an append-only record. We grade each pick against the result and the closing price. Losses stay on the board.</p>
-<div data-slhero></div>
-<h2>🎯 Called it</h2>
-<div class="card"><div class="mut" style="font-size:13px">Official picks that hit, with the real stat line. Calls made in chat are labeled “Called in chat” and aren’t part of the official record.</div>
-<div id="called" style="margin-top:8px"></div>
-</div>
-
-<h2 id="dfs">DFS lineup track record <span class="mut" style="font-size:12px;font-weight:400">from Fantasy Frontier</span></h2><div class="card" id="dfsbox"><span class="mut">Loading…</span></div>
-<script>(async()=>{const b=document.getElementById("dfsbox");const e=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-try{const base="https://fantasyfrontier.sportslabshq.com/data/track/";const t=await fetch(base+"lineups.jsonl?t="+Date.now()).then(r=>r.ok?r.text():"");const R=await fetch(base+"results.json?t="+Date.now()).then(r=>r.ok?r.json():{slates:{}}).catch(()=>({slates:{}}));
-const S=t.trim().split("\n").filter(Boolean).map(JSON.parse).filter(x=>x.logged_at<x.lock);const g={};S.forEach(x=>g[x.kind+"-"+x.dg]=x);const ks=Object.keys(g).sort((a,c)=>g[c].lock.localeCompare(g[a].lock));
-if(!ks.length){b.innerHTML='<span class="mut">No DFS lineups logged yet.</span>';return}
-const NM={safe:"Safe",bal:"Balanced",up:"Upside"};let h='<div class="wrap"><table><thead><tr><th>Slate</th><th>Lineup</th><th>Captain</th><th>Proj</th><th>Actual</th><th>vs chalk</th><th>% of optimal</th></tr></thead><tbody>';
-for(const k of ks){const o=g[k],r=(R.slates||{})[k]||{};for(const [t,lu] of Object.entries(o.lineups)){const a=r.lineups&&r.lineups[t];const ch=r.baselines&&r.baselines.chalk;
-h+=`<tr><td>${e(o.game||o.label)}</td><td>${NM[t]||t}</td><td>${e(lu.rows[0].slot==="CPT"?lu.rows[0].name:"–")}</td><td>${lu.proj.toFixed(1)}</td><td>${a&&r.final?a.actual.toFixed(1):(a?a.actual.toFixed(1)+" (live)":"pending")}</td><td>${a&&ch&&r.final?(a.actual-ch.actual>=0?"+":"")+(a.actual-ch.actual).toFixed(1):"–"}</td><td>${a&&a.pct_of_optimal!=null?a.pct_of_optimal+"%":"–"}</td></tr>`}}
-b.innerHTML=h+'</tbody></table></div><div class="mut" style="font-size:12px;margin-top:6px">Logged before lock in an append-only file; graded from ESPN\'s public box score. Contest field results unavailable (no permitted source).</div>'}catch(err){b.innerHTML='<span class="mut">DFS track record unavailable right now.</span>'}})();</script>
-<h2>📒 Official record</h2><div class="card" id="offrec"><span class="mut">Loading…</span></div>
+<p class="mut" style="margin-top:0">Every official pick is posted before the game starts. Losses stay on the board.</p>
+<div class="kpis" id="k"></div>
+<h2>Today's picks</h2><div class="card" id="tp"><span class="mut">Loading…</span></div>
+<h2>✅ Recent results</h2><div class="card" data-sl-public id="rr"><span class="mut">Loading…</span></div>
 </main>
-<footer>Prices: DraftKings (via ESPN public feed and The Odds API) and Kalshi public API; book % shown with the vig removed. Results: MLB Stats API, NHL and ESPN box scores. Official picks are logged before start to an append-only file and graded against the result; misses stay on the record. Not betting advice. 21+. Gambling problem? Call 1-800-GAMBLER. <a href="https://sportslabshq.com/about.html">How it works</a></footer>
+<footer>21+. Not betting advice. Gambling problem? Call 1-800-GAMBLER. · <a href="./index.html">Back to Bet Lab</a></footer>
 <script>
-const $=id=>document.getElementById(id),sg=x=>x==null?"—":(x>0?"+":"")+(x*100).toFixed(1)+"%";
-const j=async(u,d)=>{try{const r=await fetch(u+"?t="+Date.now());if(!r.ok)throw 0;return await r.json()}catch(e){return d}};
-(async()=>{const [S,CI]=await Promise.all([j("data/edge_stats.json",{}),j("data/called_it.json",{})]);
-const o=S.official||{};$("offrec").innerHTML=o.n?`<div style="font-size:22px;font-weight:800">${o.wins}-${o.losses}</div><div class="mut">${o.n} graded Sports Labs Recommended picks${o.units!=null?" · "+(o.units>0?"+":"")+o.units+"u flat 1u":""}${o.roi!=null?" · ROI "+sg(o.roi):""} · ${S.pending||0} pending</div>`:`<div class="mut">Official Recommended picks started Oct 12 and are grading now. Every pick is locked before the game at a real market price; losses stay on the board.</div>`;
-const cards=(CI.cards||[]).filter(c=>c.official&&(c.kind==="game_script"?(c.result&&c.result.hit):c.result==="win")).slice(0,12),CC=CI.chat_cards||[];
-$("called").innerHTML=(CC.map(c=>`<div style="border-top:1px solid var(--line);padding:10px 0"><span class="pill p-fun">${c.label||"Called in chat"}</span> <b>${c.title}</b><div class="mut" style="font-size:13px">${c.result_line||""}</div></div>`).join("")+cards.map(c=>`<div style="border-top:1px solid var(--line);padding:10px 0"><span class="pill p-star">CALLED IT</span> <b>${c.title}</b><div class="mut" style="font-size:13px">${c.actual||""}</div></div>`).join(""))||'<span class="mut">Called-it cards appear here after official picks hit.</span>'})();
-</script>
-
-<script src="https://sportslabshq.com/js/leads-config.js"></script><script src="https://sportslabshq.com/js/leads.js" data-product="Bet Lab" data-float="1"></script>
-<script src="nav.js"></script></body></html>
+(async()=>{const E=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])),A=o=>o==null?"":(o>0?"+":"")+o;
+const T=await fetch("data/todays_edge.json?v="+Date.now()).then(r=>r.ok?r.json():{}).catch(()=>({})),R=T.results||{wins:0,losses:0,units:0,recent:[]};
+document.getElementById("k").innerHTML=`<div class="kpi"><b>${R.wins}-${R.losses}</b><small>Official record</small></div><div class="kpi"><b>${R.units>=0?"+":""}${R.units}u</b><small>Units, flat 1u</small></div>`+(T.improved||[]).map(i=>`<div class="kpi"><b style="font-size:15px">📈 ${E(i.head)}</b><small>${E(i.why)}</small></div>`).join("");
+const P=(T.plays||[]).slice(0,5);
+document.getElementById("tp").innerHTML=P.length?P.map(p=>`<div style="display:flex;gap:8px;padding:7px 0;border-top:1px solid var(--line)"><span style="flex:1">${p.official?"🎯 ":""}${E(p.title)}</span><b>${A(p.price)}</b></div>`).join(""):'<span class="mut">No picks clear our bar yet today.</span>';
+document.getElementById("rr").innerHTML=(R.recent||[]).length?R.recent.map(r=>`<div style="padding:7px 0;border-top:1px solid var(--line)">${r.result=="win"?"✅":"❌"} ${E(r.title)} <span class="mut">${A(r.price)}</span></div>`).join(""):'<span class="mut">First results are grading now.</span>';})();
+</script><script src="nav.js"></script></body></html>
