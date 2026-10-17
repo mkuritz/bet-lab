@@ -31,7 +31,7 @@ footer{color:var(--mut);font-size:12px;padding:16px 20px 30px;border-top:1px sol
 <footer>21+. Not betting advice. Gambling problem? Call 1-800-GAMBLER. · <a href="./index.html">Back to Bet Lab</a></footer>
 <script>
 (async()=>{const E=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])),A=o=>o==null?"":(o>0?"+":"")+o;
-const T=await fetch("data/todays_edge.json?v="+Date.now()).then(r=>r.ok?r.json():{}).catch(()=>({})),R=T.results||{wins:0,losses:0,units:0,recent:[]};
+const T=await fetch("data/todays_edge_v2.json?v="+Date.now()).then(r=>r.ok?r.json():{}).catch(()=>({})),R=T.results||{wins:0,losses:0,units:0,recent:[]};
 const FL=await fetch("data/public_flags.json?v="+Date.now()).then(r=>r.ok?r.json():{}).catch(()=>({}));
 document.getElementById("k").innerHTML=FL.show_overall_record&&R.wins!=null?`<div class="kpi"><b>${R.wins}-${R.losses}</b><small>Official record</small></div>`:"";
 const P=(T.plays||[]).slice(0,5);

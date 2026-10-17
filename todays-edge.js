@@ -6,7 +6,7 @@ const SN={nfl:"NFL",cfb:"CFB",nba:"NBA",nhl:"NHL",mlb:"MLB",soccer:"Soccer"};
 const tm=t=>new Date(t).toLocaleString("en-US",{timeZone:"America/New_York",weekday:"short",hour:"numeric",minute:"2-digit"})+" ET";
 let F=localStorage.getItem("bl_te_f")||"all",B=+(localStorage.getItem("bl_te_b")||0),OPEN={};
 window.TE=null;if(!("LIKELY" in window)){window.LIKELY=null;fetch("data/likely.json?v="+Date.now()).then(r=>r.ok?r.json():null).then(d=>{window.LIKELY=d;window.render&&render()}).catch(()=>{})}
-window.loadTE=async()=>{try{const r=await fetch("data/todays_edge.json?v="+Date.now());TE=r.ok?await r.json():null}catch(e){TE=null}};
+window.loadTE=async()=>{try{const r=await fetch("data/todays_edge_v2.json?v="+Date.now());TE=r.ok?await r.json():null}catch(e){TE=null}};
 const css=`.te{grid-column:1/-1;padding:12px 14px}.te h3{margin:0;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}.te .rec{font-size:12px;color:var(--mut)}
 .te .imp{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.te .imp span{font-size:11.5px;background:#53e3a614;border:1px solid #53e3a640;color:#9ff0c9;border-radius:99px;padding:2px 9px}
 .te .chips button{padding:3px 10px;font-size:12px}.te .r{border-top:1px solid var(--line);padding:7px 0}.te .r1{display:flex;gap:8px;align-items:center;min-width:0;cursor:pointer}

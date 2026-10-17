@@ -640,7 +640,7 @@ function vsBubble(mine,picks,lab){const P=x=>x==null?"—":Math.round(x*100)+"%"
   ${mp?`<div class="mut" style="font-size:11px;margin-top:2px">incl. ${mp} multi-sport parlay${mp>1?"s":""}</div>`:""}</div>`};
  return `<div style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px">${row("Your "+escA(lab)+" bets (marked taken)",mine,false)}</div>`}
 document.addEventListener("click",e=>{const b=e.target.closest("#tkscope button");if(b){TRK.scope=b.dataset.k;trackerView()}});
-async function trackerView(){const el=$("tracker");if(!TRK.out){el.innerHTML=`<div class="card empty">Loading results…</div>`;[TRK.out,TRK.te]=await Promise.all([j("data/outcomes.json",{}),j("data/todays_edge.json",{})])}
+async function trackerView(){const el=$("tracker");if(!TRK.out){el.innerHTML=`<div class="card empty">Loading results…</div>`;[TRK.out,TRK.te]=await Promise.all([j("data/outcomes.json",{}),j("data/todays_edge_v2.json",{})])}
  TRK.srv=await srvBets();if(window.SLBets&&SLBets.ready()){const u=await SLBets.getUnit().catch(()=>null);if(u)localStorage.setItem(LS+"unit",String(u))}
  const O=TRK.out,SPS=b=>[...new Set((b.legs||[]).map(l=>l.sport).filter(Boolean))],
   mineAll=mergedBets(TRK.srv).map(b=>{const ss=SPS(b);return{...b,dec:b.dec||amToDec(b.odds),res:b.srvRes||gradeBet(b,O),sports:ss,multi:ss.length>1,sport:ss.length>1?"Multi-sport parlay":ss[0]}}),
