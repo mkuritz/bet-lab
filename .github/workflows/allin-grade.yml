@@ -3,6 +3,8 @@ on:
   schedule:
     # primary 3:40 AM ET run is dispatched by the Cloudflare sl-scheduler; this is the backup
     - cron: "10 14 * * *"  # backup ~10:10 AM ET
+    - cron: "*/30 16-23 * * 0,1,5"   # every 30 min in Thu/Sun/Mon NFL windows (UTC)
+    - cron: "*/30 0-4 * * 1,2,5"     # late games past midnight UTC
   push:
     paths: ["data/allin_picks.json"]
   workflow_dispatch:
