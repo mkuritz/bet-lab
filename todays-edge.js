@@ -5,7 +5,7 @@ const A=o=>o==null?"":(o>0?"+":"")+o,P=x=>x==null?"—":Math.round(x*100)+"%",D=
 const SN={nfl:"NFL",cfb:"CFB",nba:"NBA",nhl:"NHL",mlb:"MLB",soccer:"Soccer"};
 const tm=t=>new Date(t).toLocaleString("en-US",{timeZone:"America/New_York",weekday:"short",hour:"numeric",minute:"2-digit"})+" ET";
 let F=localStorage.getItem("bl_te_f")||"all",B=+(localStorage.getItem("bl_te_b")||0),OPEN={};
-window.TE=null;
+window.TE=null;if(!("LIKELY" in window)){window.LIKELY=null;fetch("data/likely.json?v="+Date.now()).then(r=>r.ok?r.json():null).then(d=>{window.LIKELY=d;window.render&&render()}).catch(()=>{})}
 window.loadTE=async()=>{try{const r=await fetch("data/todays_edge.json?v="+Date.now());TE=r.ok?await r.json():null}catch(e){TE=null}};
 const css=`.te{grid-column:1/-1;padding:12px 14px}.te h3{margin:0;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}.te .rec{font-size:12px;color:var(--mut)}
 .te .imp{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.te .imp span{font-size:11.5px;background:#53e3a614;border:1px solid #53e3a640;color:#9ff0c9;border-radius:99px;padding:2px 9px}
@@ -20,8 +20,11 @@ function row(p,kind){const id=p.id||p.title,o=OPEN[id];const dec=D(p.price);
  const ev=p.ours!=null&&dec?(p.ours*(1+(dec-1)*(1+B/100))-1):null;
  const lm=p.game&&(kind=="SGP"||kind=="BLOWOUT")&&(p.sport||"soccer")=="soccer"?`<button class="lmore" data-sgp-go="${E(p.game)}">Learn more ›</button>`:"";
  const add=p.aid&&p.market?`<button class="add" data-te-add="${E(p.sport)}|${E(p.aid)}|${E(p.market)}" title="Add to slip">+</button>`:"";
- return `<div class="r" data-te="${E(id)}"><div class="r1"><span class="k">${E(kind||SN[p.sport]||"")}</span><span class="t">${p.star?'<span class="star">★</span> ':""}${E(p.title)}</span>${p.price!=null?`<span class="px">${A(p.price)}</span>`:""}${p.edge!=null?`<span class="ed">+${(p.edge*100).toFixed(1)}%</span>`:""}${p.conf?`<span class="cf ${p.conf}">${p.conf}</span>`:""}${lm}${add}</div>
+ return `<div class="r" data-te="${E(id)}"><div class="r1"><span class="k">${E(kind||SN[p.sport]||"")}</span><span class="t">${p.star?'<span class="star">★</span> ':""}${E(p.title)}</span>${p.price!=null?`<span class="px">${A(p.price)}</span>`:""}${p.edge!=null?`<span class="ed">+${(p.edge*100).toFixed(1)}%</span>`:""}${p.conf?`<span class="cf ${p.conf}">${p.conf}</span>`:""}${lm}${add}</div>${window.LR&&p.player?`<div style="padding-left:52px">${LR.tag(p.sport,p.aid,p.market,p.line,p.player)}</div>`:""}
  ${o?`<div class="x">${p.start?tm(p.start)+" · ":""}${p.ours!=null?"Our chance "+P(p.ours):""}${p.book!=null?" · market "+P(p.book):""}${ev!=null?` · value ${ev>=0?"+":""}${(ev*100).toFixed(0)}%${B?" with "+B+"% boost":""}`:""}${p.legs?"<br>"+p.legs.map(E).join(" + "):""}${p.call?"<br>"+E(p.call):""}${(p.why||[]).length?"<br>"+p.why.map(E).join(" · "):""}${p.status?"<br>"+E(p.status):""}</div>`:""}</div>`}
+function likely(){const LK=window.LIKELY||{},sps=F=="all"?["nfl","cfb","nhl"]:[F];let L=[];sps.forEach(sp=>(LK[sp]||[]).filter(r=>sp!="nhl"||r.market=="Points").slice(0,F=="all"?4:12).forEach(r=>L.push(r)));
+ if(!L.length)return"";L.sort((a,b)=>b.ours-a.ours);
+ return `<div class="sec">Most likely</div>`+L.map(r=>`<div class="r"><div class="r1"><span class="k">${E(SN[r.sport]||"")}</span><span class="t">${E(r.player)} ${E(r.market=="Points"?"point":r.market=="Anytime TD"?"anytime TD":r.market)}</span>${r.price!=null?`<span class="px">${A(r.price)}</span>`:""}<span class="ed" style="color:var(--txt)">${P(r.ours)}</span></div>${window.LR?`<div style="padding-left:52px">${LR.tag(r.sport,r.aid||"",r.market,r.line,r.player)}</div>`:""}</div>`).join("")}
 window.teCard=function(lite){if(!TE)return "";const all=TE.plays||[],sps=["nfl","cfb","nhl","mlb","nba","soccer"];if(F!="all"&&!sps.includes(F))F="all";
  const L=all.filter(p=>F=="all"||p.sport==F),top=L.slice(0,lite?3:5),R=TE.results||{};
  const ev=p=>{const d=D(p.price);return p.ours!=null&&d?p.ours*(1+(d-1)*(1+B/100))-1:-9};const best=L.slice().sort((a,b)=>ev(b)-ev(a))[0];
@@ -31,7 +34,7 @@ window.teCard=function(lite){if(!TE)return "";const all=TE.plays||[],sps=["nfl",
  
  ${lite?"":`<div class="chips" id="tef" style="margin:6px 0">${["all",...sps].map(k=>`<button data-tef="${k}" class="${k==F?"on":""}">${k=="all"?"All":SN[k]||k}</button>`).join("")}<span style="flex:1"></span>${[0,25,50].map(b=>`<button data-teb="${b}" class="${b==B?"on":""}" title="Profit boost you have">${b?b+"% boost":"No boost"}</button>`).join("")}</div>`}
  <div class="sec">Top plays</div>${top.length?top.map(p=>row(p)).join(""):'<div class="mut" style="padding:6px 0">${F=="all"?"No plays clear our bar right now.":"No "+(SN[F]||F)+" plays clear our bar right now."} We only list real edges.</div>'}
- ${best&&!lite?`<div class="sec">Best value${B?" with your "+B+"% boost":""}</div>${row(best,"VALUE")}`:""}
+ ${!lite?likely():""}${best&&!lite?`<div class="sec">Best value${B?" with your "+B+"% boost":""}</div>${row(best,"VALUE")}`:""}
  ${sgp?`<div class="sec">Best SGP</div>${row(sgp,"SGP")}`:""}${lop?`<div class="sec">Lopsided matchup</div>${row(lop,"BLOWOUT")}`:""}
  ${live?`<div class="sec">Live</div><div class="r"><div class="r1" data-te-live="1"><span class="k">LIVE</span><span class="t">${live} game${live>1?"s":""} in progress · follow your picks live</span><span class="ed">Open ›</span></div></div>`:""}
  ${lite?`<div style="margin-top:8px"><button class="lmore" data-zone="edge">See all of Today's Edge ›</button></div>`:""}<div class="mut" style="font-size:11px;margin-top:6px">Tap a play for details. 21+. Not betting advice.</div></div>`};
