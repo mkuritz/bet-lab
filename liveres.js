@@ -28,7 +28,7 @@ function line(sp,o){const c=[];
 function find(sp,id,name){if(!S)return null;let p=id&&S.p[sp+"|"+id];if(!p&&name){const a=S.n[sp+"|"+nm(name)];if(a)p=S.p[sp+"|"+a]}return p}
 window.LR={
  // returns HTML (or "" when the player's game hasn't started)
- html(sp,id,market,ln,name,side){const p=find(sp,id,name);if(!p)return"";const g=S.g[sp+"|"+p[0]]||["in",""];const o=p[1],fin=g[0]=="post";
+ html(sp,id,market,ln,name,side){const p=find(sp,id,name);if(!p)return"";const g=S.g[sp+"|"+p[0]];if(!g||(g[0]!="in"&&g[0]!="post"))return"";const o=p[1],fin=g[0]=="post";
   const m=M[market]||M[(market||"").replace(/ over.*$/i,"")];let mark="",cls="p",bar="";
   if(m){const L=ln!=null&&ln!==""&&!isNaN(+ln)?+ln:(m[1]??0.5),x=m[0](o),under=/under|no$/i.test(side||"");const hit=under?(x<=L):(x>L);
    if(under){cls=fin?(hit?"w":"l"):(x>L?"l":"p");mark=cls=="w"?"✓":cls=="l"?"✗":"●"}
