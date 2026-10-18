@@ -2,7 +2,7 @@
 (function(){
   var H=function(x){return 'https://'+x+'.sportslabshq.com/'};
   var G=[['Bet Lab',[['🏈 NFL Game Day','./nfl.html','nfl'],['💎 Sharp Picks','./sharp.html','sharp'],['Props','./index.html','props'],['⚡ Today\'s Edge','./index.html#view=edge','edge-z'],['⚽ Soccer SGPs & Blowouts','./index.html#view=sgp','sgp-z'],['📊 Market Board','./markets.html','markets'],['🎯 Results','./edge.html','edge'],['🌙 Overnight','./overnight.html','overnight'],['🔥 Perfect Streaks','./streaks.html','streaks'],['Sports Analyst','./index.html#view=analyst','analyst'],['MLB Statcast','./statcast.html','statcast'],['📈 Betting Trends',H('nfllab')+'trends.html']]],
-         ['Sport Hubs',[['🏈 NFL Hub',H('nfllab')],['🛡️ NFL Defense vs Position',H('nfllab')+'defense.html'],['⚾ MLB Lab',H('mlblab')],['🏒 NHL Lab',H('nhllab')],['⚽ Soccer Hub',H('soccerlab')]]],
+         ['Sport Hubs',[['🏈 NFL Hub',H('nfllab')],['🛡️ NFL Defense vs Position',H('nfllab')+'defense.html'],['🧱 NFL Defensive props',H('nfllab')+'defense-props.html'],['⚾ MLB Lab',H('mlblab')],['🏒 NHL Lab',H('nhllab')],['⚽ Soccer Hub',H('soccerlab')]]],
          ['Tools',[['⚡ Arb Lab',H('arblab')]]],
          ['',[['Sports Labs home','https://sportslabshq.com/'],['Request a demo','#','demo-lead']]]];
   var f=(location.pathname.split('/').pop()||'index.html').replace('.html','')||'index';
