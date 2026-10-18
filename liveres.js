@@ -28,7 +28,9 @@ function line(sp,o){const c=[];
 function find(sp,id,name){if(!S)return null;let p=id&&S.p[sp+"|"+id];if(!p&&name){const a=S.n[sp+"|"+nm(name)];if(a)p=S.p[sp+"|"+a]}return p}
 window.LR={
  // returns HTML (or "" when the player's game hasn't started)
- html(sp,id,market,ln,name,side){const p=find(sp,id,name);if(!p)return"";const g=S.g[sp+"|"+p[0]];if(!g||(g[0]!="in"&&g[0]!="post"))return"";const o=p[1],fin=g[0]=="post";
+ html(sp,id,market,ln,name,side,st){const p=find(sp,id,name);if(!p)return"";const g=S.g[sp+"|"+p[0]];if(!g||(g[0]!="in"&&g[0]!="post"))return"";
+  if(st&&new Date(st)>Date.now())return"";   // pick's own match not started: never show another match's line
+  if(g[6]){const gs=new Date(g[6]).getTime();if(st?Math.abs(gs-new Date(st))>3*3600e3:Date.now()-gs>20*3600e3)return""}   // match the player's event, not just the playerconst o=p[1],fin=g[0]=="post";
   const m=M[market]||M[(market||"").replace(/ over.*$/i,"")];let mark="",cls="p",bar="";
   if(m){const L=ln!=null&&ln!==""&&!isNaN(+ln)?+ln:(m[1]??0.5),x=m[0](o),under=/under|no$/i.test(side||"");const hit=under?(x<=L):(x>L);
    if(under){cls=fin?(hit?"w":"l"):(x>L?"l":"p");mark=cls=="w"?"✓":cls=="l"?"✗":"●"}
@@ -36,8 +38,8 @@ window.LR={
   else mark=fin?"■":"●";
   return `<span class="lr ${cls}">${mark} ${line(sp,o)} · ${g[1]}${bar}</span>`},
  async pull(){try{const r=await fetch(U+"?t="+Math.floor(Date.now()/60000));if(r.ok){S=await r.json();T=Date.now()}}catch(e){}},
- fill(root){if(!S)return;(root||document).querySelectorAll("[data-lr]").forEach(el=>{const [sp,id,mk,ln,name,side]=el.dataset.lr.split("|");const h=LR.html(sp,id,mk,ln,name,side);if(el._h!==h){el._h=h;el.innerHTML=h}})},
- tag(sp,id,market,ln,name,side){const e=s=>String(s??"").replace(/[|"<>&]/g,"");return `<span data-lr="${e(sp)}|${e(id)}|${e(market)}|${ln??""}|${e(name)}|${e(side)}">${S?LR.html(sp,id,market,ln,name,side):""}</span>`},
+ fill(root){if(!S)return;(root||document).querySelectorAll("[data-lr]").forEach(el=>{const [sp,id,mk,ln,name,side,st]=el.dataset.lr.split("|");const h=LR.html(sp,id,mk,ln,name,side,st);if(el._h!==h){el._h=h;el.innerHTML=h}})},
+ tag(sp,id,market,ln,name,side,st){const e=s=>String(s??"").replace(/[|"<>&]/g,"");return `<span data-lr="${e(sp)}|${e(id)}|${e(market)}|${ln??""}|${e(name)}|${e(side)}|${e(st)}">${S?LR.html(sp,id,market,ln,name,side,st):""}</span>`},
  get data(){return S}};
 const tick=async()=>{await LR.pull();LR.fill()};tick();setInterval(tick,60000);
 new MutationObserver(()=>{if(S){clearTimeout(LR._t);LR._t=setTimeout(()=>LR.fill(),50)}}).observe(document.documentElement,{childList:true,subtree:true});
