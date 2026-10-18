@@ -15,7 +15,7 @@ const M={"Anytime TD":[o=>v(o,"rushingTouchdowns","receivingTouchdowns"),0.5],"T
  "Rush + Rec Yards":[o=>v(o,"rushingYards","receivingYards")],
  "Points":[o=>v(o,"goals","assists"),0.5],"Anytime Goal":[o=>v(o,"goals","totalGoals"),0.5],"Goals":[o=>v(o,"goals","totalGoals"),0.5],"Shots on Goal":[o=>v(o,"shotsTotal")],"Assists":[o=>v(o,"assists","goalAssists"),0.5],"Saves":[o=>v(o,"saves")],"Power Play Points":[o=>v(o,"powerPlayGoals"),0.5],
  "Hits":[o=>v(o,"hits"),0.5],"Total Bases":[o=>v(o,"totalBases"),0.5],"HR (1+)":[o=>v(o,"homeRuns"),0.5],"Home Runs":[o=>v(o,"homeRuns"),0.5],"Hits + Runs + RBIs":[o=>v(o,"hits","runs","RBIs")],"RBIs":[o=>v(o,"RBIs"),0.5],"Runs":[o=>v(o,"runs"),0.5],"Strikeouts":[o=>v(o,"strikeouts")],"Singles Hit":[o=>v(o,"hits"),0.5],
- "Shots":[o=>v(o,"totalShots")],"Shots on Target":[o=>v(o,"shotsOnTarget"),0.5]};
+ "Shots":[o=>v(o,"totalShots")],"Anytime Assist":[o=>v(o,"goalAssists"),0.5],"1+ Shots on Target":[o=>v(o,"shotsOnTarget"),0.5],"2+ Shots":[o=>v(o,"totalShots"),1.5],"Shots on Target":[o=>v(o,"shotsOnTarget"),0.5]};
 function line(sp,o){const c=[];
  if(sp=="nhl"){if("saves" in o&&!("goals" in o))return `${o.saves} SV · ${o.goalsAgainst||0} GA`;return `${o.goals||0}G ${o.assists||0}A · ${o.shotsTotal||0} SOG`}
  if(sp=="mlb"){if("hits" in o)c.push(`${o.hits}-${o.atBats||0}`+(o.homeRuns?` · ${o.homeRuns} HR`:"")+(o.RBIs?` · ${o.RBIs} RBI`:"")+(o.runs?` · ${o.runs} R`:"")+(o.totalBases?` · ${o.totalBases} TB`:""));if("strikeouts" in o)c.push(`${o.ip||0} IP · ${o.strikeouts} K · ${o.earnedRuns||0} ER`);return c.join(" · ")}
