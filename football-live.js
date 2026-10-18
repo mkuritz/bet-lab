@@ -5,8 +5,8 @@
 (function(){if(window.FL)return;
 const U="https://betlab.sportslabshq.com/data/football_live.json";
 const st=document.createElement("style");st.textContent=`.fl{display:inline-block;font:800 10.5px/1.4 system-ui,sans-serif;border-radius:5px;padding:1px 6px;margin-left:6px;vertical-align:1px;white-space:nowrap}.fl:empty{display:none}.fl.lv{background:#facc1522;color:#facc15;border:1px solid #facc1555}.fl.w{background:#16a34a;color:#fff}.fl.l{background:#dc262633;color:#f87171;border:1px solid #f8717166}.fl.v{background:#ffffff14;color:#9aa4b8}.fls{display:block;color:#8b97b0;font:500 11.5px/1.35 system-ui,sans-serif;margin-top:1px}.fls:empty{display:none}`;document.head.appendChild(st);
-let C={},AT=0;
-async function loadAll(){if(Date.now()-AT<60e3)return;AT=Date.now();try{const j=await (await fetch(U+"?t="+Date.now())).json();C=j.games||{};for(const g in C){const o=C[g];o.roster=o.roster?Object.fromEntries(o.roster.map(a=>[a,{dnp:(o.dnp||[]).includes(a)}])):null}}catch(e){}}
+let C={},AT=0,LP=null;
+function loadAll(){if(LP&&Date.now()-AT<60e3)return LP;AT=Date.now();return LP=fetch(U+"?t="+Date.now()).then(r=>r.json()).then(j=>{C=j.games||{};for(const g in C){const o=C[g];o.roster=o.roster?Object.fromEntries(o.roster.map(a=>[a,{dnp:(o.dnp||[]).includes(a)}])):null}}).catch(()=>{})}
 const n=x=>Math.round(x*10)/10,TDK=["rushingTouchdowns","receivingTouchdowns","kickReturnTouchdowns","puntReturnTouchdowns","fumbleRecoveryTouchdowns"];
 function offLine(b,extra){const p=[];if(extra)p.push(extra);if(b.receptions||b.receivingTargets)p.push(`${b.receptions||0} rec · ${b.receivingTargets||0} tgt · ${b.receivingYards||0} yds`);if(b.rushingAttempts)p.push(`${b.rushingAttempts} att · ${b.rushingYards||0} rush yds`);const td=TDK.reduce((s,k)=>s+(b[k]||0),0);if(td)p.push(td+" TD");return p.join(" · ")}
 const DEF={totalTackles:"tkl",soloTackles:"solo",sacks:"sacks",interceptions:"INT"};

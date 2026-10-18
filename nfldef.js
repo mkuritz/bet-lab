@@ -1,4 +1,4 @@
-window.FLready=window.FLready||new Promise(r=>{if(window.FL)return r();const s=document.createElement("script");s.src="https://betlab.sportslabshq.com/football-live.js?v=1";s.onload=r;s.onerror=r;document.head.appendChild(s)});
+window.FLready=window.FLready||new Promise(r=>{if(window.FL)return r();const s=document.createElement("script");s.src="https://betlab.sportslabshq.com/football-live.js?v=2";s.onload=r;s.onerror=r;document.head.appendChild(s)});
 /* NFL defensive props renderer (Bet Lab nfl.html + NFL Hub defense-props.html). Data: betlab data/nfl_def.json */
 window.renderNflDef=function(el,opt){opt=opt||{};const U="https://betlab.sportslabshq.com/data/nfl_def.json",
 esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])),am=p=>p==null?"":p>0?"+"+p:""+p,
