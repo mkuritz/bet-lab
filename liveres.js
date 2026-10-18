@@ -29,8 +29,8 @@ function find(sp,id,name){if(!S)return null;let p=id&&S.p[sp+"|"+id];if(!p&&name
 window.LR={
  // returns HTML (or "" when the player's game hasn't started)
  html(sp,id,market,ln,name,side,st){const p=find(sp,id,name);if(!p)return"";const g=S.g[sp+"|"+p[0]];if(!g||(g[0]!="in"&&g[0]!="post"))return"";
-  if(st&&new Date(st)>Date.now())return"";   // pick's own match not started: never show another match's line
-  if(g[6]){const gs=new Date(g[6]).getTime();if(st?Math.abs(gs-new Date(st))>3*3600e3:Date.now()-gs>20*3600e3)return""}   // match the player's event, not just the playerconst o=p[1],fin=g[0]=="post";
+  if(st&&new Date(st)>Date.now())return"";   /* pick's own match not started */
+  if(g[6]){const gs=new Date(g[6]).getTime();if(st?Math.abs(gs-new Date(st))>3*3600e3:Date.now()-gs>20*3600e3)return""}   /* match the player's event, not just the player */const o=p[1],fin=g[0]=="post";
   const m=M[market]||M[(market||"").replace(/ over.*$/i,"")];let mark="",cls="p",bar="";
   if(m){const L=ln!=null&&ln!==""&&!isNaN(+ln)?+ln:(m[1]??0.5),x=m[0](o),under=/under|no$/i.test(side||"");const hit=under?(x<=L):(x>L);
    if(under){cls=fin?(hit?"w":"l"):(x>L?"l":"p");mark=cls=="w"?"✓":cls=="l"?"✗":"●"}
