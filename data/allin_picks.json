@@ -981,7 +981,12 @@
    "kind": "straight",
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-6-dont-use-this-sportsbook-all-in-sports/",
    "timestamp": "31:21",
-   "episode_date": "2026-10-14"
+   "episode_date": "2026-10-14",
+   "result": "loss",
+   "final": {
+    "ATL": 23.0,
+    "CHI": 31.0
+   }
   },
   {
    "sport": "nfl",
@@ -998,7 +1003,12 @@
    "kind": "straight",
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-6-dont-use-this-sportsbook-all-in-sports/",
    "timestamp": "32:40",
-   "episode_date": "2026-10-14"
+   "episode_date": "2026-10-14",
+   "result": "win",
+   "final": {
+    "CLE": 13.0,
+    "BAL": 10.0
+   }
   },
   {
    "sport": "nfl",
@@ -1012,7 +1022,12 @@
    "kind": "straight",
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-6-dont-use-this-sportsbook-all-in-sports/",
    "timestamp": "33:18",
-   "episode_date": "2026-10-14"
+   "episode_date": "2026-10-14",
+   "result": "win",
+   "final": {
+    "CLE": 13.0,
+    "BAL": 10.0
+   }
   },
   {
    "sport": "nfl",
@@ -1026,7 +1041,12 @@
    "kind": "straight",
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-6-dont-use-this-sportsbook-all-in-sports/",
    "timestamp": "35:35",
-   "episode_date": "2026-10-14"
+   "episode_date": "2026-10-14",
+   "result": "win",
+   "final": {
+    "NYG": 27.0,
+    "NO": 34.0
+   }
   },
   {
    "sport": "nfl",
@@ -1482,18 +1502,18 @@
  "record": {
   "straight": {
    "overall": {
-    "w": 31,
-    "l": 15,
+    "w": 34,
+    "l": 16,
     "p": 2,
-    "units": 8.99,
-    "units_n": 30
+    "units": 8.9,
+    "units_n": 32
    },
    "nfl": {
-    "w": 29,
-    "l": 15,
+    "w": 32,
+    "l": 16,
     "p": 2,
-    "units": 8.99,
-    "units_n": 30
+    "units": 8.9,
+    "units_n": 32
    },
    "mlb": {
     "w": 2,
@@ -1541,18 +1561,18 @@
    }
   },
   "overall": {
-   "w": 31,
-   "l": 15,
+   "w": 34,
+   "l": 16,
    "p": 2,
-   "units": 8.99,
-   "units_n": 30
+   "units": 8.9,
+   "units_n": 32
   },
   "nfl": {
-   "w": 29,
-   "l": 15,
+   "w": 32,
+   "l": 16,
    "p": 2,
-   "units": 8.99,
-   "units_n": 30
+   "units": 8.9,
+   "units_n": 32
   },
   "mlb": {
    "w": 2,
@@ -1568,7 +1588,7 @@
    "units": null,
    "units_n": 0
   },
-  "pending": 9,
+  "pending": 5,
   "units_note": "1 unit per pick. Units count only picks with a stated price, or spreads/totals marked -110 (assumed standard price). Parlays without a stated price are W/L only."
  }
 }
