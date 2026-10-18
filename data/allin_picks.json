@@ -1063,7 +1063,12 @@
    "kind": "straight",
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-6-dont-use-this-sportsbook-all-in-sports/",
    "timestamp": "40:08",
-   "episode_date": "2026-10-14"
+   "episode_date": "2026-10-14",
+   "result": "loss",
+   "final": {
+    "KC": 22.0,
+    "LAC": 6.0
+   }
   },
   {
    "sport": "nfl",
@@ -1077,7 +1082,12 @@
    "kind": "straight",
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-6-dont-use-this-sportsbook-all-in-sports/",
    "timestamp": "40:11",
-   "episode_date": "2026-10-14"
+   "episode_date": "2026-10-14",
+   "result": "loss",
+   "final": {
+    "KC": 22.0,
+    "LAC": 6.0
+   }
   },
   {
    "sport": "nfl",
@@ -1094,7 +1104,12 @@
    "kind": "straight",
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-6-dont-use-this-sportsbook-all-in-sports/",
    "timestamp": "41:45",
-   "episode_date": "2026-10-14"
+   "episode_date": "2026-10-14",
+   "result": "win",
+   "final": {
+    "LV": 30.0,
+    "BUF": 33.0
+   }
   },
   {
    "sport": "nfl",
@@ -1502,18 +1517,18 @@
  "record": {
   "straight": {
    "overall": {
-    "w": 34,
-    "l": 16,
+    "w": 35,
+    "l": 18,
     "p": 2,
-    "units": 8.9,
-    "units_n": 32
+    "units": 8.81,
+    "units_n": 34
    },
    "nfl": {
-    "w": 32,
-    "l": 16,
+    "w": 33,
+    "l": 18,
     "p": 2,
-    "units": 8.9,
-    "units_n": 32
+    "units": 8.81,
+    "units_n": 34
    },
    "mlb": {
     "w": 2,
@@ -1561,18 +1576,18 @@
    }
   },
   "overall": {
-   "w": 34,
-   "l": 16,
+   "w": 35,
+   "l": 18,
    "p": 2,
-   "units": 8.9,
-   "units_n": 32
+   "units": 8.81,
+   "units_n": 34
   },
   "nfl": {
-   "w": 32,
-   "l": 16,
+   "w": 33,
+   "l": 18,
    "p": 2,
-   "units": 8.9,
-   "units_n": 32
+   "units": 8.81,
+   "units_n": 34
   },
   "mlb": {
    "w": 2,
@@ -1588,7 +1603,7 @@
    "units": null,
    "units_n": 0
   },
-  "pending": 5,
+  "pending": 2,
   "units_note": "1 unit per pick. Units count only picks with a stated price, or spreads/totals marked -110 (assumed standard price). Parlays without a stated price are W/L only."
  }
 }
