@@ -36,7 +36,7 @@ async function render(el){const SP=el.dataset.sport||"";if(SP==="analyst"){el.hi
   if(ONLY.has(SP)){el.innerHTML=h;return}
   h+=`${hits.length?`<h3>✅ Yesterday's hits</h3>`:""}<div class="grid">`+hits.map(x=>`<div class="c win"><b>${e(x.t)}</b><small>${e(x.s)}</small><br><small>${e(x.lab)}${x.d?" · "+e(x.d):""}</small></div>`).join("")+`</div>`;
   const o=stats&&stats.official;if(o&&o.n)h+=`<h3>📈 Official record</h3><div class="grid"><div class="c"><span class="big">${o.wins}-${o.losses}</span><b>Official Recommended record</b><small>${o.n} graded</small></div></div>`;   // only present when public_flags.show_overall_record is on
-  const SPS=new Set(top.map(([k])=>L[k].sport).concat(hits.length&&mlbHits.length?["mlb"]:[]));const srcs=[...SPS].map(s=>s==="mlb"?"MLB Stats API":s==="nhl"?"NHL stats feed":"ESPN box scores");
+  const SPS=new Set(top.map(([k])=>L[k].sport).concat(hits.length&&mlbHits.length?["mlb"]:[]));const srcs=[...SPS].map(s=>"official box scores");
   h+=`<div class="sub" style="margin-top:10px">${srcs.length?"Results from "+[...new Set(srcs)].join(" and ")+". ":""} Not betting advice. 21+. Problem? 1-800-GAMBLER.</div>`;
   el.innerHTML=h;
 }

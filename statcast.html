@@ -13,18 +13,18 @@ input{background:#0e1428;border:1px solid var(--line);color:var(--tx);border-rad
 </style><link rel="stylesheet" href="nav.css"><script src="https://sportslabshq.com/sl/sl.js?v=7" defer></script>
 </head><body data-src="statcast_mlb"><div class="w">
 <div class="top"><a href="./">← Back to app</a><span class="mu" id="gen"></span></div>
-<h1 id="ttl">Data sources &amp; cross-check</h1><p class="mu" id="intro">Every source we pull, whether it worked on the last refresh, and where independent sources agree or disagree.</p>
-<div class="kp" id="kp"></div><h2>Sources</h2><div class="card"><table id="src"></table></div><div id="tabs"></div>
-<p class="mu" style="margin-top:30px">Sources are free and public. Each is optional: if one fails, the app keeps the last good data and marks it here. Disagreement flags are for your judgment, not automatic changes to projections.</p></div>
+<h1 id="ttl">Model cross-check</h1><p class="mu" id="intro">Where our numbers agree or disagree with independent market and stat reads.</p>
+<div class="kp" id="kp"></div><table id="src" style="display:none"></table><div id="tabs"></div>
+<p class="mu" style="margin-top:30px">If an input fails, the app keeps the last good data. Disagreement flags are for your judgment, not automatic changes to projections.</p></div>
 <script>
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const pill=s=>`<span class="pill ${s==='ok'||s==='agree'?'ok':s==='failed'||s==='blocked'||s==='disagree'?'bad':'warn'}">${esc(s)}</span>`;
 fetch('data/'+(document.body.dataset.src||'xcheck')+'.json?'+Date.now()).then(r=>r.json()).then(d=>{
  if(d.title)document.getElementById('ttl').textContent=d.title;
  document.getElementById('gen').textContent='Updated '+new Date(d.generated).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})+' ET';
- const bad=(d.sources||[]).filter(s=>s.status!=='ok');if(bad.length){const b=document.createElement('div');b.style.cssText='background:#ef444422;border:1px solid #ef4444;color:#fecaca;border-radius:10px;padding:10px 12px;margin:10px 0;font-weight:600';b.textContent=`${bad.length} source${bad.length>1?'s':''} failed on the last refresh: ${bad.map(s=>s.name).join(', ')}. Tables using ${bad.length>1?'them':'it'} show the previous good data and are marked.`;document.getElementById('kp').before(b)}
+ const bad=(d.sources||[]).filter(s=>s.status!=='ok');if(bad.length){const b=document.createElement('div');b.style.cssText='background:#ef444422;border:1px solid #ef4444;color:#fecaca;border-radius:10px;padding:10px 12px;margin:10px 0;font-weight:600';b.textContent=`${bad.length} input${bad.length>1?'s':''} failed on the last refresh. Tables using ${bad.length>1?'them':'it'} show the previous good data and are marked.`;document.getElementById('kp').before(b)}
  document.getElementById('kp').innerHTML=(d.summary||[]).map(k=>`<div><span class="mu">${esc(k[0])}</span><b>${esc(k[1])}</b><span class="mu">${esc(k[2]||'')}</span></div>`).join('');
- document.getElementById('src').innerHTML='<tr><th>Source</th><th>Status</th><th>Rows</th><th>Used for</th></tr>'+d.sources.map(s=>`<tr><td>${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>`:esc(s.name)}${s.new?' <span class="pill ok">new</span>':''}</td><td>${pill(s.status)}${s.err?` <span class="mu">${esc(s.err)}</span>`:''}</td><td class="n">${s.rows??''}</td><td style="white-space:normal">${esc(s.what)}</td></tr>`).join('');
+ document.getElementById('src').innerHTML='<tr><th>Source</th><th>Status</th><th>Rows</th><th>Used for</th></tr>'+(d.sources||[]).map(s=>`<tr><td>${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>`:esc(s.name)}${s.new?' <span class="pill ok">new</span>':''}</td><td>${pill(s.status)}${s.err?` <span class="mu">${esc(s.err)}</span>`:''}</td><td class="n">${s.rows??''}</td><td style="white-space:normal">${esc(s.what)}</td></tr>`).join('');
  document.getElementById('tabs').innerHTML=(d.tables||[]).map((t,i)=>`<h2>${esc(t.title)}</h2>${t.note?`<p class="mu">${esc(t.note)}</p>`:''}<div class="card"><input placeholder="Filter…" data-f="${i}"><table data-t="${i}"></table></div>`).join('');
  (d.tables||[]).forEach((t,i)=>{let sk=null,asc=false,q='';const el=document.querySelector(`[data-t="${i}"]`);
   const draw=()=>{let rows=t.rows.filter(r=>!q||r.join(' ').toLowerCase().includes(q));if(sk!=null)rows=[...rows].sort((a,b)=>{const x=a[sk],y=b[sk];const c=(typeof x==='number'&&typeof y==='number')?x-y:String(x).localeCompare(String(y));return asc?c:-c});

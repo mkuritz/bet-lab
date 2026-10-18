@@ -46,7 +46,7 @@ async function poll(){if(S.busy)return;S.busy=true;clearTimeout(S.timer);
     if(S.gm[k].state!="pre"){S.box[k]=parseBox(sp,d);if(window.LiveEv)LiveEv.ingest("ls|"+k,sp,d)}}catch(e){}}));
   S.at=new Date();S.err=null}catch(e){S.err=String(e.message||e)}
  S.busy=false;const live=Object.values(S.gm).some(g=>g.state=="in");S.timer=setTimeout(()=>{if(window.view=="lslips"||(typeof view!="undefined"&&view=="lslips"))poll()},live?30000:5*60000);draw()}
-function legState(l){const k=l.sport+"|"+l.game,g=S.gm[k];if(!g)return{st:"pre",html:`<span class="mut">${l.game?"waiting for ESPN":"no game id"}</span>`};
+function legState(l){const k=l.sport+"|"+l.game,g=S.gm[k];if(!g)return{st:"pre",html:`<span class="mut">${l.game?"waiting for box score":"no game id"}</span>`};
  if(g.state=="pre")return{st:"pre",html:`<span class="mut">${E(g.detail||"not started")}</span>`};
  const box=S.box[k]||{},p=box[l.aid];if(!l.stat||!l.stat.length)return{st:g.state=="post"?"unk":"live",html:`<span class="mut">${E(g.detail)} · no free live stat for this market</span>`};
  const cur=val(p,l.stat),isTD=l.line==null,hit=isTD?cur>=1:cur>l.line,fr=frac(l.sport,g),offd=l.sport=="soccer"&&p&&p._off;
@@ -60,15 +60,15 @@ function slipHtml(s){const L=s.legs.map(l=>({l,x:legState(l)}));const n=L.length
  return `<div class="bun lsb" style="padding:10px 0;border-top:1px solid var(--line,rgba(148,163,184,.2))"><div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><div><b>${s.title}</b><br><span class="mut" style="font-size:12px">${s.sub}</span></div><div>${status}</div></div>
  ${window.LiveEv?[...new Set(s.legs.map(l=>l.sport+"|"+l.game))].filter(k=>S.gm[k]&&S.gm[k].state!="pre").map(k=>{const g=S.gm[k],sp=k.split("|")[0],lg=s.legs.filter(l=>l.sport+"|"+l.game==k);return `<div style="margin-top:6px">${LiveEv.head(sp,g,"ls|"+k)}${LiveEv.panel("ls|"+k+"#"+(s.title+s.sub).length+lg.map(l=>l.aid).join(""),{ids:lg.map(l=>l.aid),names:lg.map(l=>l.player)})}</div>`}).join(""):""}
  ${L.map(({l,x})=>`<div class="lp" style="display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:8px;padding:6px 0;font-size:13px"><div><span class="pl">${E(l.player)}</span> <span class="pill" style="font-size:10px">${NAME[l.sport]||E(l.sport)}</span><br><span class="mut">${E(l.market)}${l.line!=null&&!/Anytime/.test(l.market)?" o"+l.line:""}</span></div><div>${x.html}${x.pct!=null?`<div class="pb"><i style="width:${x.pct}%"></i></div>`:""}</div></div>`).join("")}</div>`}
-function draw(){const el=document.getElementById("lslips");if(!el||el.hidden)return;if(!S.slips){el.innerHTML='<div class="card empty">Loading every slip and connecting to ESPN live box scores…</div>';return}
+function draw(){const el=document.getElementById("lslips");if(!el||el.hidden)return;if(!S.slips){el.innerHTML='<div class="card empty">Loading every slip and connecting to live box scores…</div>';return}
  const F=S.filter,ok=s=>F=="all"||(F=="live"?s._st=="live":F=="pre"?s._st=="pre":s._st=="won"||s._st=="lost");
  const tk=S.slips.filter(s=>s.kind=="taken"),rc=S.slips.filter(s=>s.kind=="rec");const th=tk.map(slipHtml),rh=rc.map(slipHtml);
  const tk2=tk.map((s,i)=>ok(s)?th[i]:"").join(""),rc2=rc.map((s,i)=>ok(s)?rh[i]:"").join("");
  el.innerHTML=`<div style="padding:0 20px 20px"><div class="kick">All sports · live slip feed</div><h2 style="margin:4px 0">🔴 Live</h2>
- <div class="mut" style="font-size:12px">Every slip you've taken plus today's Bet Lab recommended slips, soccer SGPs and logged parlays, across NFL, CFB, NHL, MLB, NBA and soccer. Leg stats come from ESPN's free box scores${S.at?` · updated ${etT(S.at)}`:""}; refreshes every 30s while games are live. Pace is straight-line, an estimate only.</div>
+ <div class="mut" style="font-size:12px">Every slip you've taken plus today's Bet Lab recommended slips, soccer SGPs and logged parlays, across NFL, CFB, NHL, MLB, NBA and soccer. Leg stats come from live box scores${S.at?` · updated ${etT(S.at)}`:""}; refreshes every 30s while games are live. Pace is straight-line, an estimate only.</div>
  <div class="chips" style="margin:10px 0">${[["all","All"],["live","Live"],["pre","Not started"],["done","Settled"]].map(([k,t])=>`<button data-lsf="${k}" class="${F==k?"on":""}">${t}</button>`).join("")}</div>
  <div class="card" data-sl-public style="margin-bottom:12px"><h3>My taken slips</h3>${tk2||`<div class="mut">${tk.length?"No taken slips in this filter.":"No open taken slips. Mark a slip as taken and it shows up here live."}</div>`}</div>
- <div class="card"><h3>Bet Lab recommended slips · today</h3>${rc2||'<div class="mut">No recommended slips in this filter.</div>'}<div class="mut" style="font-size:11px;margin-top:6px">Gaps: markets without a free box-score stat (pitcher strikeouts, outs, hits allowed, tackles) show the game status only. MLB doubles/triples aren't in ESPN's live box. Not betting advice.</div></div></div>`;
+ <div class="card"><h3>Bet Lab recommended slips · today</h3>${rc2||'<div class="mut">No recommended slips in this filter.</div>'}<div class="mut" style="font-size:11px;margin-top:6px">Gaps: markets without a free box-score stat (pitcher strikeouts, outs, hits allowed, tackles) show the game status only. MLB doubles/triples aren't in the live box score. Not betting advice.</div></div></div>`;
  el.querySelectorAll("[data-lsf]").forEach(b=>b.onclick=()=>{S.filter=b.dataset.lsf;draw()})}
 window.LiveSlips={view(){draw();poll()},state:S};
 })();
