@@ -30,7 +30,7 @@ fetch("data/overnight.json?t="+Date.now()).then(r=>r.json()).then(O=>{
   if(!G[k]&&!c.length&&!u.length&&!m.length)continue;
   h+=`<div class="card"><div class="hd"><h2>${lab}</h2></div><div class="sub2">🎯 Called it</div>`;
   if(m.length)h+=`<div class="ml">${m.map(x=>`<span>${esc(x.label.replace("NHL Most likely · ","Top "+x.of+" "))} <b>${x.hit}/${x.of}</b></span>`).join("")}</div>`;
-  h+=c.length?c.map(r=>row2(r,`<span class="us">Us ${pc(r.p)}</span>`)).join(""):`<div class="none">—</div>`;
+  h+=c.length?c.map(r=>row2(r,r.lab?`<span class="us">${esc(r.lab)}</span>`:`<span class="us">Us ${pc(r.p)}</span>`)).join(""):`<div class="none">—</div>`;
   if(u.length)h+=`<div class="sub2" style="margin-top:8px">📉 Underdog</div>`+u.map(r=>row2(r,`<span class="bk">Book ${pc(r.imp)}</span> · <span class="us">Us ${pc(r.p)}</span>`)).join("");
   h+=`</div>`}
  $("out").innerHTML=h||'<div class="none">No graded picks last night.</div>'}).catch(()=>{$("out").innerHTML='<div class="none">Unavailable right now.</div>'});
