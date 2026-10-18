@@ -1,0 +1,15 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NFL Game Day · Bet Lab</title>
+<style>:root{--bg:#0b0f17;--panel:#121826;--line:#243049;--txt:#e6ebf5;--mut:#8b97b0;--acc:#53e3a6;--acc2:#3fa9ff;--bad:#ff5d6c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font:14px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}a{color:var(--acc2)}
+.w{max-width:980px;margin:0 auto;padding:16px}.logo{font-weight:800;font-size:20px;color:var(--txt);text-decoration:none}.logo b{color:var(--acc)}
+h1{margin:6px 0 2px;font-size:22px}.mut{color:var(--mut);font-size:12px}.tabs{display:flex;gap:6px;margin:10px 0}.tabs button{background:var(--panel);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:5px 10px;cursor:pointer;font-weight:700}.tabs button.on{background:var(--acc);color:#06120c;border-color:var(--acc)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:4px 12px}
+.r{display:grid;grid-template-columns:1.4fr 1fr 70px 1fr 90px;gap:8px;align-items:center;padding:8px 0;border-top:1px solid var(--line);font-size:13px}.r:first-child{border-top:0}
+.lh{color:var(--mut);font-size:10px;text-transform:uppercase;font-weight:700}.ln{font-weight:800;color:var(--acc)}.l5{font-variant-numeric:tabular-nums;color:var(--mut)}.l5 b{color:var(--txt)}
+.pr{text-align:right;font-variant-numeric:tabular-nums}.pr small{display:block;color:var(--mut)}.lv{font-size:11px;font-weight:800}.ok{color:var(--acc)}.no{color:var(--bad)}
+@media(max-width:640px){.r{grid-template-columns:1fr auto;row-gap:2px}.r .g,.r .l5{grid-column:1/3;font-size:12px}.lh{display:none}}
+</style><link rel="stylesheet" href="nav.css"><script src="https://sportslabshq.com/sl/sl.js?v=7" defer></script></head>
+<body><div class="w"><a class="logo" href="./">Bet <b>Lab</b></a>
+<h1>🏈 NFL Game Day</h1><div class="mut">A straight-up winner and the top player props for every NFL game today, by window.</div><div id="nc" style="margin-top:10px"><div class="mut">Loading…</div></div></div>
+<script src="nflcard.js"></script><script>renderNflCard(document.getElementById("nc"))</script><script src="nav.js"></script></body></html>
