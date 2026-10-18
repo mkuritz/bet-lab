@@ -12,23 +12,34 @@ h1{margin:6px 0 2px;font-size:22px}.mut{color:var(--mut);font-size:12px}.tabs{di
 </style><link rel="stylesheet" href="nav.css"><script src="https://sportslabshq.com/sl/sl.js?v=7" defer></script></head>
 <body><div class="w"><a class="logo" href="./">Bet <b>Lab</b></a>
 <h1>🔥 Perfect Streaks</h1><div class="mut">Low-hurdle alt lines each player has hit in <b>every</b> 2026 game (4+ games), today's verified starters only. Sorted by cushion: how far his worst game cleared the line. A streak, not a guarantee.</div>
-<div class="tabs" id="tabs"></div><div class="card" id="out"><div class="mut" style="padding:10px 0">Loading…</div></div>
+<div class="tabs" id="tabs"></div><div id="stars"></div><div class="card" id="out"><div class="mut" style="padding:10px 0">Loading…</div></div>
 <div class="mut" style="margin:14px 0">Prices: best alt price already in our feed, else "no price". Live checks update after kickoff. Not betting advice. 21+ · 1-800-GAMBLER.</div></div>
 <script>
 const $=id=>document.getElementById(id),esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const LG={nfl:"football/nfl",nhl:"hockey/nhl",mlb:"baseball/mlb"},EM={nfl:"🏈 NFL",nhl:"🏒 NHL",mlb:"⚾ MLB"},am=p=>p>0?"+"+p:p;
+const LG={nfl:"football/nfl",nhl:"hockey/nhl",mlb:"baseball/mlb"},EM={nfl:"🏈 NFL",nhl:"🏒 NHL",mlb:"⚾ MLB",soccer:"⚽ Soccer"},SK={shots:"totalShots",sot:"shotsOnTarget",fouls:"foulsCommitted"},am=p=>p>0?"+"+p:p;
 let D=[],sp=null,LIVE={};
 const tm=t=>new Date(t).toLocaleString("en-US",{weekday:"short",hour:"numeric",minute:"2-digit",timeZone:"America/New_York"})+" ET";
-function draw(){const R=D.filter(r=>r.sport==sp);
+let W=null,WS="gapg";
+const WC=[["player","Player"],["apps","Apps"],["g","G"],["a","A"],["gpg","G/app"],["gapg","G+A/app"],["sotpg","SOT/app"],["braces","Braces"],["hats","Hat tricks"],["gc2","2+ G+A"],["a2","2+ A"]];
+function stars(){if(sp!="soccer"||!W){$("stars").innerHTML="";return}const R=W.rows.slice().sort((a,b)=>WS=="player"?a.player.localeCompare(b.player):(b[WS]-a[WS]));
+ $("stars").innerHTML=`<div class="card" style="margin-bottom:12px;overflow-x:auto"><div style="padding:8px 0 4px;font-weight:800">⭐ Star Watchlist <span class="mut" style="font-weight:500">core + auto-added on 2026-27 pace · tap a column to sort</span></div>
+ <table style="width:100%;border-collapse:collapse;font-size:12px"><tr>${WC.map(([k,l])=>`<th data-k="${k}" style="text-align:${k=="player"?"left":"right"};color:${k==WS?"var(--txt)":"var(--mut)"};cursor:pointer;padding:4px;font-size:10px;text-transform:uppercase">${l}</th>`).join("")}<th style="text-align:left;color:var(--mut);font-size:10px;padding:4px">NEXT · STATUS</th><th style="text-align:left;color:var(--mut);font-size:10px;padding:4px">LAST 5 (G/A)</th><th style="text-align:right;color:var(--mut);font-size:10px;padding:4px">ATG</th></tr>
+ ${R.map(r=>`<tr style="border-top:1px solid var(--line)">${WC.map(([k])=>`<td style="padding:5px 4px;text-align:${k=="player"?"left":"right"}">${k=="player"?`<b>${esc(r.player)}</b>${r.core?" ⭐":""} <span class="mut">${esc(r.club)}</span>`:r[k]}</td>`).join("")}<td style="padding:5px 4px">${r.next?`${esc(r.next.opp)} · ${tm(r.next.time)}<br><span class="${r.today?"ok":"mut"}" style="font-weight:700">${r.today?"Playing today · ":""}${esc(r.lineup||"")}</span>`:'<span class="mut">no match in 10 days</span>'}</td><td style="padding:5px 4px" class="l5">${r.l5.map(x=>x[1]+"/"+x[2]).join(" ")}</td><td style="padding:5px 4px;text-align:right">${r.price!=null?am(r.price):'<span class="mut">no price</span>'}</td></tr>`).join("")}</table>
+ <div class="mut" style="padding:6px 0">${esc(W.criteria.note)}. Auto-add: ${W.criteria.min_apps}+ apps, ${W.criteria.min_starts}+ starts, ${W.criteria.goals_per_app}+ goals/app, ${W.criteria.ga_per_app}+ G+A/app, ${W.criteria.sot_per_app}+ SOT/app.</div></div>`;
+ $("stars").querySelectorAll("th[data-k]").forEach(t=>t.onclick=()=>{WS=t.dataset.k;stars()})}
+fetch("data/star_watch.json?t="+Date.now()).then(r=>r.json()).then(j=>{W=j;stars()}).catch(()=>{});
+function draw(){stars();const R=D.filter(r=>r.sport==sp);
  $("out").innerHTML=R.length?`<div class="r lh"><span>Player</span><span class="g">Game</span><span>Line</span><span class="l5">Streak · last 5</span><span class="pr">Best price</span></div>`+R.map(r=>{
-  const lv=LIVE[r.sport+r.game]?.[r.aid]?.[r.stat],st=LIVE[r.sport+r.game]?.state;
+  const lv=LIVE[r.sport+r.game]?.[r.aid]?.[SK[r.stat]&&r.sport=="soccer"?SK[r.stat]:r.stat],st=LIVE[r.sport+r.game]?.state;
   const live=lv==null?"":`<div class="lv ${lv>=r.line?"ok":st=="post"?"no":""}">${lv>=r.line?"✅":st=="post"?"❌":"⏱"} ${lv} now</div>`;
-  return `<div class="r"><span><b>${esc(r.player)}</b> <span class="mut">${esc(r.pos||"")}</span>${live}</span><span class="g mut">${esc(r.team)} ${esc(r.opp)} · ${tm(r.time)}</span><span class="ln">${r.line}+</span><span class="l5"><b>${r.n}/${r.n}</b> ${esc(r.label)} · ${r.l5.join(", ")}</span><span class="pr">${r.price!=null?`<b>${am(r.price)}</b><small>${esc(r.book)}</small>`:'<span class="mut">no price</span>'}</span></div>`}).join(""):'<div class="mut" style="padding:10px 0">No perfect streaks on today\'s slate.</div>'}
+  return `<div class="r"><span><b>${esc(r.player)}</b> <span class="mut">${esc(r.pos||"")}${r.xi?" · "+esc(r.xi):""}</span>${live}</span><span class="g mut">${esc(r.team)} ${esc(r.opp)} · ${tm(r.time)}</span><span class="ln">${r.line}+</span><span class="l5"><b>${r.n}/${r.n}</b> ${esc(r.label)} · ${r.l5.join(", ")}</span><span class="pr">${r.price!=null?`<b>${am(r.price)}</b><small>${esc(r.book)}</small>`:'<span class="mut">no price</span>'}</span></div>`}).join(""):'<div class="mut" style="padding:10px 0">No perfect streaks on today\'s slate.</div>'}
 async function live(){const now=Date.now(),G={};for(const r of D)if(new Date(r.time)<=now&&now-new Date(r.time)<6*3600e3)G[r.sport+"|"+r.game]=1;
- for(const k of Object.keys(G)){const [s,g]=k.split("|");try{const j=await (await fetch(`https://site.api.espn.com/apis/site/v2/sports/${LG[s]}/summary?event=${g}`)).json();const M={state:j.header?.competitions?.[0]?.status?.type?.state};
+ for(const k of Object.keys(G)){const [s,g]=k.split("|");const lgp=s=="soccer"?"soccer/"+(D.find(r=>r.sport==s&&r.game==g)||{}).lg:LG[s];
+  try{const j=await (await fetch(`https://site.api.espn.com/apis/site/v2/sports/${lgp}/summary?event=${g}`)).json();const M={state:j.header?.competitions?.[0]?.status?.type?.state};
+  for(const t of j.rosters||[])for(const p of t.roster||[]){const id=p.athlete?.id;M[id]=M[id]||{};for(const x of p.stats||[])M[id][x.name]=x.value}
   for(const t of j.boxscore?.players||[])for(const grp of t.statistics||[])for(const a of grp.athletes||[]){const id=a.athlete?.id;M[id]=M[id]||{};(grp.keys||grp.labels||[]).forEach((key,i)=>{const v=parseFloat(a.stats?.[i]);if(!isNaN(v)&&M[id][key]==null)M[id][key]=v})}
   LIVE[s+g]=M}catch(e){}}draw()}
-fetch("data/perfect_streaks.json?t="+Date.now()).then(r=>r.json()).then(j=>{D=j.rows||[];const S=["nfl","nhl","mlb"].filter(s=>D.some(r=>r.sport==s));sp=S[0];
+fetch("data/perfect_streaks.json?t="+Date.now()).then(r=>r.json()).then(j=>{D=j.rows||[];const S=["nfl","soccer","nhl","mlb"].filter(s=>D.some(r=>r.sport==s));sp=S[0];
  $("tabs").innerHTML=S.map(s=>`<button data-s="${s}" class="${s==sp?"on":""}">${EM[s]} (${D.filter(r=>r.sport==s).length})</button>`).join("");
  $("tabs").onclick=e=>{if(e.target.dataset.s){sp=e.target.dataset.s;[...$("tabs").children].forEach(b=>b.classList.toggle("on",b.dataset.s==sp));draw()}};draw();live();setInterval(live,120000)});
 </script><script src="nav.js"></script></body></html>
