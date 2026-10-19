@@ -23,9 +23,9 @@ footer{color:var(--mut);font-size:12px;padding:16px 20px 30px;border-top:1px sol
 </style><link rel="stylesheet" href="nav.css"><script src="https://sportslabshq.com/sl/sl.js?v=7" defer></script>
 <script src="/sl-neutral.js" defer></script></head><body><header><div class="logo">🎯 Bet Lab <b>Results</b></div></header>
 <main>
-<p class="mut" style="margin-top:0">Every official pick is posted before the game starts.</p>
+<p class="mut" style="margin-top:0">Every official highlight is posted before the game starts.</p>
 <div class="kpis" id="k"></div>
-<h2>Today's picks</h2><div class="card" id="tp"><span class="mut">Loading…</span></div>
+<h2>Today's highlights</h2><div class="card" id="tp"><span class="mut">Loading…</span></div>
 <h2>✅ Yesterday's results</h2><div class="card" data-sl-public id="rr"><span class="mut">Loading…</span></div>
 </main>
 <footer>21+. Not betting advice. Gambling problem? Call 1-800-GAMBLER. · <a href="./index.html">Back to Bet Lab</a></footer>
@@ -35,6 +35,6 @@ const T=await fetch("data/todays_edge_v2.json?v="+Date.now()).then(r=>r.ok?r.jso
 const FL=await fetch("data/public_flags.json?v="+Date.now()).then(r=>r.ok?r.json():{}).catch(()=>({}));
 document.getElementById("k").innerHTML=FL.show_overall_record&&R.wins!=null?`<div class="kpi"><b>${R.wins}-${R.losses}</b><small>Official record</small></div>`:"";
 const P=(T.plays||[]).slice(0,5);
-document.getElementById("tp").innerHTML=P.length?P.map(p=>`<div style="display:flex;gap:8px;padding:7px 0;border-top:1px solid var(--line)"><span style="flex:1">${p.official?"🎯 ":""}${E(p.title)}</span><b>${A(p.price)}</b></div>`).join(""):'<span class="mut">No picks clear our bar yet today.</span>';
-document.getElementById("rr").innerHTML=(R.recent||[]).length?R.recent.map(r=>`<div style="padding:7px 0;border-top:1px solid var(--line)">${r.result=="win"?"✅":"❌"} ${E(r.title)} <span class="mut">${A(r.price)}</span></div>`).join(""):'<span class="mut">No official picks graded from yesterday.</span>';})();
+document.getElementById("tp").innerHTML=P.length?P.map(p=>`<div style="display:flex;gap:8px;padding:7px 0;border-top:1px solid var(--line)"><span style="flex:1">${p.official?"🎯 ":""}${E(p.title)}</span><b>${A(p.price)}</b></div>`).join(""):'<span class="mut">No highlights clear our bar yet today.</span>';
+document.getElementById("rr").innerHTML=(R.recent||[]).length?R.recent.map(r=>`<div style="padding:7px 0;border-top:1px solid var(--line)">${r.result=="win"?"✅":"❌"} ${E(r.title)} <span class="mut">${A(r.price)}</span></div>`).join(""):'<span class="mut">No official highlights graded from yesterday.</span>';})();
 </script><script src="nav.js?v=2"></script></body></html>

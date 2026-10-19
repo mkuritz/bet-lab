@@ -33,9 +33,9 @@ window.renderBbPx=function(el,sport,tries){const C=CFG[sport];if(!el||!C)return;
   let h=CSS+`<h3>${C.t}</h3><div class="bp-sub">Our probability for every posted player prop against the best available price. Picks clear our EV bar after exposure caps; the watchlist is close but not there.</div>`;
   if(sport=="ncaamb"&&!G.length&&d.season_start){h+=`<div class="card empty" style="margin:6px 0">College hoops season starts ${new Date(d.season_start+"T12:00:00").toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"})}. Priced props for top-100 programs show up here once books post lines.</div>`}
   else if(!G.length)h+=`<div class="bp-v">No games on today's slate.</div>`;
-  h+=bets.length?`<h4 style="margin:10px 0 4px">Picks (${bets.length})</h4>`+rowsTable(bets,"bet"):(G.length?`<div class="bp-v" style="margin:6px 0">No picks clear the bar${wait.length?" yet":" today"}.</div>`:"");
+  h+=bets.length?`<h4 style="margin:10px 0 4px">Highlights (${bets.length})</h4>`+rowsTable(bets,"bet"):(G.length?`<div class="bp-v" style="margin:6px 0">No highlights clear the bar${wait.length?" yet":" today"}.</div>`:"");
   if(wait.length)h+=`<div class="bp-v" style="font-size:12px;margin:6px 0">⏳ ${wait.length} game${wait.length>1?"s":""} not priced yet: prices post about 90 minutes before tip (${wait.slice(0,4).map(g=>esc(g.game)+" "+T(g.start)).join(" · ")}).</div>`;
-  if(leans.length)h+=`<h4 style="margin:14px 0 4px">👀 Watchlist (${leans.length})</h4><div class="bp-sub">Close to the bar. Not picks.</div>`+rowsTable(leans,"lean");
+  if(leans.length)h+=`<h4 style="margin:14px 0 4px">👀 Watchlist (${leans.length})</h4><div class="bp-sub">Close to the bar. Not highlights.</div>`+rowsTable(leans,"lean");
   h+=results(d.recent);
   h+=`<div class="bp-v" style="font-size:11px;margin-top:8px">Stakes on a $${Math.round(d.bankroll||1000).toLocaleString()} bankroll (1u = 1%), capped per bet, per game and in total. Experimental = market not yet validated out of sample, so it needs a bigger edge (4%). ${d.updated?"Updated "+T(d.updated)+".":""}</div>`;
   el.innerHTML=h}).catch(async e=>{const st=e&&e.status;

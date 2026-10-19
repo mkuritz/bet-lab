@@ -30,13 +30,13 @@ window.teCard=function(lite){if(!TE)return "";const all=TE.plays||[],sps=["nfl",
  const ev=p=>{const d=D(p.price);return p.ours!=null&&d?p.ours*(1+(d-1)*(1+B/100))-1:-9};const best=L.slice().sort((a,b)=>ev(b)-ev(a))[0];
  const live=(window.__blSport&&(window.GAMES||{})[window.__blSport]?(window.GAMES||{})[window.__blSport]:Object.values(window.GAMES||{}).flat()).filter(g=>g&&g.time&&(Date.now()-new Date(g.time))/36e5>0&&(Date.now()-new Date(g.time))/36e5<2.5).length;
  const sgp=(F=="all"||F=="soccer")?(TE.sgp||[])[0]:null,lop=(F=="all"||F=="soccer")?(TE.lopsided||[])[0]:null;
- return `<div class="card te" data-sl-teaser="1"><h3>⚡ Today's Edge</h3>${R.wins!=null&&R.wins+R.losses?`<div class="rec">Official picks <b>${R.wins}-${R.losses}</b></div>`:""}
+ return `<div class="card te" data-sl-teaser="1"><h3>⚡ Today's Edge</h3>${R.wins!=null&&R.wins+R.losses?`<div class="rec">Official highlights <b>${R.wins}-${R.losses}</b></div>`:""}
  
  ${lite?"":`<div class="chips" id="tef" style="margin:6px 0">${["all",...sps].map(k=>`<button data-tef="${k}" class="${k==F?"on":""}">${k=="all"?"All":SN[k]||k}</button>`).join("")}<span style="flex:1"></span>${[0,25,50].map(b=>`<button data-teb="${b}" class="${b==B?"on":""}" title="Profit boost you have">${b?b+"% boost":"No boost"}</button>`).join("")}</div>`}
  <div class="sec">Top plays</div>${top.length?top.map(p=>row(p)).join(""):'<div class="mut" style="padding:6px 0">${F=="all"?"No plays clear our bar right now.":"No "+(SN[F]||F)+" plays clear our bar right now."} We only list real edges.</div>'}
  ${!lite?likely():""}${best&&!lite?`<div class="sec">Best value${B?" with your "+B+"% boost":""}</div>${row(best,"VALUE")}`:""}
  ${sgp?`<div class="sec">Best SGP</div>${row(sgp,"SGP")}`:""}${lop?`<div class="sec">Lopsided matchup</div>${row(lop,"BLOWOUT")}`:""}
- ${live?`<div class="sec">Live</div><div class="r"><div class="r1" data-te-live="1"><span class="k">LIVE</span><span class="t">${live} game${live>1?"s":""} in progress · follow your picks live</span><span class="ed">Open ›</span></div></div>`:""}
+ ${live?`<div class="sec">Live</div><div class="r"><div class="r1" data-te-live="1"><span class="k">LIVE</span><span class="t">${live} game${live>1?"s":""} in progress · follow your highlights live</span><span class="ed">Open ›</span></div></div>`:""}
  ${lite?`<div style="margin-top:8px"><button class="lmore" data-zone="edge">See all of Today's Edge ›</button></div>`:""}<div class="mut" style="font-size:11px;margin-top:6px">Tap a play for details. 21+. Not betting advice.</div></div>`};
 window.teResults=function(T){const R=(T||{}).results;if(!R)return"";
  return `<div class="card"><h3>✅ Yesterday's results</h3>${R.wins!=null?`<div class="sub">Official record <b>${R.wins}-${R.losses}</b></div>`:""}${(R.recent||[]).map(r=>`<div style="padding:5px 0;border-top:1px solid var(--line)">${r.result=="win"?"✅":"❌"} ${E(r.title)} <span class="mut">${A(r.price)}</span></div>`).join("")}</div>`};
