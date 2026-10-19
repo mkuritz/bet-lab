@@ -20,6 +20,7 @@ function grade(o,q){const T=o.teams,score=()=>{const e=Object.entries(T),a=e.fin
  if(ks.some(k=>DEF[k]))sl=ks.map(k=>`${n(b[k]||0)} ${DEF[k]||k}`).join(" · ")+` vs ${L}`;
  else if(ks[0]=="passingYards")sl=offLine(b,`${b.completions||0}/${b.passingAttempts||0} · ${b.passingYards||0} pass yds vs ${L}`);
  else sl=offLine(b)+` · ${n(v)} vs ${L}`;
+ if(q.k=="un")return v>L?["l","✗ Miss",sl]:o.state=="post"?(v<L?["w","✓ Hit",sl]:["v","Push",sl]):["lv","LIVE",sl];
  return v>L?["w","✓ Hit",sl]:o.state=="post"?["l","✗ Miss",sl]:["lv","LIVE",sl]}
 const enc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 let tmr=null;
