@@ -14,8 +14,19 @@ function rowsTable(rs,kind){if(!rs.length)return"";const stake=kind=="bet";
   <td class="n"><b>${pc(p)}</b><div class="bp-v" style="font-size:11px">mkt ${pc(r.market_prob)}</div></td><td class="n hm">${am(fair)}</td><td class="n" style="color:#53e3a6">${r.ev!=null?(r.ev>0?"+":"")+(r.ev*100).toFixed(1)+"%":"—"}</td>${stake?`<td class="n">$${(r.stake||0).toFixed(2)}<div class="bp-v" style="font-size:11px">${((r.stake||0)/10).toFixed(2)}u</div></td>`:""}</tr>`}).join("")+`</table>`}
 function results(R){if(!R||!R.length)return"";const tag=r=>r.result=="win"?'<span class="bp-r bp-w">✓ Hit</span>':r.result=="loss"?'<span class="bp-r bp-l">✗ Miss</span>':r.result=="push"?'<span class="bp-r bp-v">Push</span>':r.result=="void"?'<span class="bp-r bp-v">Inactive · void</span>':(Date.now()>Date.parse(r.start_et)?'<span class="bp-live">LIVE</span>':'<span class="bp-v">Pending</span>');
  return `<h4 style="margin:14px 0 4px">Results</h4><table class="bp-t">`+R.map(r=>`<tr><td><b>${esc(r.player)}</b> <span class="bp-v">${T(r.start_et)}</span></td><td>${r.side=="over"?"Over":"Under"} ${esc(r.line)} ${esc(MK[r.market]||r.market)} · ${am(r.price)} ${esc(r.book_name||"")}</td><td class="n">${r.actual!=null?"<b>"+r.actual+"</b> · ":""}${tag(r)}</td></tr>`).join("")+`</table>`}
-window.renderBbPx=function(el,sport){const C=CFG[sport];if(!el||!C)return;el.innerHTML=CSS+`<h3>${C.t}</h3><div class="bp-sub">Loading…</div>`;
- SLGready.then(()=>window.slGated?slGated(C.f):Promise.reject({status:401})).then(d=>{
+/* Same entitlement check as NFL Game Day (nfl.html): shared Sports Labs tier from sl.js /me. */
+const paid=()=>!!window.__sl&&localStorage.getItem("sl_tier_bet-lab")==="paid"&&!document.documentElement.hasAttribute("data-sl-tier");
+const lock=C=>CSS+(window.slLockCard?slLockCard(C.t.replace("🏀 ","")+" is for Bet Lab members","Every posted player prop priced: our probability, fair odds, EV and a capped stake, plus a watchlist and results."):`<h3>${C.t}</h3><div class="bp-sub">Sign in as a Bet Lab member to see priced props.</div>`);
+const pub=f=>fetch("data/"+f+"?v="+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null);
+async function emptyState(C,sport){let m;if(sport=="nba"){const P=await pub("nba_preseason.json"),t=P&&P.game1&&P.game1.first_tip;m=t&&Date.parse(t)>Date.now()?`First NBA prices post about 90 minutes before tip, ${T(new Date(Date.parse(t)-90*6e4).toISOString())}.`:"Prices post about 90 minutes before each tip."}
+ else{const M=await pub("ncaamb_meta.json"),d=M&&M.season_start;m=d?`College hoops season starts ${new Date(d+"T12:00:00").toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"})}. Priced props for top-100 programs show up here about 90 minutes before tip once books post lines.`:"Priced props show up here about 90 minutes before tip."}
+ return CSS+`<h3>${C.t}</h3><div class="bp-sub">Our probability for every posted player prop against the best available price.</div><div class="card empty" style="margin:6px 0">⏳ ${m}</div>`}
+const MOUNT=new Map();let OBS=0;
+function watch(){if(OBS)return;OBS=1;const re=()=>MOUNT.forEach((sp,el)=>{if(el.isConnected&&paid()&&el.dataset.bpMode!="member")renderBbPx(el,sp)});new MutationObserver(re).observe(document.documentElement,{attributes:true,attributeFilter:["data-sl-tier"]});addEventListener("load",re);setInterval(re,1500)}
+window.renderBbPx=function(el,sport,tries){const C=CFG[sport];if(!el||!C)return;MOUNT.set(el,sport);watch();
+ if(!paid()){el.dataset.bpMode="lock";el.innerHTML=lock(C);return}          // signed out / not entitled (re-renders once the tier resolves to paid)
+ el.dataset.bpMode="member";if(!tries)el.innerHTML=CSS+`<h3>${C.t}</h3><div class="bp-sub">Loading…</div>`;
+ SLGready.then(()=>window.slGated?slGated(C.f):Promise.reject({status:0})).then(d=>{
   const G=Object.values(d.games||{}).sort((a,b)=>(a.start||"").localeCompare(b.start||""));const all=G.flatMap(g=>(g.rows||[]).map(r=>Object.assign({game:g.game},r)));
   const bets=all.filter(r=>r.tier=="bet").sort((a,b)=>b.ev-a.ev),leans=all.filter(r=>r.tier=="lean").sort((a,b)=>b.ev-a.ev);
   const wait=G.filter(g=>!g.priced_at&&Date.now()<Date.parse(g.start));
@@ -27,5 +38,8 @@ window.renderBbPx=function(el,sport){const C=CFG[sport];if(!el||!C)return;el.inn
   if(leans.length)h+=`<h4 style="margin:14px 0 4px">👀 Watchlist (${leans.length})</h4><div class="bp-sub">Close to the bar. Not picks.</div>`+rowsTable(leans,"lean");
   h+=results(d.recent);
   h+=`<div class="bp-v" style="font-size:11px;margin-top:8px">Stakes on a $${Math.round(d.bankroll||1000).toLocaleString()} bankroll (1u = 1%), capped per bet, per game and in total. Experimental = market not yet validated out of sample, so it needs a bigger edge (4%). ${d.updated?"Updated "+T(d.updated)+".":""}</div>`;
-  el.innerHTML=h}).catch(e=>{el.innerHTML=CSS+(window.slLockCard?slLockCard(C.t.replace("🏀 ","")+" is for Bet Lab members","Every posted player prop priced: our probability, fair odds, EV and a capped stake, plus a watchlist and results."):`<h3>${C.t}</h3><div class="bp-sub">Sign in as a Bet Lab member to see priced props.</div>`)})};
+  el.innerHTML=h}).catch(async e=>{const st=e&&e.status;
+  if(st==404){el.innerHTML=await emptyState(C,sport);return}                          // member, nothing priced/uploaded yet
+  if((st==401||!st)&&(tries||0)<4){setTimeout(()=>renderBbPx(el,sport,(tries||0)+1),2000*((tries||0)+1));return}   // session still warming up
+  el.innerHTML=CSS+`<h3>${C.t}</h3><div class="bp-sub">Couldn't load priced props right now. Refresh in a moment.</div>`})};
 })();
