@@ -15,7 +15,7 @@ const pc=x=>(x*100).toFixed(1)+"%",sg=x=>(x>0?"+":"")+(x*100).toFixed(1)+"%";
 const today=new Date().toLocaleDateString("en-CA",{timeZone:"America/New_York"});
 const ONLY=new Set(["mlb","nhl","nba","soccer","cfb"]);let CACHE=null;
 async function render(el){const SP=el.dataset.sport||"";if(SP==="analyst"){el.hidden=true;el.innerHTML="";return}
-  CACHE=CACHE||Promise.all([j(BL+"edge_tiers.json"),j(BL+"edge_log.jsonl"),j(BL+"edge_grades.json"),j(BL+"edge_stats.json"),j(BL+"called_it.json"),j(ML+"called_it_mlb.json"),j(BL+"chat_calls.json")]);const [tiers,log,grades,stats,cBL,cML,cCH]=await CACHE;if((el.dataset.sport||"")!==SP)return;
+  CACHE=CACHE||Promise.all([j(BL+"edge_tiers.json"),j(BL+"edge_log.jsonl"),j(BL+"edge_grades.json"),j(BL+"edge_stats.json"),j(BL+"called_it.json"),j(ML+"called_it_mlb.json"),j(BL+"chat_calls.json"),j(ML+"slate.json")]);const [tiers,log,grades,stats,cBL,cML,cCH,mSl]=await CACHE;if((el.dataset.sport||"")!==SP)return;
   const L={};(log||[]).forEach(x=>L[x.id]=x);
   const YD=new Date(Date.now()-864e5).toLocaleDateString("en-CA",{timeZone:"America/New_York"});
   const mlbHits=(cML||[]).filter(c=>(c.date||"")>=YD).map(c=>({t:c.title,s:c.stat,p:c.pick,d:c.date,lab:"Official · posted pre-game"}));
@@ -23,7 +23,9 @@ async function render(el){const SP=el.dataset.sport||"";if(SP==="analyst"){el.hi
   const days=[...new Set(rec.map(([k,v])=>v.day||L[k].start.slice(0,10)))].sort();const day=days.includes(today)?today:days[days.length-1];
   const NOW=Date.now(),asOf=x=>{const m=/as of ([0-9T:+\-Z]+)/.exec(x.price_src||"");const t=Date.parse(m?m[1]:x.logged_at||"");return isNaN(t)?null:t};
   // Today's open picks only: not graded, not started, and the price is under 12 hours old.
-  const top=rec.filter(([k,v])=>day===today&&(v.day||L[k].start.slice(0,10))===day&&(!ONLY.has(SP)||L[k].sport===SP)&&!(grades||{})[k]&&Date.parse(L[k].start)>NOW&&asOf(L[k])&&NOW-asOf(L[k])<12*36e5).sort((a,b)=>(b[1].score||0)-(a[1].score||0)).slice(0,5);
+  // MLB picks must belong to a game on MLB Lab's phase-filtered slate (remaining postseason games only; none in the offseason).
+  const MPK=mSl&&Array.isArray(mSl.games)?new Set(mSl.games.map(g=>String(g.pk))):null,mlbOk=x=>!x.id.startsWith("mlb|")||!MPK||MPK.has(x.id.split("|")[3]);
+  const top=rec.filter(([k,v])=>mlbOk(L[k])&&day===today&&(v.day||L[k].start.slice(0,10))===day&&(!ONLY.has(SP)||L[k].sport===SP)&&!(grades||{})[k]&&Date.parse(L[k].start)>NOW&&asOf(L[k])&&NOW-asOf(L[k])<12*36e5).sort((a,b)=>(b[1].score||0)-(a[1].score||0)).slice(0,5);
   if(ONLY.has(SP)&&!top.length){el.hidden=true;el.innerHTML="";return}el.hidden=false;
   const hitT=new Set(mlbHits.map(h=>h.t.split(": ").pop()));
   let h=`<a href="https://betlab.sportslabshq.com/sharp.html" style="display:flex;justify-content:space-between;align-items:center;gap:10px;text-decoration:none;background:#53e3a614;border:1px solid #53e3a655;border-radius:12px;padding:10px 12px;margin-bottom:12px"><span><b style="color:#e6ebf5">💎 Sharp Picks</b><br><small style="color:#8b97b0">Our highest-conviction plays</small></span><span style="font-weight:800">Open →</span></a><h2>🎯 Sports Labs Recommended</h2><div class="sub">Our top picks, locked in before the game at a real market price. Updated ${stats&&!isNaN(Date.parse(stats.updated))?new Date(stats.updated).toLocaleString("en-US",{timeZone:"America/New_York",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})+" ET":""}</div>`;
