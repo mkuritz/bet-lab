@@ -9,9 +9,11 @@ on:
     paths: ["data/allin_picks.json"]
   workflow_dispatch:
 concurrency: { group: allin-grade, cancel-in-progress: false }
-permissions: { contents: write }
+permissions: {}   # least privilege by default; write scope granted per job below
 jobs:
   grade:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
