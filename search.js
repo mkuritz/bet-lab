@@ -85,7 +85,7 @@ function panel(x,r,props,g){var el=document.getElementById("slp-panel");if(!el||
   if(r.os)ins.push("🔥 Active "+r.os+"-game over streak.");else if(r.us>=2)ins.push(r.us+"-game under streak.");
   if(r.ven)ins.push((r.home?"Home":"Away")+" (tonight's venue): "+r.ven.h+"/"+r.ven.n+" over, avg "+r.ven.avg+".");
   if(r.dvp)ins.push(E(r.oa)+" ranks "+r.dvp.r+" of "+r.dvp.of+" vs "+E(r.pos)+(r.dvp.what?" ("+E(r.dvp.v)+" "+E(r.dvp.what)+")":"")+" (1 = softest)"+(r.dvp.tag?" · "+E(r.dvp.tag):"")+".");
-  if(r.u){var U=Object.keys(r.u).filter(function(k){return r.u[k]&&r.u[k].tr});U.forEach(function(k){var u=r.u[k];ins.push((u.label||({sn:"Snap %",tg:"Targets",ca:"Carries",min:"Minutes",toi:"TOI",pa:"Plate appearances",st:"Start %"})[k]||k)+" trending "+(u.tr>0?"up":"down")+": recent "+(u.l3!=null?u.l3:u.l5)+" vs season "+u.szn+".")})}
+  if(r.u){var U=Object.keys(r.u).filter(function(k){return r.u[k]&&r.u[k].tr});U.forEach(function(k){var u=r.u[k];ins.push(E(u.label||({sn:"Snap %",tg:"Targets",ca:"Carries",min:"Minutes",toi:"TOI",pa:"Plate appearances",st:"Start %"})[k]||k)+" trending "+(u.tr>0?"up":"down")+": recent "+E(u.l3!=null?u.l3:u.l5)+" vs season "+E(u.szn)+".")})}
   if(r.open!=null&&r.open!=r.line)ins.push("Line moved "+r.open+" → "+r.line+".");
   if(r.h2h)ins.push("Vs "+E(r.oa)+": "+r.h2h.h+"/"+r.h2h.n+" over"+(r.h2h.n<2?" (only "+r.h2h.n+" game)":"")+".");
   if(o&&o.edge>0)ins.push("Our chance "+Math.round(o.p*100)+"% vs book "+Math.round(o.ip*100)+"% at "+(o.best>0?"+":"")+o.best+" ("+E(o.book)+").");
@@ -135,7 +135,7 @@ function venue(x,g){if(["nfl","cfb","mlb"].indexOf(x.s)<0||!g)return;var el=docu
   fetch("https://geocoding-api.open-meteo.com/v1/search?count=1&country=US&name="+encodeURIComponent(ad.city)).then(function(r){return r.json()}).then(function(gc){var c=gc.results&&gc.results[0];if(!c)throw 0;
    return fetch("https://api.open-meteo.com/v1/forecast?latitude="+c.latitude+"&longitude="+c.longitude+"&hourly=temperature_2m,precipitation_probability,wind_speed_10m,wind_direction_10m,wind_gusts_10m&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=UTC&forecast_days=10")}).then(function(r){return r.json()}).then(function(f){
    var t=new Date(g.time).toISOString().slice(0,13),i=f.hourly.time.findIndex(function(z){return z.slice(0,13)==t});if(i<0){wx.innerHTML='<span class="mut">Forecast not out yet for kickoff.</span>';return}var H=f.hourly;
-   wx.innerHTML="🌤️ "+Math.round(H.temperature_2m[i])+"°F · wind "+Math.round(H.wind_speed_10m[i])+" mph "+WDIR[Math.round(H.wind_direction_10m[i]/45)%8]+" (gusts "+Math.round(H.wind_gusts_10m[i])+") · precip "+H.precipitation_probability[i]+'% <span class="mut">(forecast, game hour)</span>'}).catch(function(){wx.innerHTML=G.wx?'🌤️ '+Math.round(G.wx.temp)+"°F · wind "+Math.round(G.wx.wind)+" mph · rain "+(G.wx.pop||0)+'% <span class="mut">(forecast)</span>':""})}).catch(function(){})}
+   wx.innerHTML="🌤️ "+Math.round(H.temperature_2m[i])+"°F · wind "+Math.round(H.wind_speed_10m[i])+" mph "+WDIR[Math.round(H.wind_direction_10m[i]/45)%8]+" (gusts "+Math.round(H.wind_gusts_10m[i])+") · precip "+E(H.precipitation_probability[i])+'% <span class="mut">(forecast, game hour)</span>'}).catch(function(){wx.innerHTML=G.wx?'🌤️ '+Math.round(G.wx.temp)+"°F · wind "+Math.round(G.wx.wind)+" mph · rain "+E(G.wx.pop||0)+'% <span class="mut">(forecast)</span>':""})}).catch(function(){})}
 var CUR_PROPS=null;
 
 var LIVE_T=null,CUR=null;

@@ -8,6 +8,7 @@ const U="https://betlab.sportslabshq.com/data/live_stats.json";let S=null,T=0;
 const nm=s=>String(s||"").normalize("NFKD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/ jr\.?| iii| ii/g,"").replace(/[^a-z]/g,"");
 const css=`.lr{display:block;font:700 11.5px/1.35 system-ui,sans-serif;margin-top:2px;white-space:normal}.lr.w{color:#4ade80}.lr.l{color:#f87171}.lr.p{color:#facc15}.lr .b{display:block;height:3px;background:#ffffff1a;border-radius:2px;margin-top:2px;max-width:140px}.lr .b i{display:block;height:3px;border-radius:2px;background:currentColor}`;
 const st=document.createElement("style");st.textContent=css;document.head.appendChild(st);
+const H=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const v=(o,...k)=>k.reduce((s,x)=>s+(+o[x]||0),0);
 // market -> [value fn, default line (strictly greater than)]
 const M={"Anytime TD":[o=>v(o,"rushingTouchdowns","receivingTouchdowns"),0.5],"TD":[o=>v(o,"rushingTouchdowns","receivingTouchdowns"),0.5],
@@ -36,10 +37,10 @@ window.LR={
    if(under){cls=fin?(hit?"w":"l"):(x>L?"l":"p");mark=cls=="w"?"✓":cls=="l"?"✗":"●"}
    else{cls=hit?"w":fin?"l":"p";mark=hit?"✓":fin?"✗":"●";if(!hit&&!fin){const need=Math.floor(L)+1;bar=`<span class="b"><i style="width:${Math.min(100,Math.round(100*x/need))}%"></i></span>`}}}
   else mark=fin?"■":"●";
-  return `<span class="lr ${cls}">${mark} ${line(sp,o)} · ${g[1]}${bar}</span>`},
+  return `<span class="lr ${cls}">${mark} ${H(line(sp,o))} · ${H(g[1])}${bar}</span>`},
  async pull(){try{const r=await fetch(U+"?t="+Math.floor(Date.now()/60000));if(r.ok){S=await r.json();T=Date.now()}}catch(e){}},
  fill(root){if(!S)return;(root||document).querySelectorAll("[data-lr]").forEach(el=>{const [sp,id,mk,ln,name,side,st]=el.dataset.lr.split("|");const h=LR.html(sp,id,mk,ln,name,side,st);if(el._h!==h){el._h=h;el.innerHTML=h}})},
- tag(sp,id,market,ln,name,side,st){const e=s=>String(s??"").replace(/[|"<>&]/g,"");return `<span data-lr="${e(sp)}|${e(id)}|${e(market)}|${ln??""}|${e(name)}|${e(side)}|${e(st)}">${S?LR.html(sp,id,market,ln,name,side,st):""}</span>`},
+ tag(sp,id,market,ln,name,side,st){const e=s=>String(s??"").replace(/[|"<>&]/g,"");return `<span data-lr="${e(sp)}|${e(id)}|${e(market)}|${e(ln)}|${e(name)}|${e(side)}|${e(st)}">${S?LR.html(sp,id,market,ln,name,side,st):""}</span>`},
  get data(){return S}};
 const tick=async()=>{await LR.pull();LR.fill()};tick();setInterval(tick,60000);
 new MutationObserver(()=>{if(S){clearTimeout(LR._t);LR._t=setTimeout(()=>LR.fill(),50)}}).observe(document.documentElement,{childList:true,subtree:true});
