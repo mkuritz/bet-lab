@@ -174,7 +174,7 @@ function run(spec, D, opt) {
     casc.forEach(function (c) { (c.affected || []).forEach(function (a) { if (a.player !== l.player) return; var d = a.d_tg != null && Math.abs(a.d_tg) >= 0.3 ? (a.d_tg > 0 ? "+" : "") + a.d_tg + " tgt/g" : a.d_ca != null && Math.abs(a.d_ca) >= 1 ? (a.d_ca > 0 ? "+" : "") + a.d_ca + " car/g" : null; if (d) t.push({ kind: "CASCADE", text: (c.role || c.pos) + " " + c.player.split(" ").slice(-1)[0] + " out → " + d + " (" + (a.without && a.without.g || 0) + " g sample)", db: false }); }); });
     return t;
   }
-  all.forEach(function (l) { l.why = why(l); });
+  all.forEach(function (l) { l.why = why(l); if (opt.whyOut) opt.whyOut[l.id] = l.why; });
   var snapT = (D.prices && D.prices.as_of) || null, mt = spec.market_types;
   function stale(legs) {
     var r = [];
@@ -324,7 +324,7 @@ function refine(base, q, last) {
 function dayLabel(day, today, tom) { if (day === today) return "today"; if (day === tom) return "tomorrow"; var d = new Date(day + "T12:00:00Z"); return d.toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric", timeZone: "UTC" }); }
 function answer(spec, D, opt) {
   opt = opt || {}; var mt0 = spec.market_types[0];
-  if (["goalie", "arb", "injury", "games", "totals", "shots"].indexOf(mt0) >= 0 || (mt0 === "SGP" && spec.games.some(function (g) { return g.slot; }) && opt.test)) {
+  if (["goalie", "arb", "injury", "games", "totals", "shots"].indexOf(mt0) >= 0 || false) {
     var R0 = run(spec, D, opt); R0.notes = (R0.notes || []).filter(function (x) { return !/shot chart/i.test(x); }); R0.summary = mt0 === "SGP" ? spec.legs + "-leg " + SPN[spec.sport] + " same-game parlay · " + R0.games.join(", ") + " · ranked by edge" : SPN[spec.sport] + " " + mt0; R0.kind = mt0 === "SGP" ? "sgp" : "special"; R0.followups = followups(spec, R0, null); return R0;
   }
   var now = opt.now ? +new Date(opt.now) : Date.now(), sp = spec.sport, f = spec.filters || {};
@@ -334,7 +334,7 @@ function answer(spec, D, opt) {
   var wh = (spec.games.filter(function (g) { return g.when; })[0] || {}).when || (sp === "nfl" || sp === "cfb" ? "week" : "next"), roll = null, sel, slate;
   var noun = sp === "soccer" ? "matches" : "games", kick = sp === "soccer" || sp === "nfl" || sp === "cfb" ? "kicked off" : sp === "nhl" ? "started" : "tipped off";
   if (sp === "mlb") kick = "started";
-  if (spec.games.some(function (g) { return g.slot || g.team; }) || wh === "week") { sel = cand.filter(function (g) { return +new Date(g.time) < now + 8 * 864e5; }); slate = wh === "week" ? "this week" : "next game"; }
+  if (spec.games.some(function (g) { return g.slot || g.team; }) || wh === "week") { sel = cand.filter(function (g) { return +new Date(g.time) < now + 8 * 864e5; }); var slt = spec.games.filter(function (g) { return g.slot || g.team; })[0]; slate = slt ? (slt.slot || slt.team + " next game") : wh === "week" ? "this week" : "next game"; }
   else {
     var want = wh === "tomorrow" ? tom : today, dayOf = function (g) { return etParts(g.time).day; };
     sel = cand.filter(function (g) { return dayOf(g) === want; });
@@ -349,13 +349,14 @@ function answer(spec, D, opt) {
   var gid = {}; sel.forEach(function (g) { gid[String(g.id)] = g; });
   var PR = (D.prices && D.prices.rows) || {}, LK = {};
   (D.likely || []).forEach(function (x) { LK[ppNorm(x.player) + "|" + x.market + "|" + (YES[x.market] ? "" : +x.line)] = x; });
+  var WHY = {}; if ((D.impact && (D.impact.flags || []).length) || (D.analyst && (D.analyst.inj_cascades || []).length)) { try { run(canon({ sport: sp, games: spec.games.filter(function (g) { return g.slot || g.team; }), market_types: ["props"], legs: null, filters: { injury: f.injury }, sort: "edge", limit: 1 }), D, { now: opt.now, whyOut: WHY }); } catch (e) {} }
   var ex = {}; (spec.exclude || []).forEach(function (x) { ex[x] = 1; });
   var pool = (D.props || []).filter(function (r) { return gid[String(r.game)]; }).map(function (r) {
     var l = legOf(sp, r, PR), lk = LK[ppNorm(r.player) + "|" + r.market + "|" + (YES[r.market] ? "" : +r.line)], x = r.x || comboHits(D.logs, r) || {}, l10 = x.l10 || null, l20 = x.l20 || null, q0 = PR[priceKey(sp, r)];
     if (!l) { l = { id: [r.aid, r.market, r.line].join("~"), aid: String(r.aid), player: r.player, team: r.team, pos: r.pos, opp: r.opp, game: r.game, time: r.time, market: r.market, line: r.line, yes: !!YES[r.market], p: null, best: q0 && q0.best != null ? q0.best : null, dec: q0 && q0.best != null ? toDec(q0.best) : null, ev: null, exp: EXPERIMENTAL.test(r.market), l10: l10 ? [l10[0], l10[1]] : null, l5: x.l5 ? [x.l5[0], x.l5[1]] : null, stat: r.stat, inj: r.inj || [], why: [] }; }
     else l.why = [];
     if (lk && lk.ours != null) { l.p = lk.ours; if (l.dec) l.ev = evNet(l.p, l.dec); }
-    l.basis = l.p != null ? "chance" : "hit"; l.hr = l20 && l20[1] >= 8 ? l20[0] / l20[1] : l10 && l10[1] >= 5 ? l10[0] / l10[1] : null; l.hrn = l20 && l20[1] >= 8 ? [l20[0], l20[1]] : l10 ? [l10[0], l10[1]] : null;
+    l.why = WHY[l.id] || []; l.basis = l.p != null ? "chance" : "hit"; l.hr = l20 && l20[1] >= 8 ? l20[0] / l20[1] : l10 && l10[1] >= 5 ? l10[0] / l10[1] : null; l.hrn = l20 && l20[1] >= 8 ? [l20[0], l20[1]] : l10 ? [l10[0], l10[1]] : null;
     l.lg = r.lg || (gid[String(r.game)] || {}).lg || null; l.rank = l.p != null ? l.p : l.hr;
     return l;
   }).filter(function (l) { return l.rank != null && !ex[l.id]; });
@@ -368,7 +369,7 @@ function answer(spec, D, opt) {
   pool.sort(function (a, b) { return b.rank - a.rank || (a.id < b.id ? -1 : 1); });
   var srcs = ["Bet Lab props", "Bet Lab prices"], comps = [], notes = [];
   if (roll) notes.push(roll);
-  function legOut(l) { return { id: l.id, aid: l.aid, player: l.player, team: l.team, pos: l.pos, opp: l.opp, game: l.game, time: l.time, market: l.market, line: l.line, yes: l.yes, stat: l.stat, lg: l.lg, lgn: LGN[l.lg] || null, p: l.p != null ? r4(l.p) : null, hr: l.hr != null ? r4(l.hr) : null, hrn: l.hrn, basis: l.basis, book_odds: l.best, fair_odds: l.p != null ? pAm(l.p) : null, ev: l.ev != null ? r4(l.ev) : null, pass: l.ev != null && gate(l.ev, l.exp), exp: l.exp, l10: l.l10, l5: l.l5, why: [], pending: [] }; }
+  function legOut(l) { return { id: l.id, aid: l.aid, player: l.player, team: l.team, pos: l.pos, opp: l.opp, game: l.game, time: l.time, market: l.market, line: l.line, yes: l.yes, stat: l.stat, lg: l.lg, lgn: LGN[l.lg] || null, p: l.p != null ? r4(l.p) : null, hr: l.hr != null ? r4(l.hr) : null, hrn: l.hrn, basis: l.basis, book_odds: l.best, fair_odds: l.p != null ? pAm(l.p) : null, ev: l.ev != null ? r4(l.ev) : null, pass: l.ev != null && gate(l.ev, l.exp), exp: l.exp, l10: l.l10, l5: l.l5, why: (l.why || []).map(function (w) { return w.text; }), why_db: (l.why || []).some(function (w) { return w.db; }), pending: [] }; }
   function r4(x) { return Math.round(x * 1e4) / 1e4; }
   var kind = mt0 === "SGP" ? "sgp" : mt0 === "parlay" ? "parlay" : "list", N = spec.legs || 3, label = "";
   function price(legs) {
@@ -384,7 +385,7 @@ function answer(spec, D, opt) {
     var groups;
     if (kind === "sgp") { var gg = {}; pool.forEach(function (l) { (gg[l.game] = gg[l.game] || []).push(l); }); groups = Object.keys(gg).map(function (g) { return gg[g]; }).filter(function (a) { var u = {}; a.forEach(function (l) { u[l.aid] = 1; }); return Object.keys(u).length >= N; }).sort(function (a, b) { var sa = 0, sb = 0; a.slice(0, N).forEach(function (l) { sa += l.rank; }); b.slice(0, N).forEach(function (l) { sb += l.rank; }); return sb - sa; }).slice(0, spec.limit); }
     var ng = {}; pool.forEach(function (l) { ng[l.game] = 1; }); var cap = kind === "parlay" && Object.keys(ng).length >= N ? 1 : 6;
-    function build(src, n, skip) { var legs = [], per = {}, pl = {}; for (var i = 0; i < src.length && legs.length < n; i++) { var l = src[i]; if (pl[l.aid] || (per[l.game] || 0) >= cap || (skip && skip[l.id])) continue; legs.push(l); pl[l.aid] = 1; per[l.game] = (per[l.game] || 0) + 1; } return legs.length === n ? legs : null; }
+    function build(src, n, skip) { var legs = [], per = {}, pl = {}; for (var i = 0; i < src.length && legs.length < n; i++) { var l = src[i]; if (pl[l.aid] || (per[l.game] || 0) >= cap || (skip && skip[l.id])) continue; legs.push(l); pl[l.aid] = 1; per[l.game] = (per[l.game] || 0) + 1; } if (legs.length === n && f.injury && !legs.some(function (l) { return l.why.length; })) { var tg = src.filter(function (l) { return l.why.length && !pl[l.aid] && !(skip && skip[l.id]) && (per[l.game] || 0) < cap; })[0]; if (!tg) return null; legs[n - 1] = tg; } return legs.length === n ? legs : null; }
     var cards = [];
     function add(legs, tagl, src) { if (!legs) return; var k = legs.map(function (l) { return l.id; }).sort().join("+"); if (cards.some(function (c) { return c.k === k; })) return; var px = price(legs), ids = {}; legs.forEach(function (l) { ids[l.id] = 1; });
       var swaps = legs.map(function (l) { var other = {}; legs.forEach(function (z) { if (z !== l) { other[z.aid] = 1; } }); var per = {}; legs.forEach(function (z) { if (z !== l) per[z.game] = (per[z.game] || 0) + 1; });
@@ -413,7 +414,7 @@ function answer(spec, D, opt) {
   }
   var rk = spec.sort === "edge" && kind === "list" && comps[0].type === "PropTable" && !comps[0].tag ? "ranked by edge" : spec.sort === "upside" && kind === "list" ? "longest odds first" : basis === "chance" ? "ranked by chance" : "ranked by hit rate";
   var bits = [label]; if (f.league) bits.push(LGN[f.league] || f.league); if (f.team) bits.push(f.team); bits.push(slate); if (spec.sort === "upside" && kind !== "list") bits.push("high upside"); bits.push(rk);
-  var R = { v: VERSION, spec: spec, hash: hash(spec), kind: kind, as_of: (D.prices && D.prices.as_of) || null, as_of_et: fmtET((D.prices && D.prices.as_of) || null), sources: srcs, games: sel.slice(0, 12).map(function (g) { return g.away + " @ " + g.home; }), components: comps, notes: notes, roll: roll, summary: bits.join(" · "), assumed: assumed, count: count, gates: { ev_min: PX.ev_min, ev_min_experimental: PX.ev_min_experimental, max_credible_ev: PX.max_credible_ev, haircut: PX.haircut, rho_same_team: PX.rho_same_team } };
+  var R = { v: VERSION, spec: spec, hash: hash(spec), kind: kind, as_of: (D.prices && D.prices.as_of) || null, as_of_et: fmtET((D.prices && D.prices.as_of) || null), sources: srcs, games: sel.slice(0, 12).map(function (g) { return g.away + " @ " + g.home; }), components: comps, notes: notes, roll: roll, slate: slate, summary: bits.join(" · "), assumed: assumed, count: count, gates: { ev_min: PX.ev_min, ev_min_experimental: PX.ev_min_experimental, max_credible_ev: PX.max_credible_ev, haircut: PX.haircut, rho_same_team: PX.rho_same_team } };
   R.followups = followups(spec, R, sel); return R;
 }
 function followups(spec, R, sel) {
