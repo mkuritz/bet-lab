@@ -40,7 +40,11 @@ var css=document.createElement("style");css.textContent=
 ".ask-swap{margin-top:6px;background:var(--panel,#121826);border-radius:8px;padding:6px 8px;font-size:12px}.ask-swap div{display:flex;justify-content:space-between;gap:6px;padding:4px 0;border-top:1px solid var(--line,#2a2f3a);cursor:pointer}.ask-swap div.no{opacity:.5;cursor:not-allowed}"+
 "#ask-slip{position:fixed;right:0;top:0;bottom:0;width:min(360px,100vw);background:var(--panel,#121826);border-left:1px solid var(--line,#2a2f3a);z-index:80;transform:translateX(100%);transition:transform .2s;padding:14px;overflow:auto;color:var(--txt,#e6e9ef)}#ask-slip.open{transform:none}#ask-slipbtn{position:fixed;right:14px;bottom:84px;z-index:75;background:var(--acc,#34d399);color:#06120c;border:0;border-radius:99px;padding:10px 14px;font-weight:800;cursor:pointer;box-shadow:0 6px 18px #0008}"+
 ".ask-side{display:grid;grid-template-columns:1fr 1fr;gap:14px}.ask-side h4{margin:12px 0 6px;font-size:13px;color:var(--mut,#8a94a7)}@media(max-width:700px){.ask-side{grid-template-columns:1fr}.ask-c{grid-template-columns:1fr}.ask-px b{font-size:14px}}"+
-".ask-gc{background:var(--panel2,#182033);border-radius:10px;padding:8px 10px;font-size:13px}.ask-note{font-size:12px;color:var(--mut,#8a94a7);margin-top:8px}";
+".ask-gc{background:var(--panel2,#182033);border-radius:10px;padding:8px 10px;font-size:13px}.ask-note{font-size:12px;color:var(--mut,#8a94a7);margin-top:8px}"+
+".ask-sum{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:8px 0 2px;font-size:13px;font-weight:600}.ask-sum span{flex:1;min-width:0}.ask-adj{background:none;border:1px solid var(--line,#2a2f3a);color:var(--mut,#8a94a7);border-radius:99px;padding:3px 10px;font-size:11px;font-weight:700;cursor:pointer;min-height:28px}"+
+".ask-roll{font-size:12px;color:#fcd34d;margin:4px 0 0}.ask-tag{display:inline-block;font-size:10px;font-weight:800;border-radius:6px;padding:2px 7px;background:rgba(148,163,184,.16);color:var(--mut,#a3acbd);margin:2px 0 6px}"+
+".ask-ref{display:flex;gap:6px;margin:12px 0 6px}.ask-ref input{flex:1;min-width:0;font-size:16px;background:var(--panel2,#182033);border:1px solid var(--line,#2a2f3a);color:inherit;border-radius:9px;padding:9px 10px}.ask-fu{display:flex;gap:6px;flex-wrap:wrap}.ask-fu button{background:var(--panel2,#182033);border:1px solid var(--line,#2a2f3a);color:inherit;border-radius:99px;padding:6px 11px;font-size:12px;font-weight:600;cursor:pointer;min-height:34px}"+
+".ask-trail{font-size:11px;color:var(--mut,#8a94a7);margin-top:2px}.ask-disc{font-size:11px;color:var(--mut,#8a94a7);margin-top:10px}.ask-disc a{color:inherit}";
 document.head.appendChild(css);
 // ---------- search bar hook ----------
 function mode(inp){return inp.dataset.askMode||"auto"}
@@ -73,9 +77,9 @@ async function rerun(){var el=P,t=performance.now(),k=C().hash(CUR.spec)+(TEST||
  if(!r){var d;try{d=await post("run",{spec:CUR.spec,test:TEST})}catch(e){d={}}if(!d.result){el.querySelector(".ask-body").innerHTML='<div class="ask-note">'+E(d.msg||"Couldn't re-run that. Try again.")+'</div>';return}r=d.result;RCACHE[k]=r}
  CUR.res=r;render(el);log("run",{spec:CUR.spec,spec_hash:r.hash,result_count:r.count,ms:Math.round(performance.now()-t)})}
 // ---------- chips ----------
-var MT_ALL=["SGP","props","anytime TD","anytime goal","edges","injury","games","totals","goalie","shots","arb"],POS=["DB","FRONT","WR","RB","TE","QB","OL"],POSN={DB:"Defensive backs",FRONT:"Front seven",WR:"WR",RB:"RB",TE:"TE",QB:"QB",OL:"O-line",any:"Any position"};
+var MT_ALL=["parlay","SGP","props","anytime TD","anytime goal","edges","injury","games","totals","goalie","shots","arb"],POS=["DB","FRONT","WR","RB","TE","QB","OL"],POSN={DB:"Defensive backs",FRONT:"Front seven",WR:"WR",RB:"RB",TE:"TE",QB:"QB",OL:"O-line",any:"Any position"};
 function opt(a,v,lab){return a.map(function(x){return '<option value="'+E(x)+'"'+(String(x)==String(v)?" selected":"")+'>'+E(lab?lab(x):x)+'</option>'}).join("")}
-function chips(s){var f=s.filters||{},h=[];
+function chips(s){var f=s.filters||{},h=[];if(f.market)h.push('<span class="ask-chip">Prop <b>'+E(f.market)+'</b><button data-rm="market" aria-label="Remove">×</button></span>');if(f.league)h.push('<span class="ask-chip">League <b>'+E((C().LGN||{})[f.league]||f.league)+'</b><button data-rm="league" aria-label="Remove">×</button></span>');
  h.push('<span class="ask-chip">Sport <select data-c="sport">'+opt(["nfl","cfb","nba","nhl","mlb","soccer"],s.sport,function(x){return x.toUpperCase()})+'</select></span>');
  (s.games||[]).forEach(function(g,i){h.push('<span class="ask-chip">Games <b>'+E(g.slot||g.team||g.when)+'</b><button data-rm="games" data-i="'+i+'" aria-label="Remove">×</button></span>')});
  (s.market_types||[]).forEach(function(m,i){h.push('<span class="ask-chip">Market <b>'+E(m)+'</b>'+(s.market_types.length>1?'<button data-rm="market_types" data-i="'+i+'" aria-label="Remove">×</button>':"")+'</span>')});
@@ -85,17 +89,17 @@ function chips(s){var f=s.filters||{},h=[];
  if(f.odds)h.push('<span class="ask-chip">Odds <b>'+(f.odds.min!=null?am(f.odds.min):"any")+' to '+(f.odds.max!=null?am(f.odds.max):"any")+'</b><button data-rm="odds" aria-label="Remove">×</button></span>');
  if(f.team)h.push('<span class="ask-chip">Team <b>'+E(f.team)+'</b><button data-rm="team" aria-label="Remove">×</button></span>');
  if(f.player)h.push('<span class="ask-chip">Player <b>'+E(f.player)+'</b><button data-rm="player" aria-label="Remove">×</button></span>');
- h.push('<span class="ask-chip">Sort <select data-c="sort">'+opt(["edge","upside","hit_rate","CLV"],s.sort,function(x){return{edge:"Edge",upside:"Upside",hit_rate:"Hit rate",CLV:"CLV"}[x]})+'</select></span>');
+ h.push('<span class="ask-chip">Sort <select data-c="sort">'+opt(["edge","upside","hit_rate","CLV"],s.sort,function(x){return{edge:"Edge",upside:"Upside",hit_rate:"Chance",CLV:"CLV"}[x]})+'</select></span>');
  h.push('<span class="ask-chip">Show <select data-c="limit">'+opt([3,5,10,15,25],s.limit)+'</select></span>');
- if(!(s.market_types||[]).length||s.market_types.length<4)h.push('<span class="ask-chip">+ <select data-c="add_mt"><option value="">Add market</option>'+opt(MT_ALL.filter(function(m){return s.market_types.indexOf(m)<0}),"")+'</select></span>');
+ h.push('<span class="ask-chip">Type <select data-c="add_mt"><option value="">Change</option>'+opt(MT_ALL.filter(function(m){return s.market_types.indexOf(m)<0}),"")+'</select></span>');
  return '<div class="ask-chips" role="group" aria-label="Filters">'+h.join("")+'</div>'}
 function chipEdit(t){var s=JSON.parse(JSON.stringify(CUR.spec)),f=s.filters,c=t.dataset.c,v=t.value;
  if(c=="sport")s.sport=v;else if(c=="legs")s.legs=+v;else if(c=="sort")s.sort=v;else if(c=="limit")s.limit=+v;
  else if(c=="inj_pos")f.injury.position=v;else if(c=="inj_st")f.injury.status=v;
  else if(c=="min_edge"){var x=parseFloat(v);f.min_edge=isNaN(x)?null:Math.max(0,Math.min(50,x))/100}
- else if(c=="add_mt"&&v){s.market_types.push(v);if(v=="SGP"&&s.legs==null)s.legs=3}
+ else if(c=="add_mt"&&v){s.market_types=[v];s.parlay=v=="parlay";if((v=="SGP"||v=="parlay")&&s.legs==null)s.legs=3;if(v!="SGP"&&v!="parlay")s.legs=null}
  s=C().canon(s);log("chip",{spec:s,detail:{chip:c,value:v}});CUR.spec=s;rerun()}
-function chipRm(t){var s=JSON.parse(JSON.stringify(CUR.spec)),k=t.dataset.rm;if(k=="games"||k=="market_types"){s[k].splice(+t.dataset.i,1);if(k=="market_types"&&s.market_types.indexOf("SGP")<0)s.legs=null}else s.filters[k]=null;
+function chipRm(t){var s=JSON.parse(JSON.stringify(CUR.spec)),k=t.dataset.rm;if(k=="games"||k=="market_types"){s[k].splice(+t.dataset.i,1);if(k=="market_types"&&s.market_types.indexOf("SGP")<0&&s.market_types.indexOf("parlay")<0)s.legs=null;if(k=="market_types"&&!s.market_types.length)s.market_types=["props"]}else s.filters[k]=null;
  s=C().canon(s);log("chip",{spec:s,detail:{chip:k,removed:1}});CUR.spec=s;rerun()}
 // ---------- components ----------
 function badges(x){return(x.exp?'<span class="ask-bdg exp" title="Market not yet validated out of sample; needs a 4% EV edge">Experimental</span>':"")+((x.pending||[]).length?'<span class="ask-bdg pend" title="'+E(x.pending.join(", "))+'">Pending: '+E(x.pending.join(", "))+'</span>':"")}
@@ -114,31 +118,60 @@ function injCard(items){if(!items.length)return"";return '<div class="ask-gc" st
 function gameCards(items){if(!items.length)return '<div class="ask-note">No upcoming games match.</div>';return '<div class="ask-c">'+items.map(function(g){return '<div class="ask-gc"><b>'+E(g.away+" @ "+g.home)+'</b>'+(g.slot?' <span class="ask-bdg exp">'+E(g.slot)+'</span>':"")+'<div class="ask-src">'+E(C().fmtET(g.time))+(g.spread?" · "+E(g.spread):"")+(g.total?" · O/U "+E(g.total):"")+'</div></div>'}).join("")+'</div>'}
 function goalieCards(items){if(!items.length)return '<div class="ask-note">No goalie data for tonight\'s slate.</div>';return '<div class="ask-c">'+items.map(function(g){return '<div class="ask-gc"><b>'+E(g.name)+'</b> <span class="ask-src">'+E(g.team)+' vs '+E(g.opp)+'</span><div class="ask-px"><div>Save %<b>'+(g.sv!=null?g.sv.toFixed(3).replace(/^0/,""):"—")+'</b></div><div>Starts<b>'+E(g.starts)+'</b></div><div>Shots faced<b>'+E(g.shots)+'</b></div></div><div class="ask-src">Projected starter (NHL Lab depth order)'+(g.backup?" · backup "+E(g.backup):"")+' · last start '+E(g.last||"—")+'</div></div>'}).join("")+'</div>'}
 function arbRows(items){if(!items.length)return '<div class="ask-note">No fresh arbitrage rows in Arb Lab right now.</div>';return items.map(function(a){return '<div class="ask-gc" style="margin-top:6px"><b>'+E(a.game)+'</b> · '+E(a.market)+' · <span style="color:var(--acc)">'+(a.profit_pct*100).toFixed(2)+'%</span><div class="ask-src">'+a.legs.map(function(l){return E(l.venue+" "+(l.team||l.side)+" "+l.dec)}).join(" · ")+'</div></div>'}).join("")}
+function chanceTxt(l){return l.basis=="chance"&&l.p!=null?'Our chance '+pc(l.p):l.hrn?'Hit '+l.hrn[0]+'/'+l.hrn[1]+' recent games':'—'}
+function pLeg(l,ci,li){return '<div class="ask-leg" style="overflow:hidden">'+(ci!=null?'<button class="ask-b" style="float:right;min-height:30px;padding:2px 9px;margin:0 0 0 6px;font-size:11px" data-pswap="'+ci+':'+li+'" aria-label="Swap this leg">Swap</button>':'')+'<span class="pl" data-prof="'+E(sp()+":"+l.aid)+'">'+E(l.player)+'</span> <span class="ask-src">'+E(l.team)+' '+E(l.opp||"")+'</span> · '+E(legTxt(l))+'<div class="ask-src">'+chanceTxt(l)+(l.book_odds!=null?' · book '+am(l.book_odds):'')+(l.lgn?' · '+E(l.lgn):'')+' · '+E(C().fmtET(l.time))+'</div></div>'}
+function parlayCard(c,ci){var hd=c.sgp&&c.game?E(c.game.away+" @ "+c.game.home)+' · ':'';
+ return '<div class="ask-sgp" data-ci="'+ci+'"><div class="hd"><span>'+hd+E(c.label)+'</span><span>'+(c.p!=null?'Combined chance '+pc(c.p):'')+'</span></div>'+(c.tag?'<span class="ask-tag">'+E(c.tag)+'</span>':'<span class="ask-tag" style="color:var(--acc,#34d399)">Highlighted · clears our EV bar</span>')+
+ c.legs.map(function(l,li){return pLeg(l,ci,li)}).join("")+
+ (c.book_odds?'<div class="ask-px"'+(c.pass?'':' style="grid-template-columns:1fr 1fr"')+'><div>Book odds<b>'+E(c.book_odds)+'</b></div>'+(c.p!=null?'<div>Chance<b>'+pc(c.p)+'</b></div>':'')+(c.pass?'<div>Edge (EV)<b style="color:var(--acc,#34d399)">'+ev(c.ev)+'</b></div>':'')+'</div>':'<div class="ask-src" style="margin:6px 0">Book prices aren\'t posted for every leg yet.</div>')+
+ '<div class="ask-btns">'+(c.book_dec?'<button class="pri" data-addp="'+ci+'">Add to slip</button>':'')+'</div></div>'}
+function propTable2(c){var items=c.items;if(!items.length)return "";var showEdge=items.some(function(l){return l.pass});var anyP=items.some(function(l){return l.p!=null});
+ return (c.tag?'<span class="ask-tag">'+E(c.tag)+'</span>':'')+'<div style="overflow-x:auto"><table class="ask-t"><thead><tr><th></th><th>Player</th><th>Prop</th><th>'+(anyP?'Our chance':'Hit rate')+'</th><th>Book</th>'+(showEdge?'<th>Edge</th>':'')+'<th></th></tr></thead><tbody>'+
+ items.map(function(l,i){return '<tr data-aid="'+E(l.aid)+'" data-ri="'+i+'"><td><span data-sl-watch="'+E(sp()+"|"+l.aid+"|"+l.player+"|"+l.team)+'"></span></td><td><b>'+E(l.player)+'</b><div class="ask-src">'+E(l.team+" "+(l.opp||""))+'</div></td><td>'+E(legTxt(l))+badges(l)+'</td><td>'+(l.p!=null?pc(l.p):l.hrn?l.hrn[0]+'/'+l.hrn[1]:'—')+'</td><td>'+(l.book_odds!=null?am(l.book_odds):'—')+'</td>'+(showEdge?'<td style="color:var(--acc,#34d399)">'+(l.pass?ev(l.ev):'')+'</td>':'')+'<td>'+(l.book_odds!=null?'<button data-addr="'+i+'" aria-label="Add to slip">+</button>':'')+'</td></tr>'}).join("")+'</tbody></table></div>'}
+function gameCards2(items){if(!items.length)return "";return '<div class="ask-c">'+items.map(function(g){return '<div class="ask-gc"><b>'+E(g.away+" @ "+g.home)+'</b>'+(g.slot?' <span class="ask-bdg exp">'+E(g.slot)+'</span>':"")+'<div class="ask-src">'+E(g.time?C().fmtET(g.time):(g.time_et||""))+(g.spread?" · "+E(g.spread):"")+(g.total?" · O/U "+E(g.total):"")+'</div>'+(g.model?'<div class="ask-src">Our model: '+E(g.home)+' '+(g.model.home_line>0?"+":"")+E(g.model.home_line)+' · total '+E((+g.model.total).toFixed(1))+' · '+E(g.home)+' win '+pc(g.model.home_win)+'</div>':'')+'</div>'}).join("")+'</div>'}
+var ADJ=false;
 function render(el){var r=CUR.res,s=CUR.spec,h=head();
- h+='<h3>'+E(CUR.q)+(r.test?' <span class="ask-bdg test">TEST MODE</span>':"")+'</h3><div class="ask-src">from '+E(r.sources.join(", "))+' · as of '+E(r.as_of_et||"—")+(r.games&&r.games.length?" · "+E(r.games.join(", ")):"")+'</div>';
+ h+='<h3>'+E(CUR.q)+(r.test?' <span class="ask-bdg test">TEST MODE</span>':"")+'</h3>'+(CUR.trail&&CUR.trail.length?'<div class="ask-trail">Refined: '+CUR.trail.map(E).join(" → ")+'</div>':'')+'<div class="ask-src">as of '+E(r.as_of_et||"—")+'</div>';
  if(r.test)h+='<div class="ask-note" style="color:#fdba74">'+E(r.test.label)+'</div>';
- h+=chips(s)+'<div class="ask-body">';
+ if(r.roll)h+='<div class="ask-roll">'+E(r.roll)+'</div>';
+ h+='<div class="ask-sum"><span>'+E(r.summary||"")+'</span><button class="ask-adj" data-adj="1" aria-expanded="'+ADJ+'">'+(ADJ?"Hide":"Adjust")+'</button></div>'+((r.assumed||[]).length?'<div class="ask-src">'+E(r.assumed.join(" · "))+'</div>':'');
+ h+=(ADJ?chips(s):'')+'<div class="ask-body">';
  r.components.forEach(function(c){
   if(c.type=="SGPCard")h+=c.items.length?'<div class="card ask-c">'+c.items.map(sgpCard).join("")+'</div>':"";
+  else if(c.type=="PropTable"&&r.kind)h+=propTable2(c);
   else if(c.type=="PropTable"||c.type=="EdgeList")h+=propTable(c.items,c.type=="EdgeList"?"Edge list":"Prop edges");
   else if(c.type=="InjuryCascadeCard")h+=injCard(c.items);
-  else if(c.type=="GameCard")h+=gameCards(c.items);
+  else if(c.type=="GameCard")h+=r.kind?gameCards2(c.items):gameCards(c.items);
   else if(c.type=="GoalieCard")h+=goalieCards(c.items);
   else if(c.type=="ArbRow")h+=arbRows(c.items);
-  else if(c.type=="PlayerShotChart")h+='<div class="ask-note">Shot charts open from an NHL Lab player profile. Ask about a player by name to see his profile.</div>';
+  else if(c.type=="ParlayCard")h+=c.items.length?'<div class="ask-c">'+c.items.map(parlayCard).join("")+'</div>':"";
  });
- (r.notes||[]).forEach(function(n){h+='<div class="ask-note">'+E(n)+'</div>'});
- h+='</div><div class="ask-note">Only edges that clear Bet Lab\'s EV bar ('+(r.gates.ev_min*100)+'% after a '+(r.gates.haircut*100)+'% price haircut; '+(r.gates.ev_min_experimental*100)+'% for experimental markets) are shown. Highlighted by our model; estimates only, not betting advice, and nothing here guarantees results. Edges are never shown for games that have started. 21+. Gambling problem? Call 1-800-GAMBLER.</div>';
+ (r.notes||[]).filter(function(n){return n!==r.roll}).forEach(function(n){h+='<div class="ask-note">'+E(n)+'</div>'});
+ h+='</div><form class="ask-ref" data-ref="1"><input name="r" placeholder="Refine: e.g. make it 4 legs, only Premier League, swap the second leg, safer" aria-label="Refine this answer" autocomplete="off"><button class="ask-b" style="background:var(--acc,#34d399);color:#06120c">Go</button></form>'+
+ ((r.followups||[]).length?'<div class="ask-fu">'+r.followups.map(function(q){return '<button data-q2="'+E(q)+'">'+E(q)+'</button>'}).join("")+'</div>':'')+
+ '<div class="ask-disc">Highlighted by our model; estimates only, not betting advice. 21+ · <a href="tel:18004262537">1-800-GAMBLER</a></div>';
  el.innerHTML=h;wire(el);
  if(T0&&el.querySelector(".ask-sgp,.ask-t tr[data-aid],.ask-gc")){window.__askFirstCard=Math.round(performance.now()-T0);T0=0}
  if(!r.test&&CUR.res.count&&window.SL&&SL.lockNow)try{SL.lockNow()}catch(e){}}
 function findCard(ci){var c=CUR.res.components.find(function(x){return x.type=="SGPCard"});return c&&c.items[ci]}
 function findRow(i){var c=CUR.res.components.find(function(x){return x.type=="PropTable"||x.type=="EdgeList"});return c&&c.items[i]}
+function findPar(ci){var c=CUR.res.components.find(function(x){return x.type=="ParlayCard"});return c&&c.items[ci]}
+async function refineQ(q,ci){q=String(q||"").trim();if(q.length<2||!CUR)return;var el=P,t=performance.now(),pc0=findPar(ci||0),last={legs:pc0?pc0.legs.map(function(l){return l.id}):[]};
+ var bd=el.querySelector(".ask-body");if(bd)bd.innerHTML='<div class="ask-c"><div class="ask-sk"></div><div class="ask-sk"></div></div>';
+ var d;try{d=await post("refine",{q:q,base:CUR.spec,last:last,sport:pageSport(),test:TEST})}catch(e){d={}}
+ log("ask",{question:q,spec:d.spec||null,spec_hash:d.hash||null,parser:"refine",result_count:d.result?d.result.count:0,ms:Math.round(performance.now()-t),detail:{refine:1,changes:d.changes||null}});
+ if(!d.result){if(bd)bd.innerHTML='<div class="ask-note">'+E(d.msg||"Couldn't apply that. Try rephrasing, e.g. \"make it 4 legs\".")+'</div>';return}
+ if(d.fresh){CUR={q:q,spec:d.spec,parser:"rules",res:d.result,trail:[]}}else{CUR.spec=d.spec;CUR.res=d.result;CUR.trail=(CUR.trail||[]).concat([q])}
+ RCACHE[d.result.hash+(TEST||"")]=d.result;render(el)}
 function wire(el){
  el.onclick=function(e){var t=e.target,b;
   if(t.closest('[data-a="close"]'))return close();
   if((b=t.closest("[data-q]")))return open(b.dataset.q,{full:P.classList.contains("full")});
   if((b=t.closest("[data-rm]")))return chipRm(b);
+  if(t.closest("[data-adj]")){ADJ=!ADJ;render(el);log("click",{detail:{kind:"adjust",open:ADJ}});return}
+  if((b=t.closest("[data-q2]")))return refineQ(b.dataset.q2);
+  if((b=t.closest("[data-pswap]"))){var pp=b.dataset.pswap.split(":").map(Number);return refineQ("Swap the "+["1st","2nd","3rd","4th","5th","6th"][pp[1]]+" leg",pp[0])}
+  if((b=t.closest("[data-addp]"))){var pc0=findPar(+b.dataset.addp);addSlip({k:pc0.k,legs:pc0.legs,label:pc0.label+" parlay",dec:pc0.book_dec});log("add",{spec_hash:CUR.res.hash,detail:{kind:"parlay",key:pc0.k}});return}
   if((b=t.closest("[data-addc]"))){var c=findCard(+b.dataset.addc);addSlip({k:c.key,legs:c.legs,label:c.legs.length+"-leg SGP · "+c.game.away+" @ "+c.game.home,dec:c.book_dec});log("add",{spec_hash:CUR.res.hash,detail:{kind:"sgp",key:c.key}});return}
   if((b=t.closest("[data-open]"))){log("click",{spec_hash:CUR.res.hash,detail:{kind:"open_betlab",ci:+b.dataset.open}});return}
   if((b=t.closest("[data-swap]"))){var p=b.dataset.swap.split(":"),cc=findCard(+p[0]),bx=document.getElementById("ask-sw-"+p[0]+"-"+p[1]);if(bx.innerHTML){bx.innerHTML="";return}
@@ -150,6 +183,7 @@ function wire(el){
   if((b=t.closest("tr[data-aid]"))){prof(sp()+":"+b.dataset.aid);return}
  };
  el.onchange=function(e){var t=e.target;if(t.dataset.c)chipEdit(t)};
+ el.onsubmit=function(e){var f=e.target.closest("[data-ref]");if(!f)return;e.preventDefault();var v=f.querySelector("input").value;refineQ(v)};
  el.onkeydown=function(e){if(e.key=="Enter"&&e.target.dataset.c=="min_edge"){e.preventDefault();chipEdit(e.target)}if(e.key=="Escape"&&P.classList.contains("full"))close()}}
 function swapLeg(c,li,a){var legs=c.legs.slice();legs[li]=a.leg;var old=c.legs[li];c.swaps[li]=c.swaps[li].filter(function(z){return z!==a});
  // re-price the swapped card with the same correlation model as the Worker (shared core)
