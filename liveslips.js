@@ -1,5 +1,5 @@
 // Bet Lab · Live slips: every taken slip + every Bet Lab recommended slip/SGP, all sports, one view.
-// Browser-only: ESPN free public scoreboards + box scores (CORS open). No Odds API calls.
+// Browser-only: ESPN free public scoreboards + box scores (CORS open).
 (function(){
 const PATH={nfl:"football/nfl",cfb:"football/college-football",nhl:"hockey/nhl",mlb:"baseball/mlb",nba:"basketball/nba",soccer:"soccer/"};
 const NAME={nfl:"NFL",cfb:"CFB",nhl:"NHL",mlb:"MLB",nba:"NBA",soccer:"Soccer"};

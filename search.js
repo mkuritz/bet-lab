@@ -1,5 +1,5 @@
 /* Bet Lab player search: cross-sport typeahead + player profile (props, injury, next game, live box score).
-   Index: data/player_index.json (engine publish step, public fields only). Live data: ESPN public feeds (free; no Odds API). */
+   Index: data/player_index.json (engine publish step, public fields only). Live data: public feeds */
 (function(){
 "use strict";
 var SPN={nfl:"NFL",cfb:"CFB",nba:"NBA",nhl:"NHL",mlb:"MLB",soccer:"Soccer"};
