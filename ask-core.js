@@ -127,6 +127,9 @@ function ppNorm(s) { return String(s || "").normalize("NFKD").replace(/[\u0300-\
 function priceKey(sp, r) { var ln = YES[r.market] ? "" : (Number.isInteger(+r.line) ? (+r.line) + ".0" : String(+r.line)); return [sp, r.market, ppNorm(r.player), ln].join("|"); }
 function legOf(sp, r, R) {
   var q = R[priceKey(sp, r)]; if (!q || q.nv == null || q.best == null) return null;
+  if (!q.start || +new Date(q.start) <= Date.now()) return null;   // started/finished game: no price
+  if (r.time && Math.abs(+new Date(q.start) - +new Date(r.time)) > 18 * 3600e3) return null;   // price must be this prop's game
+  if (q.nv_src ? q.nv_src === "none" : (q.nv_books || 0) < 2) return null;   // fair chance needs 2+ books or the sharp group
   var x = r.x || {}, l10 = x.l10 || null, h = l10 ? l10[0] : 0, n = l10 ? l10[1] : 0;
   var p = Math.min((h + PX.shrink * q.nv) / (n + PX.shrink), PX.cap), dec = toDec(q.best), exp = EXPERIMENTAL.test(r.market);
   return { id: [r.aid, r.market, r.line].join("~"), aid: String(r.aid), player: r.player, team: r.team, pos: r.pos, opp: r.opp, game: r.game, time: r.time, market: r.market, line: r.line, yes: !!YES[r.market],
