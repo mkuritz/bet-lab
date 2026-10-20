@@ -74,4 +74,4 @@
   grab();
 })();
 (function(){if(document.querySelector('script[src*="plink.js"]'))return;var s=document.createElement('script');s.src='./plink.js?v=4';s.defer=true;document.head.appendChild(s)})();
-(function(){if(document.querySelector('script[src*="search.js"]'))return;var s=document.createElement('script');s.src='./search.js?v=3';s.defer=true;document.head.appendChild(s)})();
+(function(){if(document.querySelector('script[src*="search.js"]'))return;var s=document.createElement('script');s.src='./search.js?v=4';s.defer=true;document.head.appendChild(s)})();

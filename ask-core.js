@@ -205,7 +205,7 @@ function run(spec, D, opt) {
     cards.sort(function (a, b) { return key(a) - key(b) || (a.legs.map(function (l) { return l.id; }).join() < b.legs.map(function (l) { return l.id; }).join() ? -1 : 1); });
     // diversity: at most 2 shared legs with an already-chosen card
     var out = [];
-    for (var i = 0; i < cards.length && out.length < spec.limit; i++) { var c = cards[i], ids = c.legs.map(function (l) { return l.id; }); if (out.some(function (o) { var sh = o.legs.filter(function (l) { return ids.indexOf(l.id) >= 0; }).length; return sh >= L - 1; })) continue; out.push(c); }
+    for (var i = 0; i < cards.length && out.length < spec.limit; i++) { var c = cards[i], ids = c.legs.map(function (l) { return l.id; }); if (out.some(function (o) { var sh = o.legs.filter(function (l) { return ids.indexOf(l.id) >= 0; }).length; return sh >= L - 1; })) continue; if (ids.some(function (id) { return out.filter(function (o) { return o.legs.some(function (l) { return l.id === id; }); }).length >= 2; })) continue; out.push(c); }
     out.forEach(function (c, ci) {
       var gpool = (byG[c.legs[0].game] || []);
       c.swaps = c.legs.map(function (l, li) {
