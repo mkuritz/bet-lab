@@ -29,18 +29,25 @@ function line(sp,o){const c=[];
 function find(sp,id,name){if(!S)return null;let p=id&&S.p[sp+"|"+id];if(!p&&name){const a=S.n[sp+"|"+nm(name)];if(a)p=S.p[sp+"|"+a]}return p}
 window.LR={
  // returns HTML (or "" when the player's game hasn't started)
- html(sp,id,market,ln,name,side,st){const p=find(sp,id,name);if(!p)return"";const g=S.g[sp+"|"+p[0]];if(!g||(g[0]!="in"&&g[0]!="post"))return"";
-  if(st&&new Date(st)>Date.now())return"";   /* pick's own match not started */
-  if(g[6]){const gs=new Date(g[6]).getTime();if(st?Math.abs(gs-new Date(st))>3*3600e3:Date.now()-gs>20*3600e3)return""}   /* match the player's event, not just the player */const o=p[1],fin=g[0]=="post";
+ html(sp,id,market,ln,name,side,st,gid){const p=find(sp,id,name);if(!p)return"";const g=S.g[sp+"|"+p[0]];if(!g||(g[0]!="in"&&g[0]!="post"))return"";
+  /* Only grade the pick's own game: same event id when known, else same start (or same ET date), and never before the pick's start. */
+  if(gid&&/^4\d{8}$/.test(String(gid))&&String(gid)!=String(p[0]))return"";
+  const ymd=t=>new Date(t).toLocaleDateString("en-CA",{timeZone:"America/New_York"});
+  if(st&&/^\d{4}-\d{2}-\d{2}$/.test(st)){if(!g[6]||ymd(g[6])!=st)return""}
+  else if(st){const t=new Date(st).getTime();if(isNaN(t)||t>Date.now()+5*60e3)return"";if(!g[6]||Math.abs(new Date(g[6]).getTime()-t)>3*3600e3)return""}
+  else{if(!g[6])return"";const gs=new Date(g[6]).getTime();if(!(g[0]=="in"||(Date.now()-gs<20*3600e3&&ymd(gs)==ymd(Date.now()))))return""}
+  if(!side&&/\bunder\b|\|under\|/i.test(String(market||"")))side="under";
+  const o=p[1],fin=g[0]=="post";
   const m=M[market]||M[(market||"").replace(/ over.*$/i,"")];let mark="",cls="p",bar="";
-  if(m){const L=ln!=null&&ln!==""&&!isNaN(+ln)?+ln:(m[1]??0.5),x=m[0](o),under=/under|no$/i.test(side||"");const hit=under?(x<=L):(x>L);
+  if(m){const L=ln!=null&&ln!==""&&!isNaN(+ln)?+ln:(m[1]??0.5),x=m[0](o),under=/^(under|no|u)$/i.test(side||"");const hit=under?(x<=L):(x>L);
    if(under){cls=fin?(hit?"w":"l"):(x>L?"l":"p");mark=cls=="w"?"✓":cls=="l"?"✗":"●"}
    else{cls=hit?"w":fin?"l":"p";mark=hit?"✓":fin?"✗":"●";if(!hit&&!fin){const need=Math.floor(L)+1;bar=`<span class="b"><i style="width:${Math.min(100,Math.round(100*x/need))}%"></i></span>`}}}
   else mark=fin?"■":"●";
   return `<span class="lr ${cls}">${mark} ${H(line(sp,o))} · ${H(g[1])}${bar}</span>`},
  async pull(){try{const r=await fetch(U+"?t="+Math.floor(Date.now()/60000));if(r.ok){S=await r.json();T=Date.now()}}catch(e){}},
- fill(root){if(!S)return;(root||document).querySelectorAll("[data-lr]").forEach(el=>{const [sp,id,mk,ln,name,side,st]=el.dataset.lr.split("|");const h=LR.html(sp,id,mk,ln,name,side,st);if(el._h!==h){el._h=h;el.innerHTML=h}})},
- tag(sp,id,market,ln,name,side,st){const e=s=>String(s??"").replace(/[|"<>&]/g,"");return `<span data-lr="${e(sp)}|${e(id)}|${e(market)}|${e(ln)}|${e(name)}|${e(side)}|${e(st)}">${S?LR.html(sp,id,market,ln,name,side,st):""}</span>`},
+ fill(root){if(!S)return;(root||document).querySelectorAll("[data-lr]").forEach(el=>{const [sp,id,mk,ln,name,side,st,gid]=el.dataset.lr.split("|");const h=LR.html(sp,id,mk,ln,name,side,st,gid);if(el._h!==h){el._h=h;el.innerHTML=h}})},
+/* side: "over"|"under"|"yes"|"no"; st: pick start (ISO or YYYY-MM-DD ET); gid: ESPN event id */
+ tag(sp,id,market,ln,name,side,st,gid){const e=s=>String(s??"").replace(/[|"<>&]/g,"");return `<span data-lr="${e(sp)}|${e(id)}|${e(market)}|${e(ln)}|${e(name)}|${e(side)}|${e(st)}|${e(gid)}">${S?LR.html(sp,id,market,ln,name,side,st,gid):""}</span>`},
  get data(){return S}};
 const tick=async()=>{await LR.pull();LR.fill()};tick();setInterval(tick,60000);
 new MutationObserver(()=>{if(S){clearTimeout(LR._t);LR._t=setTimeout(()=>LR.fill(),50)}}).observe(document.documentElement,{childList:true,subtree:true});
