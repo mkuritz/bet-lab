@@ -33,7 +33,7 @@ window.teCard=function(lite){if(!TE)return "";const all=TE.plays||[],sps=["nfl",
  return `<div class="card te" data-sl-teaser="1"><h3>⚡ Today's Edge</h3>${R.wins!=null&&R.wins+R.losses?`<div class="rec">Official highlights <b>${R.wins}-${R.losses}</b></div>`:""}
  
  ${lite?"":`<div class="chips" id="tef" style="margin:6px 0">${["all",...sps].map(k=>`<button data-tef="${k}" class="${k==F?"on":""}">${k=="all"?"All":SN[k]||k}</button>`).join("")}<span style="flex:1"></span>${[0,25,50].map(b=>`<button data-teb="${b}" class="${b==B?"on":""}" title="Profit boost you have">${b?b+"% boost":"No boost"}</button>`).join("")}</div>`}
- <div class="sec">Top plays</div>${top.length?top.map(p=>row(p)).join(""):'<div class="mut" style="padding:6px 0">${F=="all"?"No plays clear our bar right now.":"No "+(SN[F]||F)+" plays clear our bar right now."} We only list real edges.</div>'}
+ <div class="sec">Top plays</div>${top.length?top.map(p=>row(p)).join(""):`<div class="mut" style="padding:6px 0">${F=="all"?"No plays clear our bar right now.":"No "+(SN[F]||F)+" plays clear our bar right now."} We only list real edges.</div>`}
  ${!lite?likely():""}${best&&!lite?`<div class="sec">Best value${B?" with your "+B+"% boost":""}</div>${row(best,"VALUE")}`:""}
  ${sgp?`<div class="sec">Best SGP</div>${row(sgp,"SGP")}`:""}${lop?`<div class="sec">Lopsided matchup</div>${row(lop,"BLOWOUT")}`:""}
  ${live?`<div class="sec">Live</div><div class="r"><div class="r1" data-te-live="1"><span class="k">LIVE</span><span class="t">${live} game${live>1?"s":""} in progress · follow your highlights live</span><span class="ed">Open ›</span></div></div>`:""}
