@@ -372,7 +372,7 @@ function fillFilters(){const d=SRC();
  $("game").innerHTML='<option value="">All games</option>'+Object.entries(g).map(([k,v])=>`<option value="${k}">${v}</option>`).join("")}
 window.ovbFill=ovbFill;var NHLM=null;function loadNHLM(){if(NHLM)return NHLM;NHLM=fetch("https://nhllab.sportslabshq.com/data/slate.json?t="+Date.now()).then(function(r){return r.json()}).then(function(d){var M={};(d.rows||[]).forEach(function(q){M[ppNorm(q.name)+"|"+q.date]=q});return M}).catch(function(){return{}});return NHLM}
 function ovbFill(r){var el=document.getElementById("slp-ovb");if(!el)return;var k=/Anytime Goal/.test(r.market)?"pG":(r.market=="Points"&&+r.line==.5?"pP":null);if(!k){el.remove();return}
- loadNHLM().then(function(M){var el=document.getElementById("slp-ovb");if(!el)return;var d=r.time?new Date(r.time).toLocaleDateString("en-CA",{timeZone:"America/New_York"}):"",m=M[ppNorm(r.player)+"|"+d],q=(function(){try{return ppLeg(r)}catch(e){return null}})();
+ loadNHLM().then(function(M){var el=document.getElementById("slp-ovb");if(!el)return;var d=r.time?new Date(r.time).toLocaleDateString("en-CA",{timeZone:"America/New_York"}):"",m=M[ppNorm(r.player)+"|"+d],q=(function(){try{return ppLeg(r,"nhl")}catch(e){return null}})();
   var etT=window.etT||function(t){return new Date(t).toLocaleTimeString('en-US',{timeZone:'America/New_York',hour:'numeric',minute:'2-digit'})+' ET'};if(!m||m[k]==null){el.remove();return}var ours=k=="pG"&&m.pGm!=null?m.pGm:m[k],fair=q&&q.nv!=null?q.nv:null,ed=fair!=null?Math.round((ours-fair)*1000)/10:null;
   el.innerHTML='<div class="stats" style="grid-template-columns:repeat(auto-fit,minmax(78px,1fr));margin-top:10px"><div>Sports Labs model chance<b>'+Math.round(ours*100)+'%</b></div><div>Book fair chance<b>'+(fair!=null?Math.round(fair*100)+"%":"—")+'</b></div><div>Best price<b>'+(q&&q.best!=null?(q.best>0?"+":"")+q.best+' <span style="font-size:11px">'+E(q.book||"")+'</span>':"—")+'</b></div><div>Edge<b style="color:'+(ed==null?"inherit":ed>=0?"var(--acc)":"var(--bad)")+'">'+(ed==null?"—":(ed>0?"+":"")+ed.toFixed(1)+" pts")+'</b></div></div><div class="mut" style="font-size:11px;margin-top:4px">Ours vs book: Sports Labs model chance (NHL Lab) vs the book fair chance (no-vig, 2+ books)'+(q&&q.t?" as of "+E(etT(q.t)):"")+'. Edge = ours minus book, in points.</div>'})}
 function drawer(r){const all=SRC().filter(x=>x.aid==r.aid);
@@ -975,7 +975,7 @@ const am=a=>a==null?"—":a>0?"+"+a:String(a);
 const toDec=a=>a>0?1+a/100:1+100/-a,decAm=d=>d>=2?"+"+Math.round((d-1)*100):"-"+Math.round(100/(d-1));
 function ppOK(q){return q&&(q.nv_src?q.nv_src!="none":(q.nv_books||0)>=2)}/* fair chance only with 2+ books or the sharp group */
 function ppClean(q){if(!q)return null;return ppOK(q)?q:{...q,nv:null}}
-function ppLeg(r){const R=(window.PP||{}).rows||{};const ln=YESM.has(r.market)?"":(Number.isInteger(+r.line)?(+r.line)+".0":String(+r.line));const q=R[[sport,r.market,ppNorm(r.player),ln].join("|")];
+function ppLeg(r,sp){const R=(window.PP||{}).rows||{};const ln=YESM.has(r.market)?"":(Number.isInteger(+r.line)?(+r.line)+".0":String(+r.line));const q=R[[sp||sport,r.market,ppNorm(r.player),ln].join("|")];
  if(!q||!q.start||new Date(q.start)<=Date.now())return null;/* started/finished game: never show its price */
  if(r.time&&etDay(q.start)!=etDay(r.time))return null;/* price must be for this prop's game */
  return ppClean(q)}
