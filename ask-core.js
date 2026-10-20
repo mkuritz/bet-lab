@@ -4,7 +4,7 @@
    The parser never produces numbers shown to users; every number comes from published Bet Lab data. */
 (function (root) {
 "use strict";
-var VERSION = "ask-1";
+var VERSION = "ask-2";
 var SPORTS = ["nfl", "cfb", "nba", "nhl", "mlb", "soccer"];
 var MARKET_TYPES = ["props", "SGP", "totals", "anytime TD", "anytime goal", "edges", "injury", "goalie", "shots", "arb", "games"];
 var SORTS = ["edge", "upside", "hit_rate", "CLV"];
