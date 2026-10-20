@@ -1148,7 +1148,12 @@
    "kind": "straight",
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-6-dont-use-this-sportsbook-all-in-sports/",
    "timestamp": "47:32",
-   "episode_date": "2026-10-14"
+   "episode_date": "2026-10-14",
+   "result": "win",
+   "final": {
+    "SF": 23.0,
+    "WSH": 17.0
+   }
   },
   {
    "sport": "mlb",
@@ -1522,18 +1527,18 @@
  "record": {
   "straight": {
    "overall": {
-    "w": 35,
+    "w": 36,
     "l": 19,
     "p": 2,
-    "units": 7.81,
-    "units_n": 35
+    "units": 8.71,
+    "units_n": 36
    },
    "nfl": {
-    "w": 33,
+    "w": 34,
     "l": 19,
     "p": 2,
-    "units": 7.81,
-    "units_n": 35
+    "units": 8.71,
+    "units_n": 36
    },
    "mlb": {
     "w": 2,
@@ -1581,18 +1586,18 @@
    }
   },
   "overall": {
-   "w": 35,
+   "w": 36,
    "l": 19,
    "p": 2,
-   "units": 7.81,
-   "units_n": 35
+   "units": 8.71,
+   "units_n": 36
   },
   "nfl": {
-   "w": 33,
+   "w": 34,
    "l": 19,
    "p": 2,
-   "units": 7.81,
-   "units_n": 35
+   "units": 8.71,
+   "units_n": 36
   },
   "mlb": {
    "w": 2,
@@ -1608,7 +1613,7 @@
    "units": null,
    "units_n": 0
   },
-  "pending": 1,
+  "pending": 0,
   "units_note": "1 unit per pick. Units count only picks with a stated price, or spreads/totals marked -110 (assumed standard price). Parlays without a stated price are W/L only."
  }
 }
