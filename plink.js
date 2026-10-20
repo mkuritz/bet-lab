@@ -66,24 +66,25 @@ function show(s,rows,r){var prev=sport,keep=DATA[s],lg=LG;sport=s;LG="";DATA[s]=
  try{history.replaceState(null,"",location.pathname+location.search+"#player="+s+":"+r.aid)}catch(e){}}
 function empty(x){var dr=document.getElementById("drawer");dr.innerHTML='<button class="x" id="cls">×</button><h2 style="margin:0">'+E(x.name)+' <span class="pos">'+E((x.pos||"")+" · "+(x.team||""))+'</span></h2><p class="mut" style="margin-top:14px">Not enough data yet: no games logged for '+E(x.name)+' this season or last.</p>';
  dr.classList.add("open");document.getElementById("shade").classList.add("open");document.getElementById("cls").onclick=EMBED?function(){parent.postMessage({plclose:1},"*")}:close}
-async function openIdx(s,aid){await load();var x=IDX.find(function(q){return q.s==s&&q.aid==aid});if(!x)return;
+async function openIdx(s,aid,ctx){await load();var x=IDX.find(function(q){return q.s==s&&q.aid==aid});if(!x)return;
  for(var i=0;i<80&&!(typeof ensure=="function"&&window.GAMES&&typeof RAW!="undefined"&&RAW[s]);i++)await new Promise(function(r){setTimeout(r,150)});
  await ensure(s);var rows=(DATA[s]||[]).filter(function(r){return String(r.aid)==String(aid)}),own=rows.filter(function(r){return r.games&&r.games.length});
  if(!own.length){var pl=await once("data/plogs_"+s+".json?v="+V),lg=pl&&pl[aid]?pl:await once("data/logs_"+s+".json?v="+V);rows=rows.map(function(r){return r.stat&&lg&&lg[aid]?splits(enrich(Object.assign({},r,{x:null}),lg)):r});var sy=synth(s,x,lg);rows=rows.concat(sy.filter(function(q){return!rows.some(function(r){return r.market==q.market})}))}
- rows=rows.filter(function(r){return r.games&&r.games.length}).concat(rows.filter(function(r){return!(r.games&&r.games.length)}));
+ 
  if(!rows.length||!rows.some(function(r){return r.games&&r.games.length})){if(rows.length){show(s,rows,rows[0]);return}return empty(x)}
+ var CT=N(ctx||""),hitM=null;if(CT)rows.forEach(function(r){var mm=N(r.market),al=mm.replace(/s$/,"");if((CT.indexOf(mm)>=0||CT.indexOf(al)>=0||(/anytime/.test(mm)&&/anytime|goal|td/.test(CT)&&/anytime/.test(CT)))&&(!hitM||mm.length>N(hitM.market).length))hitM=r});if(hitM){show(s,rows,hitM);return}
  var PRI=["Passing Yards","Rushing Yards","Receiving Yards","Points","Shots on Goal","Hits","Tackles Plus Assists","Saves","Pitcher Strikeouts","Shots","Anytime Goal","Anytime TD"],gm=rows.filter(function(r){return r.games.length}),best=null;PRI.some(function(m){best=gm.find(function(r){return r.market==m});return best});best=best||gm[0]||rows[0];show(s,rows,best)}
-var OV=null;function overlay(key){if(!OV){OV=document.createElement("div");OV.style.cssText="position:fixed;inset:0;z-index:2147483000;background:#0008;display:flex;justify-content:flex-end";
+var OV=null;function overlay(key,ctx){if(!OV){OV=document.createElement("div");OV.style.cssText="position:fixed;inset:0;z-index:2147483000;background:#0008;display:flex;justify-content:flex-end";
   OV.innerHTML='<iframe title="Player profile" style="border:0;width:min(560px,100%);height:100%;background:#0d1320"></iframe>';OV.onclick=function(e){if(e.target==OV)closeOv()};document.body.appendChild(OV)}
- OV.hidden=false;OV.style.display="flex";OV.firstChild.src="./index.html?plembed=1#plopen="+key;OV.firstChild.focus()}
+ OV.hidden=false;OV.style.display="flex";OV.firstChild.src="./index.html?plembed=1#plopen="+key+(ctx?"&ctx="+encodeURIComponent(ctx.slice(0,120)):"");OV.firstChild.focus()}
 function closeOv(){if(OV){OV.style.display="none";OV.firstChild.src="about:blank"}}
 window.addEventListener("message",function(e){if(e.data&&e.data.plclose)closeOv()});
 document.addEventListener("keydown",function(e){if(e.key=="Escape"&&OV&&OV.style.display!="none")closeOv()});
-function open(key){var m=/^(\w+):(\d+)$/.exec(key||"");if(!m)return;if(onIndex)openIdx(m[1],m[2]);else overlay(key)}
+function open(key,ctx){var m=/^(\w+):(\d+)$/.exec(key||"");if(!m)return;if(onIndex)openIdx(m[1],m[2],ctx);else overlay(key,ctx)}
 window.PLOPEN=open;
-function hit(e){var el=e.target.closest&&e.target.closest(".plk[data-pl]");if(!el||el.closest("[inert],.sl-locked"))return;if(e.type=="keydown"&&e.key!="Enter"&&e.key!=" ")return;e.preventDefault();e.stopPropagation();open(el.getAttribute("data-pl"))}
+function hit(e){var el=e.target.closest&&e.target.closest(".plk[data-pl]");if(!el||el.closest("[inert],.sl-locked"))return;if(e.type=="keydown"&&e.key!="Enter"&&e.key!=" ")return;e.preventDefault();e.stopPropagation();var row=el.closest("tr,li,.r,.imp,.it,.card,div");open(el.getAttribute("data-pl"),row?row.textContent:"")}
 document.addEventListener("click",hit,true);document.addEventListener("keydown",hit,true);
-if(onIndex){var hm=/#(?:plopen|player)=(\w+:\d+)/.exec(location.hash);if(hm)setTimeout(function(){open(hm[1])},50);
+if(onIndex){var hm=/#(?:plopen|player)=(\w+:\d+)/.exec(location.hash),hc=/[#&]ctx=([^&]*)/.exec(location.hash);if(hm)setTimeout(function(){open(hm[1],hc?decodeURIComponent(hc[1]):"")},50);
  window.addEventListener("hashchange",function(){var m=/#(?:plopen|player)=(\w+:\d+)/.exec(location.hash);var dr=document.getElementById("drawer");if(m&&dr.getAttribute("data-pl-open")!=m[1])open(m[1])})}
 if(EMBED){var es=document.createElement("style");es.textContent="body>*:not(#drawer):not(#shade){display:none!important}#shade{display:none!important}#drawer{width:100%!important;border-left:0!important}";document.head.appendChild(es)}
 load();if(document.body)mo.observe(document.body,{childList:true,subtree:true,characterData:true});
