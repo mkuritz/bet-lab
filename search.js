@@ -41,22 +41,24 @@ function attach(inp,onSelect){var wrap=document.createElement("div");wrap.classN
  inp.setAttribute("autocomplete","off");inp.setAttribute("autocapitalize","off");inp.setAttribute("spellcheck","false");inp.setAttribute("enterkeyhint","search");
  inp.setAttribute("role","combobox");inp.setAttribute("aria-autocomplete","list");inp.setAttribute("aria-expanded","false");inp.setAttribute("aria-controls","sls-dd");
  inp.placeholder="Search any player · NFL, CFB, NBA, NHL, MLB, soccer";
+ if(window.SLAsk)SLAsk.init(inp,wrap);else window.__slAskQ=(window.__slAskQ||[]).concat([[inp,wrap]]);
  var dd=document.createElement("ul");dd.className="sls-dd";dd.id="sls-dd";dd.setAttribute("role","listbox");dd.hidden=true;wrap.appendChild(dd);
- var res=[],sel=-1,tmr;
+ var res=[],sel=-1,tmr,ask=false;
  function show(){var q=inp.value;if(N(q).length<2){dd.hidden=true;inp.setAttribute("aria-expanded","false");return}
-  load().then(function(){res=search(q);sel=res.length?0:-1;
+  load().then(function(){res=search(q);ask=window.SLAsk?SLAsk.want(inp,q,res):false;if(ask=="only")res=[];sel=ask?-1:res.length?0:-1;
    dd.innerHTML=res.length?res.map(function(x,i){return '<li role="option" id="sls-o'+i+'" data-i="'+i+'" class="'+(i==sel?"on":"")+'" aria-selected="'+(i==sel)+'">'+(x.head?'<img loading="lazy" alt="" src="'+head(x.s,x.aid)+'" onerror="this.replaceWith(Object.assign(document.createElement(\'span\'),{className:\'sls-ph\'}))">':'<span class="sls-ph"></span>')+
-     '<div><div class="nm">'+E(x.name)+(x.props?'<span class="sls-tag p">PROPS</span>':"")+(x.inj?'<span class="sls-tag i">'+E(x.inj)+'</span>':"")+'</div><div class="mt">'+E(SPN[x.s])+(x.team?" · "+E(x.team):"")+(x.pos?" · "+E(x.pos):"")+'</div></div></li>'}).join(""):'<li class="sls-empty" role="option" aria-disabled="true">No players match "'+E(q)+'"</li>';
+     '<div><div class="nm">'+E(x.name)+(x.props?'<span class="sls-tag p">PROPS</span>':"")+(x.inj?'<span class="sls-tag i">'+E(x.inj)+'</span>':"")+'</div><div class="mt">'+E(SPN[x.s])+(x.team?" · "+E(x.team):"")+(x.pos?" · "+E(x.pos):"")+'</div></div></li>'}).join(""):(ask?"":'<li class="sls-empty" role="option" aria-disabled="true">No players match "'+E(q)+'"</li>');if(ask)dd.innerHTML=SLAsk.row(q)+dd.innerHTML;
    dd.hidden=false;inp.setAttribute("aria-expanded","true");mark()})}
- function mark(){[].forEach.call(dd.children,function(li,i){li.classList.toggle("on",i==sel);li.setAttribute("aria-selected",i==sel)});if(sel>=0){inp.setAttribute("aria-activedescendant","sls-o"+sel);var li=dd.children[sel];li&&li.scrollIntoView&&li.scrollIntoView({block:"nearest"})}}
+ function mark(){var off=ask?1:0;[].forEach.call(dd.children,function(li,i){li.classList.toggle("on",i-off==sel);li.setAttribute("aria-selected",i-off==sel)});if(ask&&sel<0)inp.setAttribute("aria-activedescendant","sls-ask");if(sel>=0){inp.setAttribute("aria-activedescendant","sls-o"+sel);var li=dd.children[sel+off];li&&li.scrollIntoView&&li.scrollIntoView({block:"nearest"})}}
  function pick(i){var x=res[i];if(!x)return;dd.hidden=true;inp.setAttribute("aria-expanded","false");inp.value="";inp.dispatchEvent(new Event("input",{bubbles:true}));inp.blur();onSelect(x)}
  inp.addEventListener("input",function(){clearTimeout(tmr);tmr=setTimeout(show,90)});
  inp.addEventListener("focus",function(){load();if(inp.value)show()});
- inp.addEventListener("keydown",function(e){if(dd.hidden&&e.key!="Enter")return;
-  if(e.key=="ArrowDown"){e.preventDefault();sel=Math.min(res.length-1,sel+1);mark()}else if(e.key=="ArrowUp"){e.preventDefault();sel=Math.max(0,sel-1);mark()}
+ function goAsk(){var q=inp.value;dd.hidden=true;inp.setAttribute("aria-expanded","false");SLAsk.open(q,{inp:inp})}
+ inp.addEventListener("keydown",function(e){if(e.key=="Enter"&&window.SLAsk&&(dd.hidden||sel<0)&&SLAsk.want(inp,inp.value,res)){e.preventDefault();return goAsk()}if(dd.hidden&&e.key!="Enter")return;
+  if(e.key=="ArrowDown"){e.preventDefault();sel=Math.min(res.length-1,sel+1);mark()}else if(e.key=="ArrowUp"){e.preventDefault();sel=Math.max(ask?-1:0,sel-1);mark()}
   else if(e.key=="Enter"){if(!dd.hidden&&sel>=0){e.preventDefault();pick(sel)}}else if(e.key=="Escape"){dd.hidden=true;inp.setAttribute("aria-expanded","false")}});
  dd.addEventListener("mousedown",function(e){e.preventDefault()});
- dd.addEventListener("click",function(e){var li=e.target.closest("li[data-i]");if(li)pick(+li.dataset.i)});
+ dd.addEventListener("click",function(e){if(e.target.closest("li[data-ask]"))return goAsk();var li=e.target.closest("li[data-i]");if(li)pick(+li.dataset.i)});
  document.addEventListener("click",function(e){if(!wrap.contains(e.target)){dd.hidden=true;inp.setAttribute("aria-expanded","false")}});}
 // ---------- profile (index page) ----------
 var LIVE_D=null,TAB="ov";
@@ -197,4 +199,6 @@ function fromHash(){if(window.PLOPEN)return;var m=/#player=(\w+):(\d+)/.exec(loc
 function init(){if(onIndex){var q=document.getElementById("q");if(q){attach(q,profile);var tmr;window.SLSearch={profile:profile,search:function(s){return load().then(function(){return search(s)})}};fromHash()}}
  else{var hd=document.querySelector("header");if(!hd)return;var i=document.createElement("input");i.type="search";i.className="sls-hdr";hd.appendChild(i);i.style.cssText="background:var(--panel2,#182033);border:1px solid var(--line,#2a2f3a);color:inherit;border-radius:8px;padding:8px 10px";attach(i,function(x){location.href="./index.html#player="+x.s+":"+x.aid})}}
 document.readyState=="loading"?document.addEventListener("DOMContentLoaded",init):init();
+// Ask mode (extends this bar; names still behave as before)
+(function(){if(window.SLAsk)return;var B=(document.currentScript&&document.currentScript.src||"").replace(/search\.js.*$/,"")||"./";var a=document.createElement("script");a.src=B+"ask-core.js?v=1";a.onload=function(){var b=document.createElement("script");b.src=B+"ask.js?v=1";b.onload=function(){(window.__slAskQ||[]).forEach(function(x){SLAsk.init(x[0],x[1])});window.__slAskQ=[]};document.head.appendChild(b)};document.head.appendChild(a)})();
 })();
