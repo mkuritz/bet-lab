@@ -36,13 +36,13 @@ function once(u){return CACHE[u]||(CACHE[u]=J(u).catch(function(){delete CACHE[u
 var DEF={DE:1,DT:1,NT:1,DL:1,LB:1,ILB:1,OLB:1,MLB:1,CB:1,S:1,FS:1,SS:1,DB:1,EDGE:1};
 // standard props per sport/position: [market, stat keys, fixed line or null = reference line from his L10 median]
 function STD(s,pos){pos=(pos||"").toUpperCase();
- if(s=="nhl")return pos=="G"?[["Saves",["saves"],null]]:[["Points",["points"],0.5],["Anytime Goal",["goals"],0.5],["Shots on Goal",["shotsTotal"],null],["Assists",["assists"],0.5],["Blocked Shots",["blockedShots"],null]];
- if(s=="nba")return[["Points",["points"],null],["Rebounds",["totalRebounds"],null],["Assists",["assists"],null],["3-Point Field Goals",["threePointFieldGoalsMade-threePointFieldGoalsAttempted"],null],["Points + Assists + Rebounds",["points","assists","totalRebounds"],null]];
+ if(s=="nhl")return pos=="G"?[["Saves",["saves"],null]]:[["Points",["points"],0.5],["Anytime Goal",["goals"],0.5],["Shots on Goal",["shotsTotal"],null],["Assists",["assists"],0.5],["Blocked Shots",["blockedShots"],null],["Powerplay Points",["powerPlayPoints"],0.5]];
+ if(s=="nba")return[["Points",["points"],null],["Rebounds",["totalRebounds"],null],["Assists",["assists"],null],["3-Point Field Goals",["threePointFieldGoalsMade-threePointFieldGoalsAttempted"],null],["Points + Assists + Rebounds",["points","assists","totalRebounds"],null],["Points + Assists",["points","assists"],null],["Points + Rebounds",["points","totalRebounds"],null],["Rebounds + Assists",["totalRebounds","assists"],null],["Steals + Blocks",["steals","blocks"],null]];
  if(s=="soccer")return pos=="G"||pos=="GK"?[["Saves",["saves"],null]]:[["Anytime Goal",["goals"],0.5],["Shots",["shots"],null],["Shots on Target",["sot"],0.5],["Assists",["assists"],0.5]];
- if(s=="mlb")return/^(P|SP|RP)$/.test(pos)?[["Pitcher Strikeouts",["strikeouts"],null],["Earned Runs Allowed",["earnedRuns"],null]]:[["Hits",["hits"],0.5],["Bases",["hits","doubles","doubles","triples","triples","triples","homeRuns","homeRuns","homeRuns","homeRuns"],1.5],["Home Runs",["homeRuns"],0.5],["RBIs",["RBIs"],0.5],["Runs Scored",["runs"],0.5]];
- if(s=="nfl"||s=="cfb"){if(pos=="QB")return[["Passing Yards",["passingYards"],null],["Passing Touchdowns",["passingTouchdowns"],1.5],["Rushing Yards",["rushingYards"],null],["Pass Completions",["completions"],null]];
-  if(pos=="RB"||pos=="FB")return[["Rushing Yards",["rushingYards"],null],["Carries",["rushingAttempts"],null],["Receptions",["receptions"],null],["Anytime TD",["rushingTouchdowns","receivingTouchdowns"],0.5]];
-  if(pos=="WR"||pos=="TE")return[["Receiving Yards",["receivingYards"],null],["Receptions",["receptions"],null],["Anytime TD",["rushingTouchdowns","receivingTouchdowns"],0.5]];
+ if(s=="mlb")return/^(P|SP|RP)$/.test(pos)?[["Pitcher Strikeouts",["strikeouts"],null],["Earned Runs Allowed",["earnedRuns"],null]]:[["Hits",["hits"],0.5],["Bases",["hits","doubles","doubles","triples","triples","triples","homeRuns","homeRuns","homeRuns","homeRuns"],1.5],["Home Runs",["homeRuns"],0.5],["RBIs",["RBIs"],0.5],["Runs Scored",["runs"],0.5],["Hits + Runs + RBIs",["hits","runs","RBIs"],null]];
+ if(s=="nfl"||s=="cfb"){if(pos=="QB")return[["Passing Yards",["passingYards"],null],["Passing Touchdowns",["passingTouchdowns"],1.5],["Rushing Yards",["rushingYards"],null],["Passing Plus Rushing Yards",["passingYards","rushingYards"],null],["Pass Completions",["completions"],null]];
+  if(pos=="RB"||pos=="FB")return[["Rushing Yards",["rushingYards"],null],["Rushing Plus Receiving Yards",["rushingYards","receivingYards"],null],["Carries",["rushingAttempts"],null],["Receptions",["receptions"],null],["Anytime TD",["rushingTouchdowns","receivingTouchdowns"],0.5]];
+  if(pos=="WR"||pos=="TE")return[["Receiving Yards",["receivingYards"],null],["Rushing Plus Receiving Yards",["rushingYards","receivingYards"],null],["Receptions",["receptions"],null],["Anytime TD",["rushingTouchdowns","receivingTouchdowns"],0.5]];
   if(pos=="K"||pos=="PK")return[["Kicking Points",["totalKickingPoints"],null],["Field Goals Made",["fieldGoalsMade-fieldGoalAttempts"],null]];
   return[["Tackles Plus Assists",["totalTackles"],null],["Tackles",["soloTackles"],null],["Sacks",["sacks"],0.5],["Interceptions",["interceptions"],0.5]]}
  return[]}
@@ -52,7 +52,7 @@ function synth(s,x,logs){var G=(logs&&logs[x.aid])||[];if(!G.length)return[];var
  var base={aid:x.aid,player:x.name,pos:x.pos||"",team:x.team||"",oa:oa,home:home,opp:ng?(home?"vs ":"@")+oa:"",time:ng?ng.time:null,game:ng?ng.id:null,_syn:1};
  return STD(s,x.pos).map(function(m){var vs=G.map(function(g){return vOf(g,m[1])}).filter(function(v){return v!=null});if(!vs.length)return null;var line=m[2];
    if(line==null){var a=vs.slice(0,10).slice().sort(function(p,q){return p-q}),md=a[Math.floor((a.length-1)/2)];line=Math.max(0.5,Math.round(md)-0.5)}
-   return splits(enrich(Object.assign({},base,{market:m[0],stat:m[1],line:line,_ref:m[2]==null}),logs))}).filter(Boolean)}
+   return splits(enrich(Object.assign({},base,{market:m[0],stat:m[1],line:line,_ref:m[2]==null}),logs,s))}).filter(Boolean)}
 function splits(r){var G=r.games||[],ag=function(a){return a.length?{h:a.filter(function(x){return x.v>r.line}).length,n:a.length,avg:Math.round(a.reduce(function(t,x){return t+x.v},0)/a.length*100)/100}:null};r.h2h=r.oa?ag(G.filter(function(x){return x.o==r.oa})):null;r.hm=ag(G.filter(function(x){return x.at!="@"}));r.aw=ag(G.filter(function(x){return x.at=="@"}));r.ven=r.home?r.hm:r.aw;var os=0;for(var i=0;i<G.length&&G[i].v>r.line;i++)os++;r.os=os;return r}
 var ORD=/Points$|^Points|Passing Yards|Rushing Yards|Receiving Yards|Shots on Goal|Hits|Anytime|Tackles Plus|Saves|Strikeouts/;
 function show(s,rows,r){var prev=sport,keep=DATA[s],lg=LG;sport=s;LG="";DATA[s]=rows;
@@ -69,7 +69,7 @@ function empty(x){var dr=document.getElementById("drawer");dr.innerHTML='<button
 async function openIdx(s,aid,ctx){await load();var x=IDX.find(function(q){return q.s==s&&q.aid==aid});if(!x)return;
  for(var i=0;i<80&&!(typeof ensure=="function"&&window.GAMES&&typeof RAW!="undefined"&&RAW[s]);i++)await new Promise(function(r){setTimeout(r,150)});
  await ensure(s);var rows=(DATA[s]||[]).filter(function(r){return String(r.aid)==String(aid)}),own=rows.filter(function(r){return r.games&&r.games.length});
- if(!own.length){var pl=await once("data/plogs_"+s+".json?v="+V),lg=pl&&pl[aid]?pl:await once("data/logs_"+s+".json?v="+V);rows=rows.map(function(r){return r.stat&&lg&&lg[aid]?splits(enrich(Object.assign({},r,{x:null}),lg)):r});var sy=synth(s,x,lg);rows=rows.concat(sy.filter(function(q){return!rows.some(function(r){return r.market==q.market})}))}
+ if(!own.length){var pl=await once("data/plogs_"+s+".json?v="+V),lg=pl&&pl[aid]?pl:await once("data/logs_"+s+".json?v="+V);rows=rows.map(function(r){var k=r.stat||(typeof mkStat=="function"?mkStat(s,r.market,r.pos):null);return k&&lg&&lg[aid]?splits(enrich(Object.assign({},r,{x:null,stat:k}),lg,s)):r});var sy=synth(s,x,lg);rows=rows.concat(sy.filter(function(q){return!rows.some(function(r){return r.market==q.market})}))}
  
  if(!rows.length||!rows.some(function(r){return r.games&&r.games.length})){if(rows.length){show(s,rows,rows[0]);return}return empty(x)}
  var CT=N(ctx||""),hitM=null;if(CT)rows.forEach(function(r){var mm=N(r.market),al=mm.replace(/s$/,"");if((CT.indexOf(mm)>=0||CT.indexOf(al)>=0||(/anytime/.test(mm)&&/anytime|goal|td/.test(CT)&&/anytime/.test(CT)))&&(!hitM||mm.length>N(hitM.market).length))hitM=r});if(hitM){show(s,rows,hitM);return}
