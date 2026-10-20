@@ -370,6 +370,11 @@ function fillFilters(){const d=SRC();
  $("mkt").innerHTML='<option value="">All markets</option>'+[...new Set(d.map(r=>r.market))].sort().map(m=>`<option>${m}</option>`).join("");
  const g={};d.forEach(r=>g[r.game]=g[r.game]||(r.team&&r.opp?(r.opp.startsWith("@")?r.team+" "+r.opp:r.opp.replace("vs ","")+" @ "+r.team):r.game)+" · "+et(r.time));
  $("game").innerHTML='<option value="">All games</option>'+Object.entries(g).map(([k,v])=>`<option value="${k}">${v}</option>`).join("")}
+window.ovbFill=ovbFill;var NHLM=null;function loadNHLM(){if(NHLM)return NHLM;NHLM=fetch("https://nhllab.sportslabshq.com/data/slate.json?t="+Date.now()).then(function(r){return r.json()}).then(function(d){var M={};(d.rows||[]).forEach(function(q){M[ppNorm(q.name)+"|"+q.date]=q});return M}).catch(function(){return{}});return NHLM}
+function ovbFill(r){var el=document.getElementById("slp-ovb");if(!el)return;var k=/Anytime Goal/.test(r.market)?"pG":(r.market=="Points"&&+r.line==.5?"pP":null);if(!k){el.remove();return}
+ loadNHLM().then(function(M){var el=document.getElementById("slp-ovb");if(!el)return;var d=r.time?new Date(r.time).toLocaleDateString("en-CA",{timeZone:"America/New_York"}):"",m=M[ppNorm(r.player)+"|"+d],q=(function(){try{return ppLeg(r)}catch(e){return null}})();
+  var etT=window.etT||function(t){return new Date(t).toLocaleTimeString('en-US',{timeZone:'America/New_York',hour:'numeric',minute:'2-digit'})+' ET'};if(!m||m[k]==null){el.remove();return}var ours=k=="pG"&&m.pGm!=null?m.pGm:m[k],fair=q&&q.nv!=null?q.nv:null,ed=fair!=null?Math.round((ours-fair)*1000)/10:null;
+  el.innerHTML='<div class="stats" style="grid-template-columns:repeat(auto-fit,minmax(78px,1fr));margin-top:10px"><div>Sports Labs model chance<b>'+Math.round(ours*100)+'%</b></div><div>Book fair chance<b>'+(fair!=null?Math.round(fair*100)+"%":"—")+'</b></div><div>Best price<b>'+(q&&q.best!=null?(q.best>0?"+":"")+q.best+' <span style="font-size:11px">'+E(q.book||"")+'</span>':"—")+'</b></div><div>Edge<b style="color:'+(ed==null?"inherit":ed>=0?"var(--acc)":"var(--bad)")+'">'+(ed==null?"—":(ed>0?"+":"")+ed.toFixed(1)+" pts")+'</b></div></div><div class="mut" style="font-size:11px;margin-top:4px">Ours vs book: Sports Labs model chance (NHL Lab) vs the book fair chance (no-vig, 2+ books)'+(q&&q.t?" as of "+E(etT(q.t)):"")+'. Edge = ours minus book, in points.</div>'})}
 function drawer(r){const all=SRC().filter(x=>x.aid==r.aid);
  const g=r.games.slice(0,20).reverse(),mx=Math.max(r.line*1.4,...g.map(x=>x.v),1);
  $("drawer").innerHTML=`<button class="x" id="cls">×</button><h2 style="margin:0">${r.player} <span class="pos">${r.pos} · ${r.team}</span> ${addBtn(r)}</h2>
@@ -383,10 +388,11 @@ function drawer(r){const all=SRC().filter(x=>x.aid==r.aid);
  ${r.h2h&&r.h2h.n<4?`<div class="warn">Only ${r.h2h.n} game${r.h2h.n>1?"s":""} vs ${r.oa}. Small sample, so weigh it lightly.</div>`:""}
  ${r.os?`<p><span class="fire">🔥 ${r.os}-game over streak</span></p>`:r.us>=2?`<p class="dn">${r.us}-game under streak</p>`:""}
  ${r.ladder?`<h3 style="margin:18px 0 4px;font-size:14px">Book A ladder <span class="mut" style="font-size:12px">(hit rate = L10 games reaching each rung)</span></h3><div class="tl">${r.ladder.map(([t,o])=>{const g10=r.games.slice(0,10);const h=g10.filter(x=>x.v>=t).length;return `<span>${t}+ <b>${o==null?"—":(o>0?"+":"")+o}</b> · ${g10.length?h+"/"+g10.length:"—"}</span>`}).join("")}</div>`:""}
- ${r.ov!=null&&r.l10?`<div class="mut" style="font-size:12px;margin-top:6px">DK over ${r.ov>0?"+":""}${r.ov} implies ${Math.round((r.ov>0?100/(r.ov+100):-r.ov/(-r.ov+100))*100)}%; L10 hit rate ${Math.round(pct(r.l10)*100)}%.</div>`:""}
+ ${r.ov!=null&&r.l10?`<div class="mut" style="font-size:12px;margin-top:6px">Book A over ${r.ov>0?"+":""}${r.ov} implies ${Math.round((r.ov>0?100/(r.ov+100):-r.ov/(-r.ov+100))*100)}%; L10 hit rate ${Math.round(pct(r.l10)*100)}%.</div>`:""}
+ ${sport=="nhl"?'<div id="slp-ovb"></div>':""}
  ${drawerExtras(r)}
  <p class="mut" style="font-size:12px">Green = went over ${r.line}. Last ${g.length} games, regular season and playoffs, oldest to newest. Book A line.</p>`;
- $("drawer").classList.add("open");$("shade").classList.add("open");
+ $("drawer").classList.add("open");$("shade").classList.add("open");if(sport=="nhl")ovbFill(r);
  $("cls").onclick=close;$("drawer").querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>drawer(all.find(x=>x.market==b.dataset.m)))}
 function close(){$("drawer").classList.remove("open");$("shade").classList.remove("open")}
 const RAW={},LOGP={};
