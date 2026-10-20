@@ -1,4 +1,4 @@
-// Bet Lab · Live slips: every taken slip + every Bet Lab recommended slip/SGP, all sports, one view.
+// Bet Lab · Live slips: every taken slip + every Bet Lab highlighted slip/SGP, all sports, one view.
 // Browser-only: ESPN free public scoreboards + box scores (CORS open).
 (function(){
 const PATH={nfl:"football/nfl",cfb:"football/college-football",nhl:"hockey/nhl",mlb:"baseball/mlb",nba:"basketball/nba",soccer:"soccer/"};
@@ -14,7 +14,7 @@ async function collect(){const out=[];
  // 1) your taken slips (saved on this device / account)
  let T=[];try{T=typeof myBets=="function"?myBets():[]}catch(e){}
  T.filter(b=>b.result!="win"&&b.result!="loss"&&b.result!="void").forEach((b,i)=>out.push({kind:"taken",title:(b.legs.length>1?b.legs.length+"-leg slip":"Single"),sub:`stake ${E(b.stake??"1u")}${b.odds?` · ${b.odds>0?"+":""}${E(b.odds)}`:""}`,legs:b.legs.map(l=>norm(l.sport||"nfl",l))}));
- // 2) Bet Lab recommended slips for today, every sport we cover
+ // 2) Bet Lab highlighted slips for today, every sport we cover
  for(const sp of ["nfl","cfb","nhl","mlb","nba","soccer"]){try{if(typeof ensure=="function")await ensure(sp);const d=(DATA[sp]||[]);if(!d.length||typeof buildRecs!="function")continue;
    const prev=sport,plg=typeof LG!="undefined"?LG:null;let recs=[];try{sport=sp;if(plg!==null)LG=null;recs=buildRecs(d)||[]}finally{sport=prev;if(plg!==null)LG=plg}
    const today=new Date().toLocaleDateString("en-CA",{timeZone:"America/New_York"});
@@ -65,7 +65,7 @@ function draw(){const el=document.getElementById("lslips");if(!el||el.hidden)ret
  const tk=S.slips.filter(s=>s.kind=="taken"),rc=S.slips.filter(s=>s.kind=="rec");const th=tk.map(slipHtml),rh=rc.map(slipHtml);
  const tk2=tk.map((s,i)=>ok(s)?th[i]:"").join(""),rc2=rc.map((s,i)=>ok(s)?rh[i]:"").join("");
  el.innerHTML=`<div style="padding:0 20px 20px"><div class="kick">All sports · live slip feed</div><h2 style="margin:4px 0">🔴 Live</h2>
- <div class="mut" style="font-size:12px">Every slip you've taken plus today's Bet Lab recommended slips, soccer SGPs and logged parlays, across NFL, CFB, NHL, MLB, NBA and soccer. Leg stats come from live box scores${S.at?` · updated ${etT(S.at)}`:""}; refreshes every 30s while games are live. Pace is straight-line, an estimate only.</div>
+ <div class="mut" style="font-size:12px">Every slip you've taken plus today's Bet Lab highlighted slips, soccer SGPs and logged parlays, across NFL, CFB, NHL, MLB, NBA and soccer. Leg stats come from live box scores${S.at?` · updated ${etT(S.at)}`:""}; refreshes every 30s while games are live. Pace is straight-line, an estimate only.</div>
  <div class="chips" style="margin:10px 0">${[["all","All"],["live","Live"],["pre","Not started"],["done","Settled"]].map(([k,t])=>`<button data-lsf="${k}" class="${F==k?"on":""}">${t}</button>`).join("")}</div>
  <div class="card" data-sl-public style="margin-bottom:12px"><h3>My taken slips</h3>${tk2||`<div class="mut">${tk.length?"No taken slips in this filter.":"No open taken slips. Mark a slip as taken and it shows up here live."}</div>`}</div>
  <div class="card"><h3>Bet Lab highlighted slips · today</h3>${rc2||'<div class="mut">No highlighted slips in this filter.</div>'}<div class="mut" style="font-size:11px;margin-top:6px">Gaps: markets without a free box-score stat (pitcher strikeouts, outs, hits allowed, tackles) show the game status only. MLB doubles/triples aren't in the live box score. Not betting advice.</div></div></div>`;

@@ -106,13 +106,13 @@ footer{color:var(--mut);font-size:12px;padding:16px 20px 30px;border-top:1px sol
 const SPORTS=[["nfl","NFL"],["cfb","CFB"],["ncaamb","CBB"],["nba","NBA"],["nhl","NHL"],["mlb","MLB"],["soccer","Soccer"]];
 const LEAGUES=[["eng.1","EPL"],["esp.1","La Liga"],["ita.1","Serie A"],["ger.1","Bundesliga"],["fra.1","Ligue 1"],["usa.1","MLS"],["por.1","Primeira Liga"],["ned.1","Eredivisie"],["tur.1","Süper Lig"],["ksa.1","Saudi Pro League"],["uefa.champions","Champions League"],["uefa.europa","Europa League"],["uefa.europa.conf","Conference League"]];
 let LG=JSON.parse(localStorage.getItem("betlab:v1:state")||"{}").lg||"";
-function SRC(){const d=DATA[sport]||[];return sport=="soccer"&&LG?d.filter(r=>r.lg==LG):d}
+function SRC(){const d=(DATA[sport]||[]).filter(r=>!r.time||gstate(r.time)!="final");return sport=="soccer"&&LG?d.filter(r=>r.lg==LG):d}
 const LS="betlab:v1:";const st=JSON.parse(localStorage.getItem(LS+"state")||"{}");
 let sport=st.sport||"nfl",sortK=st.sortK||"time",sortD=st.sortD||1,DATA={},rows=[];
 const $=id=>document.getElementById(id);
 const save=()=>localStorage.setItem(LS+"state",JSON.stringify({sport,sortK,sortD,view,tier,win,posX,lg:LG}));
 const DUR={nfl:3.6,cfb:3.8,ncaamb:2.3,nba:2.6,nhl:2.8,mlb:3.4,soccer:2.1};const etDay=t=>new Date(t).toLocaleDateString("en-CA",{timeZone:"America/New_York"});
-const keepT=t=>new Date(t)>Date.now()||etDay(t)==etDay(Date.now());const gstate=(t,sp)=>{const s=(Date.now()-new Date(t))/36e5;return s<0?"":s<(DUR[sp||sport]||3)?"live":"final"};
+const keepT=t=>new Date(t)>Date.now()||(etDay(t)==etDay(Date.now())&&gstate(t)!="final");const gstate=(t,sp)=>{const s=(Date.now()-new Date(t))/36e5;return s<0?"":s<(DUR[sp||sport]||3)?"live":"final"};
 const et=t=>{const g=gstate(t);return new Date(t).toLocaleString("en-US",{timeZone:"America/New_York",weekday:"short",hour:"numeric",minute:"2-digit"})+" ET"+(g=="live"?' <span class="st hit" style="background:var(--bad);color:#fff">LIVE</span>':g=="final"?' <span class="st dead">FINAL</span>':"")};
 async function j(u,fb){try{const r=await fetch(u+"?v="+Date.now());if(!r.ok)throw 0;return await r.json()}catch(e){return fb}}
 function val(g,stat){let s=0,any=false;for(const k of stat){const neg=k[0]=="-",kk=k.replace(/^-/,"");if(!(kk in g.s))continue;any=true;s+=neg?-g.s[kk]:g.s[kk]}return any?s:null}
