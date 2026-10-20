@@ -31,8 +31,8 @@ function court(){var Y=function(y){return y+5.25},L='stroke="#f4ead9" stroke-wid
  w+='<line x1="22" y1="'+Y(-1.25)+'" x2="28" y2="'+Y(-1.25)+'" '+L+'/><circle cx="25" cy="'+Y(0)+'" r=".75" '+L+'/><path d="M21 '+Y(0)+' A4 4 0 0 0 29 '+Y(0)+'" '+L+'/>';
  var a=Math.sqrt(23.75*23.75-22*22);w+='<path d="M3 0 L3 '+Y(a)+' A23.75 23.75 0 0 0 47 '+Y(a)+' L47 0" '+L+'/>';
  w+='<path d="M19 47 A6 6 0 0 1 31 47" '+L+'/>';return w}
-function zrow(z,p,lgz){var f=p.fga?p.fgm/p.fga:null,d=f!=null&&lgz!=null?(f-lgz)*100:null;
- return'<div class="zr"><div>'+ZN[z]+' <span class="mut" style="font-size:11px">'+p.fgm+'/'+p.fga+'</span></div><div>'+(f==null?'<span class="mut">no shots</span>':Math.round(f*100)+'%')+(d==null?"":' · <span class="'+(d>=0?"up":"dn")+'">'+(d>=0?"+":"")+d.toFixed(0)+'</span>')+'</div><div class="mut" style="font-size:11px">league '+(lgz==null?"—":Math.round(lgz*100)+"%")+'</div></div>'}
+function zrow(z,p,lgz){var f=p.fga?p.fgm/p.fga:null,d=f!=null&&lgz!=null?Math.round((f-lgz)*100):null;if(d===0)d=0;
+ return'<div class="zr"><div>'+ZN[z]+' <span class="mut" style="font-size:11px">'+p.fgm+'/'+p.fga+'</span></div><div>'+(f==null?'<span class="mut">no shots</span>':Math.round(f*100)+'%')+(d==null?"":' · <span class="'+(d>=0?"up":"dn")+'">'+(d>0?"+":d==0?"±":"")+d+'</span>')+'</div><div class="mut" style="font-size:11px">league '+(lgz==null?"—":Math.round(lgz*100)+"%")+'</div></div>'}
 function nm(t){return({UTA:"UTAH",GSW:"GS",NOP:"NO",SAS:"SA",NYK:"NY",WAS:"WSH"})[t]||t}
 function cards(r,P,L,s){var h="";
  // 1) selected market: L10 average vs line (published hit-rate data)
