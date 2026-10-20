@@ -1,4 +1,4 @@
-/* Sports Labs hero: official top picks, recent hits, proven numbers. Shared by Bet Lab, Edge Tracker, MLB Lab, Sports Labs home. */
+/* Sports Labs hero: official top highlights, recent hits, proven numbers. Shared by Bet Lab, Edge Tracker, MLB Lab, Sports Labs home. */
 (function(){
 const BL="https://betlab.sportslabshq.com/data/",ML="https://mlblab.sportslabshq.com/data/";
 const css=`.slh{font:14px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#e6ebf5;background:linear-gradient(135deg,#0f1a2e,#0b1220);border:1px solid #2a3a5c;border-radius:16px;padding:16px;margin:12px auto;max-width:1150px;box-sizing:border-box}
@@ -32,15 +32,15 @@ async function render(el){const SP=el.dataset.sport||"";if(SP==="analyst"){el.hi
   const top=rec.filter(r=>dayOf(r)===day&&mlbOk(r[0],L[r[0]])).sort((a,b)=>(b[1].score||0)-(a[1].score||0)).slice(0,5);
   if(ONLY.has(SP)&&!top.length){el.hidden=true;el.innerHTML="";return}el.hidden=false;
   const hitT=new Set(mlbHits.map(h=>h.t.split(": ").pop()));
-  let h=`<a href="https://betlab.sportslabshq.com/sharp.html" style="display:flex;justify-content:space-between;align-items:center;gap:10px;text-decoration:none;background:#53e3a614;border:1px solid #53e3a655;border-radius:12px;padding:10px 12px;margin-bottom:12px"><span><b style="color:#e6ebf5">💎 Highlighted</b><br><small style="color:#8b97b0">Our highest-conviction plays</small></span><span style="font-weight:800">Open →</span></a><h2>🎯 Highlighted</h2><div class="sub">Our top picks, locked in before the game at a real market price. Updated ${stats&&!isNaN(Date.parse(stats.updated))?new Date(stats.updated).toLocaleString("en-US",{timeZone:"America/New_York",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})+" ET":""}</div>`;
-  h+=`<h3>${day===today?"Today's top picks":"Latest picks · "+e(new Date(day+"T12:00:00").toLocaleDateString("en-US",{month:"short",day:"numeric"}))}</h3><div class="grid">`;
+  let h=`<a href="https://betlab.sportslabshq.com/sharp.html" style="display:flex;justify-content:space-between;align-items:center;gap:10px;text-decoration:none;background:#53e3a614;border:1px solid #53e3a655;border-radius:12px;padding:10px 12px;margin-bottom:12px"><span><b style="color:#e6ebf5">💎 Highlighted</b><br><small style="color:#8b97b0">Our highest-conviction plays</small></span><span style="font-weight:800">Open →</span></a><h2>🎯 Highlighted</h2><div class="sub">Our top highlights, locked in before the game at a real market price. Updated ${stats&&!isNaN(Date.parse(stats.updated))?new Date(stats.updated).toLocaleString("en-US",{timeZone:"America/New_York",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})+" ET":""}</div>`;
+  h+=`<h3>${day===today?"Today's top highlights":"Latest highlights · "+e(new Date(day+"T12:00:00").toLocaleDateString("en-US",{month:"short",day:"numeric"}))}</h3><div class="grid">`;
   const tm=x=>!x||isNaN(Date.parse(x))?"":new Date(x).toLocaleString("en-US",{timeZone:"America/New_York",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"});
   const tmS=x=>new Date(x).toLocaleString("en-US",{timeZone:"America/New_York",hour:"numeric",minute:"2-digit"});
-  const book=src=>{src=src||"book";const m=/^Odds API \(([^,)]+)/.exec(src);return m?m[1]:src.replace(/\s*\(.*\)/,"").replace(/\s+via\s.*$/,"")};
+  const BKL={DraftKings:"Book A",FanDuel:"Book B",BetMGM:"Book C",Caesars:"Book D",Fanatics:"Book E",BetRivers:"Book F","ESPN BET":"Book G","ESPN Bet":"Book G","Hard Rock":"Book I","Hard Rock Bet":"Book I",Kalshi:"Exchange A",Polymarket:"Exchange B"};const book=src=>{src=src||"book";const m=/^[^(]*\(([^,)]+)/.exec(src);const b=(m?m[1]:src.replace(/\s+via\s.*$/,"")).trim();return BKL[b]||b};
   // Latest market snapshot (display only; the logged price never changes). MLB: MLB Lab's latest board.
   const HRM={},KM={};((mHR&&mHR.players)||[]).forEach(p=>{if(p.market)HRM[p.pk+"|"+p.id]=p.market});((mK&&mK.pitchers)||[]).forEach(p=>{if(p.market)KM[p.pk+"|"+p.id]=p.market});
   const snap=x=>{const p=x.id.split("|");if(p[0]!=="mlb")return null;
-    if(p[1]==="hr"){const m=HRM[p[3]+"|"+p[4]],a=m&&(m.ask||m.implied);if(!a||!mHR||(mHR.date||"")!==p[2]||(x.ref&&x.ref.ticker&&m.ticker&&m.ticker!==x.ref.ticker))return null;return {d:1/a,b:m.src||"Kalshi",t:Date.parse(mHR.generated),nv:!m.ask}}
+    if(p[1]==="hr"){const m=HRM[p[3]+"|"+p[4]],a=m&&(m.ask||m.implied);if(!a||!mHR||(mHR.date||"")!==p[2]||(x.ref&&x.ref.ticker&&m.ticker&&m.ticker!==x.ref.ticker))return null;return {d:1/a,b:m.src||"Exchange A",t:Date.parse(mHR.generated),nv:!m.ask}}
     if(p[1]==="k"){const m=KM[p[3]+"|"+p[4]];if(!m||m.implied_over==null||!mK||(mK.date||"")!==p[2]||(x.ref&&m.line!=null&&+m.line!==+x.ref.line))return null;const i=p[5]==="u"?1-m.implied_over:m.implied_over;return i>0?{d:1/i,b:m.src||"book",t:Date.parse(mK.generated),nv:p[5]==="u"}:null}
     return null};
   const TAG=(c,bg,t)=>` <span class="slh-tag" style="background:${bg};color:${c}">${t}</span>`;

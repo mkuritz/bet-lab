@@ -1,5 +1,5 @@
 // Bet Lab live tracker for College Football + Soccer (same UX as the NFL tracker).
-// Browser polls ESPN's free public scoreboard + match summaries (CORS open). No Odds API calls, nothing server-side.
+// Browser polls ESPN's free public scoreboard + match summaries (CORS open)., nothing server-side.
 (function(){
 const PATH={nfl:"football/nfl",nhl:"hockey/nhl",mlb:"baseball/mlb",nba:"basketball/nba"},GEN=sp=>!!PATH[sp];
 const SB={cfb:"https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?groups=80&limit=300",soccer:lg=>`https://site.api.espn.com/apis/site/v2/sports/soccer/${lg}/scoreboard`};
