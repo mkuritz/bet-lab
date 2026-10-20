@@ -170,7 +170,7 @@ function liveBlock(x,g,el){var u="https://site.api.espn.com/apis/site/v2/sports/
   if(state=="in")h+='<div class="mut" style="font-size:11px;margin-top:4px">Live player prop lines aren\'t in our data feed, so the prop lines below are the latest pregame lines. Refreshes every 30s.</div>';
   el.innerHTML=h;if(TAB=="lv"&&CUR_PROPS&&CUR_PROPS.length){var on=document.querySelector("#slp-mk button.on");panel(x,CUR_PROPS[on?+on.dataset.pi:0],CUR_PROPS,g)}clearTimeout(LIVE_T);if(state=="in")LIVE_T=setTimeout(function(){if(document.getElementById("drawer").classList.contains("open")&&CUR===x.aid)liveBlock(x,g,el)},30000)}).catch(function(){})}
 function ourChance(r){try{var q=ppLeg(r);if(!q||q.nv==null)return null;var sh=30,h=r.l10?r.l10.h:0,n=r.l10?r.l10.n:0,p=Math.min((h+sh*q.nv)/(n+sh),.97),ip=1/toDec(q.best);return{p:p,ip:ip,edge:p-ip,best:q.best,book:q.book}}catch(e){return null}}
-async function profile(x){CUR=x.aid;clearTimeout(LIVE_T);
+async function profile(x){if(window.PLOPEN)return PLOPEN(x.s+":"+x.aid);CUR=x.aid;clearTimeout(LIVE_T);
  if(sport!==x.s){sport=x.s;try{page=1;save()}catch(e){}await ensure(x.s);try{fillFilters();render()}catch(e){}}else await ensure(x.s);
  var props=(DATA[x.s]||[]).filter(function(r){return String(r.aid)==String(x.aid)});
  CUR_PROPS=props;LIVE_D=null;var unav=props.map(function(r){return r.unav}).filter(Boolean)[0],inj=x.inj||(unav&&(unav.st||unav.status||unav))||"";
@@ -193,7 +193,7 @@ async function profile(x){CUR=x.aid;clearTimeout(LIVE_T);
  g0=g;if(props.length)panel(x,props[sel],props,g);venue(x,g);
  if(+new Date(g.time)-Date.now()<36e5*36)liveBlock(x,g,gel)}
 function byKey(s,aid){return load().then(function(L){return L.find(function(x){return x.s==s&&x.aid==aid})})}
-function fromHash(){var m=/#player=(\w+):(\d+)/.exec(location.hash);if(!m)return;var t=0,iv=setInterval(function(){if((window.GAMES&&typeof ensure=="function"&&typeof RAW!="undefined"&&Object.keys(RAW).length)||++t>60){clearInterval(iv);byKey(m[1],m[2]).then(function(x){if(x)profile(x)})}},250)}
+function fromHash(){if(window.PLOPEN)return;var m=/#player=(\w+):(\d+)/.exec(location.hash);if(!m)return;var t=0,iv=setInterval(function(){if((window.GAMES&&typeof ensure=="function"&&typeof RAW!="undefined"&&Object.keys(RAW).length)||++t>60){clearInterval(iv);byKey(m[1],m[2]).then(function(x){if(x)profile(x)})}},250)}
 function init(){if(onIndex){var q=document.getElementById("q");if(q){attach(q,profile);var tmr;window.SLSearch={profile:profile,search:function(s){return load().then(function(){return search(s)})}};fromHash()}}
  else{var hd=document.querySelector("header");if(!hd)return;var i=document.createElement("input");i.type="search";i.className="sls-hdr";hd.appendChild(i);i.style.cssText="background:var(--panel2,#182033);border:1px solid var(--line,#2a2f3a);color:inherit;border-radius:8px;padding:8px 10px";attach(i,function(x){location.href="./index.html#player="+x.s+":"+x.aid})}}
 document.readyState=="loading"?document.addEventListener("DOMContentLoaded",init):init();
