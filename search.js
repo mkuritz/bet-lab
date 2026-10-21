@@ -140,10 +140,9 @@ function venue(x,g){if(["nfl","cfb","mlb"].indexOf(x.s)<0||!g)return;var el=docu
   el.innerHTML=h;el.hidden=false;var wx=document.getElementById("slp-wx");
   if(v.indoor){wx.innerHTML="🏟️ Indoors: weather n/a";return}
   if(!ad.city){wx.textContent="";return}
-  fetch("https://geocoding-api.open-meteo.com/v1/search?count=1&country=US&name="+encodeURIComponent(ad.city)).then(function(r){return r.json()}).then(function(gc){var c=gc.results&&gc.results[0];if(!c)throw 0;
-   return fetch("https://api.open-meteo.com/v1/forecast?latitude="+c.latitude+"&longitude="+c.longitude+"&hourly=temperature_2m,precipitation_probability,wind_speed_10m,wind_direction_10m,wind_gusts_10m&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=UTC&forecast_days=10")}).then(function(r){return r.json()}).then(function(f){
-   var t=new Date(g.time).toISOString().slice(0,13),i=f.hourly.time.findIndex(function(z){return z.slice(0,13)==t});if(i<0){wx.innerHTML='<span class="mut">Forecast not out yet for kickoff.</span>';return}var H=f.hourly;
-   wx.innerHTML="🌤️ "+Math.round(H.temperature_2m[i])+"°F · wind "+Math.round(H.wind_speed_10m[i])+" mph "+WDIR[Math.round(H.wind_direction_10m[i]/45)%8]+" (gusts "+Math.round(H.wind_gusts_10m[i])+") · precip "+E(H.precipitation_probability[i])+'% <span class="mut">(forecast, game hour)</span>'}).catch(function(){wx.innerHTML=G.wx?'🌤️ '+Math.round(G.wx.temp)+"°F · wind "+Math.round(G.wx.wind)+" mph · rain "+E(G.wx.pop||0)+'% <span class="mut">(forecast)</span>':""})}).catch(function(){})}
+  var W=G.wx;if(!W||W.temp==null){wx.innerHTML='<span class="mut">Forecast not out yet for kickoff.</span>';return}
+  wx.innerHTML="🌤️ "+Math.round(W.temp)+"°F · wind "+Math.round(W.wind||0)+" mph"+(W.wind_dir!=null?" "+WDIR[Math.round(W.wind_dir/45)%8]:"")+(W.gust!=null?" (gusts "+Math.round(W.gust)+")":"")+(W.pop!=null?" · precip "+E(W.pop)+"%":(W.rain!=null?" · rain "+E(W.rain)+" in/h":""))+' <span class="mut">(forecast, game hour · weather: MET Norway, CC BY 4.0)</span>'
+}).catch(function(){})}
 var CUR_PROPS=null;
 
 var LIVE_T=null,CUR=null;
