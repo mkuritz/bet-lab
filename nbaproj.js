@@ -5,7 +5,8 @@ var DOC=null,V=Math.floor(Date.now()/3e5);
 var MK={"Points":"pts","Rebounds":"reb","Assists":"ast","3-Point Field Goals":"3pm","Steals":"stl","Blocks":"blk","Turnovers":"to","Points, Rebounds, and Assists":"pra","Points and Assists":"pa","Points and Rebounds":"pr","Assists and Rebounds":"ar","Steals and Blocks":"sb"};
 var AB={pts:"PTS",reb:"REB",ast:"AST","3pm":"3PM",stl:"STL",blk:"BLK",to:"TO",pra:"PRA",pa:"P+A",pr:"P+R",ar:"A+R",sb:"S+B"};
 function E(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
-function load(){return DOC||(DOC=fetch("data/nba_proj.json?v="+V).then(function(r){return r.ok?r.json():null}).catch(function(){return null}))}
+function load(){return DOC||(DOC=fetch("data/nba_proj.json?v="+V).then(function(r){return r.ok?r.json():null}).then(function(d){window.__NBPJ=d;try{if(d&&typeof sport!="undefined"&&sport=="nba"&&typeof view!="undefined"&&view=="dash"&&typeof dash=="function")dash()}catch(e){}return d}).catch(function(){return null}))}
+load();
 function find(d,r){if(!d||!d.games||!r)return null;var g=d.games[String(r.game)];if(g&&g.players&&g.players[String(r.aid)])return{g:g,p:g.players[String(r.aid)]};
  for(var k in d.games){var q=d.games[k].players||{};if(q[String(r.aid)])return{g:d.games[k],p:q[String(r.aid)]}}return null}
 var css=document.createElement("style");css.textContent=
@@ -18,7 +19,8 @@ function card(x,r){var k=MK[r.market]||"pts",p=x.p,v=p.proj[k],L=p.lines&&p.line
  var h='<div class="nbp-cd" data-sl-public=""><small><span>'+AB[k]+' proj</span><span class="est" title="'+E(DOCN||"")+'">estimate</span></small><b>'+v.toFixed(1)+'</b>'+
   '<span>Projection · median '+med+(L?' · '+Math.round(L.p_over*100)+'% over '+E(L.line):'')+' · '+p.proj.min.toFixed(0)+' min'+(p.status?' · listed '+E(p.status):'')+'</span>'+
   '<div class="nbp-g">'+["pts","reb","ast","3pm","stl","blk","to","pra"].map(function(s){return'<div><i>'+AB[s]+'</i><b>'+p.proj[s].toFixed(1)+'</b></div>'}).join("")+'</div>'+
-  '<span style="margin-top:6px">Estimate from recent minutes, per-minute production'+(p.basis!="this season"?' (last season blended in early)':'')+', opponent and pace. '+(x.g.frozen?'Locked at tip.':'Updated '+new Date(x.g.as_of.replace("Z",":00Z")).toLocaleTimeString([], {hour:"numeric",minute:"2-digit"})+'.')+'</span></div>';
+  (p.opp_role?'<span style="margin-top:6px"><b>Role:</b> '+p.proj.min.toFixed(0)+' min proj'+(p.opp_role.min_last!=null?' vs '+p.opp_role.min_last.toFixed(0)+' last season':'')+(p.opp_role.min_pre!=null?' · '+p.opp_role.min_pre.toFixed(0)+' in preseason':'')+(p.opp_role.why||[]).filter(function(w){return w.indexOf("preseason")<0}).map(function(w){return' · '+E(w.replace(/^out: /,"teammates out: "))}).join("")+'</span>':'')+
+  '<span style="margin-top:6px">Estimate from projected minutes (preseason role, this season, last season, teammates out), per-minute production, opponent and pace. '+(x.g.frozen?'Locked at tip.':'Updated '+new Date(x.g.as_of.replace("Z",":00Z")).toLocaleTimeString([], {hour:"numeric",minute:"2-digit"})+'.')+'</span></div>';
  return h}
 var DOCN="";
 function inject(r){if(typeof sport=="undefined"||sport!="nba"||!r||!r.aid)return;var dr=document.getElementById("drawer");if(!dr)return;
