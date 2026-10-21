@@ -40,7 +40,7 @@ async function render(el){const SP=el.dataset.sport||"";if(SP==="analyst"){el.hi
   // Latest market snapshot (display only; the logged price never changes). MLB: MLB Lab's latest board.
   const HRM={},KM={};((mHR&&mHR.players)||[]).forEach(p=>{if(p.market)HRM[p.pk+"|"+p.id]=p.market});((mK&&mK.pitchers)||[]).forEach(p=>{if(p.market)KM[p.pk+"|"+p.id]=p.market});
   const snap=x=>{const p=x.id.split("|");if(p[0]!=="mlb")return null;
-    if(p[1]==="hr"){const m=HRM[p[3]+"|"+p[4]],a=m&&(m.ask||m.implied);if(!a||!mHR||(mHR.date||"")!==p[2]||(x.ref&&x.ref.ticker&&m.ticker&&m.ticker!==x.ref.ticker))return null;return {d:1/a,b:m.src||"Exchange A",t:Date.parse(mHR.generated),nv:!m.ask}}
+    if(p[1]==="hr"){const m=HRM[p[3]+"|"+p[4]],a=m&&(m.ask||m.implied);if(!a||!mHR||(mHR.date||"")!==p[2]||(x.ref&&x.ref.ticker&&m.ticker&&m.ticker!==x.ref.ticker))return null;return {d:1/a,b:m.src||"book",t:Date.parse(mHR.generated),nv:!m.ask}}
     if(p[1]==="k"){const m=KM[p[3]+"|"+p[4]];if(!m||m.implied_over==null||!mK||(mK.date||"")!==p[2]||(x.ref&&m.line!=null&&+m.line!==+x.ref.line))return null;const i=p[5]==="u"?1-m.implied_over:m.implied_over;return i>0?{d:1/i,b:m.src||"book",t:Date.parse(mK.generated),nv:p[5]==="u"}:null}
     return null};
   const TAG=(c,bg,t)=>` <span class="slh-tag" style="background:${bg};color:${c}">${t}</span>`;
