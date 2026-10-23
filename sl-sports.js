@@ -67,12 +67,12 @@ var me=document.currentScript;if(me&&me.hasAttribute('data-auto')){var sel=me.ge
 
 /* horizontal sport bar (sports hubs + Bet Lab only): flip through every sport and back */
 function barHTML(){var bc=null;if(onBL){bc=blCur();if(!bc){var t=document.querySelector('button.on[data-s]');bc=t?t.getAttribute('data-s'):null}}return S.map(function(s){var here=(s.k===cur)||(onBL&&bc===s.bl);var u=(onBL&&!s.host)?'./index.html#sport='+s.bl:s.url;return '<a href="'+u+'" data-sls="'+s.k+'"'+(here?' aria-current="page"':'')+'>'+s.icon+' '+esc(s.short)+'</a>'}).join('')}
-function ensureBar(){if(!(cur||onBL)||!document.body||document.querySelector('#v2bar .sp'))return;var b=document.getElementById('slsb');
+function ensureBar(){if(!(cur||onBL)||!document.body)return;if(document.querySelector('#v2bar .sp')){var o=document.getElementById('slsb');if(o)o.remove();ensureBar.own=1;return}if(ensureBar.own)return;var b=document.getElementById('slsb');
  if(!b){style();b=document.createElement('nav');b.id='slsb';b.className='slsb';b.setAttribute('aria-label','Sports');document.body.insertBefore(b,document.body.firstChild)}
  var h=barHTML();if(b._h!==h){b._h=h;b.innerHTML=h;var a=b.querySelector('[aria-current]');if(a)b.scrollLeft=a.offsetLeft-(b.clientWidth-a.offsetWidth)/2}}
 if(cur||onBL){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',ensureBar);else ensureBar();
  addEventListener('hashchange',ensureBar);if(onBL)document.addEventListener('click',function(e){if(e.target.closest('button[data-s]'))setTimeout(ensureBar,60)});addEventListener('load',ensureBar);
- new MutationObserver(function(){if(!document.getElementById('slsb')&&!ensureBar._t)ensureBar._t=setTimeout(function(){ensureBar._t=0;ensureBar()},50)}).observe(document.documentElement,{childList:true,subtree:true})}
+ new MutationObserver(function(){if((!document.getElementById('slsb')||(!ensureBar.own&&document.querySelector('#v2bar .sp')))&&!ensureBar._t)ensureBar._t=setTimeout(function(){ensureBar._t=0;ensureBar()},50)}).observe(document.documentElement,{childList:true,subtree:true})}
 window.SLS={sports:S,tools:T,cur:cur,betlab:betlab,mount:mount,bar:ensureBar,
  top:function(){return S.map(function(s){return [s.short,s.k===cur?'index.html':s.url,s.k]})}};
 })();
