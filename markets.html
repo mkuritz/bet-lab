@@ -30,4 +30,4 @@ function draw(){const q=$("q").value.toLowerCase(),mk=$("mk").value,mv=$("mv").v
 fetch("data/market_board.json?t="+Date.now()).then(r=>r.json()).then(d=>{D=(d.rows||[]).filter(r=>!r.start||new Date(r.start)>Date.now());/* hide started/finished games */$("upd").innerHTML=`Prices as of ${d.as_of?et(d.as_of):et(d.updated)} · ${D.length} props on the board`+(d.stale?` · <b style="color:var(--mid)">⚠ Showing last-known prices; live refresh is paused and resumes automatically</b>`:"");
  $("mk").innerHTML='<option value="">All props</option>'+[...new Set(D.map(r=>r.market))].sort().map(m=>`<option>${esc(m)}</option>`).join("");draw()}).catch(()=>$("upd").textContent="Market board unavailable right now.");
 $("sp").onclick=e=>{const b=e.target.closest("button");if(b){sp=b.dataset.s;lim=60;draw()}};["q","mk","mv"].forEach(i=>$(i).oninput=()=>{lim=60;draw()});
-</script><script src="nav.js?v=2"></script></body></html>
+</script><script src="sl-sports.js"></script><script src="nav.js?v=nc1"></script></body></html>

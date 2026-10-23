@@ -37,4 +37,4 @@ document.getElementById("k").innerHTML=FL.show_overall_record&&R.wins!=null?`<di
 const P=(T.plays||[]).slice(0,5);
 document.getElementById("tp").innerHTML=P.length?P.map(p=>`<div style="display:flex;gap:8px;padding:7px 0;border-top:1px solid var(--line)"><span style="flex:1">${p.official?"🎯 ":""}${E(p.title)}</span><b>${A(p.price)}</b></div>`).join(""):'<span class="mut">No highlights clear our bar yet today.</span>';
 document.getElementById("rr").innerHTML=(R.recent||[]).length?R.recent.map(r=>`<div style="padding:7px 0;border-top:1px solid var(--line)">${r.result=="win"?"✅":"❌"} ${E(r.title)} <span class="mut">${A(r.price)}</span></div>`).join(""):'<span class="mut">No official highlights graded from yesterday.</span>';})();
-</script><script src="nav.js?v=2"></script></body></html>
+</script><script src="sl-sports.js"></script><script src="nav.js?v=nc1"></script></body></html>
