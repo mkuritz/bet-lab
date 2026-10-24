@@ -44,7 +44,7 @@ window.LR={
    else{cls=hit?"w":fin?"l":"p";mark=hit?"✓":fin?"✗":"●";if(!hit&&!fin){const need=Math.floor(L)+1;bar=`<span class="b"><i style="width:${Math.min(100,Math.round(100*x/need))}%"></i></span>`}}}
   else mark=fin?"■":"●";
   return `<span class="lr ${cls}">${mark} ${H(line(sp,o))} · ${H(g[1])}${bar}</span>`},
- async pull(){try{const r=await fetch(U+"?t="+Math.floor(Date.now()/60000));if(r.ok){S=await r.json();T=Date.now()}}catch(e){}},
+ async pull(){try{const r=await fetch(U+"?t="+Math.floor(Date.now()/60000));if(r.ok){const j=await r.json(),p=S&&JSON.stringify(S.g);S=j;T=Date.now();if(window.render&&p!==JSON.stringify(j.g))try{window.render()}catch(e){}}}catch(e){}},
  fill(root){if(!S)return;(root||document).querySelectorAll("[data-lr]").forEach(el=>{const [sp,id,mk,ln,name,side,st,gid]=el.dataset.lr.split("|");const h=LR.html(sp,id,mk,ln,name,side,st,gid);if(el._h!==h){el._h=h;el.innerHTML=h}})},
 /* side: "over"|"under"|"yes"|"no"; st: pick start (ISO or YYYY-MM-DD ET); gid: ESPN event id */
  tag(sp,id,market,ln,name,side,st,gid){const e=s=>String(s??"").replace(/[|"<>&]/g,"");return `<span data-lr="${e(sp)}|${e(id)}|${e(market)}|${e(ln)}|${e(name)}|${e(side)}|${e(st)}|${e(gid)}">${S?LR.html(sp,id,market,ln,name,side,st,gid):""}</span>`},
