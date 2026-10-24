@@ -156,7 +156,7 @@ function miniBarsHtml(r,mode,targetLine){
  else if(mode==="l20")sub=gs.slice(0,15);
  else if(mode==="ven")sub=gs.filter(q=>r.home?q.at!=="@":q.at==="@").slice(0,10);
  else if(mode==="h2h")sub=gs.filter(q=>q.o===r.oa).slice(0,10);
- else if(mode==="wo"&&r.wo&&r.wo.wo_e){const s=new Set(r.wo.wo_e);sub=gs.filter(q=>s.has(q.e)).slice(0,10)}
+ else if(mode==="wo"&&r.wo){if(r.wo.wo_e&&r.wo.wo_e.length){const s=new Set(r.wo.wo_e);sub=gs.filter(q=>s.has(q.e)).slice(0,10)}else sub=gs.slice(0,r.wo.n)}
  sub=sub.slice().reverse();
  if(!sub.length)return"";
  const mx=Math.max(ln*1.3,...sub.map(x=>x.v),1);
@@ -225,7 +225,7 @@ function mountDrawerLab(){
  const hasMin=allGames.some(g=>g.s&&(g.s.minutes!=null||g.s.toi!=null));
  const minFloor=sp==="nba"?30:(sp==="nhl"?18:null);
  const minKey=sp==="nba"?"minutes":(sp==="nhl"?"toi":null);
- const hasWo=!!(r.wo&&r.wo.wo_e&&r.wo.wo_e.length>=2);
+ const hasWo=!!(r.wo&&r.wo.n>=2);
  const hasOpp=allGames.some(g=>g.o===r.oa);
  const hasRest=sp==="nba"||sp==="nhl"||sp==="mlb";
 
@@ -284,7 +284,7 @@ function mountDrawerLab(){
   if(activeChips.has("home"))filtered=filtered.filter(g=>g.at!=="@");
   if(activeChips.has("away"))filtered=filtered.filter(g=>g.at==="@");
   if(activeChips.has("opp"))filtered=filtered.filter(g=>g.o===r.oa);
-  if(activeChips.has("wo")&&r.wo&&r.wo.wo_e){const ws=new Set(r.wo.wo_e);filtered=filtered.filter(g=>ws.has(g.e))}
+  if(activeChips.has("wo")&&r.wo){if(r.wo.wo_e&&r.wo.wo_e.length){const ws=new Set(r.wo.wo_e);filtered=filtered.filter(g=>ws.has(g.e))}else{filtered=filtered.slice(0,r.wo.n)}}
   if(activeChips.has("min")&&minKey)filtered=filtered.filter(g=>g.s&&(+g.s[minKey]||0)>=minFloor);
   if(activeChips.has("rest2"))filtered=filtered.filter(g=>g._rest!=null&&g._rest>=2);
   if(activeChips.has("b2b"))filtered=filtered.filter(g=>g._rest===0);
