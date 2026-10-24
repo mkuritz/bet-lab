@@ -85,6 +85,16 @@ const css=`
 .sgp-mat-cell.diag{background:rgba(24,32,51,.55);color:#64748b;cursor:default}
 .sgp-mat-cell.diag:hover{transform:none;border-color:rgba(148,163,184,.16)}
 .sgp-mat-cell small{display:block;font-size:9px;font-weight:600;opacity:.85;margin-top:1px}
+#drw-lab .dl-kelly{display:inline-flex;align-items:center;gap:6px;background:rgba(16,185,129,.14);border:1px solid rgba(74,222,128,.4);color:#4ade80;border-radius:8px;padding:3px 9px;font:800 11.5px/1.25 system-ui,sans-serif;cursor:pointer}
+#drw-lab .dl-kelly:hover,#ptray .pt-kelly:hover{background:rgba(16,185,129,.24);border-color:#4ade80}
+#ptray .pt-kelly{display:inline-flex;align-items:center;gap:5px;background:rgba(16,185,129,.16);border:1px solid rgba(74,222,128,.45);color:#4ade80;border-radius:7px;padding:3px 8px;font:800 11.5px/1.2 system-ui,sans-serif;cursor:pointer}
+#sl-kpop{position:fixed;right:18px;bottom:64px;z-index:9997;background:var(--panel,#121829);border:1px solid var(--acc,#53e3a6);border-radius:12px;padding:12px 14px;box-shadow:0 16px 42px rgba(0,0,0,.7);color:var(--txt,#e8eefc);font-size:12px;display:none;min-width:255px}
+#sl-kpop.open{display:block}
+.sgp-opt-banner{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;margin:8px 0 10px;background:linear-gradient(135deg,rgba(16,185,129,.16),rgba(56,189,248,.12));border:1px solid rgba(83,227,166,.45);border-radius:10px;font-size:12px}
+.sgp-opt-btn{background:var(--acc,#53e3a6);color:#042012;border:0;border-radius:8px;padding:6px 12px;font:800 12px/1.2 system-ui,sans-serif;cursor:pointer;white-space:nowrap}
+.sgp-opt-btn:hover{filter:brightness(1.08)}
+#drawer .chart .b{cursor:pointer}
+#drawer .chart .b:hover{outline:1.5px solid #facc15;filter:brightness(1.15)!important}
 @media(max-width:640px){#qsearch-btn{bottom:64px;right:12px;padding:7px 11px;font-size:11.5px}#ptray{bottom:8px;padding:7px 10px;gap:6px}}
 `;
 const stEl=document.createElement("style");stEl.textContent=css;document.head.appendChild(stEl);
@@ -92,6 +102,74 @@ const stEl=document.createElement("style");stEl.textContent=css;document.head.ap
 const H=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 let CORR={templates:{},pairs:{}},PIDX=null;
 fetch("data/correlations.json?v="+Date.now()).then(r=>r.ok?r.json():null).then(d=>{if(d)CORR=d;if(typeof SLIP!=="undefined"&&SLIP.length)updateTray()}).catch(()=>{});
+
+// ---- Shared Bankroll & Fractional Kelly State (synced across Bet Lab, Arb Lab, CFB Desk) ----
+function getBankroll(){
+ try{
+  const v=parseFloat(localStorage.getItem("sl_bankroll")||localStorage.getItem("arb.bankroll")||"1000");
+  return v>0?v:1000;
+ }catch(e){return 1000}
+}
+function getKellyMult(){
+ try{
+  const raw=localStorage.getItem("sl_kelly")||localStorage.getItem("arb.kelly")||"0.25";
+  const v=parseFloat(String(raw).replace(/"/g,""));
+  return [0.25,0.5,1,1.0].includes(v)?v:0.25;
+ }catch(e){return 0.25}
+}
+function setBankrollKelly(bk,km){
+ try{
+  if(bk!=null&&bk>0){
+   localStorage.setItem("sl_bankroll",String(bk));
+   localStorage.setItem("arb.bankroll",JSON.stringify(+bk));
+  }
+  if(km!=null&&km>0){
+   localStorage.setItem("sl_kelly",String(km));
+   localStorage.setItem("arb.kelly",JSON.stringify(+km));
+  }
+  const cfb=JSON.parse(localStorage.getItem("sl_cfb_kelly")||"{}");
+  localStorage.setItem("sl_cfb_kelly",JSON.stringify({bk:bk||getBankroll(),m:km||getKellyMult()}));
+ }catch(e){}
+}
+function calcKellyDollar(pTrue,pBe,amOdds,maxCapPct){
+ if(!(pTrue>pBe))return null;
+ const bk=getBankroll(),km=getKellyMult();
+ const bDec=amOdds!=null?(amOdds>0?amOdds/100:100/Math.max(10,-amOdds)):((1-pBe)/Math.max(0.02,pBe));
+ const q=1-pTrue;
+ let f=(pTrue*bDec-q)/Math.max(0.05,bDec);
+ if(!(f>0))f=Math.max(0.005,(pTrue-pBe)*1.25);
+ const cap=maxCapPct||(km>=1?0.05:km>=0.5?0.035:0.025);
+ const stake=Math.max(1,Math.round(bk*Math.min(cap,f*km)));
+ return {stake,bk,km,fPct:Math.round(Math.min(cap,f*km)*1000)/10};
+}
+function openKellyPopover(){
+ let pop=document.getElementById("sl-kpop");
+ if(!pop){
+  pop=document.createElement("div");pop.id="sl-kpop";
+  document.body.appendChild(pop);
+ }
+ const bk=getBankroll(),km=getKellyMult();
+ pop.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><b style="color:var(--acc,#53e3a6)">💰 Bankroll &amp; Kelly Sizing</b><button type="button" id="sl-kpop-x" style="background:none;border:0;color:var(--txt);cursor:pointer;font-size:15px">✕</button></div>
+  <label style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px"><span>Bankroll ($):</span><input type="number" id="sl-kbk-in" min="50" step="50" value="${bk}" style="width:95px;background:var(--panel2,#182033);border:1px solid var(--line,#26304f);color:var(--txt,#e8eefc);border-radius:6px;padding:4px 7px;font-weight:800"></label>
+  <div style="display:flex;gap:5px;margin-bottom:6px">${[0.25,0.5,1.0].map(m=>`<button type="button" data-slkm="${m}" style="flex:1;padding:5px 6px;border-radius:6px;border:1px solid ${Math.abs(km-m)<0.01?"var(--acc,#53e3a6)":"var(--line,#26304f)"};background:${Math.abs(km-m)<0.01?"rgba(83,227,166,.16)":"var(--panel2,#182033)"};color:${Math.abs(km-m)<0.01?"var(--acc,#53e3a6)":"var(--txt,#e8eefc)"};font:800 11px system-ui;cursor:pointer">${m.toFixed(2).replace(/0$/,"")}x Kelly</button>`).join("")}</div>
+  <div class="mut" style="font-size:10.5px">Synced across Bet Lab, Arb Lab &amp; CFB Desk</div>`;
+ pop.classList.add("open");
+ document.getElementById("sl-kpop-x").onclick=e=>{e.stopPropagation();pop.classList.remove("open")};
+ const inp=document.getElementById("sl-kbk-in");
+ inp.onchange=()=>{
+  setBankrollKelly(Math.max(10,+inp.value||1000),getKellyMult());
+  const d=document.getElementById("drw-lab");if(d){d.remove();mountDrawerLab()}
+  updateTray();
+ };
+ pop.querySelectorAll("[data-slkm]").forEach(b=>b.onclick=e=>{
+  e.stopPropagation();
+  setBankrollKelly(Math.max(10,+inp.value||1000),+b.dataset.slkm);
+  openKellyPopover();
+  const d=document.getElementById("drw-lab");if(d){d.remove();mountDrawerLab()}
+  updateTray();
+ });
+}
+
 
 // ---- Helper: No-Vig Implied Break-Even Probability for a Prop ----
 function breakEvenInfo(r,sp){
@@ -266,7 +344,7 @@ function mountDrawerLab(){
 
  lab.innerHTML=`
   <div class="dl-hd">
-   <div><b style="font-size:13px;color:var(--acc,#53e3a6)">🎛️ Interactive Split Stacker & Alt-Line Simulator</b> <span class="mut" style="font-size:11px">(tap multiple chips to stack filters)</span></div>
+   <div><b style="font-size:13px;color:var(--acc,#53e3a6)">🎛️ Interactive Split Stacker & Alt-Line Simulator</b> <span class="mut" style="font-size:11px">(tap any game bar or slide to test alt line · stack split chips)</span></div>
    <button type="button" class="dl-chip" id="dl-reset" style="display:none">Reset</button>
   </div>
   <div class="dl-chips">${chips.map(([id,lbl])=>`<button type="button" class="dl-chip ${id==="wo"?"wo":""}" data-dlchip="${id}">${H(lbl)}</button>`).join("")}</div>
@@ -321,9 +399,20 @@ function mountDrawerLab(){
     const hit=x.v>curLine;
     const op=inSplit?"1":"0.22";
     const flt=inSplit?"none":"grayscale(75%)";
-    return `<div class="b" style="height:${x.v/mx*100}%;background:${hit?"var(--acc)":"var(--bad)"};opacity:${op};filter:${flt};transition:height .15s,opacity .18s,background .15s" title="${x.d} ${x.at}${x.o}: ${x.v}${x._rest!=null?" ("+x._rest+"d rest)":""}${inSplit?"":" [filtered out]"}"><span>${x.v}</span></div>`;
+    return `<div class="b" data-barv="${x.v}" style="height:${x.v/mx*100}%;background:${hit?"var(--acc)":"var(--bad)"};opacity:${op};filter:${flt};cursor:pointer;transition:height .15s,opacity .18s,background .15s" title="Tap bar (${x.v}) to snap Alt Line · ${x.d} ${x.at}${x.o}: ${x.v}${x._rest!=null?" ("+x._rest+"d rest)":""}${inSplit?"":" [filtered out]"}"><span>${x.v}</span></div>`;
    }).join("")+`<div class="ln" style="bottom:${Math.min(96,Math.max(4,curLine/mx*100))}%"><i>Alt ${curLine}</i></div>`;
    xlEl.innerHTML=fullG.map(x=>`<div style="opacity:${matchSet.has(x)?1:0.3}">${x.at==="@"?"@":""}${x.o}<br>${x.d.slice(5)}</div>`).join("");
+   chartEl.querySelectorAll(".b[data-barv]").forEach(bEl=>{
+    bEl.onclick=ev=>{
+     ev.stopPropagation();
+     const v=+bEl.dataset.barv;
+     const snapped=Math.max(minLn,Math.min(maxLn,isHalf?Math.max(0.5,Math.floor(v)-0.5):Math.round(v/step)*step));
+     curLine=+snapped.toFixed(1);
+     const rngEl=document.getElementById("dl-rng");
+     if(rngEl)rngEl.value=curLine;
+     refreshLab();
+    };
+   });
   }
 
   // Compute Stacked Split Hit Rate, Average, Delta vs Line, and NBinom Fair Price
@@ -346,7 +435,9 @@ function mountDrawerLab(){
   const evPct=(pf&&dec)?Math.round((pf*dec-1)*1000)/10:null;
 
   document.getElementById("dl-fair").innerHTML=pf?`NBinom Fair: <b style="color:var(--txt)">${Math.round(pf*100)}% (${fairAm})</b>${pxQuote!=null?` · ${H(bkLbl)} <b>${pxQuote>0?"+"+pxQuote:pxQuote}</b>`:""}${evPct!=null&&evPct>=1.5?` <span class="up">(+${evPct}% EV)</span>`:""}`:"";
-  document.getElementById("dl-stat").innerHTML=n?`<span><b>Stacked Split:</b> <b class="${hitPct>=60?"up":hitPct<=40?"dn":""}">${hits}/${n} Over (${hitPct}%)</b> · Avg <b>${avg}</b> (${delta>=0?"+":""}${delta} vs line)</span>`:`<span class="mut">0 games in split</span>`;
+  const kObj=pf?calcKellyDollar(pf,be,pxQuote):null;
+  const kPill=kObj?`<button type="button" class="dl-kelly" data-kelly-cfg="1" title="Tap to adjust Bankroll ($${kObj.bk}) &amp; Kelly fraction (${kObj.km}x)">💰 Rec Stake: $${kObj.stake} (${kObj.km.toFixed(2).replace(/0$/,"")}x Kelly)</button>`:"";
+  document.getElementById("dl-stat").innerHTML=(n?`<span><b>Stacked Split:</b> <b class="${hitPct>=60?"up":hitPct<=40?"dn":""}">${hits}/${n} Over (${hitPct}%)</b> · Avg <b>${avg}</b> (${delta>=0?"+":""}${delta} vs line)</span>`:`<span class="mut">0 games in split</span>`)+kPill;
 
   const bePct=Math.round(be*1000)/10,edgePts=n?Math.round((hits/n-be)*1000)/10:0;
   const fill=document.getElementById("dl-befill"),mark=document.getElementById("dl-bemark");
@@ -539,8 +630,13 @@ function updateTray(){
  const cop=copulaJointProb(legs);
  const fairAm=typeof fair==="function"?fair(cop.pCop):"—";
  const corrBadge=Math.abs(cop.boostPct)>=1.0?`<span class="pt-corr ${cop.boostPct>0?"pos":"neg"}" title="Empirical Gaussian Copula SGP correlation adjustment">${cop.boostPct>0?"🔗 +Corr +"+cop.boostPct+"%":"⚠️ Cannib "+cop.boostPct+"%"}</span>`:"";
+ const beProbs=legs.map(l=>{const bi=breakEvenInfo(l.r,l.s);return bi&&bi.be?bi.be:0.524});
+ const beJoint=beProbs.reduce((a,b)=>a*b,1);
+ const pEdgeRef=Math.min(cop.pInd*0.98,beJoint);
+ const kSlip=calcKellyDollar(cop.pCop,pEdgeRef,null,0.03);
+ const kTrayPill=kSlip?`<button type="button" class="pt-kelly" data-kelly-cfg="1" title="Tap to configure Bankroll ($${kSlip.bk}) &amp; Kelly multiplier">💰 Rec Stake: $${kSlip.stake} (${kSlip.km.toFixed(2).replace(/0$/,"")}x Kelly)</button>`:"";
  const weak=legs.length>=2&&legs[cop.weakIdx]?`<button type="button" class="sec" data-pt-trim="${cop.weakIdx}" title="Drop weakest leg (${H(legs[cop.weakIdx].r.player)} ${H(legs[cop.weakIdx].r.market)})">✂️ Trim weakest (${H(legs[cop.weakIdx].r.player.split(" ").pop())})</button>`:"";
- t.innerHTML=`<span class="pt-pill">🧾 ${legs.length} Leg${legs.length>1?"s":""}</span><span>True SGP <b>${(cop.pCop*100).toFixed(1)}%</b> (${fairAm})</span>${corrBadge}${weak}<button type="button" class="sec" data-sgp-mat="1">🧬 Matrix</button><button type="button" data-pt-card="1">📸 Tail Card</button><button type="button" data-pt-open="1">Open Slip ↗</button>`;
+ t.innerHTML=`<span class="pt-pill">🧾 ${legs.length} Leg${legs.length>1?"s":""}</span><span>True SGP <b>${(cop.pCop*100).toFixed(1)}%</b> (${fairAm})</span>${corrBadge}${kTrayPill}${weak}<button type="button" class="sec" data-sgp-mat="1">🧬 Matrix</button><button type="button" data-pt-card="1">📸 Tail Card</button><button type="button" data-pt-open="1">Open Slip ↗</button>`;
  t.classList.add("show");
 }
 
@@ -698,6 +794,35 @@ function openSgpMatrixModal(prefGameId){
    }
    rowsHtml+=`</tr>`;
   }
+  // Find top 3-leg (or 2-leg) positively correlated SGP stack in gObj
+  let bestStack=null,bestScore=-999;
+  const candPool=legs.slice(0,6);
+  if(candPool.length>=3){
+   for(let a=0;a<candPool.length;a++){
+    for(let b=a+1;b<candPool.length;b++){
+     for(let c=b+1;c<candPool.length;c++){
+      const trio=[{s:sp,r:candPool[a],k:candPool[a].aid+"|"+candPool[a].market},{s:sp,r:candPool[b],k:candPool[b].aid+"|"+candPool[b].market},{s:sp,r:candPool[c],k:candPool[c].aid+"|"+candPool[c].market}];
+      const cp=copulaJointProb(trio);
+      if(cp&&cp.rhoAvg>0){
+       const sc=cp.pCop*(1+cp.rhoAvg*1.8);
+       if(sc>bestScore){bestScore=sc;bestStack={legs:trio,hdrs:[hdrs[a].short,hdrs[b].short,hdrs[c].short],cp}}
+      }
+     }
+    }
+   }
+  }
+  if(!bestStack&&candPool.length>=2){
+   for(let a=0;a<candPool.length;a++){
+    for(let b=a+1;b<candPool.length;b++){
+     const pair=[{s:sp,r:candPool[a],k:candPool[a].aid+"|"+candPool[a].market},{s:sp,r:candPool[b],k:candPool[b].aid+"|"+candPool[b].market}];
+     const cp=copulaJointProb(pair);
+     const sc=(cp?cp.pCop:0.25)*(1+Math.max(0,cp?cp.rhoAvg:0)*1.8);
+     if(sc>bestScore){bestScore=sc;bestStack={legs:pair,hdrs:[hdrs[a].short,hdrs[b].short],cp}}
+    }
+   }
+  }
+  const optFair=bestStack&&bestStack.cp?(bestStack.cp.pCop>=0.5?"-"+Math.round(100*bestStack.cp.pCop/(1-bestStack.cp.pCop)):"+"+Math.round(100*(1-bestStack.cp.pCop)/bestStack.cp.pCop)):"+350";
+  const optBanner=bestStack?`<div class="sgp-opt-banner"><div>⚡ <b>Best Correlated Stack:</b> ${bestStack.hdrs.map(H).join(" + ")} · Avg ρ <b>+${Math.max(0.04,bestStack.cp.rhoAvg).toFixed(2)}</b> · True SGP <b>${(bestStack.cp.pCop*100).toFixed(1)}%</b> (Fair ${optFair})</div><button type="button" class="sgp-opt-btn" id="sgp-opt-add">➕ Add Optimal Stack to Slip</button></div>`:"";
   mod.innerHTML=`<div class="sgp-mat-card">`
    +`<div class="sgp-mat-top">`
    +`<div><b style="font-size:15px">🧬 Interactive N×N SGP Copula Correlation Heatmap</b><div class="mut" style="font-size:11.5px;margin-top:2px">Tap any off-diagonal cell to add that correlated 2-leg SGP pair directly to your Parlay Slip</div></div>`
@@ -707,6 +832,7 @@ function openSgpMatrixModal(prefGameId){
    +`</select>`
    +`<button type="button" id="sgp-mat-x" style="background:none;border:0;color:var(--txt);font-size:18px;cursor:pointer">✕</button>`
    +`</div></div>`
+   +optBanner
    +`<div style="overflow-x:auto"><table class="sgp-mat-tbl"><thead><tr><th>Leg \\ Leg</th>`
    +hdrs.map(h=>`<th title="${H(h.full)}">${H(h.short)}</th>`).join("")
    +`</tr></thead><tbody>${rowsHtml}</tbody></table></div>`
@@ -716,6 +842,17 @@ function openSgpMatrixModal(prefGameId){
    +`</div></div>`;
   const xB=document.getElementById("sgp-mat-x");if(xB)xB.onclick=()=>mod.classList.remove("open");
   const sel=document.getElementById("sgp-mat-sel");if(sel)sel.onchange=()=>renderGrid(sel.value);
+  const optBtn=document.getElementById("sgp-opt-add");
+  if(optBtn&&bestStack){
+   optBtn.onclick=()=>{
+    bestStack.legs.forEach(l=>{
+     const exists=typeof SLIP!=="undefined"&&SLIP.some(x=>x.s===l.s&&x.k===l.k);
+     if(!exists&&typeof toggleLeg==="function")toggleLeg(l.s,l.k);
+    });
+    updateTray();
+    mod.classList.remove("open");
+   };
+  }
   mod.querySelectorAll(".sgp-mat-cell[data-mi]").forEach(td=>{
    td.onclick=()=>{
     const rA=legs[+td.dataset.mi],rB=legs[+td.dataset.mj];
@@ -735,6 +872,12 @@ function openSgpMatrixModal(prefGameId){
 }
 
 document.addEventListener("click",e=>{
+ const kBtn=e.target.closest("[data-kelly-cfg]");
+ if(kBtn){
+  e.stopPropagation();
+  openKellyPopover();
+  return;
+ }
  const matBtn=e.target.closest("[data-sgp-mat]");
  if(matBtn){
   e.stopPropagation();
@@ -849,10 +992,64 @@ document.addEventListener("click",e=>{
  }
 },true);
 
+let _ingestedUrlLeg=false;
+async function ingestDeepLinkLegs(){
+ if(_ingestedUrlLeg)return;
+ const qSearch=new URLSearchParams(location.search);
+ const hRaw=(location.hash||"").replace(/^#/,"");
+ const qHash=new URLSearchParams(hRaw.includes("=")?hRaw:"");
+ const rawLeg=qSearch.get("addleg")||qSearch.get("addlegs")||qHash.get("addleg")||qHash.get("addlegs");
+ if(!rawLeg)return;
+ const reqSp=(qSearch.get("sport")||qHash.get("sport")||(typeof sport!=="undefined"?sport:"nfl")).toLowerCase();
+ if(typeof RAW==="undefined"||!RAW[reqSp]||!RAW[reqSp].length)return;
+ if(typeof DATA==="undefined"||!DATA[reqSp]||!DATA[reqSp].length){
+  if(typeof ensure==="function"){try{await ensure(reqSp)}catch(e){}}
+ }
+ const pool=(typeof DATA!=="undefined"&&DATA[reqSp])||[];
+ if(!pool.length)return;
+ _ingestedUrlLeg=true;
+ if(typeof sport!=="undefined"&&sport!==reqSp){
+  sport=reqSp;
+  const tb=document.querySelector(`#tabs button[data-s="${reqSp}"]`);
+  if(tb)tb.click();
+ }
+ const items=decodeURIComponent(rawLeg).split(",").map(s=>s.trim()).filter(Boolean);
+ let matchedRow=null;
+ items.forEach(item=>{
+  const parts=item.split("|").map(s=>(s||"").trim());
+  const pPart=parts[0]||"",mPart=parts[1]||"";
+  const pLow=pPart.toLowerCase(),mLow=mPart.toLowerCase();
+  let found=pool.find(r=>String(r.aid).toLowerCase()===pLow&&(!mLow||String(r.market).toLowerCase()===mLow));
+  if(!found){
+   found=pool.find(r=>{
+    const rName=String(r.player||"").toLowerCase();
+    const rMkt=String(r.market||"").toLowerCase();
+    const nameOk=pLow&&(rName===pLow||rName.includes(pLow)||String(r.aid).toLowerCase()===pLow);
+    const mktOk=!mLow||rMkt===mLow||rMkt.includes(mLow)||mLow.includes(rMkt);
+    return nameOk&&mktOk;
+   });
+  }
+  if(!found&&pLow){
+   found=pool.find(r=>String(r.player||"").toLowerCase().includes(pLow)||String(r.aid).toLowerCase()===pLow||String(r.market||"").toLowerCase().includes(pLow));
+  }
+  if(found){
+   matchedRow=found;
+   const k=`${found.aid}|${found.market}`;
+   const exists=typeof SLIP!=="undefined"&&SLIP.some(x=>x.s===reqSp&&x.k===k);
+   if(!exists&&typeof toggleLeg==="function")toggleLeg(reqSp,k);
+  }
+ });
+ if(matchedRow){
+  updateTray();
+  if(typeof drawer==="function")setTimeout(()=>{drawer(matchedRow);mountDrawerLab()},80);
+ }
+}
+
 function boot(){
  initQuickSearch();
  enhanceDOM();
- const obs=new MutationObserver(()=>{clearTimeout(window._blpT);window._blpT=setTimeout(enhanceDOM,30)});
+ ingestDeepLinkLegs();
+ const obs=new MutationObserver(()=>{clearTimeout(window._blpT);window._blpT=setTimeout(()=>{enhanceDOM();ingestDeepLinkLegs()},30)});
  obs.observe(document.body,{childList:true,subtree:true});
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",boot);
