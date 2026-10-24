@@ -56,7 +56,7 @@ const stEl=document.createElement("style");stEl.textContent=css;document.head.ap
 
 const H=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 let CORR={templates:{},pairs:{}},PIDX=null;
-fetch("data/correlations.json?v="+Date.now()).then(r=>r.ok?r.json():null).then(d=>{if(d)CORR=d;if(window.SLIP&&SLIP.length)updateTray()}).catch(()=>{});
+fetch("data/correlations.json?v="+Date.now()).then(r=>r.ok?r.json():null).then(d=>{if(d)CORR=d;if(SLIP&&SLIP.length)updateTray()}).catch(()=>{});
 
 // ---- 1. Inline SVG Line-Movement Sparkline & Steam Badge ----
 function sparkSvg(r){
@@ -99,7 +99,7 @@ function cardEnhancements(r){
  const k=`${r.aid}|${r.market}`;
  const pills=[["l5","L5",r.l5],["l10","L10",r.l10],["l20","L20",r.l20],["ven",r.home?"Home":"Away",r.ven],["h2h","vs "+(r.oa||"Opp"),r.h2h]].filter(x=>x[2]&&x[2].n>0);
  const woBtn=r.wo&&r.wo.n>=2?`<button type="button" class="p-pill wo" data-psplit="wo" data-pk="${H(k)}" title="Without ${H(r.wo.tm_out)} (${H(r.wo.status)}): ${r.wo.h}/${r.wo.n} over, avg ${r.wo.avg} (${r.wo.delta>=0?"+":""}${r.wo.delta} vs with)">🚑 w/o ${H(r.wo.tm_out.split(" ").pop())} ${Math.round(r.wo.h/r.wo.n*100)}%</button>`:"";
- const pillHtml=pills.length>1?`<span class="p-pills">${pills.map(([m,l])=>`<button type="button" class="p-pill ${m===(window.win||"l10")?"on":""}" data-psplit="${m}" data-pk="${H(k)}">${H(l)}</button>`).join("")}${woBtn}</span>`:woBtn;
+ const pillHtml=pills.length>1?`<span class="p-pills">${pills.map(([m,l])=>`<button type="button" class="p-pill ${m===(win||"l10")?"on":""}" data-psplit="${m}" data-pk="${H(k)}">${H(l)}</button>`).join("")}${woBtn}</span>`:woBtn;
 
  let rungHtml="";
  if(r.ladder&&r.ladder.length>=2){
@@ -113,7 +113,7 @@ function cardEnhancements(r){
  }
  const ttlHtml=r.ttl?`<span class="p-ttl ${r.ttl.c}" title="Market liquidity / time-to-lock confidence">${H(r.ttl.lbl)}</span>`:"";
  const spk=sparkSvg(r);
- const mb=miniBarsHtml(r,window.win||"l10",null);
+ const mb=miniBarsHtml(r,win||"l10",null);
  const tailBtn=`<button type="button" class="p-tailbtn" data-ptail="${H(k)}" title="Share PNG Tail Card">📸 Card</button>`;
  return `<div class="p-sub" data-psub="${H(k)}">${pillHtml}${mb}${spk}${ttlHtml}${tailBtn}${rungHtml?`<div style="width:100%;margin-top:2px">${rungHtml}</div>`:""}</div>`;
 }
@@ -121,7 +121,7 @@ function cardEnhancements(r){
 // Enhance rendered .it cards and #tb rows without altering Bet Lab's core functions
 function enhanceDOM(){
  renderGameRibbon();
- const sp=window.sport||"nfl",d=window.DATA&&DATA[sp]||[];
+ const sp=sport||"nfl",d=DATA&&DATA[sp]||[];
  if(!d.length)return;
  const byK={};d.forEach(r=>{byK[r.aid+"|"+r.market]=r});
  document.querySelectorAll("#dash .it[data-k]").forEach(el=>{
@@ -134,7 +134,7 @@ function enhanceDOM(){
  document.querySelectorAll("#tb tr[data-i]").forEach(tr=>{
   if(tr.dataset.proDone)return;
   tr.dataset.proDone="1";
-  const r=window.rows&&rows[+tr.dataset.i];if(!r)return;
+  const r=rows&&rows[+tr.dataset.i];if(!r)return;
   const tds=tr.querySelectorAll("td");
   if(tds[0]&&r.wo&&r.wo.n>=2){
    tds[0].insertAdjacentHTML("beforeend",` <span class="p-pill wo" style="cursor:default" title="Without ${H(r.wo.tm_out)}: ${r.wo.h}/${r.wo.n} over (avg ${r.wo.avg})">w/o ${H(r.wo.tm_out.split(" ").pop())} ${r.wo.h}/${r.wo.n}</span>`);
@@ -152,15 +152,15 @@ function renderGameRibbon(){
  const tabs=document.getElementById("tabs");
  if(!tabs)return;
  if(!bar){bar=document.createElement("div");bar.id="grib";tabs.insertAdjacentElement("afterend",bar)}
- const v=window.view||"dash";
+ const v=view||"dash";
  if(v==="edge"||v==="sgp"||v==="tracker"){bar.style.display="none";return}
- const sp=window.sport||"nfl",d=typeof window.SRC==="function"?SRC():[];
+ const sp=sport||"nfl",d=typeof SRC==="function"?SRC():[];
  const gsel=document.getElementById("game"),curG=gsel?gsel.value:"";
  const seen=new Map();
  d.forEach(r=>{
   if(!r.game||seen.has(r.game))return;
   const matchup=r.team&&r.opp?(r.opp.startsWith("@")?`${r.team} ${r.opp}`:`${r.opp.replace(/^vs\.?\s*/i,"")} @ ${r.team}`):r.game;
-  const lg=typeof window.liveG==="function"?liveG(r.time,sp,r):null;
+  const lg=typeof liveG==="function"?liveG(r.time,sp,r):null;
   const status=lg&&lg[0]==="in"?`<span class="glv">● ${lg[2]} ${lg[3]}-${lg[5]} ${lg[4]} · ${H(lg[1])}</span>`:(r.time?new Date(r.time).toLocaleTimeString("en-US",{timeZone:"America/New_York",hour:"numeric",minute:"2-digit"})+" ET":"");
   seen.set(r.game,{id:r.game,matchup,status,t:r.time?+new Date(r.time):0});
  });
@@ -189,7 +189,7 @@ function getPairRho(sp,l1,l2){
 function copulaJointProb(liveLegs){
  if(!liveLegs.length)return null;
  const ps=liveLegs.map(l=>{
-  const q=typeof window.ppLeg==="function"?ppLeg(l.r,l.s):null;
+  const q=typeof ppLeg==="function"?ppLeg(l.r,l.s):null;
   const h=l.r.l10?l.r.l10.h:0,n=l.r.l10?l.r.l10.n:0;
   return q&&q.nv!=null?Math.min(0.95,(h+30*q.nv)/(n+30)):(n?Math.min(0.95,Math.max(0.05,h/n)):0.5);
  });
@@ -213,7 +213,7 @@ function copulaJointProb(liveLegs){
  // Weakest leg = lowest edge vs market (or lowest hit rate)
  let weakIdx=0,minScore=999;
  liveLegs.forEach((l,i)=>{
-  const q=typeof window.ppLeg==="function"?ppLeg(l.r,l.s):null;
+  const q=typeof ppLeg==="function"?ppLeg(l.r,l.s):null;
   const sc=q&&q.nv!=null?(ps[i]-q.nv):ps[i]-0.5;
   if(sc<minScore){minScore=sc;weakIdx=i}
  });
@@ -232,12 +232,12 @@ function ensureTray(){
 
 function updateTray(){
  const t=ensureTray();
- const slip=window.SLIP||[];
+ const slip=SLIP||[];
  if(!slip.length){t.classList.remove("show");return}
- const legs=slip.map(l=>({...l,r:typeof window.find==="function"?find(l.s,l.k):null})).filter(l=>l.r);
+ const legs=slip.map(l=>({...l,r:typeof find==="function"?find(l.s,l.k):null})).filter(l=>l.r);
  if(!legs.length){t.classList.remove("show");return}
  const cop=copulaJointProb(legs);
- const fairAm=typeof window.fair==="function"?fair(cop.pCop):"—";
+ const fairAm=typeof fair==="function"?fair(cop.pCop):"—";
  const corrBadge=Math.abs(cop.boostPct)>=1.0?`<span class="pt-corr ${cop.boostPct>0?"pos":"neg"}" title="Empirical Gaussian Copula SGP correlation adjustment">${cop.boostPct>0?"🔗 +Corr +"+cop.boostPct+"%":"⚠️ Cannib "+cop.boostPct+"%"}</span>`:"";
  const weak=legs.length>=2&&legs[cop.weakIdx]?`<button type="button" class="sec" data-pt-trim="${cop.weakIdx}" title="Drop weakest leg (${H(legs[cop.weakIdx].r.player)} ${H(legs[cop.weakIdx].r.market)})">✂️ Trim weakest (${H(legs[cop.weakIdx].r.player.split(" ").pop())})</button>`:"";
  t.innerHTML=`<span class="pt-pill">🧾 ${legs.length} Leg${legs.length>1?"s":""}</span><span>True SGP <b>${(cop.pCop*100).toFixed(1)}%</b> (${fairAm})</span>${corrBadge}${weak}<button type="button" data-pt-card="1">📸 Tail Card</button><button type="button" data-pt-open="1">Open Slip ↗</button>`;
@@ -314,8 +314,8 @@ function initQuickSearch(){
  const renderResults=q=>{
   q=q.trim().toLowerCase();
   const hits=[];
-  for(const [sp] of (window.SPORTS||[])){
-   const arr=(window.DATA&&DATA[sp])||(window.RAW&&RAW[sp])||[];
+  for(const [sp] of (SPORTS||[])){
+   const arr=(DATA&&DATA[sp])||(RAW&&RAW[sp])||[];
    for(const r of arr){
     if(!q||(r.player+" "+r.team+" "+r.market).toLowerCase().includes(q)){
      hits.push({sp,r});if(hits.length>=30)break;
@@ -327,9 +327,9 @@ function initQuickSearch(){
   res.querySelectorAll(".qs-row").forEach(el=>el.onclick=async()=>{
    const h=hits[+el.dataset.qsi];if(!h)return;
    mod.classList.remove("open");
-   if(window.sport!==h.sp){window.sport=h.sp;if(typeof window.ensure==="function")await ensure(h.sp);if(typeof window.fillFilters==="function")fillFilters();if(typeof window.render==="function")render()}
-   const full=(window.DATA&&DATA[h.sp]||[]).find(x=>x.aid===h.r.aid&&x.market===h.r.market)||h.r;
-   if(typeof window.drawer==="function")drawer(full);
+   if(sport!==h.sp){sport=h.sp;if(typeof ensure==="function")await ensure(h.sp);if(typeof fillFilters==="function")fillFilters();if(typeof render==="function")render()}
+   const full=(DATA&&DATA[h.sp]||[]).find(x=>x.aid===h.r.aid&&x.market===h.r.market)||h.r;
+   if(typeof drawer==="function")drawer(full);
   });
  };
  inp.oninput=()=>renderResults(inp.value);
@@ -354,7 +354,7 @@ document.addEventListener("click",e=>{
  if(spBtn){
   e.stopPropagation();
   const pk=spBtn.dataset.pk,mode=spBtn.dataset.psplit;
-  const r=(window.DATA&&DATA[window.sport]||[]).find(x=>(x.aid+"|"+x.market)===pk);
+  const r=(DATA&&DATA[sport]||[]).find(x=>(x.aid+"|"+x.market)===pk);
   if(!r)return;
   const card=spBtn.closest(".it");if(!card)return;
   card.querySelectorAll("[data-psplit]").forEach(b=>b.classList.toggle("on",b===spBtn));
@@ -372,7 +372,7 @@ document.addEventListener("click",e=>{
  if(rgBtn){
   e.stopPropagation();
   const pk=rgBtn.dataset.pk,tk=+rgBtn.dataset.prung;
-  const r=(window.DATA&&DATA[window.sport]||[]).find(x=>(x.aid+"|"+x.market)===pk);
+  const r=(DATA&&DATA[sport]||[]).find(x=>(x.aid+"|"+x.market)===pk);
   if(!r||!r.ladder)return;
   const rg=r.ladder.find(x=>+x[0]===tk);if(!rg)return;
   const card=rgBtn.closest(".it");if(!card)return;
@@ -391,15 +391,15 @@ document.addEventListener("click",e=>{
  if(tlBtn){
   e.stopPropagation();
   const pk=tlBtn.dataset.pk;
-  const r=(window.DATA&&DATA[window.sport]||[]).find(x=>(x.aid+"|"+x.market)===pk);
+  const r=(DATA&&DATA[sport]||[]).find(x=>(x.aid+"|"+x.market)===pk);
   if(!r)return;
-  const q=typeof window.ppLeg==="function"?ppLeg(r,window.sport):null;
+  const q=typeof ppLeg==="function"?ppLeg(r,sport):null;
   const h10=r.l10?`${Math.round(r.l10.h/r.l10.n*100)}% L10 (${r.l10.h}/${r.l10.n}, avg ${r.l10.avg})`:"—";
   const dvp=r.dvp?` · DvP #${r.dvp.r}/${r.dvp.of}`:"";
   const wo=r.wo?` · w/o ${r.wo.tm_out.split(" ").pop()} ${r.wo.h}/${r.wo.n}`:"";
   const cv=renderTailCanvas(
    `${r.player} (${r.team} ${r.opp})`,
-   `Highlighted Prop · ${window.sport.toUpperCase()}${dvp}${wo}`,
+   `Highlighted Prop · ${sport.toUpperCase()}${dvp}${wo}`,
    [{player:r.player,market:r.market,line:r.line,meta:`${h10}${dvp}${wo}`,rightTop:q&&q.best!=null?`${q.best>0?"+"+q.best:q.best} (${q.book||"Book A"})`:(r.l10?`${Math.round(r.l10.h/r.l10.n*100)}% L10`:""),rightBot:q&&q.nv!=null?`Fair ${Math.round(q.nv*100)}%`:"Sports Labs Research"}],
    r.ttl?r.ttl.lbl:"Sports Labs Prop Intelligence",
    "betlab.sportslabshq.com"
@@ -411,26 +411,26 @@ document.addEventListener("click",e=>{
  if(trimBtn){
   e.stopPropagation();
   const idx=+trimBtn.dataset.ptTrim;
-  const legs=(window.SLIP||[]).map(l=>({...l,r:typeof window.find==="function"?find(l.s,l.k):null})).filter(l=>l.r);
+  const legs=(SLIP||[]).map(l=>({...l,r:typeof find==="function"?find(l.s,l.k):null})).filter(l=>l.r);
   const target=legs[idx];
-  if(target&&typeof window.toggleLeg==="function")toggleLeg(target.s,target.k);
+  if(target&&typeof toggleLeg==="function")toggleLeg(target.s,target.k);
   return;
  }
  const ptOpen=e.target.closest("[data-pt-open]");
  if(ptOpen){
   e.stopPropagation();
-  if(typeof window.renderSlip==="function")renderSlip(true);
+  if(typeof renderSlip==="function")renderSlip(true);
   return;
  }
  const ptCard=e.target.closest("[data-pt-card]");
  if(ptCard){
   e.stopPropagation();
-  const legs=(window.SLIP||[]).map(l=>({...l,r:typeof window.find==="function"?find(l.s,l.k):null})).filter(l=>l.r);
+  const legs=(SLIP||[]).map(l=>({...l,r:typeof find==="function"?find(l.s,l.k):null})).filter(l=>l.r);
   if(!legs.length)return;
   const cop=copulaJointProb(legs);
-  const fairAm=typeof window.fair==="function"?fair(cop.pCop):"—";
+  const fairAm=typeof fair==="function"?fair(cop.pCop):"—";
   const rows=legs.map(l=>{
-   const r=l.r,q=typeof window.ppLeg==="function"?ppLeg(r,l.s):null;
+   const r=l.r,q=typeof ppLeg==="function"?ppLeg(r,l.s):null;
    return {
     player:r.player,market:r.market,line:r.line,
     meta:`${l.s.toUpperCase()} · ${r.team} ${r.opp} · L10 ${r.l10?r.l10.h+"/"+r.l10.n:"—"}${r.dvp?" · DvP #"+r.dvp.r:""}`,
