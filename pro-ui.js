@@ -70,6 +70,21 @@ const css=`
 #tail-mod.open{display:flex}
 #tail-box{background:var(--panel,#121829);border:1px solid var(--line,#26304f);border-radius:14px;padding:14px;max-width:660px;width:100%;text-align:center}
 #tail-box canvas{max-width:100%;height:auto;border-radius:10px;border:1px solid #26304f}
+.dl-curve-wrap{margin-top:8px;padding:8px 10px;border-radius:8px;background:rgba(8,12,24,.75);border:1px solid rgba(83,227,166,.22)}
+.dl-curve-hd{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--mut,#8b97b0);margin-bottom:4px;flex-wrap:wrap;gap:4px}
+.dl-curve-hd b{color:var(--txt,#e8eefc);font-weight:800}
+#sgp-mat-mod{position:fixed;inset:0;z-index:9998;background:rgba(8,12,22,.86);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:16px}
+#sgp-mat-mod.open{display:flex}
+.sgp-mat-card{background:var(--panel,#121829);border:1px solid var(--line,#26304f);border-radius:14px;max-width:780px;width:100%;max-height:88vh;overflow:auto;padding:16px 18px;box-shadow:0 24px 60px rgba(0,0,0,.65);color:var(--txt,#e8eefc)}
+.sgp-mat-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.sgp-mat-tbl{width:100%;border-collapse:separate;border-spacing:4px;font-size:11px;margin-top:8px}
+.sgp-mat-tbl th{font-size:10px;color:var(--mut,#8b97b0);font-weight:700;padding:4px 6px;text-align:center;max-width:96px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sgp-mat-tbl th.row-h{text-align:right;max-width:145px;color:var(--txt,#e8eefc)}
+.sgp-mat-cell{border-radius:6px;padding:7px 4px;text-align:center;font-weight:800;font-variant-numeric:tabular-nums;cursor:pointer;transition:transform .1s,border-color .1s;border:1px solid rgba(148,163,184,.16);user-select:none}
+.sgp-mat-cell:hover{transform:scale(1.05);border-color:#53e3a6}
+.sgp-mat-cell.diag{background:rgba(24,32,51,.55);color:#64748b;cursor:default}
+.sgp-mat-cell.diag:hover{transform:none;border-color:rgba(148,163,184,.16)}
+.sgp-mat-cell small{display:block;font-size:9px;font-weight:600;opacity:.85;margin-top:1px}
 @media(max-width:640px){#qsearch-btn{bottom:64px;right:12px;padding:7px 11px;font-size:11.5px}#ptray{bottom:8px;padding:7px 10px;gap:6px}}
 `;
 const stEl=document.createElement("style");stEl.textContent=css;document.head.appendChild(stEl);
@@ -269,6 +284,10 @@ function mountDrawerLab(){
    <div class="dl-be-mark" id="dl-bemark"></div>
    <div class="dl-be-lbl"><span id="dl-bel"></span><span id="dl-ber"></span></div>
   </div>
+  <div class="dl-curve-wrap">
+   <div class="dl-curve-hd"><span>📈 <b>Outcome Probability Distribution</b> (Shaded = P(X &gt; Alt Line))</span><span id="dl-curve-meta"></span></div>
+   <div id="dl-svg-curve"></div>
+  </div>
  `;
 
  const chartEl=drw.querySelector(".chart");
@@ -292,17 +311,19 @@ function mountDrawerLab(){
   document.getElementById("dl-reset").style.display=(activeChips.size>0||Math.abs(curLine-baseLn)>0.01)?"inline-block":"none";
   document.getElementById("dl-lnv").textContent=`o${curLine}`;
 
-  // Update main drawer chart + x-axis labels live
-  const showG=filtered.slice(0,20).reverse();
-  if(chartEl&&xlEl){
-   if(showG.length){
-    const mx=Math.max(curLine*1.4,...showG.map(x=>x.v),1);
-    chartEl.innerHTML=showG.map(x=>`<div class="b" style="height:${x.v/mx*100}%;background:${x.v>curLine?"var(--acc)":"var(--bad)"}" title="${x.d} ${x.at}${x.o}: ${x.v}${x._rest!=null?" ("+x._rest+"d rest)":""}"><span>${x.v}</span></div>`).join("")+`<div class="ln" style="bottom:${curLine/mx*100}%"><i>${curLine}</i></div>`;
-    xlEl.innerHTML=showG.map(x=>`<div>${x.at==="@"?"@":""}${x.o}<br>${x.d.slice(5)}</div>`).join("");
-   }else{
-    chartEl.innerHTML=`<div class="mut" style="padding:20px;align-self:center">No games match this exact filter combination.</div>`;
-    xlEl.innerHTML="";
-   }
+  // Update main drawer chart + x-axis labels live (keep all 20 games visible; dim non-matching split games)
+  const fullG=allGames.slice(0,20).reverse();
+  const matchSet=new Set(filtered);
+  if(chartEl&&xlEl&&fullG.length){
+   const mx=Math.max(curLine*1.35,...fullG.map(x=>x.v),1);
+   chartEl.innerHTML=fullG.map(x=>{
+    const inSplit=matchSet.has(x);
+    const hit=x.v>curLine;
+    const op=inSplit?"1":"0.22";
+    const flt=inSplit?"none":"grayscale(75%)";
+    return `<div class="b" style="height:${x.v/mx*100}%;background:${hit?"var(--acc)":"var(--bad)"};opacity:${op};filter:${flt};transition:height .15s,opacity .18s,background .15s" title="${x.d} ${x.at}${x.o}: ${x.v}${x._rest!=null?" ("+x._rest+"d rest)":""}${inSplit?"":" [filtered out]"}"><span>${x.v}</span></div>`;
+   }).join("")+`<div class="ln" style="bottom:${Math.min(96,Math.max(4,curLine/mx*100))}%"><i>Alt ${curLine}</i></div>`;
+   xlEl.innerHTML=fullG.map(x=>`<div style="opacity:${matchSet.has(x)?1:0.3}">${x.at==="@"?"@":""}${x.o}<br>${x.d.slice(5)}</div>`).join("");
   }
 
   // Compute Stacked Split Hit Rate, Average, Delta vs Line, and NBinom Fair Price
@@ -334,6 +355,50 @@ function mountDrawerLab(){
   mark.style.left=`${Math.min(98,Math.max(2,bePct))}%`;
   document.getElementById("dl-bel").textContent=`Split Hit Rate: ${hitPct}% (${hits}/${n})`;
   document.getElementById("dl-ber").textContent=`No-Vig Break-Even: ${bePct}% (${edgePts>=0?"+":""}${edgePts} pts)`;
+
+  // Render SVG NBinom / Normal Probability Density Curve with shaded Over region > curLine
+  const cBox=document.getElementById("dl-svg-curve"),cMeta=document.getElementById("dl-curve-meta");
+  if(cBox){
+   const srcG=filtered.length>=2?filtered:allGames;
+   const vs=srcG.map(g=>+g.v||0);
+   const mu=vs.length?vs.reduce((a,b)=>a+b,0)/vs.length:(+r.proj||baseLn||1);
+   let sd=vs.length>1?Math.sqrt(vs.reduce((a,b)=>a+(b-mu)**2,0)/vs.length):0;
+   if(!sd||sd<Math.max(0.8,mu*0.22))sd=Math.max(1.1,mu*0.32);
+   const xMin=Math.max(0,Math.floor(Math.min(minLn,mu-2.6*sd)));
+   const xMax=Math.ceil(Math.max(maxLn+step,mu+2.6*sd,xMin+6));
+   const W=420,Hpx=74,padL=12,padR=12,padT=10,padB=16,pw=W-padL-padR,ph=Hpx-padT-padB;
+   const pts=[];let maxY=0;const steps=48;
+   for(let si=0;si<=steps;si++){
+    const xv=xMin+(xMax-xMin)*(si/steps);
+    const z=(xv-mu)/sd;
+    const yv=Math.exp(-0.5*z*z);
+    if(yv>maxY)maxY=yv;
+    pts.push({x:xv,y:yv});
+   }
+   const sx=xv=>padL+Math.max(0,Math.min(1,(xv-xMin)/(xMax-xMin)))*pw;
+   const sy=yv=>padT+ph-(yv/(maxY||1))*ph;
+   const pathD=pts.map((pt,i)=>(i===0?"M":"L")+sx(pt.x).toFixed(1)+","+sy(pt.y).toFixed(1)).join(" ");
+   const tx=sx(curLine),mxX=sx(mu);
+   const zT=(curLine-mu)/sd,yAtT=Math.exp(-0.5*zT*zT);
+   const overPts=pts.filter(pt=>pt.x>=curLine);
+   let shadeD=`M${tx.toFixed(1)},${padT+ph} L${tx.toFixed(1)},${sy(yAtT).toFixed(1)} `;
+   overPts.forEach(pt=>{shadeD+=`L${sx(pt.x).toFixed(1)},${sy(pt.y).toFixed(1)} `});
+   if(overPts.length)shadeD+=`L${sx(overPts[overPts.length-1].x).toFixed(1)},${padT+ph} Z`;
+   else shadeD="";
+   const pDisp=pf?Math.round(pf*100):hitPct;
+   if(cMeta)cMeta.innerHTML=`Tail P(X &gt; ${curLine}): <b style="color:${pDisp>=55?"#4ade80":pDisp<=45?"#f87171":"#fbbf24"}">${pDisp}%</b> · μ=${mu.toFixed(1)} · σ=${sd.toFixed(1)}`;
+   cBox.innerHTML=`<svg viewBox="0 0 ${W} ${Hpx}" style="width:100%;height:74px;display:block;overflow:visible">`
+    +(shadeD?`<path d="${shadeD}" fill="rgba(83,227,166,0.26)"/>`:"")
+    +`<path d="${pathD}" fill="none" stroke="#53e3a6" stroke-width="2"/>`
+    +`<line x1="${mxX.toFixed(1)}" y1="${padT}" x2="${mxX.toFixed(1)}" y2="${padT+ph}" stroke="#38bdf8" stroke-width="1.3" stroke-dasharray="2,2"/>`
+    +`<line x1="${tx.toFixed(1)}" y1="${padT-2}" x2="${tx.toFixed(1)}" y2="${padT+ph}" stroke="#fbbf24" stroke-width="2"/>`
+    +`<circle cx="${tx.toFixed(1)}" cy="${sy(yAtT).toFixed(1)}" r="3.5" fill="#fbbf24" stroke="#0b1120" stroke-width="1.3"/>`
+    +`<text x="${padL}" y="${Hpx-3}" fill="#8b97b0" font-size="9">${xMin}</text>`
+    +`<text x="${mxX.toFixed(1)}" y="${padT+7}" fill="#38bdf8" font-size="8.5" font-weight="700" text-anchor="middle">μ ${mu.toFixed(1)}</text>`
+    +`<text x="${tx.toFixed(1)}" y="${Hpx-3}" fill="#fbbf24" font-size="9.5" font-weight="800" text-anchor="middle">Line ${curLine}</text>`
+    +`<text x="${W-padR}" y="${Hpx-3}" fill="#8b97b0" font-size="9" text-anchor="end">${xMax}</text>`
+    +`</svg>`;
+  }
  }
 
  lab.querySelectorAll("[data-dlchip]").forEach(btn=>{
@@ -407,7 +472,7 @@ function renderGameRibbon(){
  const list=[...seen.values()].sort((a,b)=>a.t-b.t);
  if(list.length<=1){bar.style.display="none";return}
  bar.style.display="flex";
- bar.innerHTML=`<button type="button" class="${!curG?"on":""}" data-grib="">All Games (${list.length})</button>`+list.map(g=>`<button type="button" class="${curG===String(g.id)?"on":""}" data-grib="${H(g.id)}"><b>${H(g.matchup)}</b>${g.status?` <span>${g.status}</span>`:""}</button>`).join("");
+ bar.innerHTML=`<button type="button" class="${!curG?"on":""}" data-grib="">All Games (${list.length})</button><button type="button" data-sgp-mat="1" style="border-color:rgba(168,85,247,.5);color:#e9d5ff;background:rgba(88,28,135,.28)">🧬 SGP Matrix</button>`+list.map(g=>`<button type="button" class="${curG===String(g.id)?"on":""}" data-grib="${H(g.id)}"><b>${H(g.matchup)}</b>${g.status?` <span>${g.status}</span>`:""}</button>`).join("");
 }
 
 // ---- 4. Empirical Copula SGP Correlation & Weakest Leg Engine ----
@@ -475,7 +540,7 @@ function updateTray(){
  const fairAm=typeof fair==="function"?fair(cop.pCop):"—";
  const corrBadge=Math.abs(cop.boostPct)>=1.0?`<span class="pt-corr ${cop.boostPct>0?"pos":"neg"}" title="Empirical Gaussian Copula SGP correlation adjustment">${cop.boostPct>0?"🔗 +Corr +"+cop.boostPct+"%":"⚠️ Cannib "+cop.boostPct+"%"}</span>`:"";
  const weak=legs.length>=2&&legs[cop.weakIdx]?`<button type="button" class="sec" data-pt-trim="${cop.weakIdx}" title="Drop weakest leg (${H(legs[cop.weakIdx].r.player)} ${H(legs[cop.weakIdx].r.market)})">✂️ Trim weakest (${H(legs[cop.weakIdx].r.player.split(" ").pop())})</button>`:"";
- t.innerHTML=`<span class="pt-pill">🧾 ${legs.length} Leg${legs.length>1?"s":""}</span><span>True SGP <b>${(cop.pCop*100).toFixed(1)}%</b> (${fairAm})</span>${corrBadge}${weak}<button type="button" data-pt-card="1">📸 Tail Card</button><button type="button" data-pt-open="1">Open Slip ↗</button>`;
+ t.innerHTML=`<span class="pt-pill">🧾 ${legs.length} Leg${legs.length>1?"s":""}</span><span>True SGP <b>${(cop.pCop*100).toFixed(1)}%</b> (${fairAm})</span>${corrBadge}${weak}<button type="button" class="sec" data-sgp-mat="1">🧬 Matrix</button><button type="button" data-pt-card="1">📸 Tail Card</button><button type="button" data-pt-open="1">Open Slip ↗</button>`;
  t.classList.add("show");
 }
 
@@ -571,7 +636,111 @@ function initQuickSearch(){
  });
 }
 
+
+function openSgpMatrixModal(prefGameId){
+ let mod=document.getElementById("sgp-mat-mod");
+ if(!mod){
+  mod=document.createElement("div");mod.id="sgp-mat-mod";
+  document.body.appendChild(mod);
+  mod.onclick=e=>{if(e.target===mod)mod.classList.remove("open")};
+ }
+ const sp=typeof sport!=="undefined"?sport:"nfl";
+ const all=(typeof DATA!=="undefined"&&DATA[sp])||[];
+ const byGame=new Map();
+ all.forEach(r=>{
+  if(!r.game)return;
+  if(!byGame.has(r.game)){
+   const lbl=r.team&&r.opp?(r.opp.startsWith("@")?`${r.team} ${r.opp}`:`${r.opp.replace(/^vs\.?\s*/i,"")} @ ${r.team}`):String(r.game);
+   byGame.set(r.game,{id:String(r.game),lbl,props:[]});
+  }
+  byGame.get(r.game).props.push(r);
+ });
+ const games=[...byGame.values()].filter(g=>g.props.length>=2);
+ if(!games.length){
+  mod.innerHTML=`<div class="sgp-mat-card"><div class="sgp-mat-top"><b>🧬 Interactive N×N SGP Copula Correlation Heatmap</b><button type="button" id="sgp-mat-x" style="background:none;border:0;color:var(--txt);font-size:18px;cursor:pointer">✕</button></div><p class="mut">No multi-prop games available for ${sp.toUpperCase()}.</p></div>`;
+  mod.classList.add("open");
+  const x=document.getElementById("sgp-mat-x");if(x)x.onclick=()=>mod.classList.remove("open");
+  return;
+ }
+ const gsel=document.getElementById("game");
+ const curG=prefGameId||(gsel&&gsel.value)||games[0].id;
+ const initG=games.find(g=>g.id===String(curG))?String(curG):games[0].id;
+
+ function renderGrid(gid){
+  const gObj=games.find(g=>g.id===String(gid))||games[0];
+  const sorted=gObj.props.slice().sort((a,b)=>((b.l10?b.l10.h/b.l10.n:0.5)-(a.l10?a.l10.h/a.l10.n:0.5)));
+  const legs=[],seenP=new Set();
+  for(const r of sorted){
+   const k=`${r.aid}|${r.market}`;
+   if(seenP.has(k))continue;
+   seenP.add(k);legs.push(r);
+   if(legs.length>=6)break;
+  }
+  const hdrs=legs.map(r=>{
+   const last=(r.player||"").split(" ").pop();
+   const mShort=String(r.market||"").replace("Passing ","Pass ").replace("Rushing ","Rush ").replace("Receiving ","Rec ").slice(0,10);
+   return {short:`${last} o${r.line} ${mShort}`,full:`${r.player} (${r.team}) · ${r.market} o${r.line}`};
+  });
+  let rowsHtml="";
+  for(let i=0;i<legs.length;i++){
+   rowsHtml+=`<tr><th class="row-h" title="${H(hdrs[i].full)}">${H(hdrs[i].short)}</th>`;
+   for(let j=0;j<legs.length;j++){
+    if(i===j){
+     rowsHtml+=`<td class="sgp-mat-cell diag">1.00<small>Self</small></td>`;
+    }else{
+     const rho=getPairRho(sp,{s:sp,r:legs[i]},{s:sp,r:legs[j]});
+     const bg=rho>=0.18?"rgba(16,185,129,0.28)":rho>=0.06?"rgba(16,185,129,0.16)":rho<=-0.10?"rgba(244,63,94,0.25)":rho<0?"rgba(244,63,94,0.14)":"rgba(30,41,59,0.55)";
+     const col=rho>=0.06?"#4ade80":rho<0?"#fb7185":"#cbd5e1";
+     const sign=rho>0?"+":"";
+     const tag=legs[i].aid===legs[j].aid?"Same Player":(legs[i].team===legs[j].team?"Teammates":"Opponents");
+     rowsHtml+=`<td class="sgp-mat-cell" data-mi="${i}" data-mj="${j}" style="background:${bg};color:${col}" title="Tap to add both legs (${H(hdrs[i].short)} + ${H(hdrs[j].short)}) to Parlay Slip">${sign}${rho.toFixed(2)}<small>${tag}</small></td>`;
+    }
+   }
+   rowsHtml+=`</tr>`;
+  }
+  mod.innerHTML=`<div class="sgp-mat-card">`
+   +`<div class="sgp-mat-top">`
+   +`<div><b style="font-size:15px">🧬 Interactive N×N SGP Copula Correlation Heatmap</b><div class="mut" style="font-size:11.5px;margin-top:2px">Tap any off-diagonal cell to add that correlated 2-leg SGP pair directly to your Parlay Slip</div></div>`
+   +`<div style="display:flex;gap:8px;align-items:center">`
+   +`<select id="sgp-mat-sel" style="background:var(--panel2,#182033);color:var(--txt,#e8eefc);border:1px solid var(--line,#26304f);border-radius:8px;padding:5px 9px;font-size:12px;font-weight:700">`
+   +games.map(g=>`<option value="${H(g.id)}"${g.id===gObj.id?" selected":""}>${H(g.lbl)} (${g.props.length} props)</option>`).join("")
+   +`</select>`
+   +`<button type="button" id="sgp-mat-x" style="background:none;border:0;color:var(--txt);font-size:18px;cursor:pointer">✕</button>`
+   +`</div></div>`
+   +`<div style="overflow-x:auto"><table class="sgp-mat-tbl"><thead><tr><th>Leg \\ Leg</th>`
+   +hdrs.map(h=>`<th title="${H(h.full)}">${H(h.short)}</th>`).join("")
+   +`</tr></thead><tbody>${rowsHtml}</tbody></table></div>`
+   +`<div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:11px;color:var(--mut,#8b97b0);flex-wrap:wrap;gap:6px">`
+   +`<span>🟢 <b>Positive ρ</b>: Gaussian Copula boosts joint SGP hit rate above independent book pricing</span>`
+   +`<span>🔴 <b>Negative ρ</b>: Cannibalizing usage / pace mismatch</span>`
+   +`</div></div>`;
+  const xB=document.getElementById("sgp-mat-x");if(xB)xB.onclick=()=>mod.classList.remove("open");
+  const sel=document.getElementById("sgp-mat-sel");if(sel)sel.onchange=()=>renderGrid(sel.value);
+  mod.querySelectorAll(".sgp-mat-cell[data-mi]").forEach(td=>{
+   td.onclick=()=>{
+    const rA=legs[+td.dataset.mi],rB=legs[+td.dataset.mj];
+    if(!rA||!rB)return;
+    [rA,rB].forEach(r=>{
+     const k=`${r.aid}|${r.market}`;
+     const exists=typeof SLIP!=="undefined"&&SLIP.some(x=>x.s===sp&&x.k===k);
+     if(!exists&&typeof toggleLeg==="function")toggleLeg(sp,k);
+    });
+    updateTray();
+    mod.classList.remove("open");
+   };
+  });
+ }
+ renderGrid(initG);
+ mod.classList.add("open");
+}
+
 document.addEventListener("click",e=>{
+ const matBtn=e.target.closest("[data-sgp-mat]");
+ if(matBtn){
+  e.stopPropagation();
+  openSgpMatrixModal();
+  return;
+ }
  const gbtn=e.target.closest("[data-grib]");
  if(gbtn){
   e.stopPropagation();
@@ -689,5 +858,5 @@ function boot(){
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",boot);
 else boot();
 
-window.BLPro={enhanceDOM,updateTray,copulaJointProb,sparkSvg,mountDrawerLab};
+window.BLPro={enhanceDOM,updateTray,copulaJointProb,sparkSvg,mountDrawerLab,openSgpMatrixModal};
 })();
