@@ -788,7 +788,7 @@ document.addEventListener("click",e=>{
  const tlBtn=e.target.closest("[data-ptail]");
  if(tlBtn){
   e.stopPropagation();
-  const pk=tlBtn.dataset.pk;
+  const pk=tlBtn.dataset.ptail||tlBtn.dataset.pk;
   const r=(typeof DATA!=="undefined"&&DATA[sport]||[]).find(x=>(x.aid+"|"+x.market)===pk);
   if(!r)return;
   const q=typeof ppLeg==="function"?ppLeg(r,sport):null;
