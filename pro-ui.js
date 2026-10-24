@@ -234,7 +234,7 @@ function updateTray(){
  const t=ensureTray();
  const slip=SLIP||[];
  if(!slip.length){t.classList.remove("show");return}
- const legs=slip.map(l=>({...l,r:typeof find==="function"?find(l.s,l.k):null})).filter(l=>l.r);
+ const legs=slip.map(l=>({...l,r:(typeof DATA!=="undefined"&&DATA[l.s]||[]).find(r=>(r.aid+"|"+r.market)===l.k)})).filter(l=>l.r);
  if(!legs.length){t.classList.remove("show");return}
  const cop=copulaJointProb(legs);
  const fairAm=typeof fair==="function"?fair(cop.pCop):"—";
@@ -411,7 +411,7 @@ document.addEventListener("click",e=>{
  if(trimBtn){
   e.stopPropagation();
   const idx=+trimBtn.dataset.ptTrim;
-  const legs=(SLIP||[]).map(l=>({...l,r:typeof find==="function"?find(l.s,l.k):null})).filter(l=>l.r);
+  const legs=(SLIP||[]).map(l=>({...l,r:(typeof DATA!=="undefined"&&DATA[l.s]||[]).find(r=>(r.aid+"|"+r.market)===l.k)})).filter(l=>l.r);
   const target=legs[idx];
   if(target&&typeof toggleLeg==="function")toggleLeg(target.s,target.k);
   return;
@@ -425,7 +425,7 @@ document.addEventListener("click",e=>{
  const ptCard=e.target.closest("[data-pt-card]");
  if(ptCard){
   e.stopPropagation();
-  const legs=(SLIP||[]).map(l=>({...l,r:typeof find==="function"?find(l.s,l.k):null})).filter(l=>l.r);
+  const legs=(SLIP||[]).map(l=>({...l,r:(typeof DATA!=="undefined"&&DATA[l.s]||[]).find(r=>(r.aid+"|"+r.market)===l.k)})).filter(l=>l.r);
   if(!legs.length)return;
   const cop=copulaJointProb(legs);
   const fairAm=typeof fair==="function"?fair(cop.pCop):"—";
