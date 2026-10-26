@@ -21,13 +21,13 @@
    "source_label": "Video @ 0:05",
    "timestamp": "0:05",
    "line": -3,
-   "odds": -110,
-   "odds_assumed": true,
+   "odds": -120,
    "result": "win",
    "final": {
     "PIT": 20.0,
     "ATL": 13.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w1-2",
@@ -46,12 +46,12 @@
    "timestamp": "0:11",
    "line": 3.5,
    "odds": -110,
-   "odds_assumed": true,
    "result": "loss",
    "final": {
     "IND": 23.0,
     "BAL": 41.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w1-3",
@@ -69,13 +69,13 @@
    "source_label": "Video @ 0:16",
    "timestamp": "0:16",
    "line": 1.5,
-   "odds": -110,
-   "odds_assumed": true,
+   "odds": -122,
    "result": "loss",
    "final": {
     "HOU": 31.0,
     "BUF": 36.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w1-4",
@@ -94,12 +94,12 @@
    "timestamp": "0:22",
    "line": -3,
    "odds": -110,
-   "odds_assumed": true,
    "result": "win",
    "final": {
     "CAR": 37.0,
     "CHI": 59.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w1-5",
@@ -118,12 +118,12 @@
    "timestamp": "0:29",
    "line": 9,
    "odds": -110,
-   "odds_assumed": true,
    "result": "loss",
    "final": {
     "JAX": 34.0,
     "CLE": 10.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w1-6",
@@ -142,12 +142,12 @@
    "timestamp": "0:37",
    "line": 7,
    "odds": -110,
-   "odds_assumed": true,
    "result": "win",
    "final": {
     "DET": 31.0,
     "NO": 30.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w1-7",
@@ -165,13 +165,13 @@
    "source_label": "Video @ 0:49",
    "timestamp": "0:49",
    "line": 1.5,
-   "odds": -110,
-   "odds_assumed": true,
+   "odds": -105,
    "result": "win",
    "final": {
     "TEN": 10.0,
     "NYJ": 23.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w1-8",
@@ -190,13 +190,13 @@
    "timestamp": "0:55",
    "line": 51.5,
    "side": "under",
-   "odds": -110,
-   "odds_assumed": true,
+   "odds": -105,
    "result": "loss",
    "final": {
     "CIN": 33.0,
     "TB": 27.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w1-9",
@@ -215,12 +215,12 @@
    "timestamp": "1:06",
    "line": 9.5,
    "odds": -110,
-   "odds_assumed": true,
    "result": "win",
    "final": {
     "LAC": 14.0,
     "ARI": 26.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w1-10",
@@ -239,12 +239,12 @@
    "timestamp": "1:13",
    "line": -1,
    "odds": -110,
-   "odds_assumed": true,
    "result": "win",
    "final": {
     "MIN": 39.0,
     "GB": 22.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w1-11",
@@ -262,13 +262,13 @@
    "source_label": "Video @ 1:18",
    "timestamp": "1:18",
    "line": 3,
-   "odds": -110,
-   "odds_assumed": true,
+   "odds": 100,
    "result": "loss",
    "final": {
     "LV": 27.0,
     "MIA": 13.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w1-12",
@@ -285,13 +285,13 @@
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7684032765427387662",
    "source_label": "Video @ 1:27",
    "timestamp": "1:27",
-   "odds": -215,
-   "odds_assumed": true,
+   "odds": -238,
    "result": "win",
    "final": {
     "PHI": 24.0,
     "WSH": 22.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w1-13",
@@ -309,13 +309,13 @@
    "source_label": "Video @ 1:36",
    "timestamp": "1:36",
    "line": 3,
-   "odds": -110,
-   "odds_assumed": true,
+   "odds": -115,
    "result": "win",
    "final": {
     "NYG": 28.0,
     "DAL": 20.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w2-14",
@@ -333,13 +333,13 @@
    "source_label": "Video @ 0:04",
    "timestamp": "0:04",
    "line": -1,
-   "odds": -110,
-   "odds_assumed": true,
+   "odds": -115,
    "result": "win",
    "final": {
     "ATL": 3.0,
     "CAR": 34.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w2-15",
@@ -358,12 +358,12 @@
    "timestamp": "0:09",
    "line": -2.5,
    "odds": -110,
-   "odds_assumed": true,
    "result": "loss",
    "final": {
     "HOU": 6.0,
     "CIN": 20.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w2-16",
@@ -382,12 +382,12 @@
    "timestamp": "0:17",
    "line": 8.5,
    "odds": -110,
-   "odds_assumed": true,
    "result": "win",
    "final": {
     "TB": 19.0,
     "CLE": 23.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w2-17",
@@ -406,12 +406,12 @@
    "timestamp": "0:25",
    "line": -3.5,
    "odds": -110,
-   "odds_assumed": true,
    "result": "loss",
    "final": {
     "NYJ": 17.0,
     "GB": 20.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w2-18",
@@ -430,12 +430,12 @@
    "timestamp": "0:31",
    "line": 5.5,
    "odds": -110,
-   "odds_assumed": true,
    "result": "win",
    "final": {
     "CHI": 3.0,
     "MIN": 9.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w2-19",
@@ -454,12 +454,12 @@
    "timestamp": "0:40",
    "line": 9,
    "odds": -110,
-   "odds_assumed": true,
    "result": "win",
    "final": {
     "BAL": 17.0,
     "NO": 24.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w2-20",
@@ -478,12 +478,12 @@
    "timestamp": "0:47",
    "line": 7,
    "odds": -110,
-   "odds_assumed": true,
    "result": "win",
    "final": {
     "TEN": 20.0,
     "PHI": 24.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w2-21",
@@ -500,13 +500,13 @@
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7685880474035703071",
    "source_label": "Video @ 0:57",
    "timestamp": "0:57",
-   "odds": -130,
-   "odds_assumed": true,
+   "odds": -225,
    "result": "win",
    "final": {
     "NE": 20.0,
     "PIT": 3.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w2-22",
@@ -524,13 +524,13 @@
    "source_label": "Video @ 1:04",
    "timestamp": "1:04",
    "line": -2.5,
-   "odds": -110,
-   "odds_assumed": true,
+   "odds": -115,
    "result": "win",
    "final": {
     "DEN": 20.0,
     "JAX": 13.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w2-23",
@@ -549,12 +549,12 @@
    "timestamp": "1:12",
    "line": -7,
    "odds": -110,
-   "odds_assumed": true,
    "result": "loss",
    "final": {
     "LAC": 14.0,
     "LV": 26.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w2-24",
@@ -573,12 +573,12 @@
    "timestamp": "1:19",
    "line": 14,
    "odds": -110,
-   "odds_assumed": true,
    "result": "loss",
    "final": {
     "SF": 35.0,
     "MIA": 13.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w2-25",
@@ -597,12 +597,12 @@
    "timestamp": "1:28",
    "line": 4.5,
    "odds": -110,
-   "odds_assumed": true,
    "result": "loss",
    "final": {
     "ARI": 7.0,
     "SEA": 31.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w2-26",
@@ -620,13 +620,13 @@
    "source_label": "Video @ 1:37",
    "timestamp": "1:37",
    "line": 3.5,
-   "odds": -110,
-   "odds_assumed": true,
+   "odds": -115,
    "result": "loss",
    "final": {
     "DAL": 37.0,
     "WSH": 20.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w3-27",
@@ -644,13 +644,13 @@
    "source_label": "Video @ 0:03",
    "timestamp": "0:03",
    "line": -2.5,
-   "odds": -110,
-   "odds_assumed": true,
+   "odds": -105,
    "result": "loss",
    "final": {
     "CLE": 21.0,
     "CAR": 18.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w3-28",
@@ -668,13 +668,13 @@
    "source_label": "Video @ 0:11",
    "timestamp": "0:11",
    "line": -3,
-   "odds": -110,
-   "odds_assumed": true,
+   "odds": 100,
    "result": "loss",
    "final": {
     "PIT": 30.0,
     "CIN": 27.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w3-29",
@@ -692,13 +692,13 @@
    "source_label": "Video @ 0:18",
    "timestamp": "0:18",
    "line": 3,
-   "odds": -110,
-   "odds_assumed": true,
+   "odds": -105,
    "result": "win",
    "final": {
     "IND": 19.0,
     "HOU": 17.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w3-30",
@@ -716,13 +716,13 @@
    "source_label": "Video @ 0:24",
    "timestamp": "0:24",
    "line": 12,
-   "odds": -110,
-   "odds_assumed": true,
+   "odds": -105,
    "result": "loss",
    "final": {
     "MIA": 10.0,
     "KC": 24.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w3-31",
@@ -741,12 +741,12 @@
    "timestamp": "0:30",
    "line": -7,
    "odds": -110,
-   "odds_assumed": true,
    "result": "win",
    "final": {
     "BUF": 24.0,
     "LAC": 16.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w3-32",
@@ -764,13 +764,13 @@
    "source_label": "Video @ 0:37",
    "timestamp": "0:37",
    "line": -2.5,
-   "odds": -110,
-   "odds_assumed": true,
+   "odds": -105,
    "result": "win",
    "final": {
     "JAX": 35.0,
     "NE": 6.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w3-33",
@@ -789,12 +789,12 @@
    "timestamp": "0:43",
    "line": 6.5,
    "odds": -110,
-   "odds_assumed": true,
    "result": "loss",
    "final": {
     "DET": 31.0,
     "NYJ": 24.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w3-34",
@@ -813,12 +813,12 @@
    "timestamp": "0:49",
    "line": 7,
    "odds": -110,
-   "odds_assumed": true,
    "result": "win",
    "final": {
     "WSH": 33.0,
     "SEA": 31.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w3-35",
@@ -836,13 +836,13 @@
    "source_label": "Video @ 0:55",
    "timestamp": "0:55",
    "line": 3.5,
-   "odds": -110,
-   "odds_assumed": true,
+   "odds": 100,
    "result": "loss",
    "final": {
     "NYG": 12.0,
     "TEN": 7.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w3-36",
@@ -861,12 +861,12 @@
    "timestamp": "1:02",
    "line": 8.5,
    "odds": -110,
-   "odds_assumed": true,
    "result": "win",
    "final": {
     "SF": 36.0,
     "ARI": 30.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w3-37",
@@ -885,12 +885,12 @@
    "timestamp": "1:08",
    "line": -1.5,
    "odds": -110,
-   "odds_assumed": true,
    "result": "win",
    "final": {
     "TB": 16.0,
     "MIN": 23.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w3-38",
@@ -909,12 +909,12 @@
    "timestamp": "1:21",
    "line": -3,
    "odds": -110,
-   "odds_assumed": true,
    "result": "push",
    "final": {
     "DAL": 31.0,
     "BAL": 34.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w3-39",
@@ -933,12 +933,12 @@
    "timestamp": "1:28",
    "line": -3,
    "odds": -110,
-   "odds_assumed": true,
    "result": "loss",
    "final": {
     "NO": 27.0,
     "LV": 35.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w3-40",
@@ -956,13 +956,13 @@
    "source_label": "Video @ 1:34",
    "timestamp": "1:34",
    "line": 3,
-   "odds": -110,
-   "odds_assumed": true,
+   "odds": -105,
    "result": "win",
    "final": {
     "DEN": 30.0,
     "LAR": 26.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w4-41",
@@ -980,13 +980,13 @@
    "source_label": "Video @ 0:03",
    "timestamp": "0:03",
    "line": -3,
-   "odds": -110,
-   "odds_assumed": true,
+   "odds": -122,
    "result": "win",
    "final": {
     "WSH": 13.0,
     "IND": 30.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w4-42",
@@ -1005,12 +1005,12 @@
    "timestamp": "0:12",
    "line": -1,
    "odds": -110,
-   "odds_assumed": true,
    "result": "loss",
    "final": {
     "NYG": 36.0,
     "ARI": 24.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w4-43",
@@ -1029,12 +1029,12 @@
    "timestamp": "0:19",
    "line": 2.5,
    "odds": -110,
-   "odds_assumed": true,
    "result": "win",
    "final": {
     "HOU": 30.0,
     "DAL": 34.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w4-44",
@@ -1053,12 +1053,12 @@
    "timestamp": "0:26",
    "line": 4,
    "odds": -110,
-   "odds_assumed": true,
    "result": "win",
    "final": {
     "TB": 14.0,
     "GB": 17.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w4-45",
@@ -1077,12 +1077,12 @@
    "timestamp": "0:32",
    "line": 2.5,
    "odds": -110,
-   "odds_assumed": true,
    "result": "win",
    "final": {
     "CIN": 17.0,
     "JAX": 22.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w4-46",
@@ -1100,13 +1100,13 @@
    "source_label": "Video @ 0:38",
    "timestamp": "0:38",
    "line": -3,
-   "odds": -110,
-   "odds_assumed": true,
+   "odds": -105,
    "result": "win",
    "final": {
     "PHI": 20.0,
     "LAR": 24.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w4-47",
@@ -1125,12 +1125,12 @@
    "timestamp": "0:46",
    "line": -6.5,
    "odds": -110,
-   "odds_assumed": true,
    "result": "loss",
    "final": {
     "BUF": 26.0,
     "NE": 29.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w4-48",
@@ -1149,12 +1149,12 @@
    "timestamp": "0:50",
    "line": 3.5,
    "odds": -110,
-   "odds_assumed": true,
    "result": "loss",
    "final": {
     "CHI": 23.0,
     "NYJ": 12.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w4-49",
@@ -1173,12 +1173,12 @@
    "timestamp": "1:01",
    "line": 12,
    "odds": -110,
-   "odds_assumed": true,
    "result": "win",
    "final": {
     "BAL": 24.0,
     "TEN": 18.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w4-50",
@@ -1197,12 +1197,12 @@
    "timestamp": "1:08",
    "line": 12,
    "odds": -110,
-   "odds_assumed": true,
    "result": "win",
    "final": {
     "MIN": 15.0,
     "MIA": 10.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w4-51",
@@ -1221,12 +1221,12 @@
    "timestamp": "1:18",
    "line": 3,
    "odds": -110,
-   "odds_assumed": true,
    "result": "loss",
    "final": {
     "SF": 24.0,
     "DEN": 14.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w4-52",
@@ -1245,12 +1245,12 @@
    "timestamp": "1:23",
    "line": -4.5,
    "odds": -110,
-   "odds_assumed": true,
    "result": "loss",
    "final": {
     "LV": 27.0,
     "KC": 30.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w4-53",
@@ -1269,12 +1269,12 @@
    "timestamp": "1:33",
    "line": 7,
    "odds": -110,
-   "odds_assumed": true,
    "result": "push",
    "final": {
     "SEA": 30.0,
     "LAC": 23.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w4-54",
@@ -1293,12 +1293,12 @@
    "timestamp": "1:43",
    "line": 3.5,
    "odds": -110,
-   "odds_assumed": true,
    "result": "win",
    "final": {
     "CAR": 32.0,
     "DET": 26.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w5-55",
@@ -1315,13 +1315,13 @@
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7694348852240977183",
    "source_label": "Video @ 0:02",
    "timestamp": "0:02",
-   "odds": -125,
-   "odds_assumed": true,
+   "odds": -155,
    "result": "loss",
    "final": {
     "LAR": 34.0,
     "BUF": 37.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w6-56",
@@ -1339,13 +1339,13 @@
    "source_label": "Video @ 0:04",
    "timestamp": "0:04",
    "line": -2,
-   "odds": -110,
-   "odds_assumed": true,
+   "odds": -118,
    "result": "loss",
    "final": {
     "JAX": 31.0,
     "HOU": 34.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w6-57",
@@ -1364,12 +1364,12 @@
    "timestamp": "0:14",
    "line": -4.5,
    "odds": -110,
-   "odds_assumed": true,
    "result": "loss",
    "final": {
     "CLE": 13.0,
     "BAL": 10.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w6-58",
@@ -1388,12 +1388,12 @@
    "timestamp": "0:24",
    "line": 6.5,
    "odds": -110,
-   "odds_assumed": true,
    "result": "win",
    "final": {
     "PHI": 14.0,
     "CAR": 25.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w6-59",
@@ -1411,13 +1411,13 @@
    "source_label": "Video @ 0:30",
    "timestamp": "0:30",
    "line": -3,
-   "odds": -110,
-   "odds_assumed": true,
+   "odds": -115,
    "result": "win",
    "final": {
     "ATL": 23.0,
     "CHI": 31.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w6-60",
@@ -1435,13 +1435,13 @@
    "source_label": "Video @ 0:36",
    "timestamp": "0:36",
    "line": -1.5,
-   "odds": -110,
-   "odds_assumed": true,
+   "odds": -115,
    "result": "loss",
    "final": {
     "NYG": 27.0,
     "NO": 34.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w6-61",
@@ -1460,12 +1460,12 @@
    "timestamp": "0:46",
    "line": 7.5,
    "odds": -110,
-   "odds_assumed": true,
    "result": "win",
    "final": {
     "NE": 26.0,
     "NYJ": 19.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w6-62",
@@ -1484,12 +1484,12 @@
    "timestamp": "1:06",
    "line": -2.5,
    "odds": -110,
-   "odds_assumed": true,
    "result": "win",
    "final": {
     "TB": 19.0,
     "PIT": 26.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w6-63",
@@ -1508,12 +1508,12 @@
    "timestamp": "1:18",
    "line": -6.5,
    "odds": -110,
-   "odds_assumed": true,
    "result": "loss",
    "final": {
     "IND": 20.0,
     "TEN": 26.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w6-64",
@@ -1532,12 +1532,12 @@
    "timestamp": "1:26",
    "line": 12.5,
    "odds": -110,
-   "odds_assumed": true,
    "result": "win",
    "final": {
     "LAR": 16.0,
     "ARI": 18.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w6-65",
@@ -1556,12 +1556,12 @@
    "timestamp": "1:37",
    "line": 5,
    "odds": -110,
-   "odds_assumed": true,
    "result": "win",
    "final": {
     "LV": 30.0,
     "BUF": 33.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w6-66",
@@ -1580,12 +1580,12 @@
    "timestamp": "1:48",
    "line": 8.5,
    "odds": -110,
-   "odds_assumed": true,
    "result": "loss",
    "final": {
     "KC": 22.0,
     "LAC": 6.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w6-67",
@@ -1604,12 +1604,12 @@
    "timestamp": "2:03",
    "line": 1.5,
    "odds": -110,
-   "odds_assumed": true,
    "result": "loss",
    "final": {
     "GB": 23.0,
     "DAL": 13.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w7-68",
@@ -1627,13 +1627,13 @@
    "source_label": "Video @ 0:02",
    "timestamp": "0:02",
    "line": -3,
-   "odds": -110,
-   "odds_assumed": true,
+   "odds": -105,
    "result": "win",
    "final": {
     "CHI": 30.0,
     "NE": 24.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-cfb-69",
@@ -1648,7 +1648,6 @@
    "espn_event_id": "401856719",
    "desc": "Auburn +19.5 at Georgia",
    "odds": -110,
-   "odds_assumed": true,
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7697344304737488141",
    "source_label": "Video @ 0:02",
    "timestamp": "0:02",
@@ -1657,7 +1656,8 @@
    "final": {
     "UGA": 24.0,
     "AUB": 27.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-cfb-70",
@@ -1672,7 +1672,6 @@
    "espn_event_id": "401856809",
    "desc": "Notre Dame -10.5 at BYU",
    "odds": -110,
-   "odds_assumed": true,
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7697344304737488141",
    "source_label": "Video @ 0:10",
    "timestamp": "0:10",
@@ -1681,7 +1680,8 @@
    "final": {
     "BYU": 28.0,
     "ND": 24.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-cfb-71",
@@ -1696,7 +1696,6 @@
    "espn_event_id": "401858263",
    "desc": "Miami -21 vs Florida State",
    "odds": -110,
-   "odds_assumed": true,
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7697344304737488141",
    "source_label": "Video @ 0:19",
    "timestamp": "0:19",
@@ -1705,7 +1704,8 @@
    "final": {
     "MIA": 43.0,
     "FSU": 35.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-cfb-72",
@@ -1719,8 +1719,7 @@
    "team": "OSU",
    "espn_event_id": "401858488",
    "desc": "Ohio State ML at Indiana",
-   "odds": -135,
-   "odds_assumed": true,
+   "odds": -108,
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7697344304737488141",
    "source_label": "Video @ 0:26",
    "timestamp": "0:26",
@@ -1728,7 +1727,8 @@
    "final": {
     "IU": 15.0,
     "OSU": 19.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-cfb-73",
@@ -1743,7 +1743,6 @@
    "espn_event_id": "401856723",
    "desc": "Tennessee +7.5 vs Alabama",
    "odds": -110,
-   "odds_assumed": true,
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7697344304737488141",
    "source_label": "Video @ 0:36",
    "timestamp": "0:36",
@@ -1752,7 +1751,8 @@
    "final": {
     "TENN": 26.0,
     "ALA": 10.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-cfb-74",
@@ -1767,7 +1767,6 @@
    "espn_event_id": "401856724",
    "desc": "Texas -10.5 vs Florida",
    "odds": -110,
-   "odds_assumed": true,
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7697344304737488141",
    "source_label": "Video @ 0:50",
    "timestamp": "0:50",
@@ -1776,7 +1775,8 @@
    "final": {
     "TEX": 24.0,
     "FLA": 27.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-cfb-75",
@@ -1790,8 +1790,7 @@
    "team": "MISS",
    "espn_event_id": "401856721",
    "desc": "Ole Miss -5 vs Missouri",
-   "odds": -110,
-   "odds_assumed": true,
+   "odds": -115,
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7697344304737488141",
    "source_label": "Video @ 0:55",
    "timestamp": "0:55",
@@ -1800,7 +1799,8 @@
    "final": {
     "MISS": 31.0,
     "MIZ": 3.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-cfb-76",
@@ -1815,7 +1815,6 @@
    "espn_event_id": "401856828",
    "desc": "Texas Tech -14 vs Arizona State",
    "odds": -110,
-   "odds_assumed": true,
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7697344304737488141",
    "source_label": "Video @ 1:00",
    "timestamp": "1:00",
@@ -1824,7 +1823,8 @@
    "final": {
     "TTU": 53.0,
     "ASU": 25.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-prop-77",
@@ -1843,8 +1843,7 @@
    "line": 2.5,
    "espn_event_id": "401872656",
    "desc": "Rhamondre Stevenson Over 2.5 Receptions (NE @ SEA \u00b7 Opening Night)",
-   "odds": -115,
-   "odds_assumed": true,
+   "odds": -110,
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7684032765427387662",
    "source_label": "Video @ 1:54",
    "timestamp": "1:54",
@@ -1853,7 +1852,8 @@
    "final": {
     "SEA": 13.0,
     "NE": 10.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-prop-78",
@@ -1872,8 +1872,7 @@
    "line": 4.5,
    "espn_event_id": "401872657",
    "desc": "Christian McCaffrey Over 4.5 Receptions (SF @ LAR)",
-   "odds": -115,
-   "odds_assumed": true,
+   "odds": 100,
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7685080540185218318",
    "source_label": "Video @ 0:12",
    "timestamp": "0:12",
@@ -1882,7 +1881,8 @@
    "final": {
     "LAR": 7.0,
     "SF": 27.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-prop-79",
@@ -1901,8 +1901,7 @@
    "line": 17.5,
    "espn_event_id": "401872939",
    "desc": "Saquon Barkley Over 17.5 Rush Carries (PHI @ TEN \u00b7 Play-Volume Edge)",
-   "odds": -115,
-   "odds_assumed": true,
+   "odds": -110,
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7687653250849312013",
    "source_label": "Video @ 0:24",
    "timestamp": "0:24",
@@ -1911,7 +1910,8 @@
    "final": {
     "TEN": 20.0,
     "PHI": 24.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-prop-80",
@@ -1930,8 +1930,7 @@
    "line": 65.5,
    "espn_event_id": "401872947",
    "desc": "Davante Adams Over 65.5 Receiving Yards (NYG @ LAR \u00b7 Puka Out Target Spike)",
-   "odds": -115,
-   "odds_assumed": true,
+   "odds": -110,
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7688056074393390350",
    "source_label": "Video @ 0:15",
    "timestamp": "0:15",
@@ -1940,7 +1939,8 @@
    "final": {
     "LAR": 28.0,
     "NYG": 6.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-prop-81",
@@ -1959,8 +1959,7 @@
    "line": 30.5,
    "espn_event_id": "401872948",
    "desc": "Jordan Love Over 30.5 Pass Attempts (ATL @ GB \u00b7 Play-Volume Bounceback)",
-   "odds": -115,
-   "odds_assumed": true,
+   "odds": -110,
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7689165941434813727",
    "source_label": "Video @ 0:22",
    "timestamp": "0:22",
@@ -1969,7 +1968,8 @@
    "final": {
     "GB": 14.0,
     "ATL": 35.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-prop-82",
@@ -1988,8 +1988,7 @@
    "line": 242.5,
    "espn_event_id": "401872948",
    "desc": "Jordan Love Over 242.5 Passing Yards (ATL @ GB)",
-   "odds": -115,
-   "odds_assumed": true,
+   "odds": -110,
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7689165941434813727",
    "source_label": "Video @ 0:48",
    "timestamp": "0:48",
@@ -1998,7 +1997,8 @@
    "final": {
     "GB": 14.0,
     "ATL": 35.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-prop-83",
@@ -2017,8 +2017,7 @@
    "line": 1.5,
    "espn_event_id": "401872954",
    "desc": "Jared Goff Over 1.5 Passing TDs (NYJ @ DET \u00b7 Matchup Spotlight)",
-   "odds": -115,
-   "odds_assumed": true,
+   "odds": -110,
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7690261390153551134",
    "source_label": "Video @ 0:18",
    "timestamp": "0:18",
@@ -2027,7 +2026,8 @@
    "final": {
     "DET": 31.0,
     "NYJ": 24.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-prop-84",
@@ -2047,7 +2047,6 @@
    "espn_event_id": "401872972",
    "desc": "D'Andre Swift Anytime TD (NYJ @ CHI \u00b7 Red-Zone Road-Grader Callout)",
    "odds": 115,
-   "odds_assumed": true,
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7692511032048176398",
    "source_label": "Video @ 0:32",
    "timestamp": "0:32",
@@ -2056,7 +2055,8 @@
    "final": {
     "CHI": 23.0,
     "NYJ": 12.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-prop-85",
@@ -2075,8 +2075,7 @@
    "line": 17.5,
    "espn_event_id": "401872980",
    "desc": "Jalon Daniels Over 17.5 Pass Completions (TB @ DAL \u00b7 Play-Chart Volume)",
-   "odds": -115,
-   "odds_assumed": true,
+   "odds": -110,
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7696940141021072653",
    "source_label": "Video @ 0:11",
    "timestamp": "0:11",
@@ -2085,7 +2084,8 @@
    "final": {
     "DAL": 16.0,
     "TB": 24.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-prop-86",
@@ -2104,8 +2104,7 @@
    "line": 62.5,
    "espn_event_id": "401872980",
    "desc": "George Pickens Over 62.5 Receiving Yards (TB @ DAL \u00b7 Secondary Coverage Edge)",
-   "odds": -115,
-   "odds_assumed": true,
+   "odds": -110,
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7696940141021072653",
    "source_label": "Video @ 0:21",
    "timestamp": "0:21",
@@ -2114,7 +2113,8 @@
    "final": {
     "DAL": 16.0,
     "TB": 24.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-prop-87",
@@ -2143,7 +2143,8 @@
    "final": {
     "DEN": 17.0,
     "SEA": 14.0
-   }
+   },
+   "odds_source": "stated"
   },
   {
    "id": "ek-prop-88",
@@ -2162,8 +2163,7 @@
    "line": 29.5,
    "espn_event_id": "401873001",
    "desc": "Geno Smith Over 29.5 Pass Attempts (NYJ @ NE \u00b7 Best Bet All Week)",
-   "odds": -115,
-   "odds_assumed": true,
+   "odds": -110,
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7697687657496775967",
    "source_label": "Video @ 0:03",
    "timestamp": "0:03",
@@ -2172,7 +2172,8 @@
    "final": {
     "NE": 26.0,
     "NYJ": 19.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w1-89",
@@ -2192,12 +2193,12 @@
    "line": 24.5,
    "side": "under",
    "odds": -110,
-   "odds_assumed": true,
    "result": "win",
    "final": {
     "SEA": 13.0,
     "NE": 10.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w1-90",
@@ -2217,12 +2218,12 @@
    "line": 23.5,
    "side": "under",
    "odds": -110,
-   "odds_assumed": true,
    "result": "win",
    "final": {
     "MIN": 39.0,
     "GB": 22.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w2-91",
@@ -2242,12 +2243,12 @@
    "line": 24.5,
    "side": "under",
    "odds": -110,
-   "odds_assumed": true,
    "result": "win",
    "final": {
     "HOU": 6.0,
     "CIN": 20.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w2-92",
@@ -2267,12 +2268,12 @@
    "line": 24.5,
    "side": "under",
    "odds": -110,
-   "odds_assumed": true,
    "result": "win",
    "final": {
     "LAR": 28.0,
     "NYG": 6.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w3-93",
@@ -2292,12 +2293,12 @@
    "line": 40.5,
    "side": "over",
    "odds": -110,
-   "odds_assumed": true,
    "result": "loss",
    "final": {
     "CLE": 21.0,
     "CAR": 18.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w4-94",
@@ -2317,12 +2318,12 @@
    "line": 20.5,
    "side": "under",
    "odds": -110,
-   "odds_assumed": true,
    "result": "loss",
    "final": {
     "CLE": 27.0,
     "PIT": 24.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w5-95",
@@ -2339,13 +2340,13 @@
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7694743555943746846",
    "source_label": "Video @ 0:12",
    "timestamp": "0:12",
-   "odds": -115,
-   "odds_assumed": true,
+   "odds": -205,
    "result": "win",
    "final": {
     "DAL": 16.0,
     "TB": 24.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-lean-96",
@@ -2358,7 +2359,6 @@
    "type": "parlay",
    "desc": "Texas Two-Step 6pt Teaser: Cowboys -2 vs Buccaneers & Texans -0.5 vs Titans",
    "odds": -120,
-   "odds_assumed": true,
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7694068019521260814",
    "source_label": "Video @ 0:05",
    "timestamp": "0:05",
@@ -2375,7 +2375,9 @@
      "final": {
       "DAL": 16.0,
       "TB": 24.0
-     }
+     },
+     "odds": -110,
+     "odds_source": "opening"
     },
     {
      "sport": "nfl",
@@ -2389,7 +2391,9 @@
      "final": {
       "TEN": 3.0,
       "HOU": 26.0
-     }
+     },
+     "odds": -110,
+     "odds_source": "opening"
     }
    ],
    "result": "loss",
@@ -2399,7 +2403,8 @@
    "legs_push": 0,
    "sunk_by": [
     "Cowboys -2 vs Buccaneers (teased from -8)"
-   ]
+   ],
+   "odds_source": "opening"
   },
   {
    "id": "ek-lean-97",
@@ -2434,7 +2439,9 @@
      "final": {
       "DAL": 16.0,
       "TB": 24.0
-     }
+     },
+     "odds": 115,
+     "odds_source": "opening"
     },
     {
      "sport": "nfl",
@@ -2447,7 +2454,9 @@
      "final": {
       "DAL": 16.0,
       "TB": 24.0
-     }
+     },
+     "odds": -205,
+     "odds_source": "opening"
     }
    ],
    "result": "loss",
@@ -2458,7 +2467,8 @@
    "sunk_by": [
     "George Pickens 2+ TDs vs Buccaneers",
     "Cowboys ML vs Buccaneers"
-   ]
+   ],
+   "odds_source": "stated"
   },
   {
    "id": "ek-w6-98",
@@ -2478,12 +2488,12 @@
    "line": 21.5,
    "side": "under",
    "odds": -110,
-   "odds_assumed": true,
    "result": "win",
    "final": {
     "DEN": 17.0,
     "SEA": 14.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-w6-99",
@@ -2503,12 +2513,12 @@
    "line": 19.5,
    "side": "over",
    "odds": -110,
-   "odds_assumed": true,
    "result": "win",
    "final": {
     "TB": 19.0,
     "PIT": 26.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-lean-100",
@@ -2538,7 +2548,9 @@
      "final": {
       "KC": 22.0,
       "LAC": 6.0
-     }
+     },
+     "odds": -110,
+     "odds_source": "opening"
     },
     {
      "sport": "nfl",
@@ -2552,7 +2564,9 @@
      "final": {
       "IND": 20.0,
       "TEN": 26.0
-     }
+     },
+     "odds": -110,
+     "odds_source": "opening"
     }
    ],
    "result": "loss",
@@ -2562,7 +2576,8 @@
    "legs_push": 0,
    "sunk_by": [
     "Colts -0.5 vs Titans (teased from -6.5)"
-   ]
+   ],
+   "odds_source": "stated"
   },
   {
    "id": "ek-lean-101",
@@ -2579,7 +2594,6 @@
    "espn_event_id": "401856809",
    "desc": "BYU Team Total Under 17.5 vs Notre Dame (Best Play in Game Callout)",
    "odds": -110,
-   "odds_assumed": true,
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7697344304737488141",
    "source_label": "Video @ 0:14",
    "timestamp": "0:14",
@@ -2587,7 +2601,8 @@
    "final": {
     "BYU": 28.0,
     "ND": 24.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-lean-102",
@@ -2603,8 +2618,7 @@
    "side": "under",
    "espn_event_id": "401856723",
    "desc": "Alabama Team Total Under 30.5 at Tennessee (Pass-Rush Matchup Callout)",
-   "odds": -110,
-   "odds_assumed": true,
+   "odds": -108,
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7697344304737488141",
    "source_label": "Video @ 0:40",
    "timestamp": "0:40",
@@ -2612,7 +2626,8 @@
    "final": {
     "TENN": 26.0,
     "ALA": 10.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-lean-103",
@@ -2628,8 +2643,7 @@
    "side": "under",
    "espn_event_id": "401858496",
    "desc": "Indiana @ Michigan Under 43 (On-Site Ann Arbor Scout Callout)",
-   "odds": -110,
-   "odds_assumed": true,
+   "odds": -108,
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7700641262356991262",
    "source_label": "Video @ 0:06",
    "timestamp": "0:06",
@@ -2637,7 +2651,8 @@
    "final": {
     "MICH": 6.0,
     "IU": 13.0
-   }
+   },
+   "odds_source": "opening"
   },
   {
    "id": "ek-lean-104",
@@ -2653,7 +2668,6 @@
    "espn_event_id": "401909838",
    "desc": "Grizzlies @ Jazz Under 233.5 (First NBA Play of Season)",
    "odds": -110,
-   "odds_assumed": true,
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7699588802649525534",
    "source_label": "Video @ 0:42",
    "timestamp": "0:42",
@@ -2661,7 +2675,8 @@
    "final": {
     "MEM": 123.0,
     "UTAH": 103.0
-   }
+   },
+   "odds_source": "opening"
   }
  ],
  "record": {
@@ -2670,14 +2685,14 @@
     "w": 61,
     "l": 38,
     "p": 2,
-    "units": 16.31,
+    "units": 16.12,
     "units_n": 101
    },
    "nfl": {
     "w": 53,
     "l": 34,
     "p": 2,
-    "units": 13.2,
+    "units": 12.83,
     "units_n": 89
    },
    "mlb": {
@@ -2698,7 +2713,7 @@
     "w": 7,
     "l": 4,
     "p": 0,
-    "units": 2.2,
+    "units": 2.37,
     "units_n": 11
    }
   },
@@ -2743,14 +2758,14 @@
    "w": 61,
    "l": 38,
    "p": 2,
-   "units": 16.31,
+   "units": 16.12,
    "units_n": 101
   },
   "nfl": {
    "w": 53,
    "l": 34,
    "p": 2,
-   "units": 13.2,
+   "units": 12.83,
    "units_n": 89
   },
   "mlb": {
@@ -2771,14 +2786,14 @@
    "w": 7,
    "l": 4,
    "p": 0,
-   "units": 2.2,
+   "units": 2.37,
    "units_n": 11
   },
   "full_season": {
    "w": 61,
    "l": 41,
    "p": 2,
-   "units": 13.31,
+   "units": 13.12,
    "units_n": 104
   },
   "categories": {
@@ -2786,21 +2801,21 @@
     "w": 42,
     "l": 32,
     "p": 2,
-    "units": 5.43,
+    "units": 5.14,
     "units_n": 76
    },
    "props": {
     "w": 9,
     "l": 3,
     "p": 0,
-    "units": 4.83,
+    "units": 5.27,
     "units_n": 12
    },
    "leans": {
     "w": 10,
     "l": 6,
     "p": 0,
-    "units": 3.05,
+    "units": 2.7,
     "units_n": 16
    }
   },
@@ -2808,10 +2823,10 @@
    "w": 2,
    "l": 4,
    "p": 0,
-   "units": null,
-   "units_n": 0
+   "units": -2.18,
+   "units_n": 6
   },
   "pending": 0,
-  "units_note": "1 unit per pick. Units count only picks with a stated price, or spreads/totals/props marked with standard price. Parlays without a stated price are W/L only."
+  "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }

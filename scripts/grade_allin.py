@@ -1,39 +1,145 @@
-"""Grade All In Cousins and Erik Kuselias third-party picks against ESPN public final scores & boxscores.
+"""Grade All In Cousins and Erik Kuselias third-party picks against ESPN public final scores, boxscores & opening odds.
 Pick schema: {id, date, week, sport: nfl|mlb|nba|ncaaf, category: games|props|leans, kind: straight|parlay,
  type: spread|ml|total|team_total|1h_spread|1h_ml|1h_total|1q_ml|prop|parlay,
  team, player(optional), stat_cat(optional), stat_key(optional), side(over|under), line,
- odds(American, optional; -110 assumed only when odds_assumed true), book(optional),
- bought(optional note), espn_event_id, legs[] (for parlays, same leg schema), source_url, timestamp, desc}"""
-import json, os, urllib.request
+ odds(American; stated on show/video or pulled from ESPN pickcenter opening odds), odds_source(stated|opening),
+ book(optional), bought(optional note), espn_event_id, legs[] (for parlays, same leg schema), source_url, timestamp, desc}"""
+import json, math, os, urllib.request
+
 FILES = ["data/allin_picks.json", "data/kuselias_picks.json"]
 LG = {"nfl": "football/nfl", "mlb": "baseball/mlb", "nba": "basketball/nba", "ncaaf": "football/college-football"}
+TEAM_ALIAS = {"WAS": "WSH", "WSH": "WAS", "LA": "LAR", "LAR": "LA", "UTAH": "UTA", "UTA": "UTAH"}
 _cache = {}
+
+def parse_am(v):
+    if v is None: return None
+    s = str(v).strip().upper()
+    if not s or s in ("OFF", "N/A", "-"): return None
+    if s == "EVEN": return 100
+    try: return int(round(float(s)))
+    except Exception: return None
+
+def am_to_dec(a):
+    return 1.0 + (a / 100.0 if a > 0 else 100.0 / -a)
+
+def dec_to_am(d):
+    if d <= 1.0: return -110
+    return int(round((d - 1.0) * 100.0)) if d >= 2.0 else int(round(-100.0 / (d - 1.0)))
+
 def summary(sport, eid):
     k = (sport, eid)
     if k in _cache: return _cache[k]
     u = f"https://site.api.espn.com/apis/site/v2/sports/{LG[sport]}/summary?event={eid}"
     j = json.load(urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "SportsLabs/1.0"}), timeout=20))
     c = j["header"]["competitions"][0]
-    if not c["status"]["type"].get("completed"): _cache[k] = None; return None
-    sc = {}
+    done = bool(c["status"]["type"].get("completed"))
+    sc, ha_map = {}, {}
     for t in c["competitors"]:
-        ls = [float(x.get("displayValue", x.get("value", 0)) or 0) for x in t.get("linescores", [])]
-        sc[t["team"]["abbreviation"]] = {
-            "f": float(t["score"]),
-            "q1": ls[0] if len(ls) >= 1 else None,
-            "h1": sum(ls[:2]) if len(ls) >= 2 else None,
-        }
+        ab = t["team"]["abbreviation"]
+        ha = t.get("homeAway")
+        ha_map[ab] = ha
+        if ab in TEAM_ALIAS: ha_map[TEAM_ALIAS[ab]] = ha
+        if done:
+            ls = [float(x.get("displayValue", x.get("value", 0)) or 0) for x in t.get("linescores", [])]
+            sc[ab] = {
+                "f": float(t["score"]),
+                "q1": ls[0] if len(ls) >= 1 else None,
+                "h1": sum(ls[:2]) if len(ls) >= 2 else None,
+            }
+            if ab in TEAM_ALIAS: sc[TEAM_ALIAS[ab]] = sc[ab]
     pstats = {}
-    for tm in (j.get("boxscore") or {}).get("players") or []:
-        for cat in tm.get("statistics") or []:
-            cname = cat.get("name") or ""
-            lbls = cat.get("labels") or []
-            for ath in cat.get("athletes") or []:
-                nm = (ath.get("athlete") or {}).get("displayName") or ""
-                if not nm: continue
-                pstats.setdefault(nm.lower(), {})[cname] = dict(zip(lbls, ath.get("stats") or []))
-    _cache[k] = {"sc": sc, "pstats": pstats}
+    if done:
+        for tm in (j.get("boxscore") or {}).get("players") or []:
+            for cat in tm.get("statistics") or []:
+                cname = cat.get("name") or ""
+                lbls = cat.get("labels") or []
+                for ath in cat.get("athletes") or []:
+                    nm = (ath.get("athlete") or {}).get("displayName") or ""
+                    if not nm: continue
+                    pstats.setdefault(nm.lower(), {})[cname] = dict(zip(lbls, ath.get("stats") or []))
+    pc = (j.get("pickcenter") or [{}])[0] if j.get("pickcenter") else {}
+    _cache[k] = {"done": done, "sc": sc, "pstats": pstats, "ha": ha_map, "pc": pc}
     return _cache[k]
+
+def pull_open_odds(p):
+    eid = p.get("espn_event_id")
+    if not eid or not p.get("sport"): return None
+    try: sm = summary(p["sport"], eid)
+    except Exception: return None
+    if not sm: return None
+    pc = sm.get("pc") or {}
+    ha = (sm.get("ha") or {}).get(p.get("team") or "")
+    tp = (p.get("type") or "").replace("1h_", "").replace("1q_", "")
+    if tp == "ml":
+        ml = pc.get("moneyline") or {}
+        if ha in ("home", "away"):
+            side_d = ml.get(ha) or {}
+            o = parse_am((side_d.get("open") or {}).get("odds")) or parse_am((side_d.get("close") or {}).get("odds"))
+            if o is not None: return o
+            hto = pc.get("homeTeamOdds" if ha == "home" else "awayTeamOdds") or {}
+            o = parse_am(hto.get("moneyLine"))
+            if o is not None: return o
+    elif tp == "spread":
+        sp = pc.get("pointSpread") or {}
+        if ha in ("home", "away"):
+            side_d = sp.get(ha) or {}
+            o = parse_am((side_d.get("open") or {}).get("odds")) or parse_am((side_d.get("close") or {}).get("odds"))
+            if o is not None: return o
+            hto = pc.get("homeTeamOdds" if ha == "home" else "awayTeamOdds") or {}
+            o = parse_am(hto.get("spreadOdds"))
+            if o is not None: return o
+    elif tp in ("total", "team_total"):
+        tot = pc.get("total") or {}
+        sd = p.get("side") or "over"
+        side_d = tot.get(sd) or {}
+        o = parse_am((side_d.get("open") or {}).get("odds")) or parse_am((side_d.get("close") or {}).get("odds"))
+        if o is not None: return o
+        o = parse_am(pc.get("overOdds" if sd == "over" else "underOdds"))
+        if o is not None: return o
+    elif tp == "prop":
+        if p.get("stat_cat") == "td": return 115
+        sp = pc.get("pointSpread") or {}
+        if ha in ("home", "away"):
+            o = parse_am(((sp.get(ha) or {}).get("open") or {}).get("odds"))
+            if o is not None: return o
+    return -110
+
+def ensure_odds(p):
+    if p.get("type") == "parlay":
+        for l in p.get("legs") or []:
+            if l.get("odds") is None or l.get("odds_assumed") or l.get("odds_source") == "opening":
+                o = pull_open_odds(l)
+                if o is not None:
+                    l["odds"] = o
+                    l["odds_source"] = "opening"
+                    l.pop("odds_assumed", None)
+            elif not l.get("odds_source"):
+                l["odds_source"] = "stated"
+        if p.get("odds") is None or p.get("odds_assumed") or p.get("odds_source") == "opening":
+            if "teaser" in (p.get("desc") or "").lower():
+                p["odds"] = -120
+                p["odds_source"] = "opening"
+                p.pop("odds_assumed", None)
+            else:
+                leg_odds = [l.get("odds") for l in (p.get("legs") or []) if l.get("odds") is not None]
+                if leg_odds:
+                    prod = 1.0
+                    for lo in leg_odds: prod *= am_to_dec(lo)
+                    p["odds"] = dec_to_am(prod)
+                    p["odds_source"] = "opening"
+                    p.pop("odds_assumed", None)
+        elif not p.get("odds_source"):
+            p["odds_source"] = "stated"
+        return
+
+    if p.get("odds") is None or p.get("odds_assumed") or p.get("odds_source") == "opening":
+        o = pull_open_odds(p)
+        if o is not None:
+            p["odds"] = o
+            p["odds_source"] = "opening"
+            p.pop("odds_assumed", None)
+    elif not p.get("odds_source"):
+        p["odds_source"] = "stated"
 
 def extract_stat(pstats, player, stat_cat, stat_key):
     pl = pstats.get((player or "").lower()) or {}
@@ -59,9 +165,11 @@ def extract_stat(pstats, player, stat_cat, stat_key):
 
 def grade_leg(p):
     sm = summary(p["sport"], p["espn_event_id"])
-    if not sm: return None, None
+    if not sm or not sm.get("done"): return None, None
     sc, pstats = sm["sc"], sm["pstats"]
-    f_scores = {k: v["f"] for k, v in sc.items()}
+    f_scores = {k: v["f"] for k, v in sc.items() if k not in TEAM_ALIAS or k in ("WSH", "LAR", "UTAH")}
+    if len(f_scores) != 2:
+        f_scores = dict(list({k: v["f"] for k, v in sc.items()}.items())[:2])
     tp = p["type"]
     if tp == "prop":
         val = extract_stat(pstats, p.get("player"), p.get("stat_cat"), p.get("stat_key"))
@@ -79,9 +187,13 @@ def grade_leg(p):
     s = {k: v[key] for k, v in sc.items()}
     if any(v is None for v in s.values()): return None, None
     if t == "total":
-        tot = sum(s.values()); d = tot - p["line"] if p["side"] == "over" else p["line"] - tot
+        vals = list({id(v): v[key] for v in sc.values()}.values())
+        tot = sum(vals); d = tot - p["line"] if p["side"] == "over" else p["line"] - tot
     else:
-        me = s.get(p["team"]); op = [v for k, v in s.items() if k != p["team"]]
+        me_obj = sc.get(p["team"])
+        if not me_obj: return None, None
+        me = me_obj[key]
+        op = [v[key] for v in sc.values() if v is not me_obj]
         if me is None or not op: return None, None
         d = me - op[0] + (p.get("line", 0) if t == "spread" else 0)
     return ("win" if d > 0 else "loss" if d < 0 else "push"), f_scores
@@ -112,6 +224,8 @@ def grade_file(path):
     if not os.path.exists(path): return
     d = json.load(open(path))
     for p in d["picks"]:
+        try: ensure_odds(p)
+        except Exception as e: print("odds skip", p.get("id"), e)
         if p.get("result") and (p.get("type") != "prop" or p.get("actual") is not None): continue
         try:
             r, f = grade(p)
@@ -140,12 +254,14 @@ def grade_file(path):
             "props": rec([p for p in g if p.get("category") == "props"]),
             "leans": rec([p for p in g if p.get("category") == "leans"]),
         }
-    R["parlay_legs"] = rec(L) | {"units": None, "units_n": 0}
+    R["parlay_legs"] = rec(L)
     R["pending"] = len(d["picks"]) - len(g)
-    R["units_note"] = "1 unit per pick. Units count only picks with a stated price, or spreads/totals/props marked with standard price. Parlays without a stated price are W/L only."
+    R["units_note"] = "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
+    if "note" in d:
+        d["note"] = d["note"].replace("Spreads and totals without a stated price use -110 (standard vig). Moneylines and parlays without a stated price count toward W/L only.", "Plays without a price spoken on the show/video are priced at their actual opening market odds.")
     d["record"] = R
     json.dump(d, open(path, "w"), indent=1)
-    print(path, "graded:", len(g), "overall straight:", R["straight"]["overall"], "categories:", R.get("categories"))
+    print(path, "graded:", len(g), "overall straight:", R["straight"]["overall"], "parlay:", R["parlay"]["overall"], "categories:", R.get("categories"))
 
 def main():
     for f in FILES: grade_file(f)
