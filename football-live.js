@@ -1,5 +1,5 @@
-/* Sports Labs shared football live tags (all NFL picks: Anytime TD, Game Day winners/props, defensive props, Value Vault).
-   Put FL.tag({g:eventId,a:athleteId,k:"td"|"ov"|"ml",s:"statKey,statKey",l:line,t:team,m:market}) next to a pick.
+/* Sports Labs shared football live tags (all NFL picks: Anytime TD, Game Day winners/spreads/props, defensive props, Value Vault).
+   Put FL.tag({g:eventId,a:athleteId,k:"td"|"ov"|"ml"|"sp",s:"statKey,statKey",l:line,t:team,m:market}) next to a pick.
    Fills from data/football_live.json (built from ESPN box scores + game rosters every few minutes), matched by event id + athlete id. Re-checks every 2 min while any game is live.
    LIVE / ✓ Scored|Hit / ✗ No TD|Miss / Inactive · void, plus one gray line of only the relevant stats. */
 (function(){if(window.FL)return;
@@ -12,13 +12,13 @@ function offLine(b,extra){const p=[];if(extra)p.push(extra);if(b.receptions||b.r
 const DEF={totalTackles:"tkl",soloTackles:"solo",sacks:"sacks",interceptions:"INT"};
 function grade(o,q){const T=o.teams,score=()=>{const e=Object.entries(T),a=e.find(x=>x[1].ha=="away")||e[0],h=e.find(x=>x[1].ha=="home")||e[1];return `${a[0]} ${a[1].score}–${h[1].score} ${h[0]} · ${o.state=="post"?"Final":o.detail}`};
  if(o.state=="pre")return null;
- if(q.k=="ml"){const me=T[q.t],op=Object.entries(T).find(([k])=>k!=q.t);if(!me||!op)return null;const sl=score();if(o.state!="post")return ["lv","LIVE",sl];return me.score==op[1].score?["v","Push",sl]:me.score>op[1].score?["w","✓ Hit",sl]:["l","✗ Miss",sl]}
+ if(q.k=="ml"||q.k=="sp"){const me=T[q.t],op=Object.entries(T).find(([k])=>k!=q.t);if(!me||!op)return null;const sl=score();if(o.state!="post")return ["lv","LIVE",sl];const d=me.score-op[1].score+(q.k=="sp"?(+q.l||0):0);return d==0?["v","Push",sl]:d>0?["w","✓ Hit",sl]:["l","✗ Miss",sl]}
  const a=String(q.a),b=o.box[a]||{},r=o.roster&&o.roster[a];
  const voided=!o.box[a]&&(r?r.dnp:!!(o.roster&&o.rn&&o.rn.every(x=>x>=40)));if(voided)return ["v","Inactive · void",""];
  if(q.k=="td"){const td=TDK.reduce((s,k)=>s+(b[k]||0),0),sl=offLine(b);return td>0?["w","✓ Scored",sl]:o.state=="post"?["l","✗ No TD",sl]:["lv","LIVE",sl]}
  const ks=String(q.s||"").split(",").filter(Boolean),v=ks.reduce((s,k)=>s+(b[k]||0),0),L=+q.l;let sl;
  if(ks.some(k=>DEF[k]))sl=ks.map(k=>`${n(b[k]||0)} ${DEF[k]||k}`).join(" · ")+` vs ${L}`;
- else if(ks[0]=="passingYards")sl=offLine(b,`${b.completions||0}/${b.passingAttempts||0} · ${b.passingYards||0} pass yds vs ${L}`);
+ else if(["passingYards","completions","passingAttempts","passingTouchdowns"].includes(ks[0]))sl=offLine(b,`${b.completions||0}/${b.passingAttempts||0} · ${b.passingYards||0} pass yds · ${b.passingTouchdowns||0} pass TD (${n(v)} vs ${L})`);
  else sl=offLine(b)+` · ${n(v)} vs ${L}`;
  if(q.k=="un")return v>L?["l","✗ Miss",sl]:o.state=="post"?(v<L?["w","✓ Hit",sl]:["v","Push",sl]):["lv","LIVE",sl];
  return v>L?["w","✓ Hit",sl]:o.state=="post"?["l","✗ Miss",sl]:["lv","LIVE",sl]}

@@ -1,9 +1,9 @@
-"""Grade All In Cousins show picks against ESPN public final scores.
+"""Grade All In Cousins and Erik Kuselias third-party picks against ESPN public final scores.
 Pick schema: {id, date, week, sport: nfl|mlb|nba|ncaaf, kind: straight|parlay, type: spread|ml|total|1h_spread|1h_ml|1h_total|parlay,
  team, side(over|under), line, odds(American, optional; -110 assumed only when odds_assumed true), book(optional),
  bought(optional note), espn_event_id, legs[] (for parlays, same leg schema), source_url, timestamp, desc}"""
-import json, urllib.request
-P = "data/allin_picks.json"
+import json, os, urllib.request
+FILES = ["data/allin_picks.json", "data/kuselias_picks.json"]
 LG = {"nfl": "football/nfl", "mlb": "baseball/mlb", "nba": "basketball/nba", "ncaaf": "football/college-football"}
 _cache = {}
 def final(sport, eid):
@@ -50,8 +50,9 @@ def rec(ps):
     w = sum(p["result"] == "win" for p in ps); l = sum(p["result"] == "loss" for p in ps); pu = sum(p["result"] == "push" for p in ps)
     us = [units(p) for p in ps]; known = [u for u in us if u is not None]
     return {"w": w, "l": l, "p": pu, "units": round(sum(known), 2), "units_n": len(known)}
-def main():
-    d = json.load(open(P))
+def grade_file(path):
+    if not os.path.exists(path): return
+    d = json.load(open(path))
     for p in d["picks"]:
         if p.get("result"): continue
         try:
@@ -73,10 +74,13 @@ def main():
         gk = [p for p in g if p.get("kind", "straight") == kind]
         R[kind] = {"overall": rec([p for p in gk if p["sport"] in ("nfl", "mlb", "nba", "ncaaf")]), "nfl": rec([p for p in gk if p["sport"] == "nfl"]),
                    "mlb": rec([p for p in gk if p["sport"] == "mlb"]), "nba": rec([p for p in gk if p["sport"] == "nba"]), "ncaaf": rec([p for p in gk if p["sport"] == "ncaaf"])}
-    R["overall"] = R["straight"]["overall"]; R["nfl"] = R["straight"]["nfl"]; R["mlb"] = R["straight"]["mlb"]; R["nba"] = R["straight"]["nba"]
+    R["overall"] = R["straight"]["overall"]; R["nfl"] = R["straight"]["nfl"]; R["mlb"] = R["straight"]["mlb"]; R["nba"] = R["straight"]["nba"]; R["ncaaf"] = R["straight"]["ncaaf"]
     R["parlay_legs"] = rec(L) | {"units": None, "units_n": 0}
     R["pending"] = len(d["picks"]) - len(g)
     R["units_note"] = "1 unit per pick. Units count only picks with a stated price, or spreads/totals marked -110 (assumed standard price). Parlays without a stated price are W/L only."
     d["record"] = R
-    json.dump(d, open(P, "w"), indent=1)
+    json.dump(d, open(path, "w"), indent=1)
+    print(path, "graded:", len(g), "overall straight:", R["straight"]["overall"], "nfl:", R["straight"]["nfl"], "ncaaf:", R["straight"]["ncaaf"], "nba:", R["straight"]["nba"])
+def main():
+    for f in FILES: grade_file(f)
 if __name__ == "__main__": main()
