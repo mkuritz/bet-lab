@@ -6,13 +6,16 @@
 header a{color:var(--mut);font-weight:700;font-size:13px;text-decoration:none}.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px}
 .mut{color:var(--mut)}table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:7px 6px;border-bottom:1px solid var(--line);text-align:left}th{color:var(--mut);font-size:11px;text-transform:uppercase}
 .wrap{overflow-x:auto}.k{display:inline-block;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:0 8px 8px 0}.k b{display:block;font-size:18px}
-.win{color:var(--acc)}.loss{color:var(--bad)}.pill{font-size:10px;font-weight:800;padding:2px 7px;border-radius:999px;background:#53e3a622;color:var(--acc)}</style><link rel="stylesheet" href="nav.css"><script src="https://sportslabshq.com/sl/sl.js?v=7" defer></script>
+.win{color:var(--acc)}.loss{color:var(--bad)}.pill{font-size:10px;font-weight:800;padding:2px 7px;border-radius:999px;background:#53e3a622;color:var(--acc)}
+.ctabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.ctab{background:var(--panel2);border:1px solid var(--line);color:var(--mut);font-weight:700;font-size:12px;padding:6px 12px;border-radius:8px;cursor:pointer}.ctab.on{background:#53e3a61f;border-color:var(--acc);color:var(--txt)}
+.cbadge{font-size:10px;font-weight:800;padding:2px 6px;border-radius:5px;margin-right:5px;text-transform:uppercase;letter-spacing:.03em}
+.cbadge.games{background:#3fa9ff22;color:var(--acc2)}.cbadge.props{background:#53e3a622;color:var(--acc)}.cbadge.leans{background:#f5c45122;color:var(--mid)}</style><link rel="stylesheet" href="nav.css"><script src="https://sportslabshq.com/sl/sl.js?v=7" defer></script>
 <script src="/sl-neutral.js" defer></script></head>
 <body><div class="w"><header><a class="logo" href="./" style="color:var(--txt)">Bet <b>Lab</b></a></header>
 <h1 style="margin:4px 0">💎 Highlighted</h1><div class="mut" id="upd"></div>
 <div class="card"><h2 style="margin-top:0">Highlighted today</h2><div class="mut" style="font-size:12px;margin-bottom:8px">Our highest-rated plays, where multiple model signals agree and the model price differs from the market. Logged before start and graded in the <a href="edge.html">Edge Tracker</a>. </div><div class="wrap" id="recs">Loading…</div></div>
 <div class="card"><h2 style="margin-top:0">🎙️ Third-party plays · All In Cousins (Marco Piemonte &amp; Tony)</h2><div class="mut" style="font-size:12px" id="aimeta"></div><div id="airec" style="margin:10px 0"></div><div class="wrap" id="aipicks"></div></div>
-<div class="card"><h2 style="margin-top:0">🎬 Third-party plays · Erik Kuselias (Emmy-Winning Sports Analyst)</h2><div class="mut" style="font-size:12px" id="ekmeta"></div><div id="ekrec" style="margin:10px 0"></div><div class="wrap" id="ekpicks"></div></div>
+<div class="card"><h2 style="margin-top:0">🎬 Third-party plays · Erik Kuselias (Emmy-Winning Sports Analyst)</h2><div class="mut" style="font-size:12px" id="ekmeta"></div><div id="ekrec" style="margin:10px 0"></div><div class="ctabs" id="ektabs"></div><div class="wrap" id="ekpicks"></div></div>
 <div class="mut" style="font-size:11px;margin:18px 0">Sports Labs model. Prices from public market data. Third-party highlights credited to their source and graded from official final scores. Not betting advice. 21+ only. If you or someone you know has a gambling problem, call 1-800-GAMBLER.<br>Bet Lab · A <a href="https://sportslabshq.com/">Sports Labs</a> Product · © 2026 Sports Labs · <a href="#" data-lead="demo">Request a demo</a></div></div>
 <script>
 const $=id=>document.getElementById(id),j=(u,d)=>fetch(u+"?t="+Date.now()).then(r=>r.ok?r.json():d).catch(()=>d),esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -20,14 +23,41 @@ const et=t=>t?new Date(t).toLocaleString("en-US",{timeZone:"America/New_York",mo
 const am=d=>d?(d>=2?"+"+Math.round((d-1)*100):Math.round(-100/(d-1))):"—";
 const fRec=r=>r?`${r.w}-${r.l}${r.p?"-"+r.p:""}${r.units_n?` <span class="mut" style="font-size:12px">${r.units>=0?"+":""}${r.units}u</span>`:""}`:"0-0";
 const od=p=>p.odds?(p.odds>0?"+":"")+p.odds+(p.odds_assumed?" <span class=mut>(assumed)</span>":""):"—",rs=r=>r&&r!=="unknown"?`<b class="${r}">${r}</b>`:`<span class="mut">${r==="unknown"?"ungraded":"pending"}</span>`;
-function renderCapper(A,metaId,recId,picksId,leadTxt){
+const CLBL={games:"Games Picked",props:"Player Prop",leans:"Lean / Smart Play"};
+function renderRows(P,showCat){
+ return P.length?`<table><tr><th>Week</th>${showCat?"<th>Category</th>":""}<th>Highlight</th><th>Odds</th><th>Result</th><th>Source</th></tr>${P.map(p=>`<tr><td>${p.week?"Wk "+p.week:esc(p.date)} <span class="mut">${esc((p.sport||"").toUpperCase())}</span></td>${showCat?`<td><span class="cbadge ${esc(p.category||"games")}">${esc(CLBL[p.category]||"Game")}</span></td>`:""}<td>${p.kind==="parlay"?"🎟️ ":""}${esc(p.desc)}${p.book?` <span class="mut">· ${esc(p.book)}</span>`:""}${p.actual!=null?` <span class="mut">(actual: ${esc(p.actual)})</span>`:""}${p.final&&!p.legs?` <span class="mut">(${Object.entries(p.final).map(([k,v])=>k+" "+v).join(" – ")})</span>`:""}${p.legs?`<div style="font-size:12px;margin-top:4px">${p.legs_graded!=null?`<b>${p.legs_hit}/${p.legs_total} legs hit</b>${p.legs_push?` · ${p.legs_push} push`:""}${p.sunk_by&&p.sunk_by.length?` · <span class="loss">sunk by: ${p.sunk_by.map(esc).join(", ")}</span>`:""}`:""}<table style="margin-top:4px">${p.legs.map(l=>`<tr><td>${esc(l.desc)}</td><td>${l.odds?(l.odds>0?"+":"")+l.odds:""}</td><td>${rs(l.result)}</td><td class="mut">${l.final?Object.entries(l.final).map(([k,v])=>k+" "+v).join(" – "):""}</td></tr>`).join("")}</table></div>`:""}</td><td>${od(p)}</td><td>${rs(p.result)}</td><td><a href="${esc(p.source_url)}" target="_blank" rel="noopener">${esc(p.source_label||(p.timestamp?"episode @ "+p.timestamp:"source"))}</a></td></tr>`).join("")}</table>`:'<div class="mut">No highlights in this category yet.</div>';
+}
+function renderCapper(A,metaId,recId,picksId,leadTxt,tabsId){
  if(!A){$(metaId).textContent="Unavailable right now.";return}
  $(metaId).innerHTML=`${leadTxt} · <a href="${esc(A.source_url)}" target="_blank" rel="noopener">${esc(A.show)}</a> · tracked since ${esc(A.tracked_since||"—")}. ${esc(A.note)}`;
- const R=A.record||{},S=R.straight||{},PR=R.parlay||{};
+ const R=A.record||{},S=R.straight||{},PR=R.parlay||{},CAT=R.categories||null;
  const sNcaaf=S.ncaaf&&((S.ncaaf.w||0)+(S.ncaaf.l||0)>0)?`<span class="k">CFB<b>${fRec(S.ncaaf)}</b></span>`:"";
- $(recId).innerHTML=`<div class="mut" style="font-size:11px;margin-bottom:4px">STRAIGHT HIGHLIGHTS</div><span class="k">Overall<b>${fRec(S.overall)}</b></span><span class="k">NFL<b>${fRec(S.nfl)}</b></span>${sNcaaf}<span class="k">MLB<b>${fRec(S.mlb)}</b></span><span class="k">NBA<b>${fRec(S.nba)}</b></span><span class="k">Pending<b>${R.pending||0}</b></span><div class="mut" style="font-size:11px;margin:6px 0 4px">PARLAYS &amp; TEASERS</div><span class="k">Overall<b>${fRec(PR.overall)}</b></span><span class="k">NFL<b>${fRec(PR.nfl)}</b></span><span class="k">All parlay legs<b>${fRec(R.parlay_legs)}</b></span><div class="mut" style="font-size:11px">${esc(R.units_note||"")}</div>`;
+ let recHtml=`<div class="mut" style="font-size:11px;margin-bottom:4px">FULL-SEASON STRAIGHT RECORD</div><span class="k">Overall Straight<b>${fRec(S.overall)}</b></span><span class="k">NFL<b>${fRec(S.nfl)}</b></span>${sNcaaf}<span class="k">MLB<b>${fRec(S.mlb)}</b></span><span class="k">NBA<b>${fRec(S.nba)}</b></span><span class="k">Pending<b>${R.pending||0}</b></span>`;
+ if(CAT){
+  recHtml+=`<div class="mut" style="font-size:11px;margin:6px 0 4px">BY CATEGORY (FULL SEASON)</div><span class="k">🏈 Games Picked<b>${fRec(CAT.games)}</b></span><span class="k">🎯 Player Props Called Out<b>${fRec(CAT.props)}</b></span><span class="k">💡 Leans &amp; Smart Plays<b>${fRec(CAT.leans)}</b></span><span class="k">Full-Season All Plays<b>${fRec(R.full_season||S.overall)}</b></span>`;
+ } else {
+  recHtml+=`<div class="mut" style="font-size:11px;margin:6px 0 4px">PARLAYS</div><span class="k">Overall<b>${fRec(PR.overall)}</b></span><span class="k">NFL<b>${fRec(PR.nfl)}</b></span><span class="k">MLB<b>${fRec(PR.mlb)}</b></span><span class="k">NBA<b>${fRec(PR.nba)}</b></span><span class="k">All parlay legs<b>${fRec(R.parlay_legs)}</b></span>`;
+ }
+ recHtml+=`<div class="mut" style="font-size:11px">${esc(R.units_note||"")}</div>`;
+ $(recId).innerHTML=recHtml;
  const P=(A.picks||[]).slice().sort((x,y)=>(y.week||0)-(x.week||0)||String(y.date||"").localeCompare(String(x.date||"")));
- $(picksId).innerHTML=P.length?`<table><tr><th>Week</th><th>Highlight</th><th>Odds</th><th>Result</th><th>Source</th></tr>${P.map(p=>`<tr><td>${p.week?"Wk "+p.week:esc(p.date)} <span class="mut">${esc((p.sport||"").toUpperCase())}</span></td><td>${p.kind==="parlay"?"🎟️ ":""}${esc(p.desc)}${p.book?` <span class="mut">· ${esc(p.book)}</span>`:""}${p.final&&!p.legs?` <span class="mut">(${Object.entries(p.final).map(([k,v])=>k+" "+v).join(" – ")})</span>`:""}${p.legs?`<div style="font-size:12px;margin-top:4px">${p.legs_graded!=null?`<b>${p.legs_hit}/${p.legs_total} legs hit</b>${p.legs_push?` · ${p.legs_push} push`:""}${p.sunk_by&&p.sunk_by.length?` · <span class="loss">sunk by: ${p.sunk_by.map(esc).join(", ")}</span>`:""}`:""}<table style="margin-top:4px">${p.legs.map(l=>`<tr><td>${esc(l.desc)}</td><td>${l.odds?(l.odds>0?"+":"")+l.odds:""}</td><td>${rs(l.result)}</td><td class="mut">${l.final?Object.entries(l.final).map(([k,v])=>k+" "+v).join(" – "):""}</td></tr>`).join("")}</table></div>`:""}</td><td>${od(p)}</td><td>${rs(p.result)}</td><td><a href="${esc(p.source_url)}" target="_blank" rel="noopener">${esc(p.source_label||(p.timestamp?"episode @ "+p.timestamp:"source"))}</a></td></tr>`).join("")}</table>`:'<div class="mut">No highlights entered yet.</div>';
+ if(tabsId&&CAT){
+  const tabs=[
+   {k:"all",lbl:`All (${P.length})`},
+   {k:"games",lbl:`🏈 Games Picked (${P.filter(x=>x.category==="games").length})`},
+   {k:"props",lbl:`🎯 Player Props Called Out (${P.filter(x=>x.category==="props").length})`},
+   {k:"leans",lbl:`💡 Leans & Smart Plays (${P.filter(x=>x.category==="leans").length})`}
+  ];
+  let cur="all";
+  const draw=()=>{
+   $(tabsId).innerHTML=tabs.map(t=>`<button class="ctab${cur===t.k?" on":""}" data-k="${t.k}">${esc(t.lbl)}</button>`).join("");
+   $(tabsId).querySelectorAll("button").forEach(b=>b.onclick=()=>{cur=b.dataset.k;draw()});
+   $(picksId).innerHTML=renderRows(cur==="all"?P:P.filter(x=>x.category===cur),true);
+  };
+  draw();
+ } else {
+  $(picksId).innerHTML=renderRows(P,false);
+ }
 }
 (async()=>{
 const [T,C,G,txt]=await Promise.all([j("data/edge_tiers.json",{}),Promise.resolve({})||j("data/edge_close.json",{}),j("data/edge_grades.json",{}),fetch("data/edge_log.jsonl?t="+Date.now()).then(r=>r.ok?r.text():"").catch(()=>"")]);
@@ -40,7 +70,7 @@ let show=rec.filter(p=>day(p)>=today&&(!open_(p)||age(p)<12*36e5));const recent=
 const lastAs=Math.max(0,...rec.map(p=>asOf(p)||0));$("upd").textContent=lastAs?"Latest price "+et(new Date(lastAs).toISOString()):"";
 $("recs").innerHTML=(recent?'<div class="mut" style="margin-bottom:6px">No open Highlighted plays with a fresh price right now. Latest graded highlights:</div>':"")+(show.length?`<table><tr><th>Highlight</th><th>Sport</th><th>Start</th><th>Price</th><th>As of</th><th>Result</th></tr>${show.map(p=>{const c=C[p.id],g=G[p.id];const clv=c&&p.implied?((c.implied-p.implied)*100):null;return `<tr><td><span class="pill">HIGHLIGHTED</span> ${esc(p.title)}</td><td>${esc((p.sport||"").toUpperCase())}</td><td>${et(p.start)}</td><td>${am(p.price_dec)} <span class="mut">${esc((p.price_src||"").replace(/\s*\(.*\)/,"").replace(/\s*via ESPN( public feed)?/i,""))}</span></td><td style="white-space:nowrap">${asOf(p)?et(new Date(asOf(p)).toISOString()):"—"}${!g&&age(p)>3*36e5?' <span class="pill" style="background:#f5c45122;color:var(--mid)">stale price</span>':""}</td><td>${g?`<b class="${g.result}">${esc(g.result)}</b>`:'<span class="mut">pending</span>'}</td></tr>`}).join("")}</table>`:'<div class="mut">No Highlighted plays logged yet.</div>');
 const [A,EK]=await Promise.all([j("data/allin_picks.json",null),j("data/kuselias_picks.json",null)]);
-renderCapper(A,"aimeta","airec","aipicks","Hosts Marco Piemonte &amp; Tony");
-renderCapper(EK,"ekmeta","ekrec","ekpicks","Emmy-winning sports analyst Erik Kuselias (@ekuselias)");
+renderCapper(A,"aimeta","airec","aipicks","Hosts Marco Piemonte &amp; Tony",null);
+renderCapper(EK,"ekmeta","ekrec","ekpicks","Emmy-winning sports analyst Erik Kuselias (@ekuselias)","ektabs");
 })();
 </script><script src="https://sportslabshq.com/js/leads-config.js"></script><script src="https://sportslabshq.com/js/leads.js" data-product="Bet Lab"></script><script src="sl-sports.js"></script><script src="nav.js?v=nc1"></script></body></html>

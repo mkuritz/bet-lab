@@ -1982,6 +1982,6 @@
    "units_n": 0
   },
   "pending": 1,
-  "units_note": "1 unit per pick. Units count only picks with a stated price, or spreads/totals marked -110 (assumed standard price). Parlays without a stated price are W/L only."
+  "units_note": "1 unit per pick. Units count only picks with a stated price, or spreads/totals/props marked with standard price. Parlays without a stated price are W/L only."
  }
 }
