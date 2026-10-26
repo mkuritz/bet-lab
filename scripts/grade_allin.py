@@ -1,10 +1,10 @@
 """Grade All In Cousins show picks against ESPN public final scores.
-Pick schema: {id, date, week, sport: nfl|mlb|ncaaf, kind: straight|parlay, type: spread|ml|total|1h_spread|1h_ml|1h_total|parlay,
+Pick schema: {id, date, week, sport: nfl|mlb|nba|ncaaf, kind: straight|parlay, type: spread|ml|total|1h_spread|1h_ml|1h_total|parlay,
  team, side(over|under), line, odds(American, optional; -110 assumed only when odds_assumed true), book(optional),
  bought(optional note), espn_event_id, legs[] (for parlays, same leg schema), source_url, timestamp, desc}"""
 import json, urllib.request
 P = "data/allin_picks.json"
-LG = {"nfl": "football/nfl", "mlb": "baseball/mlb", "ncaaf": "football/college-football"}
+LG = {"nfl": "football/nfl", "mlb": "baseball/mlb", "nba": "basketball/nba", "ncaaf": "football/college-football"}
 _cache = {}
 def final(sport, eid):
     k = (sport, eid)
@@ -71,9 +71,9 @@ def main():
     R = {}
     for kind in ("straight", "parlay"):
         gk = [p for p in g if p.get("kind", "straight") == kind]
-        R[kind] = {"overall": rec([p for p in gk if p["sport"] in ("nfl", "mlb")]), "nfl": rec([p for p in gk if p["sport"] == "nfl"]),
-                   "mlb": rec([p for p in gk if p["sport"] == "mlb"]), "ncaaf": rec([p for p in gk if p["sport"] == "ncaaf"])}
-    R["overall"] = R["straight"]["overall"]; R["nfl"] = R["straight"]["nfl"]; R["mlb"] = R["straight"]["mlb"]
+        R[kind] = {"overall": rec([p for p in gk if p["sport"] in ("nfl", "mlb", "nba", "ncaaf")]), "nfl": rec([p for p in gk if p["sport"] == "nfl"]),
+                   "mlb": rec([p for p in gk if p["sport"] == "mlb"]), "nba": rec([p for p in gk if p["sport"] == "nba"]), "ncaaf": rec([p for p in gk if p["sport"] == "ncaaf"])}
+    R["overall"] = R["straight"]["overall"]; R["nfl"] = R["straight"]["nfl"]; R["mlb"] = R["straight"]["mlb"]; R["nba"] = R["straight"]["nba"]
     R["parlay_legs"] = rec(L) | {"units": None, "units_n": 0}
     R["pending"] = len(d["picks"]) - len(g)
     R["units_note"] = "1 unit per pick. Units count only picks with a stated price, or spreads/totals marked -110 (assumed standard price). Parlays without a stated price are W/L only."

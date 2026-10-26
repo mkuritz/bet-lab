@@ -3,7 +3,7 @@
  "show": "All In Sports w/ Million Dollar Marco & Tony Sharp",
  "source_url": "https://cousinsallin.podbean.com/",
  "tracked_since": "2026-09-08 (NFL Week 1)",
- "note": "Picks stated on each episode, entered with the episode link and timestamp. They're credited to the show, not to either host. Leans, games they said they wouldn't bet, picks passed along from someone else, and anything hard to hear are left out. Spreads and totals with no stated price assume standard -110. Graded from official final scores.",
+ "note": "Picks stated on each episode, entered with the episode link and timestamp, plus tracked MLB/NBA plays from Marco Piemonte (@marcopiemonte). Leans, games they said they wouldn't bet, picks passed along from someone else, and anything hard to hear are left out. Spreads and totals with no stated price assume standard -110. Graded from official final scores.",
  "picks": [
   {
    "sport": "nfl",
@@ -1195,6 +1195,260 @@
    }
   },
   {
+   "sport": "nfl",
+   "type": "spread",
+   "espn_event_id": "401873010",
+   "date": "2026-10-22",
+   "line": 3,
+   "team": "NE",
+   "desc": "Patriots +3 vs Bears",
+   "odds": -110,
+   "odds_assumed": true,
+   "id": "aic-w7-58",
+   "week": 7,
+   "kind": "straight",
+   "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-7-breaking-down-our-best-plays-of-the-week-all-in-sports/",
+   "timestamp": "25:05",
+   "episode_date": "2026-10-21",
+   "result": "loss",
+   "final": {
+    "CHI": 30.0,
+    "NE": 24.0
+   }
+  },
+  {
+   "sport": "nfl",
+   "type": "ml",
+   "espn_event_id": "401873010",
+   "date": "2026-10-22",
+   "team": "NE",
+   "desc": "Patriots ML vs Bears",
+   "id": "aic-w7-59",
+   "week": 7,
+   "kind": "straight",
+   "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-7-breaking-down-our-best-plays-of-the-week-all-in-sports/",
+   "timestamp": "25:05",
+   "episode_date": "2026-10-21",
+   "result": "loss",
+   "final": {
+    "CHI": 30.0,
+    "NE": 24.0
+   }
+  },
+  {
+   "sport": "nfl",
+   "type": "spread",
+   "espn_event_id": "401873017",
+   "date": "2026-10-25",
+   "line": 3.5,
+   "team": "ATL",
+   "desc": "Falcons +3.5 vs 49ers (favorite pick of the week)",
+   "odds": -110,
+   "odds_assumed": true,
+   "id": "aic-w7-60",
+   "week": 7,
+   "kind": "straight",
+   "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-7-breaking-down-our-best-plays-of-the-week-all-in-sports/",
+   "timestamp": "27:26",
+   "episode_date": "2026-10-21",
+   "result": "win",
+   "final": {
+    "ATL": 29.0,
+    "SF": 20.0
+   }
+  },
+  {
+   "sport": "nfl",
+   "type": "ml",
+   "espn_event_id": "401873017",
+   "date": "2026-10-25",
+   "team": "ATL",
+   "desc": "Falcons ML vs 49ers",
+   "id": "aic-w7-61",
+   "week": 7,
+   "kind": "straight",
+   "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-7-breaking-down-our-best-plays-of-the-week-all-in-sports/",
+   "timestamp": "27:31",
+   "episode_date": "2026-10-21",
+   "result": "win",
+   "final": {
+    "ATL": 29.0,
+    "SF": 20.0
+   }
+  },
+  {
+   "sport": "nfl",
+   "type": "spread",
+   "espn_event_id": "401873013",
+   "date": "2026-10-25",
+   "line": 1.5,
+   "team": "TEN",
+   "desc": "Titans +1.5 vs Browns (least favorite pick of the week)",
+   "odds": -110,
+   "odds_assumed": true,
+   "id": "aic-w7-62",
+   "week": 7,
+   "kind": "straight",
+   "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-7-breaking-down-our-best-plays-of-the-week-all-in-sports/",
+   "timestamp": "28:42",
+   "episode_date": "2026-10-21",
+   "result": "loss",
+   "final": {
+    "TEN": 24.0,
+    "CLE": 27.0
+   }
+  },
+  {
+   "sport": "nfl",
+   "type": "spread",
+   "espn_event_id": "401873014",
+   "date": "2026-10-25",
+   "line": 6.5,
+   "team": "IND",
+   "desc": "Colts +6.5 vs Vikings",
+   "odds": -110,
+   "odds_assumed": true,
+   "id": "aic-w7-63",
+   "week": 7,
+   "kind": "straight",
+   "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-7-breaking-down-our-best-plays-of-the-week-all-in-sports/",
+   "timestamp": "29:38",
+   "episode_date": "2026-10-21",
+   "result": "win",
+   "final": {
+    "MIN": 16.0,
+    "IND": 10.0
+   }
+  },
+  {
+   "sport": "nfl",
+   "type": "ml",
+   "espn_event_id": "401873014",
+   "date": "2026-10-25",
+   "team": "IND",
+   "desc": "Colts ML vs Vikings",
+   "id": "aic-w7-64",
+   "week": 7,
+   "kind": "straight",
+   "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-7-breaking-down-our-best-plays-of-the-week-all-in-sports/",
+   "timestamp": "29:38",
+   "episode_date": "2026-10-21",
+   "result": "loss",
+   "final": {
+    "MIN": 16.0,
+    "IND": 10.0
+   }
+  },
+  {
+   "sport": "nfl",
+   "type": "ml",
+   "espn_event_id": "401873020",
+   "date": "2026-10-25",
+   "team": "DET",
+   "desc": "Lions ML vs Packers",
+   "id": "aic-w7-65",
+   "week": 7,
+   "kind": "straight",
+   "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-7-breaking-down-our-best-plays-of-the-week-all-in-sports/",
+   "timestamp": "34:02",
+   "episode_date": "2026-10-21",
+   "result": "win",
+   "final": {
+    "DET": 20.0,
+    "GB": 17.0
+   }
+  },
+  {
+   "sport": "nfl",
+   "type": "ml",
+   "espn_event_id": "401873021",
+   "date": "2026-10-25",
+   "team": "LAR",
+   "desc": "Rams ML vs Raiders",
+   "id": "aic-w7-66",
+   "week": 7,
+   "kind": "straight",
+   "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-7-breaking-down-our-best-plays-of-the-week-all-in-sports/",
+   "timestamp": "34:49",
+   "episode_date": "2026-10-21",
+   "result": "win",
+   "final": {
+    "LV": 21.0,
+    "LAR": 35.0
+   }
+  },
+  {
+   "sport": "nfl",
+   "type": "ml",
+   "espn_event_id": "401873022",
+   "date": "2026-10-25",
+   "team": "SEA",
+   "desc": "Seahawks ML vs Chiefs (2nd favorite pick of the week)",
+   "id": "aic-w7-67",
+   "week": 7,
+   "kind": "straight",
+   "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-7-breaking-down-our-best-plays-of-the-week-all-in-sports/",
+   "timestamp": "35:29",
+   "episode_date": "2026-10-21",
+   "result": "win",
+   "final": {
+    "SEA": 20.0,
+    "KC": 3.0
+   }
+  },
+  {
+   "sport": "nfl",
+   "type": "ml",
+   "espn_event_id": "401873009",
+   "date": "2026-10-26",
+   "team": "DAL",
+   "desc": "Cowboys ML vs Eagles",
+   "id": "aic-w7-68",
+   "week": 7,
+   "kind": "straight",
+   "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-7-breaking-down-our-best-plays-of-the-week-all-in-sports/",
+   "timestamp": "36:23",
+   "episode_date": "2026-10-21"
+  },
+  {
+   "sport": "nba",
+   "type": "ml",
+   "espn_event_id": "401909848",
+   "date": "2026-10-23",
+   "team": "CHI",
+   "desc": "Bulls ML vs Bucks",
+   "id": "aic-w7-69",
+   "week": 7,
+   "kind": "straight",
+   "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-7-breaking-down-our-best-plays-of-the-week-all-in-sports/",
+   "timestamp": "23:55",
+   "episode_date": "2026-10-21",
+   "result": "win",
+   "final": {
+    "MIL": 125.0,
+    "CHI": 132.0
+   }
+  },
+  {
+   "sport": "mlb",
+   "type": "ml",
+   "espn_event_id": "401908043",
+   "date": "2026-10-24",
+   "team": "TB",
+   "desc": "Rays ML vs Brewers (World Series \u00b7 IG @marcopiemonte)",
+   "id": "aic-w7-70",
+   "week": 7,
+   "kind": "straight",
+   "source_url": "https://www.instagram.com/marcopiemonte/",
+   "source_label": "IG @marcopiemonte",
+   "episode_date": "2026-10-24",
+   "result": "loss",
+   "final": {
+    "MIL": 5.0,
+    "TB": 4.0
+   }
+  },
+  {
    "id": "aic-w1-parlay",
    "week": 1,
    "kind": "parlay",
@@ -1522,26 +1776,119 @@
    "sunk_by": [
     "Saints +3 vs Vikings"
    ]
+  },
+  {
+   "id": "aic-w7-parlay",
+   "week": 7,
+   "kind": "parlay",
+   "sport": "nfl",
+   "type": "parlay",
+   "legs": [
+    {
+     "sport": "nfl",
+     "type": "ml",
+     "espn_event_id": "401873014",
+     "date": "2026-10-25",
+     "team": "IND",
+     "desc": "Colts ML vs Vikings",
+     "result": "loss",
+     "final": {
+      "MIN": 16.0,
+      "IND": 10.0
+     }
+    },
+    {
+     "sport": "nfl",
+     "type": "spread",
+     "espn_event_id": "401873010",
+     "date": "2026-10-22",
+     "line": 3,
+     "team": "NE",
+     "desc": "Patriots +3 vs Bears",
+     "result": "loss",
+     "final": {
+      "CHI": 30.0,
+      "NE": 24.0
+     }
+    },
+    {
+     "sport": "nfl",
+     "type": "ml",
+     "espn_event_id": "401873022",
+     "date": "2026-10-25",
+     "team": "SEA",
+     "desc": "Seahawks ML vs Chiefs",
+     "result": "win",
+     "final": {
+      "SEA": 20.0,
+      "KC": 3.0
+     }
+    },
+    {
+     "sport": "nfl",
+     "type": "spread",
+     "espn_event_id": "401873017",
+     "date": "2026-10-25",
+     "line": 3.5,
+     "team": "ATL",
+     "desc": "Falcons +3.5 vs 49ers",
+     "result": "win",
+     "final": {
+      "ATL": 29.0,
+      "SF": 20.0
+     }
+    },
+    {
+     "sport": "nfl",
+     "type": "ml",
+     "espn_event_id": "401873009",
+     "date": "2026-10-26",
+     "team": "DAL",
+     "desc": "Cowboys ML vs Eagles"
+    }
+   ],
+   "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-7-breaking-down-our-best-plays-of-the-week-all-in-sports/",
+   "timestamp": "36:49",
+   "episode_date": "2026-10-21",
+   "date": "2026-10-22",
+   "desc": "5-leg parlay (stated 28-1)",
+   "odds": 2800,
+   "result": "loss",
+   "legs_total": 5,
+   "legs_graded": 4,
+   "legs_hit": 2,
+   "legs_push": 0,
+   "sunk_by": [
+    "Colts ML vs Vikings",
+    "Patriots +3 vs Bears"
+   ]
   }
  ],
  "record": {
   "straight": {
    "overall": {
-    "w": 36,
-    "l": 19,
+    "w": 43,
+    "l": 24,
     "p": 2,
-    "units": 8.71,
-    "units_n": 36
+    "units": 8.53,
+    "units_n": 40
    },
    "nfl": {
-    "w": 34,
-    "l": 19,
+    "w": 40,
+    "l": 23,
     "p": 2,
-    "units": 8.71,
-    "units_n": 36
+    "units": 8.53,
+    "units_n": 40
    },
    "mlb": {
     "w": 2,
+    "l": 1,
+    "p": 0,
+    "units": 0,
+    "units_n": 0
+   },
+   "nba": {
+    "w": 1,
     "l": 0,
     "p": 0,
     "units": 0,
@@ -1558,19 +1905,26 @@
   "parlay": {
    "overall": {
     "w": 0,
-    "l": 3,
+    "l": 4,
     "p": 0,
-    "units": -3,
-    "units_n": 3
+    "units": -4,
+    "units_n": 4
    },
    "nfl": {
     "w": 0,
-    "l": 3,
+    "l": 4,
     "p": 0,
-    "units": -3,
-    "units_n": 3
+    "units": -4,
+    "units_n": 4
    },
    "mlb": {
+    "w": 0,
+    "l": 0,
+    "p": 0,
+    "units": 0,
+    "units_n": 0
+   },
+   "nba": {
     "w": 0,
     "l": 0,
     "p": 0,
@@ -1586,34 +1940,41 @@
    }
   },
   "overall": {
-   "w": 36,
-   "l": 19,
+   "w": 43,
+   "l": 24,
    "p": 2,
-   "units": 8.71,
-   "units_n": 36
+   "units": 8.53,
+   "units_n": 40
   },
   "nfl": {
-   "w": 34,
-   "l": 19,
+   "w": 40,
+   "l": 23,
    "p": 2,
-   "units": 8.71,
-   "units_n": 36
+   "units": 8.53,
+   "units_n": 40
   },
   "mlb": {
    "w": 2,
+   "l": 1,
+   "p": 0,
+   "units": 0,
+   "units_n": 0
+  },
+  "nba": {
+   "w": 1,
    "l": 0,
    "p": 0,
    "units": 0,
    "units_n": 0
   },
   "parlay_legs": {
-   "w": 11,
-   "l": 5,
+   "w": 13,
+   "l": 7,
    "p": 2,
    "units": null,
    "units_n": 0
   },
-  "pending": 0,
+  "pending": 1,
   "units_note": "1 unit per pick. Units count only picks with a stated price, or spreads/totals marked -110 (assumed standard price). Parlays without a stated price are W/L only."
  }
 }
