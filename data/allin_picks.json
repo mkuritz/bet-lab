@@ -1466,7 +1466,12 @@
    "timestamp": "36:23",
    "episode_date": "2026-10-21",
    "odds": 136,
-   "odds_source": "opening"
+   "odds_source": "opening",
+   "result": "win",
+   "final": {
+    "PHI": 21.0,
+    "DAL": 38.0
+   }
   },
   {
    "sport": "nba",
@@ -1979,18 +1984,18 @@
  "record": {
   "straight": {
    "overall": {
-    "w": 43,
+    "w": 44,
     "l": 24,
     "p": 2,
-    "units": 19.77,
-    "units_n": 69
+    "units": 21.13,
+    "units_n": 70
    },
    "nfl": {
-    "w": 40,
+    "w": 41,
     "l": 23,
     "p": 2,
-    "units": 17.89,
-    "units_n": 65
+    "units": 19.25,
+    "units_n": 66
    },
    "mlb": {
     "w": 2,
@@ -2052,18 +2057,18 @@
    }
   },
   "overall": {
-   "w": 43,
+   "w": 44,
    "l": 24,
    "p": 2,
-   "units": 19.77,
-   "units_n": 69
+   "units": 21.13,
+   "units_n": 70
   },
   "nfl": {
-   "w": 40,
+   "w": 41,
    "l": 23,
    "p": 2,
-   "units": 17.89,
-   "units_n": 65
+   "units": 19.25,
+   "units_n": 66
   },
   "mlb": {
    "w": 2,
@@ -2093,7 +2098,7 @@
    "units": 3.73,
    "units_n": 22
   },
-  "pending": 1,
+  "pending": 0,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }
