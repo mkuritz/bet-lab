@@ -107,7 +107,7 @@ def pull_open_odds(p):
 def ensure_odds(p):
     if p.get("type") == "parlay":
         for l in p.get("legs") or []:
-            if l.get("odds") is None or l.get("odds_assumed") or l.get("odds_source") == "opening":
+            if l.get("odds") is None or l.get("odds_assumed"):
                 o = pull_open_odds(l)
                 if o is not None:
                     l["odds"] = o
@@ -115,7 +115,7 @@ def ensure_odds(p):
                     l.pop("odds_assumed", None)
             elif not l.get("odds_source"):
                 l["odds_source"] = "stated"
-        if p.get("odds") is None or p.get("odds_assumed") or p.get("odds_source") == "opening":
+        if p.get("odds") is None or p.get("odds_assumed"):
             if "teaser" in (p.get("desc") or "").lower():
                 p["odds"] = -120
                 p["odds_source"] = "opening"
@@ -132,7 +132,7 @@ def ensure_odds(p):
             p["odds_source"] = "stated"
         return
 
-    if p.get("odds") is None or p.get("odds_assumed") or p.get("odds_source") == "opening":
+    if p.get("odds") is None or p.get("odds_assumed"):
         o = pull_open_odds(p)
         if o is not None:
             p["odds"] = o
@@ -164,6 +164,7 @@ def extract_stat(pstats, player, stat_cat, stat_key):
     return float(v) if v is not None else None
 
 def grade_leg(p):
+    if not p.get("espn_event_id") or p.get("type") == "future": return None, None
     sm = summary(p["sport"], p["espn_event_id"])
     if not sm or not sm.get("done"): return None, None
     sc, pstats = sm["sc"], sm["pstats"]
