@@ -289,7 +289,53 @@ function cfbTdBoard(D){const E=s=>escH(String(s??"")),A=a=>a==null?"—":(a>0?"+
  ${S.length?S.map(row).join(""):`<div class="mut">No CFB anytime TD prices in the latest snapshot. Books have not posted them for these games yet, or the pull was held to stay inside the credit cap.</div>`}
  ${L.length>20?`<button onclick="CTD.all^=1;dash()" style="min-height:40px;margin-top:6px">${CTD.all?"Show top 20":"Show all "+L.length}</button>`:""}</div>`}
 if(!("SLATE" in window)){window.SLATE=null;fetch("data/slate_status.json?v="+Date.now()).then(r=>r.ok?r.json():null).then(d=>{window.SLATE=d;window.render&&render()}).catch(()=>{})}window.SLR=window.SLR||((sp,L)=>{const ds=[...new Set((L||[]).map(r=>r.start||r.time||r.date).filter(Boolean).map(t=>/^\d{4}-\d\d-\d\d$/.test(t)?t:new Date(t).toLocaleDateString("en-CA",{timeZone:"America/New_York"})))].sort();if(!ds.length)return SLD(sp);const f=d=>new Date(d+"T12:00:00").toLocaleDateString("en-US",{month:"short",day:"numeric"}),lab=ds.length==1?f(ds[0]):f(ds[0])+" – "+f(ds[ds.length-1]);return `<span class="sl-day" style="display:inline-block;margin-left:8px;padding:1px 8px;border-radius:99px;font-size:11px;font-weight:600;background:rgba(148,163,184,.18);color:#cbd5e1;vertical-align:middle">${lab}</span>`});window.SLD=window.SLD||(sp=>{const s=(window.SLATE||{})[sp];return s&&s.label?`<span class="sl-day" style="display:inline-block;margin-left:8px;padding:1px 8px;border-radius:99px;font-size:11px;font-weight:600;background:rgba(148,163,184,.18);color:#cbd5e1;vertical-align:middle">${s.label}</span>`:""});if(!window.LIKELY)fetch("data/likely.json?v="+Date.now()).then(r=>r.ok?r.json():null).then(d=>{LIKELY=d;window.render&&render()}).catch(()=>{});
-const LDD=(L,sp)=>{if(sp!="nhl")return L;const d=L.reduce((m,r)=>!m||(r.start||"")<m?r.start:m,"");const s=new Set();return L.filter(r=>{if(d&&r.start!=d)return 0;const k=(r.nhl_id||r.player)+"|"+r.market;if(s.has(k))return 0;s.add(k);return 1})};const LKN={};function likelyCard(sp){const L=LDD((window.LIKELY||{})[sp]||[],sp).filter(r=>sp!="nhl"||r.market==(LKN[sp+"m"]||"Points"));if(!L.length)return"";const n=LKN[sp]||10,E=s=>escH(String(s??"")),Pc=p=>p==null?"—":Math.round(p*100)+"%",A=a=>a==null?"":(a>0?"+"+a:""+a);
+const LDD=(L,sp)=>{if(sp!="nhl")return L;const d=L.reduce((m,r)=>!m||(r.start||"")<m?r.start:m,"");const s=new Set();return L.filter(r=>{if(d&&r.start!=d)return 0;const k=(r.nhl_id||r.player)+"|"+r.market;if(s.has(k))return 0;s.add(k);return 1})};const LKN={};let NHLFC=null,NHLFC_T=0;
+function loadNhlFc(force){if(!force&&(NHLFC||NHLFC_T))return;NHLFC_T=1;fetch("data/nhl_form_card.json?v="+Date.now()).then(r=>r.ok?r.json():null).then(x=>{NHLFC=x||{err:1};if(sport=="nhl"&&view=="dash")dash()}).catch(()=>{NHLFC={err:1}})}
+function nhlFormCard(){if(sport!="nhl")return"";loadNhlFc();if(!NHLFC||NHLFC.err||!(NHLFC.legs||[]).length)return"";
+ const E=s=>escH(String(s??"")),A=a=>a==null?"—":(a>0?"+"+a:""+a),Pc=p=>p==null?"—":Math.round(p*100)+"%";
+ const legs=NHLFC.legs||[],par=NHLFC.parlays||[],rr2=NHLFC.round_robin_2s||[],rr3=NHLFC.round_robin_3s||[];
+ return `<div class="card" style="grid-column:1/-1;border-color:#2a4f86;background:linear-gradient(135deg,rgba(19,40,74,.55),var(--card,#131a2e) 75%)">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap">
+   <div><h3 style="margin:0">🏒 ${E(NHLFC.title||"NHL Goalscorer Parlay · Recent Form Card")} <span class="sl-day" style="display:inline-block;margin-left:6px;padding:1px 8px;border-radius:99px;font-size:11px;font-weight:700;background:rgba(56,189,248,.18);color:#38bdf8">${E(NHLFC.date||"Tonight")}</span></h3>
+   <div class="sub" style="margin-top:3px">${E(NHLFC.subtitle||"")}</div></div>
+   <span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:99px;background:rgba(61,220,151,.12);border:1px solid rgba(61,220,151,.35);color:#4ade80">✓ Rest Check: Zero B2B Fatigue (Only LAK on B2B)</span>
+  </div>
+  ${NHLFC.swap_summary?`<div class="sub" style="margin-top:6px;padding:6px 10px;border-radius:8px;background:rgba(255,200,87,.08);border:1px solid rgba(255,200,87,.25);color:#fde68a">💡 <b>Lineup Swap Note:</b> ${E(NHLFC.swap_summary)}</div>`:""}
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;margin-top:10px">
+   ${legs.map(l=>{const bq=(l.book_quotes||[]).slice(0,4).map(q=>`${E(q.book)} ${A(q.price)}`).join(" · ");
+    const tagClr=/Hot Form/.test(l.tag||"")?"#4ade80":/Due/.test(l.tag||"")?"#38bdf8":"#fbbf24";
+    return `<div style="padding:10px 12px;border-radius:10px;background:rgba(15,23,42,.65);border:1px solid var(--line,#26304f)">
+     <div style="display:flex;justify-content:space-between;gap:8px;align-items:baseline">
+      <div><b>${l.slot}. ${E(l.player)}</b> <span class="mut">${E(l.team)} ${E(l.opp)} · ${E(l.time_et)}</span></div>
+      <div style="text-align:right;white-space:nowrap"><b style="color:#4ade80;font-size:15px">${A(l.price)}</b> <span class="mut" style="font-size:11px">${E(l.book)}</span></div>
+     </div>
+     <div style="margin-top:4px;display:flex;flex-wrap:wrap;gap:6px;align-items:center">
+      <span style="font-size:11px;font-weight:700;padding:1px 7px;border-radius:99px;background:rgba(255,255,255,.06);color:${tagClr}">${E(l.tag)}</span>
+      <span class="mut" style="font-size:11.5px">Model <b>${Pc(l.p_model)}</b> vs Fair <b>${Pc(l.nv)}</b> (${l.edge>=0?"+":""}${Math.round(l.edge*100)} pts)</span>
+     </div>
+     ${window.LR?LR.tag("nhl",l.aid,"Anytime Goal",0.5,l.player,"over",l.start,l.espn_game):""}
+     <div class="sub" style="margin-top:5px;font-size:12px;line-height:1.4"><b>L5 (${l.l5.goals}G, ${l.l5.assists}A, ${l.l5.sog_total} SOG · ${l.l5.toi_avg}m TOI):</b> ${E(l.form_note)}</div>
+     <div class="sub" style="margin-top:3px;font-size:11.5px;color:#94a3b8"><b>Matchup:</b> ${E(l.opp_note)}${bq?` · <b>Books:</b> ${bq}`:""}</div>
+    </div>`}).join("")}
+  </div>
+  <div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--line,#26304f)">
+   <div style="font-weight:800;font-size:13px;margin-bottom:6px">📋 Parlay &amp; Round-Robin Combos (Anytime Goalscorer)</div>
+   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px">
+    ${par.map(p=>`<div style="padding:8px 10px;border-radius:8px;background:rgba(15,23,42,.55);border:1px solid var(--line,#26304f)">
+     <div style="display:flex;justify-content:space-between;gap:6px"><b>${E(p.title)}</b><b style="color:#4ade80">${E(p.best_odds)}</b></div>
+     <div class="mut" style="font-size:11.5px;margin-top:2px">${E(p.players.join(" + "))}</div>
+     <div class="sub" style="font-size:11px;margin-top:3px">Book A <b>${E(p.dk_odds)}</b> · Book B <b>${E(p.fd_odds)}</b> · Combined <b>${(p.p_model*100).toFixed(1)}%</b> (EV <b>+${(p.ev_best*100).toFixed(1)}%</b>)</div>
+    </div>`).join("")}
+   </div>
+   <details style="margin-top:8px"><summary class="sub" style="cursor:pointer;font-weight:700">View all 2-Leg (6x) &amp; 3-Leg (4x) Round-Robin pairs + Rest Note</summary>
+    <div class="sub" style="margin-top:6px"><b>2-Leg Pairs:</b> ${rr2.map(r=>`${E(r.pair)} (<b>${E(r.best_odds)}</b> / Book A ${E(r.dk_odds)} · ${(r.p_model*100).toFixed(1)}%)`).join(" · ")}</div>
+    <div class="sub" style="margin-top:4px"><b>3-Leg Trios:</b> ${rr3.map(r=>`${E(r.trio)} (<b>${E(r.best_odds)}</b> / Book A ${E(r.dk_odds)} · ${(r.p_model*100).toFixed(1)}%)`).join(" · ")}</div>
+    <div class="sub" style="margin-top:4px">${E(NHLFC.rest_summary||"")}</div>
+   </details>
+  </div>
+ </div>`;
+}
+function likelyCard(sp){const L=LDD((window.LIKELY||{})[sp]||[],sp).filter(r=>sp!="nhl"||r.market==(LKN[sp+"m"]||"Points"));if(!L.length)return"";const n=LKN[sp]||10,E=s=>escH(String(s??"")),Pc=p=>p==null?"—":Math.round(p*100)+"%",A=a=>a==null?"":(a>0?"+"+a:""+a);
  const mk=sp=="nhl"?`<span class="chips" style="float:right">${["Points","Anytime Goal"].map(m=>`<button class="${(LKN.nhlm||"Points")==m?"on":""}" onclick="LKN.nhlm='${m}';LKN.nhl=10;render()">${m=="Points"?"Points":"Goals"}</button>`).join("")}</span>`:"";
  return `<div class="card" style="grid-column:1/-1"><h3>🎯 Most likely ${sp=="nhl"?"":sp=="soccer"?"goal scorers":"TD scorers"}${mk}${SLR(sp,L)}</h3><div class="sub">Ranked by our probability, edge or not. Edge highlights are listed separately.</div>`+
  L.slice(0,n).map((r,i)=>{const e=r.book!=null?r.ours-r.book:null;return `<div style="display:flex;gap:8px;align-items:flex-start;padding:7px 0;border-top:1px solid var(--line,#2a2f3a)"><span class="mut" style="min-width:20px">${i+1}</span><div style="flex:1;min-width:0"><b>${E(r.player)}</b> <span class="mut">${sp=="soccer"?`<b>${E(r.team||"")}</b> ${E(r.opp||"")}${r.start?" · "+new Date(r.start).toLocaleString("en-US",{weekday:"short",timeZone:"America/New_York"}):""}`:E(r.team||"")+" "+E(r.opp||"")}</span>${window.LR?LR.tag(sp,r.aid||"",r.market,r.line,r.player,r.side||"over",r.start||r.time||"",r.game||""):""}</div><div style="text-align:right;white-space:nowrap"><b>${Pc(r.ours)}</b>${r.book!=null?`<div class="mut" style="font-size:11px">book ${Pc(r.book)}${r.price!=null?" ("+A(r.price)+")":""}</div>`:""}${e!=null&&e>=.03?`<div class="up" style="font-size:11px;font-weight:800">+${Math.round(e*100)} edge</div>`:""}</div></div>`}).join("")+
@@ -328,7 +374,7 @@ function dash0(){if(sport=="cfb"){loadCfb();if(CFBD&&!CFBD.err){$("dash").innerH
  const ven=d.filter(r=>r.ven&&r.ven.n>=4&&pct(r.ven)>=.6).sort((a,b)=>pct(b.ven)-pct(a.ven)||b.ven.n-a.ven.n);
  const h2h=d.filter(r=>r.h2h&&r.h2h.n>=2&&pct(r.h2h)>=.75).sort((a,b)=>pct(b.h2h)-pct(a.h2h)||b.h2h.n-a.h2h.n);
  const P=(h)=>Math.round(pct(h)*100)+"%";
- {const tt=$("tetop");if(tt){tt.innerHTML="";tt.hidden=true}}$("dash").innerHTML=(sport=="nfl"||sport=="nhl"?likelyCard(sport):"")+(sport=="mlb"?mlbPhaseBar()+mlbLabCard():"")+impactCard()+(sport=="nfl"?qbCard(false):"")+(sport=="soccer"?likelyCard("soccer")+sgpCards():"")+recsSection(d)+(window.CO&&(sport=="nfl"||sport=="nhl")?CO.card(sport):"")+(sport=="soccer"?soccerScriptCard()+hotScorers():gameScriptCard())+`<div class="card" style="grid-row:span 2"><h3>🔥 Hot List: overs</h3><div class="sub">Props hitting the over at ${tier}%+ over the ${W} window · <b id="hotn">${hotN}</b> qualify</div>
+ {const tt=$("tetop");if(tt){tt.innerHTML="";tt.hidden=true}}$("dash").innerHTML=(sport=="nhl"?nhlFormCard():"")+(sport=="nfl"||sport=="nhl"?likelyCard(sport):"")+(sport=="mlb"?mlbPhaseBar()+mlbLabCard():"")+impactCard()+(sport=="nfl"?qbCard(false):"")+(sport=="soccer"?likelyCard("soccer")+sgpCards():"")+recsSection(d)+(window.CO&&(sport=="nfl"||sport=="nhl")?CO.card(sport):"")+(sport=="soccer"?soccerScriptCard()+hotScorers():gameScriptCard())+`<div class="card" style="grid-row:span 2"><h3>🔥 Hot List: overs</h3><div class="sub">Props hitting the over at ${tier}%+ over the ${W} window · <b id="hotn">${hotN}</b> qualify</div>
  <div class="chips" id="tiers">${[50,60,70,80].map(t=>`<button data-t="${t}" class="${t==tier?"on":""}">${t}%+</button>`).join("")}<span style="width:8px"></span>${["l5","l10","l20"].map(w=>`<button data-w="${w}" class="${w==win?"on":""}">${w.toUpperCase()}</button>`).join("")}</div>
  ${pagedList("hot",hot,r=>`<span class="up">${P(r[win])}</span><div>${r[win].h}/${r[win].n} · avg ${r[win].avg}</div>`)}</div>
  <div class="card"><h3>📈 Active over streaks</h3><div class="sub">Consecutive most-recent games over today's line</div>${pagedList("streak",streak,r=>`<span class="fire">${r.os} straight over</span><div>L10 ${r.l10?P(r.l10):"—"}</div>`)}</div>
@@ -337,7 +383,7 @@ function dash0(){if(sport=="cfb"){loadCfb();if(CFBD&&!CFBD.err){$("dash").innerH
  ${extraCards(d)}
  <div class="card"><h3>🧊 Cold: unders</h3><div class="sub">Under rate ${tier}%+ (${W}) and active under streaks</div>${pagedList("cold",cold,r=>`<span class="dn">${100-Math.round(pct(r[win])*100)}% U</span><div>${r[win].n-r[win].h}/${r[win].n} under</div>`,25,"under")}
  ${ustreak.length?`<div class="sub" style="margin-top:10px">Under streaks</div>`+pagedList("ustreak",ustreak,r=>`<span class="dn">${r.us} straight under</span>`,25,"under"):""}</div>`;
- if(!d.length)$("dash").innerHTML=(sport=="nfl"||sport=="nhl"?likelyCard(sport):"")+(sport=="soccer"?likelyCard("soccer"):"")+`<div class="card empty">${SRC().length?"No props match your filters.":"No lines yet for "+SPORTS.find(s=>s[0]==sport)[1]+"."}</div>`;}
+ if(!d.length)$("dash").innerHTML=(sport=="nhl"?nhlFormCard():"")+(sport=="nfl"||sport=="nhl"?likelyCard(sport):"")+(sport=="soccer"?likelyCard("soccer"):"")+`<div class="card empty">${SRC().length?"No props match your filters.":"No lines yet for "+SPORTS.find(s=>s[0]==sport)[1]+"."}</div>`;}
 
 // ---- MLB Lab highlights (consumes mlblab.sportslabshq.com/data/hr_scores.json + k_projections.json) ----
 let MLBLAB=null,MLBLAB_T=0;

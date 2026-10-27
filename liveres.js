@@ -63,7 +63,21 @@ function line(sp,o){const c=[];
 function find(sp,id,name){if(!S)return null;let p=id&&S.p[sp+"|"+id];if(!p&&name){const a=S.n[sp+"|"+nm(name)];if(a)p=S.p[sp+"|"+a]}return p}
 window.LR={
  // returns HTML (or "" when the player's game hasn't started)
- html(sp,id,market,ln,name,side,st,gid){const p=find(sp,id,name);if(!p)return"";const g=S.g[sp+"|"+p[0]];if(!g||(g[0]!="in"&&g[0]!="post"))return"";
+ html(sp,id,market,ln,name,side,st,gid){
+  if((market=="Team Total"||market=="Moneyline")&&gid&&S&&S.g){
+   const g=S.g[sp+"|"+gid];if(!g||(g[0]!="in"&&g[0]!="post"))return"";
+   const fin=g[0]=="post",aw=String(g[2]||""),as_=+g[3]||0,hm=String(g[4]||""),hs=+g[5]||0,scTxt=aw&&hm?`${aw} ${as_}-${hs} ${hm} · `:"";
+   const tmM=String(name||"").match(/^([A-Z0-9]+)/i),tmAb=tmM?tmM[1].toUpperCase():"";
+   const isHome=tmAb&&tmAb==hm.toUpperCase(),mySc=isHome?hs:as_,opSc=isHome?as_:hs;
+   if(market=="Moneyline"){
+    const hit=mySc>opSc,cls=fin?(hit?"w":"l"):(hit?"w":"p"),mark=fin?(hit?"✓":"✗"):"●";
+    return `<span class="lr ${cls}">${mark} ${H(scTxt+g[1])}</span>`;
+   }
+   const lnM=String(name||"").match(/over\s+([\d.]+)/i),L=ln!=null&&ln!==""&&!isNaN(+ln)?+ln:(lnM?+lnM[1]:0.5);
+   const hit=mySc>L,cls=hit?"w":fin?"l":"p",mark=hit?"✓":fin?"✗":"●";
+   return `<span class="lr ${cls}">${mark} ${H(tmAb+" "+mySc+"G · "+scTxt+g[1])}</span>`;
+  }
+  const p=find(sp,id,name);if(!p)return"";const g=S.g[sp+"|"+p[0]];if(!g||(g[0]!="in"&&g[0]!="post"))return"";
   /* Only grade the pick's own game: same event id when known, else same start (or same ET date), and never before the pick's start. */
   if(gid&&/^4\d{8}$/.test(String(gid))&&String(gid)!=String(p[0]))return"";
   const ymd=t=>new Date(t).toLocaleDateString("en-CA",{timeZone:"America/New_York"});
