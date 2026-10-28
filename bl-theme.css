@@ -1,0 +1,21 @@
+/* Bet Lab theme on sl-ui: maps Bet Lab's page tokens onto the shared kit. Bet Lab keeps its green accent. */
+body.sl{--bg:var(--sl-bg);--panel:var(--sl-surface);--panel2:var(--sl-surface-2);--line:var(--sl-border);--txt:var(--sl-text);--mut:var(--sl-text-2);--bad:var(--sl-bad);--mid:var(--sl-warn);font-family:var(--sl-font)}
+body.sl header{background:rgba(12,22,23,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+body.sl .logo{font:700 22px/1 var(--sl-display);text-transform:uppercase;letter-spacing:.02em}
+body.sl table td,body.sl .num{font-variant-numeric:tabular-nums}
+body.sl th{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--sl-text-3)}
+body.sl input,body.sl select{color-scheme:dark;background:var(--sl-inset);border:1px solid var(--sl-border-strong);color:var(--sl-text);border-radius:6px}
+body.sl .card{border-radius:8px}
+#badge.sl-fresh{margin-left:auto}
+/* filter bar: no overlap at mid widths; on phones it becomes search + Filters sheet */
+#fbar{align-items:center}#fbar select{min-width:140px;max-width:220px}#fbar #q{flex:1 1 220px;min-width:180px}
+.bl-fbtn{display:none}
+@media (max-width:767px){
+ .bl-fbtn{display:inline-flex;margin:0 12px 10px}
+ #fbar{position:fixed;left:0;right:0;bottom:0;z-index:72;max-height:78vh;overflow:auto;margin:0;padding:16px!important;background:var(--sl-sidebar);border-top:1px solid var(--sl-border-strong);border-radius:12px 12px 0 0;flex-direction:column;align-items:stretch;transform:translateY(105%);transition:transform .22s ease;visibility:hidden}
+ body.bl-fopen #fbar{transform:none;visibility:visible}
+ #fbar>*{width:100%;max-width:none!important;min-height:44px}#fbar label{justify-content:space-between}
+ .bl-fhead{display:flex!important;justify-content:space-between;align-items:center;min-height:0!important}
+ body.bl-fopen .bl-fscrim{display:block}
+}
+.bl-fhead{display:none}.bl-fscrim{display:none;position:fixed;inset:0;z-index:71;background:rgba(0,0,0,.5)}
