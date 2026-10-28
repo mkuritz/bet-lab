@@ -44,6 +44,16 @@ const css=`
 .bld-ovl-tag{display:block;font-size:9px;color:#38bdf8;font-weight:700;margin-top:1px}
 #wl-Float{position:fixed;right:18px;bottom:112px;z-index:89;background:var(--panel2,#182033);border:1px solid var(--mid,#f5c451);color:var(--txt,#e6ebf5);border-radius:99px;padding:7px 12px;font:800 12px/1 system-ui,sans-serif;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.45);display:none;align-items:center;gap:5px}
 #wl-Float.show{display:inline-flex}
+.bld-mm-row{display:grid;grid-template-columns:138px 1fr 78px;align-items:center;gap:8px;padding:5px 0;border-top:1px solid rgba(255,255,255,.05);font-size:11.5px}
+.bld-mm-row:first-of-type{border-top:0}
+.bld-mm-bar{height:8px;background:var(--panel,#121826);border:1px solid var(--line,#243049);border-radius:99px;overflow:hidden;position:relative}
+.bld-mm-fill{height:100%;border-radius:99px}
+.bld-sit-bar{display:flex;flex-wrap:wrap;gap:4px;margin:6px 0 8px}
+.bld-sit-btn{background:var(--panel,#121826);border:1px solid var(--line,#243049);color:var(--mut,#8b97b0);border-radius:99px;padding:3px 8px;font:700 10.5px/1.2 system-ui,sans-serif;cursor:pointer}
+.bld-sit-btn.on{background:rgba(63,169,255,.16);border-color:var(--acc2,#3fa9ff);color:var(--txt,#e6ebf5)}
+.bld-tour-bg{position:fixed;inset:0;background:rgba(5,9,18,.78);z-index:220;display:flex;align-items:center;justify-content:center;padding:16px}
+.bld-tour-card{max-width:540px;width:100%;background:var(--panel,#121826);border:1px solid var(--acc2,#3fa9ff);border-radius:14px;padding:18px 20px;box-shadow:0 18px 50px rgba(0,0,0,.65)}
+.bld-tour-step{padding:8px 10px;margin:6px 0;background:var(--panel2,#182033);border:1px solid var(--line,#243049);border-radius:9px;font-size:12.5px;line-height:1.45}
 `;
 const stEl=document.createElement("style");stEl.textContent=css;document.head.appendChild(stEl);
 
@@ -372,6 +382,199 @@ function buildDeeperThanBoxScore(r,sp){
  </div>`;
 }
 
+
+// ---- 8B. Multi-Season (Up to 3 Seasons + H2H) History Strip ----
+function buildMultiSeasonStrip(r,sp){
+ const gs=(r.games||[]).filter(g=>g.d&&g.v!=null);
+ if(gs.length<4)return"";
+ const byYr={};
+ for(const g of gs){
+  const yr=g.d.slice(0,4);
+  (byYr[yr]=byYr[yr]||[]).push(g);
+ }
+ const yrs=Object.keys(byYr).sort().reverse().slice(0,3);
+ const h2h=gs.filter(g=>g.o===r.oa);
+ const summarize=(label,arr)=>{
+  if(!arr.length)return null;
+  const vs=arr.map(x=>x.v);
+  const h=vs.filter(v=>v>r.line).length;
+  const pct=Math.round(h/vs.length*100);
+  const avg=+(vs.reduce((a,b)=>a+b,0)/vs.length).toFixed(1);
+  const med=calcMedian(vs);
+  return {label,n:vs.length,h,pct,avg,med};
+ };
+ const cards=[];
+ yrs.forEach((yr,i)=>cards.push(summarize(i===0?`This Year (${yr})`:`${yr} Logs`,byYr[yr])));
+ if(gs.length>byYr[yrs[0]].length)cards.push(summarize(`Multi-Yr (${gs.length}G)`,gs));
+ if(h2h.length)cards.push(summarize(`vs ${r.oa} (H2H)`,h2h));
+ const valid=cards.filter(Boolean);
+ if(valid.length<2)return"";
+ return `<div class="bld-sec">
+  <h4><span>📅 Multi-Season &amp; Head-to-Head History (vs. o${r.line})</span><span class="mut" style="font-size:11px">Updated Daily</span></h4>
+  <div class="bld-grid">${valid.map(c=>`<div class="bld-box"><small>${H(c.label)}</small><b class="${c.pct>=60?"up":c.pct<=40?"dn":""}">${c.pct}% (${c.h}/${c.n})</b><small>Avg ${c.avg} · Med ${c.med}</small></div>`).join("")}</div>
+ </div>`;
+}
+
+// ---- 8C. Interactive Situational, Workload Floor & Rest Split Explorer ----
+function buildSituationalWorkloadExplorer(r,sp){
+ const gs=(r.games||[]).filter(g=>g.d&&g.v!=null);
+ if(gs.length<5)return"";
+ // Compute rest days from chronological dates
+ const chron=gs.slice().sort((a,b)=>a.d.localeCompare(b.d));
+ const restByDate={};
+ for(let i=0;i<chron.length;i++){
+  if(i===0){restByDate[chron[i].d]=3;continue}
+  const d1=new Date(chron[i-1].d+"T12:00:00Z"),d2=new Date(chron[i].d+"T12:00:00Z");
+  restByDate[chron[i].d]=Math.max(0,Math.round((d2-d1)/86400000)-1);
+ }
+ // Compute workload metric per game
+ const uVals=gs.map(g=>{const u=getOverlayStatForGame(g,sp,r);return u?+u.v:null}).filter(v=>v!=null&&!isNaN(v));
+ const avgUsage=uVals.length?+(uVals.reduce((a,b)=>a+b,0)/uVals.length).toFixed(1):null;
+ const uLbl=gs.map(g=>getOverlayStatForGame(g,sp,r)).find(Boolean)?.lbl||"VOL";
+
+ const splits=[
+  {id:"all",lbl:`All (${gs.length}G)`,arr:gs},
+  {id:"home",lbl:"🏠 Home",arr:gs.filter(g=>g.at!="@")},
+  {id:"away",lbl:"✈️ Away",arr:gs.filter(g=>g.at==="@")},
+ ];
+ if(avgUsage!=null){
+  const hiU=gs.filter(g=>{const u=getOverlayStatForGame(g,sp,r);return u&&+u.v>=avgUsage});
+  const loU=gs.filter(g=>{const u=getOverlayStatForGame(g,sp,r);return u&&+u.v<avgUsage});
+  if(hiU.length>=2)splits.push({id:"hiu",lbl:`🔥 ≥${avgUsage} ${uLbl} (${hiU.length}G)`,arr:hiU});
+  if(loU.length>=2)splits.push({id:"lou",lbl:`📉 <${avgUsage} ${uLbl} (${loU.length}G)`,arr:loU});
+ }
+ const b2b=gs.filter(g=>restByDate[g.d]===0);
+ const rest2=gs.filter(g=>restByDate[g.d]>=2);
+ if(b2b.length>=1&&sp!=="nfl"&&sp!=="cfb")splits.push({id:"b2b",lbl:`⚡ B2B / 0d Rest (${b2b.length}G)`,arr:b2b});
+ if(rest2.length>=2&&sp!=="nfl"&&sp!=="cfb")splits.push({id:"rest2",lbl:`🛌 2+d Rest (${rest2.length}G)`,arr:rest2});
+
+ function renderSit(spObj){
+  const arr=spObj.arr;
+  if(!arr.length)return`<div id="bld-sit-res" class="mut">No games in this split.</div>`;
+  const vs=arr.map(x=>x.v);
+  const h=vs.filter(v=>v>r.line).length;
+  const pct=Math.round(h/vs.length*100);
+  const avg=+(vs.reduce((a,b)=>a+b,0)/vs.length).toFixed(1);
+  const med=calcMedian(vs);
+  const diff=+(avg-r.line).toFixed(1);
+  return `<div id="bld-sit-res">
+   <div class="bld-grid">
+    <div class="bld-box"><small>${H(spObj.lbl)} Hit Rate</small><b class="${pct>=60?"up":pct<=40?"dn":""}">${pct}% (${h}/${vs.length})</b><small>vs Line o${r.line}</small></div>
+    <div class="bld-box"><small>Split Mean / Median</small><b>${avg} / ${med}</b><small class="${diff>0?"up":diff<0?"dn":"mut"}">${diff>=0?"+":""}${diff} vs line</small></div>
+    <div class="bld-box"><small>Min – Max Range</small><b>${Math.min(...vs)} – ${Math.max(...vs)}</b><small>Last: ${arr.slice(0,5).map(x=>x.v).join(", ")}</small></div>
+   </div>
+  </div>`;
+ }
+ window._bldSits=splits;
+ window._bldPickSit=(idx,btn)=>{
+  const s=window._bldSits[idx];if(!s)return;
+  const box=btn.closest(".bld-sec");
+  if(box)box.querySelectorAll(".bld-sit-btn").forEach((b,i)=>b.classList.toggle("on",i===idx));
+  const el=document.getElementById("bld-sit-res");
+  if(el)el.outerHTML=renderSit(s);
+ };
+ return `<div class="bld-sec">
+  <h4><span>🎛️ Situational, Workload Floor &amp; Rest Splits</span><span class="mut" style="font-size:11px">Click any split</span></h4>
+  <div class="bld-sit-bar">${splits.map((s,i)=>`<button type="button" class="bld-sit-btn ${i===0?"on":""}" onclick="window._bldPickSit(${i},this)">${H(s.lbl)}</button>`).join("")}</div>
+  ${renderSit(splits[0])}
+ </div>`;
+}
+
+// ---- 8D. Player vs. Defense Scheme & Zone Mismatch Matrix ----
+function buildSchemeMismatchMatrix(r,sp){
+ const dS=getOppWindowRank(sp,r,"szn"),d5=getOppWindowRank(sp,r,"l5");
+ if(!dS)return"";
+ const rows=[];
+ const gs=(r.games||[]).slice(0,10);
+ const sList=gs.map(g=>g.s||{}).filter(s=>Object.keys(s).length);
+ const avgStat=k=>sList.length?+(sList.reduce((a,s)=>a+(+s[k]||0),0)/sList.length).toFixed(1):null;
+ const rkPct=Math.max(8,Math.min(96,Math.round((1-(dS.r-1)/Math.max(1,(dS.of||30)-1))*100)));
+ const l5Pct=d5?Math.max(8,Math.min(96,Math.round((1-(d5.r-1)/Math.max(1,(d5.of||30)-1))*100))):rkPct;
+
+ rows.push({
+  lbl:`${r.oa} vs ${r.pos||"Pos"} (SZN)`,
+  pct:rkPct,
+  col:dS.r<=10?"#53e3a6":dS.r>=(dS.of||30)-8?"#ff5d6c":"#3fa9ff",
+  val:`#${dS.r}/${dS.of} (${dS.v}/g)`
+ });
+ if(d5){
+  rows.push({
+   lbl:`${r.oa} Recent Form (L5)`,
+   pct:l5Pct,
+   col:d5.r<=10?"#53e3a6":d5.r>=(d5.of||30)-8?"#ff5d6c":"#3fa9ff",
+   val:`#${d5.r}/${d5.of} (${d5.v}/g)`
+  });
+ }
+ if(sp==="nba"||sp==="ncaamb"){
+  const fg3=avgStat("fg3m"),ftm=avgStat("ftm"),pts=avgStat("points"),reb=avgStat("rebounds"),ast=avgStat("assists");
+  if(pts!=null&&fg3!=null){
+   const p3Share=pts>0?Math.min(100,Math.round((fg3*3/pts)*100)):0;
+   const paintShare=pts>0?Math.max(0,Math.min(100,100-p3Share-Math.round(((ftm||0)/pts)*100))):50;
+   rows.push({lbl:"Perimeter / 3PT Share",pct:Math.max(12,p3Share),col:"#a78bfa",val:`${p3Share}% of pts (${fg3} 3PM/g)`});
+   rows.push({lbl:"Interior / 2PT Share",pct:Math.max(12,paintShare),col:"#38bdf8",val:`${paintShare}% of pts (${ftm||0} FTM/g)`});
+  }
+  if(reb!=null&&ast!=null){
+   rows.push({lbl:"Playmaking & Glass",pct:Math.min(95,Math.round((reb+ast)*5)),col:"#53e3a6",val:`${reb} REB · ${ast} AST/g`});
+  }
+ }else if(sp==="nfl"||sp==="cfb"){
+  if(r.u&&r.u.sn)rows.push({lbl:"Snap Workload Share",pct:Math.min(98,Math.round(r.u.sn.l3||r.u.sn.szn||50)),col:"#53e3a6",val:`${r.u.sn.l3??r.u.sn.szn}% snaps`});
+  if(r.u&&r.u.tg)rows.push({lbl:"Target Funnel Role",pct:Math.min(96,Math.round((r.u.tg.l3||r.u.tg.szn||4)*9)),col:"#38bdf8",val:`${r.u.tg.l3??r.u.tg.szn} tgt/g`});
+  if(r.u&&r.u.ca)rows.push({lbl:"Rush Volume Role",pct:Math.min(96,Math.round((r.u.ca.l3||r.u.ca.szn||8)*4.5)),col:"#f5c451",val:`${r.u.ca.l3??r.u.ca.szn} car/g`});
+ }else if(sp==="nhl"){
+  if(r.u&&r.u.toi)rows.push({lbl:"Ice Time Share (TOI)",pct:Math.min(96,Math.round((r.u.toi.l5||18)/25*100)),col:"#38bdf8",val:`${r.u.toi.l5}m L5 (Peak ${r.u.toi.peak_l5||r.u.toi.l5}m)`});
+  if(r.u&&r.u.form)rows.push({lbl:"5-Game Shot Volume",pct:Math.min(96,Math.round((r.u.form.l5_sog||10)*4)),col:"#53e3a6",val:`${r.u.form.l5_sog} SOG / ${r.u.form.l5_g}G in L5`});
+ }
+ return `<div class="bld-sec">
+  <h4><span>🎯 Player vs. Defense Mismatch &amp; Scoring Profile</span><span class="mut" style="font-size:11px">#1 = Softest Matchup</span></h4>
+  ${rows.map(x=>`<div class="bld-mm-row">
+   <span class="mut">${H(x.lbl)}</span>
+   <div class="bld-mm-bar"><div class="bld-mm-fill" style="width:${x.pct}%;background:${x.col}"></div></div>
+   <b style="text-align:right;font-size:11px">${H(x.val)}</b>
+  </div>`).join("")}
+ </div>`;
+}
+
+// ---- 8E. Copy Watchlist Research Slip & Quick Tour Modal ----
+function copyWatchlistSlip(){
+ const wl=getWatchlist();
+ if(!wl.length){alert("Your Watchlist is empty — tap ★ on any prop row or card to save props first.");return}
+ const lines=["📋 BET LAB PROP RESEARCH SHORTLIST"];
+ for(const item of wl){
+  const pool=(typeof DATA!=="undefined"&&DATA[item.s])||[];
+  const r=pool.find(x=>`${x.aid}|${x.market}`===item.k);
+  if(!r)continue;
+  const q=typeof ppLeg==="function"?ppLeg(r,item.s):null;
+  const px=q&&q.best!=null?q.best:r.ov;
+  const bk=q&&q.book?q.book:"Book A";
+  const d=getOppWindowRank(item.s,r,STATE.dvpWin);
+  const med=getMedianForWindow(r,"l10");
+  lines.push(`• [${item.s.toUpperCase()}] ${r.player} (${r.team} vs ${r.oa}) — Over ${r.line} ${r.market} @ ${px>0?"+"+px:px} (${bk}) | L10: ${r.l10?r.l10.pct+"%":"—"} | Avg ${r.avg??"—"} / Med ${med??"—"}${d?` | DvP #${d.r}/${d.of}`:""}`);
+ }
+ navigator.clipboard.writeText(lines.join("\n")).then(()=>{
+  const b=document.querySelector("[data-cs-copywl]");
+  if(b){const old=b.textContent;b.textContent="✓ Copied Slip!";setTimeout(()=>b.textContent=old,1800)}
+ });
+}
+
+function showQuickTour(){
+ const old=document.getElementById("bld-tour-modal");if(old){old.remove();return}
+ const m=document.createElement("div");
+ m.id="bld-tour-modal";m.className="bld-tour-bg";
+ m.onclick=e=>{if(e.target===m)m.remove()};
+ m.innerHTML=`<div class="bld-tour-card">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+   <b style="font-size:16px">🧭 Bet Lab Deep Research &amp; Cheatsheet Tour</b>
+   <button type="button" class="bld-chip" onclick="document.getElementById('bld-tour-modal').remove()">✕ Close</button>
+  </div>
+  <div class="bld-tour-step"><b>1. Multi-Window Opponent DvP Chips:</b> Switch between <b>Season DvP</b>, <b>L10 DvP</b>, and <b>L5 DvP</b> in one tap. Every row shows the exact positional rank (<b>#1 = Softest matchup</b>) and stat allowed per game without opening a modal.</div>
+  <div class="bld-tour-step"><b>2. Mean (Average) ⇄ Median Mode:</b> Toggle between Mean and Median both in the Cheatsheet table and as a dashed blue reference line on every player's game-log bar chart.</div>
+  <div class="bld-tour-step"><b>3. Side-by-Side Multi-Book Odds Matrix:</b> Compare live prices across <b>Book A – Book W</b> right on the row, with the best available number highlighted in green.</div>
+  <div class="bld-tour-step"><b>4. Deeper Than The Box Score Drawer:</b> Tap any player to see <b>Player vs. Defense Mismatch Bars</b>, <b>Interactive Teammate On/Off Splits</b>, <b>How Similar Players Did vs. This Opponent</b>, <b>Situational/Workload/Rest Splits</b>, and <b>Multi-Season + H2H</b> history.</div>
+  <div class="bld-tour-step"><b>5. Watchlist &amp; Auto-Graded Bet Tracker:</b> Tap <b>★</b> to shortlist props and <b>📋 Copy Slip</b>, or tap <b>📊 Track</b> to log plays into <b>My Bets</b> for automatic live box-score grading.</div>
+ </div>`;
+ document.body.appendChild(m);
+}
+
 // ---- 9. Enhanced Game-Log Bar Chart (Avg vs Median Toggle + Usage Stat Overlay on Bars) ----
 function patchSpanChart(){
  if(typeof window.renderSpanChart!=="function"||window.renderSpanChart.__bld)return;
@@ -467,7 +670,7 @@ function mountDrawerDeep(){
 
  const wrap=document.createElement("div");
  wrap.id="bld-drw-deep";
- wrap.innerHTML=buildDeeperThanBoxScore(r,sp)+buildTeammateOnOffExplorer(r,sp)+buildSimilarPlayersVsOpp(r,sp);
+ wrap.innerHTML=buildDeeperThanBoxScore(r,sp)+buildSchemeMismatchMatrix(r,sp)+buildSituationalWorkloadExplorer(r,sp)+buildMultiSeasonStrip(r,sp)+buildTeammateOnOffExplorer(r,sp)+buildSimilarPlayersVsOpp(r,sp);
  const splitEl=drw.querySelector(".split");
  if(splitEl)splitEl.insertAdjacentElement("afterend",wrap);
  else drw.appendChild(wrap);
@@ -508,6 +711,8 @@ function renderCheatsheetFilterBar(){
    <button type="button" class="bld-chip ${STATE.bookFlt==="wo"?"on":""}" data-cs-bflt="wo">🚑 Teammate Out</button>
    <button type="button" class="bld-chip ${STATE.bookFlt==="moved"?"on":""}" data-cs-bflt="moved">↕️ Line Moved</button>
    <button type="button" class="bld-chip ${STATE.onlyWatch?"star-on":""}" data-cs-watch="1">⭐ Watchlist (${wlCount})</button>
+   <button type="button" class="bld-chip" data-cs-copywl="1" title="Copy saved Watchlist props as a research slip">📋 Copy Slip</button>
+   <button type="button" class="bld-chip" data-cs-tour="1" title="How to read the Cheatsheet & Deep Drawer">🧭 Quick Tour</button>
   </div>
  `;
  tctl.insertAdjacentElement("afterend",bar);
@@ -604,6 +809,8 @@ document.addEventListener("click",e=>{
  if(mfC){e.stopPropagation();STATE.matchFlt=mfC.dataset.csMflt;const b=document.getElementById("bld-cs-bar");if(b)b.remove();if(typeof render==="function")render();return}
  const bfC=e.target.closest("[data-cs-bflt]");
  if(bfC){e.stopPropagation();STATE.bookFlt=bfC.dataset.csBflt;const b=document.getElementById("bld-cs-bar");if(b)b.remove();if(typeof render==="function")render();return}
+ const cpC=e.target.closest("[data-cs-copywl]");if(cpC){e.stopPropagation();copyWatchlistSlip();return}
+ const trC=e.target.closest("[data-cs-tour]");if(trC){e.stopPropagation();showQuickTour();return}
  const wtC=e.target.closest("[data-cs-watch]");
  if(wtC){e.stopPropagation();STATE.onlyWatch=!STATE.onlyWatch;const b=document.getElementById("bld-cs-bar");if(b)b.remove();updateWatchFloat();if(typeof render==="function")render();return}
 },true);
