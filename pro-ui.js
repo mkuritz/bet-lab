@@ -824,6 +824,12 @@ function initQuickSearch(){
    </div>`;
   }).join("")||`<div class="mut" style="padding:14px 16px">No matching spots found. Try a team, player, or quick-prompt chip above.</div>`;
 
+  // Pinned Today's Top 10 (cross-sport on Bet Lab main; scoped when the query names a sport). Shared renderer in sl.js.
+  if(typeof window.SLTop10Html==="function"&&GOLDEN_CACHE&&GOLDEN_CACHE.top10_board){
+   const freeT=document.documentElement.getAttribute("data-sl-tier")==="free";
+   const t10=window.SLTop10Html(GOLDEN_CACHE,targetSp||"",freeT?2:null);
+   if(t10)html=`<div style="margin-bottom:10px;background:rgba(15,23,42,.85);border:1px solid rgba(251,191,36,.35);border-radius:10px;padding:9px 11px">${t10}</div>`+html;
+  }
   res.innerHTML=html;
   res.querySelectorAll(".qs-row").forEach(el=>el.onclick=async()=>{
    const h=topHits[+el.dataset.qsi];if(!h)return;
