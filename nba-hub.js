@@ -108,6 +108,12 @@ function renderSlate(){
         <div><div class="l">Proj Pace</div><div class="v">${g.proj_pace} <span class="mut" style="font-size:10px">poss</span></div></div>
       </div>
       ${(g.mismatches||[]).length?`<div style="display:flex;flex-wrap:wrap;gap:4px">${g.mismatches.map(m=>`<span class="badge ${m.kind==='soft'?'spot':'snipe'}" style="font-size:10px">${E(m.txt)}</span>`).join("")}</div>`:""}
+      ${g.game_script?`<div style="background:rgba(11,15,23,.72);border:1px solid rgba(83,227,166,.28);border-radius:9px;padding:8px 10px;font-size:11.5px;display:flex;flex-direction:column;gap:3px">
+        <div style="font-weight:800;color:#53e3a6;font-size:11px;text-transform:uppercase;letter-spacing:.04em">📋 The Game Script · We Deliver The Script</div>
+        <div class="mut" style="font-size:11px">${E(g.game_script.pace_tempo||"")}</div>
+        ${(g.game_script.flow||[]).map(f=>`<div style="padding-top:2px;border-top:1px dashed rgba(255,255,255,.07)"><b>${E(f.phase)}:</b> ${E(f.text)}</div>`).join("")}
+        <div style="padding-top:3px;border-top:1px solid rgba(255,255,255,.08);color:#53e3a6"><b>🎯 Script Verdict:</b> ${E(g.game_script.verdict||"")}</div>
+      </div>`:""}
       ${gProps.length?`<div style="border-top:1px solid var(--line);padding-top:6px;font-size:12px">
         <div style="display:flex;justify-content:space-between;margin-bottom:3px"><span class="mut" style="font-size:10.5px;font-weight:800;text-transform:uppercase">🎯 Top Verified Spots in Game</span><a href="#" data-jump-game="${E(g.id)}" style="font-size:11px;font-weight:700">All Game Props →</a></div>
         ${gProps.map(p=>`<div style="display:flex;justify-content:space-between;padding:2px 0">
@@ -179,7 +185,7 @@ function renderProps(){
               <td><span class="rk-box" style="background:${rkCol(p.dvp_szn)}">#${p.dvp_szn}</span> <span class="mut">/ #${p.dvp_l5}</span></td>
               <td><b>${am(p.ov_odds)}</b> <span class="mut">${E(p.book)}</span></td>
               <td><b>${p.conviction}/100</b></td>
-              <td class="l-al"><span class="badge ${p.spot_cls}">${E(p.spot_tag)}</span> <span class="mut" style="font-size:11.5px">${E(why.join(" · ")||"Standard projection")}</span></td>
+              <td class="l-al"><span class="badge ${p.spot_cls}">${E(p.spot_tag)}</span> <span class="mut" style="font-size:11.5px">${E((p.execution_thesis&&p.execution_thesis.why_edge)?(p.execution_thesis.why_edge+" · "+p.execution_thesis.catalyst):(why.join(" · ")||"Standard projection"))}</span></td>
             </tr>`;
           }).join("")}
         </tbody>
@@ -415,6 +421,7 @@ function renderStreaks(){
           <span class="badge spot">ρ ${E(s.corr_r)} · Fair ${am(s.fair_odds)} (${s.combined_prob}%)</span>
         </div>
         <div class="mut" style="font-size:11px;color:#86efac">✓ ${E(s.cannibalization_check)}</div>
+        ${s.script_thesis?`<div style="background:rgba(11,15,23,.65);border:1px solid rgba(63,169,255,.3);border-radius:7px;padding:6px 8px;font-size:11.5px;color:#cbd5e1"><b>📋 Game Script Alignment:</b> ${E(s.script_thesis)}</div>`:""}
         ${s.legs.map((l,i)=>`<div style="border-top:1px solid var(--line);padding-top:6px;display:flex;justify-content:space-between;align-items:center;font-size:12.5px">
           <div><b>Leg ${i+1}: <a class="plink" data-player-aid="${E(l.aid)}" data-player-mkt="${E(l.market)}">${E(l.player)}</a></b> (${E(l.team)})<br><span class="mut" style="font-size:11px">L10: ${E(l.l10)} · ${l.min_l5||"—"} MIN ·Proj ${l.proj} (Med ${l.median})</span></div>
           <div style="text-align:right"><b>Over ${l.line} ${E(l.mk_short)}</b><br><span class="up" style="font-size:11.5px">${am(l.odds)} (${E(l.book)})</span></div>
@@ -563,6 +570,14 @@ function openPlayerModal(aid,mkt){
           <div class="pills">${pProps.map(x=>`<button type="button" data-md-mkt="${E(x.market)}" class="${x.market===activeMkt?"on":""}">${E(x.mk_short)} (${x.line})</button>`).join("")}</div>
         </div>`:""}
 
+        ${pr.execution_thesis?`<div style="margin-top:10px;padding:10px 12px;background:rgba(11,15,23,.78);border:1px solid rgba(83,227,166,.35);border-radius:10px;font-size:12px;line-height:1.45;display:flex;flex-direction:column;gap:4px">
+          <div style="font-weight:800;color:#53e3a6;text-transform:uppercase;font-size:11px;letter-spacing:.04em">🎯 5-Pillar Execution Thesis &amp; Game Script Fit</div>
+          <div><b style="color:#53e3a6">Why The Edge Exists:</b> ${E(pr.execution_thesis.why_edge||"")}</div>
+          <div><b style="color:#38bdf8">Key Catalyst:</b> ${E(pr.execution_thesis.catalyst||"")}</div>
+          <div><b style="color:#a78bfa">Game Script Fit:</b> ${E(pr.execution_thesis.script_alignment||"")}</div>
+          <div><b style="color:#f5c451">Risk &amp; Trap Audit:</b> ${E(pr.execution_thesis.trap_audit||"")}</div>
+          <div><b style="color:#53e3a6">Target Execution:</b> ${E(pr.execution_thesis.target_execution||"")}</div>
+        </div>`:""}
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px">
           <div class="kpi"><div class="l">Line / Book A</div><div class="v">${line} <span style="font-size:13px;color:var(--acc)">${am(pr.ov_odds)}</span></div><div class="s">${E(activeMkt)}</div></div>
           <div class="kpi"><div class="l">Our Proj / Med</div><div class="v">${pr.proj||meanVal.toFixed(1)} <span style="font-size:13px;color:var(--mut)">/ ${pr.median||medVal.toFixed(1)}</span></div><div class="s">Conviction ${pr.conviction||70}/100</div></div>

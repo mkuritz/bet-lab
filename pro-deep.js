@@ -321,9 +321,16 @@ function buildSpotExecutionCard(r,sp){
  const col=s.verdict==="execute"?"#53e3a6":s.verdict==="snipe"?"#38bdf8":s.verdict==="hold"?"#f5c451":s.verdict==="fakeout"?"#ff5d6c":"#8b97b0";
  const icon=st=>st==="pass"?"✅":st==="warn"?"⚠️":"🚨";
  const stCol=st=>st==="pass"?"#53e3a6":st==="warn"?"#f5c451":"#ff5d6c";
+ const th=r.execution_thesis||(r.spot&&r.spot.why_edge?{
+  why_edge:r.spot.why_edge,
+  catalyst:r.spot.catalyst,
+  trap_audit:r.spot.trap_audit,
+  target_execution:r.spot.target_execution,
+  script_alignment:r.spot.script_alignment
+ }:null);
  return `<div class="bld-spcard ${H(s.verdict)}">
   <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
-   <span style="font:800 12.5px/1.2 system-ui,sans-serif">🎯 Strategic &amp; Tactical Execution Read</span>
+   <span style="font:800 12.5px/1.2 system-ui,sans-serif">🎯 Execution Thesis &amp; 5-Pillar Model Insight</span>
    <span class="bld-spot ${H(s.verdict)}" style="font-size:11px;padding:3px 8px;margin:0">${H(s.badge)}</span>
   </div>
   <div style="display:flex;align-items:center;gap:8px;margin:8px 0 6px">
@@ -332,13 +339,39 @@ function buildSpotExecutionCard(r,sp){
     <div style="width:${Math.max(6,Math.min(100,s.score))}%;height:100%;background:${col};border-radius:99px"></div>
    </div>
   </div>
-  ${(s.reasons&&s.reasons.length)?`<ul style="margin:6px 0 8px 16px;padding:0;font-size:11.5px;line-height:1.45;color:var(--txt,#e6ebf5)">${s.reasons.map(x=>`<li>${H(x)}</li>`).join("")}</ul>`:""}
+  ${th?`<div style="background:rgba(11,15,23,.72);border:1px solid rgba(83,227,166,.22);border-radius:8px;padding:8px 10px;margin:6px 0 8px;font-size:11.5px;line-height:1.45;display:flex;flex-direction:column;gap:4px">
+   ${th.why_edge?`<div><b style="color:#53e3a6">Why The Edge Exists:</b> ${H(th.why_edge)}</div>`:""}
+   ${th.catalyst?`<div><b style="color:#38bdf8">Key Catalyst:</b> ${H(th.catalyst)}</div>`:""}
+   ${th.script_alignment?`<div><b style="color:#a78bfa">Game Script Fit:</b> ${H(th.script_alignment)}</div>`:""}
+   ${th.trap_audit?`<div><b style="color:#f5c451">Risk &amp; Trap Audit:</b> ${H(th.trap_audit)}</div>`:""}
+   ${th.target_execution?`<div style="padding-top:3px;border-top:1px dashed rgba(255,255,255,.08)"><b style="color:#53e3a6">Target Execution:</b> ${H(th.target_execution)}</div>`:""}
+  </div>`:((s.reasons&&s.reasons.length)?`<ul style="margin:6px 0 8px 16px;padding:0;font-size:11.5px;line-height:1.45;color:var(--txt,#e6ebf5)">${s.reasons.map(x=>`<li>${H(x)}</li>`).join("")}</ul>`:"")}
   <div style="margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,.07)">
-   <div class="mut" style="font:800 10px/1 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px">5-Point Tactical Execution Checklist</div>
+   <div class="mut" style="font:800 10px/1 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px">5-Pillar Golden-Source Execution Checklist</div>
    ${(s.checks||[]).map(c=>`<div class="bld-chk-row">
     <span class="mut">${icon(c.st)} ${H(c.k)}</span>
     <b style="color:${stCol(c.st)};text-align:right;font-size:11px">${H(c.v)}</b>
    </div>`).join("")}
+  </div>
+ </div>`;
+}
+
+function buildDrawerGameScript(r,sp){
+ sp=sp||(typeof sport!=="undefined"?sport:"nfl");
+ const gList=(typeof GAMES!=="undefined"&&GAMES[sp])||[];
+ const g=gList.find(x=>String(x.id)===String(r.game))||gList.find(x=>(x.home===r.team||x.away===r.team));
+ const gs=g&&g.game_script;
+ if(!gs)return"";
+ return `<div class="bld-sec" style="border-color:rgba(83,227,166,.35);background:linear-gradient(135deg,rgba(16,44,36,.35),var(--panel2,#182033) 80%)">
+  <h4><span>📋 The Game Script · We Deliver The Script</span><span class="mut" style="font-size:11px">${H(gs.matchup||"")}</span></h4>
+  <div style="font-weight:800;color:#53e3a6;font-size:12px;margin-bottom:4px">${H(gs.headline||"")}</div>
+  <div class="mut" style="font-size:11.5px;margin-bottom:6px">${H(gs.pace_tempo||"")}</div>
+  <div style="display:flex;flex-direction:column;gap:5px;background:rgba(11,15,23,.65);border:1px solid var(--line,#243049);border-radius:8px;padding:8px 10px;font-size:11.5px">
+   ${(gs.flow||[]).map(f=>`<div><b style="color:#38bdf8">${H(f.phase)}:</b> ${H(f.text)}</div>`).join("")}
+   ${gs.primary_mismatch?`<div style="padding-top:4px;border-top:1px dashed rgba(255,255,255,.08)"><b style="color:#f5c451">🔑 Primary Mismatch:</b> ${H(gs.primary_mismatch)}</div>`:""}
+   ${gs.market_read?`<div><b style="color:#a78bfa">📊 Market Read:</b> ${H(gs.market_read)}</div>`:""}
+   ${gs.trap_watch?`<div><b style="color:#ff5d6c">🛡️ Trap Audit:</b> ${H(gs.trap_watch)}</div>`:""}
+   ${gs.verdict?`<div style="padding-top:4px;border-top:1px solid rgba(255,255,255,.08);color:#53e3a6"><b>🎯 Script Verdict:</b> ${H(gs.verdict)}</div>`:""}
   </div>
  </div>`;
 }
@@ -811,7 +844,7 @@ function mountDrawerDeep(){
 
  const wrap=document.createElement("div");
  wrap.id="bld-drw-deep";
- wrap.innerHTML=buildSpotExecutionCard(r,sp)+buildDeeperThanBoxScore(r,sp)+buildSchemeMismatchMatrix(r,sp)+buildSituationalWorkloadExplorer(r,sp)+buildMultiSeasonStrip(r,sp)+buildTeammateOnOffExplorer(r,sp)+buildSimilarPlayersVsOpp(r,sp);
+ wrap.innerHTML=buildSpotExecutionCard(r,sp)+buildDrawerGameScript(r,sp)+buildDeeperThanBoxScore(r,sp)+buildSchemeMismatchMatrix(r,sp)+buildSituationalWorkloadExplorer(r,sp)+buildMultiSeasonStrip(r,sp)+buildTeammateOnOffExplorer(r,sp)+buildSimilarPlayersVsOpp(r,sp);
  const splitEl=drw.querySelector(".split");
  if(splitEl)splitEl.insertAdjacentElement("afterend",wrap);
  else drw.appendChild(wrap);
@@ -927,12 +960,153 @@ function enhanceCheatsheetTable(){
  });
 }
 
-// Hook filtered() so Cheatsheet filters apply cleanly
+// ---- Natural-Language Ask & Search Intent Parser + Decision & Game Script Brief ----
+function parseAskIntent(rawQ){
+ const q=String(rawQ||"").trim().toLowerCase();
+ if(!q)return null;
+ const isNL=/\b(script|spots?|best|snipes?|fake|traps?|injur|cascade|who|what|which|safe|highest|upset|sgp|parlay|tonight|today|over|under|how|why)\b/.test(q)||q.split(/\s+/).length>=3;
+ if(!isNL)return {raw:rawQ,q,isNL:false};
+ const sp=typeof sport!=="undefined"?sport:"nfl";
+ const gList=(typeof GAMES!=="undefined"&&GAMES[sp])||[];
+ const pool=(typeof SRC==="function"?SRC(sp):[])||[];
+ const teams=[...new Set(pool.flatMap(r=>[r.team,r.oa]).filter(Boolean))];
+ const matchedTeams=teams.filter(t=>new RegExp("\\b"+t.toLowerCase()+"\\b").test(q));
+ const wantScript=/\b(script|how.*play|flow|pace|total|matchup)\b/.test(q);
+ const wantSnipe=/\b(snipe|off-market|off market|book|value|plus money)\b/.test(q);
+ const wantCascade=/\b(injur|cascade|without|out|usage|benefit|boost)\b/.test(q);
+ const wantFake=/\b(fake|trap|avoid|fade|mirage|skew)\b/.test(q);
+ const wantSafe=/\b(safe|highest|likely|probability|hit rate|lock|floor)\b/.test(q);
+ let mktFilter=null;
+ if(/\b(td|touchdown)\b/.test(q))mktFilter=/TD|Touchdown/i;
+ else if(/\b(shot|sog)\b/.test(q))mktFilter=/Shot/i;
+ else if(/\b(point|pts)\b/.test(q))mktFilter=/^Points$/i;
+ else if(/\b(rebound|reb)\b/.test(q))mktFilter=/Rebound/i;
+ else if(/\b(assist|ast)\b/.test(q))mktFilter=/Assist/i;
+ else if(/\b(three|3pt|3-point)\b/.test(q))mktFilter=/3-Point/i;
+ else if(/\b(pra)\b/.test(q))mktFilter=/Points, Rebounds, and Assists/i;
+ else if(/\b(goal)\b/.test(q))mktFilter=/Goal/i;
+ else if(/\b(rush)\b/.test(q))mktFilter=/Rushing/i;
+ else if(/\b(rec|receiving)\b/.test(q))mktFilter=/Receiving|Receptions/i;
+ else if(/\b(pass)\b/.test(q))mktFilter=/Passing/i;
+ return {raw:rawQ,q,isNL:true,matchedTeams,wantScript,wantSnipe,wantCascade,wantFake,wantSafe,mktFilter,gList};
+}
+
+function matchesAskIntent(r,intent){
+ if(!intent||!intent.isNL)return true;
+ const sp=typeof sport!=="undefined"?sport:"nfl";
+ if(intent.matchedTeams&&intent.matchedTeams.length){
+  if(!intent.matchedTeams.includes(r.team)&&!intent.matchedTeams.includes(r.oa))return false;
+ }
+ if(intent.mktFilter&&!intent.mktFilter.test(r.market||""))return false;
+ const sr=getSpotRead(r,sp);
+ const v=sr?sr.verdict:"neutral";
+ if(intent.wantFake)return v==="fakeout";
+ if(intent.wantSnipe)return v==="snipe"||(sr&&sr.score>=76);
+ if(intent.wantCascade)return !!(r.wo&&r.wo.n>=2)||(r.u&&((r.u.min&&r.u.min.tr>0)||(r.u.sn&&r.u.sn.tr>0)));
+ if(intent.wantSafe)return (r.l10&&r.l10.n&&(r.l10.h/r.l10.n)>=0.70)&&v!=="fakeout";
+ return v==="execute"||v==="snipe"||(sr&&sr.score>=68);
+}
+
+function renderAskDecisionBrief(){
+ const fbar=document.getElementById("fbar");
+ const qIn=document.getElementById("q");
+ if(!fbar||!qIn)return;
+ // Ensure Quick Prompt Strip is mounted once below #fbar
+ if(!document.getElementById("bld-ask-strip")){
+  const strip=document.createElement("div");
+  strip.id="bld-ask-strip";
+  strip.className="bar";
+  strip.style.cssText="padding-top:0;padding-bottom:8px;gap:6px;align-items:center";
+  strip.innerHTML=`
+   <span class="bld-lbl" style="color:var(--acc,#53e3a6)">⚡ Ask / Script:</span>
+   <button type="button" class="bld-chip" data-ask-pill="Best confirmed spots tonight">🎯 Best Confirmed Spots</button>
+   <button type="button" class="bld-chip" data-ask-pill="What is the game script tonight?">📋 Tonight's Game Scripts</button>
+   <button type="button" class="bld-chip" data-ask-pill="Best off-market book snipes">⚡ Off-Market Snipes</button>
+   <button type="button" class="bld-chip" data-ask-pill="Who benefits from injury usage cascades?">🚑 Injury Usage Cascades</button>
+   <button type="button" class="bld-chip" data-ask-pill="Highest probability safe floors tonight">🛡️ Highest L10 Floor</button>
+   <button type="button" class="bld-chip" data-ask-pill="Which props are fake-out traps to avoid?">🚨 Fake-Out Traps</button>
+   <button type="button" class="bld-chip" onclick="if(window.SL&&SL.openIntel)SL.openIntel();else if(document.getElementById('qsearch-btn'))document.getElementById('qsearch-btn').click()" style="margin-left:auto;border-color:var(--acc2,#3fa9ff);color:var(--acc2,#3fa9ff)">⌘K Full Slate Command Bar</button>
+  `;
+  fbar.insertAdjacentElement("afterend",strip);
+ }
+ let box=document.getElementById("bld-ask-brief");
+ const rawQ=qIn.value.trim();
+ if(!rawQ){
+  if(box)box.remove();
+  return;
+ }
+ if(!box){
+  box=document.createElement("div");
+  box.id="bld-ask-brief";
+  box.style.cssText="margin:0 20px 12px;padding:12px 14px;background:linear-gradient(135deg,rgba(16,44,36,.52),var(--panel,#121826) 80%);border:1px solid rgba(83,227,166,.45);border-radius:12px";
+  const strip=document.getElementById("bld-ask-strip")||fbar;
+  strip.insertAdjacentElement("afterend",box);
+ }
+ const sp=typeof sport!=="undefined"?sport:"nfl";
+ const intent=parseAskIntent(rawQ);
+ const gList=(typeof GAMES!=="undefined"&&GAMES[sp])||[];
+ const matchedGames=intent&&intent.matchedTeams&&intent.matchedTeams.length
+  ?gList.filter(g=>intent.matchedTeams.includes(g.home)||intent.matchedTeams.includes(g.away))
+  :gList.filter(g=>g.game_script&&(rawQ.toLowerCase().includes((g.home||"").toLowerCase())||rawQ.toLowerCase().includes((g.away||"").toLowerCase())));
+ const scriptsToShow=(matchedGames.length?matchedGames:((intent&&intent.wantScript)?gList.slice(0,3):[])).map(g=>g.game_script).filter(Boolean).slice(0,3);
+
+ const topProps=(typeof rows!=="undefined"?rows:[]).slice().sort((a,b)=>{
+  const sa=getSpotRead(a,sp),sb=getSpotRead(b,sp);
+  return (sb?sb.score:50)-(sa?sa.score:50);
+ }).slice(0,4);
+
+ box.innerHTML=`
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+   <div>
+    <span style="font:800 11px/1 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.05em;color:#53e3a6">📋 Sports Labs Decision &amp; Game Script Intelligence</span>
+    <div style="font:800 15px/1.3 system-ui,sans-serif;margin-top:2px">Query: “${H(rawQ)}” · <span class="mut" style="font-size:12px;font-weight:600">${(typeof rows!=="undefined"?rows.length:0)} matching ${sp.toUpperCase()} plays</span></div>
+   </div>
+   <button type="button" class="bld-chip" onclick="document.getElementById('q').value='';document.getElementById('q').dispatchEvent(new Event('input',{bubbles:true}));if(typeof render==='function')render()">✕ Clear Query</button>
+  </div>
+  ${scriptsToShow.length?`<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:8px;margin-bottom:8px">
+   ${scriptsToShow.map(gs=>`<div style="background:rgba(11,15,23,.75);border:1px solid rgba(56,189,248,.35);border-radius:9px;padding:9px 11px;font-size:11.5px">
+    <div style="font-weight:800;color:#38bdf8;margin-bottom:3px">📋 ${H(gs.headline||gs.matchup)}</div>
+    <div class="mut" style="margin-bottom:4px">${H(gs.pace_tempo||"")}</div>
+    ${(gs.flow||[]).map(f=>`<div style="padding:1.5px 0"><b>${H(f.phase)}:</b> ${H(f.text)}</div>`).join("")}
+    <div style="margin-top:4px;padding-top:4px;border-top:1px dashed rgba(255,255,255,.1);color:#53e3a6"><b>🎯 Script Verdict:</b> ${H(gs.verdict||"")}</div>
+   </div>`).join("")}
+  </div>`:""}
+  ${topProps.length?`<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(265px,1fr));gap:8px">
+   ${topProps.map(r=>{
+    const sr=getSpotRead(r,sp);
+    const th=r.execution_thesis||{};
+    const q=typeof ppLeg==="function"?ppLeg(r,sp):null;
+    const px=q&&q.best!=null?q.best:r.ov;
+    const bk=q&&q.book?q.book:"Book A";
+    return `<div style="background:rgba(11,15,23,.72);border:1px solid var(--line,#243049);border-radius:9px;padding:8px 10px;cursor:pointer" data-ask-prop="${H(r.aid)}|${H(r.market)}">
+     <div style="display:flex;justify-content:space-between;align-items:center;gap:6px">
+      <b>${H(r.player)} <span class="mut" style="font-weight:500">(${H(r.team)} vs ${H(r.oa)})</span></b>
+      ${spotBadgeCompactHtml(r,sp,true)}
+     </div>
+     <div style="font-size:12px;margin-top:3px"><b>${H(r.market)} o${r.line}</b> · <span class="up">${px!=null?(px>0?"+"+px:px):"—"} (${H(bk)})</span> · L10: <b>${r.l10?r.l10.h+"/"+r.l10.n:"—"}</b></div>
+     <div class="mut" style="font-size:11px;margin-top:3px;line-height:1.35">${H(th.why_edge||(sr&&sr.reasons&&sr.reasons[0])||"")}</div>
+    </div>`;
+   }).join("")}
+  </div>`:""}
+ `;
+}
+
+// Hook filtered() so Cheatsheet filters & Natural-Language Ask Queries apply cleanly
 function hookFiltered(){
  if(typeof window.filtered!=="function"||window.filtered.__bld)return;
  const orig=window.filtered;
  window.filtered=function(){
-  const base=orig.apply(this,arguments);
+  const qEl=document.getElementById("q");
+  const rawQ=qEl?qEl.value:"";
+  const intent=parseAskIntent(rawQ);
+  let base;
+  if(intent&&intent.isNL&&qEl){
+   qEl.value="";
+   try{base=orig.apply(this,arguments)}finally{qEl.value=rawQ}
+   base=base.filter(r=>matchesAskIntent(r,intent));
+  }else{
+   base=orig.apply(this,arguments);
+  }
   return base.filter(passesDeepFilters);
  };
  window.filtered.__bld=1;
@@ -970,12 +1144,29 @@ document.addEventListener("click",e=>{
  if(bfC){e.stopPropagation();STATE.bookFlt=bfC.dataset.csBflt;const b=document.getElementById("bld-cs-bar");if(b)b.remove();if(typeof render==="function")render();return}
  const cpC=e.target.closest("[data-cs-copywl]");if(cpC){e.stopPropagation();copyWatchlistSlip();return}
  const trC=e.target.closest("[data-cs-tour]");if(trC){e.stopPropagation();showQuickTour();return}
+ const askPill=e.target.closest("[data-ask-pill]");
+ if(askPill){
+  e.stopPropagation();
+  const qIn=document.getElementById("q");
+  if(qIn){qIn.value=askPill.dataset.askPill;if(typeof render==="function")render();renderAskDecisionBrief()}
+  return;
+ }
+ const askProp=e.target.closest("[data-ask-prop]");
+ if(askProp){
+  e.stopPropagation();
+  const [aid,mkt]=askProp.dataset.askProp.split("|");
+  const sp=typeof sport!=="undefined"?sport:"nfl";
+  const r=(typeof DATA!=="undefined"&&DATA[sp]||[]).find(x=>String(x.aid)===String(aid)&&x.market===mkt);
+  if(r&&typeof drawer==="function")drawer(r);
+  return;
+ }
  const wtC=e.target.closest("[data-cs-watch]");
  if(wtC){e.stopPropagation();STATE.onlyWatch=!STATE.onlyWatch;const b=document.getElementById("bld-cs-bar");if(b)b.remove();updateWatchFloat();if(typeof render==="function")render();return}
 },true);
 
 function runAll(){
  patchSpanChart();
+ renderAskDecisionBrief();
  hookFiltered();
  updateWatchFloat();
  mountDrawerDeep();

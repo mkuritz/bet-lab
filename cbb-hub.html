@@ -50,7 +50,7 @@ tr:hover td{background:var(--panel2)}
 @media(min-width:1200px){.w{max-width:1480px;padding:20px 28px}.grid{grid-template-columns:repeat(auto-fill,minmax(370px,1fr));gap:14px}}
 </style>
 <link rel="stylesheet" href="nav.css">
-<script src="https://sportslabshq.com/sl/sl.js?v=9" defer></script>
+<script src="https://sportslabshq.com/sl/sl.js?v=10" defer></script>
 <script src="sl-neutral.js" defer></script>
 </head>
 <body>
@@ -164,6 +164,11 @@ function render(){
           <div style="background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:7px;font-size:11.5px">
             ${u.triggers.map(tr=>`<div style="padding:1.5px 0">• ${E(tr)}</div>`).join("")}
           </div>
+          ${u.game_script?`<div style="background:rgba(11,15,23,.72);border:1px solid rgba(83,227,166,.3);border-radius:8px;padding:7px 9px;font-size:11.5px;display:flex;flex-direction:column;gap:3px">
+            <div style="font-weight:800;color:#53e3a6;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em">📋 The Game Script · We Deliver The Script</div>
+            ${(u.game_script.flow||[]).map(f=>`<div><b style="color:#3fa9ff">${E(f.phase)}:</b> ${E(f.text)}</div>`).join("")}
+            <div style="padding-top:3px;border-top:1px dashed rgba(255,255,255,.1);color:#53e3a6"><b>🎯 Script Verdict:</b> ${E(u.game_script.verdict||"")}</div>
+          </div>`:""}
           ${u.dog_star?`<div class="mut" style="font-size:11.5px;display:flex;justify-content:space-between"><span>🔑 Catalyst: <b>${E(u.dog_star.n)}</b> (${u.dog_star.pts} PPG · ${u.dog_star.usg}% USG)</span><span>Tempo: ${u.pace} poss</span></div>`:""}
         </div>`;
       }).join("")}</div>`;
@@ -188,7 +193,7 @@ function render(){
     const H=(D.prop_hurdles||[]).filter(h=>(!F.conf||h.conf===F.conf)&&(!F.hcat||h.cat===F.hcat)&&(!q||(h.n+" "+h.team+" "+h.hurdle).toLowerCase().includes(q)));
     out.innerHTML=ctlBar(`<div class="pills">${[["","All Hurdles"],["PTS","🏀 10+/15+ PTS"],["REB","💪 6+ REB"],["AST","🎯 4+ AST"],["PRA","⚡ 22+ PRA"],["3PM","🏹 2+ 3PM"]].map(x=>`<button type="button" data-hcat="${x[0]}" class="${F.hcat===x[0]?"on":""}">${x[1]}</button>`).join("")}</div>`)
       +`<div class="card" style="padding:0"><div class="tw"><table>
-        <thead><tr><th class="l-al">#</th><th class="l-al">Player</th><th>Class · Origin</th><th class="l-al">Team</th><th>Proj MIN (Share)</th><th>USG%</th><th>Rolling Hurdle</th><th>Proj</th><th>Hit Prob (Fair)</th><th>Est L10 / Prior</th><th>Full P/R/A</th></tr></thead>
+        <thead><tr><th class="l-al">#</th><th class="l-al">Player</th><th>Class · Origin</th><th class="l-al">Team</th><th>Proj MIN (Share)</th><th>USG%</th><th>Rolling Hurdle</th><th>Proj</th><th>Hit Prob (Fair)</th><th>Est L10 / Prior</th><th>Full P/R/A</th><th class="l-al">5-Pillar Execution Thesis</th></tr></thead>
         <tbody>${H.map((h,i)=>`<tr>
           <td class="l-al">${i+1}</td>
           <td class="l-al"><b>${E(h.n)}</b>${h.nba_tier?` <span class="badge snipe">🏀 ${E(h.nba_tier)}</span>`:""}</td>
@@ -200,7 +205,7 @@ function render(){
           <td class="up"><b>${h.proj}</b></td>
           <td class="up"><b>${Math.round(h.p_hit*100)}%</b> <span class="mut">(${am(h.fair_odds)})</span></td>
           <td><b>${E(h.l10_est)}</b> · <span class="mut">${E(h.szn_est)}</span></td>
-          <td>${h.proj_pts} / ${h.proj_reb} / ${h.proj_ast}</td>
+          <td>${h.proj_pts} / ${h.proj_reb} / ${h.proj_ast}</td><td class="l-al" style="font-size:11.5px;color:#cbd5e1;white-space:normal;min-width:240px">${E(h.execution_thesis||"")}</td>
         </tr>`).join("")}</tbody></table></div></div>`;
   }
   else if(TAB==="class"){

@@ -54,7 +54,7 @@ const css=`
 #qsearch-btn{position:fixed;right:14px;bottom:48px;z-index:90;background:rgba(15,23,42,.94);border:1px solid var(--acc,#53e3a6);color:#ecfdf5;border-radius:99px;padding:6px 12px;font:800 11.5px/1 system-ui,sans-serif;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.5);display:flex;align-items:center;gap:5px}
 #qsearch-mod{position:fixed;inset:0;z-index:9998;background:rgba(8,12,22,.82);backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;padding:56px 14px 20px}
 #qsearch-mod.open{display:flex}
-#qsearch-box{width:100%;max-width:560px;background:var(--panel,#121829);border:1px solid var(--line,#26304f);border-radius:14px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.6)}
+#qsearch-box{width:100%;max-width:740px;background:var(--panel,#121829);border:1px solid var(--line,#26304f);border-radius:14px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.6)}
 #qsearch-in{width:100%;box-sizing:border-box;background:var(--panel2,#182033);border:0;border-bottom:1px solid var(--line,#26304f);color:var(--txt,#e8eefc);padding:13px 16px;font:600 15px/1.3 system-ui,sans-serif;outline:none}
 #qsearch-res{max-height:62vh;overflow-y:auto;padding:6px 0}
 .qs-row{padding:8px 16px;display:flex;justify-content:space-between;align-items:center;gap:8px;cursor:pointer;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px}
@@ -687,36 +687,146 @@ function openTailModal(canvas,filename){
  m.classList.add("open");
 }
 
-// ---- 8. Floating 🔍 / Cmd+K Quick Player Search ----
+// ---- 8. Floating ⚡ / Cmd+K Ask & Search The Slate · Game Script Command Center ----
+let GOLDEN_CACHE=null,SCRIPTS_CACHE=null;
 function initQuickSearch(){
  if(document.getElementById("qsearch-btn"))return;
  const btn=document.createElement("button");btn.id="qsearch-btn";btn.type="button";
- btn.innerHTML=`🔍 Quick Search <small style="opacity:.7">⌘K</small>`;
+ btn.innerHTML=`⚡ Ask &amp; Search · Script <small style="opacity:.7">⌘K</small>`;
  document.body.appendChild(btn);
  const mod=document.createElement("div");mod.id="qsearch-mod";
- mod.innerHTML=`<div id="qsearch-box"><input id="qsearch-in" placeholder="Jump to any player across NFL, NBA, NHL, MLB, Soccer…"><div id="qsearch-res"></div></div>`;
+ mod.innerHTML=`<div id="qsearch-box">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 16px;background:linear-gradient(90deg,#0f172a,#1e293b);border-bottom:1px solid var(--line,#26304f)">
+   <div><b style="color:#53e3a6;font-size:13px">⚡ Sports Labs Ask &amp; Search · We Deliver The Script</b><div class="mut" style="font-size:11px">Search any player, matchup, or ask for Game Scripts, Confirmed Spots, Snipes &amp; Injury Cascades</div></div>
+   <button type="button" id="qsearch-x" style="background:none;border:0;color:var(--mut);font-size:18px;cursor:pointer">✕</button>
+  </div>
+  <input id="qsearch-in" placeholder="Ask or search: 'game script', 'best confirmed spots', 'injury cascades', 'CBB upsets', or any player/team…">
+  <div id="qsearch-pills" style="display:flex;gap:5px;flex-wrap:wrap;padding:8px 14px;background:var(--panel,#121829);border-bottom:1px solid var(--line,#26304f)">
+   <button type="button" class="p-pill" data-qsp="best confirmed spots tonight">🎯 Best Confirmed Spots</button>
+   <button type="button" class="p-pill" data-qsp="game script">📋 Tonight's Game Scripts</button>
+   <button type="button" class="p-pill" data-qsp="off-market book snipes">⚡ Off-Market Snipes</button>
+   <button type="button" class="p-pill" data-qsp="injury usage cascades">🚑 Injury Usage Cascades</button>
+   <button type="button" class="p-pill" data-qsp="cbb upset alerts">🚨 CBB Upset Radar</button>
+   <button type="button" class="p-pill" data-qsp="nhl shots on goal">🏒 NHL Shots on Goal</button>
+  </div>
+  <div id="qsearch-res" style="padding:10px 14px"></div>
+ </div>`;
  document.body.appendChild(mod);
  const inp=document.getElementById("qsearch-in"),res=document.getElementById("qsearch-res");
- const openSearch=async()=>{
-  mod.classList.add("open");inp.value="";inp.focus();
-  if(!PIDX)PIDX=await fetch("data/player_index.json?v="+Date.now()).then(r=>r.ok?r.json():null).catch(()=>({p:[]}));
-  renderResults("");
+ document.getElementById("qsearch-x").onclick=()=>mod.classList.remove("open");
+ mod.querySelectorAll("[data-qsp]").forEach(b=>b.onclick=()=>{inp.value=b.dataset.qsp;renderResults(inp.value)});
+
+ const openSearch=async(prefQ)=>{
+  mod.classList.add("open");
+  if(typeof prefQ==="string")inp.value=prefQ;else inp.value="";
+  inp.focus();
+  if(!GOLDEN_CACHE){
+   GOLDEN_CACHE=await fetch("data/golden_source.json?v="+Math.floor(Date.now()/18e4)).then(r=>r.ok?r.json():null).catch(()=>null);
+  }
+  renderResults(inp.value);
  };
+ window.BLOpenIntel=openSearch;
+
  const renderResults=q=>{
   q=q.trim().toLowerCase();
-  const hits=[];
-  for(const [sp] of (typeof SPORTS!=="undefined"?SPORTS:[])){
-   const arr=(typeof DATA!=="undefined"&&DATA[sp])||(typeof RAW!=="undefined"&&RAW[sp])||[];
-   for(const r of arr){
-    if(!q||(r.player+" "+r.team+" "+r.market).toLowerCase().includes(q)){
-     hits.push({sp,r});if(hits.length>=30)break;
+  const curSp=typeof sport!=="undefined"?sport:"nfl";
+  const wantScript=/script|matchup|flow|pace|how.*play/i.test(q);
+  const wantSnipe=/snipe|off-market|off market|book/i.test(q);
+  const wantCascade=/injur|cascade|without|out|usage/i.test(q);
+  const wantCbb=/cbb|college basketball|upset|torvik/i.test(q);
+  const spMatch=(q.match(/\b(nfl|nba|nhl|mlb|cfb|soccer|cbb|ncaamb)\b/)||[])[1];
+  const targetSp=spMatch==="cbb"?"ncaamb":(spMatch||null);
+
+  // 1. Collect matching Game Scripts
+  const allScripts=[];
+  const gsMap=(GOLDEN_CACHE&&GOLDEN_CACHE.game_scripts)||{};
+  const spOrder=targetSp?[targetSp]:[curSp,...["nba","nfl","nhl","ncaamb","cfb","soccer","mlb"].filter(x=>x!==curSp)];
+  for(const sKey of spOrder){
+   for(const gs of (gsMap[sKey]||[])){
+    const hay=`${gs.matchup} ${gs.headline} ${gs.pace_tempo} ${gs.verdict} ${sKey}`.toLowerCase();
+    if(!q||wantScript||hay.includes(q)||q.split(/\s+/).some(w=>w.length>=3&&hay.includes(w))){
+     allScripts.push(gs);
+     if(allScripts.length>=4)break;
     }
    }
-   if(hits.length>=30)break;
+   if(allScripts.length>=4)break;
   }
-  res.innerHTML=hits.map((h,i)=>`<div class="qs-row" data-qsi="${i}"><div><b>${H(h.r.player)}</b> <span class="pos">${h.sp.toUpperCase()} · ${H(h.r.team)} ${H(h.r.opp||"")}</span><div class="mut" style="font-size:11.5px">${H(h.r.market)} o${h.r.line}${h.r.wo?` · 🚑 w/o ${H(h.r.wo.tm_out.split(" ").pop())} ${h.r.wo.h}/${h.r.wo.n}`:""}</div></div><div style="text-align:right"><b class="up">${h.r.l10?Math.round(h.r.l10.h/h.r.l10.n*100)+"% L10":"—"}</b></div></div>`).join("")||`<div class="mut" style="padding:14px 16px">No matching props found.</div>`;
+
+  // 2. Collect matching Props across all sports
+  const hits=[];
+  for(const [sp] of (typeof SPORTS!=="undefined"?SPORTS:[])){
+   if(targetSp&&sp!==targetSp)continue;
+   const arr=(typeof DATA!=="undefined"&&DATA[sp])||(typeof RAW!=="undefined"&&RAW[sp])||[];
+   for(const r of arr){
+    const sr=r.spot||{};
+    const th=r.execution_thesis||{};
+    if(wantSnipe&&sr.verdict!=="snipe")continue;
+    if(wantCascade&&!(r.wo&&r.wo.n>=2))continue;
+    if(/confirmed spot|best.*spot/i.test(q)&&sr.verdict!=="execute"&&sr.verdict!=="snipe")continue;
+    const hay=`${r.player} ${r.team} ${r.opp||""} ${r.market} ${sp} ${sr.badge||""} ${th.summary||""}`.toLowerCase();
+    const match=!q||wantSnipe||wantCascade||wantScript||/confirmed spot|best.*spot|shots on goal/i.test(q)?(
+     /shots on goal/i.test(q)?r.market==="Shots on Goal":true
+    ):hay.includes(q);
+    if(match){
+     hits.push({sp,r,score:sr.score||55});
+    }
+   }
+  }
+  hits.sort((a,b)=>b.score-a.score);
+  const topHits=hits.slice(0,18);
+
+  // 3. Collect CBB Upset Alerts if relevant
+  const cbbUpsets=(wantCbb&&GOLDEN_CACHE&&GOLDEN_CACHE.cbb_upset_radar)?GOLDEN_CACHE.cbb_upset_radar.slice(0,4):[];
+
+  let html="";
+  if(allScripts.length&&(wantScript||q.length>=2||!q)){
+   html+=`<div style="margin-bottom:10px">
+    <div style="font:800 10.5px/1 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.05em;color:#38bdf8;margin-bottom:6px">📋 The Game Script · We Deliver The Script (${allScripts.length} Matchups)</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:8px">
+     ${allScripts.slice(0,wantScript?4:2).map(gs=>`<div style="background:rgba(15,23,42,.85);border:1px solid rgba(56,189,248,.35);border-radius:10px;padding:9px 11px;font-size:11.5px">
+      <div style="font-weight:800;color:#38bdf8;margin-bottom:3px">[${H((gs.sport||"").toUpperCase())}] ${H(gs.headline||gs.matchup)}</div>
+      <div class="mut" style="margin-bottom:4px;font-size:11px">${H(gs.pace_tempo||"")}</div>
+      ${(gs.flow||[]).map(f=>`<div style="padding:1.5px 0"><b>${H(f.phase)}:</b> ${H(f.text)}</div>`).join("")}
+      <div style="margin-top:4px;padding-top:4px;border-top:1px dashed rgba(255,255,255,.1);color:#53e3a6"><b>🎯 Script Verdict:</b> ${H(gs.verdict||"")}</div>
+     </div>`).join("")}
+    </div>
+   </div>`;
+  }
+  if(cbbUpsets.length){
+   html+=`<div style="margin-bottom:10px">
+    <div style="font:800 10.5px/1 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.05em;color:#ff5d6c;margin-bottom:6px">🚨 CBB Calculated Upset Radar · Ratings: barttorvik.com</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px">
+     ${cbbUpsets.map(u=>`<div style="background:rgba(15,23,42,.85);border:1px solid rgba(255,93,108,.4);border-radius:10px;padding:8px 10px;font-size:11.5px">
+      <div style="display:flex;justify-content:space-between"><b>${H(u.dog)} vs ${H(u.fav)}</b><b class="up">${Math.round((u.dog_win_prob||0.35)*100)}% Win (${H(u.sl_spread_dog)})</b></div>
+      <div class="mut" style="font-size:11px;margin-top:3px">${H((u.triggers||[])[0]||"")}</div>
+     </div>`).join("")}
+    </div>
+   </div>`;
+  }
+  html+=`<div style="font:800 10.5px/1 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.05em;color:#53e3a6;margin-bottom:6px">🎯 5-Pillar Golden-Source Execution Spots (${topHits.length})</div>`;
+  html+=topHits.map((h,i)=>{
+   const sr=h.r.spot||{};
+   const th=h.r.execution_thesis||{};
+   return `<div class="qs-row" data-qsi="${i}" style="border-radius:8px;margin-bottom:4px;background:rgba(24,32,51,.65)">
+    <div style="flex:1;min-width:0">
+     <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+      <b>${H(h.r.player)}</b>
+      <span class="pos">${h.sp.toUpperCase()} · ${H(h.r.team)} ${H(h.r.opp||"")}</span>
+      ${sr.badge?`<span style="font-size:10px;font-weight:800;padding:1px 6px;border-radius:6px;background:rgba(83,227,166,.14);color:#53e3a6">${H(sr.badge)}</span>`:""}
+     </div>
+     <div style="font-size:12px;margin-top:2px"><b>${H(h.r.market)} o${h.r.line}</b>${h.r.wo?` · <span style="color:#fbbf24">🚑 w/o ${H(h.r.wo.tm_out.split(" ").pop())} ${h.r.wo.hits||h.r.wo.h}/${h.r.wo.n}</span>`:""}</div>
+     ${th.why_edge?`<div class="mut" style="font-size:11px;margin-top:2px;white-space:normal">${H(th.why_edge)} ${H(th.target_execution||"")}</div>`:""}
+    </div>
+    <div style="text-align:right;white-space:nowrap">
+     <b class="up">${h.r.l10?Math.round(h.r.l10.h/h.r.l10.n*100)+"% L10":"—"}</b>
+     <div class="mut" style="font-size:10.5px">Score ${sr.score||"—"}/99</div>
+    </div>
+   </div>`;
+  }).join("")||`<div class="mut" style="padding:14px 16px">No matching spots found. Try a team, player, or quick-prompt chip above.</div>`;
+
+  res.innerHTML=html;
   res.querySelectorAll(".qs-row").forEach(el=>el.onclick=async()=>{
-   const h=hits[+el.dataset.qsi];if(!h)return;
+   const h=topHits[+el.dataset.qsi];if(!h)return;
    mod.classList.remove("open");
    if(typeof sport!=="undefined"&&sport!==h.sp){sport=h.sp;if(typeof ensure==="function")await ensure(h.sp);if(typeof fillFilters==="function")fillFilters();if(typeof render==="function")render()}
    const full=(typeof DATA!=="undefined"&&DATA[h.sp]||[]).find(x=>x.aid===h.r.aid&&x.market===h.r.market)||h.r;
@@ -724,10 +834,10 @@ function initQuickSearch(){
   });
  };
  inp.oninput=()=>renderResults(inp.value);
- btn.onclick=openSearch;
+ btn.onclick=()=>openSearch("");
  mod.onclick=e=>{if(e.target===mod)mod.classList.remove("open")};
  document.addEventListener("keydown",e=>{
-  if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"){e.preventDefault();openSearch()}
+  if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"){e.preventDefault();openSearch("")}
   else if(e.key==="Escape")mod.classList.remove("open");
  });
 }
