@@ -982,7 +982,7 @@ function pickDistinct(pool,n,used,{sameGame=false}={}){const legs=[],pl=new Set(
  return legs.length==n?legs:null}
 function buildRecs(d){
  const G=(GAMES[sport]||[]).filter(g=>sport!="soccer"||!LG||g.lg==LG),gmap=Object.fromEntries(G.map(g=>[g.id,g]));
- const ok=r=>r.l10&&r.l10.n>=(r.pos=="QB"?4:6)&&r.market!="Passing Interceptions"&&(sport!="nfl"||OFF.has(r.pos))&&(sport!="soccer"||r.pos!="GK"||r.market=="Saves");
+ const ok=r=>r.l10&&r.l10.n>=(r.pos=="QB"?4:6)&&r.market!="Passing Interceptions"&&r.market!="Turnovers"&&(!r.spot||r.spot.verdict!="fakeout")&&(sport!="nfl"||OFF.has(r.pos))&&(sport!="soccer"||r.pos!="GK"||r.market=="Saves");
  const P=d.filter(ok),out=[],used=new Map();
  const take=b=>{if(!b)return;b.legs.forEach(r=>used.set(legKey(r),(used.get(legKey(r))||0)+1));out.push(b)};
  const MSW=r=>.8+.4*(r.ms??.5),sorted=(f,k=r=>rate(r.l10))=>P.filter(f).sort((a,b)=>k(b)*MSW(b)-k(a)*MSW(a)||b.l10.n-a.l10.n);/* mainstream factor: big leagues, big clubs, stars, mainstream markets first */
@@ -1022,6 +1022,17 @@ function buildRecs(d){
   // grinder low hurdles
   series("Grinder low hurdles","🧱",sorted(r=>tag(r)=="Grinder"&&r.line<=2.5&&r.market!="Anytime TD"&&rate(r.l10)>=.8),3,3,
    (l,i)=>`Low-total games, low bars #${i+1}`,l=>`Grinder-tier totals favor small, steady lines. `+l.map(r=>`${legWhy(r)} (O/U ${r.gs?.tot})`).join("; ")+".");
+ }
+ if(sport=="nba"){
+  const medOk=r=>{const vs=(r.games||[]).slice(0,10).map(x=>x.v).filter(v=>v!=null).sort((a,b)=>a-b);if(!vs.length)return false;const m=Math.floor(vs.length/2),med=vs.length%2?vs[m]:(vs[m-1]+vs[m])/2;const l5m=r.u?.min?.l5||0,sznm=r.u?.min?.szn||l5m;return med>r.line&&l5m>=22&&l5m>=sznm-2};
+  for(const g of G){for(const side of[g.home,g.away]){if(out.filter(b=>b.theme=="Complementary SGP stack").length>=5)break;
+   const ast=sorted(r=>r.game==g.id&&r.team==side&&r.market=="Assists"&&rate(r.l10)>=.6&&medOk(r)&&Math.abs(r.gs?.sp||0)<=11.5)[0];
+   const scr=sorted(r=>r.game==g.id&&r.team==side&&r.aid!=(ast&&ast.aid)&&MK("Points","3-Point Field Goals")(r)&&rate(r.l10)>=.6&&medOk(r))[0];
+   const reb=sorted(r=>r.game==g.id&&r.team==side&&r.aid!=(ast&&ast.aid)&&r.aid!=(scr&&scr.aid)&&r.market=="Rebounds"&&rate(r.l10)>=.6&&medOk(r))[0];
+   const pair=ast&&scr?[ast,scr]:(scr&&reb?[scr,reb]:null);
+   if(pair)take(mkBundle("Complementary SGP stack","🏀",pair,`${side} complementary duo (${g.away} @ ${g.home})`,`Positive correlation without same-stat cannibalization (${ctx(pair[0])}): ${legWhy(pair[0])}; ${legWhy(pair[1])}.`,{corr:true}))}}
+  series("High-minute floor overs","⏱️",sorted(r=>MK("Points","Rebounds","Assists","3-Point Field Goals","Points, Rebounds, and Assists")(r)&&rate(r.l10)>=.7&&medOk(r)),2,4,
+   (l,i)=>`Verified NBA workload & median floor #${i+1}`,l=>l.map(r=>`${legWhy(r)} (${r.u?.min?.l5||"—"} MPG L5)`).join("; ")+".");
  }
  if(sport=="nhl"){
   const hi=r=>r.gs&&(tag(r)=="Shootout"||r.gs.tot>=6.5);
@@ -1083,4 +1094,4 @@ function recsSection(d){const all=buildRecs(d),themes=[...new Set(all.map(b=>b.t
  <button data-bundle="${i}" style="background:var(--acc);color:#06210f;border:0;border-radius:8px;padding:7px;font-weight:800;cursor:pointer">Load into slip</button></div>`).join("")}</div>`:'<div class="mut" style="padding:8px">No bundles qualify with the current filters/sport.</div>'}</div>`}
 document.addEventListener("click",e=>{const b=e.target.closest("[data-th]");if(!b)return;THEME=b.dataset.th;localStorage.setItem(LS+"theme",THEME);render()});
 </script>
-<script src="https://sportslabshq.com/js/leads-config.js"></script><script src="https://sportslabshq.com/js/leads.js" data-product="Bet Lab" data-float="1"></script><script src="bbpx.js?v=2"></script><script src="cbblines.js?v=1"></script><script src="sl-sports.js"></script><script src="nav.js?v=nc1"></script><script src="nbashot.js?v=2"></script><script src="nbaproj.js?v=2"></script><script src="liveslips.js?v=2" defer></script><script src="live2.js?v=2"></script><script src="tailcard.js?v=1"></script><script src="pro-ui.js?v=6"></script><script src="pro-deep.js?v=1"></script></body></html>
+<script src="https://sportslabshq.com/js/leads-config.js"></script><script src="https://sportslabshq.com/js/leads.js" data-product="Bet Lab" data-float="1"></script><script src="bbpx.js?v=2"></script><script src="cbblines.js?v=1"></script><script src="sl-sports.js"></script><script src="nav.js?v=nc1"></script><script src="nbashot.js?v=2"></script><script src="nbaproj.js?v=2"></script><script src="liveslips.js?v=2" defer></script><script src="live2.js?v=2"></script><script src="tailcard.js?v=1"></script><script src="pro-ui.js?v=7"></script><script src="pro-deep.js?v=2"></script></body></html>

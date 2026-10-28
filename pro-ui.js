@@ -796,12 +796,30 @@ function openSgpMatrixModal(prefGameId){
   }
   // Find top 3-leg (or 2-leg) positively correlated SGP stack in gObj
   let bestStack=null,bestScore=-999;
+  const validSgpCombo=arr=>{
+   const aids=new Set(arr.map(x=>x.r.aid));
+   if(aids.size<arr.length)return false;
+   if(sp==="nba"){
+    const byTm={};
+    for(const x of arr){
+     const tm=x.r.team||"";
+     (byTm[tm]=byTm[tm]||[]).push(x.r.market||"");
+    }
+    for(const mkts of Object.values(byTm)){
+     const rebN=mkts.filter(m=>/Rebound/i.test(m)&&!/Points/i.test(m)).length;
+     const astN=mkts.filter(m=>/Assist/i.test(m)&&!/Points/i.test(m)).length;
+     if(rebN>=2||astN>=2||new Set(mkts).size<mkts.length)return false;
+    }
+   }
+   return true;
+  };
   const candPool=legs.slice(0,6);
   if(candPool.length>=3){
    for(let a=0;a<candPool.length;a++){
     for(let b=a+1;b<candPool.length;b++){
      for(let c=b+1;c<candPool.length;c++){
       const trio=[{s:sp,r:candPool[a],k:candPool[a].aid+"|"+candPool[a].market},{s:sp,r:candPool[b],k:candPool[b].aid+"|"+candPool[b].market},{s:sp,r:candPool[c],k:candPool[c].aid+"|"+candPool[c].market}];
+      if(!validSgpCombo(trio))continue;
       const cp=copulaJointProb(trio);
       if(cp&&cp.rhoAvg>0){
        const sc=cp.pCop*(1+cp.rhoAvg*1.8);
@@ -815,6 +833,7 @@ function openSgpMatrixModal(prefGameId){
    for(let a=0;a<candPool.length;a++){
     for(let b=a+1;b<candPool.length;b++){
      const pair=[{s:sp,r:candPool[a],k:candPool[a].aid+"|"+candPool[a].market},{s:sp,r:candPool[b],k:candPool[b].aid+"|"+candPool[b].market}];
+     if(!validSgpCombo(pair))continue;
      const cp=copulaJointProb(pair);
      const sc=(cp?cp.pCop:0.25)*(1+Math.max(0,cp?cp.rhoAvg:0)*1.8);
      if(sc>bestScore){bestScore=sc;bestStack={legs:pair,hdrs:[hdrs[a].short,hdrs[b].short],cp}}

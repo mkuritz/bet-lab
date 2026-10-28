@@ -53,6 +53,19 @@ const css=`
 .bld-sit-btn.on{background:rgba(63,169,255,.16);border-color:var(--acc2,#3fa9ff);color:var(--txt,#e6ebf5)}
 .bld-tour-bg{position:fixed;inset:0;background:rgba(5,9,18,.78);z-index:220;display:flex;align-items:center;justify-content:center;padding:16px}
 .bld-tour-card{max-width:540px;width:100%;background:var(--panel,#121826);border:1px solid var(--acc2,#3fa9ff);border-radius:14px;padding:18px 20px;box-shadow:0 18px 50px rgba(0,0,0,.65)}
+.bld-spot{display:inline-flex;align-items:center;gap:3px;font:800 10px/1.25 system-ui,sans-serif;padding:2px 6px;border-radius:6px;margin-left:5px;vertical-align:middle;white-space:nowrap}
+.bld-spot.execute{background:rgba(83,227,166,.15);color:#53e3a6;border:1px solid rgba(83,227,166,.4)}
+.bld-spot.snipe{background:rgba(56,189,248,.16);color:#38bdf8;border:1px solid rgba(56,189,248,.45)}
+.bld-spot.hold{background:rgba(245,196,81,.15);color:#f5c451;border:1px solid rgba(245,196,81,.4)}
+.bld-spot.fakeout{background:rgba(255,93,108,.15);color:#ff5d6c;border:1px solid rgba(255,93,108,.45)}
+.bld-spot.neutral{background:rgba(139,151,176,.1);color:#8b97b0;border:1px solid rgba(139,151,176,.25)}
+.bld-spcard{margin-top:12px;padding:12px 13px;background:linear-gradient(135deg,rgba(18,24,38,.98),rgba(24,32,51,.95));border:1px solid var(--line,#243049);border-radius:11px}
+.bld-spcard.execute{border-color:rgba(83,227,166,.5)}
+.bld-spcard.snipe{border-color:rgba(56,189,248,.55)}
+.bld-spcard.fakeout{border-color:rgba(255,93,108,.55)}
+.bld-spcard.hold{border-color:rgba(245,196,81,.5)}
+.bld-chk-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:4px 0;border-top:1px solid rgba(255,255,255,.05);font-size:11.5px}
+.bld-chk-row:first-of-type{border-top:0}
 .bld-tour-step{padding:8px 10px;margin:6px 0;background:var(--panel2,#182033);border:1px solid var(--line,#243049);border-radius:9px;font-size:12.5px;line-height:1.45}
 `;
 const stEl=document.createElement("style");stEl.textContent=css;document.head.appendChild(stEl);
@@ -204,15 +217,143 @@ function multiBookCellHtml(r,sp){
 const STATE={
  avgMode:"avg",      // "avg" | "med"
  dvpWin:"szn",       // "szn" | "l10" | "l5"
+ spotFlt:"all",      // "all" | "confirmed" | "snipe" | "nofake" | "fakeout"
  matchFlt:"all",     // "all" | "soft" | "top5" | "tough"
  bookFlt:"all",      // "all" | "plus" | "edge" | "moved" | "wo" | "usage"
  onlyWatch:false,
  chartOverlay:true
 };
 
+// ---- 5A. Strategic & Tactical Spot vs. Fake-Out Client-Side Read ----
+function getSpotRead(r,sp){
+ sp=sp||(typeof sport!=="undefined"?sport:"nfl");
+ if(r&&r.spot&&r.spot.verdict){
+  if(r.spot.checks&&r.spot.checks.length>=5)return r.spot;
+ }
+ // Fallback / live client-side evaluation across all 5 signals
+ const med10=getMedianForWindow(r,"l10");
+ const mean10=r.l10&&r.l10.avg!=null?+r.l10.avg:(r.avg!=null?+r.avg:null);
+ const h10=r.l10?r.l10.h:0,n10=r.l10?r.l10.n:0,hr10=n10?h10/n10:null;
+ const line=+r.line||0.5;
+ const yes=/Anytime TD|Anytime Goal|2\+ TDs/i.test(r.market||"");
+ const q=typeof ppLeg==="function"?ppLeg(r,sp):null;
+ const bestPx=q&&q.best!=null?q.best:r.ov;
+ const bestBk=(q&&q.book?q.book:"Book A").replace(/^DraftKings$/i,"Book A").replace(/^FanDuel$/i,"Book B").replace(/^BetMGM$/i,"Book C").replace(/^Caesars$/i,"Book D");
+ const nv=q&&q.nv!=null?q.nv:(bestPx!=null?(bestPx>0?100/(bestPx+100):-bestPx/(-bestPx+100))/1.045:0.5);
+ const dS=getOppWindowRank(sp,r,"szn"),d5=getOppWindowRank(sp,r,"l5");
+ let score=52,trap=null;
+ const reasons=[],checks=[];
+ // 1. Opportunity Floor
+ let oppSt="pass",oppVal="Stable role";
+ if((sp==="nba"||sp==="ncaamb")&&r.u&&r.u.min){
+  const l5m=+r.u.min.l5||0,sznm=+r.u.min.szn||l5m;
+  if(l5m>=25&&l5m>=sznm+1){score+=8;oppVal=`${l5m} MPG L5 (+${(l5m-sznm).toFixed(1)} vs SZN)`;reasons.push(`Expanding workload: ${l5m} MPG over L5`)}
+  else if(l5m>0&&(l5m<19.5||l5m<=sznm-2.5)){score-=14;oppSt="fail";oppVal=`Minutes dip (${l5m} L5 vs ${sznm} SZN)`;if(hr10>=0.5){trap="Efficiency Mirage";reasons.push(`Efficiency mirage: ${h10}/${n10} L10 despite minutes dipping to ${l5m} MPG L5`)}}
+  else oppVal=`${l5m} MPG L5`;
+ }else if(sp==="nhl"&&r.u){
+  const l5t=r.u.toi?+r.u.toi.l5:0,l2s=r.u.form&&r.u.form.l2_sog!=null?+r.u.form.l2_sog:5,l5s=r.u.form?+r.u.form.l5_sog:0;
+  if(l2s<=2){score-=13;oppSt="fail";oppVal=`Cold volume (${l2s} SOG in L2)`;if(hr10>=0.4){trap="Efficiency Mirage";reasons.push(`Box-score fake-out: only ${l2s} SOG in L2`)}}
+  else{oppVal=`${l5t}m TOI · ${l5s} SOG L5`;if(l5t>=18)score+=7}
+ }else if((sp==="nfl"||sp==="cfb")&&r.u&&r.u.sn){
+  const l3sn=+(r.u.sn.l3??r.u.sn.l5)||0;
+  oppVal=`${l3sn}% snaps L3`;if(l3sn>=70)score+=7;else if(l3sn>0&&l3sn<45){score-=12;oppSt="fail";if(hr10>=0.45)trap="Efficiency Mirage"}
+ }
+ checks.push({k:"Opportunity Floor",st:oppSt,v:oppVal});
+ // 2. Median vs Line
+ let medSt="pass",medVal=med10!=null&&mean10!=null?`Med ${med10} · Mean ${mean10} vs o${line}`:`${h10}/${n10} L10`;
+ if(!yes&&med10!=null&&mean10!=null){
+  if(med10>line&&mean10>line){score+=9;medVal=`Med ${med10} & Mean ${mean10} > o${line}`}
+  else if(mean10>line&&med10<line){score-=16;medSt="fail";trap=trap||"Mean > Median Skew";medVal=`Skew Trap: Mean ${mean10} > o${line}, Med ${med10} < o${line}`;reasons.push(`Mean > Median skew trap: Mean (${mean10}) inflated by outlier while Median (${med10}) < o${line}`)}
+  else if(med10<line){score-=8;medSt="fail"}
+  else medSt="warn";
+ }
+ checks.push({k:"Median vs. Line",st:medSt,v:medVal});
+ // 3. Multi-Book Price & Steam
+ let bkSt="pass", isSnipe=false;
+ const fmt=v=>v==null?"—":(v>0?"+"+v:String(v));
+ let bkVal=`${bestBk} ${fmt(bestPx)} · Fair ${Math.round(nv*100)}%`;
+ const bks=(q&&q.bks)||{};const bkVals=Object.values(bks);
+ if(bkVals.length>=2){
+  const sBks=bkVals.slice().sort((a,b)=>b-a);
+  if(sBks[0]-sBks[1]>=15&&(hr10==null||hr10>=0.55)&&!trap){isSnipe=true;score+=14;bkVal=`⚡ ${bestBk} ${fmt(bestPx)} (+${sBks[0]-sBks[1]}¢ vs next book)`}
+ }else if(bestPx>=100&&bestPx<=165&&!yes&&hr10>=0.70&&med10>line&&!trap){
+  isSnipe=true;score+=13;bkVal=`⚡ ${bestBk} ${fmt(bestPx)} (Plus-Money vs ${Math.round(hr10*100)}% L10)`;
+ }
+ checks.push({k:"Multi-Book Price & Steam",st:bkSt,v:bkVal});
+ // 4. Season vs L5 DvP Alignment
+ let dvpSt="pass",dvpVal="Neutral matchup";
+ if(dS&&d5){
+  dvpVal=`SZN #${dS.r} · L5 #${d5.r}/${dS.of}`;
+  if(dS.r<=12&&d5.r>=dS.of-9){score-=14;dvpSt="fail";trap=trap||"Tough L5 DvP Shift";dvpVal=`Trap Shift: SZN #${dS.r} → L5 #${d5.r}/${dS.of}`;reasons.push(`Matchup fake-out: ${r.oa} tightened from SZN #${dS.r} to L5 #${d5.r}/${dS.of}`)}
+  else if(dS.r<=12&&d5.r<=14){score+=9;dvpVal=`Confirmed Soft: SZN #${dS.r} · L5 #${d5.r}/${dS.of}`;reasons.push(`Confirmed soft matchup: ${r.oa} ranks #${dS.r} SZN and #${d5.r} L5`)}
+ }
+ checks.push({k:"Season vs. L5 DvP",st:dvpSt,v:dvpVal});
+ // 5. Game-Script & Blowout Stress Test
+ let gsSt="pass",gsVal="Competitive script";
+ if(r.gs){
+  if(sp==="nba"&&r.gs.sp!=null&&Math.abs(+r.gs.sp)>=12.5){score-=12;gsSt="fail";gsVal=`Blowout Risk (Spread ${r.gs.sp>0?"+"+r.gs.sp:r.gs.sp})`;if(hr10>=0.5){trap=trap||"Blowout Script Risk";reasons.push(`Blowout benching risk: ${r.gs.sp>0?"+"+r.gs.sp:r.gs.sp} spread threatens Q4 starter minutes`)}}
+  else if(r.gs.itt!=null)gsVal=`${r.team} TT ${r.gs.itt}`+(r.gs.sp!=null?` · Spread ${r.gs.sp>0?"+"+r.gs.sp:r.gs.sp}`:"");
+ }
+ checks.push({k:"Game-Script Stress Test",st:gsSt,v:gsVal});
+ if(r.spot&&r.spot.verdict){
+  return Object.assign({},r.spot,{checks:r.spot.checks&&r.spot.checks.length?r.spot.checks:checks});
+ }
+ score=Math.max(15,Math.min(97,Math.round(score+(hr10!=null?(hr10-0.55)*26:0))));
+ let verdict="neutral",badge=`📊 Standard Read (${score})`;
+ if(trap){verdict="fakeout";score=Math.min(score,44);badge=`🚨 Fake-Out: ${trap}`}
+ else if(isSnipe){verdict="snipe";score=Math.max(78,score);badge=`⚡ ${bestBk} Off-Market Snipe (${score})`}
+ else if(score>=68&&hr10>=0.60&&medSt==="pass"){verdict="execute";score=Math.max(72,score);badge=`🎯 Confirmed Spot (${score})`}
+ return {verdict,score,badge,reasons:reasons.length?reasons:[`L10 hit rate ${h10}/${n10} (Med ${med10??"—"} vs o${line})`],checks};
+}
+
+function spotBadgeCompactHtml(r,sp,showNeutral){
+ const s=getSpotRead(r,sp);
+ if(!s)return"";
+ if(s.verdict==="neutral"&&!showNeutral)return"";
+ const shortLbl=s.verdict==="execute"?`🎯 Spot (${s.score})`:s.verdict==="snipe"?`⚡ Snipe (${s.score})`:s.verdict==="hold"?`⏳ Hold`:s.badge;
+ const tip=[s.badge,...(s.reasons||[])].join(" • ");
+ return `<span class="bld-spot ${H(s.verdict)}" title="${H(tip)}">${H(shortLbl)}</span>`;
+}
+
+function buildSpotExecutionCard(r,sp){
+ const s=getSpotRead(r,sp);
+ if(!s)return"";
+ const col=s.verdict==="execute"?"#53e3a6":s.verdict==="snipe"?"#38bdf8":s.verdict==="hold"?"#f5c451":s.verdict==="fakeout"?"#ff5d6c":"#8b97b0";
+ const icon=st=>st==="pass"?"✅":st==="warn"?"⚠️":"🚨";
+ const stCol=st=>st==="pass"?"#53e3a6":st==="warn"?"#f5c451":"#ff5d6c";
+ return `<div class="bld-spcard ${H(s.verdict)}">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
+   <span style="font:800 12.5px/1.2 system-ui,sans-serif">🎯 Strategic &amp; Tactical Execution Read</span>
+   <span class="bld-spot ${H(s.verdict)}" style="font-size:11px;padding:3px 8px;margin:0">${H(s.badge)}</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;margin:8px 0 6px">
+   <span class="mut" style="font-size:11px;white-space:nowrap">Conviction Score: <b style="color:${col}">${s.score}/99</b></span>
+   <div style="flex:1;height:7px;background:var(--panel,#121826);border:1px solid var(--line,#243049);border-radius:99px;overflow:hidden">
+    <div style="width:${Math.max(6,Math.min(100,s.score))}%;height:100%;background:${col};border-radius:99px"></div>
+   </div>
+  </div>
+  ${(s.reasons&&s.reasons.length)?`<ul style="margin:6px 0 8px 16px;padding:0;font-size:11.5px;line-height:1.45;color:var(--txt,#e6ebf5)">${s.reasons.map(x=>`<li>${H(x)}</li>`).join("")}</ul>`:""}
+  <div style="margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,.07)">
+   <div class="mut" style="font:800 10px/1 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px">5-Point Tactical Execution Checklist</div>
+   ${(s.checks||[]).map(c=>`<div class="bld-chk-row">
+    <span class="mut">${icon(c.st)} ${H(c.k)}</span>
+    <b style="color:${stCol(c.st)};text-align:right;font-size:11px">${H(c.v)}</b>
+   </div>`).join("")}
+  </div>
+ </div>`;
+}
+
 function passesDeepFilters(r){
  const sp=typeof sport!=="undefined"?sport:"nfl";
  if(STATE.onlyWatch&&!isWatched(sp,`${r.aid}|${r.market}`))return false;
+ if(STATE.spotFlt!=="all"){
+  const sr=getSpotRead(r,sp);
+  const v=sr?sr.verdict:"neutral";
+  if(STATE.spotFlt==="confirmed"&&v!=="execute"&&v!=="snipe")return false;
+  if(STATE.spotFlt==="snipe"&&v!=="snipe")return false;
+  if(STATE.spotFlt==="nofake"&&v==="fakeout")return false;
+  if(STATE.spotFlt==="fakeout"&&v!=="fakeout")return false;
+ }
  if(STATE.matchFlt!=="all"){
   const d=getOppWindowRank(sp,r,STATE.dvpWin);
   if(!d)return false;
@@ -670,7 +811,7 @@ function mountDrawerDeep(){
 
  const wrap=document.createElement("div");
  wrap.id="bld-drw-deep";
- wrap.innerHTML=buildDeeperThanBoxScore(r,sp)+buildSchemeMismatchMatrix(r,sp)+buildSituationalWorkloadExplorer(r,sp)+buildMultiSeasonStrip(r,sp)+buildTeammateOnOffExplorer(r,sp)+buildSimilarPlayersVsOpp(r,sp);
+ wrap.innerHTML=buildSpotExecutionCard(r,sp)+buildDeeperThanBoxScore(r,sp)+buildSchemeMismatchMatrix(r,sp)+buildSituationalWorkloadExplorer(r,sp)+buildMultiSeasonStrip(r,sp)+buildTeammateOnOffExplorer(r,sp)+buildSimilarPlayersVsOpp(r,sp);
  const splitEl=drw.querySelector(".split");
  if(splitEl)splitEl.insertAdjacentElement("afterend",wrap);
  else drw.appendChild(wrap);
@@ -684,6 +825,14 @@ function renderCheatsheetFilterBar(){
  bar.id="bld-cs-bar";
  bar.className="bld-bar";
  bar.innerHTML=`
+  <div class="bld-grp">
+   <span class="bld-lbl">Tactical Spot Read:</span>
+   <button type="button" class="bld-chip ${STATE.spotFlt==="all"?"on":""}" data-cs-sflt="all">All</button>
+   <button type="button" class="bld-chip ${STATE.spotFlt==="confirmed"?"on":""}" data-cs-sflt="confirmed">🎯 Confirmed Spots</button>
+   <button type="button" class="bld-chip ${STATE.spotFlt==="snipe"?"on":""}" data-cs-sflt="snipe">⚡ Off-Market Snipes</button>
+   <button type="button" class="bld-chip ${STATE.spotFlt==="nofake"?"on":""}" data-cs-sflt="nofake">🛡️ Hide Fake-Outs</button>
+   <button type="button" class="bld-chip ${STATE.spotFlt==="fakeout"?"on":""}" data-cs-sflt="fakeout">🚨 Fake-Out Traps</button>
+  </div>
   <div class="bld-grp">
    <span class="bld-lbl">Stat Mode:</span>
    <button type="button" class="bld-chip ${STATE.avgMode==="avg"?"on":""}" data-cs-avg="avg">Mean (Avg)</button>
@@ -736,10 +885,12 @@ function enhanceCheatsheetTable(){
   const r=typeof rows!=="undefined"&&rows[+tr.dataset.i];if(!r)return;
   const k=`${r.aid}|${r.market}`;
   const tds=tr.querySelectorAll("td");
-  // 1) Prepend ⭐ Watchlist star to Player cell
+  // 1) Prepend ⭐ Watchlist star and append 🎯 Spot / 🚨 Fake-Out badge to Player cell
   if(tds[0]){
    const w=isWatched(sp,k);
    tds[0].insertAdjacentHTML("afterbegin",`<button type="button" class="bld-star ${w?"on":""}" data-bld-watch="${H(sp)}|${H(k)}" title="Save to Watchlist">★</button>`);
+   const sb=spotBadgeCompactHtml(r,sp,false);
+   if(sb)tds[0].insertAdjacentHTML("beforeend",sb);
   }
   // 2) Replace Over/Under cell with Multi-Book Odds Matrix (Book A, B, D, F, W...)
   const ouIdx=Array.from(th?th.children:[]).findIndex(c=>c.dataset.k==="ou");
@@ -761,12 +912,18 @@ function enhanceCheatsheetTable(){
    }
   }
  });
- //Also add ⭐ Watchlist button to Dashboard cards
+ //Also add ⭐ Watchlist button + 🎯 Spot / 🚨 Fake-Out badge to Dashboard cards
  document.querySelectorAll("#dash .it[data-k]").forEach(el=>{
   if(el.querySelector(".bld-star"))return;
   const k=el.dataset.k;
   const w=isWatched(sp,k);
   el.insertAdjacentHTML("afterbegin",`<button type="button" class="bld-star ${w?"on":""}" data-bld-watch="${H(sp)}|${H(k)}" title="Save to Watchlist">★</button>`);
+  const r=(typeof DATA!=="undefined"&&DATA[sp]||[]).find(x=>`${x.aid}|${x.market}`===k);
+  const nEl=el.querySelector(".n>b");
+  if(r&&nEl&&!el.querySelector(".bld-spot")){
+   const sb=spotBadgeCompactHtml(r,sp,false);
+   if(sb)nEl.insertAdjacentHTML("afterend",sb);
+  }
  });
 }
 
@@ -805,6 +962,8 @@ document.addEventListener("click",e=>{
  if(avgC){e.stopPropagation();STATE.avgMode=avgC.dataset.csAvg;const b=document.getElementById("bld-cs-bar");if(b)b.remove();if(typeof render==="function")render();return}
  const dvpC=e.target.closest("[data-cs-dvpw]");
  if(dvpC){e.stopPropagation();STATE.dvpWin=dvpC.dataset.csDvpw;const b=document.getElementById("bld-cs-bar");if(b)b.remove();if(typeof render==="function")render();return}
+ const sfC=e.target.closest("[data-cs-sflt]");
+ if(sfC){e.stopPropagation();STATE.spotFlt=sfC.dataset.csSflt;const b=document.getElementById("bld-cs-bar");if(b)b.remove();if(typeof render==="function")render();return}
  const mfC=e.target.closest("[data-cs-mflt]");
  if(mfC){e.stopPropagation();STATE.matchFlt=mfC.dataset.csMflt;const b=document.getElementById("bld-cs-bar");if(b)b.remove();if(typeof render==="function")render();return}
  const bfC=e.target.closest("[data-cs-bflt]");
@@ -827,5 +986,5 @@ const obs=new MutationObserver(()=>{clearTimeout(window._bldT);window._bldT=setT
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",()=>{runAll();obs.observe(document.body,{childList:true,subtree:true})});
 else{runAll();obs.observe(document.body,{childList:true,subtree:true})}
 
-window.BLDeep={STATE,runAll,getOppWindowRank,calcMedian};
+window.BLDeep={STATE,runAll,getOppWindowRank,calcMedian,getSpotRead};
 })();
