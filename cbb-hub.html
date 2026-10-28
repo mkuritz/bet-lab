@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CBB Hub · Upset Radar, 10-Game Rolling Segments, Prop Hurdles &amp; 365-Team Explorer · Bet Lab</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏀</text></svg>">
+<meta name="theme-color" content="#0b0f17">
+<style>
+:root{--bg:#0b0f17;--panel:#121826;--panel2:#182135;--line:#243049;--txt:#e6ebf5;--mut:#8b97b0;--acc:#53e3a6;--acc2:#3fa9ff;--warn:#ffb020;--bad:#ff5d6c}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+a{color:var(--acc2);text-decoration:none}
+.w{max-width:1280px;margin:0 auto;padding:16px}
+.hub-hd{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin:8px 0 14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.hub-hd h1{margin:0;font-size:24px;display:flex;align-items:center;gap:8px}
+.hub-hd h1 b{color:var(--acc)}
+.hub-hd .sub{color:var(--mut);font-size:12.5px;margin-top:4px}
+.kpi-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px;margin-bottom:14px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.kpi .l{font-size:10.5px;color:var(--mut);text-transform:uppercase;font-weight:800;letter-spacing:.05em}
+.kpi .v{font-size:21px;font-weight:900;margin-top:2px;color:var(--txt)}
+.kpi .s{font-size:11px;color:var(--mut);margin-top:1px}
+.nav-tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:14px;scrollbar-width:thin}
+.nav-tabs button{flex:0 0 auto;background:var(--panel);color:var(--mut);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font:700 13px system-ui;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.nav-tabs button.on{background:var(--acc);color:#05180e;border-color:var(--acc)}
+.ctl-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.ctl-bar input,.ctl-bar select{background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:7px 10px;font:600 12.5px system-ui}
+.ctl-bar .pills{display:flex;gap:5px;flex-wrap:wrap}
+.ctl-bar .pills button{background:var(--panel2);color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:5px 11px;font:700 11.5px system-ui;cursor:pointer}
+.ctl-bar .pills button.on{background:var(--acc2);color:#04121f;border-color:var(--acc2)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px}
+.gm-card{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:7px}
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:999px;border:1px solid var(--line);background:var(--panel);white-space:nowrap}
+.badge.ok{background:rgba(83,227,166,.14);border-color:rgba(83,227,166,.45);color:var(--acc)}
+.badge.snipe{background:rgba(63,169,255,.15);border-color:rgba(63,169,255,.45);color:var(--acc2)}
+.badge.warn{background:rgba(255,176,32,.14);border-color:rgba(255,176,32,.45);color:var(--warn)}
+.badge.bad{background:rgba(255,93,108,.15);border-color:rgba(255,93,108,.45);color:var(--bad)}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:8px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th{color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:.04em;font-weight:800;background:var(--panel)}
+td:first-child,th:first-child,.l-al{text-align:left}
+tr:hover td{background:var(--panel2)}
+.up{color:var(--acc)}
+.dn{color:var(--bad)}
+.mut{color:var(--mut)}
+</style>
+<link rel="stylesheet" href="nav.css">
+<script src="https://sportslabshq.com/sl/sl.js?v=7" defer></script>
+<script src="sl-neutral.js" defer></script>
+</head>
+<body>
+<div class="w">
+  <div class="hub-hd">
+    <div>
+      <h1>🏀 CBB <b>Hub</b> <span class="badge snipe">2026-27 Season · Ratings: barttorvik.com</span></h1>
+      <div class="sub" id="cbb-hub-sub">Loading 365 D-I teams, Calculated Upset Radar, Rolling 10-Game Season Segments, Team Usage Rate &amp; Prop Hurdles, and Freshmen vs. Upperclassmen Tracker…</div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <a href="https://cbblab.sportslabshq.com/" target="_blank" rel="noopener" class="badge ok" style="padding:7px 12px;font-size:12px">🏟️ Open Standalone CBB Lab (cbblab.sportslabshq.com) ↗</a>
+      <a href="./index.html#sport=ncaamb" class="badge" style="padding:7px 12px;font-size:12px">💎 CBB Tab in Bet Lab</a>
+    </div>
+  </div>
+
+  <div class="kpi-strip" id="cbb-kpis"></div>
+
+  <div class="nav-tabs" id="cbb-tabs" role="tablist">
+    <button type="button" class="on" data-tab="upsets">🚨 Calculated Upset Alert Bin</button>
+    <button type="button" data-tab="segments">📆 Rolling 10-Game Season Segments</button>
+    <button type="button" data-tab="hurdles">🔥 Team Usage Rate &amp; Prop Hurdles</button>
+    <button type="button" data-tab="class">🎓 Top Freshmen vs. 🏆 Upperclassmen &amp; Transfers</button>
+    <button type="button" data-tab="sim">⚡ Matchup Simulator &amp; Conference Power Matrix</button>
+    <button type="button" data-tab="teams">🏀 365-Team Efficiency &amp; Tempo Explorer</button>
+  </div>
+
+  <div id="cbb-hub-out"></div>
+
+  <footer style="margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--mut);font-size:12px">
+    Sports Labs CBB Hub · Ratings: barttorvik.com · Rolling 10-Game Season Segments (G1–10 → G11–20 → G21–30), Calculated Upset Radar, and Usage Prop Hurdles combine preseason efficiency priors with returning/incoming D-I player profiles. 21+ only.
+  </footer>
+</div>
+
+<script src="sl-sports.js"></script>
+<script src="nav.js?v=nc2"></script>
+<script>
+(function(){"use strict";
+const E=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const S=v=>v==null?"—":(v>0?"+"+v.toFixed(1):v.toFixed(1));
+const am=a=>a==null?"—":(a>0?"+"+a:""+a);
+const fmtT=t=>t?new Date(t).toLocaleString("en-US",{timeZone:"America/New_York",weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})+" ET":"—";
+let D=null,TAB="upsets",F={q:"",conf:"",seg:"g1_10",hcat:"",cls:"all",simA:11,simB:314,simNeut:true};
+
+function erfApprox(x){
+  var s=x<0?-1:1;x=Math.abs(x);
+  var t=1/(1+0.3275911*x);
+  var y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);
+  return s*y;
+}
+
+fetch("data/cbb_hub.json?v="+Math.floor(Date.now()/18e4)).then(r=>r.json()).then(d=>{
+  D=d;
+  if(location.hash==="#segments")TAB="segments";
+  else if(location.hash==="#hurdles")TAB="hurdles";
+  else if(location.hash==="#class")TAB="class";
+  else if(location.hash==="#sim")TAB="sim";
+  else if(location.hash==="#teams")TAB="teams";
+  renderKPIs();
+  render();
+});
+
+function renderKPIs(){
+  if(!D)return;
+  const frCnt=D.teams.reduce((s,t)=>s+(t.rot||[]).filter(p=>p.yr_short==="FR"||p.origin==="Freshman").length,0);
+  const vetCnt=D.teams.reduce((s,t)=>s+(t.rot||[]).filter(p=>p.yr_short==="JR"||p.yr_short==="SR").length,0);
+  document.getElementById("cbb-kpis").innerHTML=[
+    ["🏀 D-I Programs",D.teams.length,"Ratings: barttorvik.com"],
+    ["🚨 Upset Alerts",(D.upset_radar||[]).length,"Home/Neutral, Tempo & Continuity"],
+    ["📆 Rolling Segments","G1–10 → G21–30","10-Game Prior-to-On-Court Blend"],
+    ["🔥 Prop Hurdles",(D.prop_hurdles||[]).length,"High-USG 15+ PTS, 6+ REB, 4+ AST"],
+    ["🎓 Freshmen vs Vets",frCnt+" FR / "+vetCnt+" Vets","Core rotation comparison"],
+    ["🏆 Conferences",(D.conf_matrix||[]).length,"Bid projections & tempo leaders"]
+  ].map(x=>`<div class="kpi"><div class="l">${x[0]}</div><div class="v">${x[1]}</div><div class="s">${x[2]}</div></div>`).join("");
+  document.getElementById("cbb-hub-sub").textContent=`Updated ${D.built} · ${D.teams.length} D-I Teams · ${(D.upset_radar||[]).length} Upset Radar Alerts · ${(D.prop_hurdles||[]).length} Prop Hurdles · ${D.ratings_credit}`;
+}
+
+function ctlBar(extraHtml){
+  const confs=[...new Set(D.teams.map(t=>t.conf).filter(Boolean))].sort();
+  return `<div class="ctl-bar">
+    <input type="search" id="cb-q" placeholder="Search team, player, conference…" value="${E(F.q)}">
+    <select id="cb-conf"><option value="">All Conferences</option>${confs.map(c=>`<option value="${E(c)}" ${F.conf===c?"selected":""}>${E(c)}</option>`).join("")}</select>
+    ${extraHtml||""}
+  </div>`;
+}
+
+function render(){
+  if(!D)return;
+  document.querySelectorAll("#cbb-tabs button").forEach(b=>b.classList.toggle("on",b.dataset.tab===TAB));
+  const out=document.getElementById("cbb-hub-out");
+  const q=F.q.toLowerCase().trim();
+
+  if(TAB==="upsets"){
+    const U=(D.upset_radar||[]).filter(u=>(!F.conf||u.dog_conf===F.conf||u.fav_conf===F.conf)&&(!q||(u.dog+" "+u.fav+" "+u.dog_conf+" "+u.fav_conf).toLowerCase().includes(q)));
+    out.innerHTML=ctlBar(`<span class="mut" style="font-size:12px">${U.length} Calculated Upset Spotlights · Ratings: barttorvik.com</span>`)
+      +`<div class="grid">${U.map(u=>{
+        const wDog=Math.round(u.dog_win_prob*100);
+        const hi=u.upset_score>=76;
+        return `<div class="gm-card" style="border-color:${hi?'rgba(255,93,108,.55)':'rgba(255,176,32,.45)'}">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span class="badge ${hi?'bad':'warn'}">${E(u.tier)} · ${u.upset_score}/100</span>
+            <span class="mut" style="font-size:11.5px">${fmtT(u.start)}${u.neutral?" · Neutral":""}</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div style="font-size:15px;font-weight:900">${u.dog_rk?`<span class="badge snipe">#${u.dog_rk}</span> `:""}<a href="https://cbblab.sportslabshq.com/team.html?id=${u.dog_id}" target="_blank" style="color:var(--txt)">${E(u.dog)}</a> <span class="mut" style="font-size:12px">(${E(u.dog_conf)})</span></div>
+            <div><b class="up" style="font-size:15px">${wDog}% Win</b> <span class="mut" style="font-size:11.5px">(${am(u.fair_dog_ml)})</span></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:12.5px">
+            <span class="mut">vs ${u.fav_rk?`#${u.fav_rk} `:""}<b>${E(u.fav)}</b> (${E(u.fav_conf)})</span>
+            <span>SL Line: <b>${E(u.dog_ab)} ${E(u.sl_spread_dog)}</b> <span class="mut">(Mkt ${E(u.mkt_spread_dog)})</span></span>
+          </div>
+          <div style="background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:7px;font-size:11.5px">
+            ${u.triggers.map(tr=>`<div style="padding:1.5px 0">• ${E(tr)}</div>`).join("")}
+          </div>
+          ${u.dog_star?`<div class="mut" style="font-size:11.5px;display:flex;justify-content:space-between"><span>🔑 Catalyst: <b>${E(u.dog_star.n)}</b> (${u.dog_star.pts} PPG · ${u.dog_star.usg}% USG)</span><span>Tempo: ${u.pace} poss</span></div>`:""}
+        </div>`;
+      }).join("")}</div>`;
+  }
+  else if(TAB==="segments"){
+    const T=D.teams.filter(t=>(!F.conf||t.conf===F.conf)&&(!q||(t.team+" "+t.conf).toLowerCase().includes(q))).slice().sort((a,b)=>{
+      const sa=(((a.exp_meta||{}).segments||{})[F.seg]||{}).em||a.proj||0;
+      const sb=(((b.exp_meta||{}).segments||{})[F.seg]||{}).em||b.proj||0;
+      return sb-sa;
+    });
+    out.innerHTML=ctlBar(`<div class="pills">${[["g1_10","1️⃣ Games 1–10 (Calibration)"],["g11_20","2️⃣ Games 11–20 (Conf Opener)"],["g21_30","3️⃣ Games 21–30 (March Push)"]].map(x=>`<button type="button" data-seg="${x[0]}" class="${F.seg===x[0]?"on":""}">${x[1]}</button>`).join("")}</div>`)
+      +`<div class="card" style="padding:0"><div class="tw"><table>
+        <thead><tr><th class="l-al">#</th><th class="l-al">Team</th><th>Conf</th><th class="l-al">10-Game Trajectory Profile</th><th>Starters (FR/Vet/Tr)</th><th>G1–10 Net</th><th>G11–20 Net</th><th>G21–30 Peak</th><th>G1→G30 Δ</th><th>St5 Min%</th><th>Top-2 USG%</th></tr></thead>
+        <tbody>${T.slice(0,120).map((t,i)=>{
+          const em=t.exp_meta||{},sg=em.segments||{};
+          const s1=(sg.g1_10||{}).em||t.proj,s2=(sg.g11_20||{}).em||t.proj,s3=(sg.g21_30||{}).em||t.proj;
+          const d=Math.round((s3-s1)*10)/10;
+          return `<tr><td class="l-al">${i+1}</td><td class="l-al">${t.ap?`<span class="badge snipe">#${t.ap}</span> `:""}<a href="https://cbblab.sportslabshq.com/team.html?id=${t.id}" target="_blank"><b>${E(t.team)}</b></a></td><td>${E(t.conf)}</td><td class="l-al"><span class="badge">${E(em.seg_profile||"Balanced")}</span></td><td>${em.st5_fr||0} FR · ${em.st5_vet||0} Vet · ${em.st5_tr||0} Tr</td><td><b>${S(s1)}</b></td><td><b>${S(s2)}</b></td><td class="up"><b>${S(s3)}</b></td><td class="${d>=1.2?'up':''}">${d>=0?"+":""}${d.toFixed(1)}</td><td>${em.st5_min_pct||75}%</td><td><b>${em.top2_usg||24}%</b></td></tr>`;
+        }).join("")}</tbody></table></div></div>`;
+  }
+  else if(TAB==="hurdles"){
+    const H=(D.prop_hurdles||[]).filter(h=>(!F.conf||h.conf===F.conf)&&(!F.hcat||h.cat===F.hcat)&&(!q||(h.n+" "+h.team+" "+h.hurdle).toLowerCase().includes(q)));
+    out.innerHTML=ctlBar(`<div class="pills">${[["","All Hurdles"],["PTS","🏀 10+/15+ PTS"],["REB","💪 6+ REB"],["AST","🎯 4+ AST"],["PRA","⚡ 22+ PRA"],["3PM","🏹 2+ 3PM"]].map(x=>`<button type="button" data-hcat="${x[0]}" class="${F.hcat===x[0]?"on":""}">${x[1]}</button>`).join("")}</div>`)
+      +`<div class="card" style="padding:0"><div class="tw"><table>
+        <thead><tr><th class="l-al">#</th><th class="l-al">Player</th><th>Class · Origin</th><th class="l-al">Team</th><th>Proj MIN (Share)</th><th>USG%</th><th>Rolling Hurdle</th><th>Proj</th><th>Hit Prob (Fair)</th><th>Est L10 / Prior</th><th>Full P/R/A</th></tr></thead>
+        <tbody>${H.map((h,i)=>`<tr>
+          <td class="l-al">${i+1}</td>
+          <td class="l-al"><b>${E(h.n)}</b>${h.nba_tier?` <span class="badge snipe">🏀 ${E(h.nba_tier)}</span>`:""}</td>
+          <td><b>${E(h.yr_short)}</b> · <span class="mut">${E(h.origin)}</span></td>
+          <td class="l-al">${h.ap?`#${h.ap} `:""}<b>${E(h.team)}</b> <span class="mut">(${E(h.conf)})</span></td>
+          <td><b>${h.proj_min}m</b> <span class="mut">(${h.min_share}%)</span></td>
+          <td><span class="badge warn">${h.usg}% USG</span></td>
+          <td><span class="badge ok">${E(h.hurdle)}</span></td>
+          <td class="up"><b>${h.proj}</b></td>
+          <td class="up"><b>${Math.round(h.p_hit*100)}%</b> <span class="mut">(${am(h.fair_odds)})</span></td>
+          <td><b>${E(h.l10_est)}</b> · <span class="mut">${E(h.szn_est)}</span></td>
+          <td>${h.proj_pts} / ${h.proj_reb} / ${h.proj_ast}</td>
+        </tr>`).join("")}</tbody></table></div></div>`;
+  }
+  else if(TAB==="class"){
+    const allP=[];
+    D.teams.forEach(t=>(t.rot||[]).forEach(p=>{if((p.proj_min||0)>=18||p.nba_prospect||p.is_star)allP.push(Object.assign({team:t.team,tid:t.id,conf:t.conf,ap:t.ap},p))}));
+    const flt=allP.filter(p=>{
+      if(F.conf&&p.conf!==F.conf)return false;
+      const isFr=(p.yr_short==="FR"||p.origin==="Freshman");
+      const isVet=(p.yr_short==="JR"||p.yr_short==="SR");
+      if(F.cls==="fr"&&!isFr)return false;
+      if(F.cls==="vet"&&!isVet)return false;
+      if(F.cls==="tr"&&p.origin!=="Transfer")return false;
+      if(q&&!(p.n+" "+p.team+" "+p.conf).toLowerCase().includes(q))return false;
+      return true;
+    }).sort((a,b)=>((b.proj_pts||0)+(b.nba_tier==="NBA Lottery"?6:0))-((a.proj_pts||0)+(a.nba_tier==="NBA Lottery"?6:0)));
+    out.innerHTML=ctlBar(`<div class="pills">${[["all","All Impact Players"],["fr","🎓 Top Freshmen (Recruits)"],["vet","🏆 Upperclassmen (JR/SR)"],["tr","⇄ Portal Transfers"]].map(x=>`<button type="button" data-cls="${x[0]}" class="${F.cls===x[0]?"on":""}">${x[1]}</button>`).join("")}</div>`)
+      +`<div class="card" style="padding:0"><div class="tw"><table>
+        <thead><tr><th class="l-al">#</th><th class="l-al">Player</th><th>Class</th><th>Origin</th><th class="l-al">Team &amp; Conf</th><th>Draft / Star Tier</th><th>Proj MIN</th><th>USG%</th><th>PPG</th><th>RPG</th><th>APG</th><th>PRA</th><th class="l-al">Role Trajectory</th></tr></thead>
+        <tbody>${flt.slice(0,120).map((p,i)=>{
+          const isFr=(p.yr_short==="FR"||p.origin==="Freshman");
+          return `<tr><td class="l-al">${i+1}</td><td class="l-al"><b>${E(p.n)}</b></td><td><b>${E(p.yr_short)}</b></td><td>${E(p.origin)}${p.prev_team?` <span class="mut">(${E(p.prev_team)})</span>`:""}</td><td class="l-al">${p.ap?`#${p.ap} `:""}<b>${E(p.team)}</b> <span class="mut">(${E(p.conf)})</span></td><td>${p.nba_tier?`<span class="badge snipe">🏀 ${E(p.nba_tier)}</span>`:(p.star_tier?`<span class="badge ok">⭐ ${E(p.star_tier)}</span>`:"Starter")}</td><td><b>${p.proj_min}</b></td><td><b>${p.usg}%</b></td><td><b>${p.proj_pts}</b></td><td>${p.proj_reb}</td><td>${p.proj_ast}</td><td class="up"><b>${p.proj_pra}</b></td><td class="l-al"><span class="badge ${isFr?'snipe':'ok'}">${isFr?'📈 G1–10 Calibration → +14% G11–30 Surge':'🛡️ Proven Multi-Year Floor'}</span></td></tr>`;
+        }).join("")}</tbody></table></div></div>`;
+  }
+  else if(TAB==="sim"){
+    const sortedTeams=D.teams.slice().sort((a,b)=>(a.ap||999)-(b.ap||999)||a.team.localeCompare(b.team));
+    const tA=D.teams.find(x=>x.id==F.simA)||sortedTeams[0];
+    const tB=D.teams.find(x=>x.id==F.simB)||sortedTeams[1];
+    const pace=Math.round(0.5*((tA.adjT||68.5)+(tB.adjT||68.5))*10)/10;
+    const hca=F.simNeut?0.0:3.4;
+    const emA=0.65*(tA.proj||0)+0.35*(tA.adjEM||0);
+    const emB=0.65*(tB.proj||0)+0.35*(tB.adjEM||0);
+    const marginB=Math.round(((emB-emA)*(pace/68.5)*0.85+hca)*10)/10;
+    const spTxt=marginB===0?"PK":marginB>0?`${tB.team} -${marginB}`:`${tA.team} -${Math.abs(marginB)}`;
+    const pB=Math.min(0.98,Math.max(0.02,0.5*(1+erfApprox(marginB/(10.8*Math.SQRT2)))));
+    const pA=1-pB;
+    const expTot=Math.round(((0.5*(tA.adjO+tB.adjD)+0.5*(tB.adjO+tA.adjD))*(pace/100))*10)/10;
+    out.innerHTML=`<div class="card">
+      <h3>⚡ Interactive D-I Matchup &amp; Neutral/Home-Court Simulator · Ratings: barttorvik.com</h3>
+      <div class="ctl-bar" style="margin-top:8px">
+        <select id="sim-a">${sortedTeams.map(t=>`<option value="${t.id}" ${t.id==tA.id?"selected":""}>${t.ap?"#"+t.ap+" ":""}${E(t.team)} (${E(t.conf)} · ${S(t.proj)})</option>`).join("")}</select>
+        <b>VS</b>
+        <select id="sim-b">${sortedTeams.map(t=>`<option value="${t.id}" ${t.id==tB.id?"selected":""}>${t.ap?"#"+t.ap+" ":""}${E(t.team)} (${E(t.conf)} · ${S(t.proj)})</option>`).join("")}</select>
+        <label style="display:inline-flex;align-items:center;gap:6px;font-weight:700"><input type="checkbox" id="sim-neut" ${F.simNeut?"checked":""}> Neutral Site (uncheck for ${E(tB.ab)} Home +3.4 pts)</label>
+      </div>
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+        <div class="gm-card"><b>${E(tA.team)} (${E(tA.conf)})</b><div>Proj Net: <b>${S(tA.proj)}</b> · AdjO/D: <b>${tA.adjO}/${tA.adjD}</b> · Tempo: <b>${tA.adjT}</b></div></div>
+        <div class="gm-card" style="text-align:center;border-color:var(--acc)"><div class="mut">SL Projected Line</div><div style="font-size:20px;font-weight:900;color:var(--acc)">${E(spTxt)}</div><div>Total: <b>${expTot}</b> · Tempo: <b>${pace} poss</b></div><div class="mut">Win Prob: <b>${E(tA.ab)} ${Math.round(pA*100)}%</b> · <b>${E(tB.ab)} ${Math.round(pB*100)}%</b></div></div>
+        <div class="gm-card"><b>${E(tB.team)} (${E(tB.conf)})</b><div>Proj Net: <b>${S(tB.proj)}</b> · AdjO/D: <b>${tB.adjO}/${tB.adjD}</b> · Tempo: <b>${tB.adjT}</b></div></div>
+      </div>
+    </div>
+    <div class="card" style="padding:0"><div class="tw"><table>
+      <thead><tr><th class="l-al">#</th><th class="l-al">Conference</th><th>Teams</th><th>Avg Proj Net</th><th>Avg Tempo</th><th>Top-25 Teams</th><th>Proj Bids</th><th class="l-al">Conference Favorite</th><th class="l-al">Fastest Tempo</th><th class="l-al">Best Defense</th></tr></thead>
+      <tbody>${(D.conf_matrix||[]).map((c,i)=>`<tr><td class="l-al">${i+1}</td><td class="l-al"><b>${E(c.conf)}</b></td><td>${c.teams_count}</td><td class="${c.avg_em>=0?'up':'dn'}"><b>${S(c.avg_em)}</b></td><td>${c.avg_tempo}</td><td>${c.top25_count||"—"}</td><td><span class="badge ok">${c.proj_bids} Bids</span></td><td class="l-al"><b>${E(c.favorite.team)}</b> (${S(c.favorite.proj)})</td><td class="l-al">${E(c.fastest.team)} (${c.fastest.adjT})</td><td class="l-al">${E(c.best_def.team)} (${c.best_def.adjD})</td></tr>`).join("")}</tbody>
+    </table></div></div>`;
+  }
+  else if(TAB==="teams"){
+    const T=D.teams.filter(t=>(!F.conf||t.conf===F.conf)&&(!q||(t.team+" "+t.conf).toLowerCase().includes(q)));
+    out.innerHTML=ctlBar(`<span class="mut" style="font-size:12px">${T.length} D-I Teams · Ratings: barttorvik.com</span>`)
+      +`<div class="card" style="padding:0"><div class="tw"><table>
+        <thead><tr><th class="l-al">#</th><th class="l-al">Team</th><th>Conf</th><th>Last Net</th><th>Proj Net</th><th>Change</th><th>G1–10 → G21–30</th><th>AdjT</th><th>Torvik O / D</th><th>Ret Min</th><th>In / Out</th></tr></thead>
+        <tbody>${T.slice(0,150).map((t,i)=>{
+          const sg=((t.exp_meta||{}).segments)||{};
+          return `<tr><td class="l-al">${i+1}</td><td class="l-al">${t.ap?`<span class="badge snipe">#${t.ap}</span> `:""}<a href="https://cbblab.sportslabshq.com/team.html?id=${t.id}" target="_blank"><b>${E(t.team)}</b></a></td><td>${E(t.conf)}</td><td>${S(t.net)}</td><td><b>${S(t.proj)}</b></td><td class="${t.chg>=0?'up':'dn'}"><b>${S(t.chg)}</b></td><td>${S((sg.g1_10||{}).em)} → <b class="up">${S((sg.g21_30||{}).em)}</b></td><td>${t.adjT?t.adjT.toFixed(1):"—"}</td><td>${t.adjO?t.adjO.toFixed(1)+" / "+t.adjD.toFixed(1):"—"}</td><td>${t.retMin!=null?Math.round(t.retMin*100)+"%":"—"}</td><td>${t.nIn} / ${(t.nOut||0)+(t.nLeft||0)}</td></tr>`;
+        }).join("")}</tbody></table></div></div>`;
+  }
+
+  const qIn=document.getElementById("cb-q");
+  if(qIn)qIn.oninput=e=>{F.q=e.target.value;render()};
+  const cfIn=document.getElementById("cb-conf");
+  if(cfIn)cfIn.onchange=e=>{F.conf=e.target.value;render()};
+  const sa=document.getElementById("sim-a"),sb=document.getElementById("sim-b"),sn=document.getElementById("sim-neut");
+  if(sa)sa.onchange=e=>{F.simA=+e.target.value;render()};
+  if(sb)sb.onchange=e=>{F.simB=+e.target.value;render()};
+  if(sn)sn.onchange=e=>{F.simNeut=e.target.checked;render()};
+}
+
+document.addEventListener("click",e=>{
+  const tb=e.target.closest("#cbb-tabs button[data-tab]");
+  if(tb){TAB=tb.dataset.tab;render();return}
+  const sb=e.target.closest("[data-seg]");
+  if(sb){F.seg=sb.dataset.seg;render();return}
+  const hb=e.target.closest("[data-hcat]");
+  if(hb){F.hcat=hb.dataset.hcat;render();return}
+  const cb=e.target.closest("[data-cls]");
+  if(cb){F.cls=cb.dataset.cls;render();return}
+});
+})();
+</script>
+</body>
+</html>

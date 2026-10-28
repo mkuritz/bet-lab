@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NBA Hub · Slate, Rotations, Positional DvP, Shot Zones &amp; Highlighted Props · Sports Labs</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏀</text></svg>">
+<meta name="theme-color" content="#0b0f17">
+<style>
+:root{--bg:#0b0f17;--panel:#121826;--panel2:#182135;--line:#243049;--txt:#e6ebf5;--mut:#8b97b0;--acc:#53e3a6;--acc2:#3fa9ff;--warn:#ffb020;--bad:#ff5d6c;--purp:#a855f7}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+a{color:var(--acc2);text-decoration:none}
+.w{max-width:1280px;margin:0 auto;padding:16px}
+.hub-hd{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin:8px 0 14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.hub-hd h1{margin:0;font-size:24px;display:flex;align-items:center;gap:8px}
+.hub-hd h1 b{color:var(--acc)}
+.hub-hd .sub{color:var(--mut);font-size:12.5px;margin-top:4px}
+.kpi-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px;margin-bottom:14px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.kpi .l{font-size:10.5px;color:var(--mut);text-transform:uppercase;font-weight:800;letter-spacing:.05em}
+.kpi .v{font-size:21px;font-weight:900;margin-top:2px;color:var(--txt)}
+.kpi .s{font-size:11px;color:var(--mut);margin-top:1px}
+.nav-tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:14px;scrollbar-width:thin}
+.nav-tabs button{flex:0 0 auto;background:var(--panel);color:var(--mut);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font:700 13px system-ui;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:.15s}
+.nav-tabs button:hover{color:var(--txt);border-color:#3a4b70}
+.nav-tabs button.on{background:var(--acc);color:#05180e;border-color:var(--acc)}
+.ctl-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.ctl-bar input,.ctl-bar select{background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:7px 10px;font:600 12.5px system-ui}
+.ctl-bar .pills{display:flex;gap:5px;flex-wrap:wrap}
+.ctl-bar .pills button{background:var(--panel2);color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:5px 11px;font:700 11.5px system-ui;cursor:pointer}
+.ctl-bar .pills button.on{background:var(--acc2);color:#04121f;border-color:var(--acc2)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:14px}
+.card h2,.card h3{margin:0 0 6px;font-size:16px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:12px}
+.gm-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:13px;display:flex;flex-direction:column;gap:8px;transition:border-color .15s}
+.gm-card:hover{border-color:#3a5282}
+.gm-top{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:var(--mut)}
+.gm-tm{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:4px 0}
+.gm-tm .lhs{display:flex;align-items:center;gap:8px;font-weight:800;font-size:15px}
+.gm-tm img{width:24px;height:24px;object-fit:contain}
+.gm-bar{display:flex;height:7px;border-radius:99px;overflow:hidden;background:#080d18;gap:2px}
+.gm-bar i.a{background:linear-gradient(90deg,#2563eb,#3fa9ff);display:block}
+.gm-bar i.h{background:linear-gradient(90deg,#059669,#53e3a6);display:block}
+.gm-cells{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center}
+.gm-cells>div{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:6px 4px}
+.gm-cells .l{font-size:10px;color:var(--mut);text-transform:uppercase;font-weight:800}
+.gm-cells .v{font-size:13px;font-weight:800;margin-top:2px}
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:999px;border:1px solid var(--line);background:var(--panel2);white-space:nowrap}
+.badge.spot,.badge.ok{background:rgba(83,227,166,.14);border-color:rgba(83,227,166,.45);color:var(--acc)}
+.badge.snipe{background:rgba(63,169,255,.15);border-color:rgba(63,169,255,.45);color:var(--acc2)}
+.badge.hold,.badge.warn{background:rgba(255,176,32,.14);border-color:rgba(255,176,32,.45);color:var(--warn)}
+.badge.fakeout,.badge.bad{background:rgba(255,93,108,.15);border-color:rgba(255,93,108,.45);color:var(--bad)}
+.badge.b2b{background:rgba(168,85,247,.16);border-color:rgba(168,85,247,.45);color:#d8b4fe}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:8px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th{color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:.04em;font-weight:800;cursor:pointer;user-select:none;background:var(--panel)}
+td:first-child,th:first-child,.l-al{text-align:left}
+tr:hover td{background:var(--panel2)}
+.rk-box{display:inline-block;min-width:34px;padding:3px 6px;border-radius:6px;font-weight:800;text-align:center;font-size:12px}
+.plink{color:var(--txt);font-weight:800;cursor:pointer;text-decoration:underline dotted rgba(63,169,255,.6);text-underline-offset:3px}
+.plink:hover{color:var(--acc2)}
+.up{color:var(--acc)}
+.dn{color:var(--bad)}
+.mut{color:var(--mut)}
+/* Interactive Player Modal */
+#nba-modal-ov{position:fixed;inset:0;background:rgba(4,8,16,.78);backdrop-filter:blur(4px);z-index:9999;display:none;justify-content:flex-end}
+#nba-modal-ov.open{display:flex}
+#nba-modal{width:min(680px,100%);height:100%;background:var(--panel);border-left:1px solid var(--line);overflow-y:auto;padding:18px;box-sizing:border-box;box-shadow:-12px 0 40px rgba(0,0,0,.6)}
+.bar-chart{display:flex;align-items:flex-end;gap:6px;height:150px;padding:22px 8px 24px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;position:relative;margin-top:8px;overflow-x:auto}
+.bar-col{flex:1;min-width:28px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;position:relative}
+.bar-fill{width:100%;max-width:26px;border-radius:4px 4px 0 0;transition:height .2s}
+.bar-val{font-size:10px;font-weight:800;margin-bottom:2px}
+.bar-min{font-size:9px;color:var(--mut);margin-bottom:1px}
+.bar-lbl{position:absolute;bottom:-20px;font-size:9.5px;color:var(--mut);white-space:nowrap}
+.ref-line{position:absolute;left:0;right:0;border-top:2px dashed #fbbf24;pointer-events:none;z-index:2}
+.ref-line span{position:absolute;right:6px;top:-15px;font-size:10px;font-weight:800;color:#fbbf24;background:rgba(11,15,23,.85);padding:0 5px;border-radius:4px}
+@media(max-width:680px){.grid{grid-template-columns:1fr}.gm-cells{grid-template-columns:repeat(2,1fr)}}
+</style>
+<link rel="stylesheet" href="nav.css">
+<script src="https://sportslabshq.com/sl/sl.js?v=7" defer></script>
+<script src="sl-neutral.js" defer></script>
+</head>
+<body>
+<div class="w">
+  <div class="hub-hd">
+    <div>
+      <h1>🏀 NBA <b>Hub</b> <span class="badge snipe">2026-27 Season</span></h1>
+      <div class="sub" id="hub-sub">Loading NBA slate, rotations, 30-team positional DvP, court shot-zone matrix &amp; Spot vs. Fake-Out classifier…</div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <a href="./index.html#sport=nba" class="badge spot" style="padding:7px 12px;font-size:12px">💎 Open NBA Prop Table in Bet Lab →</a>
+      <a href="./sharp.html" class="badge" style="padding:7px 12px;font-size:12px">⚡ Highlighted Board</a>
+    </div>
+  </div>
+
+  <div class="kpi-strip" id="kpi-strip"></div>
+
+  <div class="nav-tabs" id="hub-tabs" role="tablist">
+    <button type="button" class="on" data-tab="slate">🏀 Today's Slate &amp; Matchups</button>
+    <button type="button" data-tab="props">🎯 Spot vs. Fake-Out Prop Board</button>
+    <button type="button" data-tab="rotations">📋 Starting 5, Rotations &amp; Injury Cascades</button>
+    <button type="button" data-tab="dvp">🛡️ 30-Team Positional DvP &amp; Shot Zones</button>
+    <button type="button" data-tab="streaks">🔥 Hot Streaks, Volume-Due &amp; Correlated SGPs</button>
+    <button type="button" data-tab="teams">📊 30-Team Four-Factors &amp; Pace Ratings</button>
+  </div>
+
+  <div id="hub-out"></div>
+
+  <footer style="margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--mut);font-size:12px">
+    Sports Labs NBA Hub · Projections, Positional Defense vs. Position (DvP), Court Shot-Zone FG% vs. league average, and Spot vs. Fake-Out classifications are built from official play-by-play shot locations, multi-season box scores, and live neutral market odds (Book A–Book W). Estimates are labeled. 21+ only.
+  </footer>
+</div>
+
+<div id="nba-modal-ov" role="dialog" aria-modal="true" aria-label="Player Profile & Game Logs">
+  <div id="nba-modal"></div>
+</div>
+
+<script src="sl-sports.js"></script>
+<script src="nav.js?v=nc2"></script>
+<script src="nba-hub.js?v=1"></script>
+</body>
+</html>
