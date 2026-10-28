@@ -1636,6 +1636,30 @@
    "odds_source": "opening"
   },
   {
+   "id": "ek-w7-mnf-dal",
+   "week": 7,
+   "date": "2026-10-26",
+   "episode_date": "2026-10-26",
+   "sport": "nfl",
+   "category": "games",
+   "kind": "straight",
+   "type": "spread",
+   "team": "DAL",
+   "line": -4.5,
+   "espn_event_id": "401873009",
+   "desc": "Cowboys -4.5 at Eagles (MNF \u00b7 Opened +3 / Closed -4.5 vs Backup QB)",
+   "odds": -110,
+   "odds_source": "opening",
+   "source_url": "https://www.tiktok.com/@erik.kuselias/video/7701458900121324830",
+   "source_label": "MNF Callout (Wk 7 Recap @ 0:15)",
+   "timestamp": "0:15",
+   "result": "win",
+   "final": {
+    "PHI": 21.0,
+    "DAL": 38.0
+   }
+  },
+  {
    "id": "ek-cfb-69",
    "week": 6,
    "date": "2026-10-17",
@@ -3170,18 +3194,18 @@
  "record": {
   "straight": {
    "overall": {
-    "w": 65,
+    "w": 66,
     "l": 38,
     "p": 2,
-    "units": 19.63,
-    "units_n": 105
+    "units": 20.54,
+    "units_n": 106
    },
    "nfl": {
-    "w": 57,
+    "w": 58,
     "l": 34,
     "p": 2,
-    "units": 16.35,
-    "units_n": 93
+    "units": 17.26,
+    "units_n": 94
    },
    "mlb": {
     "w": 0,
@@ -3243,18 +3267,18 @@
    }
   },
   "overall": {
-   "w": 65,
+   "w": 66,
    "l": 38,
    "p": 2,
-   "units": 19.63,
-   "units_n": 105
+   "units": 20.54,
+   "units_n": 106
   },
   "nfl": {
-   "w": 57,
+   "w": 58,
    "l": 34,
    "p": 2,
-   "units": 16.35,
-   "units_n": 93
+   "units": 17.26,
+   "units_n": 94
   },
   "mlb": {
    "w": 0,
@@ -3278,19 +3302,19 @@
    "units_n": 11
   },
   "full_season": {
-   "w": 65,
+   "w": 66,
    "l": 41,
    "p": 2,
-   "units": 16.63,
-   "units_n": 108
+   "units": 17.54,
+   "units_n": 109
   },
   "categories": {
    "games": {
-    "w": 42,
+    "w": 43,
     "l": 32,
     "p": 2,
-    "units": 5.14,
-    "units_n": 76
+    "units": 6.05,
+    "units_n": 77
    },
    "props": {
     "w": 12,
