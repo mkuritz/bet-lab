@@ -374,7 +374,7 @@ function dash0(){if(sport=="cfb"){loadCfb();if(CFBD&&!CFBD.err){$("dash").innerH
  const ven=d.filter(r=>r.ven&&r.ven.n>=4&&pct(r.ven)>=.6).sort((a,b)=>pct(b.ven)-pct(a.ven)||b.ven.n-a.ven.n);
  const h2h=d.filter(r=>r.h2h&&r.h2h.n>=2&&pct(r.h2h)>=.75).sort((a,b)=>pct(b.h2h)-pct(a.h2h)||b.h2h.n-a.h2h.n);
  const P=(h)=>Math.round(pct(h)*100)+"%";
- {const tt=$("tetop");if(tt){tt.innerHTML="";tt.hidden=true}}$("dash").innerHTML=(sport=="nhl"?nhlFormCard():"")+(sport=="nfl"||sport=="nhl"?likelyCard(sport):"")+(sport=="mlb"?mlbPhaseBar()+mlbLabCard():"")+impactCard()+(sport=="nfl"?qbCard(false):"")+(sport=="soccer"?likelyCard("soccer")+sgpCards():"")+recsSection(d)+(window.CO&&(sport=="nfl"||sport=="nhl")?CO.card(sport):"")+(sport=="soccer"?soccerScriptCard()+hotScorers():gameScriptCard())+`<div class="card" style="grid-row:span 2"><h3>🔥 Hot List: overs</h3><div class="sub">Props hitting the over at ${tier}%+ over the ${W} window · <b id="hotn">${hotN}</b> qualify</div>
+ {const tt=$("tetop");if(tt){tt.innerHTML="";tt.hidden=true}}$("dash").innerHTML=(sport=="nhl"?nhlFormCard():"")+(sport=="nfl"||sport=="nhl"?likelyCard(sport):"")+(sport=="mlb"?mlbPhaseBar()+mlbLabCard():"")+earlyInjuryCard()+impactCard()+(sport=="nfl"?qbCard(false):"")+(sport=="soccer"?likelyCard("soccer")+sgpCards():"")+recsSection(d)+(window.CO&&(sport=="nfl"||sport=="nhl")?CO.card(sport):"")+(sport=="soccer"?soccerScriptCard()+hotScorers():gameScriptCard())+`<div class="card" style="grid-row:span 2"><h3>🔥 Hot List: overs</h3><div class="sub">Props hitting the over at ${tier}%+ over the ${W} window · <b id="hotn">${hotN}</b> qualify</div>
  <div class="chips" id="tiers">${[50,60,70,80].map(t=>`<button data-t="${t}" class="${t==tier?"on":""}">${t}%+</button>`).join("")}<span style="width:8px"></span>${["l5","l10","l20"].map(w=>`<button data-w="${w}" class="${w==win?"on":""}">${w.toUpperCase()}</button>`).join("")}</div>
  ${pagedList("hot",hot,r=>`<span class="up">${P(r[win])}</span><div>${r[win].h}/${r[win].n} · avg ${r[win].avg}</div>`)}</div>
  <div class="card"><h3>📈 Active over streaks</h3><div class="sub">Consecutive most-recent games over today's line</div>${pagedList("streak",streak,r=>`<span class="fire">${r.os} straight over</span><div>L10 ${r.l10?P(r.l10):"—"}</div>`)}</div>
@@ -827,6 +827,56 @@ const fCls=f=>/^helps/.test(f.dir)?"p":/risk/.test(f.dir)&&f.sev<2?"q":"h";
 const fLab=f=>({OL:"OL",QB:"QB",WR1:"WR1",RB1:"RB1",TE1:"TE1","DEF-DB":"DB out","DEF-FRONT":"DL/LB out",SELF:"INJ"}[f.kind]||f.kind);
 const escA=s=>String(s??"").replace(/[<>&"]/g,c=>({"<":"&lt;",">":"&gt;","&":"&amp;",'"':"&quot;"}[c]));
 function flagBadges(r){if(sport!="nfl"||!r.fl)return"";return r.fl.map(id=>window.IMPM&&IMPM[id]).filter(Boolean).slice(0,3).map(f=>`<span class="fb ${fCls(f)}" title="${escA(f.text+" — "+f.dir)}">${fCls(f)=="p"?"▲":"▼"} ${fLab(f)}</span>`).join("")}
+
+let EIA=null,EIA_T=0,EIA_TAB="props",EIA_ALL=false;
+function loadEia(){if(EIA||EIA_T)return;EIA_T=1;fetch("data/early_injury_adjust.json?v="+Date.now()).then(r=>r.ok?r.json():null).then(j=>{EIA=j||{err:1};if(sport=="nfl"&&(view=="dash"||view=="analyst")){if(view=="dash")dash();else analyst()}}).catch(()=>{EIA={err:1}})}
+function earlyInjuryCard(){if(sport!="nfl")return"";loadEia();if(!EIA||EIA.err||(!EIA.prop_freerolls&&!EIA.line_opportunities))return"";
+ const PF=EIA.prop_freerolls||[],LO=EIA.line_opportunities||[],pc=x=>Math.round((x||0)*100)+"%",am=p=>p==null?"":p>0?"+"+p:""+p;
+ const rowsP=PF.slice(0,EIA_ALL?PF.length:6).map(r=>{const P=r.probabilities||{},sp=r.starter_prop;
+  return `<div style="background:var(--panel2,#161f33);border:1px solid var(--line,#243049);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:5px">
+   <div style="display:flex;justify-content:space-between;gap:6px;align-items:baseline;flex-wrap:wrap">
+    <div><b>${escA(r.player)}</b> <span class="mut">${escA(r.team)} ${escA(r.pos)} · vs ${escA(r.opp)}</span></div>
+    <span class="pill ${r.strategy_code=="DUAL_OVER_VOID_FREEROLL"?"g":"y"}">${escA(r.strategy_badge)}</span>
+   </div>
+   <div class="mut" style="font-size:12px">Status: <b style="color:#facc15">${escA(r.status)} (${escA(r.injury)})</b>${r.usage&&(r.usage.tg_g||r.usage.ca_g)?` · Baseline: ${r.usage.tg_g?r.usage.tg_g+" tgt/g ("+r.usage.tg_share_pct+"%)":""}${r.usage.tg_g&&r.usage.ca_g?", ":""}${r.usage.ca_g?r.usage.ca_g+" car/g ("+r.usage.ca_share_pct+"%)":""}${r.usage.rz_share_pct?" · "+r.usage.rz_share_pct+"% RZ":""}`:""}</div>
+   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px;text-align:center;margin:3px 0">
+    <div style="background:rgba(11,15,23,.7);border:1px solid var(--line);border-radius:7px;padding:4px"><small class="mut" style="display:block;font-size:10px">P(Play)</small><b style="color:#3fa9ff">${pc(P.p_play)}</b></div>
+    <div style="background:rgba(11,15,23,.7);border:1px solid var(--line);border-radius:7px;padding:4px"><small class="mut" style="display:block;font-size:10px">P(Play Well)</small><b class="up">${pc(P.p_play_well)}</b></div>
+    <div style="background:rgba(11,15,23,.7);border:1px solid var(--line);border-radius:7px;padding:4px"><small class="mut" style="display:block;font-size:10px">P(Decoy/Lim)</small><b style="color:#facc15">${pc(P.p_decoy)}</b></div>
+    <div style="background:rgba(11,15,23,.7);border:1px solid var(--line);border-radius:7px;padding:4px"><small class="mut" style="display:block;font-size:10px">P(Void/Out)</small><b class="dn">${pc(P.p_void)}</b></div>
+   </div>
+   ${sp?`<div class="mut" style="font-size:11.5px">Starter Line: <b style="color:var(--txt)">${escA(r.player)} ${sp.market=="Anytime TD"?"Anytime TD":"o/u "+escA(sp.line)+" "+escA(sp.market)} (${am(sp.price)} ${escA(sp.book)})</b> · 100% Void/Refund if Inactive</div>`:""}
+   <div style="font-size:12px;color:#d1fae5"><b>🎯 Execution:</b> ${escA(r.execution_plan)}</div>
+   ${(r.beneficiaries||[]).slice(0,2).map(b=>{const bp=b.prop;return `<div style="font-size:12px;border-top:1px dashed var(--line);padding-top:4px"><b>↗ ${escA(b.player)} (${escA(b.pos)})</b>: <span class="up">${escA(b.shift_summary)}</span>${bp?` · <b>${bp.market=="Anytime TD"?"Anytime TD":"Over "+escA(bp.line)+" "+escA(bp.market)} (${am(bp.price)} ${escA(bp.book)})</b>`:""}${b.est_line_bump?`<div class="mut" style="font-size:11px">${escA(b.est_line_bump)}</div>`:""}</div>`}).join("")}
+  </div>`}).join("");
+ const rowsL=LO.map(g=>`<div style="background:var(--panel2,#161f33);border:1px solid var(--line,#243049);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:5px">
+   <div style="display:flex;justify-content:space-between;gap:6px;align-items:baseline;flex-wrap:wrap">
+    <b>${escA(g.matchup)} <span class="mut" style="font-weight:400">· ${escA(g.window)}</span></b>
+    <span class="pill g">${escA(g.line_status)}</span>
+   </div>
+   <div style="font-size:12.5px">Open: <b>${escA(g.spread_open)}</b> → Current: <b>${escA(g.spread_current)}</b> (O/U ${escA(g.total_current)}) · Edge: <b class="up">${escA(g.unpriced_edge_pts)}</b></div>
+   <div style="background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.35);border-radius:7px;padding:5px 8px;color:var(--acc);font-weight:800;font-size:12.5px">🏆 ${escA(g.action_side)}</div>
+   <div class="mut" style="font-size:12px">${escA(g.why_take_now)}</div>
+   ${(g.key_unresolved_players||[]).map(p=>`<div style="font-size:11.5px;border-top:1px dashed var(--line);padding-top:4px"><b>${escA(p.player)} (${escA(p.team)} ${escA(p.pos)})</b> · <span style="color:#facc15">${escA(p.status)}</span> · P(Play) <b>${pc(p.p_play)}</b> · P(Play Well) <b class="up">${pc(p.p_play_well)}</b> · P(Decoy) <b>${pc(p.p_decoy)}</b> · P(Void) <b class="dn">${pc(p.p_void)}</b><div class="mut">${escA(p.impact_note)}</div></div>`).join("")}
+  </div>`).join("");
+ return `<div class="card" style="grid-column:1/-1;border-color:#2e4a7d">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
+   <h3 style="margin:0">⚡ Early Injury Line Adjustment</h3>
+   <span class="mut" style="font-size:12px">Updated ${escA(EIA.updated_et||"")}</span>
+  </div>
+  <div class="sub">${escA(EIA.subtitle||"")}</div>
+  <div class="chips" style="margin:8px 0">
+   <button type="button" data-bl-eiatab="props" class="${EIA_TAB=="props"?"on":""}">🔄 Prop Void-Freerolls &amp; Beneficiaries (${PF.length})</button>
+   <button type="button" data-bl-eiatab="lines" class="${EIA_TAB=="lines"?"on":""}">📈 Unadjusted Spread &amp; ML Front-Runs (${LO.length})</button>
+   ${EIA_TAB=="props"&&PF.length>6?`<button type="button" data-bl-eiaall="1" class="${EIA_ALL?"on":""}">${EIA_ALL?"Show Top 6":"Show All "+PF.length+" Cascades"}</button>`:""}
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:10px">${EIA_TAB=="props"?rowsP:rowsL}</div>
+ </div>`}
+document.addEventListener("click",e=>{
+ const t=e.target.closest("[data-bl-eiatab]");if(t){EIA_TAB=t.dataset.blEiatab;if(view=="dash")dash();else if(view=="analyst")analyst();return}
+ const a=e.target.closest("[data-bl-eiaall]");if(a){EIA_ALL=!EIA_ALL;if(view=="dash")dash();else if(view=="analyst")analyst();}
+});
+
 function impactCard(){if(sport!="nfl")return"";const now=Date.now(),live=new Set((DATA.nfl||[]).filter(r=>keepT(r.time,r)).map(r=>r.team));
  const F=(window.IMP&&IMP.flags||[]).filter(f=>f.kind!="SELF"&&live.has(f.team)).slice(0,8);if(!F.length)return"";
  return `<div class="card" style="grid-column:1/-1"><h3>⚑ Impact flags</h3><div class="sub">Who gains and who loses from today's injuries. ▲ helps / ▼ hurts.</div>${F.map(f=>`<div class="imp"><span class="fb ${fCls(f)}">${fCls(f)=="p"?"▲":"▼"} ${fLab(f)}</span><div class="tx">${escA(f.text)} <span class="mut">· ${escA(f.dir)}</span></div></div>`).join("")}</div>`}
@@ -911,7 +961,7 @@ async function analyst(){const el=$("analyst");if(sport=="nhl"){if(!window.NHLAn
  el.innerHTML=`<div class="an" style="padding:0 20px 20px"><div class="kick">NFL · Week ${A.week} · Sports Analyst desk · <span class="sfam" title="Lab Score: situational play, part of the SportsLabs Edge Score family">Lab Score</span></div><h2>Lopsided matchups & touchdown scenarios</h2>
  <div class="sub mut" style="font-size:12px">Rankings from ${A.season} regular-season box scores (yards gained/allowed per game). Lines, totals and implied team totals: Book A. Injuries: injury report. Red-zone usage: play-by-play (snaps inside the 20). Report rebuilt every data refresh · ${new Date(A.updated).toLocaleString("en-US",{timeZone:"America/New_York",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})} ET.</div>
  <div class="kick" style="margin-top:16px">The 5 most lopsided matchups</div><div class="sub mut" style="font-size:12px">${A.n_strict} strict top-5 offense vs bottom-5 defense pairing${A.n_strict==1?"":"s"} this week; the rest are the next-most lopsided by mismatch score = (33 − offense rank) + (33 − defense rank) + 2 × (implied team total − slate average ${A.slate_avg_itt}). One pairing per offense per game.</div>
- <div class="grid2">${mm}</div>${qbCard(true)}${injCascades()}${teamCascadeCard()}${atdBoard()}${cascadeCard()}
+ <div class="grid2">${mm}</div>${earlyInjuryCard()}${qbCard(true)}${injCascades()}${teamCascadeCard()}${atdBoard()}${cascadeCard()}
  ${rankTables(rows,T)}${tpiCard(A)}
  <div class="mut" style="font-size:11px;margin-top:10px">Gaps: early-season samples (${Object.values(T)[0]?.g??"?"} games per team) make ranks volatile; passing yards are gross (sack yards not subtracted); injury statuses can lag team announcements; OL "starter" = 50%+ of offensive snaps this season. Not betting advice.</div></div>`;
  el.querySelectorAll("[data-rkp]").forEach(b=>b.onclick=()=>{const[k,p]=b.dataset.rkp.split("|");RKP[k]=+p;analyst()});}
