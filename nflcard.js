@@ -44,10 +44,19 @@ window.renderEarlyInjuryAdjust=function(E,tab){
    </div>
    ${sp?`<div class="ncm">Starter Line: <b style="color:#e6ebf5">${esc(r.player)} ${sp.market=="Anytime TD"?"Anytime TD":"o/u "+esc(sp.line)+" "+esc(sp.market)} (${am(sp.price)} ${esc(bn(sp.book))})</b> · 100% Void/Refund if Inactive</div>`:""}
    <div style="margin-top:5px;color:#d1fae5;font-size:12px"><b>🎯 Execution:</b> ${esc(r.execution_plan)}</div>
-   ${(r.beneficiaries||[]).slice(0,3).map(b=>{const bp=b.prop;return `<div class="eia-ben"><b>↗ ${esc(b.player)} (${esc(b.pos)})</b>: <span style="color:#53e3a6">${esc(b.shift_summary)}</span>${bp?` · <b>${bp.market=="Anytime TD"?"Anytime TD":"Over "+esc(bp.line)+" "+esc(bp.market)} (${am(bp.price)} ${esc(bn(bp.book))})</b>`:""}${b.est_line_bump?`<div class="ncm" style="font-size:11px">${esc(b.est_line_bump)}</div>`:""}</div>`}).join("")}
+   ${(r.pie||r.beneficiaries||[]).map(b=>{const bp=b.prop;return `<div class="eia-ben"><b>↗ ${esc(b.player)} (${esc(b.pos)})</b>: <span style="color:#53e3a6">${esc(b.shift_summary)}</span>${bp?` · <b>${bp.market=="Anytime TD"?"Anytime TD":"Over "+esc(bp.line)+" "+esc(bp.market)} (${am(bp.price)} ${esc(bn(bp.book))})</b>`:""}${b.est_line_bump?`<div class="ncm" style="font-size:11px">${esc(b.est_line_bump)}</div>`:""}${(b.props_all||[]).length?`<div class="ncm" style="font-size:11px">Lines: ${b.props_all.map(q=>(q.market=="Anytime TD"?"Anytime TD":"o"+esc(q.line)+" "+esc(q.market))+" ("+(q.price==null?"price pending":am(q.price)+" "+esc(bn(q.book)))+")").join(" · ")}</div>`:""}${b.pair?`<div class="ncm" style="font-size:11px">🔄 Pair: ${esc(b.pair)}</div>`:""}</div>`}).join("")}
   </div>`;
  }).join("");
 
+ const RR=E.role_returns||[],LK=E.likely_out||[],f1=x=>x==null?"–":(Math.round(x*10)/10);
+ const rCards=RR.map(r=>`<div class="eia-card">
+   <div style="display:flex;justify-content:space-between;gap:6px;align-items:baseline;flex-wrap:wrap"><div><b style="font-size:14px;color:#fff">${esc(r.player)}</b> <span class="ncm">${esc(r.team)} · loses share</span></div><span class="eia-tag hd">↘ ${esc(r.returning)} returns</span></div>
+   <div class="ncm" style="margin-top:2px">Carries ${f1(r.without_lead.rushingAttempts)} → <b style="color:#ff7b88">${f1(r.with_lead.rushingAttempts)}</b> · Rush yds ${f1(r.without_lead.rushingYards)} → <b style="color:#ff7b88">${f1(r.with_lead.rushingYards)}</b> (${r.n_games_with_lead} games with ${esc(r.returning)})</div>
+   <div class="ncm">Overs not Highlighted · fade/under options below</div>
+   <div class="ncm">${esc(r.note)}</div>
+   ${(r.fades||[]).map(f=>`<div class="eia-ben">↘ Under ${esc(f.line)} ${esc(f.market)} · proj ${f1(f.proj_with_lead)} (was ${f1(f.proj_without_lead)})${f.p_under!=null?" · "+pc(f.p_under)+" under":""} · ${f.under_price==null?"price pending":am(f.under_price)+" "+esc(f.under_book)}</div>`).join("")}
+  </div>`).join("");
+ const lkHtml=LK.length?`<div class="ncm" style="margin:4px 0"><b style="color:#ff7b88">Likely Out:</b> ${LK.map(x=>`${esc(x.player)} ${esc(x.team)} <b>${pc(x.p_inactive)}</b>${x.unconfirmed?"*":""}`).join(" · ")}${LK.some(x=>x.unconfirmed)?" <span style=\"font-size:11px\">(* unconfirmed report)</span>":""}</div>`:"";
  const lCards=LO.map(g=>`<div class="eia-card">
   <div style="display:flex;justify-content:space-between;gap:6px;align-items:baseline;flex-wrap:wrap">
    <b style="font-size:14.5px;color:#fff">${esc(g.matchup)} <span class="ncm" style="font-weight:500">· ${esc(g.window)}</span></b>
@@ -69,12 +78,13 @@ window.renderEarlyInjuryAdjust=function(E,tab){
    <span class="ncm">Updated ${esc(E.updated_et||"")}</span>
   </div>
   <div class="ncm">${esc(E.subtitle||"")}</div>
+  ${lkHtml}
   <div class="eia-tabs">
    <button type="button" data-eiatab="props" class="${tab=="props"?"on":""}">🔄 Prop Void-Freerolls &amp; Beneficiaries (${PF.length})</button>
    <button type="button" data-eiatab="lines" class="${tab=="lines"?"on":""}">📈 Unadjusted Spread &amp; ML Front-Runs (${LO.length})</button>
    ${tab=="props"&&PF.length>8?`<button type="button" data-eiaall="1" class="${window._eiaAll?"on":""}">${window._eiaAll?"Show Top 8":"Show All "+PF.length+" Cascades"}</button>`:""}
   </div>
-  <div class="eia-grid">${tab=="props"?pCards:lCards}</div>
+  <div class="eia-grid">${tab=="props"?rCards+pCards:lCards}</div>
  </div>`;
 };
 
