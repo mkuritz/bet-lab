@@ -127,11 +127,13 @@ function drawActive(){
     const mktImp=IMP(r.price);
     const edgePts=((r.p-mktImp)*100).toFixed(1);
     const lrHtml=window.LR&&r.player?LR.tag(r.sport,r.aid||"",r.market,r.line,r.player,r.side&&r.side.toLowerCase()==="under"?"under":"over",r.start||"",r.game||""):"";
+    const spotBadge=(r.spot&&r.spot.badge)?`<span class="tg layup" style="margin-left:4px">${esc(r.spot.badge)}</span>`:"";
+    const liveBadge=r.live_status?`<div style="margin-top:3px"><span class="tg win">${esc(r.live_status)}</span></div>`:"";
     return `<div class="r">
       <span>
         <span class="tg ${badgeCls}">${esc(badgeTxt)}</span>
-        <b>${esc(r.pick)}</b> <span class="mut">${EM[r.sport]||r.sport.toUpperCase()}${r.lg?` · ${esc(r.lg.toUpperCase())}`:""}</span>
-        ${lrHtml}
+        <b>${esc(r.pick)}</b> <span class="mut">${EM[r.sport]||r.sport.toUpperCase()}${r.lg?` · ${esc(r.lg.toUpperCase())}`:""}</span>${spotBadge}
+        ${liveBadge}${lrHtml}
       </span>
       <span class="g mut">${esc(r.matchup)}<br>${tm(r.start)}</span>
       <span><b style="font-size:15px;color:${r.price>0?"var(--mid)":"var(--txt)"}">${am(r.price)}</b> <span class="mut">${esc(r.book||"Book A")}</span></span>
