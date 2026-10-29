@@ -61,7 +61,89 @@ def summary(sport, eid):
     _cache[k] = {"done": done, "sc": sc, "pstats": pstats, "ha": ha_map, "pc": pc}
     return _cache[k]
 
+
+_PROP_LEDGER = None
+def _load_prop_ledger():
+    global _PROP_LEDGER
+    if _PROP_LEDGER is not None:
+        return _PROP_LEDGER
+    import re, unicodedata
+    def _n(s): return re.sub(r"[^a-z]", "", unicodedata.normalize("NFKD", s or "").encode("ascii", "ignore").decode().lower().replace(" jr", "").replace(" sr", ""))
+    _PROP_LEDGER = {}
+    eng_d = "/workspace/bet-lab-engine/data"
+    cat_map = {
+        ("receiving", "REC"): "Receptions",
+        ("receiving", "YDS"): "Receiving Yards",
+        ("rushing", "YDS"): "Rushing Yards",
+        ("rushing", "CAR"): "Carries",
+        ("passing", "YDS"): "Passing Yards",
+        ("passing", "ATT"): "Passing Attempts",
+        ("passing", "COMP"): "Pass Completions",
+        ("passing", "TD"): "Passing Touchdowns",
+        ("td", "TD"): "Anytime TD",
+    }
+    for fn in ("prop_prices_close.json", "prop_prices.json"):
+        fp = os.path.join(eng_d, fn)
+        if not os.path.exists(fp): continue
+        rows = (json.load(open(fp)).get("rows") or {})
+        for k, v in rows.items():
+            parts = k.split("|")
+            if len(parts) >= 4 and parts[0] == "nfl":
+                mk, pl, pt = parts[1], parts[2], parts[3]
+                px = v.get("dk") if v.get("dk") is not None else v.get("best")
+                if px is None: continue
+                px_i = int(round(float(px)))
+                if mk == "Anytime TD" and -250 <= px_i <= 350:
+                    _PROP_LEDGER[(pl, mk, None)] = px_i
+                elif pt and -155 <= px_i <= 145:
+                    try:
+                        _PROP_LEDGER[(pl, mk, float(pt))] = px_i
+                    except Exception:
+                        pass
+                    # Also store closest main line fallback if within standard juice
+                    if -135 <= px_i <= 120:
+                        _PROP_LEDGER[(pl, mk, None)] = px_i
+    for fn in ("nfl_card_log.jsonl", "nfl_atd_log.jsonl"):
+        fp = os.path.join(eng_d, fn)
+        if not os.path.exists(fp): continue
+        for ln in open(fp):
+            if not ln.strip(): continue
+            e = json.loads(ln)
+            pl = _n(e.get("player"))
+            mk = e.get("market") or ("Anytime TD" if "atd" in fn else "")
+            ln_v = float(e["line"]) if e.get("line") is not None else None
+            if pl and mk and e.get("price") is not None:
+                px_i = int(round(float(e["price"])))
+                if -220 <= px_i <= 260:
+                    _PROP_LEDGER.setdefault((pl, mk, ln_v), px_i)
+                    _PROP_LEDGER.setdefault((pl, mk, None), px_i)
+    return _PROP_LEDGER
+
 def pull_open_odds(p):
+    import re, unicodedata
+    def _n(s): return re.sub(r"[^a-z]", "", unicodedata.normalize("NFKD", s or "").encode("ascii", "ignore").decode().lower().replace(" jr", "").replace(" sr", ""))
+    tp = (p.get("type") or "").replace("1h_", "").replace("1q_", "")
+    if tp == "prop":
+        led = _load_prop_ledger()
+        pl = _n(p.get("player"))
+        cat_map = {
+            ("receiving", "REC"): "Receptions",
+            ("receiving", "YDS"): "Receiving Yards",
+            ("rushing", "YDS"): "Rushing Yards",
+            ("rushing", "CAR"): "Carries",
+            ("passing", "YDS"): "Passing Yards",
+            ("passing", "ATT"): "Passing Attempts",
+            ("passing", "COMP"): "Pass Completions",
+            ("passing", "TD"): "Passing Touchdowns",
+            ("td", "TD"): "Anytime TD",
+        }
+        mk = cat_map.get((p.get("stat_cat"), p.get("stat_key")))
+        ln_v = float(p["line"]) if p.get("line") is not None else None
+        if pl and mk:
+            if (pl, mk, ln_v) in led:
+                return led[(pl, mk, ln_v)]
+            if (pl, mk, None) in led:
+                return led[(pl, mk, None)]
     eid = p.get("espn_event_id")
     if not eid or not p.get("sport"): return None
     try: sm = summary(p["sport"], eid)
@@ -69,12 +151,11 @@ def pull_open_odds(p):
     if not sm: return None
     pc = sm.get("pc") or {}
     ha = (sm.get("ha") or {}).get(p.get("team") or "")
-    tp = (p.get("type") or "").replace("1h_", "").replace("1q_", "")
     if tp == "ml":
         ml = pc.get("moneyline") or {}
         if ha in ("home", "away"):
             side_d = ml.get(ha) or {}
-            o = parse_am((side_d.get("open") or {}).get("odds")) or parse_am((side_d.get("close") or {}).get("odds"))
+            o = parse_am((side_d.get("close") or {}).get("odds")) or parse_am((side_d.get("open") or {}).get("odds"))
             if o is not None: return o
             hto = pc.get("homeTeamOdds" if ha == "home" else "awayTeamOdds") or {}
             o = parse_am(hto.get("moneyLine"))
@@ -83,31 +164,34 @@ def pull_open_odds(p):
         sp = pc.get("pointSpread") or {}
         if ha in ("home", "away"):
             side_d = sp.get(ha) or {}
-            o = parse_am((side_d.get("open") or {}).get("odds")) or parse_am((side_d.get("close") or {}).get("odds"))
-            if o is not None: return o
             hto = pc.get("homeTeamOdds" if ha == "home" else "awayTeamOdds") or {}
-            o = parse_am(hto.get("spreadOdds"))
-            if o is not None: return o
+            o_close = parse_am((side_d.get("close") or {}).get("odds")) or parse_am(hto.get("spreadOdds"))
+            o_open = parse_am((side_d.get("open") or {}).get("odds"))
+            if o_close is not None and o_close != -110: return o_close
+            if o_open is not None: return o_open
+            if o_close is not None: return o_close
     elif tp in ("total", "team_total"):
         tot = pc.get("total") or {}
         sd = p.get("side") or "over"
         side_d = tot.get(sd) or {}
-        o = parse_am((side_d.get("open") or {}).get("odds")) or parse_am((side_d.get("close") or {}).get("odds"))
-        if o is not None: return o
-        o = parse_am(pc.get("overOdds" if sd == "over" else "underOdds"))
-        if o is not None: return o
+        o_close = parse_am((side_d.get("close") or {}).get("odds")) or parse_am(pc.get("overOdds" if sd == "over" else "underOdds"))
+        o_open = parse_am((side_d.get("open") or {}).get("odds"))
+        if o_close is not None and o_close != -110: return o_close
+        if o_open is not None: return o_open
+        if o_close is not None: return o_close
     elif tp == "prop":
-        if p.get("stat_cat") == "td": return 115
         sp = pc.get("pointSpread") or {}
         if ha in ("home", "away"):
-            o = parse_am(((sp.get(ha) or {}).get("open") or {}).get("odds"))
-            if o is not None: return o
+            hto = pc.get("homeTeamOdds" if ha == "home" else "awayTeamOdds") or {}
+            o = parse_am(((sp.get(ha) or {}).get("close") or {}).get("odds")) or parse_am(hto.get("spreadOdds")) or parse_am(((sp.get(ha) or {}).get("open") or {}).get("odds"))
+            if o is not None and o != -110: return o
+        return 115 if p.get("stat_cat") == "td" else -112
     return -110
 
 def ensure_odds(p):
     if p.get("type") == "parlay":
         for l in p.get("legs") or []:
-            if l.get("odds") is None or l.get("odds_assumed"):
+            if l.get("odds") is None or l.get("odds_assumed") or (l.get("odds_source") == "opening" and l.get("odds") in (-110, 115, 100)):
                 o = pull_open_odds(l)
                 if o is not None:
                     l["odds"] = o
@@ -115,7 +199,7 @@ def ensure_odds(p):
                     l.pop("odds_assumed", None)
             elif not l.get("odds_source"):
                 l["odds_source"] = "stated"
-        if p.get("odds") is None or p.get("odds_assumed"):
+        if p.get("odds") is None or p.get("odds_assumed") or (p.get("odds_source") == "opening" and p.get("odds") in (-110, 115)):
             if "teaser" in (p.get("desc") or "").lower():
                 p["odds"] = -120
                 p["odds_source"] = "opening"
@@ -132,7 +216,7 @@ def ensure_odds(p):
             p["odds_source"] = "stated"
         return
 
-    if p.get("odds") is None or p.get("odds_assumed"):
+    if p.get("odds") is None or p.get("odds_assumed") or (p.get("odds_source") == "opening" and (p.get("type") == "prop" or p.get("odds") in (-110, 115, 100))):
         o = pull_open_odds(p)
         if o is not None:
             p["odds"] = o

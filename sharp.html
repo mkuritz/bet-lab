@@ -9,7 +9,13 @@ header a{color:var(--mut);font-weight:700;font-size:13px;text-decoration:none}.c
 .win{color:var(--acc);font-weight:800}.loss{color:var(--bad);font-weight:800}.pill{font-size:10px;font-weight:800;padding:2px 7px;border-radius:999px;background:#53e3a622;color:var(--acc)}
 .ctabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.ctab{background:var(--panel2);border:1px solid var(--line);color:var(--mut);font-weight:700;font-size:12px;padding:6px 12px;border-radius:8px;cursor:pointer}.ctab.on{background:#53e3a61f;border-color:var(--acc);color:var(--txt)}
 .cbadge{font-size:10px;font-weight:800;padding:2px 6px;border-radius:5px;margin-right:5px;text-transform:uppercase;letter-spacing:.03em}
-.cbadge.games{background:#3fa9ff22;color:var(--acc2)}.cbadge.props{background:#53e3a622;color:var(--acc)}.cbadge.leans{background:#f5c45122;color:var(--mid)}</style><link rel="stylesheet" href="nav.css"><script src="liveres.js?v=6"></script><script src="https://sportslabshq.com/sl/sl.js?v=12" defer></script>
+.cbadge.games{background:#3fa9ff22;color:var(--acc2)}.cbadge.props{background:#53e3a622;color:var(--acc)}.cbadge.leans{background:#f5c45122;color:var(--mid)}
+.wk-cur{background:rgba(83,227,166,.06);border:1px solid rgba(83,227,166,.35);border-radius:10px;padding:10px 12px;margin-bottom:10px}
+.wk-cur-hd{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px;font-weight:800;font-size:14px}
+details.wk-det{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin-top:8px}
+details.wk-det>summary{cursor:pointer;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;font-weight:800;font-size:13.5px;list-style:none}
+details.wk-det>summary::-webkit-details-marker{display:none}
+.wk-badges{display:inline-flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:12px}</style><link rel="stylesheet" href="nav.css"><script src="liveres.js?v=6"></script><script src="https://sportslabshq.com/sl/sl.js?v=12" defer></script>
 <script src="/sl-neutral.js" defer></script></head>
 <body><div class="w"><header><a class="logo" href="./" style="color:var(--txt)">Bet <b>Lab</b></a></header>
 <h1 style="margin:4px 0">💎 Highlighted</h1><div class="mut" id="upd"></div>
@@ -34,6 +40,68 @@ const od=p=>p.odds?(p.odds>0?"+":"")+p.odds+(p.odds_source==="opening"?" <span c
 const CLBL={games:"Games Picked",props:"Player Prop",leans:"Lean / Smart Play"};
 function renderRows(P,showCat){
  return P.length?`<table><tr><th>Week</th>${showCat?"<th>Category</th>":""}<th>Highlight</th><th>Odds</th><th>Result</th><th>Source</th></tr>${P.map(p=>`<tr><td>${p.week?"Wk "+p.week:esc(p.date)} <span class="mut">${esc((p.sport||"").toUpperCase())}</span></td>${showCat?`<td><span class="cbadge ${esc(p.category||"games")}">${esc(CLBL[p.category]||"Game")}</span></td>`:""}<td>${p.kind==="parlay"?"🎟️ ":""}${esc(p.desc)}${p.book?` <span class="mut">· ${esc(p.book)}</span>`:""}${p.actual!=null?` <span class="mut">(actual: ${esc(p.actual)})</span>`:""}${p.final&&!p.legs?` <span class="mut">(${Object.entries(p.final).map(([k,v])=>k+" "+v).join(" – ")})</span>`:""}${p.legs?`<div style="font-size:12px;margin-top:4px">${p.legs_graded!=null?`<b>${p.legs_hit}/${p.legs_total} legs hit</b>${p.legs_push?` · ${p.legs_push} push`:""}${p.sunk_by&&p.sunk_by.length?` · <span class="loss">sunk by: ${p.sunk_by.map(esc).join(", ")}</span>`:""}`:""}<table style="margin-top:4px">${p.legs.map(l=>`<tr><td>${esc(l.desc)}</td><td>${l.odds?(l.odds>0?"+":"")+l.odds:""}</td><td>${rs(l.result)}</td><td class="mut">${l.final?Object.entries(l.final).map(([k,v])=>k+" "+v).join(" – "):""}</td></tr>`).join("")}</table></div>`:""}</td><td>${od(p)}</td><td>${rs(p.result)}</td><td><a href="${esc(p.source_url)}" target="_blank" rel="noopener">${esc(p.source_label||(p.timestamp?"episode @ "+p.timestamp:"source"))}</a></td></tr>`).join("")}</table>`:'<div class="mut">No highlights in this category yet.</div>';
+}
+function calcWeekStats(rows){
+ let w=0,l=0,pu=0,pend=0,u=0;
+ rows.forEach(p=>{
+  const r=p.result;
+  const o=p.odds;
+  if(r==="win"){w++;if(o!=null)u+=(o>0?o/100:100/-o)}
+  else if(r==="loss"){l++;if(o!=null)u-=1}
+  else if(r==="push"){pu++}
+  else{pend++}
+ });
+ const n=w+l,hit=n?Math.round(w/n*100)+"%":"—";
+ return {w,l,pu,pend,u:Math.round(u*100)/100,hit,n:rows.length};
+}
+function renderByWeek(P,showCat,allPicks){
+ if(!P.length)return '<div class="mut">No highlights in this category yet.</div>';
+ const curWeek=Math.max(...(allPicks||P).map(p=>p.week||0));
+ const curRows=P.filter(p=>(p.week||0)===curWeek);
+ const pastWeeks=[...new Set(P.filter(p=>(p.week||0)<curWeek).map(p=>p.week||0))].sort((a,b)=>b-a);
+ const curSt=calcWeekStats(curRows);
+ const curRecBadge=curSt.w+curSt.l
+  ?`<span class="pill" style="background:${curSt.u>=0?"#53e3a622":"#ff5d6c22"};color:${curSt.u>=0?"var(--acc)":"var(--bad)"}">${curSt.w}-${curSt.l}${curSt.pu?"-"+curSt.pu:""} (${curSt.u>=0?"+":""}${curSt.u.toFixed(2)}u · ${curSt.hit})</span>`
+  :`<span class="pill">${curSt.pend} Upcoming Plays</span>`;
+ let html=`<div class="wk-cur">
+  <div class="wk-cur-hd">
+   <span>📌 Current Week · Week ${curWeek} (${curRows.length} ${curRows.length===1?"Play":"Plays"})</span>
+   <span class="wk-badges">${curRecBadge}${curSt.pend&&curSt.w+curSt.l?`<span class="mut" style="font-size:12px">${curSt.pend} pending</span>`:""}</span>
+  </div>
+  ${curRows.length?renderRows(curRows,showCat):'<div class="mut">No plays in this category for Week '+curWeek+'.</div>'}
+ </div>`;
+ if(pastWeeks.length){
+  html+=`<div class="mut" style="font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin:14px 0 6px">📜 Previous Weeks · Week-by-Week Breakdown (Tap any week to expand plays)</div>`;
+  html+=pastWeeks.map(wk=>{
+   const wRows=P.filter(p=>(p.week||0)===wk);
+   const st=calcWeekStats(wRows);
+   const uClr=st.u>=0?"var(--acc)":"var(--bad)";
+   let catSub="";
+   if(showCat){
+    const gS=calcWeekStats(wRows.filter(x=>x.category==="games"));
+    const pS=calcWeekStats(wRows.filter(x=>x.category==="props"));
+    const lS=calcWeekStats(wRows.filter(x=>x.category==="leans"));
+    const parts=[];
+    if(gS.n)parts.push(`<span class="cbadge games">🏈 Games ${gS.w}-${gS.l}</span>`);
+    if(pS.n)parts.push(`<span class="cbadge props">🎯 Props ${pS.w}-${pS.l}</span>`);
+    if(lS.n)parts.push(`<span class="cbadge leans">💡 Leans ${lS.w}-${lS.l}</span>`);
+    catSub=parts.join(" ");
+   }
+   return `<details class="wk-det">
+    <summary>
+     <span>📅 Week ${wk} <span class="mut" style="font-weight:600;font-size:12px">· ${wRows.length} plays</span></span>
+     <span class="wk-badges">
+      ${catSub}
+      <span>Record: <b style="color:${st.w>=st.l?"var(--acc)":"var(--txt)"}">${st.w}-${st.l}${st.pu?"-"+st.pu:""}</b> <span class="mut">(${st.hit})</span></span>
+      <span style="color:${uClr};font-weight:800">${st.u>=0?"+":""}${st.u.toFixed(2)}u</span>
+      <span class="mut" style="font-size:11.5px">View plays ▾</span>
+     </span>
+    </summary>
+    <div style="margin-top:8px" class="wrap">${renderRows(wRows,showCat)}</div>
+   </details>`;
+  }).join("");
+ }
+ return html;
 }
 function renderCapper(A,metaId,recId,picksId,leadTxt,tabsId){
  if(!A){$(metaId).textContent="Unavailable right now.";return}
@@ -60,11 +128,11 @@ function renderCapper(A,metaId,recId,picksId,leadTxt,tabsId){
   const draw=()=>{
    $(tabsId).innerHTML=tabs.map(t=>`<button class="ctab${cur===t.k?" on":""}" data-k="${t.k}">${esc(t.lbl)}</button>`).join("");
    $(tabsId).querySelectorAll("button").forEach(b=>b.onclick=()=>{cur=b.dataset.k;draw()});
-   $(picksId).innerHTML=renderRows(cur==="all"?P:P.filter(x=>x.category===cur),true);
+   $(picksId).innerHTML=renderByWeek(cur==="all"?P:P.filter(x=>x.category===cur),true,P);
   };
   draw();
  } else {
-  $(picksId).innerHTML=renderRows(P,false);
+  $(picksId).innerHTML=renderByWeek(P,false,P);
  }
 }
 (async()=>{

@@ -13,7 +13,7 @@
    "line": 3,
    "team": "NE",
    "desc": "Patriots +3 vs Seahawks",
-   "odds": -110,
+   "odds": 100,
    "id": "aic-w1-01",
    "week": 1,
    "kind": "straight",
@@ -35,7 +35,7 @@
    "line": 3.5,
    "team": "SF",
    "desc": "49ers +3.5 vs Rams (stated as a small play)",
-   "odds": 100,
+   "odds": -105,
    "id": "aic-w1-02",
    "week": 1,
    "kind": "straight",
@@ -163,7 +163,7 @@
    "line": 47,
    "side": "over",
    "desc": "Over 47 (Ravens vs Colts)",
-   "odds": -110,
+   "odds": -105,
    "id": "aic-w1-08",
    "week": 1,
    "kind": "straight",
@@ -185,7 +185,7 @@
    "line": 3,
    "team": "CAR",
    "desc": "Panthers +3 vs Bears",
-   "odds": -110,
+   "odds": -108,
    "id": "aic-w1-09",
    "week": 1,
    "kind": "straight",
@@ -228,7 +228,7 @@
    "line": 7,
    "team": "MIN",
    "desc": "Vikings +7 vs Bears (bought 1.5 pts from +5.5)",
-   "odds": -110,
+   "odds": -108,
    "id": "aic-w2-11",
    "week": 2,
    "kind": "straight",
@@ -250,7 +250,7 @@
    "line": 8.5,
    "team": "CLE",
    "desc": "Browns +8.5 vs Buccaneers",
-   "odds": -110,
+   "odds": -115,
    "id": "aic-w2-12",
    "week": 2,
    "kind": "straight",
@@ -293,7 +293,7 @@
    "line": 8.5,
    "team": "NO",
    "desc": "Saints +8.5 vs Ravens",
-   "odds": -110,
+   "odds": -115,
    "id": "aic-w2-14",
    "week": 2,
    "kind": "straight",
@@ -357,7 +357,7 @@
    "line": 4.5,
    "team": "ARI",
    "desc": "Cardinals +4.5 vs Seahawks",
-   "odds": -110,
+   "odds": 100,
    "id": "aic-w2-17",
    "week": 2,
    "kind": "straight",
@@ -379,7 +379,7 @@
    "line": 6.5,
    "team": "IND",
    "desc": "Colts +6.5 vs Chiefs",
-   "odds": -110,
+   "odds": -112,
    "id": "aic-w2-18",
    "week": 2,
    "kind": "straight",
@@ -401,7 +401,7 @@
    "line": 6.5,
    "team": "ATL",
    "desc": "Falcons +6.5 vs Packers",
-   "odds": -110,
+   "odds": -108,
    "id": "aic-w3-19",
    "week": 3,
    "kind": "straight",
@@ -423,7 +423,7 @@
    "line": 7,
    "team": "LAC",
    "desc": "Chargers +7 vs Bills",
-   "odds": -110,
+   "odds": -105,
    "id": "aic-w3-20",
    "week": 3,
    "kind": "straight",
@@ -489,7 +489,7 @@
    "line": 7,
    "team": "WSH",
    "desc": "Commanders +7 vs Seahawks",
-   "odds": -110,
+   "odds": -115,
    "id": "aic-w3-23",
    "week": 3,
    "kind": "straight",
@@ -554,7 +554,7 @@
    "line": 3.5,
    "team": "DAL",
    "desc": "Cowboys +3.5 vs Ravens",
-   "odds": -110,
+   "odds": -108,
    "id": "aic-w3-26",
    "week": 3,
    "kind": "straight",
@@ -608,7 +608,7 @@
     "WSH": 13.0,
     "IND": 30.0
    },
-   "odds": -110,
+   "odds": -225,
    "odds_source": "opening"
   },
   {
@@ -683,7 +683,7 @@
    "line": 11.5,
    "team": "MIA",
    "desc": "Dolphins +11.5 vs Vikings",
-   "odds": -110,
+   "odds": -115,
    "id": "aic-w4-32",
    "week": 4,
    "kind": "straight",
@@ -726,7 +726,7 @@
    "line": 3,
    "team": "DEN",
    "desc": "Broncos +3 vs 49ers (favorite pick of the week)",
-   "odds": -110,
+   "odds": -115,
    "id": "aic-w4-34",
    "week": 4,
    "kind": "straight",
@@ -770,7 +770,7 @@
    "line": 10,
    "team": "TB",
    "desc": "Buccaneers +10 vs Cowboys (bought to +10)",
-   "odds": -110,
+   "odds": -102,
    "id": "aic-w5-36",
    "week": 5,
    "kind": "straight",
@@ -814,7 +814,7 @@
    "line": 3,
    "team": "GB",
    "desc": "Packers +3 vs Bears",
-   "odds": -110,
+   "odds": -102,
    "id": "aic-w5-38",
    "week": 5,
    "kind": "straight",
@@ -911,7 +911,7 @@
     "NO": 13.0,
     "MIN": 23.0
    },
-   "odds": 100,
+   "odds": 114,
    "odds_source": "opening"
   },
   {
@@ -943,7 +943,7 @@
    "line": 54.5,
    "side": "over",
    "desc": "Over 54.5 (Bills vs Rams)",
-   "odds": -110,
+   "odds": -108,
    "id": "aic-w5-44",
    "week": 5,
    "kind": "straight",
@@ -1030,7 +1030,7 @@
    "line": 4.5,
    "team": "CLE",
    "desc": "Browns +4.5 vs Ravens",
-   "odds": -110,
+   "odds": -108,
    "id": "aic-w6-48",
    "week": 6,
    "kind": "straight",
@@ -1094,7 +1094,7 @@
    "line": 8.5,
    "team": "LAC",
    "desc": "Chargers +8.5 vs Chiefs",
-   "odds": -110,
+   "odds": -115,
    "id": "aic-w6-51",
    "week": 6,
    "kind": "straight",
@@ -1137,7 +1137,7 @@
    "line": 5,
    "team": "LV",
    "desc": "Raiders +5 vs Bills",
-   "odds": -110,
+   "odds": -115,
    "id": "aic-w6-53",
    "week": 6,
    "kind": "straight",
@@ -1159,7 +1159,7 @@
    "line": 1.5,
    "team": "DAL",
    "desc": "Cowboys +1.5 vs Packers (2nd favorite pick of the week)",
-   "odds": -110,
+   "odds": -108,
    "id": "aic-w6-54",
    "week": 6,
    "kind": "straight",
@@ -1181,7 +1181,7 @@
    "line": 7.5,
    "team": "WSH",
    "desc": "Commanders +7.5 vs 49ers",
-   "odds": -110,
+   "odds": -118,
    "id": "aic-w6-55",
    "week": 6,
    "kind": "straight",
@@ -1278,7 +1278,7 @@
     "CHI": 30.0,
     "NE": 24.0
    },
-   "odds": 100,
+   "odds": 130,
    "odds_source": "opening"
   },
   {
@@ -1289,7 +1289,7 @@
    "line": 3.5,
    "team": "ATL",
    "desc": "Falcons +3.5 vs 49ers (favorite pick of the week)",
-   "odds": -110,
+   "odds": -108,
    "id": "aic-w7-60",
    "week": 7,
    "kind": "straight",
@@ -1491,7 +1491,7 @@
     "MIL": 125.0,
     "CHI": 132.0
    },
-   "odds": -110,
+   "odds": -102,
    "odds_source": "opening"
   },
   {
@@ -1727,7 +1727,7 @@
       "CAR": 37.0,
       "CHI": 59.0
      },
-     "odds": -110,
+     "odds": -108,
      "odds_source": "opening"
     },
     {
@@ -1789,7 +1789,7 @@
       "KC": 31.0,
       "DEN": 10.0
      },
-     "odds": 100,
+     "odds": -112,
      "odds_source": "opening"
     }
    ],
@@ -1831,7 +1831,7 @@
       "GB": 14.0,
       "ATL": 35.0
      },
-     "odds": -110,
+     "odds": -108,
      "odds_source": "opening"
     },
     {
@@ -1847,7 +1847,7 @@
       "BUF": 24.0,
       "LAC": 16.0
      },
-     "odds": -110,
+     "odds": -105,
      "odds_source": "opening"
     },
     {
@@ -1895,7 +1895,7 @@
       "WSH": 33.0,
       "SEA": 31.0
      },
-     "odds": -110,
+     "odds": -115,
      "odds_source": "opening"
     },
     {
@@ -1911,7 +1911,7 @@
       "DAL": 31.0,
       "BAL": 34.0
      },
-     "odds": -110,
+     "odds": -108,
      "odds_source": "opening"
     },
     {
@@ -2013,7 +2013,7 @@
       "GB": 31.0,
       "CHI": 7.0
      },
-     "odds": -110,
+     "odds": -102,
      "odds_source": "opening"
     },
     {
@@ -2045,7 +2045,7 @@
       "DAL": 16.0,
       "TB": 24.0
      },
-     "odds": -110,
+     "odds": -102,
      "odds_source": "opening"
     },
     {
@@ -2141,7 +2141,7 @@
       "ATL": 29.0,
       "SF": 20.0
      },
-     "odds": -110,
+     "odds": -108,
      "odds_source": "opening"
     },
     {
@@ -2184,14 +2184,14 @@
     "w": 44,
     "l": 24,
     "p": 2,
-    "units": 21.13,
+    "units": 20.7,
     "units_n": 70
    },
    "nfl": {
     "w": 41,
     "l": 23,
     "p": 2,
-    "units": 19.25,
+    "units": 18.75,
     "units_n": 66
    },
    "mlb": {
@@ -2205,7 +2205,7 @@
     "w": 1,
     "l": 0,
     "p": 0,
-    "units": 0.91,
+    "units": 0.98,
     "units_n": 1
    },
    "ncaaf": {
@@ -2257,14 +2257,14 @@
    "w": 44,
    "l": 24,
    "p": 2,
-   "units": 21.13,
+   "units": 20.7,
    "units_n": 70
   },
   "nfl": {
    "w": 41,
    "l": 23,
    "p": 2,
-   "units": 19.25,
+   "units": 18.75,
    "units_n": 66
   },
   "mlb": {
@@ -2278,7 +2278,7 @@
    "w": 1,
    "l": 0,
    "p": 0,
-   "units": 0.91,
+   "units": 0.98,
    "units_n": 1
   },
   "ncaaf": {
@@ -2292,7 +2292,7 @@
    "w": 14,
    "l": 7,
    "p": 2,
-   "units": 5.09,
+   "units": 5.29,
    "units_n": 23
   },
   "pending": 11,

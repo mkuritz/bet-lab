@@ -194,12 +194,43 @@ function drawHistory(){
 
 $("sortSel").onchange=e=>{sortBy=e.target.value;drawActive()};
 
+const ETD=t=>t?new Date(t).toLocaleDateString("en-CA",{timeZone:"America/New_York"}):"";
+const TODAY_ET=ETD(new Date().toISOString());
+const UAB={"Anytime Goal":"G","Goals":"G","Points":"PTS","Shots on Goal":"SOG","Assists":"AST","Rebounds":"REB","3-Point Field Goals":"3PM","Points, Rebounds, and Assists":"PRA","Points and Assists":"PA","Anytime TD":"TD","Receiving Yards":"Rec Yds","Rushing Yards":"Rush Yds","Receptions":"Rec","Passing TDs 1+":"Pass TD","1+ Shots on Target":"SOT","Shots on Target":"SOT","2+ Shots":"SH","Shots":"SH"};
+function fnum(v){if(v==null)return 0;const s=String(v);return s.includes("-")&&!s.startsWith("-")?parseFloat(s.split("-")[0])||0:parseFloat(s)||0}
+
 Promise.all([
   fetch("data/value_vault.json?t="+Date.now()).then(r=>r.json()),
-  fetch("data/value_vault_record.json?t="+Date.now()).then(r=>r.json()).catch(()=>({}))
-]).then(([j,rec])=>{
-  D=j.rows||[];
-  HIST=j.history_by_day||rec.by_day||[];
+  fetch("data/value_vault_record.json?t="+Date.now()).then(r=>r.json()).catch(()=>({})),
+  fetch("data/live_stats.json?t="+Date.now()).then(r=>r.ok?r.json():{}).catch(()=>({}))
+]).then(([j,rec,ls])=>{
+  const lsG=(ls&&ls.g)||{},lsP=(ls&&ls.p)||{};
+  HIST=(j.history_by_day||rec.by_day||[]).map(d=>({...d,rows:(d.rows||[]).slice()}));
+  const seenH=new Set(HIST.flatMap(d=>(d.rows||[]).map(r=>`${d.day}|${r.sport}|${r.pick}`)));
+  const active=[];
+  (j.rows||[]).forEach(r=>{
+    const dEt=ETD(r.start);
+    const gSt=lsG[`${r.sport}|${r.game}`];
+    const isFinal=Boolean(gSt&&gSt[0]==="post")||(dEt&&dEt<TODAY_ET);
+    if(!isFinal){active.push(r);return}
+    const hk=`${dEt}|${r.sport}|${r.pick}`;
+    if(seenH.has(hk))return;
+    const lp=lsP[`${r.sport}|${r.aid}`];
+    if(lp&&String(lp[0])===String(r.game)){
+      const sd=lp[1]||{},smap=r.sport==="soccer"?{goals:"totalGoals",assists:"goalAssists",shots:"totalShots",sot:"shotsOnTarget"}:{};
+      const act=Math.round((r.stat||[]).reduce((s,k)=>s+fnum(sd[smap[k]||k]),0)*10)/10;
+      const ln=r.line!=null?+r.line:0.5,under=String(r.side||"").toLowerCase()==="under";
+      const res=under?(act<ln?"win":act===ln?"push":"loss"):(act>ln?"win":act===ln?"push":"loss");
+      const diff=Math.round((under?ln-act:act-ln)*10)/10,uLbl=UAB[r.market]||r.market||"";
+      const hRow={...r,day:dEt,res,actual:act,line_target:ln,diff,target_str:`${under?"Under":"Over"} ${ln} ${uLbl}`.trim(),actual_str:`${act} ${uLbl}`.trim(),diff_str:(diff>=0?"+":"")+diff};
+      let dGrp=HIST.find(x=>x.day===dEt);
+      if(!dGrp){dGrp={day:dEt,w:0,l:0,p:0,rows:[]};HIST.unshift(dGrp)}
+      dGrp.rows.unshift(hRow);
+      if(res==="win")dGrp.w++;else if(res==="loss")dGrp.l++;else dGrp.p++;
+      seenH.add(hk);
+    }
+  });
+  D=active;
   REC=rec||{};
   $("upd").textContent="Updated "+new Date(j.updated).toLocaleString("en-US",{month:"short",day:"numeric",hour:"numeric",minute:"2-digit",timeZone:"America/New_York"})+" ET";
   renderKpis();
