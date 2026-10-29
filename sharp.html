@@ -2,25 +2,33 @@
 <title>Highlighted · Bet Lab</title>
 <style>:root{--bg:#0b0f17;--panel:#121826;--panel2:#182033;--line:#243049;--txt:#e6ebf5;--mut:#8b97b0;--acc:#53e3a6;--acc2:#3fa9ff;--bad:#ff5d6c;--mid:#f5c451}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}a{color:var(--acc2)}
-.w{max-width:1100px;margin:0 auto;padding:16px}header{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.logo{font-weight:800;font-size:20px}.logo b{color:var(--acc)}
+.w{max-width:1120px;margin:0 auto;padding:16px}header{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.logo{font-weight:800;font-size:20px}.logo b{color:var(--acc)}
 header a{color:var(--mut);font-weight:700;font-size:13px;text-decoration:none}.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px}
-.mut{color:var(--mut)}table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:7px 6px;border-bottom:1px solid var(--line);text-align:left}th{color:var(--mut);font-size:11px;text-transform:uppercase}
+.mut{color:var(--mut)}table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:left}th{color:var(--mut);font-size:11px;text-transform:uppercase}
 .wrap{overflow-x:auto}.k{display:inline-block;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:0 8px 8px 0}.k b{display:block;font-size:18px}
-.win{color:var(--acc)}.loss{color:var(--bad)}.pill{font-size:10px;font-weight:800;padding:2px 7px;border-radius:999px;background:#53e3a622;color:var(--acc)}
+.win{color:var(--acc);font-weight:800}.loss{color:var(--bad);font-weight:800}.pill{font-size:10px;font-weight:800;padding:2px 7px;border-radius:999px;background:#53e3a622;color:var(--acc)}
 .ctabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.ctab{background:var(--panel2);border:1px solid var(--line);color:var(--mut);font-weight:700;font-size:12px;padding:6px 12px;border-radius:8px;cursor:pointer}.ctab.on{background:#53e3a61f;border-color:var(--acc);color:var(--txt)}
 .cbadge{font-size:10px;font-weight:800;padding:2px 6px;border-radius:5px;margin-right:5px;text-transform:uppercase;letter-spacing:.03em}
-.cbadge.games{background:#3fa9ff22;color:var(--acc2)}.cbadge.props{background:#53e3a622;color:var(--acc)}.cbadge.leans{background:#f5c45122;color:var(--mid)}</style><link rel="stylesheet" href="nav.css"><script src="https://sportslabshq.com/sl/sl.js?v=11" defer></script>
+.cbadge.games{background:#3fa9ff22;color:var(--acc2)}.cbadge.props{background:#53e3a622;color:var(--acc)}.cbadge.leans{background:#f5c45122;color:var(--mid)}</style><link rel="stylesheet" href="nav.css"><script src="liveres.js?v=6"></script><script src="https://sportslabshq.com/sl/sl.js?v=12" defer></script>
 <script src="/sl-neutral.js" defer></script></head>
 <body><div class="w"><header><a class="logo" href="./" style="color:var(--txt)">Bet <b>Lab</b></a></header>
 <h1 style="margin:4px 0">💎 Highlighted</h1><div class="mut" id="upd"></div>
-<div class="card"><h2 style="margin-top:0">Highlighted today</h2><div class="mut" style="font-size:12px;margin-bottom:8px">Our highest-rated plays, where multiple model signals agree and the model price differs from the market. Logged before start and graded in the <a href="edge.html">Edge Tracker</a>. </div><div class="wrap" id="recs">Loading…</div></div>
+<div class="card">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px">
+    <h2 style="margin:0">Highlighted Today &amp; Upcoming Slate</h2>
+    <a href="edge.html" style="font-weight:800;font-size:12.5px">View All Graded Results →</a>
+  </div>
+  <div class="mut" style="font-size:12px;margin:4px 0 8px">Our highest-rated plays where multiple model signals agree and our calibrated probability beats the market price. Logged before start and graded in the <a href="edge.html">Results Hub</a>.</div>
+  <div class="ctabs" id="hlSpTabs"></div>
+  <div class="wrap" id="recs">Loading…</div>
+</div>
 <div class="card"><h2 style="margin-top:0">🎙️ Third-party plays · All In Cousins (Marco Piemonte &amp; Tony)</h2><div class="mut" style="font-size:12px" id="aimeta"></div><div id="airec" style="margin:10px 0"></div><div class="wrap" id="aipicks"></div></div>
 <div class="card"><h2 style="margin-top:0">🎬 Third-party plays · Erik Kuselias (Emmy-Winning Sports Analyst)</h2><div class="mut" style="font-size:12px" id="ekmeta"></div><div id="ekrec" style="margin:10px 0"></div><div class="ctabs" id="ektabs"></div><div class="wrap" id="ekpicks"></div></div>
 <div class="mut" style="font-size:11px;margin:18px 0">Sports Labs model. Prices from public market data. Third-party highlights credited to their source and graded from official final scores. Not betting advice. 21+ only. If you or someone you know has a gambling problem, call 1-800-GAMBLER.<br>Bet Lab · A <a href="https://sportslabshq.com/">Sports Labs</a> Product · © 2026 Sports Labs · <a href="#" data-lead="demo">Request a demo</a></div></div>
 <script>
 const $=id=>document.getElementById(id),j=(u,d)=>fetch(u+"?t="+Date.now()).then(r=>r.ok?r.json():d).catch(()=>d),esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const et=t=>t?new Date(t).toLocaleString("en-US",{timeZone:"America/New_York",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})+" ET":"";
-const am=d=>d?(d>=2?"+"+Math.round((d-1)*100):Math.round(-100/(d-1))):"—";
+const am=d=>d?(d>=2?"+"+Math.round((d-1)*100):Math.round(-100/(d-1))):"—",amRaw=p=>p==null?"—":(p>0?"+"+p:String(p));
 const fRec=r=>r?`${r.w}-${r.l}${r.p?"-"+r.p:""}${r.units_n?` <span class="mut" style="font-size:12px">${r.units>=0?"+":""}${r.units}u</span>`:""}`:"0-0";
 const od=p=>p.odds?(p.odds>0?"+":"")+p.odds+(p.odds_source==="opening"?" <span class=mut>(open)</span>":p.odds_assumed?" <span class=mut>(assumed)</span>":""):"—",rs=r=>r&&r!=="unknown"?`<b class="${r}">${r}</b>`:`<span class="mut">${r==="unknown"?"ungraded":"pending"}</span>`;
 const CLBL={games:"Games Picked",props:"Player Prop",leans:"Lean / Smart Play"};
@@ -60,15 +68,70 @@ function renderCapper(A,metaId,recId,picksId,leadTxt,tabsId){
  }
 }
 (async()=>{
-const [T,C,G,txt]=await Promise.all([j("data/edge_tiers.json",{}),Promise.resolve({})||j("data/edge_close.json",{}),j("data/edge_grades.json",{}),fetch("data/edge_log.jsonl?t="+Date.now()).then(r=>r.ok?r.text():"").catch(()=>"")]);
+const [T,G,txt,TE]=await Promise.all([
+  j("data/edge_tiers.json",{}),
+  j("data/edge_grades.json",{}),
+  fetch("data/edge_log.jsonl?t="+Date.now()).then(r=>r.ok?r.text():"").catch(()=>""),
+  j("data/todays_edge_v2.json",{})
+]);
 const L=txt.split("\n").filter(Boolean).map(l=>{try{return JSON.parse(l)}catch(e){return null}}).filter(Boolean);
-const today=new Date().toLocaleDateString("en-CA",{timeZone:"America/New_York"}),rec=L.filter(p=>(T[p.id]||{}).tier==="recommended");
+const today=new Date().toLocaleDateString("en-CA",{timeZone:"America/New_York"});
 const day=p=>new Date(p.start||p.logged_at).toLocaleDateString("en-CA",{timeZone:"America/New_York"});
-const NOW=Date.now(),asOf=p=>{const m=/as of ([0-9T:+\-Z]+)/.exec(p.price_src||"");const t=Date.parse(m?m[1]:p.logged_at||"");return isNaN(t)?null:t};
-const age=p=>{const a=asOf(p);return a==null?Infinity:NOW-a},open_=p=>!G[p.id];
-let show=rec.filter(p=>day(p)>=today&&(!open_(p)||age(p)<12*36e5));const recent=!show.length;if(recent)show=rec.filter(p=>!open_(p)).slice(-10).reverse();
-const lastAs=Math.max(0,...rec.map(p=>asOf(p)||0));$("upd").textContent=lastAs?"Latest price "+et(new Date(lastAs).toISOString()):"";
-$("recs").innerHTML=(recent?'<div class="mut" style="margin-bottom:6px">No open Highlighted plays with a fresh price right now. Latest graded highlights:</div>':"")+(show.length?`<table><tr><th>Highlight</th><th>Sport</th><th>Start</th><th>Price</th><th>As of</th><th>Result</th></tr>${show.map(p=>{const c=C[p.id],g=G[p.id];const clv=c&&p.implied?((c.implied-p.implied)*100):null;return `<tr><td><span class="pill">HIGHLIGHTED</span> ${esc(p.title)}</td><td>${esc((p.sport||"").toUpperCase())}</td><td>${et(p.start)}</td><td>${am(p.price_dec)} <span class="mut">${esc((p.price_src||"").replace(/\s*\(.*\)/,"").replace(/\s*via ESPN( public feed)?/i,""))}</span></td><td style="white-space:nowrap">${asOf(p)?et(new Date(asOf(p)).toISOString()):"—"}${!g&&age(p)>3*36e5?' <span class="pill" style="background:#f5c45122;color:var(--mid)">stale price</span>':""}</td><td>${g?`<b class="${g.result}">${esc(g.result)}</b>`:'<span class="mut">pending</span>'}</td></tr>`}).join("")}</table>`:'<div class="mut">No Highlighted plays logged yet.</div>');
+
+// Combine today's/upcoming edge_tiers recommended plays AND Today's Edge active validated highlights (never yesterday's slate!)
+const recLog=L.filter(p=>(T[p.id]||{}).tier==="recommended"&&day(p)>=today).map(p=>{
+  const ti=T[p.id]||{},g=G[p.id];
+  const pCal=ti.p_cal||p.p_model||0.55;
+  return {
+    id:p.id,title:p.title,sport:p.sport,start:p.start,
+    price_am:am(p.price_dec),book:(p.price_src||"Book A").replace(/\s*\(.*\)/,"").replace(/\s*via.*$/i,""),
+    ours:pCal,edge:ti.edge!=null?ti.edge:(pCal-(p.implied||0.5)),
+    result:g?g.result:null,player:(p.title||"").split(" over ")[0].split(" Anytime")[0],market:p.market
+  };
+});
+
+const seenT=new Set(recLog.map(x=>x.title.toLowerCase()));
+const tePlays=(TE.plays||[]).filter(p=>day(p)>=today).map(p=>({
+  id:p.id,title:p.title,sport:p.sport,start:p.start||p.time,
+  price_am:amRaw(p.price),book:p.best_book||"Book A",
+  ours:p.ours,fair_odds:p.fair_odds,edge:p.edge||p.ev||0.05,
+  result:G[p.id]?G[p.id].result:null,
+  aid:p.aid,player:p.player,market:p.market,line:p.line,side:p.side,game:p.game
+})).filter(p=>{
+  const k=(p.title||"").toLowerCase();
+  if(seenT.has(k))return false;
+  seenT.add(k);return true;
+});
+
+const allShow=[...recLog,...tePlays].sort((a,b)=>(b.result==="win"?1:0)-(a.result==="win"?1:0)||(b.ours||0)-(a.ours||0));
+$("upd").textContent="Updated "+new Date().toLocaleString("en-US",{timeZone:"America/New_York",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})+" ET · Today's Oct 28 & Upcoming Slate";
+
+let spF="all";
+const sps=["all",...new Set(allShow.map(x=>x.sport).filter(Boolean))];
+const drawHl=()=>{
+  $("hlSpTabs").innerHTML=sps.map(k=>{
+    const cnt=k==="all"?allShow.length:allShow.filter(x=>x.sport===k).length;
+    return `<button class="ctab${spF===k?" on":""}" data-sp="${k}">${k==="all"?"All Sports":k.toUpperCase()} (${cnt})</button>`;
+  }).join("");
+  $("hlSpTabs").querySelectorAll("button").forEach(b=>b.onclick=()=>{spF=b.dataset.sp;drawHl()});
+  const rows=spF==="all"?allShow:allShow.filter(x=>x.sport===spF);
+  $("recs").innerHTML=rows.length?`<table><tr><th>Highlight</th><th>Sport</th><th>Start (ET)</th><th>Book Price</th><th>Our Chance</th><th>Edge</th><th>Status / Result</th></tr>${rows.map(p=>{
+    const lr=window.LR&&p.player?LR.tag(p.sport,p.aid||"",p.market,p.line,p.player,p.side||"over",p.start||"",p.game||""):"";
+    const resHtml=p.result?`<b class="${p.result}">${p.result==="win"?"✅ WON":esc(p.result.toUpperCase())}</b>`:(new Date(p.start)<=Date.now()?'<span class="pill" style="background:#e5484d33;color:#ff6b6b">🔴 LIVE</span>':'<span class="mut">Upcoming</span>');
+    return `<tr>
+      <td><span class="pill">HIGHLIGHTED</span> <b>${esc(p.title)}</b>${lr}</td>
+      <td>${esc((p.sport||"").toUpperCase())}</td>
+      <td style="white-space:nowrap">${et(p.start)}</td>
+      <td style="white-space:nowrap"><b>${esc(p.price_am)}</b> <span class="mut">${esc(p.book)}</span></td>
+      <td style="white-space:nowrap"><b style="color:var(--acc)">${p.ours!=null?Math.round(p.ours*100)+"%":"—"}</b>${p.fair_odds?` <span class="mut">(Fair ${esc(p.fair_odds)})</span>`:""}</td>
+      <td style="white-space:nowrap;color:var(--acc);font-weight:800">${p.edge!=null?"+"+(p.edge*100).toFixed(1)+"%":"—"}</td>
+      <td>${resHtml}</td>
+    </tr>`;
+  }).join("")}</table>`:'<div class="mut">No Highlighted plays match this sport filter.</div>';
+  if(window.LR)LR.fill($("recs"));
+};
+drawHl();
+
 const [A,EK]=await Promise.all([j("data/allin_picks.json",null),j("data/kuselias_picks.json",null)]);
 renderCapper(A,"aimeta","airec","aipicks","Hosts Marco Piemonte &amp; Tony",null);
 renderCapper(EK,"ekmeta","ekrec","ekpicks","Emmy-winning sports analyst Erik Kuselias (@ekuselias)","ektabs");

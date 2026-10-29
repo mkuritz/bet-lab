@@ -1,27 +1,209 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Value Vault · Bet Lab</title>
-<style>:root{--bg:#0b0f17;--panel:#121826;--line:#243049;--txt:#e6ebf5;--mut:#8b97b0;--acc:#53e3a6;--acc2:#3fa9ff;--bad:#ff5d6c}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font:14px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-.w{max-width:1000px;margin:0 auto;padding:16px}.logo{font-weight:800;font-size:20px;color:var(--txt);text-decoration:none}.logo b{color:var(--acc)}
-h1{margin:6px 0 2px;font-size:22px}.mut{color:var(--mut);font-size:12px}.tabs{display:flex;gap:6px;margin:10px 0;flex-wrap:wrap}.tabs button{background:var(--panel);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:5px 10px;cursor:pointer;font-weight:700}.tabs button.on{background:var(--acc);color:#06120c;border-color:var(--acc)}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:4px 12px}
-.r{display:grid;grid-template-columns:1.6fr 1fr 110px 120px 60px;gap:8px;align-items:center;padding:9px 0 3px;border-top:1px solid var(--line);font-size:13px}.r.h{border-top:0;color:var(--mut);font-size:10px;text-transform:uppercase;font-weight:700}
-.why{color:var(--mut);font-size:12px;padding:0 0 9px}.ev{font-weight:800;color:var(--acc);text-align:right}.ct{display:inline-block;font-size:11px;border:1px solid var(--line);border-radius:10px;padding:1px 7px;margin:3px 4px 0 0;color:var(--mut)}.ld{color:var(--fg,#fff);font-weight:700}.tg{font-size:10px;font-weight:800;border:1px solid var(--line);border-radius:5px;padding:1px 5px;margin-right:6px;color:var(--acc)}
-@media(max-width:640px){.r{grid-template-columns:1fr auto}.r .g{grid-column:1/3;font-size:12px}.r.h{display:none}}
-</style><link rel="stylesheet" href="nav.css"><script src="https://sportslabshq.com/sl/sl.js?v=11" defer></script><script src="/sl-neutral.js" defer></script></head>
+<style>:root{--bg:#0b0f17;--panel:#121826;--panel2:#182033;--line:#243049;--txt:#e6ebf5;--mut:#8b97b0;--acc:#53e3a6;--acc2:#3fa9ff;--bad:#ff5d6c;--mid:#f5c451}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.w{max-width:1120px;margin:0 auto;padding:16px}.logo{font-weight:800;font-size:20px;color:var(--txt);text-decoration:none}.logo b{color:var(--acc)}
+h1{margin:6px 0 4px;font-size:24px}.mut{color:var(--mut);font-size:12px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;margin:12px 0}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.kpi b{display:block;font-size:20px;color:var(--txt)}.kpi small{color:var(--mut);font-size:11px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}.tabs button{background:var(--panel);color:var(--mut);border:1px solid var(--line);border-radius:8px;padding:6px 11px;cursor:pointer;font-weight:700;font-size:12px;transition:.12s}
+.tabs button.on{background:rgba(83,227,166,.16);color:var(--acc);border-color:var(--acc)}
+.sort-sel{background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-weight:700;font-size:12px;margin-left:auto}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px 14px;margin-bottom:14px}
+.r{display:grid;grid-template-columns:1.7fr 1.05fr 115px 155px 95px;gap:10px;align-items:center;padding:11px 0 4px;border-top:1px solid var(--line);font-size:13px}
+.r.h{border-top:0;color:var(--mut);font-size:10.5px;text-transform:uppercase;font-weight:800;letter-spacing:.04em;padding:8px 0}
+.why{color:var(--mut);font-size:12px;padding:0 0 10px;border-bottom:1px solid rgba(36,48,73,.4)}
+.ev{font-weight:800;color:var(--acc);text-align:right}
+.ct{display:inline-block;font-size:11px;background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:2px 8px;margin:4px 5px 0 0;color:#cbd5e1}
+.ld{color:var(--txt);font-weight:600}
+.tg{display:inline-block;font-size:10px;font-weight:800;border-radius:6px;padding:2px 6px;margin-right:6px;letter-spacing:.02em}
+.tg.layup{background:rgba(83,227,166,.15);color:var(--acc);border:1px solid rgba(83,227,166,.4)}
+.tg.plus{background:rgba(245,196,81,.15);color:var(--mid);border:1px solid rgba(245,196,81,.45)}
+.tg.win{background:rgba(83,227,166,.18);color:var(--acc);border:1px solid rgba(83,227,166,.45)}
+.tg.loss{background:rgba(255,93,108,.18);color:var(--bad);border:1px solid rgba(255,93,108,.45)}
+.diff-pill{display:inline-block;font-size:11px;font-weight:800;padding:2px 7px;border-radius:6px;font-variant-numeric:tabular-nums}
+.diff-pill.pos{background:rgba(83,227,166,.14);color:var(--acc);border:1px solid rgba(83,227,166,.35)}
+.diff-pill.neg{background:rgba(255,93,108,.14);color:var(--bad);border:1px solid rgba(255,93,108,.35)}
+details.vv-hist{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:18px}
+details.vv-hist>summary{cursor:pointer;font-weight:800;font-size:15px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;list-style:none}
+details.vv-hist>summary::-webkit-details-marker{display:none}
+.day-card{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:10px}
+.day-hd{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;padding-bottom:6px;border-bottom:1px solid var(--line);font-weight:800;font-size:13.5px}
+.hr-row{display:grid;grid-template-columns:1.6fr 1fr 185px 135px 90px;gap:8px;align-items:center;padding:8px 0;border-top:1px solid rgba(36,48,73,.65);font-size:12.5px}
+@media(max-width:720px){
+  .r,.hr-row{grid-template-columns:1fr auto}
+  .r .g,.hr-row .g{grid-column:1/3;font-size:12px}
+  .r.h{display:none}
+  .sort-sel{margin-left:0;width:100%}
+}
+</style><link rel="stylesheet" href="nav.css"><script src="liveres.js?v=6"></script><script src="https://sportslabshq.com/sl/sl.js?v=12" defer></script><script src="/sl-neutral.js" defer></script></head>
 <body><div class="w"><a class="logo" href="./">Bet <b>Lab</b></a>
-<h1>💰 Value Vault</h1><div class="mut">Straight bets only, on players we trust. Each highlight passes three checks: <b>talent</b> (proven producer, top usage), <b>matchup</b> (favorable opponent) and <b>situation</b> (healthy, secure role, good game script). Our chance must beat the no-vig price by EV 2%+. Plus-money, high-probability plays first. Verified starters. Highlights stay up with live and final tags after the game starts. Sorted by EV.</div><div class="card" id="rec" style="margin:10px 0;padding:10px 12px"></div>
-<div class="tabs" id="tabs"></div><div class="card" id="out"><div class="mut" style="padding:10px 0">Loading…</div></div>
-<div class="mut" style="margin:14px 0" id="upd"></div><div class="mut">Graded on <a href="overnight.html" style="color:var(--acc2)">Overnight</a>. Not betting advice. 21+ · 1-800-GAMBLER.</div></div>
+<h1>💰 Value Vault · High-Probability Layups &amp; Plus-Money Straight Snipes</h1>
+<div class="mut">Straight bets only at <b>-200 or better</b> across NHL, Soccer/MLS, NBA, and NFL. Combines high-probability <b>🔥 Layup &amp; Even-Money Locks (-200 to +115)</b> with high-upside <b>⚡ Plus-Money Straight Snipes (+120+)</b>. Every play passes <b>Talent</b> (usage/role), <b>Matchup</b> (opponent DvP/PK/GA flaw), and <b>Situation</b> (confirmed active, game script) checks, displaying <b>Our Calibrated Model Chance %</b> and <b>Fair Odds</b> alongside the best book price. Active board shows only today's &amp; upcoming plays; graded history is in the dropdown below.</div>
+
+<div class="kpis" id="kpis"></div>
+
+<div class="bar">
+  <div class="tabs" id="btabs"></div>
+  <select class="sort-sel" id="sortSel">
+    <option value="score">Sort: Win Probability + Matchup (Recommended)</option>
+    <option value="prob">Sort: Highest Our Chance % (Layups First)</option>
+    <option value="ev">Sort: Highest EV %</option>
+    <option value="plus">Sort: Plus-Money Payout (+120+ First)</option>
+  </select>
+</div>
+<div class="tabs" id="stabs" style="margin-bottom:10px"></div>
+
+<div class="card" id="out"><div class="mut" style="padding:12px 0">Loading active Value Vault board…</div></div>
+
+<details class="vv-hist" id="histBox">
+  <summary>
+    <span>📜 Value Vault History &amp; Graded Results (By Day &amp; Sport · Target vs. Actual Stat)</span>
+    <span class="mut" id="histSumLbl" style="font-size:12px;font-weight:700">Tap to expand ▼</span>
+  </summary>
+  <div style="margin-top:10px">
+    <div class="mut" style="margin-bottom:8px">Every pre-game logged Value Vault play graded from official final box scores, showing what the player actually got vs. the target line and the exact +/- margin.</div>
+    <div class="tabs" id="hstabs" style="margin-bottom:10px"></div>
+    <div id="histOut"></div>
+  </div>
+</details>
+
+<div class="mut" style="margin:14px 0" id="upd"></div>
+<div class="mut">Also graded on <a href="edge.html" style="color:var(--acc2)">Results</a> &amp; <a href="overnight.html" style="color:var(--acc2)">Overnight</a>. Not betting advice. 21+ · 1-800-GAMBLER.</div></div>
+
 <script>
-const $=id=>document.getElementById(id),esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])),am=p=>p>0?"+"+p:p,pc=x=>Math.round(x*100)+"%",IMP=p=>p>0?100/(p+100):-p/(-p+100),ETD=t=>new Date(t).toLocaleDateString("en-CA",{timeZone:"America/New_York"});let GR=null;fetch("data/value_vault_record.json?t="+Date.now()).then(r=>r.json()).then(R=>{GR=R.graded||{};D.length&&draw()}).catch(()=>{GR={}});
-const EM={all:"All",nfl:"🏈 NFL",nhl:"🏒 NHL",mlb:"⚾ MLB",soccer:"⚽ Soccer"};let D=[],sp="all";
-const tm=t=>{const d=new Date(t),o={timeZone:"America/New_York"};return d.toLocaleString("en-US",{...o,weekday:"short"})+" "+d.toLocaleString("en-US",{...o,month:"numeric",day:"numeric"})+" · "+d.toLocaleString("en-US",{...o,hour:"numeric",minute:"2-digit"})+" ET"};
+const $=id=>document.getElementById(id),esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const am=p=>p==null?"—":(p>0?"+"+p:String(p)),pc=x=>x==null?"—":(x*100).toFixed(1)+"%",IMP=p=>p>0?100/(p+100):-p/(-p+100);
+const EM={all:"All Sports",nhl:"🏒 NHL",soccer:"⚽ Soccer / MLS",nba:"🏀 NBA",nfl:"🏈 NFL",mlb:"⚾ MLB"};
+let D=[],HIST=[],REC={},sp="all",bkt="all",sortBy="score",hsp="all";
+
+const tm=t=>{if(!t)return"";const d=new Date(t),o={timeZone:"America/New_York"};return d.toLocaleString("en-US",{...o,weekday:"short"})+" "+d.toLocaleString("en-US",{...o,month:"numeric",day:"numeric"})+" · "+d.toLocaleString("en-US",{...o,hour:"numeric",minute:"2-digit"})+" ET"};
 const tagz=r=>(r.tags||[]).map(t=>`<span class="ct">${esc(t)}</span>`).join("");
-const st=r=>r.sport!="nfl"&&new Date(r.start)<=Date.now()&&Date.now()-new Date(r.start)<8*3600e3?`<span class="tg" style="color:#f5b942">STARTED · graded after the final</span>`:"";
-function draw(){$("tabs").innerHTML=Object.keys(EM).map(k=>`<button class="${k==sp?"on":""}" onclick="sp='${k}';draw()">${EM[k]} <span class="mut">${D.filter(r=>(k=="all"||r.sport==k)&&new Date(r.start)>Date.now()).length}</span></button>`).join("");
- const A=D.filter(r=>sp=="all"||r.sport==sp),R=A.filter(r=>new Date(r.start)>Date.now()),DN=A.filter(r=>new Date(r.start)<=Date.now());
- $("out").innerHTML=R.length?`<div class="r h"><span>Highlight</span><span class="g">Game</span><span>Price</span><span>Our chance vs price</span><span style="text-align:right">Edge</span></div>`+R.map(r=>`<div class="r"><span><span class="tg">${esc(r.tier=="Bet"||r.tier=="bet"?"HIGHLIGHTED":r.tier.toUpperCase())}</span><b>${esc(r.pick)}</b> <span class="mut">${EM[r.sport]}</span>${r.sport=="nfl"&&r.game&&window.FL?FL.tag({g:r.game,a:r.aid,k:r.market=="Anytime TD"?"td":r.side=="Under"?"un":"ov",s:(r.stat||[]).join(","),l:r.line,m:r.market}):""}</span><span class="g mut">${esc(r.matchup)} · ${tm(r.start)}</span><span><b>${am(r.price)}</b> <span class="mut">${esc(r.book)}</span></span><span><b>${pc(r.p)}</b> <span class="mut">vs ${pc(IMP(r.price))} implied</span></span><span class="ev">+${(r.ev*100).toFixed(1)}% EV<br><span class="mut" style="font-weight:600">+${((r.p-IMP(r.price))*100).toFixed(1)} pts</span></span></div><div class="why"><span class="ld">${esc(r.lead||r.why)}</span><br>${tagz(r)}</div>`).join(""):`<div class="mut" style="padding:12px 0">No highlights pass all three checks right now. We'd rather post nothing than force a bet. NFL late games are added once inactives are in.</div>`;const SN={nfl:"NFL",nhl:"NHL",soccer:"Soccer",mlb:"MLB"};if(DN.length)$("out").innerHTML+=`<div class="sec" style="margin-top:18px;font-weight:700">Started / results</div>`+DN.map(r=>{const g=(GR||{})[ETD(r.start)+"|"+r.pick+" ("+(SN[r.sport]||r.sport)+")"],res=g?g.res:null;return `<div class="r"><span><span class="tg" style="color:${res=="win"?"var(--acc)":res=="loss"?"#f66":"#f5b942"}">${res=="win"?"✓ WIN":res=="loss"?"✗ LOSS":res=="push"?"PUSH":"STARTED · graded after the final"}</span><b>${esc(r.pick)}</b> <span class="mut">${EM[r.sport]}</span></span><span class="g mut">${esc(r.matchup)} · ${tm(r.start)}</span><span><b>${am(r.price)}</b> <span class="mut">${esc(r.book)}</span></span><span><b>${pc(r.p)}</b> <span class="mut">vs ${pc(IMP(r.price))} implied</span></span><span class="ev mut">logged</span></div>`}).join("");if(window.FL)FL.run($("out"))}
-fetch("data/value_vault_record.json?t="+Date.now()).then(r=>r.json()).then(R=>{const a=R.all||{},n=(a.w||0)+(a.l||0),f=x=>x==null?"–":Math.round(x*100)+"%";$("rec").innerHTML=`<b>Value Vault record</b> <span class="mut">since 10/18/26 · 1u flat</span><br><b>${a.w||0}-${a.l||0}-${a.p||0}</b> · <b style="color:${(a.units||0)>=0?"var(--acc)":"#f66"}">${(a.units||0)>=0?"+":""}${(a.units||0).toFixed(2)}u</b> · ROI ${a.roi==null?"–":(a.roi*100).toFixed(1)+"%"} · Our avg chance ${f(a.avg_p)} vs hit rate ${f(a.hit)}`+(n?"<br><span class=mut>"+Object.entries(R.by_sport||{}).map(([k,v])=>`${EM[k]||k}: ${v.w}-${v.l}-${v.p} (${v.units>=0?"+":""}${v.units}u)`).join(" · ")+"</span>":"<br><span class=mut>First highlights grade tonight.</span>")}).catch(()=>{});
-fetch("data/value_vault.json?t="+Date.now()).then(r=>r.json()).then(j=>{D=j.rows.sort((a,b)=>b.ev-a.ev);$("upd").textContent="Updated "+new Date(j.updated).toLocaleString("en-US",{hour:"numeric",minute:"2-digit",timeZone:"America/New_York"})+" ET";fetch("data/slate_status.json?v="+Date.now()).then(r=>r.ok?r.json():null).then(st=>{if(!st)return;const ls=[...new Set((j.rows||[]).map(r=>r.sport))].map(x=>st[x]&&st[x].final&&st[x].label).filter(Boolean);if(ls.length)$("upd").textContent+=" · "+[...new Set(ls)].join(" · ")}).catch(()=>{});draw()}).catch(()=>{$("out").innerHTML='<div class="mut" style="padding:12px 0">No Value Vault highlights yet today.</div>'});
+
+function renderKpis(){
+  const layups=D.filter(r=>r.bucket==="layup").length,plus=D.filter(r=>r.bucket==="plus_money").length;
+  const avgP=D.length?(D.reduce((s,r)=>s+(r.p||0),0)/D.length*100).toFixed(1)+"%":"—";
+  const a=REC.all||{};
+  $("kpis").innerHTML=`
+    <div class="kpi"><b>${D.length} Active Plays</b><small>Today &amp; Upcoming Slate (-200 or better)</small></div>
+    <div class="kpi"><b style="color:var(--acc)">${layups} Layup Locks</b><small>Even-Money &amp; High-Prob (-200 to +115)</small></div>
+    <div class="kpi"><b style="color:var(--mid)">${plus} Plus-Money Snipes</b><small>High-Upside Straight Bets (+120+)</small></div>
+    <div class="kpi"><b style="color:var(--acc2)">${avgP} Avg Win Chance</b><small>Calibrated Model Win Probability</small></div>
+  `;
+}
+
+function drawActive(){
+  const bCounts={
+    all:D.filter(r=>sp==="all"||r.sport===sp).length,
+    layup:D.filter(r=>(sp==="all"||r.sport===sp)&&r.bucket==="layup").length,
+    plus_money:D.filter(r=>(sp==="all"||r.sport===sp)&&r.bucket==="plus_money").length
+  };
+  $("btabs").innerHTML=[
+    ["all",`All Value Plays (${bCounts.all})`],
+    ["layup",`🔥 Layup & Even-Money (-200 to +115) (${bCounts.layup})`],
+    ["plus_money",`💰 Plus-Money Straight Snipes (+120+) (${bCounts.plus_money})`]
+  ].map(([k,lbl])=>`<button class="${bkt===k?"on":""}" data-bkt="${k}">${esc(lbl)}</button>`).join("");
+  $("btabs").querySelectorAll("button").forEach(b=>b.onclick=()=>{bkt=b.dataset.bkt;drawActive()});
+
+  $("stabs").innerHTML=Object.keys(EM).filter(k=>k==="all"||D.some(r=>r.sport===k)).map(k=>{
+    const cnt=D.filter(r=>(k==="all"||r.sport===k)&&(bkt==="all"||r.bucket===bkt)).length;
+    return `<button class="${sp===k?"on":""}" data-sp="${k}">${EM[k]} <span class="mut">(${cnt})</span></button>`;
+  }).join("");
+  $("stabs").querySelectorAll("button").forEach(b=>b.onclick=()=>{sp=b.dataset.sp;drawActive()});
+
+  let rows=D.filter(r=>(sp==="all"||r.sport===sp)&&(bkt==="all"||r.bucket===bkt)).slice();
+  if(sortBy==="prob")rows.sort((a,b)=>(b.p||0)-(a.p||0)||(b.ev||0)-(a.ev||0));
+  else if(sortBy==="ev")rows.sort((a,b)=>(b.ev||0)-(a.ev||0)||(b.p||0)-(a.p||0));
+  else if(sortBy==="plus")rows.sort((a,b)=>(b.price||0)-(a.price||0)||(b.p||0)-(a.p||0));
+  else rows.sort((a,b)=>(b.win_score||0)-(a.win_score||0)||(b.p||0)-(a.p||0));
+
+  $("out").innerHTML=rows.length?`<div class="r h"><span>Highlighted Straight Play</span><span class="g">Matchup &amp; Start (ET)</span><span>Book Price</span><span>Our Chance &amp; Fair Odds</span><span style="text-align:right">Edge / EV</span></div>`+rows.map(r=>{
+    const isPlus=r.bucket==="plus_money";
+    const badgeCls=isPlus?"plus":"layup";
+    const badgeTxt=r.tier_badge||(isPlus?"⚡ PLUS-MONEY SNIPE":"🔥 LAYUP LOCK");
+    const fairAm=r.fair_odds||(r.p?am(r.p>=0.5?Math.round(-100*r.p/(1-r.p)):Math.round(100*(1-r.p)/r.p)):"—");
+    const mktImp=IMP(r.price);
+    const edgePts=((r.p-mktImp)*100).toFixed(1);
+    const lrHtml=window.LR&&r.player?LR.tag(r.sport,r.aid||"",r.market,r.line,r.player,r.side&&r.side.toLowerCase()==="under"?"under":"over",r.start||"",r.game||""):"";
+    return `<div class="r">
+      <span>
+        <span class="tg ${badgeCls}">${esc(badgeTxt)}</span>
+        <b>${esc(r.pick)}</b> <span class="mut">${EM[r.sport]||r.sport.toUpperCase()}${r.lg?` · ${esc(r.lg.toUpperCase())}`:""}</span>
+        ${lrHtml}
+      </span>
+      <span class="g mut">${esc(r.matchup)}<br>${tm(r.start)}</span>
+      <span><b style="font-size:15px;color:${r.price>0?"var(--mid)":"var(--txt)"}">${am(r.price)}</b> <span class="mut">${esc(r.book||"Book A")}</span></span>
+      <span><b style="color:var(--acc);font-size:14.5px">${pc(r.p)}</b> <span class="mut">(Fair <b>${esc(fairAm)}</b>)</span><br><span class="mut" style="font-size:11px">vs ${pc(mktImp)} book implied</span></span>
+      <span class="ev">+${(r.ev*100).toFixed(1)}% EV<br><span class="mut" style="font-weight:700">${edgePts>=0?"+":""}${edgePts} pts</span></span>
+    </div>
+    <div class="why"><span class="ld">${esc(r.lead||r.why)}</span>${r.why&&r.lead&&r.why!==r.lead?`<div style="margin-top:2px">${esc(r.why)}</div>`:""}<div>${tagz(r)}</div></div>`;
+  }).join(""):`<div class="mut" style="padding:14px 0">No active Value Vault plays match this filter right now. Try switching to All Sports or All Value Plays.</div>`;
+  if(window.LR)LR.fill($("out"));
+}
+
+function drawHistory(){
+  const allRows=HIST.flatMap(d=>d.rows||[]);
+  const spKeys=["all",...Object.keys(EM).filter(k=>k!=="all"&&allRows.some(r=>r.sport===k))];
+  $("hstabs").innerHTML=spKeys.map(k=>{
+    const sub=k==="all"?allRows:allRows.filter(r=>r.sport===k);
+    const w=sub.filter(r=>r.res==="win").length,l=sub.filter(r=>r.res==="loss").length;
+    return `<button class="${hsp===k?"on":""}" data-hsp="${k}">${EM[k]||k.toUpperCase()} <span class="mut">(${w}-${l})</span></button>`;
+  }).join("");
+  $("hstabs").querySelectorAll("button").forEach(b=>b.onclick=()=>{hsp=b.dataset.hsp;drawHistory()});
+
+  const totW=allRows.filter(r=>r.res==="win").length,totL=allRows.filter(r=>r.res==="loss").length;
+  $("histSumLbl").textContent=`${totW+totL} Graded Plays (${totW}W-${totL}L) · Tap to expand/collapse ▼`;
+
+  const dayCards=HIST.map(d=>{
+    const rows=(d.rows||[]).filter(r=>hsp==="all"||r.sport===hsp);
+    if(!rows.length)return"";
+    const w=rows.filter(r=>r.res==="win").length,l=rows.filter(r=>r.res==="loss").length,pu=rows.filter(r=>r.res==="push").length;
+    const hit=w+l?Math.round(w/(w+l)*100)+"%":"—";
+    const dtLbl=new Date(d.day+"T12:00:00Z").toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric",year:"numeric",timeZone:"UTC"});
+    return `<div class="day-card">
+      <div class="day-hd">
+        <span>📅 ${esc(dtLbl)}</span>
+        <span>Record: <b style="color:${w>=l?"var(--acc)":"var(--txt)"}">${w}-${l}${pu?"-"+pu:""}</b> <span class="mut">(${hit} hit rate · ${rows.length} graded)</span></span>
+      </div>
+      ${rows.map(r=>{
+        const isWin=r.res==="win",isPush=r.res==="push";
+        const diffPositive=r.diff!=null?r.diff>0:isWin;
+        const diffBadge=r.actual!=null
+          ?`<span class="diff-pill ${diffPositive?"pos":"neg"}">Target: ${esc(r.target_str)} · Actual: <b>${esc(r.actual_str)}</b> (${esc(r.diff_str)})</span>`
+          :`<span class="diff-pill ${isWin?"pos":"neg"}">${isWin?"Cashed ✓":"Missed ✗"}</span>`;
+        return `<div class="hr-row">
+          <span>
+            <span class="tg ${isWin?"win":"loss"}">${isWin?"✅ WON":isPush?"➖ PUSH":"❌ LOST"}</span>
+            <b>${esc(r.pick)}</b> <span class="mut">${EM[r.sport]||r.sport.toUpperCase()}</span>
+          </span>
+          <span class="g mut">${esc(r.matchup||r.team||"")}</span>
+          <span>${diffBadge}</span>
+          <span><b>${am(r.price)}</b> <span class="mut">${esc(r.book||"Book A")}</span> · <span style="color:var(--acc)">Us ${pc(r.p)}</span></span>
+          <span style="text-align:right;font-weight:700;color:${isWin?"var(--acc)":"var(--bad)"}">${isWin?"+"+(r.price>0?(r.price/100).toFixed(2):(100/-r.price).toFixed(2))+"u":"-1.00u"}</span>
+        </div>`;
+      }).join("")}
+    </div>`;
+  }).filter(Boolean).join("");
+
+  $("histOut").innerHTML=dayCards||`<div class="mut" style="padding:10px 0">No graded history for this sport filter yet.</div>`;
+}
+
+$("sortSel").onchange=e=>{sortBy=e.target.value;drawActive()};
+
+Promise.all([
+  fetch("data/value_vault.json?t="+Date.now()).then(r=>r.json()),
+  fetch("data/value_vault_record.json?t="+Date.now()).then(r=>r.json()).catch(()=>({}))
+]).then(([j,rec])=>{
+  D=j.rows||[];
+  HIST=j.history_by_day||rec.by_day||[];
+  REC=rec||{};
+  $("upd").textContent="Updated "+new Date(j.updated).toLocaleString("en-US",{month:"short",day:"numeric",hour:"numeric",minute:"2-digit",timeZone:"America/New_York"})+" ET";
+  renderKpis();
+  drawActive();
+  drawHistory();
+}).catch(()=>{
+  $("out").innerHTML='<div class="mut" style="padding:12px 0">Value Vault unavailable right now.</div>';
+});
 </script><script src="football-live.js?v=4"></script><script src="sl-sports.js"></script><script src="nav.js?v=nc1"></script></body></html>

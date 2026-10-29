@@ -23,7 +23,7 @@ async function render(el){const SP=el.dataset.sport||"";if(SP==="analyst"){el.hi
   const rec=Object.entries(tiers||{}).filter(([k,v])=>v.tier==="recommended"&&L[k]&&inScope(L[k]));
   const dayOf=([k,v])=>v.day||L[k].start.slice(0,10);
   // Slate = today's picks if any, else the most recent slate (results stay up until the next slate takes over).
-  const days=[...new Set(rec.map(dayOf))].sort();const day=days.includes(today)?today:(days.filter(d=>d<today).pop()||days[0]);
+  const days=[...new Set(rec.map(dayOf))].sort();const day=days.includes(today)?today:(days.filter(d=>d>=today)[0]||days.filter(d=>d<today).pop()||days[0]);
   const NOW=Date.now(),asOf=x=>{const m=/as of ([0-9T:+\-Z]+)/.exec(x.price_src||"");const t=Date.parse(m?m[1]:x.logged_at||"");return isNaN(t)?null:t};
   // Picks never vanish before or during their game: pending -> LIVE -> Hit/Miss/Void, kept until the next slate.
   // Guard: an ungraded MLB pick whose game is not on MLB Lab's phase-filtered slate for that day is not shown.
