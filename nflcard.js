@@ -56,7 +56,7 @@ window.renderEarlyInjuryAdjust=function(E,tab){
    <div class="ncm">${esc(r.note)}</div>
    ${(r.fades||[]).map(f=>`<div class="eia-ben">↘ Under ${esc(f.line)} ${esc(f.market)} · proj ${f1(f.proj_with_lead)} (was ${f1(f.proj_without_lead)})${f.p_under!=null?" · "+pc(f.p_under)+" under":""} · ${f.under_price==null?"price pending":am(f.under_price)+" "+esc(f.under_book)}</div>`).join("")}
   </div>`).join("");
- const lkHtml=LK.length?`<div class="ncm" style="margin:4px 0"><b style="color:#ff7b88">Likely Out:</b> ${LK.map(x=>`${esc(x.player)} ${esc(x.team)} <b>${pc(x.p_inactive)}</b>${x.unconfirmed?"*":""}`).join(" · ")}${LK.some(x=>x.unconfirmed)?" <span style=\"font-size:11px\">(* unconfirmed report)</span>":""}</div>`:"";
+ const lkHtml=LK.length?`<div style="margin:4px 0;font-size:12px;color:#9aa4b8"><b style="color:#ff7b88">Likely Out:</b> ${LK.map(x=>`${esc(x.player)} ${esc(x.team)} <b>${pc(x.p_inactive)}</b>${x.unconfirmed?"*":""}`).join(" · ")}${LK.some(x=>x.unconfirmed)?" <span style=\"font-size:11px\">(* unconfirmed report)</span>":""}</div>`:"";
  const lCards=LO.map(g=>`<div class="eia-card">
   <div style="display:flex;justify-content:space-between;gap:6px;align-items:baseline;flex-wrap:wrap">
    <b style="font-size:14.5px;color:#fff">${esc(g.matchup)} <span class="ncm" style="font-weight:500">· ${esc(g.window)}</span></b>
