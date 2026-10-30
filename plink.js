@@ -13,7 +13,7 @@ var css=document.createElement("style");css.textContent=".plk{cursor:pointer;tex
 document.head.appendChild(css);
 // ---------- sport context ----------
 function ctxSport(el){for(var i=0,e=el;e&&i<8;i++,e=e.parentElement){if(e.dataset&&e.dataset.sport)return e.dataset.sport.toLowerCase();var k=e.querySelector&&e.querySelector(":scope > .k, :scope > .r1 > .k, :scope > .sp");if(k){var t=SPL[k.textContent.trim().toUpperCase()];if(t)return t}}
- var m=/\((NFL|NHL|NBA|MLB|CFB|Soccer)\)/i.exec((el.parentElement||el).textContent||"");if(m)return SPL[m[1].toUpperCase()];
+ var _pt=(el.parentElement||el),_tx=_pt.childElementCount>40?"":(_pt.textContent||"");var m=_tx.length<3000?/\((NFL|NHL|NBA|MLB|CFB|Soccer)\)/i.exec(_tx):null;if(m)return SPL[m[1].toUpperCase()];
  if(onIndex&&typeof sport!="undefined")return sport;var h=/[?&#](?:s|sport|tab)=(\w+)/.exec(location.search+location.hash);return h?h[1].toLowerCase():null}
 function pick(c,el){if(!c)return null;var s=ctxSport(el);if(s){var f=c.filter(function(x){return x.s==s});if(f.length)c=f;else if(onIndex)return null}
  if(c.length==1)return c[0];var p=c.filter(function(x){return x.props});return p.length==1?p[0]:null}
@@ -27,8 +27,9 @@ function linkText(tn){var t=tn.nodeValue;if(!t||t.length<4)return;var m=WRD.exec
   var rest=tn.splitText(pi);rest.nodeValue=rest.nodeValue.slice(raw.length);rest.parentNode.insertBefore(sp,rest);return}}
 var ESP={"nfl":"nfl","college-football":"cfb","nba":"nba","nhl":"nhl","mlb":"mlb","soccer":"soccer"};
 function anchors(root){root.querySelectorAll('a[href*="espn.com/"][href*="/player/"]:not(.plk)').forEach(function(a){if(a.closest("[inert],.sl-locked,nav,header,footer"))return;var m=/espn\.com\/([a-z-]+)\/player\/(?:_\/)?id\/(\d+)/.exec(a.href);if(!m||!ESP[m[1]])return;var s=ESP[m[1]],x=IDX.find(function(q){return q.s==s&&q.aid==m[2]});if(!x)return;a.classList.add("plk");a.setAttribute("data-pl",s+":"+m[2]);a.removeAttribute("target");a.title="Open "+x.name+" profile"})}
-function scan(root){if(!BYN||!root)return;anchors(root);var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:function(n){var p=n.parentElement;if(!p||!/\S/.test(n.nodeValue))return 2;if(p.closest(SKIP))return 2;if(p.closest("#drawer")&&!p.closest("#drawer .slp-g, #drawer table, #drawer .card, #drawer .imp, #drawer li")&&document.getElementById("slp-venue"))return 2;return 1}}),L=[],n;while(n=w.nextNode())L.push(n);L.forEach(linkText)}
-var T=null;function schedule(){if(T)return;T=setTimeout(function(){T=null;mo.disconnect();try{scan(document.body)}catch(e){}mo.observe(document.body,{childList:true,subtree:true,characterData:true})},150)}
+function scan(root,cb){if(!BYN||!root){cb&&cb();return}anchors(root);var dr=!!document.getElementById("slp-venue");var w=document.createTreeWalker(root,NodeFilter.SHOW_ELEMENT|NodeFilter.SHOW_TEXT,{acceptNode:function(n){if(n.nodeType===1)return n.matches(SKIP)?2:3;var p=n.parentElement;if(!p||n.nodeValue.length<4||!/\S/.test(n.nodeValue))return 2;if(dr&&p.closest("#drawer")&&!p.closest("#drawer .slp-g, #drawer table, #drawer .card, #drawer .imp, #drawer li"))return 2;return 1}}),n;(function step(){var t0=performance.now(),k=0;while(true){if((++k&31)===0&&performance.now()-t0>10)return setTimeout(step,0);n=w.nextNode();if(!n)break;if(n.parentNode)linkText(n)}cb&&cb()})()}
+var CS=new WeakMap();var _cs=ctxSport;ctxSport=function(el){if(!el)return _cs(el);if(CS.has(el))return CS.get(el);var v=_cs(el);CS.set(el,v);return v};
+var T=null,BUSY=0;function schedule(){if(T||BUSY)return;T=setTimeout(function(){T=null;BUSY=1;mo.disconnect();try{scan(document.body,function(){BUSY=0;mo.observe(document.body,{childList:true,subtree:true,characterData:true})})}catch(e){BUSY=0;mo.observe(document.body,{childList:true,subtree:true,characterData:true})}},150)}
 var mo=new MutationObserver(schedule);
 // ---------- open: the All-props player popup (index.html drawer(r)), for the player's own sport ----------
 var EMBED=/[?&]plembed=1/.test(location.search),CACHE={};

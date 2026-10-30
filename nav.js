@@ -4,15 +4,15 @@
   var G=[['Bet Lab',[['🔎 Ask SportsLabs','./index.html#ask','ask'],['🏈 NFL Game Day','./nfl.html','nfl'],['🏀 NBA Hub','./nba-hub.html','nba-hub'],['🏀 CBB Hub','./cbb-hub.html','cbb-hub'],['💰 Value Vault','./value.html','value'],['💎 Highlighted','./sharp.html','sharp'],['Props','./index.html','props'],['⚡ Today\'s Edge','./index.html#view=edge','edge-z'],['⚽ Soccer SGPs & Blowouts','./index.html#view=sgp','sgp-z'],['📊 Market Board','./markets.html','markets'],['🎯 Results','./edge.html','edge'],['🌙 Overnight','./overnight.html','overnight'],['🔥 Perfect Streaks','./streaks.html','streaks'],['Sports Analyst','./index.html#view=analyst','analyst'],['📈 Betting Trends',H('nfllab')+'trends.html']]],
          ['Sport Hubs',[['🏈 NFL Hub',H('nfllab')],['🛡️ NFL Defense vs Position',H('nfllab')+'defense.html'],['🧱 NFL Defensive props',H('nfllab')+'defense-props.html'],['⚾ MLB Lab',H('mlblab')],['🏒 NHL Lab',H('nhllab')],['⚽ Soccer Hub',H('soccerlab')]]],
          ['Tools',[['⚡ Arb Lab',H('arblab')]]],
-         ['',[['Sports Labs home','https://sportslabshq.com/'],['Request a demo','#','demo-lead']]]];
+         ['',[['Sports Labs home','https://sportslabshq.com/'],['Request a demo','https://sportslabshq.com/investors.html','demo-lead']]]];
   /* nav-connect: one shared sport list (sl-sports.js) replaces the hand-kept hub/tool lists */
-  if(window.SLS)G=[G[0],['NFL Hub pages',[['🛡️ NFL Defense vs Position',H('nfllab')+'defense.html'],['🧱 NFL Defensive props',H('nfllab')+'defense-props.html']]],['',[['Request a demo','#','demo-lead']]]];
+  if(window.SLS)G=[G[0],['NFL Hub pages',[['🛡️ NFL Defense vs Position',H('nfllab')+'defense.html'],['🧱 NFL Defensive props',H('nfllab')+'defense-props.html']]],['',[['Request a demo','https://sportslabshq.com/investors.html','demo-lead']]]];
   var f=(location.pathname.split('/').pop()||'index.html').replace('.html','')||'index';
   var cur=f==='index'?(/view=analyst/.test(location.hash)?'analyst':/view=edge/.test(location.hash)?'edge-z':/view=sgp/.test(location.hash)?'sgp-z':'props'):f;
   var mob=function(){return innerWidth<768};
   var saved=localStorage.getItem('bl-sidebar');
   var open=saved?saved==='open':!mob();
-  function set(o,ns){open=o;document.body.classList.toggle('sl-open',o);if(!ns)localStorage.setItem('bl-sidebar',o?'open':'closed');tog.setAttribute('aria-expanded',o)}
+  function set(o,ns){open=o;document.documentElement.classList.remove('sl-pre');document.body.classList.toggle('sl-open',o);if(!ns)localStorage.setItem('bl-sidebar',o?'open':'closed');tog.setAttribute('aria-expanded',o)}
   var side=document.createElement('aside');side.className='sl-side';side.setAttribute('aria-label','Site navigation');
   side.innerHTML='<div class="sl-brand"><span>🧪 Sports Labs</span><button class="sl-x" aria-label="Close menu">‹</button></div>'+G.map(function(g){return (g[0]?'<h4>'+g[0]+'</h4>':'<h4>&nbsp;</h4>')+g[1].map(function(l){return '<a href="'+l[1]+'"'+(l[2]==='demo-lead'?' data-lead="demo"':'')+(l[2]?' data-k="'+l[2]+'"':'')+(l[2]===cur?' class="cur" aria-current="page"':'')+'>'+l[0]+'</a>'}).join('')}).join('');
   var scrim=document.createElement('div');scrim.className='sl-scrim';
@@ -75,5 +75,5 @@
   })();
   grab();
 })();
-(function(){if(document.querySelector('script[src*="plink.js"]'))return;var s=document.createElement('script');s.src='./plink.js?v=7';s.defer=true;document.head.appendChild(s)})();
+(function(){if(document.querySelector('script[src*="plink.js"]'))return;var s=document.createElement('script');s.src='./plink.js?v=8';s.defer=true;document.head.appendChild(s)})();
 (function(){if(document.querySelector('script[src*="search.js"]'))return;var s=document.createElement('script');s.src='./search.js?v=4';s.defer=true;document.head.appendChild(s)})();

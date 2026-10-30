@@ -693,11 +693,12 @@ document.addEventListener("click",e=>{
   const jg=e.target.closest("[data-jump-game]");
   if(jg){e.preventDefault();F.game=jg.dataset.jumpGame;TAB="props";render();return}
   const pl=e.target.closest("[data-player-aid]");
-  if(pl){e.preventDefault();openPlayerModal(pl.dataset.playerAid,pl.dataset.playerMkt);return}
+  if(pl){e.preventDefault();location.href="index.html#player=nba:"+encodeURIComponent(pl.dataset.playerAid)+(pl.dataset.playerMkt?"&ctx="+encodeURIComponent(pl.dataset.playerMkt):"");return}
   const ov=document.getElementById("nba-modal-ov");
   if(e.target===ov)ov.classList.remove("open");
 });
 
+document.addEventListener("pointerover",e=>{const pl=e.target.closest&&e.target.closest("[data-player-aid]");if(pl&&!window.__pf){window.__pf=1;const l=document.createElement("link");l.rel="prefetch";l.href="index.html";document.head.appendChild(l)}});
 document.addEventListener("keydown",e=>{
   if(e.key==="Escape"){
     const ov=document.getElementById("nba-modal-ov");
