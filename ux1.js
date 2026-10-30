@@ -91,7 +91,7 @@ function pass(){var d=document.getElementById("drawer");if(!d||!d.classList.cont
  var h2=d.querySelector("h2");if(h2&&!h2.querySelector(".ux-tag")&&r.ttl&&r.ttl.lbl)h2.insertAdjacentHTML("beforeend",tagHtml(r));
  enhanceChart(d.querySelector("#dr-chart-box"),r);}
 /* capture current row by wrapping renderSpanChart */
-function wrap(){var f=window.renderSpanChart;if(typeof f!=="function"||f.__ux)return;var g=function(r,sp,c){window._uxR=r;return f.apply(this,arguments)};g.__ux=1;window.renderSpanChart=g}
+function wrap(){var f=window.renderSpanChart;if(typeof f!=="function"||f.__ux)return;var g=function(r,sp,c){window._uxR=r;queueMicrotask(function(){try{pass()}catch(e){}});return f.apply(this,arguments)};g.__ux=1;window.renderSpanChart=g}
 var T=null;new MutationObserver(function(){wrap();if(T)return;T=setTimeout(function(){T=null;try{pass()}catch(e){}},40)}).observe(document.documentElement,{childList:true,subtree:true});
 wrap();
 })();
