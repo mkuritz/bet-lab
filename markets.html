@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><script src="https://sportslabshq.com/sl/ds.js?v=1"></script><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
 <title>Market Board · Bet Lab</title>
 <style>:root{--bg:#0b0f17;--panel:#121826;--panel2:#182033;--line:#243049;--txt:#e6ebf5;--mut:#8b97b0;--acc:#53e3a6;--acc2:#3fa9ff;--bad:#ff5d6c;--mid:#f5c451}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}a{color:var(--acc2)}
@@ -8,7 +8,7 @@ header a{color:var(--mut);font-weight:700;font-size:13px;text-decoration:none}.c
 .wrap{overflow-x:auto}.k{display:inline-block;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:0 8px 8px 0}.k b{display:block;font-size:18px}
 .win{color:var(--acc)}.loss{color:var(--bad)}.pill{font-size:10px;font-weight:800;padding:2px 7px;border-radius:999px;background:#53e3a622;color:var(--acc)}.f{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.f button,.f select,.f input{background:var(--panel2);border:1px solid var(--line);color:var(--txt);border-radius:8px;padding:8px 12px;font:inherit;min-height:40px}.f button.on{border-color:var(--acc);color:var(--acc)}
 .up{color:var(--acc)}.dn{color:var(--bad)}.bk{font-size:11px;color:var(--mut)}.g{font-size:12px;color:var(--mut);margin-top:2px}
-@media(max-width:760px){table.rsp thead{display:none}table.rsp tr{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:10px 0;border-bottom:1px solid var(--line)}table.rsp td{border:0;padding:2px 0}table.rsp td[data-l]::before{content:attr(data-l)" · ";color:var(--mut);font-size:11px}}</style><link rel="stylesheet" href="nav.css"><link rel="icon" href="data:,"><script src="https://sportslabshq.com/sl/sl.js?v=11" defer></script>
+@media(max-width:760px){table.rsp thead{display:none}table.rsp tr{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:10px 0;border-bottom:1px solid var(--line)}table.rsp td{border:0;padding:2px 0}table.rsp td[data-l]::before{content:attr(data-l)" · ";color:var(--mut);font-size:11px}}</style><link rel="stylesheet" href="nav.css"><link rel="icon" href="data:,"><script src="https://sportslabshq.com/sl/sl.js?v=12" defer></script>
 <script src="/sl-neutral.js" defer></script></head>
 <body><div class="w"><header><a class="logo" href="./" style="color:var(--txt)">Bet <b>Lab</b></a></header>
 <h1 style="margin:4px 0">📊 Market Board</h1><div class="mut" id="upd">Loading…</div>
@@ -30,4 +30,4 @@ function draw(){const q=$("q").value.toLowerCase(),mk=$("mk").value,mv=$("mv").v
 fetch("data/market_board.json?t="+Date.now()).then(r=>r.json()).then(d=>{D=(d.rows||[]).filter(r=>!r.start||new Date(r.start)>Date.now());/* hide started/finished games */$("upd").innerHTML=`Prices as of ${d.as_of?et(d.as_of):et(d.updated)} · ${D.length} props on the board`+(d.stale?` · <b style="color:var(--mid)">⚠ Showing last-known prices; live refresh is paused and resumes automatically</b>`:"");
  $("mk").innerHTML='<option value="">All props</option>'+[...new Set(D.map(r=>r.market))].sort().map(m=>`<option>${esc(m)}</option>`).join("");draw()}).catch(()=>$("upd").textContent="Market board unavailable right now.");
 $("sp").onclick=e=>{const b=e.target.closest("button");if(b){sp=b.dataset.s;lim=60;draw()}};["q","mk","mv"].forEach(i=>$(i).oninput=()=>{lim=60;draw()});
-</script><script src="sl-sports.js"></script><script src="nav.js?v=nc5"></script></body></html>
+</script><script src="https://sportslabshq.com/sl/sl-sports.js?v=2"></script><script src="nav.js?v=nc5"></script></body></html>
