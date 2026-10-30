@@ -27,7 +27,9 @@ function cb(){if(document.querySelector(".ux-cb")||!document.body)return;var c=d
 if(document.body)cb();else document.addEventListener("DOMContentLoaded",cb);
 var SHORT={"Points, Rebounds, and Assists":"PRA","Points and Rebounds":"PR","Points and Assists":"PA","Assists and Rebounds":"RA","Rebounds and Assists":"RA","Points":"PTS","Rebounds":"REB","Assists":"AST","3-Point Field Goals":"3PM","Blocks":"BLK","Steals":"STL","Steals and Blocks":"S+B","Turnovers":"TO"};
 var COMBO={"Points, Rebounds, and Assists":["points","totalRebounds","assists"],"Points and Rebounds":["points","totalRebounds"],"Points and Assists":["points","assists"],"Assists and Rebounds":["totalRebounds","assists"],"Rebounds and Assists":["totalRebounds","assists"]};
-var SC={points:"#53e3a6",totalRebounds:"#38bdf8",assists:"#f5c451"},SL={points:"PTS",totalRebounds:"REB",assists:"AST"};
+var COMBO_S={nhl:{"Points":["goals","assists"]},nfl:{"Rushing Plus Receiving Yards":["rushingYards","receivingYards"],"Passing Plus Rushing Yards":["passingYards","rushingYards"]}};
+function comboFor(r){var c=[COMBO[r.market]];for(var k in COMBO_S)c.push(COMBO_S[k][r.market]);var G=r.games||[];for(var i=0;i<c.length;i++){var q=c[i];if(q&&G.some(function(g){return g.s&&q.every(function(x){return g.s[x]!=null})}))return q}return null}
+var SC={points:"#53e3a6",totalRebounds:"#38bdf8",assists:"#f5c451",goals:"#53e3a6",rushingYards:"#53e3a6",receivingYards:"#38bdf8",passingYards:"#a78bfa"},SL={points:"PTS",totalRebounds:"REB",assists:"AST",goals:"G",rushingYards:"Rush",receivingYards:"Rec",passingYards:"Pass"};
 function am(o){return o==null?null:(o>0?"+"+o:String(o))}
 function be(o){return o==null?null:(o<0?-o/(-o+100):100/(o+100))}
 function pop(btn,html){var o=document.querySelector(".ux-pop");if(o){o.remove();if(o._b===btn)return}var p=document.createElement("div");p.className="ux-pop";p.innerHTML=html;p._b=btn;document.body.appendChild(p);var r=btn.getBoundingClientRect();p.style.top=Math.min(innerHeight-p.offsetHeight-8,r.bottom+6)+"px";p.style.left=Math.max(8,Math.min(innerWidth-p.offsetWidth-8,r.left-140))+"px"}
@@ -62,11 +64,11 @@ function insHtml(r){var s=r.spot||{},rs=(s.reasons||[]).slice(),w=r.wo;var det=[
 function tagHtml(r){var l=r.ttl&&r.ttl.lbl;if(!l)return "";return '<span class="ux-tag '+(/scratch/i.test(l)?"ux-scr":"ux-lock")+'">'+E(l)+'</span>'}
 /* ---------- chart: stacked combos + stepper + tap ---------- */
 function enhanceChart(box,r){if(!box||!r)return;var ch=box.querySelector(".chart");if(!ch||ch.__ux)return;ch.__ux=1;
- var comp=COMBO[r.market],G=r.games||[],byD={};G.forEach(function(g){byD[g.d+(g.o||"")]=g});
+ var comp=comboFor(r),G=r.games||[],byD={};G.forEach(function(g){byD[g.d+(g.o||"")]=g});
  var bars=[].slice.call(ch.querySelectorAll(".b")),lnEl=ch.querySelector(".ln");if(!bars.length)return;
  var mx=0;bars.forEach(function(b){var v=+b.getAttribute("data-barv")||+(b.querySelector("span")||{}).textContent||0,h=parseFloat(b.style.height)||0;if(h>0&&v>0)mx=Math.max(mx,v*100/h);var t=b.getAttribute("title")||"",m=/^(\d{4}-\d\d-\d\d) (?:vs|@)?(\w+)/.exec(t);b._g=m?byD[m[1]+m[2]]:null;b._v=v});
  if(!mx)mx=Math.max.apply(null,bars.map(function(b){return b._v}))||1;
- if(comp){bars.forEach(function(b){var s=b._g&&b._g.s;if(!s)return;b.classList.add("ux-st");var tot=0;comp.forEach(function(k){tot+=+s[k]||0});if(!tot)return;comp.forEach(function(k){var d=document.createElement("div");d.className="sg";d.style.height=((+s[k]||0)/tot*100)+"%";d.style.background=SC[k];b.appendChild(d)})});
+ if(comp){bars.forEach(function(b){var s=b._g&&b._g.s;if(!s)return;var tot=0,ok=true;comp.forEach(function(k){if(s[k]==null||isNaN(+s[k]))ok=false;else tot+=+s[k]});if(!ok||!tot||Math.abs(tot-b._v)>0.51)return;b.classList.add("ux-st");comp.forEach(function(k){var d=document.createElement("div");d.className="sg";d.style.height=(Math.max(0,+s[k]||0)/comp.reduce(function(a,q){return a+Math.max(0,+s[q]||0)},0)*100)+"%";d.style.background=SC[k];b.appendChild(d)})});
   var lg=document.createElement("div");lg.className="ux-leg";lg.innerHTML=comp.map(function(k){return '<span><i style="background:'+SC[k]+'"></i>'+SL[k]+'</span>'}).join("")+'<span class="mut">Outline: green = hit, red = miss</span>';ch.parentNode.parentNode.insertAdjacentElement("afterend",lg)}
  var line=+r.line,base=line,sum=box.querySelector(".gspan-sum b");
  var st=document.createElement("div");st.className="ux-step";st.innerHTML='<span class="mut">Line</span><button type="button" data-d="-1" aria-label="Lower line">−</button><b>'+line+'</b><button type="button" data-d="1" aria-label="Raise line">+</button><span class="mut ux-hr"></span>';
@@ -79,7 +81,7 @@ function enhanceChart(box,r){if(!box||!r)return;var ch=box.querySelector(".chart
  ch.__set=function(v){line=v;apply()};
  st.addEventListener("click",function(e){var b=e.target.closest("button[data-d]");if(!b)return;e.stopPropagation();line=Math.max(0.5,+(line+(+b.dataset.d)).toFixed(1));apply()});
  var tip=null;function hideTip(){if(tip){tip.remove();tip=null}}
- bars.forEach(function(b){b.addEventListener("click",function(e){e.stopPropagation();line=Math.max(0.5,b._v-0.5);var rg=document.getElementById("dl-rng");if(rg){rg.value=line;rg.dispatchEvent(new Event("input",{bubbles:true}))}apply();hideTip();tip=document.createElement("div");tip.className="ux-tip";var g=b._g,s=g&&g.s;tip.innerHTML=(g?E(g.d)+" "+E(g.at||"")+E(g.o||"")+"<br>":"")+"<b>"+b._v+"</b>"+(comp&&s?" = "+comp.map(function(k){return SL[k]+" "+(+s[k]||0)}).join(" + "):"")+(s&&s.minutes!=null?"<br>"+s.minutes+" MIN":"");document.body.appendChild(tip);var rc=b.getBoundingClientRect();tip.style.left=Math.max(6,Math.min(innerWidth-tip.offsetWidth-6,rc.left))+"px";tip.style.top=Math.max(6,rc.top-tip.offsetHeight-6)+"px";setTimeout(hideTip,2500)})});
+ bars.forEach(function(b){b.addEventListener("click",function(e){e.stopPropagation();line=Math.max(0.5,b._v-0.5);var rg=document.getElementById("dl-rng");if(rg){rg.value=line;rg.dispatchEvent(new Event("input",{bubbles:true}))}apply();hideTip();tip=document.createElement("div");tip.className="ux-tip";var g=b._g,s=g&&g.s;tip.innerHTML=(g?E(g.d)+" "+E(g.at||"")+E(g.o||"")+"<br>":"")+"<b>"+b._v+"</b>"+(comp&&s&&b.classList.contains("ux-st")?" = "+comp.map(function(k){return SL[k]+" "+(+s[k]||0)}).join(" + "):"")+(s&&s.minutes!=null?"<br>"+s.minutes+" MIN":"");document.body.appendChild(tip);var rc=b.getBoundingClientRect();tip.style.left=Math.max(6,Math.min(innerWidth-tip.offsetWidth-6,rc.left))+"px";tip.style.top=Math.max(6,rc.top-tip.offsetHeight-6)+"px";setTimeout(hideTip,2500)})});
  try{var q=+new URL(location.href).searchParams.get("line");if(q>0)line=q}catch(e){}
  apply();}
 /* ---------- drawer pass ---------- */
