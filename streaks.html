@@ -42,4 +42,4 @@ async function live(){const now=Date.now(),G={};for(const r of D)if(new Date(r.t
 fetch("data/perfect_streaks.json?t="+Date.now()).then(r=>r.json()).then(j=>{D=j.rows||[];const S=["nfl","soccer","nhl","mlb"].filter(s=>D.some(r=>r.sport==s));sp=S[0];
  $("tabs").innerHTML=S.map(s=>`<button data-s="${s}" class="${s==sp?"on":""}">${EM[s]} (${D.filter(r=>r.sport==s).length})</button>`).join("");
  $("tabs").onclick=e=>{if(e.target.dataset.s){sp=e.target.dataset.s;[...$("tabs").children].forEach(b=>b.classList.toggle("on",b.dataset.s==sp));draw()}};draw();live();setInterval(live,120000)});
-</script><script src="sl-sports.js"></script><script src="nav.js?v=nc1"></script></body></html>
+</script><script src="sl-sports.js"></script><script src="nav.js?v=nc5"></script></body></html>
