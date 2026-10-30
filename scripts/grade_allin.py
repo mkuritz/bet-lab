@@ -216,6 +216,8 @@ def ensure_odds(p):
             p["odds_source"] = "stated"
         return
 
+    if p.get("odds_locked") and p.get("odds") is not None:
+        return  # real opening price already pulled from the multi-book feed; never overwrite
     if p.get("odds") is None or p.get("odds_assumed") or (p.get("odds_source") == "opening" and (p.get("type") == "prop" or p.get("odds") in (-110, 115, 100))):
         o = pull_open_odds(p)
         if o is not None:
