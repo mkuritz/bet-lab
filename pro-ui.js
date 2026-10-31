@@ -687,6 +687,29 @@ function openTailModal(canvas,filename){
  m.classList.add("open");
 }
 
+// Tactical matchup dropdown for a game script (real fields only; any field we do not have is left out)
+function tacDD(gs){
+ const G=((typeof GAMES!=="undefined"&&GAMES[gs.sport])||[]).find(g=>String(g.id)===String(gs.game_id))||{};
+ const sg=v=>v>0?"+"+v:String(v);
+ const rows=[];
+ if(G.total!=null)rows.push(["Total",String(G.total)]);
+ if(G.spread!=null)rows.push(["Spread",G.spread<0?G.home+" "+G.spread:G.spread>0?G.away+" "+sg(-G.spread):"PK"]);
+ if(G.itt_away!=null&&G.itt_home!=null)rows.push(["Implied team totals",`${G.away} ${G.itt_away} · ${G.home} ${G.itt_home}`]);
+ if(G.wx)rows.push(["Conditions",G.wx.dome?String(G.wx.dome):`${Math.round(G.wx.temp)}°F, wind ${Math.round(G.wx.wind)} mph`+((G.wx.flags||[]).length?" · "+G.wx.flags.map(f=>String(f).split(":")[0]).join(", "):"")]);
+ if(gs.primary_mismatch)rows.push(["Key mismatch",gs.primary_mismatch]);
+ if(gs.market_read)rows.push(["Market read",gs.market_read]);
+ if(gs.trap_watch)rows.push(["Trap watch",gs.trap_watch]);
+ const ts=(gs.top_spots||[]).slice(0,4).map(t=>typeof t==="string"?t:[t.player,t.market].filter(Boolean).join(" · ")).filter(Boolean);
+ if(ts.length)rows.push(["Spots to watch",ts.join(" | ")]);
+ if(!rows.length)return"";
+ return `<details class="tac-dd" style="margin-top:6px;border-top:1px solid rgba(255,255,255,.08);padding-top:5px"><summary style="cursor:pointer;min-height:32px;display:flex;align-items:center;color:#38bdf8;font-weight:800;font-size:11px;text-transform:uppercase;letter-spacing:.04em">📊 Tactical matchup</summary>
+  ${rows.map(([k,v])=>`<div style="padding:2px 0;line-height:1.35"><b style="color:#94a3b8">${H(k)}:</b> ${H(v)}</div>`).join("")}</details>`;
+}
+function noScriptGames(sp,scripts){
+ const have=new Set(scripts.map(s=>String(s.game_id)));
+ const G=((typeof GAMES!=="undefined"&&GAMES[sp])||[]).filter(g=>new Date(g.time)>Date.now()-4*36e5&&!have.has(String(g.id)));
+ return G.map(g=>`<div style="background:rgba(15,23,42,.6);border:1px dashed rgba(148,163,184,.35);border-radius:10px;padding:9px 11px;font-size:11.5px"><b>${H(g.away)} @ ${H(g.home)}</b><div class="mut" style="font-size:11px">Game script not available yet: the line or total for this game is not posted.</div></div>`).join("");
+}
 // ---- 8. Floating ⚡ / Cmd+K Ask & Search The Slate · Game Script Command Center ----
 let GOLDEN_CACHE=null,SCRIPTS_CACHE=null;
 function initQuickSearch(){
@@ -741,7 +764,10 @@ function initQuickSearch(){
   const allScripts=[];
   const gsMap=(GOLDEN_CACHE&&GOLDEN_CACHE.game_scripts)||{};
   const spOrder=targetSp?[targetSp]:[curSp,...["nba","nfl","nhl","ncaamb","cfb","soccer","mlb"].filter(x=>x!==curSp)];
-  for(const sKey of spOrder){
+  // Full slate: a game-script request (or an empty ask) lists EVERY game of the sport in view, one dropdown per game
+  const fullSp=(wantScript||!q)?(targetSp||curSp):null;
+  if(fullSp)for(const gs of (gsMap[fullSp]||[]))allScripts.push(gs);
+  if(!fullSp)for(const sKey of spOrder){
    for(const gs of (gsMap[sKey]||[])){
     const hay=`${gs.matchup} ${gs.headline} ${gs.pace_tempo} ${gs.verdict} ${sKey}`.toLowerCase();
     if(!q||wantScript||hay.includes(q)||q.split(/\s+/).some(w=>w.length>=3&&hay.includes(w))){
@@ -783,12 +809,14 @@ function initQuickSearch(){
    html+=`<div style="margin-bottom:10px">
     <div style="font:800 10.5px/1 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.05em;color:#38bdf8;margin-bottom:6px">📋 The Game Script · We Deliver The Script (${allScripts.length} Matchups)</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:8px">
-     ${allScripts.slice(0,wantScript?4:2).map(gs=>`<div style="background:rgba(15,23,42,.85);border:1px solid rgba(56,189,248,.35);border-radius:10px;padding:9px 11px;font-size:11.5px">
+     ${(fullSp?allScripts:allScripts.slice(0,wantScript?4:2)).map(gs=>`<div style="background:rgba(15,23,42,.85);border:1px solid rgba(56,189,248,.35);border-radius:10px;padding:9px 11px;font-size:11.5px">
       <div style="font-weight:800;color:#38bdf8;margin-bottom:3px">[${H((gs.sport||"").toUpperCase())}] ${H(gs.headline||gs.matchup)}</div>
       <div class="mut" style="margin-bottom:4px;font-size:11px">${H(gs.pace_tempo||"")}</div>
       ${(gs.flow||[]).map(f=>`<div style="padding:1.5px 0"><b>${H(f.phase)}:</b> ${H(f.text)}</div>`).join("")}
       <div style="margin-top:4px;padding-top:4px;border-top:1px dashed rgba(255,255,255,.1);color:#53e3a6"><b>🎯 Script Verdict:</b> ${H(gs.verdict||"")}</div>
+      ${tacDD(gs)}
      </div>`).join("")}
+     ${fullSp?noScriptGames(fullSp,allScripts):""}
     </div>
    </div>`;
   }
