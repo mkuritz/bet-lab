@@ -732,6 +732,7 @@ function initQuickSearch(){
    <button type="button" class="p-pill" data-qsp="cbb upset alerts">🚨 CBB Upset Radar</button>
    <button type="button" class="p-pill" data-qsp="nhl shots on goal">🏒 NHL Shots on Goal</button>
   </div>
+  <div id="qsearch-fs" style="padding:6px 14px 0"></div>
   <div id="qsearch-res" style="padding:10px 14px"></div>
  </div>`;
  document.body.appendChild(mod);
@@ -759,6 +760,9 @@ function initQuickSearch(){
   const wantCbb=/cbb|college basketball|upset|torvik/i.test(q);
   const spMatch=(q.match(/\b(nfl|nba|nhl|mlb|cfb|soccer|cbb|ncaamb)\b/)||[])[1];
   const targetSp=spMatch==="cbb"?"ncaamb":(spMatch||null);
+  {const GSU={nfl:"https://nfllab.sportslabshq.com/game-script.html",cfb:"https://cfblab.sportslabshq.com/game-script.html",nba:"nba-game-script.html",ncaamb:"https://cbblab.sportslabshq.com/game-script.html",nhl:"https://nhllab.sportslabshq.com/game-script.html",mlb:"https://mlblab.sportslabshq.com/game-script.html",soccer:"https://soccerlab.sportslabshq.com/game-script.html"},GSN={nfl:"NFL",cfb:"CFB",nba:"NBA",ncaamb:"CBB",nhl:"NHL",mlb:"MLB",soccer:"Soccer"};
+   const fsSp=targetSp||curSp,fsEl=document.getElementById("qsearch-fs");
+   if(fsEl)fsEl.innerHTML=`<a href="${GSU[fsSp]||"game-script.html"}" style="color:#53e3a6;font-weight:800;font-size:12px;text-decoration:none">⛶ Full screen: open ${GSN[fsSp]||""} Game Script →</a> <a href="game-script.html" style="color:#94a3b8;font-size:12px;margin-left:10px;text-decoration:none">All sports →</a>`;}
 
   // 1. Collect matching Game Scripts
   const allScripts=[];
