@@ -1529,7 +1529,12 @@
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-8-buy-or-sell-division-odds-and-3-unit-hammers-all-in-sports/",
    "episode_date": "2026-10-28",
    "odds": -270,
-   "odds_source": "opening"
+   "odds_source": "opening",
+   "result": "win",
+   "final": {
+    "ORE": 34.0,
+    "NU": 26.0
+   }
   },
   {
    "sport": "ncaaf",
@@ -1547,7 +1552,12 @@
    "week": 8,
    "kind": "straight",
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-8-buy-or-sell-division-odds-and-3-unit-hammers-all-in-sports/",
-   "episode_date": "2026-10-28"
+   "episode_date": "2026-10-28",
+   "result": "loss",
+   "final": {
+    "WAKE": 51.0,
+    "UVA": 7.0
+   }
   },
   {
    "sport": "nfl",
@@ -1566,7 +1576,12 @@
    "week": 8,
    "kind": "straight",
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-8-buy-or-sell-division-odds-and-3-unit-hammers-all-in-sports/",
-   "episode_date": "2026-10-28"
+   "episode_date": "2026-10-28",
+   "result": "loss",
+   "final": {
+    "BUF": 36.0,
+    "BAL": 10.0
+   }
   },
   {
    "sport": "nfl",
@@ -1583,7 +1598,12 @@
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-8-buy-or-sell-division-odds-and-3-unit-hammers-all-in-sports/",
    "episode_date": "2026-10-28",
    "odds": 114,
-   "odds_source": "opening"
+   "odds_source": "opening",
+   "result": "loss",
+   "final": {
+    "BUF": 36.0,
+    "BAL": 10.0
+   }
   },
   {
    "sport": "nfl",
@@ -1599,7 +1619,12 @@
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-8-buy-or-sell-division-odds-and-3-unit-hammers-all-in-sports/",
    "episode_date": "2026-10-28",
    "odds": -225,
-   "odds_source": "opening"
+   "odds_source": "opening",
+   "result": "win",
+   "final": {
+    "DET": 19.0,
+    "MIN": 15.0
+   }
   },
   {
    "sport": "nfl",
@@ -1615,7 +1640,12 @@
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-8-buy-or-sell-division-odds-and-3-unit-hammers-all-in-sports/",
    "episode_date": "2026-10-28",
    "odds": -125,
-   "odds_source": "opening"
+   "odds_source": "opening",
+   "result": "loss",
+   "final": {
+    "NYJ": 33.0,
+    "LV": 38.0
+   }
   },
   {
    "sport": "nfl",
@@ -1633,7 +1663,12 @@
    "week": 8,
    "kind": "straight",
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-8-buy-or-sell-division-odds-and-3-unit-hammers-all-in-sports/",
-   "episode_date": "2026-10-28"
+   "episode_date": "2026-10-28",
+   "result": "loss",
+   "final": {
+    "TB": 16.0,
+    "ATL": 0.0
+   }
   },
   {
    "sport": "nfl",
@@ -1652,7 +1687,12 @@
    "week": 8,
    "kind": "straight",
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-8-buy-or-sell-division-odds-and-3-unit-hammers-all-in-sports/",
-   "episode_date": "2026-10-28"
+   "episode_date": "2026-10-28",
+   "result": "loss",
+   "final": {
+    "JAX": 42.0,
+    "IND": 7.0
+   }
   },
   {
    "sport": "nfl",
@@ -1670,7 +1710,12 @@
    "week": 8,
    "kind": "straight",
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-8-buy-or-sell-division-odds-and-3-unit-hammers-all-in-sports/",
-   "episode_date": "2026-10-28"
+   "episode_date": "2026-10-28",
+   "result": "loss",
+   "final": {
+    "LAR": 24.0,
+    "LAC": 9.0
+   }
   },
   {
    "sport": "nfl",
@@ -1689,7 +1734,12 @@
    "week": 8,
    "kind": "straight",
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-8-buy-or-sell-division-odds-and-3-unit-hammers-all-in-sports/",
-   "episode_date": "2026-10-28"
+   "episode_date": "2026-10-28",
+   "result": "win",
+   "final": {
+    "DEN": 28.0,
+    "KC": 24.0
+   }
   },
   {
    "sport": "nfl",
@@ -2181,18 +2231,18 @@
  "record": {
   "straight": {
    "overall": {
-    "w": 44,
-    "l": 24,
+    "w": 47,
+    "l": 31,
     "p": 2,
-    "units": 20.7,
-    "units_n": 70
+    "units": 15.43,
+    "units_n": 80
    },
    "nfl": {
-    "w": 41,
-    "l": 23,
+    "w": 43,
+    "l": 29,
     "p": 2,
-    "units": 18.75,
-    "units_n": 66
+    "units": 14.1,
+    "units_n": 74
    },
    "mlb": {
     "w": 2,
@@ -2209,11 +2259,11 @@
     "units_n": 1
    },
    "ncaaf": {
-    "w": 0,
-    "l": 0,
+    "w": 1,
+    "l": 1,
     "p": 0,
-    "units": 0,
-    "units_n": 0
+    "units": -0.63,
+    "units_n": 2
    }
   },
   "parlay": {
@@ -2254,18 +2304,18 @@
    }
   },
   "overall": {
-   "w": 44,
-   "l": 24,
+   "w": 47,
+   "l": 31,
    "p": 2,
-   "units": 20.7,
-   "units_n": 70
+   "units": 15.43,
+   "units_n": 80
   },
   "nfl": {
-   "w": 41,
-   "l": 23,
+   "w": 43,
+   "l": 29,
    "p": 2,
-   "units": 18.75,
-   "units_n": 66
+   "units": 14.1,
+   "units_n": 74
   },
   "mlb": {
    "w": 2,
@@ -2282,11 +2332,11 @@
    "units_n": 1
   },
   "ncaaf": {
-   "w": 0,
-   "l": 0,
+   "w": 1,
+   "l": 1,
    "p": 0,
-   "units": 0,
-   "units_n": 0
+   "units": -0.63,
+   "units_n": 2
   },
   "parlay_legs": {
    "w": 14,
@@ -2295,7 +2345,7 @@
    "units": 5.29,
    "units_n": 23
   },
-  "pending": 11,
+  "pending": 1,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }
