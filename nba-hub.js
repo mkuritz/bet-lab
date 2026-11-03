@@ -66,7 +66,7 @@ function renderKPIs(){
     ["⚡ Off-Market Snipes",snipes,"Book A value vs projection"],
     ["🚨 Fake-Out Traps Flagged",fakes,"Mirage / Skew / DvP Shift warnings"],
     ["🔥 Hot Streaks & Volume-Due",(D.hot_streaks||[]).length+" / "+(D.volume_due||[]).length,"80%+ Hitters & Regression plays"],
-    ["🔗 Correlated SGP Stacks",(D.sgp_cards||[]).length,"Zero Same-Stat Cannibalization"]
+    ["🔗 Correlated SGP Stacks",(D.sgp_cards||[]).length,"This season only"]
   ].map(x=>`<div class="kpi"><div class="l">${x[0]}</div><div class="v">${x[1]}</div><div class="s">${x[2]}</div></div>`).join("");
   const sub=document.getElementById("hub-sub");
   if(sub)sub.textContent=`Updated ${fmtET(D.updated)} · ${Object.keys(D.teams||{}).length} NBA Teams · ${(D.props||[]).length} Classified Props · 30-Team Positional DvP (Season / L10 / L5) & 5-Zone Court Shot Matrix`;
@@ -376,7 +376,7 @@ function renderStreaks(){
   const SGP=D.sgp_cards||[];
   return `<div class="ctl-bar">
     <div class="pills">
-      ${[["hot","🔥 Hot Finishers & L10 Hit Streaks ("+H.length+")"],["vol","📈 Volume-Due Positive Regression ("+V.length+")"],["sgp","🔗 Correlated Non-Cannibalizing SGP Builder ("+SGP.length+")"]].map(x=>`<button type="button" data-strk-sub="${x[0]}" class="${F.strkSub===x[0]?"on":""}">${x[1]}</button>`).join("")}
+      ${[["hot","🔥 Hot Finishers & L10 Hit Streaks ("+H.length+")"],["vol","📈 Volume-Due Positive Regression ("+V.length+")"],["sgp","🔗 Same-Game Parlays ("+SGP.length+")"]].map(x=>`<button type="button" data-strk-sub="${x[0]}" class="${F.strkSub===x[0]?"on":""}">${x[1]}</button>`).join("")}
     </div>
   </div>
   ${F.strkSub==="hot"?`<div class="card">
@@ -412,8 +412,8 @@ function renderStreaks(){
     </div>
   </div>`:""}
   ${F.strkSub==="sgp"?`<div class="card">
-    <h3>🔗 Correlation-Verified NBA SGP Stacks (Hit-First Mode HP · Zero Same-Stat Cannibalization)</h3>
-    <div class="mut" style="font-size:12px;margin-bottom:10px">Built with our upgraded NBA SGP rules: every leg requires ≥60% L10 empirical hit rate, Median ≥ Line, stable/expanding minutes, and strictly positive pairwise correlation (never stacking two Rebound overs or two Assist overs on the same team).</div>
+    <h3>🔗 NBA Same-Game Parlays (This Season Only)</h3>
+    <div class="mut" style="font-size:12px;margin-bottom:10px">Every leg uses this season’s games only, on the player’s current team and in tonight’s role (starter or bench). Our projection and the median both have to clear the line, and our chance has to beat the best available price. Correlation is measured from games the two players played together; pairs from opposing teams get no boost.</div>
     <div class="grid">
       ${SGP.map(s=>`<div class="gm-card" style="background:var(--panel2);border-color:#2c5282">
         <div style="display:flex;justify-content:space-between;align-items:center">
@@ -421,9 +421,9 @@ function renderStreaks(){
           <span class="badge spot">ρ ${E(s.corr_r)} · Fair ${am(s.fair_odds)} (${s.combined_prob}%)</span>
         </div>
         <div class="mut" style="font-size:11px;color:#86efac">✓ ${E(s.cannibalization_check)}</div>
-        ${s.script_thesis?`<div style="background:rgba(11,15,23,.65);border:1px solid rgba(63,169,255,.3);border-radius:7px;padding:6px 8px;font-size:11.5px;color:#cbd5e1"><b>📋 Game Script Alignment:</b> ${E(s.script_thesis)}</div>`:""}
+        ${s.script_thesis?`<div style="background:rgba(11,15,23,.65);border:1px solid rgba(63,169,255,.3);border-radius:7px;padding:6px 8px;font-size:11.5px;color:#cbd5e1"><b>Pace &amp; style:</b> ${E(s.script_thesis)}</div>`:""}
         ${s.legs.map((l,i)=>`<div style="border-top:1px solid var(--line);padding-top:6px;display:flex;justify-content:space-between;align-items:center;font-size:12.5px">
-          <div><b>Leg ${i+1}: <a class="plink" data-player-aid="${E(l.aid)}" data-player-mkt="${E(l.market)}">${E(l.player)}</a></b> (${E(l.team)})<br><span class="mut" style="font-size:11px">L10: ${E(l.l10)} · ${l.min_l5||"—"} MIN ·Proj ${l.proj} (Med ${l.median})</span></div>
+          <div><b>Leg ${i+1}: <a class="plink" data-player-aid="${E(l.aid)}" data-player-mkt="${E(l.market)}">${E(l.player)}</a></b> (${E(l.team)})<br><span class="mut" style="font-size:11px">${E(l.l10)} · ${E(l.role||"")} · ~${l.exp_min||l.min_l5||"—"} min · Proj ${l.proj} (Med ${l.median})${l.edge_pct!=null?` · Edge +${l.edge_pct}`:""}${l.outs&&l.outs.length?` · Out tonight: ${E(l.outs.join(", "))}`:""}</span></div>
           <div style="text-align:right"><b>Over ${l.line} ${E(l.mk_short)}</b><br><span class="up" style="font-size:11.5px">${am(l.odds)} (${E(l.book)})</span></div>
         </div>`).join("")}
       </div>`).join("")}
