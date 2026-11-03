@@ -1755,7 +1755,12 @@
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-8-buy-or-sell-division-odds-and-3-unit-hammers-all-in-sports/",
    "episode_date": "2026-10-28",
    "odds": -218,
-   "odds_source": "opening"
+   "odds_source": "opening",
+   "result": "loss",
+   "final": {
+    "SEA": 17.0,
+    "CHI": 34.0
+   }
   },
   {
    "id": "aic-w1-parlay",
@@ -2232,17 +2237,17 @@
   "straight": {
    "overall": {
     "w": 47,
-    "l": 31,
+    "l": 32,
     "p": 2,
-    "units": 15.43,
-    "units_n": 80
+    "units": 14.43,
+    "units_n": 81
    },
    "nfl": {
     "w": 43,
-    "l": 29,
+    "l": 30,
     "p": 2,
-    "units": 14.1,
-    "units_n": 74
+    "units": 13.1,
+    "units_n": 75
    },
    "mlb": {
     "w": 2,
@@ -2305,17 +2310,17 @@
   },
   "overall": {
    "w": 47,
-   "l": 31,
+   "l": 32,
    "p": 2,
-   "units": 15.43,
-   "units_n": 80
+   "units": 14.43,
+   "units_n": 81
   },
   "nfl": {
    "w": 43,
-   "l": 29,
+   "l": 30,
    "p": 2,
-   "units": 14.1,
-   "units_n": 74
+   "units": 13.1,
+   "units_n": 75
   },
   "mlb": {
    "w": 2,
@@ -2345,7 +2350,7 @@
    "units": 5.29,
    "units_n": 23
   },
-  "pending": 1,
+  "pending": 0,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }
