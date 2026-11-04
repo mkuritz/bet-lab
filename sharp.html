@@ -172,7 +172,7 @@ const tePlays=(TE.plays||[]).filter(p=>day(p)>=today).map(p=>({
 });
 
 const allShow=[...recLog,...tePlays].sort((a,b)=>(b.result==="win"?1:0)-(a.result==="win"?1:0)||(b.ours||0)-(a.ours||0));
-$("upd").textContent="Updated "+new Date().toLocaleString("en-US",{timeZone:"America/New_York",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})+" ET · Today's Oct 28 & Upcoming Slate";
+$("upd").textContent="Updated "+new Date().toLocaleString("en-US",{timeZone:"America/New_York",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})+" ET · Today's & Upcoming Slate";
 
 let spF="all";
 const sps=["all",...new Set(allShow.map(x=>x.sport).filter(Boolean))];
