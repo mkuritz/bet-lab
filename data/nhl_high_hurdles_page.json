@@ -1,5 +1,5 @@
 {
-"updated": "2026-11-04T04:35:40+00:00",
+"updated": "2026-11-04T07:13:36+00:00",
 "slate": "2026-11-04",
 "players": [
 {
@@ -13,7 +13,7 @@
 "market": "2+ Points",
 "mk": "p2",
 "hurdle": 2,
-"p": 0.3495,
+"p": 0.3493,
 "fair": 186,
 "book": null,
 "book_letter": null,
@@ -123,7 +123,7 @@
 "pace_5v5_attempts": 90.9,
 "goalie": {
 "name": "Darcy Kuemper",
-"sv": 0.8931,
+"sv": 0.893,
 "l10_sv": 0.884,
 "l10_gsax": -1.8,
 "last_start": "2026-10-29",
@@ -136,16 +136,16 @@
 }
 },
 "parts": {
-"opp_factor": 1.073,
+"opp_factor": 1.071,
 "goalie_factor": 1.009
 },
 "asof": {
-"game_log": "2026-11-04T04:24:27+00:00",
-"goalie": "2026-11-04T04:24:09+00:00",
+"game_log": "2026-11-04T07:13:33+00:00",
+"goalie": "2026-11-04T06:54:22+00:00",
 "lines": "2026-11-04T01:30:00+00:00",
-"injuries": "2026-11-04T04:24:09+00:00",
+"injuries": "2026-11-04T06:54:22+00:00",
 "book": "2026-11-04T03:05:00+00:00",
-"team_stats": "2026-11-04T04:24:14+00:00"
+"team_stats": "2026-11-04T07:13:18+00:00"
 },
 "why": "Macklin Celebrini has two or more points in 36% of 14 games this season and 20% of his last 10 (38% last season). He reached 1+ point (one short of the line or better) in 68% of his last 40, on 23.1 minutes a night over the last 10 and 3.7 shots a game, with a spot on power-play unit 1. LA allows 2.85 goals a game to forwards (#10 of 32, 1 = most). Projected goalie Darcy Kuemper is at a 0.884 save rate over his last 10.",
 "check": "ok"
@@ -161,7 +161,7 @@
 "market": "2+ Points",
 "mk": "p2",
 "hurdle": 2,
-"p": 0.3434,
+"p": 0.3431,
 "fair": 191,
 "book": null,
 "book_letter": null,
@@ -271,7 +271,7 @@
 "pace_5v5_attempts": 81.8,
 "goalie": {
 "name": "Spencer Knight",
-"sv": 0.8972,
+"sv": 0.8971,
 "l10_sv": 0.898,
 "l10_gsax": 1.0,
 "last_start": "2026-11-02",
@@ -284,16 +284,16 @@
 }
 },
 "parts": {
-"opp_factor": 1.153,
+"opp_factor": 1.152,
 "goalie_factor": 0.982
 },
 "asof": {
-"game_log": "2026-11-04T04:24:27+00:00",
-"goalie": "2026-11-04T04:24:09+00:00",
+"game_log": "2026-11-04T07:13:33+00:00",
+"goalie": "2026-11-04T06:54:22+00:00",
 "lines": "2026-11-04T01:30:00+00:00",
-"injuries": "2026-11-04T04:24:09+00:00",
+"injuries": "2026-11-04T06:54:22+00:00",
 "book": "2026-11-04T03:05:00+00:00",
-"team_stats": "2026-11-04T04:24:14+00:00"
+"team_stats": "2026-11-04T07:13:18+00:00"
 },
 "why": "Matthew Tkachuk has two or more points in 20% of 15 games this season and 30% of his last 10 (36% last season). He reached 1+ point (one short of the line or better) in 68% of his last 40, on 17.9 minutes a night over the last 10 and 2.6 shots a game, with a spot on power-play unit 1. CHI allows 3.33 goals a game to forwards (#3 of 32, 1 = most). Projected goalie Spencer Knight is at a 0.898 save rate over his last 10.",
 "check": "ok"
@@ -309,7 +309,7 @@
 "market": "2+ Points",
 "mk": "p2",
 "hurdle": 2,
-"p": 0.2905,
+"p": 0.2903,
 "fair": 244,
 "book": null,
 "book_letter": null,
@@ -408,7 +408,7 @@
 "matchup": {
 "allowed": {
 "goals_pg": 0.47,
-"goals_rank": 16,
+"goals_rank": 15,
 "shots_pg": 7.5,
 "shots_rank": 15,
 "of": 32,
@@ -419,7 +419,7 @@
 "pace_5v5_attempts": 81.8,
 "goalie": {
 "name": "Spencer Knight",
-"sv": 0.8972,
+"sv": 0.8971,
 "l10_sv": 0.898,
 "l10_gsax": 1.0,
 "last_start": "2026-11-02",
@@ -432,19 +432,19 @@
 }
 },
 "parts": {
-"opp_factor": 1.153,
+"opp_factor": 1.152,
 "goalie_factor": 0.982
 },
 "asof": {
-"game_log": "2026-11-04T04:24:27+00:00",
-"goalie": "2026-11-04T04:24:09+00:00",
+"game_log": "2026-11-04T07:13:33+00:00",
+"goalie": "2026-11-04T06:54:22+00:00",
 "lines": "2026-11-04T01:30:00+00:00",
-"injuries": "2026-11-04T04:24:09+00:00",
+"injuries": "2026-11-04T06:54:22+00:00",
 "book": "2026-11-04T03:05:00+00:00",
-"team_stats": "2026-11-04T04:24:14+00:00"
+"team_stats": "2026-11-04T07:13:18+00:00"
 },
-"why": "Seth Jones has two or more points in 33% of 15 games this season and 50% of his last 10 (14% last season). He reached 1+ point (one short of the line or better) in 58% of his last 40, on 24.2 minutes a night over the last 10 and 1.9 shots a game, with a spot on power-play unit 1. CHI allows 0.47 goals a game to defensemen (#16 of 32, 1 = most). Projected goalie Spencer Knight is at a 0.898 save rate over his last 10.",
-"check": "ok"
+"why": "Seth Jones has two or more points in 33% of 15 games this season and 50% of his last 10 (14% last season). He reached 1+ point (one short of the line or better) in 58% of his last 40, on 24.2 minutes a night over the last 10 and 1.9 shots a game, with a spot on power-play unit 1. CHI allows 0.47 goals a game to defensemen (#15 of 32, 1 = most). Projected goalie Spencer Knight is at a 0.898 save rate over his last 10.",
+"check": "pending"
 },
 {
 "id": "8484801-s5",
@@ -457,7 +457,7 @@
 "market": "5+ Shots on Goal",
 "mk": "s5",
 "hurdle": 5,
-"p": 0.2756,
+"p": 0.2758,
 "fair": 263,
 "book": null,
 "book_letter": null,
@@ -567,7 +567,7 @@
 "pace_5v5_attempts": 90.9,
 "goalie": {
 "name": "Darcy Kuemper",
-"sv": 0.8931,
+"sv": 0.893,
 "l10_sv": 0.884,
 "l10_gsax": -1.8,
 "last_start": "2026-10-29",
@@ -580,16 +580,16 @@
 }
 },
 "parts": {
-"opp_factor": 1.024,
+"opp_factor": 1.025,
 "goalie_factor": 1.009
 },
 "asof": {
-"game_log": "2026-11-04T04:24:27+00:00",
-"goalie": "2026-11-04T04:24:09+00:00",
+"game_log": "2026-11-04T07:13:33+00:00",
+"goalie": "2026-11-04T06:54:22+00:00",
 "lines": "2026-11-04T01:30:00+00:00",
-"injuries": "2026-11-04T04:24:09+00:00",
+"injuries": "2026-11-04T06:54:22+00:00",
 "book": "2026-11-04T03:05:00+00:00",
-"team_stats": "2026-11-04T04:24:14+00:00"
+"team_stats": "2026-11-04T07:13:18+00:00"
 },
 "why": "Macklin Celebrini has five or more shots on goal in 43% of 14 games this season and 40% of his last 10 (33% last season). He reached 4+ shots on goal (one short of the line or better) in 45% of his last 40, on 23.1 minutes a night over the last 10 and 3.7 shots a game, with a spot on power-play unit 1. LA allows 20.6 shots a game to forwards (#9 of 32, 1 = most).",
 "check": "ok"
@@ -605,8 +605,8 @@
 "market": "2+ Points",
 "mk": "p2",
 "hurdle": 2,
-"p": 0.2738,
-"fair": 265,
+"p": 0.2735,
+"fair": 266,
 "book": null,
 "book_letter": null,
 "edge": null,
@@ -704,7 +704,7 @@
 "matchup": {
 "allowed": {
 "goals_pg": 3.21,
-"goals_rank": 4,
+"goals_rank": 5,
 "shots_pg": 20.1,
 "shots_rank": 17,
 "of": 32,
@@ -728,19 +728,19 @@
 }
 },
 "parts": {
-"opp_factor": 1.067,
-"goalie_factor": 0.994
+"opp_factor": 1.066,
+"goalie_factor": 0.993
 },
 "asof": {
-"game_log": "2026-11-04T04:24:27+00:00",
-"goalie": "2026-11-04T04:24:09+00:00",
+"game_log": "2026-11-04T07:13:33+00:00",
+"goalie": "2026-11-04T06:54:22+00:00",
 "lines": "2026-11-04T01:30:00+00:00",
-"injuries": "2026-11-04T04:24:09+00:00",
+"injuries": "2026-11-04T06:54:22+00:00",
 "book": "2026-11-04T03:05:00+00:00",
-"team_stats": "2026-11-04T04:24:14+00:00"
+"team_stats": "2026-11-04T07:13:18+00:00"
 },
-"why": "Tim St\u00fctzle has two or more points in 44% of 16 games this season and 30% of his last 10 (30% last season). He reached 1+ point (one short of the line or better) in 73% of his last 40, on 22.0 minutes a night over the last 10 and 2.1 shots a game, with a spot on power-play unit 1. BUF allows 3.21 goals a game to forwards (#4 of 32, 1 = most). Projected goalie Ukko-Pekka Luukkonen is at a 0.882 save rate over his last 10.",
-"check": "ok"
+"why": "Tim St\u00fctzle has two or more points in 44% of 16 games this season and 30% of his last 10 (30% last season). He reached 1+ point (one short of the line or better) in 73% of his last 40, on 22.0 minutes a night over the last 10 and 2.1 shots a game, with a spot on power-play unit 1. BUF allows 3.21 goals a game to forwards (#5 of 32, 1 = most). Projected goalie Ukko-Pekka Luukkonen is at a 0.882 save rate over his last 10.",
+"check": "pending"
 },
 {
 "id": "8480801-p2",
@@ -753,7 +753,7 @@
 "market": "2+ Points",
 "mk": "p2",
 "hurdle": 2,
-"p": 0.2641,
+"p": 0.2639,
 "fair": 279,
 "book": null,
 "book_letter": null,
@@ -863,7 +863,7 @@
 "pace_5v5_attempts": 81.8,
 "goalie": {
 "name": "Spencer Knight",
-"sv": 0.8972,
+"sv": 0.8971,
 "l10_sv": 0.898,
 "l10_gsax": 1.0,
 "last_start": "2026-11-02",
@@ -876,16 +876,16 @@
 }
 },
 "parts": {
-"opp_factor": 1.153,
+"opp_factor": 1.152,
 "goalie_factor": 0.982
 },
 "asof": {
-"game_log": "2026-11-04T04:24:27+00:00",
-"goalie": "2026-11-04T04:24:09+00:00",
+"game_log": "2026-11-04T07:13:33+00:00",
+"goalie": "2026-11-04T06:54:22+00:00",
 "lines": "2026-11-04T01:30:00+00:00",
-"injuries": "2026-11-04T04:24:09+00:00",
+"injuries": "2026-11-04T06:54:22+00:00",
 "book": "2026-11-04T03:05:00+00:00",
-"team_stats": "2026-11-04T04:24:14+00:00"
+"team_stats": "2026-11-04T07:13:18+00:00"
 },
 "why": "Brady Tkachuk has two or more points in 27% of 15 games this season and 40% of his last 10 (20% last season). He reached 1+ point (one short of the line or better) in 63% of his last 40, on 16.2 minutes a night over the last 10 and 3.3 shots a game, with a spot on power-play unit 1. CHI allows 3.33 goals a game to forwards (#3 of 32, 1 = most). Projected goalie Spencer Knight is at a 0.898 save rate over his last 10.",
 "check": "ok"
@@ -901,7 +901,7 @@
 "market": "2+ Points",
 "mk": "p2",
 "hurdle": 2,
-"p": 0.256,
+"p": 0.2558,
 "fair": 291,
 "book": null,
 "book_letter": null,
@@ -1011,7 +1011,7 @@
 "pace_5v5_attempts": 90.9,
 "goalie": {
 "name": "Yaroslav Askarov",
-"sv": 0.8885,
+"sv": 0.8884,
 "l10_sv": 0.896,
 "l10_gsax": 1.4,
 "last_start": "2026-11-02",
@@ -1024,16 +1024,16 @@
 }
 },
 "parts": {
-"opp_factor": 1.043,
+"opp_factor": 1.041,
 "goalie_factor": 1.038
 },
 "asof": {
-"game_log": "2026-11-04T04:24:27+00:00",
-"goalie": "2026-11-04T04:24:09+00:00",
+"game_log": "2026-11-04T07:13:33+00:00",
+"goalie": "2026-11-04T06:54:22+00:00",
 "lines": "2026-11-04T01:30:00+00:00",
-"injuries": "2026-11-04T04:24:09+00:00",
+"injuries": "2026-11-04T06:54:22+00:00",
 "book": "2026-11-04T03:05:00+00:00",
-"team_stats": "2026-11-04T04:24:14+00:00"
+"team_stats": "2026-11-04T07:13:18+00:00"
 },
 "why": "Artemi Panarin has two or more points in 39% of 13 games this season and 40% of his last 10 (30% last season). He reached 1+ point (one short of the line or better) in 65% of his last 40, on 22.3 minutes a night over the last 10 and 2.8 shots a game, with a spot on power-play unit 1. SJ allows 2.81 goals a game to forwards (#11 of 32, 1 = most). Projected goalie Yaroslav Askarov is at a 0.896 save rate over his last 10.",
 "check": "ok"
@@ -1049,7 +1049,7 @@
 "market": "2+ Points",
 "mk": "p2",
 "hurdle": 2,
-"p": 0.2532,
+"p": 0.2529,
 "fair": 295,
 "book": null,
 "book_letter": null,
@@ -1172,16 +1172,16 @@
 }
 },
 "parts": {
-"opp_factor": 1.067,
-"goalie_factor": 0.994
+"opp_factor": 1.066,
+"goalie_factor": 0.993
 },
 "asof": {
-"game_log": "2026-11-04T04:24:27+00:00",
-"goalie": "2026-11-04T04:24:09+00:00",
+"game_log": "2026-11-04T07:13:33+00:00",
+"goalie": "2026-11-04T06:54:22+00:00",
 "lines": "2026-11-04T01:30:00+00:00",
-"injuries": "2026-11-04T04:24:09+00:00",
+"injuries": "2026-11-04T06:54:22+00:00",
 "book": "2026-11-04T03:05:00+00:00",
-"team_stats": "2026-11-04T04:24:14+00:00"
+"team_stats": "2026-11-04T07:13:18+00:00"
 },
 "why": "Jake Sanderson has two or more points in 50% of 8 games this season and 50% of his last 10 (18% last season). He reached 1+ point (one short of the line or better) in 63% of his last 40, on 23.0 minutes a night over the last 10 and 2.1 shots a game, with a spot on power-play unit 1. BUF allows 0.21 goals a game to defensemen (#31 of 32, 1 = most). Projected goalie Ukko-Pekka Luukkonen is at a 0.882 save rate over his last 10.",
 "check": "ok"
@@ -1197,7 +1197,7 @@
 "market": "2+ Points",
 "mk": "p2",
 "hurdle": 2,
-"p": 0.2531,
+"p": 0.2529,
 "fair": 295,
 "book": null,
 "book_letter": null,
@@ -1313,16 +1313,16 @@
 }
 },
 "parts": {
-"opp_factor": 0.999,
+"opp_factor": 0.998,
 "goalie_factor": 1.0
 },
 "asof": {
-"game_log": "2026-11-04T04:24:27+00:00",
-"goalie": "2026-11-04T04:24:09+00:00",
+"game_log": "2026-11-04T07:13:33+00:00",
+"goalie": "2026-11-04T06:54:22+00:00",
 "lines": "2026-11-04T01:30:00+00:00",
-"injuries": "2026-11-04T04:24:09+00:00",
+"injuries": "2026-11-04T06:54:22+00:00",
 "book": "2026-11-04T03:05:00+00:00",
-"team_stats": "2026-11-04T04:24:14+00:00"
+"team_stats": "2026-11-04T07:13:18+00:00"
 },
 "why": "Rasmus Dahlin has two or more points in 18% of 11 games this season and 20% of his last 10 (25% last season). He reached 1+ point (one short of the line or better) in 68% of his last 40, on 24.5 minutes a night over the last 10 and 2.5 shots a game, with a spot on power-play unit 1. OTT allows 0.31 goals a game to defensemen (#27 of 32, 1 = most).",
 "check": "ok"
@@ -1338,7 +1338,7 @@
 "market": "2+ Points",
 "mk": "p2",
 "hurdle": 2,
-"p": 0.2493,
+"p": 0.2491,
 "fair": 301,
 "book": null,
 "book_letter": null,
@@ -1439,7 +1439,7 @@
 "goals_pg": 2.81,
 "goals_rank": 12,
 "shots_pg": 20.3,
-"shots_rank": 14,
+"shots_rank": 13,
 "of": 32,
 "group": "forwards"
 },
@@ -1454,16 +1454,16 @@
 }
 },
 "parts": {
-"opp_factor": 0.999,
+"opp_factor": 0.998,
 "goalie_factor": 1.0
 },
 "asof": {
-"game_log": "2026-11-04T04:24:27+00:00",
-"goalie": "2026-11-04T04:24:09+00:00",
+"game_log": "2026-11-04T07:13:33+00:00",
+"goalie": "2026-11-04T06:54:22+00:00",
 "lines": "2026-11-04T01:30:00+00:00",
-"injuries": "2026-11-04T04:24:09+00:00",
+"injuries": "2026-11-04T06:54:22+00:00",
 "book": "2026-11-04T03:05:00+00:00",
-"team_stats": "2026-11-04T04:24:14+00:00"
+"team_stats": "2026-11-04T07:13:18+00:00"
 },
 "why": "Tage Thompson has two or more points in 36% of 14 games this season and 30% of his last 10 (25% last season). He reached 1+ point (one short of the line or better) in 65% of his last 40, on 19.3 minutes a night over the last 10 and 3.6 shots a game, with a spot on power-play unit 1. OTT allows 2.81 goals a game to forwards (#12 of 32, 1 = most).",
 "check": "ok"
@@ -1479,7 +1479,7 @@
 "market": "5+ Shots on Goal",
 "mk": "s5",
 "hurdle": 5,
-"p": 0.2432,
+"p": 0.2433,
 "fair": 311,
 "book": null,
 "book_letter": null,
@@ -1580,7 +1580,7 @@
 "goals_pg": 2.81,
 "goals_rank": 12,
 "shots_pg": 20.3,
-"shots_rank": 14,
+"shots_rank": 13,
 "of": 32,
 "group": "forwards"
 },
@@ -1599,15 +1599,15 @@
 "goalie_factor": 1.0
 },
 "asof": {
-"game_log": "2026-11-04T04:24:27+00:00",
-"goalie": "2026-11-04T04:24:09+00:00",
+"game_log": "2026-11-04T07:13:33+00:00",
+"goalie": "2026-11-04T06:54:22+00:00",
 "lines": "2026-11-04T01:30:00+00:00",
-"injuries": "2026-11-04T04:24:09+00:00",
+"injuries": "2026-11-04T06:54:22+00:00",
 "book": "2026-11-04T03:05:00+00:00",
-"team_stats": "2026-11-04T04:24:14+00:00"
+"team_stats": "2026-11-04T07:13:18+00:00"
 },
-"why": "Tage Thompson has five or more shots on goal in 50% of 14 games this season and 50% of his last 10 (30% last season). He reached 4+ shots on goal (one short of the line or better) in 50% of his last 40, on 19.3 minutes a night over the last 10 and 3.6 shots a game, with a spot on power-play unit 1. OTT allows 20.3 shots a game to forwards (#14 of 32, 1 = most).",
-"check": "ok"
+"why": "Tage Thompson has five or more shots on goal in 50% of 14 games this season and 50% of his last 10 (30% last season). He reached 4+ shots on goal (one short of the line or better) in 50% of his last 40, on 19.3 minutes a night over the last 10 and 3.6 shots a game, with a spot on power-play unit 1. OTT allows 20.3 shots a game to forwards (#13 of 32, 1 = most).",
+"check": "pending"
 },
 {
 "id": "8480208-p2",
@@ -1620,7 +1620,7 @@
 "market": "2+ Points",
 "mk": "p2",
 "hurdle": 2,
-"p": 0.2365,
+"p": 0.2363,
 "fair": 323,
 "book": null,
 "book_letter": null,
@@ -1719,7 +1719,7 @@
 "matchup": {
 "allowed": {
 "goals_pg": 3.21,
-"goals_rank": 4,
+"goals_rank": 5,
 "shots_pg": 20.1,
 "shots_rank": 17,
 "of": 32,
@@ -1743,19 +1743,19 @@
 }
 },
 "parts": {
-"opp_factor": 1.067,
-"goalie_factor": 0.994
+"opp_factor": 1.066,
+"goalie_factor": 0.993
 },
 "asof": {
-"game_log": "2026-11-04T04:24:27+00:00",
-"goalie": "2026-11-04T04:24:09+00:00",
+"game_log": "2026-11-04T07:13:33+00:00",
+"goalie": "2026-11-04T06:54:22+00:00",
 "lines": "2026-11-04T01:30:00+00:00",
-"injuries": "2026-11-04T04:24:09+00:00",
+"injuries": "2026-11-04T06:54:22+00:00",
 "book": "2026-11-04T03:05:00+00:00",
-"team_stats": "2026-11-04T04:24:14+00:00"
+"team_stats": "2026-11-04T07:13:18+00:00"
 },
-"why": "Drake Batherson has two or more points in 19% of 16 games this season and 20% of his last 10 (23% last season). He reached 1+ point (one short of the line or better) in 70% of his last 40, on 17.8 minutes a night over the last 10 and 2.2 shots a game, with a spot on power-play unit 1. BUF allows 3.21 goals a game to forwards (#4 of 32, 1 = most). Projected goalie Ukko-Pekka Luukkonen is at a 0.882 save rate over his last 10.",
-"check": "ok"
+"why": "Drake Batherson has two or more points in 19% of 16 games this season and 20% of his last 10 (23% last season). He reached 1+ point (one short of the line or better) in 70% of his last 40, on 17.8 minutes a night over the last 10 and 2.2 shots a game, with a spot on power-play unit 1. BUF allows 3.21 goals a game to forwards (#5 of 32, 1 = most). Projected goalie Ukko-Pekka Luukkonen is at a 0.882 save rate over his last 10.",
+"check": "pending"
 },
 {
 "id": "8480801-s5",
@@ -1768,8 +1768,8 @@
 "market": "5+ Shots on Goal",
 "mk": "s5",
 "hurdle": 5,
-"p": 0.2327,
-"fair": 330,
+"p": 0.2328,
+"fair": 329,
 "book": null,
 "book_letter": null,
 "edge": null,
@@ -1878,7 +1878,7 @@
 "pace_5v5_attempts": 81.8,
 "goalie": {
 "name": "Spencer Knight",
-"sv": 0.8972,
+"sv": 0.8971,
 "l10_sv": 0.898,
 "l10_gsax": 1.0,
 "last_start": "2026-11-02",
@@ -1891,16 +1891,16 @@
 }
 },
 "parts": {
-"opp_factor": 1.082,
+"opp_factor": 1.083,
 "goalie_factor": 0.982
 },
 "asof": {
-"game_log": "2026-11-04T04:24:27+00:00",
-"goalie": "2026-11-04T04:24:09+00:00",
+"game_log": "2026-11-04T07:13:33+00:00",
+"goalie": "2026-11-04T06:54:22+00:00",
 "lines": "2026-11-04T01:30:00+00:00",
-"injuries": "2026-11-04T04:24:09+00:00",
+"injuries": "2026-11-04T06:54:22+00:00",
 "book": "2026-11-04T03:05:00+00:00",
-"team_stats": "2026-11-04T04:24:14+00:00"
+"team_stats": "2026-11-04T07:13:18+00:00"
 },
 "why": "Brady Tkachuk has five or more shots on goal in 20% of 15 games this season and 30% of his last 10 (30% last season). He reached 4+ shots on goal (one short of the line or better) in 43% of his last 40, on 16.2 minutes a night over the last 10 and 3.3 shots a game, with a spot on power-play unit 1. CHI allows 22.5 shots a game to forwards (#2 of 32, 1 = most).",
 "check": "ok"
@@ -1916,7 +1916,7 @@
 "market": "2+ Points",
 "mk": "p2",
 "hurdle": 2,
-"p": 0.2305,
+"p": 0.2304,
 "fair": 334,
 "book": null,
 "book_letter": null,
@@ -2026,7 +2026,7 @@
 "pace_5v5_attempts": 81.8,
 "goalie": {
 "name": "Spencer Knight",
-"sv": 0.8972,
+"sv": 0.8971,
 "l10_sv": 0.898,
 "l10_gsax": 1.0,
 "last_start": "2026-11-02",
@@ -2039,16 +2039,16 @@
 }
 },
 "parts": {
-"opp_factor": 1.153,
+"opp_factor": 1.152,
 "goalie_factor": 0.982
 },
 "asof": {
-"game_log": "2026-11-04T04:24:27+00:00",
-"goalie": "2026-11-04T04:24:09+00:00",
+"game_log": "2026-11-04T07:13:33+00:00",
+"goalie": "2026-11-04T06:54:22+00:00",
 "lines": "2026-11-04T01:30:00+00:00",
-"injuries": "2026-11-04T04:24:09+00:00",
+"injuries": "2026-11-04T06:54:22+00:00",
 "book": "2026-11-04T03:05:00+00:00",
-"team_stats": "2026-11-04T04:24:14+00:00"
+"team_stats": "2026-11-04T07:13:18+00:00"
 },
 "why": "Sam Reinhart has two or more points in 27% of 15 games this season and 40% of his last 10 (25% last season). He reached 1+ point (one short of the line or better) in 53% of his last 40, on 19.5 minutes a night over the last 10 and 2.7 shots a game, with a spot on power-play unit 1. CHI allows 3.33 goals a game to forwards (#3 of 32, 1 = most). Projected goalie Spencer Knight is at a 0.898 save rate over his last 10.",
 "check": "ok"
@@ -2064,7 +2064,7 @@
 "market": "5+ Shots on Goal",
 "mk": "s5",
 "hurdle": 5,
-"p": 0.1848,
+"p": 0.185,
 "fair": 441,
 "book": null,
 "book_letter": null,
@@ -2178,7 +2178,7 @@
 "pace_5v5_attempts": 90.9,
 "goalie": {
 "name": "Yaroslav Askarov",
-"sv": 0.8885,
+"sv": 0.8884,
 "l10_sv": 0.896,
 "l10_gsax": 1.4,
 "last_start": "2026-11-02",
@@ -2195,12 +2195,12 @@
 "goalie_factor": 1.038
 },
 "asof": {
-"game_log": "2026-11-04T04:24:27+00:00",
-"goalie": "2026-11-04T04:24:09+00:00",
+"game_log": "2026-11-04T07:13:33+00:00",
+"goalie": "2026-11-04T06:54:22+00:00",
 "lines": "2026-11-04T01:30:00+00:00",
-"injuries": "2026-11-04T04:24:09+00:00",
+"injuries": "2026-11-04T06:54:22+00:00",
 "book": "2026-11-04T03:05:00+00:00",
-"team_stats": "2026-11-04T04:24:14+00:00"
+"team_stats": "2026-11-04T07:13:18+00:00"
 },
 "why": "Adrian Kempe has five or more shots on goal in 42% of 12 games this season and 40% of his last 10 (16% last season). Listed status: {'status': 'Day-To-Day', 'note': 'day-to-day', 'date': '2026-11-01'}. He reached 4+ shots on goal (one short of the line or better) in 38% of his last 40, on 20.8 minutes a night over the last 10 and 3.0 shots a game, with a spot on power-play unit 1. SJ allows 21.9 shots a game to forwards (#3 of 32, 1 = most).",
 "check": "ok"
@@ -2216,7 +2216,7 @@
 "market": "5+ Shots on Goal",
 "mk": "s5",
 "hurdle": 5,
-"p": 0.1686,
+"p": 0.1687,
 "fair": 493,
 "book": null,
 "book_letter": null,
@@ -2340,18 +2340,18 @@
 },
 "parts": {
 "opp_factor": 0.923,
-"goalie_factor": 1.028
+"goalie_factor": 1.027
 },
 "asof": {
-"game_log": "2026-11-04T04:24:27+00:00",
-"goalie": "2026-11-04T04:24:09+00:00",
+"game_log": "2026-11-04T07:13:33+00:00",
+"goalie": "2026-11-04T06:54:22+00:00",
 "lines": "2026-11-04T01:30:00+00:00",
-"injuries": "2026-11-04T04:24:09+00:00",
+"injuries": "2026-11-04T06:54:22+00:00",
 "book": "2026-11-04T03:05:00+00:00",
-"team_stats": "2026-11-04T04:24:14+00:00"
+"team_stats": "2026-11-04T07:13:18+00:00"
 },
 "why": "Connor Bedard has five or more shots on goal in 11% of 9 games this season and 10% of his last 10 (25% last season). He reached 4+ shots on goal (one short of the line or better) in 40% of his last 40, on 20.3 minutes a night over the last 10 and 3.2 shots a game, with a spot on power-play unit 1. FLA allows 16.9 shots a game to forwards (#28 of 32, 1 = most).",
-"check": "ok"
+"check": "pending"
 },
 {
 "id": "8482155-s5",
@@ -2364,8 +2364,8 @@
 "market": "5+ Shots on Goal",
 "mk": "s5",
 "hurdle": 5,
-"p": 0.1608,
-"fair": 522,
+"p": 0.161,
+"fair": 521,
 "book": null,
 "book_letter": null,
 "edge": null,
@@ -2474,7 +2474,7 @@
 "pace_5v5_attempts": 90.9,
 "goalie": {
 "name": "Yaroslav Askarov",
-"sv": 0.8885,
+"sv": 0.8884,
 "l10_sv": 0.896,
 "l10_gsax": 1.4,
 "last_start": "2026-11-02",
@@ -2491,15 +2491,15 @@
 "goalie_factor": 1.038
 },
 "asof": {
-"game_log": "2026-11-04T04:24:27+00:00",
-"goalie": "2026-11-04T04:24:09+00:00",
+"game_log": "2026-11-04T07:13:33+00:00",
+"goalie": "2026-11-04T06:54:22+00:00",
 "lines": "2026-11-04T01:30:00+00:00",
-"injuries": "2026-11-04T04:24:09+00:00",
+"injuries": "2026-11-04T06:54:22+00:00",
 "book": "2026-11-04T03:05:00+00:00",
-"team_stats": "2026-11-04T04:24:14+00:00"
+"team_stats": "2026-11-04T07:13:18+00:00"
 },
 "why": "Alex Laferriere has five or more shots on goal in 15% of 13 games this season and 20% of his last 10 (15% last season). He reached 4+ shots on goal (one short of the line or better) in 23% of his last 40, on 20.7 minutes a night over the last 10 and 2.9 shots a game, with a spot on power-play unit 1. SJ allows 21.9 shots a game to forwards (#3 of 32, 1 = most).",
-"check": "ok"
+"check": "pending"
 },
 {
 "id": "8484801-g2",
@@ -2622,7 +2622,7 @@
 "pace_5v5_attempts": 90.9,
 "goalie": {
 "name": "Darcy Kuemper",
-"sv": 0.8931,
+"sv": 0.893,
 "l10_sv": 0.884,
 "l10_gsax": -1.8,
 "last_start": "2026-10-29",
@@ -2635,19 +2635,19 @@
 }
 },
 "parts": {
-"opp_factor": 1.073,
+"opp_factor": 1.071,
 "goalie_factor": 1.009
 },
 "asof": {
-"game_log": "2026-11-04T04:24:27+00:00",
-"goalie": "2026-11-04T04:24:09+00:00",
+"game_log": "2026-11-04T07:13:33+00:00",
+"goalie": "2026-11-04T06:54:22+00:00",
 "lines": "2026-11-04T01:30:00+00:00",
-"injuries": "2026-11-04T04:24:09+00:00",
+"injuries": "2026-11-04T06:54:22+00:00",
 "book": "2026-11-04T03:05:00+00:00",
-"team_stats": "2026-11-04T04:24:14+00:00"
+"team_stats": "2026-11-04T07:13:18+00:00"
 },
 "why": "Macklin Celebrini has two or more goals in 7% of 14 games this season and 10% of his last 10 (10% last season). He reached 1+ goal (one short of the line or better) in 43% of his last 40, on 23.1 minutes a night over the last 10 and 3.7 shots a game, with a spot on power-play unit 1. LA allows 2.85 goals a game to forwards (#10 of 32, 1 = most). Projected goalie Darcy Kuemper is at a 0.884 save rate over his last 10.",
-"check": "ok"
+"check": "pending"
 }
 ],
 "record": {},
