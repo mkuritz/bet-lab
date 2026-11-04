@@ -1,1 +1,2659 @@
-{"updated":"2026-11-04T07:16:54+00:00","slate":"2026-11-04","players":[{"id":"8484801-p2","aid":"8484801","player":"Macklin Celebrini","pos":"C","team":"SJ","opp":"LA","home":false,"market":"2+ Points","mk":"p2","hurdle":2,"p":0.3493,"fair":186,"book":null,"book_letter":null,"edge":null,"grade":"A","start":"2026-11-05T03:00:00Z","status":"Active (no injury listed)","last10":[{"d":"2026-10-15","o":"NSH","at":"@","v":0},{"d":"2026-10-17","o":"DET","at":"@","v":3},{"d":"2026-10-19","o":"TOR","at":"@","v":0},{"d":"2026-10-20","o":"MTL","at":"@","v":3},{"d":"2026-10-22","o":"OTT","at":"@","v":0},{"d":"2026-10-24","o":"BOS","at":"@","v":1},{"d":"2026-10-27","o":"BUF","at":"vs","v":0},{"d":"2026-10-29","o":"VAN","at":"vs","v":1},{"d":"2026-10-31","o":"OTT","at":"vs","v":0},{"d":"2026-11-02","o":"CGY","at":"vs","v":0}],"rates":{"season":0.357,"season_n":14,"l10":0.2,"l40":0.325,"last_season":0.378,"last_season_n":82,"near":0.35,"ceiling_pct":0.675},"trend":"down","vs_opp":{"games":4,"hits":2,"avg":1.75},"usage":{"toi_l10":23.1,"pp_pts_pg":0.42,"shots_pg":3.65,"pp_unit":{"unit":1,"conf":"High","asof":"2026-11-02"}},"matchup":{"allowed":{"goals_pg":2.85,"goals_rank":10,"shots_pg":20.6,"shots_rank":9,"of":32,"group":"forwards"},"opp_times_shorthanded_pg":3.0,"opp_sh_rank":24,"pace_5v5_attempts":90.9,"goalie":{"name":"Darcy Kuemper","sv":0.893,"l10_sv":0.884,"l10_gsax":-1.8,"last_start":"2026-10-29","status":"projected starter"},"opp_form":{"games":5,"gf":15,"ga":16}},"parts":{"opp_factor":1.071,"goalie_factor":1.009},"asof":{"game_log":"2026-11-04T07:16:52+00:00","goalie":"2026-11-04T06:54:22+00:00","lines":"2026-11-04T01:30:00+00:00","injuries":"2026-11-04T06:54:22+00:00","book":"2026-11-04T03:05:00+00:00","team_stats":"2026-11-04T07:16:44+00:00"},"why":"Macklin Celebrini has two or more points in 36% of 14 games this season and 20% of his last 10 (38% last season). He reached 1+ point (one short of the line or better) in 68% of his last 40, on 23.1 minutes a night over the last 10 and 3.7 shots a game, with a spot on power-play unit 1. LA allows 2.85 goals a game to forwards (#10 of 32, 1 = most). Projected goalie Darcy Kuemper is at a 0.884 save rate over his last 10.","check":"ok"},{"id":"8479314-p2","aid":"8479314","player":"Matthew Tkachuk","pos":"L","team":"FLA","opp":"CHI","home":true,"market":"2+ Points","mk":"p2","hurdle":2,"p":0.3431,"fair":191,"book":null,"book_letter":null,"edge":null,"grade":"A","start":"2026-11-05T00:30:00Z","status":"Active (no injury listed)","last10":[{"d":"2026-10-12","o":"BUF","at":"@","v":1},{"d":"2026-10-13","o":"CBJ","at":"@","v":5},{"d":"2026-10-15","o":"VAN","at":"vs","v":1},{"d":"2026-10-17","o":"SEA","at":"vs","v":3},{"d":"2026-10-21","o":"OTT","at":"@","v":1},{"d":"2026-10-22","o":"PIT","at":"@","v":0},{"d":"2026-10-25","o":"CHI","at":"@","v":1},{"d":"2026-10-27","o":"WPG","at":"@","v":4},{"d":"2026-10-30","o":"WPG","at":"vs","v":0},{"d":"2026-11-02","o":"DET","at":"vs","v":1}],"rates":{"season":0.2,"season_n":15,"l10":0.3,"l40":0.3,"last_season":0.355,"last_season_n":31,"near":0.375,"ceiling_pct":0.675},"trend":"up","vs_opp":{"games":2,"hits":0,"avg":0.5},"usage":{"toi_l10":17.9,"pp_pts_pg":0.5,"shots_pg":2.55,"pp_unit":{"unit":1,"conf":"High","asof":"2026-11-02"}},"matchup":{"allowed":{"goals_pg":3.33,"goals_rank":3,"shots_pg":22.5,"shots_rank":2,"of":32,"group":"forwards"},"opp_times_shorthanded_pg":3.27,"opp_sh_rank":15,"pace_5v5_attempts":81.8,"goalie":{"name":"Spencer Knight","sv":0.8971,"l10_sv":0.898,"l10_gsax":1.0,"last_start":"2026-11-02","status":"projected starter"},"opp_form":{"games":5,"gf":11,"ga":18}},"parts":{"opp_factor":1.152,"goalie_factor":0.982},"asof":{"game_log":"2026-11-04T07:16:52+00:00","goalie":"2026-11-04T06:54:22+00:00","lines":"2026-11-04T01:30:00+00:00","injuries":"2026-11-04T06:54:22+00:00","book":"2026-11-04T03:05:00+00:00","team_stats":"2026-11-04T07:16:44+00:00"},"why":"Matthew Tkachuk has two or more points in 20% of 15 games this season and 30% of his last 10 (36% last season). He reached 1+ point (one short of the line or better) in 68% of his last 40, on 17.9 minutes a night over the last 10 and 2.6 shots a game, with a spot on power-play unit 1. CHI allows 3.33 goals a game to forwards (#3 of 32, 1 = most). Projected goalie Spencer Knight is at a 0.898 save rate over his last 10.","check":"ok"},{"id":"8477495-p2","aid":"8477495","player":"Seth Jones","pos":"D","team":"FLA","opp":"CHI","home":true,"market":"2+ Points","mk":"p2","hurdle":2,"p":0.2903,"fair":244,"book":null,"book_letter":null,"edge":null,"grade":"B","start":"2026-11-05T00:30:00Z","status":"Active (no injury listed)","last10":[{"d":"2026-10-12","o":"BUF","at":"@","v":2},{"d":"2026-10-13","o":"CBJ","at":"@","v":4},{"d":"2026-10-15","o":"VAN","at":"vs","v":2},{"d":"2026-10-17","o":"SEA","at":"vs","v":1},{"d":"2026-10-21","o":"OTT","at":"@","v":1},{"d":"2026-10-22","o":"PIT","at":"@","v":0},{"d":"2026-10-25","o":"CHI","at":"@","v":1},{"d":"2026-10-27","o":"WPG","at":"@","v":3},{"d":"2026-10-30","o":"WPG","at":"vs","v":3},{"d":"2026-11-02","o":"DET","at":"vs","v":0}],"rates":{"season":0.333,"season_n":15,"l10":0.5,"l40":0.175,"last_season":0.135,"last_season_n":52,"near":0.4,"ceiling_pct":0.575},"trend":"up","vs_opp":{"games":2,"hits":0,"avg":0.5},"usage":{"toi_l10":24.15,"pp_pts_pg":0.45,"shots_pg":1.88,"pp_unit":{"unit":1,"conf":"High","asof":"2026-11-02"}},"matchup":{"allowed":{"goals_pg":0.47,"goals_rank":15,"shots_pg":7.5,"shots_rank":15,"of":32,"group":"defensemen"},"opp_times_shorthanded_pg":3.27,"opp_sh_rank":15,"pace_5v5_attempts":81.8,"goalie":{"name":"Spencer Knight","sv":0.8971,"l10_sv":0.898,"l10_gsax":1.0,"last_start":"2026-11-02","status":"projected starter"},"opp_form":{"games":5,"gf":11,"ga":18}},"parts":{"opp_factor":1.152,"goalie_factor":0.982},"asof":{"game_log":"2026-11-04T07:16:52+00:00","goalie":"2026-11-04T06:54:22+00:00","lines":"2026-11-04T01:30:00+00:00","injuries":"2026-11-04T06:54:22+00:00","book":"2026-11-04T03:05:00+00:00","team_stats":"2026-11-04T07:16:44+00:00"},"why":"Seth Jones has two or more points in 33% of 15 games this season and 50% of his last 10 (14% last season). He reached 1+ point (one short of the line or better) in 58% of his last 40, on 24.2 minutes a night over the last 10 and 1.9 shots a game, with a spot on power-play unit 1. CHI allows 0.47 goals a game to defensemen (#15 of 32, 1 = most). Projected goalie Spencer Knight is at a 0.898 save rate over his last 10.","check":"pending"},{"id":"8484801-s5","aid":"8484801","player":"Macklin Celebrini","pos":"C","team":"SJ","opp":"LA","home":false,"market":"5+ Shots on Goal","mk":"s5","hurdle":5,"p":0.2758,"fair":263,"book":null,"book_letter":null,"edge":null,"grade":"A","start":"2026-11-05T03:00:00Z","status":"Active (no injury listed)","last10":[{"d":"2026-10-15","o":"NSH","at":"@","v":3},{"d":"2026-10-17","o":"DET","at":"@","v":7},{"d":"2026-10-19","o":"TOR","at":"@","v":5},{"d":"2026-10-20","o":"MTL","at":"@","v":6},{"d":"2026-10-22","o":"OTT","at":"@","v":2},{"d":"2026-10-24","o":"BOS","at":"@","v":1},{"d":"2026-10-27","o":"BUF","at":"vs","v":4},{"d":"2026-10-29","o":"VAN","at":"vs","v":6},{"d":"2026-10-31","o":"OTT","at":"vs","v":2},{"d":"2026-11-02","o":"CGY","at":"vs","v":2}],"rates":{"season":0.429,"season_n":14,"l10":0.4,"l40":0.35,"last_season":0.329,"last_season_n":82,"near":0.1,"ceiling_pct":0.45},"trend":"flat","vs_opp":{"games":4,"hits":1,"avg":4.0},"usage":{"toi_l10":23.1,"pp_pts_pg":0.42,"shots_pg":3.65,"pp_unit":{"unit":1,"conf":"High","asof":"2026-11-02"}},"matchup":{"allowed":{"goals_pg":2.85,"goals_rank":10,"shots_pg":20.6,"shots_rank":9,"of":32,"group":"forwards"},"opp_times_shorthanded_pg":3.0,"opp_sh_rank":24,"pace_5v5_attempts":90.9,"goalie":{"name":"Darcy Kuemper","sv":0.893,"l10_sv":0.884,"l10_gsax":-1.8,"last_start":"2026-10-29","status":"projected starter"},"opp_form":{"games":5,"gf":15,"ga":16}},"parts":{"opp_factor":1.025,"goalie_factor":1.009},"asof":{"game_log":"2026-11-04T07:16:52+00:00","goalie":"2026-11-04T06:54:22+00:00","lines":"2026-11-04T01:30:00+00:00","injuries":"2026-11-04T06:54:22+00:00","book":"2026-11-04T03:05:00+00:00","team_stats":"2026-11-04T07:16:44+00:00"},"why":"Macklin Celebrini has five or more shots on goal in 43% of 14 games this season and 40% of his last 10 (33% last season). He reached 4+ shots on goal (one short of the line or better) in 45% of his last 40, on 23.1 minutes a night over the last 10 and 3.7 shots a game, with a spot on power-play unit 1. LA allows 20.6 shots a game to forwards (#9 of 32, 1 = most).","check":"ok"},{"id":"8482116-p2","aid":"8482116","player":"Tim St\u00fctzle","pos":"C","team":"OTT","opp":"BUF","home":false,"market":"2+ Points","mk":"p2","hurdle":2,"p":0.2735,"fair":266,"book":null,"book_letter":null,"edge":null,"grade":"B","start":"2026-11-05T00:30:00Z","status":"Active (no injury listed)","last10":[{"d":"2026-10-13","o":"STL","at":"vs","v":1},{"d":"2026-10-15","o":"NYI","at":"vs","v":0},{"d":"2026-10-17","o":"PHI","at":"@","v":1},{"d":"2026-10-21","o":"FLA","at":"vs","v":2},{"d":"2026-10-22","o":"SJ","at":"vs","v":1},{"d":"2026-10-24","o":"NYR","at":"vs","v":1},{"d":"2026-10-27","o":"VGK","at":"@","v":0},{"d":"2026-10-29","o":"LA","at":"@","v":3},{"d":"2026-10-31","o":"SJ","at":"@","v":2},{"d":"2026-11-01","o":"ANA","at":"@","v":0}],"rates":{"season":0.438,"season_n":16,"l10":0.3,"l40":0.3,"last_season":0.3,"last_season_n":80,"near":0.425,"ceiling_pct":0.725},"trend":"down","vs_opp":{"games":3,"hits":0,"avg":0.67},"usage":{"toi_l10":22.04,"pp_pts_pg":0.35,"shots_pg":2.1,"pp_unit":{"unit":1,"conf":"High","asof":"2026-11-01"}},"matchup":{"allowed":{"goals_pg":3.21,"goals_rank":5,"shots_pg":20.1,"shots_rank":17,"of":32,"group":"forwards"},"opp_times_shorthanded_pg":3.64,"opp_sh_rank":5,"pace_5v5_attempts":84.7,"goalie":{"name":"Ukko-Pekka Luukkonen","sv":0.8956,"l10_sv":0.882,"l10_gsax":-2.7,"last_start":"2026-10-31","status":"projected starter"},"opp_form":{"games":5,"gf":16,"ga":15}},"parts":{"opp_factor":1.066,"goalie_factor":0.993},"asof":{"game_log":"2026-11-04T07:16:52+00:00","goalie":"2026-11-04T06:54:22+00:00","lines":"2026-11-04T01:30:00+00:00","injuries":"2026-11-04T06:54:22+00:00","book":"2026-11-04T03:05:00+00:00","team_stats":"2026-11-04T07:16:44+00:00"},"why":"Tim St\u00fctzle has two or more points in 44% of 16 games this season and 30% of his last 10 (30% last season). He reached 1+ point (one short of the line or better) in 73% of his last 40, on 22.0 minutes a night over the last 10 and 2.1 shots a game, with a spot on power-play unit 1. BUF allows 3.21 goals a game to forwards (#5 of 32, 1 = most). Projected goalie Ukko-Pekka Luukkonen is at a 0.882 save rate over his last 10.","check":"pending"},{"id":"8480801-p2","aid":"8480801","player":"Brady Tkachuk","pos":"L","team":"FLA","opp":"CHI","home":true,"market":"2+ Points","mk":"p2","hurdle":2,"p":0.2639,"fair":279,"book":null,"book_letter":null,"edge":null,"grade":"B","start":"2026-11-05T00:30:00Z","status":"Active (no injury listed)","last10":[{"d":"2026-10-12","o":"BUF","at":"@","v":1},{"d":"2026-10-13","o":"CBJ","at":"@","v":4},{"d":"2026-10-15","o":"VAN","at":"vs","v":3},{"d":"2026-10-17","o":"SEA","at":"vs","v":2},{"d":"2026-10-21","o":"OTT","at":"@","v":1},{"d":"2026-10-22","o":"PIT","at":"@","v":0},{"d":"2026-10-25","o":"CHI","at":"@","v":1},{"d":"2026-10-27","o":"WPG","at":"@","v":3},{"d":"2026-10-30","o":"WPG","at":"vs","v":0},{"d":"2026-11-02","o":"DET","at":"vs","v":1}],"rates":{"season":0.267,"season_n":15,"l10":0.4,"l40":0.2,"last_season":0.2,"last_season_n":60,"near":0.425,"ceiling_pct":0.625},"trend":"up","vs_opp":{"games":2,"hits":1,"avg":1.5},"usage":{"toi_l10":16.23,"pp_pts_pg":0.42,"shots_pg":3.33,"pp_unit":{"unit":1,"conf":"High","asof":"2026-11-02"}},"matchup":{"allowed":{"goals_pg":3.33,"goals_rank":3,"shots_pg":22.5,"shots_rank":2,"of":32,"group":"forwards"},"opp_times_shorthanded_pg":3.27,"opp_sh_rank":15,"pace_5v5_attempts":81.8,"goalie":{"name":"Spencer Knight","sv":0.8971,"l10_sv":0.898,"l10_gsax":1.0,"last_start":"2026-11-02","status":"projected starter"},"opp_form":{"games":5,"gf":11,"ga":18}},"parts":{"opp_factor":1.152,"goalie_factor":0.982},"asof":{"game_log":"2026-11-04T07:16:52+00:00","goalie":"2026-11-04T06:54:22+00:00","lines":"2026-11-04T01:30:00+00:00","injuries":"2026-11-04T06:54:22+00:00","book":"2026-11-04T03:05:00+00:00","team_stats":"2026-11-04T07:16:44+00:00"},"why":"Brady Tkachuk has two or more points in 27% of 15 games this season and 40% of his last 10 (20% last season). He reached 1+ point (one short of the line or better) in 63% of his last 40, on 16.2 minutes a night over the last 10 and 3.3 shots a game, with a spot on power-play unit 1. CHI allows 3.33 goals a game to forwards (#3 of 32, 1 = most). Projected goalie Spencer Knight is at a 0.898 save rate over his last 10.","check":"ok"},{"id":"8478550-p2","aid":"8478550","player":"Artemi Panarin","pos":"L","team":"LA","opp":"SJ","home":true,"market":"2+ Points","mk":"p2","hurdle":2,"p":0.2558,"fair":291,"book":null,"book_letter":null,"edge":null,"grade":"B","start":"2026-11-05T03:00:00Z","status":"Active (no injury listed)","last10":[{"d":"2026-10-10","o":"VGK","at":"@","v":1},{"d":"2026-10-13","o":"EDM","at":"vs","v":0},{"d":"2026-10-17","o":"BOS","at":"vs","v":0},{"d":"2026-10-20","o":"WSH","at":"@","v":3},{"d":"2026-10-22","o":"NYI","at":"@","v":2},{"d":"2026-10-24","o":"NJ","at":"@","v":0},{"d":"2026-10-26","o":"NYR","at":"@","v":2},{"d":"2026-10-27","o":"CHI","at":"@","v":0},{"d":"2026-10-29","o":"OTT","at":"vs","v":2},{"d":"2026-10-31","o":"BUF","at":"vs","v":0}],"rates":{"season":0.385,"season_n":13,"l10":0.4,"l40":0.3,"last_season":0.295,"last_season_n":78,"near":0.35,"ceiling_pct":0.65},"trend":"flat","vs_opp":{"games":3,"hits":1,"avg":0.67},"usage":{"toi_l10":22.32,"pp_pts_pg":0.25,"shots_pg":2.75,"pp_unit":{"unit":1,"conf":"High","asof":"2026-10-31"}},"matchup":{"allowed":{"goals_pg":2.81,"goals_rank":11,"shots_pg":21.9,"shots_rank":3,"of":32,"group":"forwards"},"opp_times_shorthanded_pg":3.31,"opp_sh_rank":12,"pace_5v5_attempts":90.9,"goalie":{"name":"Yaroslav Askarov","sv":0.8884,"l10_sv":0.896,"l10_gsax":1.4,"last_start":"2026-11-02","status":"projected starter"},"opp_form":{"games":5,"gf":9,"ga":17}},"parts":{"opp_factor":1.041,"goalie_factor":1.038},"asof":{"game_log":"2026-11-04T07:16:52+00:00","goalie":"2026-11-04T06:54:22+00:00","lines":"2026-11-04T01:30:00+00:00","injuries":"2026-11-04T06:54:22+00:00","book":"2026-11-04T03:05:00+00:00","team_stats":"2026-11-04T07:16:44+00:00"},"why":"Artemi Panarin has two or more points in 39% of 13 games this season and 40% of his last 10 (30% last season). He reached 1+ point (one short of the line or better) in 65% of his last 40, on 22.3 minutes a night over the last 10 and 2.8 shots a game, with a spot on power-play unit 1. SJ allows 2.81 goals a game to forwards (#11 of 32, 1 = most). Projected goalie Yaroslav Askarov is at a 0.896 save rate over his last 10.","check":"ok"},{"id":"8482105-p2","aid":"8482105","player":"Jake Sanderson","pos":"D","team":"OTT","opp":"BUF","home":false,"market":"2+ Points","mk":"p2","hurdle":2,"p":0.2529,"fair":295,"book":null,"book_letter":null,"edge":null,"grade":"B","start":"2026-11-05T00:30:00Z","status":"Active (no injury listed)","last10":[{"d":"2026-04-09","o":"FLA","at":"vs","v":2},{"d":"2026-04-11","o":"NYI","at":"@","v":1},{"d":"2026-10-03","o":"TOR","at":"@","v":0},{"d":"2026-10-21","o":"FLA","at":"vs","v":2},{"d":"2026-10-22","o":"SJ","at":"vs","v":0},{"d":"2026-10-24","o":"NYR","at":"vs","v":3},{"d":"2026-10-27","o":"VGK","at":"@","v":0},{"d":"2026-10-29","o":"LA","at":"@","v":1},{"d":"2026-10-31","o":"SJ","at":"@","v":2},{"d":"2026-11-01","o":"ANA","at":"@","v":2}],"rates":{"season":0.5,"season_n":8,"l10":0.5,"l40":0.25,"last_season":0.179,"last_season_n":67,"near":0.375,"ceiling_pct":0.625},"trend":"flat","vs_opp":{"games":2,"hits":1,"avg":1.0},"usage":{"toi_l10":22.98,"pp_pts_pg":0.3,"shots_pg":2.12,"pp_unit":{"unit":1,"conf":"High","asof":"2026-11-01"}},"matchup":{"allowed":{"goals_pg":0.21,"goals_rank":31,"shots_pg":6.1,"shots_rank":31,"of":32,"group":"defensemen"},"opp_times_shorthanded_pg":3.64,"opp_sh_rank":5,"pace_5v5_attempts":84.7,"goalie":{"name":"Ukko-Pekka Luukkonen","sv":0.8956,"l10_sv":0.882,"l10_gsax":-2.7,"last_start":"2026-10-31","status":"projected starter"},"opp_form":{"games":5,"gf":16,"ga":15}},"parts":{"opp_factor":1.066,"goalie_factor":0.993},"asof":{"game_log":"2026-11-04T07:16:52+00:00","goalie":"2026-11-04T06:54:22+00:00","lines":"2026-11-04T01:30:00+00:00","injuries":"2026-11-04T06:54:22+00:00","book":"2026-11-04T03:05:00+00:00","team_stats":"2026-11-04T07:16:44+00:00"},"why":"Jake Sanderson has two or more points in 50% of 8 games this season and 50% of his last 10 (18% last season). He reached 1+ point (one short of the line or better) in 63% of his last 40, on 23.0 minutes a night over the last 10 and 2.1 shots a game, with a spot on power-play unit 1. BUF allows 0.21 goals a game to defensemen (#31 of 32, 1 = most). Projected goalie Ukko-Pekka Luukkonen is at a 0.882 save rate over his last 10.","check":"ok"},{"id":"8480839-p2","aid":"8480839","player":"Rasmus Dahlin","pos":"D","team":"BUF","opp":"OTT","home":true,"market":"2+ Points","mk":"p2","hurdle":2,"p":0.2529,"fair":295,"book":null,"book_letter":null,"edge":null,"grade":"B","start":"2026-11-05T00:30:00Z","status":"Active (no injury listed)","last10":[{"d":"2026-10-03","o":"CHI","at":"vs","v":1},{"d":"2026-10-06","o":"MIN","at":"vs","v":1},{"d":"2026-10-08","o":"DAL","at":"vs","v":0},{"d":"2026-10-10","o":"UTA","at":"vs","v":1},{"d":"2026-10-12","o":"FLA","at":"vs","v":1},{"d":"2026-10-21","o":"PHI","at":"vs","v":0},{"d":"2026-10-24","o":"WSH","at":"@","v":1},{"d":"2026-10-27","o":"SJ","at":"@","v":0},{"d":"2026-10-29","o":"ANA","at":"@","v":2},{"d":"2026-10-31","o":"LA","at":"@","v":2}],"rates":{"season":0.182,"season_n":11,"l10":0.2,"l40":0.275,"last_season":0.247,"last_season_n":77,"near":0.4,"ceiling_pct":0.675},"trend":"flat","vs_opp":{"games":3,"hits":1,"avg":0.67},"usage":{"toi_l10":24.53,"pp_pts_pg":0.3,"shots_pg":2.5,"pp_unit":{"unit":1,"conf":"High","asof":"2026-10-31"}},"matchup":{"allowed":{"goals_pg":0.31,"goals_rank":27,"shots_pg":6.5,"shots_rank":26,"of":32,"group":"defensemen"},"opp_times_shorthanded_pg":3.69,"opp_sh_rank":4,"pace_5v5_attempts":84.7,"goalie":null,"opp_form":{"games":5,"gf":20,"ga":21}},"parts":{"opp_factor":0.998,"goalie_factor":1.0},"asof":{"game_log":"2026-11-04T07:16:52+00:00","goalie":"2026-11-04T06:54:22+00:00","lines":"2026-11-04T01:30:00+00:00","injuries":"2026-11-04T06:54:22+00:00","book":"2026-11-04T03:05:00+00:00","team_stats":"2026-11-04T07:16:44+00:00"},"why":"Rasmus Dahlin has two or more points in 18% of 11 games this season and 20% of his last 10 (25% last season). He reached 1+ point (one short of the line or better) in 68% of his last 40, on 24.5 minutes a night over the last 10 and 2.5 shots a game, with a spot on power-play unit 1. OTT allows 0.31 goals a game to defensemen (#27 of 32, 1 = most).","check":"ok"},{"id":"8479420-p2","aid":"8479420","player":"Tage Thompson","pos":"C","team":"BUF","opp":"OTT","home":true,"market":"2+ Points","mk":"p2","hurdle":2,"p":0.2491,"fair":301,"book":null,"book_letter":null,"edge":null,"grade":"B","start":"2026-11-05T00:30:00Z","status":"Active (no injury listed)","last10":[{"d":"2026-10-10","o":"UTA","at":"vs","v":1},{"d":"2026-10-12","o":"FLA","at":"vs","v":2},{"d":"2026-10-13","o":"MTL","at":"@","v":0},{"d":"2026-10-15","o":"TOR","at":"@","v":1},{"d":"2026-10-17","o":"MTL","at":"@","v":1},{"d":"2026-10-21","o":"PHI","at":"vs","v":0},{"d":"2026-10-24","o":"WSH","at":"@","v":0},{"d":"2026-10-27","o":"SJ","at":"@","v":1},{"d":"2026-10-29","o":"ANA","at":"@","v":5},{"d":"2026-10-31","o":"LA","at":"@","v":2}],"rates":{"season":0.357,"season_n":14,"l10":0.3,"l40":0.25,"last_season":0.247,"last_season_n":81,"near":0.4,"ceiling_pct":0.65},"trend":"flat","vs_opp":{"games":3,"hits":1,"avg":0.67},"usage":{"toi_l10":19.31,"pp_pts_pg":0.35,"shots_pg":3.58,"pp_unit":{"unit":1,"conf":"High","asof":"2026-10-31"}},"matchup":{"allowed":{"goals_pg":2.81,"goals_rank":12,"shots_pg":20.3,"shots_rank":13,"of":32,"group":"forwards"},"opp_times_shorthanded_pg":3.69,"opp_sh_rank":4,"pace_5v5_attempts":84.7,"goalie":null,"opp_form":{"games":5,"gf":20,"ga":21}},"parts":{"opp_factor":0.998,"goalie_factor":1.0},"asof":{"game_log":"2026-11-04T07:16:52+00:00","goalie":"2026-11-04T06:54:22+00:00","lines":"2026-11-04T01:30:00+00:00","injuries":"2026-11-04T06:54:22+00:00","book":"2026-11-04T03:05:00+00:00","team_stats":"2026-11-04T07:16:44+00:00"},"why":"Tage Thompson has two or more points in 36% of 14 games this season and 30% of his last 10 (25% last season). He reached 1+ point (one short of the line or better) in 65% of his last 40, on 19.3 minutes a night over the last 10 and 3.6 shots a game, with a spot on power-play unit 1. OTT allows 2.81 goals a game to forwards (#12 of 32, 1 = most).","check":"ok"},{"id":"8479420-s5","aid":"8479420","player":"Tage Thompson","pos":"C","team":"BUF","opp":"OTT","home":true,"market":"5+ Shots on Goal","mk":"s5","hurdle":5,"p":0.2433,"fair":311,"book":null,"book_letter":null,"edge":null,"grade":"A","start":"2026-11-05T00:30:00Z","status":"Active (no injury listed)","last10":[{"d":"2026-10-10","o":"UTA","at":"vs","v":6},{"d":"2026-10-12","o":"FLA","at":"vs","v":1},{"d":"2026-10-13","o":"MTL","at":"@","v":1},{"d":"2026-10-15","o":"TOR","at":"@","v":6},{"d":"2026-10-17","o":"MTL","at":"@","v":5},{"d":"2026-10-21","o":"PHI","at":"vs","v":3},{"d":"2026-10-24","o":"WSH","at":"@","v":0},{"d":"2026-10-27","o":"SJ","at":"@","v":6},{"d":"2026-10-29","o":"ANA","at":"@","v":4},{"d":"2026-10-31","o":"LA","at":"@","v":8}],"rates":{"season":0.5,"season_n":14,"l10":0.5,"l40":0.35,"last_season":0.296,"last_season_n":81,"near":0.15,"ceiling_pct":0.5},"trend":"flat","vs_opp":{"games":3,"hits":0,"avg":1.33},"usage":{"toi_l10":19.31,"pp_pts_pg":0.35,"shots_pg":3.58,"pp_unit":{"unit":1,"conf":"High","asof":"2026-10-31"}},"matchup":{"allowed":{"goals_pg":2.81,"goals_rank":12,"shots_pg":20.3,"shots_rank":13,"of":32,"group":"forwards"},"opp_times_shorthanded_pg":3.69,"opp_sh_rank":4,"pace_5v5_attempts":84.7,"goalie":null,"opp_form":{"games":5,"gf":20,"ga":21}},"parts":{"opp_factor":0.998,"goalie_factor":1.0},"asof":{"game_log":"2026-11-04T07:16:52+00:00","goalie":"2026-11-04T06:54:22+00:00","lines":"2026-11-04T01:30:00+00:00","injuries":"2026-11-04T06:54:22+00:00","book":"2026-11-04T03:05:00+00:00","team_stats":"2026-11-04T07:16:44+00:00"},"why":"Tage Thompson has five or more shots on goal in 50% of 14 games this season and 50% of his last 10 (30% last season). He reached 4+ shots on goal (one short of the line or better) in 50% of his last 40, on 19.3 minutes a night over the last 10 and 3.6 shots a game, with a spot on power-play unit 1. OTT allows 20.3 shots a game to forwards (#13 of 32, 1 = most).","check":"pending"},{"id":"8480208-p2","aid":"8480208","player":"Drake Batherson","pos":"R","team":"OTT","opp":"BUF","home":false,"market":"2+ Points","mk":"p2","hurdle":2,"p":0.2363,"fair":323,"book":null,"book_letter":null,"edge":null,"grade":"B","start":"2026-11-05T00:30:00Z","status":"Active (no injury listed)","last10":[{"d":"2026-10-13","o":"STL","at":"vs","v":1},{"d":"2026-10-15","o":"NYI","at":"vs","v":0},{"d":"2026-10-17","o":"PHI","at":"@","v":1},{"d":"2026-10-21","o":"FLA","at":"vs","v":1},{"d":"2026-10-22","o":"SJ","at":"vs","v":1},{"d":"2026-10-24","o":"NYR","at":"vs","v":4},{"d":"2026-10-27","o":"VGK","at":"@","v":1},{"d":"2026-10-29","o":"LA","at":"@","v":3},{"d":"2026-10-31","o":"SJ","at":"@","v":1},{"d":"2026-11-01","o":"ANA","at":"@","v":1}],"rates":{"season":0.188,"season_n":16,"l10":0.2,"l40":0.225,"last_season":0.228,"last_season_n":79,"near":0.475,"ceiling_pct":0.7},"trend":"flat","vs_opp":{"games":3,"hits":0,"avg":0.33},"usage":{"toi_l10":17.77,"pp_pts_pg":0.38,"shots_pg":2.23,"pp_unit":{"unit":1,"conf":"High","asof":"2026-11-01"}},"matchup":{"allowed":{"goals_pg":3.21,"goals_rank":5,"shots_pg":20.1,"shots_rank":17,"of":32,"group":"forwards"},"opp_times_shorthanded_pg":3.64,"opp_sh_rank":5,"pace_5v5_attempts":84.7,"goalie":{"name":"Ukko-Pekka Luukkonen","sv":0.8956,"l10_sv":0.882,"l10_gsax":-2.7,"last_start":"2026-10-31","status":"projected starter"},"opp_form":{"games":5,"gf":16,"ga":15}},"parts":{"opp_factor":1.066,"goalie_factor":0.993},"asof":{"game_log":"2026-11-04T07:16:52+00:00","goalie":"2026-11-04T06:54:22+00:00","lines":"2026-11-04T01:30:00+00:00","injuries":"2026-11-04T06:54:22+00:00","book":"2026-11-04T03:05:00+00:00","team_stats":"2026-11-04T07:16:44+00:00"},"why":"Drake Batherson has two or more points in 19% of 16 games this season and 20% of his last 10 (23% last season). He reached 1+ point (one short of the line or better) in 70% of his last 40, on 17.8 minutes a night over the last 10 and 2.2 shots a game, with a spot on power-play unit 1. BUF allows 3.21 goals a game to forwards (#5 of 32, 1 = most). Projected goalie Ukko-Pekka Luukkonen is at a 0.882 save rate over his last 10.","check":"pending"},{"id":"8480801-s5","aid":"8480801","player":"Brady Tkachuk","pos":"L","team":"FLA","opp":"CHI","home":true,"market":"5+ Shots on Goal","mk":"s5","hurdle":5,"p":0.2328,"fair":329,"book":null,"book_letter":null,"edge":null,"grade":"A","start":"2026-11-05T00:30:00Z","status":"Active (no injury listed)","last10":[{"d":"2026-10-12","o":"BUF","at":"@","v":3},{"d":"2026-10-13","o":"CBJ","at":"@","v":4},{"d":"2026-10-15","o":"VAN","at":"vs","v":6},{"d":"2026-10-17","o":"SEA","at":"vs","v":7},{"d":"2026-10-21","o":"OTT","at":"@","v":3},{"d":"2026-10-22","o":"PIT","at":"@","v":3},{"d":"2026-10-25","o":"CHI","at":"@","v":1},{"d":"2026-10-27","o":"WPG","at":"@","v":1},{"d":"2026-10-30","o":"WPG","at":"vs","v":6},{"d":"2026-11-02","o":"DET","at":"vs","v":2}],"rates":{"season":0.2,"season_n":15,"l10":0.3,"l40":0.225,"last_season":0.3,"last_season_n":60,"near":0.2,"ceiling_pct":0.425},"trend":"up","vs_opp":{"games":2,"hits":1,"avg":5.5},"usage":{"toi_l10":16.23,"pp_pts_pg":0.42,"shots_pg":3.33,"pp_unit":{"unit":1,"conf":"High","asof":"2026-11-02"}},"matchup":{"allowed":{"goals_pg":3.33,"goals_rank":3,"shots_pg":22.5,"shots_rank":2,"of":32,"group":"forwards"},"opp_times_shorthanded_pg":3.27,"opp_sh_rank":15,"pace_5v5_attempts":81.8,"goalie":{"name":"Spencer Knight","sv":0.8971,"l10_sv":0.898,"l10_gsax":1.0,"last_start":"2026-11-02","status":"projected starter"},"opp_form":{"games":5,"gf":11,"ga":18}},"parts":{"opp_factor":1.083,"goalie_factor":0.982},"asof":{"game_log":"2026-11-04T07:16:52+00:00","goalie":"2026-11-04T06:54:22+00:00","lines":"2026-11-04T01:30:00+00:00","injuries":"2026-11-04T06:54:22+00:00","book":"2026-11-04T03:05:00+00:00","team_stats":"2026-11-04T07:16:44+00:00"},"why":"Brady Tkachuk has five or more shots on goal in 20% of 15 games this season and 30% of his last 10 (30% last season). He reached 4+ shots on goal (one short of the line or better) in 43% of his last 40, on 16.2 minutes a night over the last 10 and 3.3 shots a game, with a spot on power-play unit 1. CHI allows 22.5 shots a game to forwards (#2 of 32, 1 = most).","check":"ok"},{"id":"8477933-p2","aid":"8477933","player":"Sam Reinhart","pos":"C","team":"FLA","opp":"CHI","home":true,"market":"2+ Points","mk":"p2","hurdle":2,"p":0.2304,"fair":334,"book":null,"book_letter":null,"edge":null,"grade":"B","start":"2026-11-05T00:30:00Z","status":"Active (no injury listed)","last10":[{"d":"2026-10-12","o":"BUF","at":"@","v":2},{"d":"2026-10-13","o":"CBJ","at":"@","v":3},{"d":"2026-10-15","o":"VAN","at":"vs","v":1},{"d":"2026-10-17","o":"SEA","at":"vs","v":2},{"d":"2026-10-21","o":"OTT","at":"@","v":0},{"d":"2026-10-22","o":"PIT","at":"@","v":0},{"d":"2026-10-25","o":"CHI","at":"@","v":1},{"d":"2026-10-27","o":"WPG","at":"@","v":1},{"d":"2026-10-30","o":"WPG","at":"vs","v":2},{"d":"2026-11-02","o":"DET","at":"vs","v":1}],"rates":{"season":0.267,"season_n":15,"l10":0.4,"l40":0.225,"last_season":0.25,"last_season_n":64,"near":0.3,"ceiling_pct":0.525},"trend":"up","vs_opp":{"games":3,"hits":0,"avg":0.67},"usage":{"toi_l10":19.46,"pp_pts_pg":0.45,"shots_pg":2.7,"pp_unit":{"unit":1,"conf":"High","asof":"2026-11-02"}},"matchup":{"allowed":{"goals_pg":3.33,"goals_rank":3,"shots_pg":22.5,"shots_rank":2,"of":32,"group":"forwards"},"opp_times_shorthanded_pg":3.27,"opp_sh_rank":15,"pace_5v5_attempts":81.8,"goalie":{"name":"Spencer Knight","sv":0.8971,"l10_sv":0.898,"l10_gsax":1.0,"last_start":"2026-11-02","status":"projected starter"},"opp_form":{"games":5,"gf":11,"ga":18}},"parts":{"opp_factor":1.152,"goalie_factor":0.982},"asof":{"game_log":"2026-11-04T07:16:52+00:00","goalie":"2026-11-04T06:54:22+00:00","lines":"2026-11-04T01:30:00+00:00","injuries":"2026-11-04T06:54:22+00:00","book":"2026-11-04T03:05:00+00:00","team_stats":"2026-11-04T07:16:44+00:00"},"why":"Sam Reinhart has two or more points in 27% of 15 games this season and 40% of his last 10 (25% last season). He reached 1+ point (one short of the line or better) in 53% of his last 40, on 19.5 minutes a night over the last 10 and 2.7 shots a game, with a spot on power-play unit 1. CHI allows 3.33 goals a game to forwards (#3 of 32, 1 = most). Projected goalie Spencer Knight is at a 0.898 save rate over his last 10.","check":"ok"},{"id":"8477960-s5","aid":"8477960","player":"Adrian Kempe","pos":"R","team":"LA","opp":"SJ","home":true,"market":"5+ Shots on Goal","mk":"s5","hurdle":5,"p":0.185,"fair":441,"book":null,"book_letter":null,"edge":null,"grade":"B","start":"2026-11-05T03:00:00Z","status":{"status":"Day-To-Day","note":"day-to-day","date":"2026-11-01"},"last10":[{"d":"2026-10-06","o":"FLA","at":"vs","v":3},{"d":"2026-10-10","o":"VGK","at":"@","v":3},{"d":"2026-10-13","o":"EDM","at":"vs","v":1},{"d":"2026-10-17","o":"BOS","at":"vs","v":1},{"d":"2026-10-20","o":"WSH","at":"@","v":6},{"d":"2026-10-22","o":"NYI","at":"@","v":5},{"d":"2026-10-24","o":"NJ","at":"@","v":0},{"d":"2026-10-26","o":"NYR","at":"@","v":7},{"d":"2026-10-27","o":"CHI","at":"@","v":1},{"d":"2026-10-29","o":"OTT","at":"vs","v":5}],"rates":{"season":0.417,"season_n":12,"l10":0.4,"l40":0.25,"last_season":0.16,"last_season_n":81,"near":0.125,"ceiling_pct":0.375},"trend":"flat","vs_opp":{"games":4,"hits":2,"avg":3.0},"usage":{"toi_l10":20.75,"pp_pts_pg":0.15,"shots_pg":3.0,"pp_unit":{"unit":1,"conf":"High","asof":"2026-10-31"}},"matchup":{"allowed":{"goals_pg":2.81,"goals_rank":11,"shots_pg":21.9,"shots_rank":3,"of":32,"group":"forwards"},"opp_times_shorthanded_pg":3.31,"opp_sh_rank":12,"pace_5v5_attempts":90.9,"goalie":{"name":"Yaroslav Askarov","sv":0.8884,"l10_sv":0.896,"l10_gsax":1.4,"last_start":"2026-11-02","status":"projected starter"},"opp_form":{"games":5,"gf":9,"ga":17}},"parts":{"opp_factor":1.091,"goalie_factor":1.038},"asof":{"game_log":"2026-11-04T07:16:52+00:00","goalie":"2026-11-04T06:54:22+00:00","lines":"2026-11-04T01:30:00+00:00","injuries":"2026-11-04T06:54:22+00:00","book":"2026-11-04T03:05:00+00:00","team_stats":"2026-11-04T07:16:44+00:00"},"why":"Adrian Kempe has five or more shots on goal in 42% of 12 games this season and 40% of his last 10 (16% last season). Listed status: {'status': 'Day-To-Day', 'note': 'day-to-day', 'date': '2026-11-01'}. He reached 4+ shots on goal (one short of the line or better) in 38% of his last 40, on 20.8 minutes a night over the last 10 and 3.0 shots a game, with a spot on power-play unit 1. SJ allows 21.9 shots a game to forwards (#3 of 32, 1 = most).","check":"ok"},{"id":"8484144-s5","aid":"8484144","player":"Connor Bedard","pos":"C","team":"CHI","opp":"FLA","home":false,"market":"5+ Shots on Goal","mk":"s5","hurdle":5,"p":0.1687,"fair":493,"book":null,"book_letter":null,"edge":null,"grade":"B","start":"2026-11-05T00:30:00Z","status":"Active (no injury listed)","last10":[{"d":"2026-04-15","o":"SJ","at":"vs","v":0},{"d":"2026-10-13","o":"PIT","at":"vs","v":3},{"d":"2026-10-15","o":"WPG","at":"vs","v":3},{"d":"2026-10-17","o":"DAL","at":"vs","v":2},{"d":"2026-10-23","o":"MTL","at":"vs","v":1},{"d":"2026-10-25","o":"FLA","at":"vs","v":2},{"d":"2026-10-27","o":"LA","at":"vs","v":3},{"d":"2026-10-29","o":"DET","at":"@","v":4},{"d":"2026-10-31","o":"BOS","at":"@","v":6},{"d":"2026-11-02","o":"COL","at":"vs","v":4}],"rates":{"season":0.111,"season_n":9,"l10":0.1,"l40":0.2,"last_season":0.246,"last_season_n":69,"near":0.2,"ceiling_pct":0.4},"trend":"flat","vs_opp":{"games":3,"hits":0,"avg":2.33},"usage":{"toi_l10":20.32,"pp_pts_pg":0.28,"shots_pg":3.23,"pp_unit":{"unit":1,"conf":"High","asof":"2026-11-02"}},"matchup":{"allowed":{"goals_pg":2.53,"goals_rank":21,"shots_pg":16.9,"shots_rank":28,"of":32,"group":"forwards"},"opp_times_shorthanded_pg":4.13,"opp_sh_rank":1,"pace_5v5_attempts":81.8,"goalie":{"name":"Jacob Markstrom","sv":0.8897,"l10_sv":0.89,"l10_gsax":-0.2,"last_start":"2026-11-02","status":"projected starter"},"opp_form":{"games":5,"gf":16,"ga":14}},"parts":{"opp_factor":0.923,"goalie_factor":1.027},"asof":{"game_log":"2026-11-04T07:16:52+00:00","goalie":"2026-11-04T06:54:22+00:00","lines":"2026-11-04T01:30:00+00:00","injuries":"2026-11-04T06:54:22+00:00","book":"2026-11-04T03:05:00+00:00","team_stats":"2026-11-04T07:16:44+00:00"},"why":"Connor Bedard has five or more shots on goal in 11% of 9 games this season and 10% of his last 10 (25% last season). He reached 4+ shots on goal (one short of the line or better) in 40% of his last 40, on 20.3 minutes a night over the last 10 and 3.2 shots a game, with a spot on power-play unit 1. FLA allows 16.9 shots a game to forwards (#28 of 32, 1 = most).","check":"pending"},{"id":"8482155-s5","aid":"8482155","player":"Alex Laferriere","pos":"R","team":"LA","opp":"SJ","home":true,"market":"5+ Shots on Goal","mk":"s5","hurdle":5,"p":0.161,"fair":521,"book":null,"book_letter":null,"edge":null,"grade":"B","start":"2026-11-05T03:00:00Z","status":"Active (no injury listed)","last10":[{"d":"2026-10-10","o":"VGK","at":"@","v":2},{"d":"2026-10-13","o":"EDM","at":"vs","v":2},{"d":"2026-10-17","o":"BOS","at":"vs","v":2},{"d":"2026-10-20","o":"WSH","at":"@","v":3},{"d":"2026-10-22","o":"NYI","at":"@","v":2},{"d":"2026-10-24","o":"NJ","at":"@","v":0},{"d":"2026-10-26","o":"NYR","at":"@","v":2},{"d":"2026-10-27","o":"CHI","at":"@","v":5},{"d":"2026-10-29","o":"OTT","at":"vs","v":7},{"d":"2026-10-31","o":"BUF","at":"vs","v":3}],"rates":{"season":0.154,"season_n":13,"l10":0.2,"l40":0.2,"last_season":0.146,"last_season_n":82,"near":0.025,"ceiling_pct":0.225},"trend":"flat","vs_opp":{"games":4,"hits":0,"avg":1.0},"usage":{"toi_l10":20.66,"pp_pts_pg":0.12,"shots_pg":2.85,"pp_unit":{"unit":1,"conf":"High","asof":"2026-10-31"}},"matchup":{"allowed":{"goals_pg":2.81,"goals_rank":11,"shots_pg":21.9,"shots_rank":3,"of":32,"group":"forwards"},"opp_times_shorthanded_pg":3.31,"opp_sh_rank":12,"pace_5v5_attempts":90.9,"goalie":{"name":"Yaroslav Askarov","sv":0.8884,"l10_sv":0.896,"l10_gsax":1.4,"last_start":"2026-11-02","status":"projected starter"},"opp_form":{"games":5,"gf":9,"ga":17}},"parts":{"opp_factor":1.091,"goalie_factor":1.038},"asof":{"game_log":"2026-11-04T07:16:52+00:00","goalie":"2026-11-04T06:54:22+00:00","lines":"2026-11-04T01:30:00+00:00","injuries":"2026-11-04T06:54:22+00:00","book":"2026-11-04T03:05:00+00:00","team_stats":"2026-11-04T07:16:44+00:00"},"why":"Alex Laferriere has five or more shots on goal in 15% of 13 games this season and 20% of his last 10 (15% last season). He reached 4+ shots on goal (one short of the line or better) in 23% of his last 40, on 20.7 minutes a night over the last 10 and 2.9 shots a game, with a spot on power-play unit 1. SJ allows 21.9 shots a game to forwards (#3 of 32, 1 = most).","check":"pending"},{"id":"8484801-g2","aid":"8484801","player":"Macklin Celebrini","pos":"C","team":"SJ","opp":"LA","home":false,"market":"2+ Goals","mk":"g2","hurdle":2,"p":0.0814,"fair":1129,"book":null,"book_letter":null,"edge":null,"grade":"B","start":"2026-11-05T03:00:00Z","status":"Active (no injury listed)","last10":[{"d":"2026-10-15","o":"NSH","at":"@","v":0},{"d":"2026-10-17","o":"DET","at":"@","v":1},{"d":"2026-10-19","o":"TOR","at":"@","v":0},{"d":"2026-10-20","o":"MTL","at":"@","v":2},{"d":"2026-10-22","o":"OTT","at":"@","v":0},{"d":"2026-10-24","o":"BOS","at":"@","v":0},{"d":"2026-10-27","o":"BUF","at":"vs","v":0},{"d":"2026-10-29","o":"VAN","at":"vs","v":0},{"d":"2026-10-31","o":"OTT","at":"vs","v":0},{"d":"2026-11-02","o":"CGY","at":"vs","v":0}],"rates":{"season":0.071,"season_n":14,"l10":0.1,"l40":0.125,"last_season":0.098,"last_season_n":82,"near":0.3,"ceiling_pct":0.425},"trend":"flat","vs_opp":{"games":4,"hits":0,"avg":0.25},"usage":{"toi_l10":23.1,"pp_pts_pg":0.42,"shots_pg":3.65,"pp_unit":{"unit":1,"conf":"High","asof":"2026-11-02"}},"matchup":{"allowed":{"goals_pg":2.85,"goals_rank":10,"shots_pg":20.6,"shots_rank":9,"of":32,"group":"forwards"},"opp_times_shorthanded_pg":3.0,"opp_sh_rank":24,"pace_5v5_attempts":90.9,"goalie":{"name":"Darcy Kuemper","sv":0.893,"l10_sv":0.884,"l10_gsax":-1.8,"last_start":"2026-10-29","status":"projected starter"},"opp_form":{"games":5,"gf":15,"ga":16}},"parts":{"opp_factor":1.071,"goalie_factor":1.009},"asof":{"game_log":"2026-11-04T07:16:52+00:00","goalie":"2026-11-04T06:54:22+00:00","lines":"2026-11-04T01:30:00+00:00","injuries":"2026-11-04T06:54:22+00:00","book":"2026-11-04T03:05:00+00:00","team_stats":"2026-11-04T07:16:44+00:00"},"why":"Macklin Celebrini has two or more goals in 7% of 14 games this season and 10% of his last 10 (10% last season). He reached 1+ goal (one short of the line or better) in 43% of his last 40, on 23.1 minutes a night over the last 10 and 3.7 shots a game, with a spot on power-play unit 1. LA allows 2.85 goals a game to forwards (#10 of 32, 1 = most). Projected goalie Darcy Kuemper is at a 0.884 save rate over his last 10.","check":"pending"}],"record":{},"bands":{"2+ Goals":"A 10%+, B 7%+","2+ Points":"A 30%+, B 22%+","5+ Shots on Goal":"A 22%+, B 16%+"}}
+{
+"updated": "2026-11-04T16:41:39+00:00",
+"slate": "2026-11-04",
+"players": [
+{
+"id": "8484801-p2",
+"aid": "8484801",
+"player": "Macklin Celebrini",
+"pos": "C",
+"team": "SJ",
+"opp": "LA",
+"home": false,
+"market": "2+ Points",
+"mk": "p2",
+"hurdle": 2,
+"p": 0.3493,
+"fair": 186,
+"book": 174,
+"book_letter": "Exchange C",
+"edge": -0.043,
+"grade": "A",
+"start": "2026-11-05T03:00:00Z",
+"status": "Active (no injury listed)",
+"last10": [
+{
+"d": "2026-10-15",
+"o": "NSH",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-10-17",
+"o": "DET",
+"at": "@",
+"v": 3
+},
+{
+"d": "2026-10-19",
+"o": "TOR",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-10-20",
+"o": "MTL",
+"at": "@",
+"v": 3
+},
+{
+"d": "2026-10-22",
+"o": "OTT",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-10-24",
+"o": "BOS",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-27",
+"o": "BUF",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-10-29",
+"o": "VAN",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-10-31",
+"o": "OTT",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-11-02",
+"o": "CGY",
+"at": "vs",
+"v": 0
+}
+],
+"rates": {
+"season": 0.357,
+"season_n": 14,
+"l10": 0.2,
+"l40": 0.325,
+"last_season": 0.378,
+"last_season_n": 82,
+"near": 0.35,
+"ceiling_pct": 0.675
+},
+"trend": "down",
+"vs_opp": {
+"games": 4,
+"hits": 2,
+"avg": 1.75
+},
+"usage": {
+"toi_l10": 23.1,
+"pp_pts_pg": 0.42,
+"shots_pg": 3.65,
+"pp_unit": {
+"unit": 1,
+"conf": "High",
+"asof": "2026-11-02"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 2.85,
+"goals_rank": 10,
+"shots_pg": 20.6,
+"shots_rank": 9,
+"of": 32,
+"group": "forwards"
+},
+"opp_times_shorthanded_pg": 3.0,
+"opp_sh_rank": 24,
+"pace_5v5_attempts": 90.9,
+"goalie": {
+"name": "Darcy Kuemper",
+"sv": 0.893,
+"l10_sv": 0.884,
+"l10_gsax": -1.8,
+"last_start": "2026-10-29",
+"status": "projected starter"
+},
+"opp_form": {
+"games": 5,
+"gf": 15,
+"ga": 16
+}
+},
+"parts": {
+"opp_factor": 1.071,
+"goalie_factor": 1.009
+},
+"asof": {
+"game_log": "2026-11-04T16:30:54+00:00",
+"goalie": "2026-11-04T16:19:56+00:00",
+"lines": "2026-11-04T16:12:00+00:00",
+"injuries": "2026-11-04T16:19:56+00:00",
+"book": "2026-11-04T16:30:00+00:00",
+"team_stats": "2026-11-04T16:30:38+00:00"
+},
+"why": "Macklin Celebrini has two or more points in 36% of 14 games this season and 20% of his last 10 (38% last season). He reached 1+ point (one short of the line or better) in 68% of his last 40, on 23.1 minutes a night over the last 10 and 3.7 shots a game, with a spot on power-play unit 1. LA allows 2.85 goals a game to forwards (#10 of 32, 1 = most). Projected goalie Darcy Kuemper is at a 0.884 save rate over his last 10.",
+"check": "pending"
+},
+{
+"id": "8479314-p2",
+"aid": "8479314",
+"player": "Matthew Tkachuk",
+"pos": "L",
+"team": "FLA",
+"opp": "CHI",
+"home": true,
+"market": "2+ Points",
+"mk": "p2",
+"hurdle": 2,
+"p": 0.3431,
+"fair": 191,
+"book": 175,
+"book_letter": "Book C",
+"edge": -0.056,
+"grade": "A",
+"start": "2026-11-05T00:30:00Z",
+"status": "Active (no injury listed)",
+"last10": [
+{
+"d": "2026-10-12",
+"o": "BUF",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-13",
+"o": "CBJ",
+"at": "@",
+"v": 5
+},
+{
+"d": "2026-10-15",
+"o": "VAN",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-10-17",
+"o": "SEA",
+"at": "vs",
+"v": 3
+},
+{
+"d": "2026-10-21",
+"o": "OTT",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-22",
+"o": "PIT",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-10-25",
+"o": "CHI",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-27",
+"o": "WPG",
+"at": "@",
+"v": 4
+},
+{
+"d": "2026-10-30",
+"o": "WPG",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-11-02",
+"o": "DET",
+"at": "vs",
+"v": 1
+}
+],
+"rates": {
+"season": 0.2,
+"season_n": 15,
+"l10": 0.3,
+"l40": 0.3,
+"last_season": 0.355,
+"last_season_n": 31,
+"near": 0.375,
+"ceiling_pct": 0.675
+},
+"trend": "up",
+"vs_opp": {
+"games": 2,
+"hits": 0,
+"avg": 0.5
+},
+"usage": {
+"toi_l10": 17.9,
+"pp_pts_pg": 0.5,
+"shots_pg": 2.55,
+"pp_unit": {
+"unit": 1,
+"conf": "High",
+"asof": "2026-11-02"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 3.33,
+"goals_rank": 3,
+"shots_pg": 22.5,
+"shots_rank": 2,
+"of": 32,
+"group": "forwards"
+},
+"opp_times_shorthanded_pg": 3.27,
+"opp_sh_rank": 15,
+"pace_5v5_attempts": 81.8,
+"goalie": {
+"name": "Spencer Knight",
+"sv": 0.8971,
+"l10_sv": 0.898,
+"l10_gsax": 1.0,
+"last_start": "2026-11-02",
+"status": "projected starter"
+},
+"opp_form": {
+"games": 5,
+"gf": 11,
+"ga": 18
+}
+},
+"parts": {
+"opp_factor": 1.152,
+"goalie_factor": 0.982
+},
+"asof": {
+"game_log": "2026-11-04T16:30:54+00:00",
+"goalie": "2026-11-04T16:19:56+00:00",
+"lines": "2026-11-04T16:12:00+00:00",
+"injuries": "2026-11-04T16:19:56+00:00",
+"book": "2026-11-04T16:30:00+00:00",
+"team_stats": "2026-11-04T16:30:38+00:00"
+},
+"why": "Matthew Tkachuk has two or more points in 20% of 15 games this season and 30% of his last 10 (36% last season). He reached 1+ point (one short of the line or better) in 68% of his last 40, on 17.9 minutes a night over the last 10 and 2.6 shots a game, with a spot on power-play unit 1. CHI allows 3.33 goals a game to forwards (#3 of 32, 1 = most). Projected goalie Spencer Knight is at a 0.898 save rate over his last 10.",
+"check": "pending"
+},
+{
+"id": "8477495-p2",
+"aid": "8477495",
+"player": "Seth Jones",
+"pos": "D",
+"team": "FLA",
+"opp": "CHI",
+"home": true,
+"market": "2+ Points",
+"mk": "p2",
+"hurdle": 2,
+"p": 0.2903,
+"fair": 244,
+"book": 250,
+"book_letter": "Exchange D",
+"edge": 0.016,
+"grade": "B",
+"start": "2026-11-05T00:30:00Z",
+"status": "Active (no injury listed)",
+"last10": [
+{
+"d": "2026-10-12",
+"o": "BUF",
+"at": "@",
+"v": 2
+},
+{
+"d": "2026-10-13",
+"o": "CBJ",
+"at": "@",
+"v": 4
+},
+{
+"d": "2026-10-15",
+"o": "VAN",
+"at": "vs",
+"v": 2
+},
+{
+"d": "2026-10-17",
+"o": "SEA",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-10-21",
+"o": "OTT",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-22",
+"o": "PIT",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-10-25",
+"o": "CHI",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-27",
+"o": "WPG",
+"at": "@",
+"v": 3
+},
+{
+"d": "2026-10-30",
+"o": "WPG",
+"at": "vs",
+"v": 3
+},
+{
+"d": "2026-11-02",
+"o": "DET",
+"at": "vs",
+"v": 0
+}
+],
+"rates": {
+"season": 0.333,
+"season_n": 15,
+"l10": 0.5,
+"l40": 0.175,
+"last_season": 0.135,
+"last_season_n": 52,
+"near": 0.4,
+"ceiling_pct": 0.575
+},
+"trend": "up",
+"vs_opp": {
+"games": 2,
+"hits": 0,
+"avg": 0.5
+},
+"usage": {
+"toi_l10": 24.15,
+"pp_pts_pg": 0.45,
+"shots_pg": 1.88,
+"pp_unit": {
+"unit": 1,
+"conf": "High",
+"asof": "2026-11-02"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 0.47,
+"goals_rank": 15,
+"shots_pg": 7.5,
+"shots_rank": 15,
+"of": 32,
+"group": "defensemen"
+},
+"opp_times_shorthanded_pg": 3.27,
+"opp_sh_rank": 15,
+"pace_5v5_attempts": 81.8,
+"goalie": {
+"name": "Spencer Knight",
+"sv": 0.8971,
+"l10_sv": 0.898,
+"l10_gsax": 1.0,
+"last_start": "2026-11-02",
+"status": "projected starter"
+},
+"opp_form": {
+"games": 5,
+"gf": 11,
+"ga": 18
+}
+},
+"parts": {
+"opp_factor": 1.152,
+"goalie_factor": 0.982
+},
+"asof": {
+"game_log": "2026-11-04T16:30:54+00:00",
+"goalie": "2026-11-04T16:19:56+00:00",
+"lines": "2026-11-04T16:12:00+00:00",
+"injuries": "2026-11-04T16:19:56+00:00",
+"book": "2026-11-04T16:30:00+00:00",
+"team_stats": "2026-11-04T16:30:38+00:00"
+},
+"why": "Seth Jones has two or more points in 33% of 15 games this season and 50% of his last 10 (14% last season). He reached 1+ point (one short of the line or better) in 58% of his last 40, on 24.2 minutes a night over the last 10 and 1.9 shots a game, with a spot on power-play unit 1. CHI allows 0.47 goals a game to defensemen (#15 of 32, 1 = most). Projected goalie Spencer Knight is at a 0.898 save rate over his last 10.",
+"check": "pending"
+},
+{
+"id": "8484801-s5",
+"aid": "8484801",
+"player": "Macklin Celebrini",
+"pos": "C",
+"team": "SJ",
+"opp": "LA",
+"home": false,
+"market": "5+ Shots on Goal",
+"mk": "s5",
+"hurdle": 5,
+"p": 0.2758,
+"fair": 263,
+"book": 233,
+"book_letter": "Exchange C",
+"edge": -0.082,
+"grade": "A",
+"start": "2026-11-05T03:00:00Z",
+"status": "Active (no injury listed)",
+"last10": [
+{
+"d": "2026-10-15",
+"o": "NSH",
+"at": "@",
+"v": 3
+},
+{
+"d": "2026-10-17",
+"o": "DET",
+"at": "@",
+"v": 7
+},
+{
+"d": "2026-10-19",
+"o": "TOR",
+"at": "@",
+"v": 5
+},
+{
+"d": "2026-10-20",
+"o": "MTL",
+"at": "@",
+"v": 6
+},
+{
+"d": "2026-10-22",
+"o": "OTT",
+"at": "@",
+"v": 2
+},
+{
+"d": "2026-10-24",
+"o": "BOS",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-27",
+"o": "BUF",
+"at": "vs",
+"v": 4
+},
+{
+"d": "2026-10-29",
+"o": "VAN",
+"at": "vs",
+"v": 6
+},
+{
+"d": "2026-10-31",
+"o": "OTT",
+"at": "vs",
+"v": 2
+},
+{
+"d": "2026-11-02",
+"o": "CGY",
+"at": "vs",
+"v": 2
+}
+],
+"rates": {
+"season": 0.429,
+"season_n": 14,
+"l10": 0.4,
+"l40": 0.35,
+"last_season": 0.329,
+"last_season_n": 82,
+"near": 0.1,
+"ceiling_pct": 0.45
+},
+"trend": "flat",
+"vs_opp": {
+"games": 4,
+"hits": 1,
+"avg": 4.0
+},
+"usage": {
+"toi_l10": 23.1,
+"pp_pts_pg": 0.42,
+"shots_pg": 3.65,
+"pp_unit": {
+"unit": 1,
+"conf": "High",
+"asof": "2026-11-02"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 2.85,
+"goals_rank": 10,
+"shots_pg": 20.6,
+"shots_rank": 9,
+"of": 32,
+"group": "forwards"
+},
+"opp_times_shorthanded_pg": 3.0,
+"opp_sh_rank": 24,
+"pace_5v5_attempts": 90.9,
+"goalie": {
+"name": "Darcy Kuemper",
+"sv": 0.893,
+"l10_sv": 0.884,
+"l10_gsax": -1.8,
+"last_start": "2026-10-29",
+"status": "projected starter"
+},
+"opp_form": {
+"games": 5,
+"gf": 15,
+"ga": 16
+}
+},
+"parts": {
+"opp_factor": 1.025,
+"goalie_factor": 1.009
+},
+"asof": {
+"game_log": "2026-11-04T16:30:54+00:00",
+"goalie": "2026-11-04T16:19:56+00:00",
+"lines": "2026-11-04T16:12:00+00:00",
+"injuries": "2026-11-04T16:19:56+00:00",
+"book": "2026-11-04T16:30:00+00:00",
+"team_stats": "2026-11-04T16:30:38+00:00"
+},
+"why": "Macklin Celebrini has five or more shots on goal in 43% of 14 games this season and 40% of his last 10 (33% last season). He reached 4+ shots on goal (one short of the line or better) in 45% of his last 40, on 23.1 minutes a night over the last 10 and 3.7 shots a game, with a spot on power-play unit 1. LA allows 20.6 shots a game to forwards (#9 of 32, 1 = most).",
+"check": "ok"
+},
+{
+"id": "8482116-p2",
+"aid": "8482116",
+"player": "Tim St\u00fctzle",
+"pos": "C",
+"team": "OTT",
+"opp": "BUF",
+"home": false,
+"market": "2+ Points",
+"mk": "p2",
+"hurdle": 2,
+"p": 0.2735,
+"fair": 266,
+"book": 203,
+"book_letter": "Exchange C",
+"edge": -0.171,
+"grade": "B",
+"start": "2026-11-05T00:30:00Z",
+"status": "Active (no injury listed)",
+"last10": [
+{
+"d": "2026-10-13",
+"o": "STL",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-10-15",
+"o": "NYI",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-10-17",
+"o": "PHI",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-21",
+"o": "FLA",
+"at": "vs",
+"v": 2
+},
+{
+"d": "2026-10-22",
+"o": "SJ",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-10-24",
+"o": "NYR",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-10-27",
+"o": "VGK",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-10-29",
+"o": "LA",
+"at": "@",
+"v": 3
+},
+{
+"d": "2026-10-31",
+"o": "SJ",
+"at": "@",
+"v": 2
+},
+{
+"d": "2026-11-01",
+"o": "ANA",
+"at": "@",
+"v": 0
+}
+],
+"rates": {
+"season": 0.438,
+"season_n": 16,
+"l10": 0.3,
+"l40": 0.3,
+"last_season": 0.3,
+"last_season_n": 80,
+"near": 0.425,
+"ceiling_pct": 0.725
+},
+"trend": "down",
+"vs_opp": {
+"games": 3,
+"hits": 0,
+"avg": 0.67
+},
+"usage": {
+"toi_l10": 22.04,
+"pp_pts_pg": 0.35,
+"shots_pg": 2.1,
+"pp_unit": {
+"unit": 1,
+"conf": "High",
+"asof": "2026-11-01"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 3.21,
+"goals_rank": 5,
+"shots_pg": 20.1,
+"shots_rank": 17,
+"of": 32,
+"group": "forwards"
+},
+"opp_times_shorthanded_pg": 3.64,
+"opp_sh_rank": 5,
+"pace_5v5_attempts": 84.7,
+"goalie": {
+"name": "Ukko-Pekka Luukkonen",
+"sv": 0.8956,
+"l10_sv": 0.882,
+"l10_gsax": -2.7,
+"last_start": "2026-10-31",
+"status": "projected starter"
+},
+"opp_form": {
+"games": 5,
+"gf": 16,
+"ga": 15
+}
+},
+"parts": {
+"opp_factor": 1.066,
+"goalie_factor": 0.993
+},
+"asof": {
+"game_log": "2026-11-04T16:30:54+00:00",
+"goalie": "2026-11-04T16:19:56+00:00",
+"lines": "2026-11-04T16:12:00+00:00",
+"injuries": "2026-11-04T16:19:56+00:00",
+"book": "2026-11-04T16:30:00+00:00",
+"team_stats": "2026-11-04T16:30:38+00:00"
+},
+"why": "Tim St\u00fctzle has two or more points in 44% of 16 games this season and 30% of his last 10 (30% last season). He reached 1+ point (one short of the line or better) in 73% of his last 40, on 22.0 minutes a night over the last 10 and 2.1 shots a game, with a spot on power-play unit 1. BUF allows 3.21 goals a game to forwards (#5 of 32, 1 = most). Projected goalie Ukko-Pekka Luukkonen is at a 0.882 save rate over his last 10.",
+"check": "ok"
+},
+{
+"id": "8480801-p2",
+"aid": "8480801",
+"player": "Brady Tkachuk",
+"pos": "L",
+"team": "FLA",
+"opp": "CHI",
+"home": true,
+"market": "2+ Points",
+"mk": "p2",
+"hurdle": 2,
+"p": 0.2639,
+"fair": 279,
+"book": 199,
+"book_letter": "Exchange C",
+"edge": -0.211,
+"grade": "B",
+"start": "2026-11-05T00:30:00Z",
+"status": "Active (no injury listed)",
+"last10": [
+{
+"d": "2026-10-12",
+"o": "BUF",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-13",
+"o": "CBJ",
+"at": "@",
+"v": 4
+},
+{
+"d": "2026-10-15",
+"o": "VAN",
+"at": "vs",
+"v": 3
+},
+{
+"d": "2026-10-17",
+"o": "SEA",
+"at": "vs",
+"v": 2
+},
+{
+"d": "2026-10-21",
+"o": "OTT",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-22",
+"o": "PIT",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-10-25",
+"o": "CHI",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-27",
+"o": "WPG",
+"at": "@",
+"v": 3
+},
+{
+"d": "2026-10-30",
+"o": "WPG",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-11-02",
+"o": "DET",
+"at": "vs",
+"v": 1
+}
+],
+"rates": {
+"season": 0.267,
+"season_n": 15,
+"l10": 0.4,
+"l40": 0.2,
+"last_season": 0.2,
+"last_season_n": 60,
+"near": 0.425,
+"ceiling_pct": 0.625
+},
+"trend": "up",
+"vs_opp": {
+"games": 2,
+"hits": 1,
+"avg": 1.5
+},
+"usage": {
+"toi_l10": 16.23,
+"pp_pts_pg": 0.42,
+"shots_pg": 3.33,
+"pp_unit": {
+"unit": 1,
+"conf": "High",
+"asof": "2026-11-02"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 3.33,
+"goals_rank": 3,
+"shots_pg": 22.5,
+"shots_rank": 2,
+"of": 32,
+"group": "forwards"
+},
+"opp_times_shorthanded_pg": 3.27,
+"opp_sh_rank": 15,
+"pace_5v5_attempts": 81.8,
+"goalie": {
+"name": "Spencer Knight",
+"sv": 0.8971,
+"l10_sv": 0.898,
+"l10_gsax": 1.0,
+"last_start": "2026-11-02",
+"status": "projected starter"
+},
+"opp_form": {
+"games": 5,
+"gf": 11,
+"ga": 18
+}
+},
+"parts": {
+"opp_factor": 1.152,
+"goalie_factor": 0.982
+},
+"asof": {
+"game_log": "2026-11-04T16:30:54+00:00",
+"goalie": "2026-11-04T16:19:56+00:00",
+"lines": "2026-11-04T16:12:00+00:00",
+"injuries": "2026-11-04T16:19:56+00:00",
+"book": "2026-11-04T16:30:00+00:00",
+"team_stats": "2026-11-04T16:30:38+00:00"
+},
+"why": "Brady Tkachuk has two or more points in 27% of 15 games this season and 40% of his last 10 (20% last season). He reached 1+ point (one short of the line or better) in 63% of his last 40, on 16.2 minutes a night over the last 10 and 3.3 shots a game, with a spot on power-play unit 1. CHI allows 3.33 goals a game to forwards (#3 of 32, 1 = most). Projected goalie Spencer Knight is at a 0.898 save rate over his last 10.",
+"check": "ok"
+},
+{
+"id": "8478550-p2",
+"aid": "8478550",
+"player": "Artemi Panarin",
+"pos": "L",
+"team": "LA",
+"opp": "SJ",
+"home": true,
+"market": "2+ Points",
+"mk": "p2",
+"hurdle": 2,
+"p": 0.2558,
+"fair": 291,
+"book": 150,
+"book_letter": "Book G",
+"edge": -0.36,
+"grade": "B",
+"start": "2026-11-05T03:00:00Z",
+"status": "Active (no injury listed)",
+"last10": [
+{
+"d": "2026-10-10",
+"o": "VGK",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-13",
+"o": "EDM",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-10-17",
+"o": "BOS",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-10-20",
+"o": "WSH",
+"at": "@",
+"v": 3
+},
+{
+"d": "2026-10-22",
+"o": "NYI",
+"at": "@",
+"v": 2
+},
+{
+"d": "2026-10-24",
+"o": "NJ",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-10-26",
+"o": "NYR",
+"at": "@",
+"v": 2
+},
+{
+"d": "2026-10-27",
+"o": "CHI",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-10-29",
+"o": "OTT",
+"at": "vs",
+"v": 2
+},
+{
+"d": "2026-10-31",
+"o": "BUF",
+"at": "vs",
+"v": 0
+}
+],
+"rates": {
+"season": 0.385,
+"season_n": 13,
+"l10": 0.4,
+"l40": 0.3,
+"last_season": 0.295,
+"last_season_n": 78,
+"near": 0.35,
+"ceiling_pct": 0.65
+},
+"trend": "flat",
+"vs_opp": {
+"games": 3,
+"hits": 1,
+"avg": 0.67
+},
+"usage": {
+"toi_l10": 22.32,
+"pp_pts_pg": 0.25,
+"shots_pg": 2.75,
+"pp_unit": {
+"unit": 1,
+"conf": "High",
+"asof": "2026-10-31"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 2.81,
+"goals_rank": 11,
+"shots_pg": 21.9,
+"shots_rank": 3,
+"of": 32,
+"group": "forwards"
+},
+"opp_times_shorthanded_pg": 3.31,
+"opp_sh_rank": 12,
+"pace_5v5_attempts": 90.9,
+"goalie": {
+"name": "Yaroslav Askarov",
+"sv": 0.8884,
+"l10_sv": 0.896,
+"l10_gsax": 1.4,
+"last_start": "2026-11-02",
+"status": "projected starter"
+},
+"opp_form": {
+"games": 5,
+"gf": 9,
+"ga": 17
+}
+},
+"parts": {
+"opp_factor": 1.041,
+"goalie_factor": 1.038
+},
+"asof": {
+"game_log": "2026-11-04T16:30:54+00:00",
+"goalie": "2026-11-04T16:19:56+00:00",
+"lines": "2026-11-04T16:12:00+00:00",
+"injuries": "2026-11-04T16:19:56+00:00",
+"book": "2026-11-04T16:30:00+00:00",
+"team_stats": "2026-11-04T16:30:38+00:00"
+},
+"why": "Artemi Panarin has two or more points in 39% of 13 games this season and 40% of his last 10 (30% last season). He reached 1+ point (one short of the line or better) in 65% of his last 40, on 22.3 minutes a night over the last 10 and 2.8 shots a game, with a spot on power-play unit 1. SJ allows 2.81 goals a game to forwards (#11 of 32, 1 = most). Projected goalie Yaroslav Askarov is at a 0.896 save rate over his last 10.",
+"check": "ok"
+},
+{
+"id": "8482105-p2",
+"aid": "8482105",
+"player": "Jake Sanderson",
+"pos": "D",
+"team": "OTT",
+"opp": "BUF",
+"home": false,
+"market": "2+ Points",
+"mk": "p2",
+"hurdle": 2,
+"p": 0.2529,
+"fair": 295,
+"book": 320,
+"book_letter": "Exchange D",
+"edge": 0.062,
+"grade": "A",
+"start": "2026-11-05T00:30:00Z",
+"status": "Active (no injury listed)",
+"last10": [
+{
+"d": "2026-04-09",
+"o": "FLA",
+"at": "vs",
+"v": 2
+},
+{
+"d": "2026-04-11",
+"o": "NYI",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-03",
+"o": "TOR",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-10-21",
+"o": "FLA",
+"at": "vs",
+"v": 2
+},
+{
+"d": "2026-10-22",
+"o": "SJ",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-10-24",
+"o": "NYR",
+"at": "vs",
+"v": 3
+},
+{
+"d": "2026-10-27",
+"o": "VGK",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-10-29",
+"o": "LA",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-31",
+"o": "SJ",
+"at": "@",
+"v": 2
+},
+{
+"d": "2026-11-01",
+"o": "ANA",
+"at": "@",
+"v": 2
+}
+],
+"rates": {
+"season": 0.5,
+"season_n": 8,
+"l10": 0.5,
+"l40": 0.25,
+"last_season": 0.179,
+"last_season_n": 67,
+"near": 0.375,
+"ceiling_pct": 0.625
+},
+"trend": "flat",
+"vs_opp": {
+"games": 2,
+"hits": 1,
+"avg": 1.0
+},
+"usage": {
+"toi_l10": 22.98,
+"pp_pts_pg": 0.3,
+"shots_pg": 2.12,
+"pp_unit": {
+"unit": 1,
+"conf": "High",
+"asof": "2026-11-01"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 0.21,
+"goals_rank": 31,
+"shots_pg": 6.1,
+"shots_rank": 31,
+"of": 32,
+"group": "defensemen"
+},
+"opp_times_shorthanded_pg": 3.64,
+"opp_sh_rank": 5,
+"pace_5v5_attempts": 84.7,
+"goalie": {
+"name": "Ukko-Pekka Luukkonen",
+"sv": 0.8956,
+"l10_sv": 0.882,
+"l10_gsax": -2.7,
+"last_start": "2026-10-31",
+"status": "projected starter"
+},
+"opp_form": {
+"games": 5,
+"gf": 16,
+"ga": 15
+}
+},
+"parts": {
+"opp_factor": 1.066,
+"goalie_factor": 0.993
+},
+"asof": {
+"game_log": "2026-11-04T16:30:54+00:00",
+"goalie": "2026-11-04T16:19:56+00:00",
+"lines": "2026-11-04T16:12:00+00:00",
+"injuries": "2026-11-04T16:19:56+00:00",
+"book": "2026-11-04T16:30:00+00:00",
+"team_stats": "2026-11-04T16:30:38+00:00"
+},
+"why": "Jake Sanderson has two or more points in 50% of 8 games this season and 50% of his last 10 (18% last season). He reached 1+ point (one short of the line or better) in 63% of his last 40, on 23.0 minutes a night over the last 10 and 2.1 shots a game, with a spot on power-play unit 1. BUF allows 0.21 goals a game to defensemen (#31 of 32, 1 = most). Projected goalie Ukko-Pekka Luukkonen is at a 0.882 save rate over his last 10.",
+"check": "ok"
+},
+{
+"id": "8480839-p2",
+"aid": "8480839",
+"player": "Rasmus Dahlin",
+"pos": "D",
+"team": "BUF",
+"opp": "OTT",
+"home": true,
+"market": "2+ Points",
+"mk": "p2",
+"hurdle": 2,
+"p": 0.2529,
+"fair": 295,
+"book": 250,
+"book_letter": "Exchange D",
+"edge": -0.115,
+"grade": "B",
+"start": "2026-11-05T00:30:00Z",
+"status": "Active (no injury listed)",
+"last10": [
+{
+"d": "2026-10-03",
+"o": "CHI",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-10-06",
+"o": "MIN",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-10-08",
+"o": "DAL",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-10-10",
+"o": "UTA",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-10-12",
+"o": "FLA",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-10-21",
+"o": "PHI",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-10-24",
+"o": "WSH",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-27",
+"o": "SJ",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-10-29",
+"o": "ANA",
+"at": "@",
+"v": 2
+},
+{
+"d": "2026-10-31",
+"o": "LA",
+"at": "@",
+"v": 2
+}
+],
+"rates": {
+"season": 0.182,
+"season_n": 11,
+"l10": 0.2,
+"l40": 0.275,
+"last_season": 0.247,
+"last_season_n": 77,
+"near": 0.4,
+"ceiling_pct": 0.675
+},
+"trend": "flat",
+"vs_opp": {
+"games": 3,
+"hits": 1,
+"avg": 0.67
+},
+"usage": {
+"toi_l10": 24.53,
+"pp_pts_pg": 0.3,
+"shots_pg": 2.5,
+"pp_unit": {
+"unit": 1,
+"conf": "High",
+"asof": "2026-10-31"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 0.31,
+"goals_rank": 27,
+"shots_pg": 6.5,
+"shots_rank": 26,
+"of": 32,
+"group": "defensemen"
+},
+"opp_times_shorthanded_pg": 3.69,
+"opp_sh_rank": 4,
+"pace_5v5_attempts": 84.7,
+"goalie": null,
+"opp_form": {
+"games": 5,
+"gf": 20,
+"ga": 21
+}
+},
+"parts": {
+"opp_factor": 0.998,
+"goalie_factor": 1.0
+},
+"asof": {
+"game_log": "2026-11-04T16:30:54+00:00",
+"goalie": "2026-11-04T16:19:56+00:00",
+"lines": "2026-11-04T16:12:00+00:00",
+"injuries": "2026-11-04T16:19:56+00:00",
+"book": "2026-11-04T16:30:00+00:00",
+"team_stats": "2026-11-04T16:30:38+00:00"
+},
+"why": "Rasmus Dahlin has two or more points in 18% of 11 games this season and 20% of his last 10 (25% last season). He reached 1+ point (one short of the line or better) in 68% of his last 40, on 24.5 minutes a night over the last 10 and 2.5 shots a game, with a spot on power-play unit 1. OTT allows 0.31 goals a game to defensemen (#27 of 32, 1 = most).",
+"check": "ok"
+},
+{
+"id": "8479420-p2",
+"aid": "8479420",
+"player": "Tage Thompson",
+"pos": "C",
+"team": "BUF",
+"opp": "OTT",
+"home": true,
+"market": "2+ Points",
+"mk": "p2",
+"hurdle": 2,
+"p": 0.2491,
+"fair": 301,
+"book": 203,
+"book_letter": "Exchange C",
+"edge": -0.245,
+"grade": "B",
+"start": "2026-11-05T00:30:00Z",
+"status": "Active (no injury listed)",
+"last10": [
+{
+"d": "2026-10-10",
+"o": "UTA",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-10-12",
+"o": "FLA",
+"at": "vs",
+"v": 2
+},
+{
+"d": "2026-10-13",
+"o": "MTL",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-10-15",
+"o": "TOR",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-17",
+"o": "MTL",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-21",
+"o": "PHI",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-10-24",
+"o": "WSH",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-10-27",
+"o": "SJ",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-29",
+"o": "ANA",
+"at": "@",
+"v": 5
+},
+{
+"d": "2026-10-31",
+"o": "LA",
+"at": "@",
+"v": 2
+}
+],
+"rates": {
+"season": 0.357,
+"season_n": 14,
+"l10": 0.3,
+"l40": 0.25,
+"last_season": 0.247,
+"last_season_n": 81,
+"near": 0.4,
+"ceiling_pct": 0.65
+},
+"trend": "flat",
+"vs_opp": {
+"games": 3,
+"hits": 1,
+"avg": 0.67
+},
+"usage": {
+"toi_l10": 19.31,
+"pp_pts_pg": 0.35,
+"shots_pg": 3.58,
+"pp_unit": {
+"unit": 1,
+"conf": "High",
+"asof": "2026-10-31"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 2.81,
+"goals_rank": 12,
+"shots_pg": 20.3,
+"shots_rank": 13,
+"of": 32,
+"group": "forwards"
+},
+"opp_times_shorthanded_pg": 3.69,
+"opp_sh_rank": 4,
+"pace_5v5_attempts": 84.7,
+"goalie": null,
+"opp_form": {
+"games": 5,
+"gf": 20,
+"ga": 21
+}
+},
+"parts": {
+"opp_factor": 0.998,
+"goalie_factor": 1.0
+},
+"asof": {
+"game_log": "2026-11-04T16:30:54+00:00",
+"goalie": "2026-11-04T16:19:56+00:00",
+"lines": "2026-11-04T16:12:00+00:00",
+"injuries": "2026-11-04T16:19:56+00:00",
+"book": "2026-11-04T16:30:00+00:00",
+"team_stats": "2026-11-04T16:30:38+00:00"
+},
+"why": "Tage Thompson has two or more points in 36% of 14 games this season and 30% of his last 10 (25% last season). He reached 1+ point (one short of the line or better) in 65% of his last 40, on 19.3 minutes a night over the last 10 and 3.6 shots a game, with a spot on power-play unit 1. OTT allows 2.81 goals a game to forwards (#12 of 32, 1 = most).",
+"check": "ok"
+},
+{
+"id": "8479420-s5",
+"aid": "8479420",
+"player": "Tage Thompson",
+"pos": "C",
+"team": "BUF",
+"opp": "OTT",
+"home": true,
+"market": "5+ Shots on Goal",
+"mk": "s5",
+"hurdle": 5,
+"p": 0.2433,
+"fair": 311,
+"book": 245,
+"book_letter": "Exchange C",
+"edge": -0.161,
+"grade": "A",
+"start": "2026-11-05T00:30:00Z",
+"status": "Active (no injury listed)",
+"last10": [
+{
+"d": "2026-10-10",
+"o": "UTA",
+"at": "vs",
+"v": 6
+},
+{
+"d": "2026-10-12",
+"o": "FLA",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-10-13",
+"o": "MTL",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-15",
+"o": "TOR",
+"at": "@",
+"v": 6
+},
+{
+"d": "2026-10-17",
+"o": "MTL",
+"at": "@",
+"v": 5
+},
+{
+"d": "2026-10-21",
+"o": "PHI",
+"at": "vs",
+"v": 3
+},
+{
+"d": "2026-10-24",
+"o": "WSH",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-10-27",
+"o": "SJ",
+"at": "@",
+"v": 6
+},
+{
+"d": "2026-10-29",
+"o": "ANA",
+"at": "@",
+"v": 4
+},
+{
+"d": "2026-10-31",
+"o": "LA",
+"at": "@",
+"v": 8
+}
+],
+"rates": {
+"season": 0.5,
+"season_n": 14,
+"l10": 0.5,
+"l40": 0.35,
+"last_season": 0.296,
+"last_season_n": 81,
+"near": 0.15,
+"ceiling_pct": 0.5
+},
+"trend": "flat",
+"vs_opp": {
+"games": 3,
+"hits": 0,
+"avg": 1.33
+},
+"usage": {
+"toi_l10": 19.31,
+"pp_pts_pg": 0.35,
+"shots_pg": 3.58,
+"pp_unit": {
+"unit": 1,
+"conf": "High",
+"asof": "2026-10-31"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 2.81,
+"goals_rank": 12,
+"shots_pg": 20.3,
+"shots_rank": 13,
+"of": 32,
+"group": "forwards"
+},
+"opp_times_shorthanded_pg": 3.69,
+"opp_sh_rank": 4,
+"pace_5v5_attempts": 84.7,
+"goalie": null,
+"opp_form": {
+"games": 5,
+"gf": 20,
+"ga": 21
+}
+},
+"parts": {
+"opp_factor": 0.998,
+"goalie_factor": 1.0
+},
+"asof": {
+"game_log": "2026-11-04T16:30:54+00:00",
+"goalie": "2026-11-04T16:19:56+00:00",
+"lines": "2026-11-04T16:12:00+00:00",
+"injuries": "2026-11-04T16:19:56+00:00",
+"book": "2026-11-04T16:30:00+00:00",
+"team_stats": "2026-11-04T16:30:38+00:00"
+},
+"why": "Tage Thompson has five or more shots on goal in 50% of 14 games this season and 50% of his last 10 (30% last season). He reached 4+ shots on goal (one short of the line or better) in 50% of his last 40, on 19.3 minutes a night over the last 10 and 3.6 shots a game, with a spot on power-play unit 1. OTT allows 20.3 shots a game to forwards (#13 of 32, 1 = most).",
+"check": "ok"
+},
+{
+"id": "8480208-p2",
+"aid": "8480208",
+"player": "Drake Batherson",
+"pos": "R",
+"team": "OTT",
+"opp": "BUF",
+"home": false,
+"market": "2+ Points",
+"mk": "p2",
+"hurdle": 2,
+"p": 0.2363,
+"fair": 323,
+"book": 245,
+"book_letter": "Exchange D",
+"edge": -0.185,
+"grade": "B",
+"start": "2026-11-05T00:30:00Z",
+"status": "Active (no injury listed)",
+"last10": [
+{
+"d": "2026-10-13",
+"o": "STL",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-10-15",
+"o": "NYI",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-10-17",
+"o": "PHI",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-21",
+"o": "FLA",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-10-22",
+"o": "SJ",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-10-24",
+"o": "NYR",
+"at": "vs",
+"v": 4
+},
+{
+"d": "2026-10-27",
+"o": "VGK",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-29",
+"o": "LA",
+"at": "@",
+"v": 3
+},
+{
+"d": "2026-10-31",
+"o": "SJ",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-11-01",
+"o": "ANA",
+"at": "@",
+"v": 1
+}
+],
+"rates": {
+"season": 0.188,
+"season_n": 16,
+"l10": 0.2,
+"l40": 0.225,
+"last_season": 0.228,
+"last_season_n": 79,
+"near": 0.475,
+"ceiling_pct": 0.7
+},
+"trend": "flat",
+"vs_opp": {
+"games": 3,
+"hits": 0,
+"avg": 0.33
+},
+"usage": {
+"toi_l10": 17.77,
+"pp_pts_pg": 0.38,
+"shots_pg": 2.23,
+"pp_unit": {
+"unit": 1,
+"conf": "High",
+"asof": "2026-11-01"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 3.21,
+"goals_rank": 5,
+"shots_pg": 20.1,
+"shots_rank": 17,
+"of": 32,
+"group": "forwards"
+},
+"opp_times_shorthanded_pg": 3.64,
+"opp_sh_rank": 5,
+"pace_5v5_attempts": 84.7,
+"goalie": {
+"name": "Ukko-Pekka Luukkonen",
+"sv": 0.8956,
+"l10_sv": 0.882,
+"l10_gsax": -2.7,
+"last_start": "2026-10-31",
+"status": "projected starter"
+},
+"opp_form": {
+"games": 5,
+"gf": 16,
+"ga": 15
+}
+},
+"parts": {
+"opp_factor": 1.066,
+"goalie_factor": 0.993
+},
+"asof": {
+"game_log": "2026-11-04T16:30:54+00:00",
+"goalie": "2026-11-04T16:19:56+00:00",
+"lines": "2026-11-04T16:12:00+00:00",
+"injuries": "2026-11-04T16:19:56+00:00",
+"book": "2026-11-04T16:30:00+00:00",
+"team_stats": "2026-11-04T16:30:38+00:00"
+},
+"why": "Drake Batherson has two or more points in 19% of 16 games this season and 20% of his last 10 (23% last season). He reached 1+ point (one short of the line or better) in 70% of his last 40, on 17.8 minutes a night over the last 10 and 2.2 shots a game, with a spot on power-play unit 1. BUF allows 3.21 goals a game to forwards (#5 of 32, 1 = most). Projected goalie Ukko-Pekka Luukkonen is at a 0.882 save rate over his last 10.",
+"check": "ok"
+},
+{
+"id": "8480801-s5",
+"aid": "8480801",
+"player": "Brady Tkachuk",
+"pos": "L",
+"team": "FLA",
+"opp": "CHI",
+"home": true,
+"market": "5+ Shots on Goal",
+"mk": "s5",
+"hurdle": 5,
+"p": 0.2328,
+"fair": 329,
+"book": 233,
+"book_letter": "Exchange C",
+"edge": -0.225,
+"grade": "A",
+"start": "2026-11-05T00:30:00Z",
+"status": "Active (no injury listed)",
+"last10": [
+{
+"d": "2026-10-12",
+"o": "BUF",
+"at": "@",
+"v": 3
+},
+{
+"d": "2026-10-13",
+"o": "CBJ",
+"at": "@",
+"v": 4
+},
+{
+"d": "2026-10-15",
+"o": "VAN",
+"at": "vs",
+"v": 6
+},
+{
+"d": "2026-10-17",
+"o": "SEA",
+"at": "vs",
+"v": 7
+},
+{
+"d": "2026-10-21",
+"o": "OTT",
+"at": "@",
+"v": 3
+},
+{
+"d": "2026-10-22",
+"o": "PIT",
+"at": "@",
+"v": 3
+},
+{
+"d": "2026-10-25",
+"o": "CHI",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-27",
+"o": "WPG",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-30",
+"o": "WPG",
+"at": "vs",
+"v": 6
+},
+{
+"d": "2026-11-02",
+"o": "DET",
+"at": "vs",
+"v": 2
+}
+],
+"rates": {
+"season": 0.2,
+"season_n": 15,
+"l10": 0.3,
+"l40": 0.225,
+"last_season": 0.3,
+"last_season_n": 60,
+"near": 0.2,
+"ceiling_pct": 0.425
+},
+"trend": "up",
+"vs_opp": {
+"games": 2,
+"hits": 1,
+"avg": 5.5
+},
+"usage": {
+"toi_l10": 16.23,
+"pp_pts_pg": 0.42,
+"shots_pg": 3.33,
+"pp_unit": {
+"unit": 1,
+"conf": "High",
+"asof": "2026-11-02"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 3.33,
+"goals_rank": 3,
+"shots_pg": 22.5,
+"shots_rank": 2,
+"of": 32,
+"group": "forwards"
+},
+"opp_times_shorthanded_pg": 3.27,
+"opp_sh_rank": 15,
+"pace_5v5_attempts": 81.8,
+"goalie": {
+"name": "Spencer Knight",
+"sv": 0.8971,
+"l10_sv": 0.898,
+"l10_gsax": 1.0,
+"last_start": "2026-11-02",
+"status": "projected starter"
+},
+"opp_form": {
+"games": 5,
+"gf": 11,
+"ga": 18
+}
+},
+"parts": {
+"opp_factor": 1.083,
+"goalie_factor": 0.982
+},
+"asof": {
+"game_log": "2026-11-04T16:30:54+00:00",
+"goalie": "2026-11-04T16:19:56+00:00",
+"lines": "2026-11-04T16:12:00+00:00",
+"injuries": "2026-11-04T16:19:56+00:00",
+"book": "2026-11-04T16:30:00+00:00",
+"team_stats": "2026-11-04T16:30:38+00:00"
+},
+"why": "Brady Tkachuk has five or more shots on goal in 20% of 15 games this season and 30% of his last 10 (30% last season). He reached 4+ shots on goal (one short of the line or better) in 43% of his last 40, on 16.2 minutes a night over the last 10 and 3.3 shots a game, with a spot on power-play unit 1. CHI allows 22.5 shots a game to forwards (#2 of 32, 1 = most).",
+"check": "pending"
+},
+{
+"id": "8477933-p2",
+"aid": "8477933",
+"player": "Sam Reinhart",
+"pos": "C",
+"team": "FLA",
+"opp": "CHI",
+"home": true,
+"market": "2+ Points",
+"mk": "p2",
+"hurdle": 2,
+"p": 0.2304,
+"fair": 334,
+"book": 203,
+"book_letter": "Exchange C",
+"edge": -0.302,
+"grade": "B",
+"start": "2026-11-05T00:30:00Z",
+"status": "Active (no injury listed)",
+"last10": [
+{
+"d": "2026-10-12",
+"o": "BUF",
+"at": "@",
+"v": 2
+},
+{
+"d": "2026-10-13",
+"o": "CBJ",
+"at": "@",
+"v": 3
+},
+{
+"d": "2026-10-15",
+"o": "VAN",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-10-17",
+"o": "SEA",
+"at": "vs",
+"v": 2
+},
+{
+"d": "2026-10-21",
+"o": "OTT",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-10-22",
+"o": "PIT",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-10-25",
+"o": "CHI",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-27",
+"o": "WPG",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-30",
+"o": "WPG",
+"at": "vs",
+"v": 2
+},
+{
+"d": "2026-11-02",
+"o": "DET",
+"at": "vs",
+"v": 1
+}
+],
+"rates": {
+"season": 0.267,
+"season_n": 15,
+"l10": 0.4,
+"l40": 0.225,
+"last_season": 0.25,
+"last_season_n": 64,
+"near": 0.3,
+"ceiling_pct": 0.525
+},
+"trend": "up",
+"vs_opp": {
+"games": 3,
+"hits": 0,
+"avg": 0.67
+},
+"usage": {
+"toi_l10": 19.46,
+"pp_pts_pg": 0.45,
+"shots_pg": 2.7,
+"pp_unit": {
+"unit": 1,
+"conf": "High",
+"asof": "2026-11-02"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 3.33,
+"goals_rank": 3,
+"shots_pg": 22.5,
+"shots_rank": 2,
+"of": 32,
+"group": "forwards"
+},
+"opp_times_shorthanded_pg": 3.27,
+"opp_sh_rank": 15,
+"pace_5v5_attempts": 81.8,
+"goalie": {
+"name": "Spencer Knight",
+"sv": 0.8971,
+"l10_sv": 0.898,
+"l10_gsax": 1.0,
+"last_start": "2026-11-02",
+"status": "projected starter"
+},
+"opp_form": {
+"games": 5,
+"gf": 11,
+"ga": 18
+}
+},
+"parts": {
+"opp_factor": 1.152,
+"goalie_factor": 0.982
+},
+"asof": {
+"game_log": "2026-11-04T16:30:54+00:00",
+"goalie": "2026-11-04T16:19:56+00:00",
+"lines": "2026-11-04T16:12:00+00:00",
+"injuries": "2026-11-04T16:19:56+00:00",
+"book": "2026-11-04T16:30:00+00:00",
+"team_stats": "2026-11-04T16:30:38+00:00"
+},
+"why": "Sam Reinhart has two or more points in 27% of 15 games this season and 40% of his last 10 (25% last season). He reached 1+ point (one short of the line or better) in 53% of his last 40, on 19.5 minutes a night over the last 10 and 2.7 shots a game, with a spot on power-play unit 1. CHI allows 3.33 goals a game to forwards (#3 of 32, 1 = most). Projected goalie Spencer Knight is at a 0.898 save rate over his last 10.",
+"check": "pending"
+},
+{
+"id": "8477960-s5",
+"aid": "8477960",
+"player": "Adrian Kempe",
+"pos": "R",
+"team": "LA",
+"opp": "SJ",
+"home": true,
+"market": "5+ Shots on Goal",
+"mk": "s5",
+"hurdle": 5,
+"p": 0.185,
+"fair": 441,
+"book": 326,
+"book_letter": "Exchange C",
+"edge": -0.212,
+"grade": "B",
+"start": "2026-11-05T03:00:00Z",
+"status": {
+"status": "Day-To-Day",
+"note": "day-to-day",
+"date": "2026-11-01"
+},
+"last10": [
+{
+"d": "2026-10-06",
+"o": "FLA",
+"at": "vs",
+"v": 3
+},
+{
+"d": "2026-10-10",
+"o": "VGK",
+"at": "@",
+"v": 3
+},
+{
+"d": "2026-10-13",
+"o": "EDM",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-10-17",
+"o": "BOS",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-10-20",
+"o": "WSH",
+"at": "@",
+"v": 6
+},
+{
+"d": "2026-10-22",
+"o": "NYI",
+"at": "@",
+"v": 5
+},
+{
+"d": "2026-10-24",
+"o": "NJ",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-10-26",
+"o": "NYR",
+"at": "@",
+"v": 7
+},
+{
+"d": "2026-10-27",
+"o": "CHI",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-29",
+"o": "OTT",
+"at": "vs",
+"v": 5
+}
+],
+"rates": {
+"season": 0.417,
+"season_n": 12,
+"l10": 0.4,
+"l40": 0.25,
+"last_season": 0.16,
+"last_season_n": 81,
+"near": 0.125,
+"ceiling_pct": 0.375
+},
+"trend": "flat",
+"vs_opp": {
+"games": 4,
+"hits": 2,
+"avg": 3.0
+},
+"usage": {
+"toi_l10": 20.75,
+"pp_pts_pg": 0.15,
+"shots_pg": 3.0,
+"pp_unit": {
+"unit": 1,
+"conf": "High",
+"asof": "2026-10-31"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 2.81,
+"goals_rank": 11,
+"shots_pg": 21.9,
+"shots_rank": 3,
+"of": 32,
+"group": "forwards"
+},
+"opp_times_shorthanded_pg": 3.31,
+"opp_sh_rank": 12,
+"pace_5v5_attempts": 90.9,
+"goalie": {
+"name": "Yaroslav Askarov",
+"sv": 0.8884,
+"l10_sv": 0.896,
+"l10_gsax": 1.4,
+"last_start": "2026-11-02",
+"status": "projected starter"
+},
+"opp_form": {
+"games": 5,
+"gf": 9,
+"ga": 17
+}
+},
+"parts": {
+"opp_factor": 1.091,
+"goalie_factor": 1.038
+},
+"asof": {
+"game_log": "2026-11-04T16:30:54+00:00",
+"goalie": "2026-11-04T16:19:56+00:00",
+"lines": "2026-11-04T16:12:00+00:00",
+"injuries": "2026-11-04T16:19:56+00:00",
+"book": "2026-11-04T16:30:00+00:00",
+"team_stats": "2026-11-04T16:30:38+00:00"
+},
+"why": "Adrian Kempe has five or more shots on goal in 42% of 12 games this season and 40% of his last 10 (16% last season). Listed status: {'status': 'Day-To-Day', 'note': 'day-to-day', 'date': '2026-11-01'}. He reached 4+ shots on goal (one short of the line or better) in 38% of his last 40, on 20.8 minutes a night over the last 10 and 3.0 shots a game, with a spot on power-play unit 1. SJ allows 21.9 shots a game to forwards (#3 of 32, 1 = most).",
+"check": "pending"
+},
+{
+"id": "8484144-s5",
+"aid": "8484144",
+"player": "Connor Bedard",
+"pos": "C",
+"team": "CHI",
+"opp": "FLA",
+"home": false,
+"market": "5+ Shots on Goal",
+"mk": "s5",
+"hurdle": 5,
+"p": 0.1687,
+"fair": 493,
+"book": 413,
+"book_letter": "Exchange C",
+"edge": -0.134,
+"grade": "B",
+"start": "2026-11-05T00:30:00Z",
+"status": "Active (no injury listed)",
+"last10": [
+{
+"d": "2026-04-15",
+"o": "SJ",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-10-13",
+"o": "PIT",
+"at": "vs",
+"v": 3
+},
+{
+"d": "2026-10-15",
+"o": "WPG",
+"at": "vs",
+"v": 3
+},
+{
+"d": "2026-10-17",
+"o": "DAL",
+"at": "vs",
+"v": 2
+},
+{
+"d": "2026-10-23",
+"o": "MTL",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-10-25",
+"o": "FLA",
+"at": "vs",
+"v": 2
+},
+{
+"d": "2026-10-27",
+"o": "LA",
+"at": "vs",
+"v": 3
+},
+{
+"d": "2026-10-29",
+"o": "DET",
+"at": "@",
+"v": 4
+},
+{
+"d": "2026-10-31",
+"o": "BOS",
+"at": "@",
+"v": 6
+},
+{
+"d": "2026-11-02",
+"o": "COL",
+"at": "vs",
+"v": 4
+}
+],
+"rates": {
+"season": 0.111,
+"season_n": 9,
+"l10": 0.1,
+"l40": 0.2,
+"last_season": 0.246,
+"last_season_n": 69,
+"near": 0.2,
+"ceiling_pct": 0.4
+},
+"trend": "flat",
+"vs_opp": {
+"games": 3,
+"hits": 0,
+"avg": 2.33
+},
+"usage": {
+"toi_l10": 20.32,
+"pp_pts_pg": 0.28,
+"shots_pg": 3.23,
+"pp_unit": {
+"unit": 1,
+"conf": "High",
+"asof": "2026-11-02"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 2.53,
+"goals_rank": 21,
+"shots_pg": 16.9,
+"shots_rank": 28,
+"of": 32,
+"group": "forwards"
+},
+"opp_times_shorthanded_pg": 4.13,
+"opp_sh_rank": 1,
+"pace_5v5_attempts": 81.8,
+"goalie": {
+"name": "Jacob Markstrom",
+"sv": 0.8897,
+"l10_sv": 0.89,
+"l10_gsax": -0.2,
+"last_start": "2026-11-02",
+"status": "projected starter"
+},
+"opp_form": {
+"games": 5,
+"gf": 16,
+"ga": 14
+}
+},
+"parts": {
+"opp_factor": 0.923,
+"goalie_factor": 1.027
+},
+"asof": {
+"game_log": "2026-11-04T16:30:54+00:00",
+"goalie": "2026-11-04T16:19:56+00:00",
+"lines": "2026-11-04T16:12:00+00:00",
+"injuries": "2026-11-04T16:19:56+00:00",
+"book": "2026-11-04T16:30:00+00:00",
+"team_stats": "2026-11-04T16:30:38+00:00"
+},
+"why": "Connor Bedard has five or more shots on goal in 11% of 9 games this season and 10% of his last 10 (25% last season). He reached 4+ shots on goal (one short of the line or better) in 40% of his last 40, on 20.3 minutes a night over the last 10 and 3.2 shots a game, with a spot on power-play unit 1. FLA allows 16.9 shots a game to forwards (#28 of 32, 1 = most).",
+"check": "ok"
+},
+{
+"id": "8482155-s5",
+"aid": "8482155",
+"player": "Alex Laferriere",
+"pos": "R",
+"team": "LA",
+"opp": "SJ",
+"home": true,
+"market": "5+ Shots on Goal",
+"mk": "s5",
+"hurdle": 5,
+"p": 0.161,
+"fair": 521,
+"book": 388,
+"book_letter": "Exchange C",
+"edge": -0.215,
+"grade": "B",
+"start": "2026-11-05T03:00:00Z",
+"status": "Active (no injury listed)",
+"last10": [
+{
+"d": "2026-10-10",
+"o": "VGK",
+"at": "@",
+"v": 2
+},
+{
+"d": "2026-10-13",
+"o": "EDM",
+"at": "vs",
+"v": 2
+},
+{
+"d": "2026-10-17",
+"o": "BOS",
+"at": "vs",
+"v": 2
+},
+{
+"d": "2026-10-20",
+"o": "WSH",
+"at": "@",
+"v": 3
+},
+{
+"d": "2026-10-22",
+"o": "NYI",
+"at": "@",
+"v": 2
+},
+{
+"d": "2026-10-24",
+"o": "NJ",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-10-26",
+"o": "NYR",
+"at": "@",
+"v": 2
+},
+{
+"d": "2026-10-27",
+"o": "CHI",
+"at": "@",
+"v": 5
+},
+{
+"d": "2026-10-29",
+"o": "OTT",
+"at": "vs",
+"v": 7
+},
+{
+"d": "2026-10-31",
+"o": "BUF",
+"at": "vs",
+"v": 3
+}
+],
+"rates": {
+"season": 0.154,
+"season_n": 13,
+"l10": 0.2,
+"l40": 0.2,
+"last_season": 0.146,
+"last_season_n": 82,
+"near": 0.025,
+"ceiling_pct": 0.225
+},
+"trend": "flat",
+"vs_opp": {
+"games": 4,
+"hits": 0,
+"avg": 1.0
+},
+"usage": {
+"toi_l10": 20.66,
+"pp_pts_pg": 0.12,
+"shots_pg": 2.85,
+"pp_unit": {
+"unit": 1,
+"conf": "High",
+"asof": "2026-10-31"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 2.81,
+"goals_rank": 11,
+"shots_pg": 21.9,
+"shots_rank": 3,
+"of": 32,
+"group": "forwards"
+},
+"opp_times_shorthanded_pg": 3.31,
+"opp_sh_rank": 12,
+"pace_5v5_attempts": 90.9,
+"goalie": {
+"name": "Yaroslav Askarov",
+"sv": 0.8884,
+"l10_sv": 0.896,
+"l10_gsax": 1.4,
+"last_start": "2026-11-02",
+"status": "projected starter"
+},
+"opp_form": {
+"games": 5,
+"gf": 9,
+"ga": 17
+}
+},
+"parts": {
+"opp_factor": 1.091,
+"goalie_factor": 1.038
+},
+"asof": {
+"game_log": "2026-11-04T16:30:54+00:00",
+"goalie": "2026-11-04T16:19:56+00:00",
+"lines": "2026-11-04T16:12:00+00:00",
+"injuries": "2026-11-04T16:19:56+00:00",
+"book": "2026-11-04T16:30:00+00:00",
+"team_stats": "2026-11-04T16:30:38+00:00"
+},
+"why": "Alex Laferriere has five or more shots on goal in 15% of 13 games this season and 20% of his last 10 (15% last season). He reached 4+ shots on goal (one short of the line or better) in 23% of his last 40, on 20.7 minutes a night over the last 10 and 2.9 shots a game, with a spot on power-play unit 1. SJ allows 21.9 shots a game to forwards (#3 of 32, 1 = most).",
+"check": "ok"
+},
+{
+"id": "8484801-g2",
+"aid": "8484801",
+"player": "Macklin Celebrini",
+"pos": "C",
+"team": "SJ",
+"opp": "LA",
+"home": false,
+"market": "2+ Goals",
+"mk": "g2",
+"hurdle": 2,
+"p": 0.0814,
+"fair": 1129,
+"book": null,
+"book_letter": null,
+"edge": null,
+"grade": "B",
+"start": "2026-11-05T03:00:00Z",
+"status": "Active (no injury listed)",
+"last10": [
+{
+"d": "2026-10-15",
+"o": "NSH",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-10-17",
+"o": "DET",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-19",
+"o": "TOR",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-10-20",
+"o": "MTL",
+"at": "@",
+"v": 2
+},
+{
+"d": "2026-10-22",
+"o": "OTT",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-10-24",
+"o": "BOS",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-10-27",
+"o": "BUF",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-10-29",
+"o": "VAN",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-10-31",
+"o": "OTT",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-11-02",
+"o": "CGY",
+"at": "vs",
+"v": 0
+}
+],
+"rates": {
+"season": 0.071,
+"season_n": 14,
+"l10": 0.1,
+"l40": 0.125,
+"last_season": 0.098,
+"last_season_n": 82,
+"near": 0.3,
+"ceiling_pct": 0.425
+},
+"trend": "flat",
+"vs_opp": {
+"games": 4,
+"hits": 0,
+"avg": 0.25
+},
+"usage": {
+"toi_l10": 23.1,
+"pp_pts_pg": 0.42,
+"shots_pg": 3.65,
+"pp_unit": {
+"unit": 1,
+"conf": "High",
+"asof": "2026-11-02"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 2.85,
+"goals_rank": 10,
+"shots_pg": 20.6,
+"shots_rank": 9,
+"of": 32,
+"group": "forwards"
+},
+"opp_times_shorthanded_pg": 3.0,
+"opp_sh_rank": 24,
+"pace_5v5_attempts": 90.9,
+"goalie": {
+"name": "Darcy Kuemper",
+"sv": 0.893,
+"l10_sv": 0.884,
+"l10_gsax": -1.8,
+"last_start": "2026-10-29",
+"status": "projected starter"
+},
+"opp_form": {
+"games": 5,
+"gf": 15,
+"ga": 16
+}
+},
+"parts": {
+"opp_factor": 1.071,
+"goalie_factor": 1.009
+},
+"asof": {
+"game_log": "2026-11-04T16:30:54+00:00",
+"goalie": "2026-11-04T16:19:56+00:00",
+"lines": "2026-11-04T16:12:00+00:00",
+"injuries": "2026-11-04T16:19:56+00:00",
+"book": "2026-11-04T16:30:00+00:00",
+"team_stats": "2026-11-04T16:30:38+00:00"
+},
+"why": "Macklin Celebrini has two or more goals in 7% of 14 games this season and 10% of his last 10 (10% last season). He reached 1+ goal (one short of the line or better) in 43% of his last 40, on 23.1 minutes a night over the last 10 and 3.7 shots a game, with a spot on power-play unit 1. LA allows 2.85 goals a game to forwards (#10 of 32, 1 = most). Projected goalie Darcy Kuemper is at a 0.884 save rate over his last 10.",
+"check": "ok"
+}
+],
+"record": {},
+"bands": {
+"2+ Goals": "A 10%+, B 7%+",
+"2+ Points": "A 30%+, B 22%+",
+"5+ Shots on Goal": "A 22%+, B 16%+"
+}
+}
