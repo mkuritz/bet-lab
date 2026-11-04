@@ -189,43 +189,32 @@ def pull_open_odds(p):
     return -110
 
 def ensure_odds(p):
+    """Append-only: only backfill a price on an entry/leg that has none. Never overwrite a logged price,
+    odds_source, line, or any other field once it exists."""
     if p.get("type") == "parlay":
         for l in p.get("legs") or []:
-            if l.get("odds") is None or l.get("odds_assumed") or (l.get("odds_source") == "opening" and l.get("odds") in (-110, 115, 100)):
+            if l.get("odds") is None:
                 o = pull_open_odds(l)
                 if o is not None:
                     l["odds"] = o
                     l["odds_source"] = "opening"
-                    l.pop("odds_assumed", None)
-            elif not l.get("odds_source"):
-                l["odds_source"] = "stated"
-        if p.get("odds") is None or p.get("odds_assumed") or (p.get("odds_source") == "opening" and p.get("odds") in (-110, 115)):
+        if p.get("odds") is None:
             if "teaser" in (p.get("desc") or "").lower():
                 p["odds"] = -120
                 p["odds_source"] = "opening"
-                p.pop("odds_assumed", None)
             else:
                 leg_odds = [l.get("odds") for l in (p.get("legs") or []) if l.get("odds") is not None]
-                if leg_odds:
+                if leg_odds and len(leg_odds) == len(p.get("legs") or []):
                     prod = 1.0
                     for lo in leg_odds: prod *= am_to_dec(lo)
                     p["odds"] = dec_to_am(prod)
                     p["odds_source"] = "opening"
-                    p.pop("odds_assumed", None)
-        elif not p.get("odds_source"):
-            p["odds_source"] = "stated"
         return
-
-    if p.get("odds_locked") and p.get("odds") is not None:
-        return  # real opening price already pulled from the multi-book feed; never overwrite
-    if p.get("odds") is None or p.get("odds_assumed") or (p.get("odds_source") == "opening" and (p.get("type") == "prop" or p.get("odds") in (-110, 115, 100))):
+    if p.get("odds") is None:
         o = pull_open_odds(p)
         if o is not None:
             p["odds"] = o
             p["odds_source"] = "opening"
-            p.pop("odds_assumed", None)
-    elif not p.get("odds_source"):
-        p["odds_source"] = "stated"
 
 def extract_stat(pstats, player, stat_cat, stat_key):
     pl = pstats.get((player or "").lower()) or {}
@@ -310,10 +299,11 @@ def rec(ps):
 def grade_file(path):
     if not os.path.exists(path): return
     d = json.load(open(path))
+    pre = {id(p) for p in d["picks"] if p.get("result")}
     for p in d["picks"]:
+        if p.get("result"): continue  # already graded: never touch it again
         try: ensure_odds(p)
         except Exception as e: print("odds skip", p.get("id"), e)
-        if p.get("result") and (p.get("type") != "prop" or p.get("actual") is not None): continue
         try:
             r, f = grade(p)
             if r: p["result"] = r
@@ -322,6 +312,9 @@ def grade_file(path):
     L = []
     for p in d["picks"]:
         if p.get("type") == "parlay":
+            if id(p) in pre:
+                L += [l for l in p["legs"] if l.get("result") in ("win", "loss", "push")]
+                continue
             lr = [l.get("result") for l in p["legs"]]
             p["legs_total"] = len(lr); p["legs_graded"] = sum(r in ("win", "loss", "push") for r in lr)
             p["legs_hit"] = sum(r == "win" for r in lr); p["legs_push"] = sum(r == "push" for r in lr)
