@@ -26,7 +26,8 @@ const TB=t=>t?`<span class="tb ${esc(t)}">${esc(String(t).toUpperCase())}</span>
 window.renderEarlyInjuryAdjust=function(E,tab){
  if(!E||(!E.prop_freerolls&&!E.line_opportunities))return"";
  tab=tab||window._eiaTab||"props";
- const PF=E.prop_freerolls||[],LO=E.line_opportunities||[];
+ const _now=Date.now(),_today=new Date(_now-5*3600e3).toISOString().slice(0,10),_kOk=g=>{const t=Date.parse(g&&g.kickoff||"");return isFinite(t)&&t>_now},_dOk=r=>!r.day||r.day>=_today;
+ const PF=(E.prop_freerolls||[]).filter(_dOk),LO=(E.line_opportunities||[]).filter(_kOk),_liveG=new Set([...LO.map(g=>g.matchup),...PF.map(r=>r.matchup)]);
  const tCls=c=>c=="DUAL_OVER_VOID_FREEROLL"?"fr":c=="DECOY_SNAP_HEDGE"?"hd":"";
  const pCards=PF.slice(0,window._eiaAll?PF.length:8).map(r=>{
   const P=r.probabilities||{},sp=r.starter_prop;
@@ -48,7 +49,7 @@ window.renderEarlyInjuryAdjust=function(E,tab){
   </div>`;
  }).join("");
 
- const RR=E.role_returns||[],LK=E.likely_out||[],f1=x=>x==null?"–":(Math.round(x*10)/10);
+ const RR=E.role_returns||[],LK=(E.likely_out||[]).filter(x=>_liveG.has(x.game)),f1=x=>x==null?"–":(Math.round(x*10)/10);
  const rCards=RR.map(r=>`<div class="eia-card">
    <div style="display:flex;justify-content:space-between;gap:6px;align-items:baseline;flex-wrap:wrap"><div><b style="font-size:14px;color:#fff">${esc(r.player)}</b> <span class="ncm">${esc(r.team)} · loses share</span></div><span class="eia-tag hd">↘ ${esc(r.returning)} returns</span></div>
    <div class="ncm" style="margin-top:2px">Carries ${f1(r.without_lead.rushingAttempts)} → <b style="color:#ff7b88">${f1(r.with_lead.rushingAttempts)}</b> · Rush yds ${f1(r.without_lead.rushingYards)} → <b style="color:#ff7b88">${f1(r.with_lead.rushingYards)}</b> (${r.n_games_with_lead} games with ${esc(r.returning)})</div>
@@ -84,7 +85,7 @@ window.renderEarlyInjuryAdjust=function(E,tab){
    <button type="button" data-eiatab="lines" class="${tab=="lines"?"on":""}">📈 Unadjusted Spread &amp; ML Front-Runs (${LO.length})</button>
    ${tab=="props"&&PF.length>8?`<button type="button" data-eiaall="1" class="${window._eiaAll?"on":""}">${window._eiaAll?"Show Top 8":"Show All "+PF.length+" Cascades"}</button>`:""}
   </div>
-  <div class="eia-grid">${tab=="props"?rCards+pCards:lCards}</div>
+  <div class="eia-grid">${tab=="props"?rCards+pCards:(lCards||`<div class="eia-card" style="opacity:.8">No unadjusted line spots for this week's remaining games yet. This updates as the injury reports come in.</div>`)}</div>
  </div>`;
 };
 
