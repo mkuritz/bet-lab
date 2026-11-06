@@ -17,7 +17,7 @@ const rkCol=r=>{
   return `hsl(${Math.round(135-135*x)} 62% 24%)`;
 };
 
-let D=null,PLOGS=null,SHOTS_LG=null,SHOT_CACHE={};
+let D=null;
 let TAB="slate";
 let F={
   q:"",team:"",game:"",mkt:"",spot:"all",
@@ -27,32 +27,10 @@ let F={
   tmConf:"",tmSort:"net"
 };
 
-const MKT_STAT_MAP={
-  "Points":g=>g.points||0,
-  "Rebounds":g=>g.totalRebounds||0,
-  "Assists":g=>g.assists||0,
-  "3-Point Field Goals":g=>parseFloat(String(g["threePointFieldGoalsMade-threePointFieldGoalsAttempted"]||0).split("-")[0])||0,
-  "Steals":g=>g.steals||0,
-  "Blocks":g=>g.blocks||0,
-  "Points, Rebounds, and Assists":g=>(g.points||0)+(g.totalRebounds||0)+(g.assists||0),
-  "Points and Assists":g=>(g.points||0)+(g.assists||0),
-  "Points and Rebounds":g=>(g.points||0)+(g.totalRebounds||0),
-  "Assists and Rebounds":g=>(g.assists||0)+(g.totalRebounds||0)
-};
-
 function loadHub(){
   const v=Math.floor(Date.now()/18e4);
   return fetch("data/nba_hub.json?v="+v).then(r=>r.json()).then(d=>{D=d;return d});
 }
-function loadPlogs(){
-  if(PLOGS)return Promise.resolve(PLOGS);
-  return fetch("data/plogs_nba.json?v="+Math.floor(Date.now()/6e5)).then(r=>r.ok?r.json():{}).then(p=>{PLOGS=p||{};return PLOGS}).catch(()=>({}));
-}
-function loadPlayerShot(aid){
-  if(SHOT_CACHE[aid])return Promise.resolve(SHOT_CACHE[aid]);
-  return fetch("data/shots_nba/"+aid+".json?v="+Math.floor(Date.now()/6e5)).then(r=>r.ok?r.json():null).then(s=>{SHOT_CACHE[aid]=s;return s}).catch(()=>null);
-}
-
 function renderKPIs(){
   const el=document.getElementById("kpi-strip");
   if(!el||!D)return;
@@ -93,11 +71,11 @@ function renderSlate(){
         <span class="badge ${blCls}" title="Estimated Q4 starter bench risk from spread">Blowout Risk: ${E(g.blowout_tier)} (${g.blowout_pct}%)</span>
       </div>
       <div class="gm-tm">
-        <div class="lhs"><img src="${E(g.away_logo)}" alt=""><span>${E(g.away_name)}</span> <span class="mut" style="font-size:12px;font-weight:600">(${E(g.away_rec)})</span> ${rAw}</div>
+        <div class="lhs"><button type="button" class="team-link" data-team="${E(g.away)}" aria-label="Open ${E(g.away_name)} profile"><img src="${E(g.away_logo)}" alt=""><span>${E(g.away_name)}</span></button> <span class="mut" style="font-size:12px;font-weight:600">(${E(g.away_rec)})</span> ${rAw}</div>
         <div><b style="font-size:15px">${wA}%</b> <span class="mut" style="font-size:11.5px">Fair ${am(g.fair_mla)} · Book A ${am(g.mla)}</span></div>
       </div>
       <div class="gm-tm">
-        <div class="lhs"><img src="${E(g.home_logo)}" alt=""><span>${E(g.home_name)}</span> <span class="mut" style="font-size:12px;font-weight:600">(${E(g.home_rec)})</span> ${rHm}</div>
+        <div class="lhs"><button type="button" class="team-link" data-team="${E(g.home)}" aria-label="Open ${E(g.home_name)} profile"><img src="${E(g.home_logo)}" alt=""><span>${E(g.home_name)}</span></button> <span class="mut" style="font-size:12px;font-weight:600">(${E(g.home_rec)})</span> ${rHm}</div>
         <div><b style="font-size:15px">${wH}%</b> <span class="mut" style="font-size:11.5px">Fair ${am(g.fair_mlh)} · Book A ${am(g.mlh)}</span></div>
       </div>
       <div class="gm-bar" title="Win Probability: ${g.away} ${wA}% vs ${g.home} ${wH}%"><i class="a" style="width:${wA}%"></i><i class="h" style="width:${wH}%"></i></div>
@@ -495,155 +473,6 @@ function renderTeams(){
   </div>`;
 }
 
-function openPlayerModal(aid,mkt){
-  const ov=document.getElementById("nba-modal-ov");
-  const md=document.getElementById("nba-modal");
-  if(!ov||!md||!D)return;
-  const pProps=(D.props||[]).filter(x=>String(x.aid)===String(aid));
-  const curProp=pProps.find(x=>x.market===mkt)||pProps[0]||{aid:aid,player:"Player #"+aid,market:mkt||"Points",line:15.5,team:"",opp:""};
-  let splitMode="all",refMode="avg",activeMkt=curProp.market||"Points";
-
-  ov.classList.add("open");
-  md.innerHTML=`<div class="mut">Loading game logs &amp; shot profile for ${E(curProp.player)}…</div>`;
-
-  Promise.all([loadPlogs(),loadPlayerShot(aid)]).then(([plogs,shotData])=>{
-    const logs=(plogs[String(aid)]||[]).slice();
-    function drawModal(){
-      const pr=(pProps.find(x=>x.market===activeMkt))||curProp;
-      const fn=MKT_STAT_MAP[activeMkt]||MKT_STAT_MAP["Points"];
-      const line=pr.line||15.5;
-      const avgMin=logs.length?logs.reduce((s,g)=>s+((g.s&&g.s.minutes)||0),0)/logs.length:28;
-
-      const filteredLogs=logs.filter(g=>{
-        const m=(g.s&&g.s.minutes)||0;
-        if(splitMode==="home")return g.at==="vs";
-        if(splitMode==="away")return g.at==="@";
-        if(splitMode==="highmin")return m>=avgMin;
-        if(splitMode==="h2h")return g.o===pr.opp;
-        if(splitMode==="2026")return (g.d||"").startsWith("2026-10");
-        return true;
-      }).slice(0,15).reverse();
-
-      const vals=filteredLogs.map(g=>fn(g.s||{}));
-      const hits=vals.filter(v=>v>line).length;
-      const meanVal=vals.length?(vals.reduce((a,b)=>a+b,0)/vals.length):0;
-      const sortedVals=vals.slice().sort((a,b)=>a-b);
-      const medVal=sortedVals.length?(sortedVals.length%2?sortedVals[(sortedVals.length-1)/2]:0.5*(sortedVals[sortedVals.length/2-1]+sortedVals[sortedVals.length/2])):0;
-      const refVal=refMode==="med"?medVal:meanVal;
-      const maxBar=Math.max(line*1.3, ...vals, 10);
-      const linePct=Math.min(92,Math.max(8,Math.round(line/maxBar*100)));
-
-      // Positional comps vs opponent
-      const comps=(D.props||[]).filter(x=>x.opp===pr.opp&&x.market===activeMkt&&x.aid!==pr.aid).slice(0,5);
-
-      // Shot zones summary
-      const s25=shotData&&shotData.seasons&&(shotData.seasons["2025-26"]||shotData.seasons["2026-27"]);
-      const zHtml=s25&&s25.zones?`<div style="margin-top:12px">
-        <div style="font-size:12px;font-weight:800;text-transform:uppercase;color:var(--mut);margin-bottom:6px">🏀 Player Court Shot-Zone Breakdown (${s25.fga} FGA)</div>
-        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px">
-          ${s25.zones.map(z=>{
-            const pct=z.fga?Math.round(z.fgm/z.fga*100):0;
-            const share=s25.fga?Math.round(z.fga/s25.fga*100):0;
-            return `<div style="background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:6px;text-align:center">
-              <div class="mut" style="font-size:10px;text-transform:uppercase">${E(z.k)}</div>
-              <div style="font-weight:900;font-size:14px">${pct}%</div>
-              <div class="mut" style="font-size:10px">${z.fgm}/${z.fga} (${share}% vol)</div>
-            </div>`;
-          }).join("")}
-        </div>
-      </div>`:"";
-
-      md.innerHTML=`
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px">
-          <div style="display:flex;gap:12px;align-items:center">
-            <img src="https://a.espncdn.com/i/headshots/nba/players/full/${E(aid)}.png" width="58" height="58" style="border-radius:50%;background:var(--panel2);object-fit:cover" onerror="this.style.display='none'" alt="">
-            <div>
-              <div style="font-size:20px;font-weight:900">${E(pr.player)} <span class="badge ${pr.spot_cls||'spot'}">${E(pr.spot_tag||'Active')}</span></div>
-              <div class="mut" style="font-size:12.5px">${E(pr.team)} ${E(pr.matchup||"")} · Pos: ${E(pr.pos_slot||pr.pos)} · Opp DvP: <b>#${pr.dvp_szn||15} Szn / #${pr.dvp_l5||15} L5</b></div>
-            </div>
-          </div>
-          <button type="button" id="nba-modal-close" style="background:var(--panel2);border:1px solid var(--line);color:var(--txt);border-radius:8px;width:34px;height:34px;cursor:pointer;font-size:18px">✕</button>
-        </div>
-
-        ${pProps.length>1?`<div class="ctl-bar" style="margin-top:12px;padding:8px">
-          <span class="mut" style="font-size:11.5px;font-weight:800">Market:</span>
-          <div class="pills">${pProps.map(x=>`<button type="button" data-md-mkt="${E(x.market)}" class="${x.market===activeMkt?"on":""}">${E(x.mk_short)} (${x.line})</button>`).join("")}</div>
-        </div>`:""}
-
-        ${pr.execution_thesis?`<div style="margin-top:10px;padding:10px 12px;background:rgba(11,15,23,.78);border:1px solid rgba(83,227,166,.35);border-radius:10px;font-size:12px;line-height:1.45;display:flex;flex-direction:column;gap:4px">
-          <div style="font-weight:800;color:#53e3a6;text-transform:uppercase;font-size:11px;letter-spacing:.04em">🎯 5-Pillar Execution Thesis &amp; Game Script Fit</div>
-          <div><b style="color:#53e3a6">Why The Edge Exists:</b> ${E(pr.execution_thesis.why_edge||"")}</div>
-          <div><b style="color:#38bdf8">Key Catalyst:</b> ${E(pr.execution_thesis.catalyst||"")}</div>
-          <div><b style="color:#a78bfa">Game Script Fit:</b> ${E(pr.execution_thesis.script_alignment||"")}</div>
-          <div><b style="color:#f5c451">Risk &amp; Trap Audit:</b> ${E(pr.execution_thesis.trap_audit||"")}</div>
-          <div><b style="color:#53e3a6">Target Execution:</b> ${E(pr.execution_thesis.target_execution||"")}</div>
-        </div>`:""}
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px">
-          <div class="kpi"><div class="l">Line / Book A</div><div class="v">${line} <span style="font-size:13px;color:var(--acc)">${am(pr.ov_odds)}</span></div><div class="s">${E(activeMkt)}</div></div>
-          <div class="kpi"><div class="l">Our Proj / Med</div><div class="v">${pr.proj||meanVal.toFixed(1)} <span style="font-size:13px;color:var(--mut)">/ ${pr.median||medVal.toFixed(1)}</span></div><div class="s">Conviction ${pr.conviction||70}/100</div></div>
-          <div class="kpi"><div class="l">Split Hit Rate</div><div class="v ${hits/Math.max(1,vals.length)>=0.6?'up':''}">${vals.length?Math.round(hits/vals.length*100):0}%</div><div class="s">${hits}/${vals.length} games over ${line}</div></div>
-          <div class="kpi"><div class="l">Split Mean / Med</div><div class="v">${meanVal.toFixed(1)} <span style="font-size:13px;color:var(--mut)">/ ${medVal.toFixed(1)}</span></div><div class="s">Δ ${(meanVal-line>=0?"+":"")+(meanVal-line).toFixed(1)} vs Line</div></div>
-        </div>
-
-        <div class="ctl-bar" style="margin-top:10px;padding:8px;justify-content:space-between">
-          <div class="pills">
-            ${[["all","All Logs"],["home","🏠 Home"],["away","✈️ Away"],["highmin","🔥 High MIN (≥Avg)"],["h2h","🆚 vs "+E(pr.opp)],["2026","📅 2026-27 Only"]].map(x=>`<button type="button" data-md-split="${x[0]}" class="${splitMode===x[0]?"on":""}">${x[1]}</button>`).join("")}
-          </div>
-          <div class="pills">
-            <button type="button" data-md-ref="${refMode==='avg'?'med':'avg'}" class="on">Ref: ${refMode==='avg'?'Mean ('+meanVal.toFixed(1)+')':'Median ('+medVal.toFixed(1)+')'} ⇄</button>
-          </div>
-        </div>
-
-        <div class="bar-chart">
-          <div class="ref-line" style="bottom:${linePct}%"><span>Line ${line}</span></div>
-          ${filteredLogs.length?filteredLogs.map(g=>{
-            const v=fn(g.s||{});
-            const m=(g.s&&g.s.minutes)||0;
-            const hPct=Math.min(95,Math.max(6,Math.round(v/maxBar*100)));
-            const hit=v>line;
-            return `<div class="bar-col" title="${g.d}: ${v} ${activeMkt} (${m} MIN) ${g.at} ${g.o}">
-              <div class="bar-val ${hit?'up':'dn'}">${v}</div>
-              <div class="bar-min">${m}m</div>
-              <div class="bar-fill" style="height:${hPct}%;background:${hit?'#53e3a6':'#ff5d6c'}"></div>
-              <div class="bar-lbl">${E(g.o)}</div>
-            </div>`;
-          }).join(""):`<div class="mut" style="margin:auto">No games match this situational filter.</div>`}
-        </div>
-
-        ${pr.wo?`<div class="card" style="margin-top:12px;background:var(--panel2)">
-          <div style="font-size:12px;font-weight:800;color:var(--acc)">🩹 Empirical Teammate On/Off Split: Without ${E(pr.wo.tm_out)}</div>
-          <div style="font-size:13px;margin-top:4px">Averages <b>${pr.wo.avg}</b> without ${E(pr.wo.tm_out)} (${pr.wo.n} games) vs. <b>${pr.wo.w_avg}</b> with him (<b class="up">${pr.wo.delta>=0?"+":""}${pr.wo.delta} boost</b>).</div>
-        </div>`:""}
-
-        ${zHtml}
-
-        ${comps.length?`<div style="margin-top:14px">
-          <div style="font-size:12px;font-weight:800;text-transform:uppercase;color:var(--mut);margin-bottom:6px">👥 Other Matchup Props vs. ${E(pr.opp)} (${E(activeMkt)})</div>
-          <table>
-            <thead><tr><th class="l-al">Player</th><th>Line</th><th>Proj</th><th>L10 Hit%</th><th>Spot Tag</th></tr></thead>
-            <tbody>
-              ${comps.map(c=>`<tr>
-                <td class="l-al"><a class="plink" data-player-aid="${E(c.aid)}" data-player-mkt="${E(c.market)}">${E(c.player)}</a> (${E(c.team)})</td>
-                <td>${c.line}</td>
-                <td><b>${c.proj}</b></td>
-                <td>${c.l10_pct}% (${c.l10_h}/${c.l10_n})</td>
-                <td><span class="badge ${c.spot_cls}">${E(c.spot_tag)}</span></td>
-              </tr>`).join("")}
-            </tbody>
-          </table>
-        </div>`:""}
-      `;
-
-      const cl=md.querySelector("#nba-modal-close");
-      if(cl)cl.onclick=()=>ov.classList.remove("open");
-      md.querySelectorAll("[data-md-mkt]").forEach(b=>b.onclick=()=>{activeMkt=b.dataset.mdMkt;drawModal()});
-      md.querySelectorAll("[data-md-split]").forEach(b=>b.onclick=()=>{splitMode=b.dataset.mdSplit;drawModal()});
-      md.querySelectorAll("[data-md-ref]").forEach(b=>b.onclick=()=>{refMode=b.dataset.mdRef;drawModal()});
-    }
-    drawModal();
-  });
-}
-
 function render(){
   if(!D)return;
   document.querySelectorAll("#hub-tabs button").forEach(b=>b.classList.toggle("on",b.dataset.tab===TAB));
@@ -655,6 +484,8 @@ function render(){
   else if(TAB==="dvp")out.innerHTML=renderDvP();
   else if(TAB==="streaks")out.innerHTML=renderStreaks();
   else if(TAB==="teams")out.innerHTML=renderTeams();
+
+  NBAHubProfiles.wire(out);
 
   const fq=document.getElementById("f-q");
   if(fq)fq.oninput=e=>{F.q=e.target.value;render()};
@@ -693,20 +524,13 @@ document.addEventListener("click",e=>{
   const jg=e.target.closest("[data-jump-game]");
   if(jg){e.preventDefault();F.game=jg.dataset.jumpGame;TAB="props";render();return}
   const pl=e.target.closest("[data-player-aid]");
-  if(pl){e.preventDefault();location.href="index.html#player=nba:"+encodeURIComponent(pl.dataset.playerAid)+(pl.dataset.playerMkt?"&ctx="+encodeURIComponent(pl.dataset.playerMkt):"");return}
-  const ov=document.getElementById("nba-modal-ov");
-  if(e.target===ov)ov.classList.remove("open");
+  if(pl){e.preventDefault();NBAHubProfiles.openPlayer(pl.dataset.playerAid,pl.dataset.playerMkt);return}
+  const tm=e.target.closest("[data-team]");
+  if(tm){e.preventDefault();NBAHubProfiles.openTeam(tm.dataset.team);return}
 });
 
-document.addEventListener("pointerover",e=>{const pl=e.target.closest&&e.target.closest("[data-player-aid]");if(pl&&!window.__pf){window.__pf=1;const l=document.createElement("link");l.rel="prefetch";l.href="index.html";document.head.appendChild(l)}});
-document.addEventListener("keydown",e=>{
-  if(e.key==="Escape"){
-    const ov=document.getElementById("nba-modal-ov");
-    if(ov)ov.classList.remove("open");
-  }
-});
-
-loadHub().then(()=>{
+loadHub().then(async()=>{
+  await NBAHubProfiles.init(D);
   if(location.hash==="#dvp")TAB="dvp";
   else if(location.hash==="#rotations")TAB="rotations";
   else if(location.hash==="#props")TAB="props";
