@@ -94,6 +94,18 @@ tr:hover td{background:var(--panel2)}
 .profile-section table{font-size:12px}.profile-note{padding:10px;border:1px solid var(--line);border-radius:8px;margin:6px 0;font-size:12px}
 .profile-tabs{display:flex;gap:6px;flex-wrap:wrap}.profile-tabs a{font-size:12px;padding:5px 8px;border:1px solid var(--line);border-radius:8px}
 @media(max-width:540px){#nba-modal{padding:12px}.profile-actions{top:-12px}.profile-header h2{font-size:20px}.profile-header img{width:44px;height:44px}}
+
+/* Low Hurdles */
+.lh-head{margin:0 0 8px}
+.lh-head p{margin:4px 0 0;color:var(--mut);font-size:12.5px;max-width:820px}
+.lh-sec{margin-top:14px}
+.lh-sec h3{margin:0 0 8px;font-size:15px}
+.lh-row{display:grid;grid-template-columns:minmax(140px,1.4fr) minmax(110px,1fr) 88px minmax(140px,1.2fr);gap:8px 12px;align-items:center;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--panel2);margin-bottom:6px}
+.lh-row .floor{font-weight:800}
+.lh-row .streak{font-weight:800;color:var(--acc)}
+.lh-row .meta{font-size:12px;color:var(--mut)}
+.lh-empty{padding:10px 12px;border:1px dashed var(--line);border-radius:10px;color:var(--mut);font-size:12.5px}
+@media(max-width:720px){.lh-row{grid-template-columns:1fr 1fr;gap:6px}.lh-row .meta{grid-column:1/-1}}
 </style>
 <link rel="stylesheet" href="nav.css">
 <script src="https://sportslabshq.com/sl/sl.js?v=13" defer></script>
@@ -120,6 +132,7 @@ tr:hover td{background:var(--panel2)}
     <button type="button" data-tab="rotations">📋 Starting 5, Rotations &amp; Injury Cascades</button>
     <button type="button" data-tab="dvp">🛡️ 30-Team Positional DvP &amp; Shot Zones</button>
     <button type="button" data-tab="streaks">🔥 Hot Streaks, Volume-Due &amp; Correlated SGPs</button>
+    <button type="button" data-tab="lowhurdles">Low Hurdles</button>
     <button type="button" data-tab="teams">📊 30-Team Four-Factors &amp; Pace Ratings</button>
   </div>
 
@@ -137,6 +150,6 @@ tr:hover td{background:var(--panel2)}
 <script src="https://sportslabshq.com/sl/sl-sports.js?v=2"></script>
 <script src="nav.js?v=nc5"></script>
 <script src="nba-hub-profiles.js?v=1"></script>
-<script src="nba-hub.js?v=4"></script>
+<script src="nba-hub.js?v=5lh"></script>
 </body>
 </html>

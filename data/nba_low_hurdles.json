@@ -1,0 +1,889 @@
+{
+  "updated": "2026-11-06T19:18:15Z",
+  "built_at": "2026-11-06T20:00Z",
+  "season_start": "2026-10-01",
+  "definition": {
+    "tonight_number": "Published NBA Hub prop line for that market on the upcoming game.",
+    "clear": "Completed-game total must be strictly greater than a half-line (24.5\u219225), or \u2265 an integer threshold (15\u219215). Display floor is that integer with a + suffix.",
+    "active_streak": "Count of consecutive most-recent current-season completed games (minutes > 0) that cleared the same tonight number; stop at first miss. No skipped games. No prior season.",
+    "minimum_streaks": {
+      "Points": 5,
+      "Rebounds": 5,
+      "Assists": 5,
+      "3-Point Field Goals": 5
+    },
+    "minimum_note": "Reference floors were Points 7 / Rebounds 6 / Assists 6 / Threes 5. Early 2026-27 logs are short (~6\u20138 games), so all four sections use a consistent minimum of 5. Raise back when the season has enough games.",
+    "display_only": true
+  },
+  "order": [
+    "points",
+    "rebounds",
+    "assists",
+    "threes"
+  ],
+  "titles": {
+    "points": "Points",
+    "rebounds": "Rebounds",
+    "assists": "Assists",
+    "threes": "Three-Pointers Made"
+  },
+  "sections": {
+    "points": [
+      {
+        "aid": "4433083",
+        "player": "Cam Spencer",
+        "team": "MEM",
+        "opp": "vs OKC",
+        "game": "401909291",
+        "time": "2026-11-07T01:00Z",
+        "time_et": "Fri Nov 06 \u00b7 8:00 PM ET",
+        "market": "Points",
+        "market_label": "Points",
+        "line": 7.5,
+        "floor": 8,
+        "floor_label": "8+ Points",
+        "streak": 6,
+        "min_required": 5,
+        "recent_totals": [
+          13.0,
+          10.0,
+          8.0,
+          8.0,
+          13.0,
+          11.0
+        ],
+        "recent_games": [
+          {
+            "date": "2026-11-03",
+            "opp": "NO",
+            "at": "vs",
+            "total": 13.0
+          },
+          {
+            "date": "2026-11-01",
+            "opp": "SAC",
+            "at": "vs",
+            "total": 10.0
+          },
+          {
+            "date": "2026-10-30",
+            "opp": "POR",
+            "at": "@",
+            "total": 8.0
+          },
+          {
+            "date": "2026-10-27",
+            "opp": "UTAH",
+            "at": "@",
+            "total": 8.0
+          },
+          {
+            "date": "2026-10-26",
+            "opp": "SAC",
+            "at": "@",
+            "total": 13.0
+          },
+          {
+            "date": "2026-10-24",
+            "opp": "GS",
+            "at": "@",
+            "total": 11.0
+          }
+        ]
+      },
+      {
+        "aid": "3945274",
+        "player": "Luka Doncic",
+        "team": "LAL",
+        "opp": "vs POR",
+        "game": "401909294",
+        "time": "2026-11-07T03:00Z",
+        "time_et": "Fri Nov 06 \u00b7 10:00 PM ET",
+        "market": "Points",
+        "market_label": "Points",
+        "line": 35.5,
+        "floor": 36,
+        "floor_label": "36+ Points",
+        "streak": 5,
+        "min_required": 5,
+        "recent_totals": [
+          42.0,
+          45.0,
+          37.0,
+          41.0,
+          52.0
+        ],
+        "recent_games": [
+          {
+            "date": "2026-11-03",
+            "opp": "MIA",
+            "at": "vs",
+            "total": 42.0
+          },
+          {
+            "date": "2026-11-02",
+            "opp": "TOR",
+            "at": "vs",
+            "total": 45.0
+          },
+          {
+            "date": "2026-10-31",
+            "opp": "GS",
+            "at": "@",
+            "total": 37.0
+          },
+          {
+            "date": "2026-10-28",
+            "opp": "POR",
+            "at": "vs",
+            "total": 41.0
+          },
+          {
+            "date": "2026-10-25",
+            "opp": "UTAH",
+            "at": "@",
+            "total": 52.0
+          }
+        ]
+      },
+      {
+        "aid": "4433137",
+        "player": "Ziaire Williams",
+        "team": "LAL",
+        "opp": "vs POR",
+        "game": "401909294",
+        "time": "2026-11-07T03:00Z",
+        "time_et": "Fri Nov 06 \u00b7 10:00 PM ET",
+        "market": "Points",
+        "market_label": "Points",
+        "line": 7.5,
+        "floor": 8,
+        "floor_label": "8+ Points",
+        "streak": 5,
+        "min_required": 5,
+        "recent_totals": [
+          9.0,
+          11.0,
+          11.0,
+          14.0,
+          9.0
+        ],
+        "recent_games": [
+          {
+            "date": "2026-11-03",
+            "opp": "MIA",
+            "at": "vs",
+            "total": 9.0
+          },
+          {
+            "date": "2026-10-28",
+            "opp": "POR",
+            "at": "vs",
+            "total": 11.0
+          },
+          {
+            "date": "2026-10-25",
+            "opp": "UTAH",
+            "at": "@",
+            "total": 11.0
+          },
+          {
+            "date": "2026-10-24",
+            "opp": "LAC",
+            "at": "vs",
+            "total": 14.0
+          },
+          {
+            "date": "2026-10-22",
+            "opp": "GS",
+            "at": "vs",
+            "total": 9.0
+          }
+        ]
+      }
+    ],
+    "rebounds": [
+      {
+        "aid": "5211175",
+        "player": "Zaccharie Risacher",
+        "team": "DAL",
+        "opp": "vs UTAH",
+        "game": "401909290",
+        "time": "2026-11-07T01:00Z",
+        "time_et": "Fri Nov 06 \u00b7 8:00 PM ET",
+        "market": "Rebounds",
+        "market_label": "Rebounds",
+        "line": 3.5,
+        "floor": 4,
+        "floor_label": "4+ Rebounds",
+        "streak": 7,
+        "min_required": 5,
+        "recent_totals": [
+          5.0,
+          6.0,
+          6.0,
+          8.0,
+          4.0,
+          6.0,
+          6.0
+        ],
+        "recent_games": [
+          {
+            "date": "2026-11-03",
+            "opp": "SAC",
+            "at": "vs",
+            "total": 5.0
+          },
+          {
+            "date": "2026-10-31",
+            "opp": "HOU",
+            "at": "vs",
+            "total": 6.0
+          },
+          {
+            "date": "2026-10-29",
+            "opp": "OKC",
+            "at": "vs",
+            "total": 6.0
+          },
+          {
+            "date": "2026-10-26",
+            "opp": "MIA",
+            "at": "@",
+            "total": 8.0
+          },
+          {
+            "date": "2026-10-25",
+            "opp": "SA",
+            "at": "vs",
+            "total": 4.0
+          },
+          {
+            "date": "2026-10-23",
+            "opp": "IND",
+            "at": "@",
+            "total": 6.0
+          },
+          {
+            "date": "2026-10-22",
+            "opp": "HOU",
+            "at": "@",
+            "total": 6.0
+          }
+        ]
+      },
+      {
+        "aid": "4873138",
+        "player": "Ace Bailey",
+        "team": "UTAH",
+        "opp": "@DAL",
+        "game": "401909290",
+        "time": "2026-11-07T01:00Z",
+        "time_et": "Fri Nov 06 \u00b7 8:00 PM ET",
+        "market": "Rebounds",
+        "market_label": "Rebounds",
+        "line": 5.5,
+        "floor": 6,
+        "floor_label": "6+ Rebounds",
+        "streak": 6,
+        "min_required": 5,
+        "recent_totals": [
+          6.0,
+          7.0,
+          6.0,
+          10.0,
+          12.0,
+          7.0
+        ],
+        "recent_games": [
+          {
+            "date": "2026-11-03",
+            "opp": "SA",
+            "at": "@",
+            "total": 6.0
+          },
+          {
+            "date": "2026-10-31",
+            "opp": "POR",
+            "at": "vs",
+            "total": 7.0
+          },
+          {
+            "date": "2026-10-29",
+            "opp": "SA",
+            "at": "vs",
+            "total": 6.0
+          },
+          {
+            "date": "2026-10-27",
+            "opp": "MEM",
+            "at": "vs",
+            "total": 10.0
+          },
+          {
+            "date": "2026-10-25",
+            "opp": "LAL",
+            "at": "vs",
+            "total": 12.0
+          },
+          {
+            "date": "2026-10-24",
+            "opp": "NO",
+            "at": "vs",
+            "total": 7.0
+          }
+        ]
+      },
+      {
+        "aid": "4251",
+        "player": "Paul George",
+        "team": "BOS",
+        "opp": "@CHA",
+        "game": "401909288",
+        "time": "2026-11-07T00:00Z",
+        "time_et": "Fri Nov 06 \u00b7 7:00 PM ET",
+        "market": "Rebounds",
+        "market_label": "Rebounds",
+        "line": 4.5,
+        "floor": 5,
+        "floor_label": "5+ Rebounds",
+        "streak": 6,
+        "min_required": 5,
+        "recent_totals": [
+          6.0,
+          6.0,
+          7.0,
+          5.0,
+          7.0,
+          5.0
+        ],
+        "recent_games": [
+          {
+            "date": "2026-11-01",
+            "opp": "ORL",
+            "at": "@",
+            "total": 6.0
+          },
+          {
+            "date": "2026-10-30",
+            "opp": "CHI",
+            "at": "vs",
+            "total": 6.0
+          },
+          {
+            "date": "2026-10-27",
+            "opp": "BKN",
+            "at": "vs",
+            "total": 7.0
+          },
+          {
+            "date": "2026-10-26",
+            "opp": "CHI",
+            "at": "vs",
+            "total": 5.0
+          },
+          {
+            "date": "2026-10-23",
+            "opp": "NY",
+            "at": "vs",
+            "total": 7.0
+          },
+          {
+            "date": "2026-10-20",
+            "opp": "DET",
+            "at": "@",
+            "total": 5.0
+          }
+        ]
+      },
+      {
+        "aid": "4431678",
+        "player": "Tyrese Maxey",
+        "team": "PHI",
+        "opp": "@CLE",
+        "game": "401909289",
+        "time": "2026-11-07T00:30Z",
+        "time_et": "Fri Nov 06 \u00b7 7:30 PM ET",
+        "market": "Rebounds",
+        "market_label": "Rebounds",
+        "line": 3.5,
+        "floor": 4,
+        "floor_label": "4+ Rebounds",
+        "streak": 6,
+        "min_required": 5,
+        "recent_totals": [
+          4.0,
+          4.0,
+          4.0,
+          5.0,
+          5.0,
+          4.0
+        ],
+        "recent_games": [
+          {
+            "date": "2026-11-03",
+            "opp": "CHI",
+            "at": "vs",
+            "total": 4.0
+          },
+          {
+            "date": "2026-10-31",
+            "opp": "CHA",
+            "at": "@",
+            "total": 4.0
+          },
+          {
+            "date": "2026-10-30",
+            "opp": "NY",
+            "at": "vs",
+            "total": 4.0
+          },
+          {
+            "date": "2026-10-28",
+            "opp": "IND",
+            "at": "@",
+            "total": 5.0
+          },
+          {
+            "date": "2026-10-25",
+            "opp": "DET",
+            "at": "vs",
+            "total": 5.0
+          },
+          {
+            "date": "2026-10-24",
+            "opp": "MIL",
+            "at": "vs",
+            "total": 4.0
+          }
+        ]
+      }
+    ],
+    "assists": [
+      {
+        "aid": "4431671",
+        "player": "Jaden McDaniels",
+        "team": "MIN",
+        "opp": "@NO",
+        "game": "401909293",
+        "time": "2026-11-07T01:00Z",
+        "time_et": "Fri Nov 06 \u00b7 8:00 PM ET",
+        "market": "Assists",
+        "market_label": "Assists",
+        "line": 2.5,
+        "floor": 3,
+        "floor_label": "3+ Assists",
+        "streak": 7,
+        "min_required": 5,
+        "recent_totals": [
+          3.0,
+          3.0,
+          7.0,
+          4.0,
+          4.0,
+          3.0,
+          3.0
+        ],
+        "recent_games": [
+          {
+            "date": "2026-11-03",
+            "opp": "MIL",
+            "at": "vs",
+            "total": 3.0
+          },
+          {
+            "date": "2026-11-01",
+            "opp": "SA",
+            "at": "@",
+            "total": 3.0
+          },
+          {
+            "date": "2026-10-31",
+            "opp": "LAC",
+            "at": "vs",
+            "total": 7.0
+          },
+          {
+            "date": "2026-10-29",
+            "opp": "GS",
+            "at": "vs",
+            "total": 4.0
+          },
+          {
+            "date": "2026-10-26",
+            "opp": "CLE",
+            "at": "@",
+            "total": 4.0
+          },
+          {
+            "date": "2026-10-25",
+            "opp": "TOR",
+            "at": "vs",
+            "total": 3.0
+          },
+          {
+            "date": "2026-10-23",
+            "opp": "ORL",
+            "at": "@",
+            "total": 3.0
+          }
+        ]
+      },
+      {
+        "aid": "5041939",
+        "player": "Cooper Flagg",
+        "team": "DAL",
+        "opp": "vs UTAH",
+        "game": "401909290",
+        "time": "2026-11-07T01:00Z",
+        "time_et": "Fri Nov 06 \u00b7 8:00 PM ET",
+        "market": "Assists",
+        "market_label": "Assists",
+        "line": 5.5,
+        "floor": 6,
+        "floor_label": "6+ Assists",
+        "streak": 5,
+        "min_required": 5,
+        "recent_totals": [
+          6.0,
+          6.0,
+          8.0,
+          11.0,
+          6.0
+        ],
+        "recent_games": [
+          {
+            "date": "2026-11-03",
+            "opp": "SAC",
+            "at": "vs",
+            "total": 6.0
+          },
+          {
+            "date": "2026-10-31",
+            "opp": "HOU",
+            "at": "vs",
+            "total": 6.0
+          },
+          {
+            "date": "2026-10-29",
+            "opp": "OKC",
+            "at": "vs",
+            "total": 8.0
+          },
+          {
+            "date": "2026-10-26",
+            "opp": "MIA",
+            "at": "@",
+            "total": 11.0
+          },
+          {
+            "date": "2026-10-23",
+            "opp": "IND",
+            "at": "@",
+            "total": 6.0
+          }
+        ]
+      }
+    ],
+    "threes": [
+      {
+        "aid": "4431736",
+        "player": "Toumani Camara",
+        "team": "POR",
+        "opp": "@LAL",
+        "game": "401909294",
+        "time": "2026-11-07T03:00Z",
+        "time_et": "Fri Nov 06 \u00b7 10:00 PM ET",
+        "market": "3-Point Field Goals",
+        "market_label": "Three-Pointers Made",
+        "line": 2.5,
+        "floor": 3,
+        "floor_label": "3+ Three-Pointers Made",
+        "streak": 6,
+        "min_required": 5,
+        "recent_totals": [
+          3.0,
+          4.0,
+          3.0,
+          4.0,
+          5.0,
+          4.0
+        ],
+        "recent_games": [
+          {
+            "date": "2026-11-03",
+            "opp": "DEN",
+            "at": "@",
+            "total": 3.0
+          },
+          {
+            "date": "2026-10-31",
+            "opp": "UTAH",
+            "at": "@",
+            "total": 4.0
+          },
+          {
+            "date": "2026-10-30",
+            "opp": "MEM",
+            "at": "vs",
+            "total": 3.0
+          },
+          {
+            "date": "2026-10-28",
+            "opp": "LAL",
+            "at": "@",
+            "total": 4.0
+          },
+          {
+            "date": "2026-10-24",
+            "opp": "SAC",
+            "at": "@",
+            "total": 5.0
+          },
+          {
+            "date": "2026-10-22",
+            "opp": "PHX",
+            "at": "vs",
+            "total": 4.0
+          }
+        ]
+      },
+      {
+        "aid": "3945274",
+        "player": "Luka Doncic",
+        "team": "LAL",
+        "opp": "vs POR",
+        "game": "401909294",
+        "time": "2026-11-07T03:00Z",
+        "time_et": "Fri Nov 06 \u00b7 10:00 PM ET",
+        "market": "3-Point Field Goals",
+        "market_label": "Three-Pointers Made",
+        "line": 4.5,
+        "floor": 5,
+        "floor_label": "5+ Three-Pointers Made",
+        "streak": 5,
+        "min_required": 5,
+        "recent_totals": [
+          6.0,
+          8.0,
+          6.0,
+          6.0,
+          8.0
+        ],
+        "recent_games": [
+          {
+            "date": "2026-11-03",
+            "opp": "MIA",
+            "at": "vs",
+            "total": 6.0
+          },
+          {
+            "date": "2026-11-02",
+            "opp": "TOR",
+            "at": "vs",
+            "total": 8.0
+          },
+          {
+            "date": "2026-10-31",
+            "opp": "GS",
+            "at": "@",
+            "total": 6.0
+          },
+          {
+            "date": "2026-10-28",
+            "opp": "POR",
+            "at": "vs",
+            "total": 6.0
+          },
+          {
+            "date": "2026-10-25",
+            "opp": "UTAH",
+            "at": "@",
+            "total": 8.0
+          }
+        ]
+      },
+      {
+        "aid": "4903027",
+        "player": "Cedric Coward",
+        "team": "MEM",
+        "opp": "vs OKC",
+        "game": "401909291",
+        "time": "2026-11-07T01:00Z",
+        "time_et": "Fri Nov 06 \u00b7 8:00 PM ET",
+        "market": "3-Point Field Goals",
+        "market_label": "Three-Pointers Made",
+        "line": 1.5,
+        "floor": 2,
+        "floor_label": "2+ Three-Pointers Made",
+        "streak": 5,
+        "min_required": 5,
+        "recent_totals": [
+          2.0,
+          2.0,
+          3.0,
+          4.0,
+          3.0
+        ],
+        "recent_games": [
+          {
+            "date": "2026-11-03",
+            "opp": "NO",
+            "at": "vs",
+            "total": 2.0
+          },
+          {
+            "date": "2026-11-01",
+            "opp": "SAC",
+            "at": "vs",
+            "total": 2.0
+          },
+          {
+            "date": "2026-10-30",
+            "opp": "POR",
+            "at": "@",
+            "total": 3.0
+          },
+          {
+            "date": "2026-10-27",
+            "opp": "UTAH",
+            "at": "@",
+            "total": 4.0
+          },
+          {
+            "date": "2026-10-26",
+            "opp": "SAC",
+            "at": "@",
+            "total": 3.0
+          }
+        ]
+      },
+      {
+        "aid": "3995",
+        "player": "Jrue Holiday",
+        "team": "POR",
+        "opp": "@LAL",
+        "game": "401909294",
+        "time": "2026-11-07T03:00Z",
+        "time_et": "Fri Nov 06 \u00b7 10:00 PM ET",
+        "market": "3-Point Field Goals",
+        "market_label": "Three-Pointers Made",
+        "line": 1.5,
+        "floor": 2,
+        "floor_label": "2+ Three-Pointers Made",
+        "streak": 5,
+        "min_required": 5,
+        "recent_totals": [
+          3.0,
+          2.0,
+          2.0,
+          2.0,
+          3.0
+        ],
+        "recent_games": [
+          {
+            "date": "2026-11-03",
+            "opp": "DEN",
+            "at": "@",
+            "total": 3.0
+          },
+          {
+            "date": "2026-10-31",
+            "opp": "UTAH",
+            "at": "@",
+            "total": 2.0
+          },
+          {
+            "date": "2026-10-30",
+            "opp": "MEM",
+            "at": "vs",
+            "total": 2.0
+          },
+          {
+            "date": "2026-10-28",
+            "opp": "LAL",
+            "at": "@",
+            "total": 2.0
+          },
+          {
+            "date": "2026-10-24",
+            "opp": "SAC",
+            "at": "@",
+            "total": 3.0
+          }
+        ]
+      }
+    ]
+  },
+  "coverage": {
+    "points": {
+      "candidates": 58,
+      "qualify": 3,
+      "excluded": {
+        "missing_line": 0,
+        "missing_logs": 0,
+        "short_streak": 55,
+        "no_upcoming_game": 0
+      },
+      "short_streak_breakdown": {
+        "streak_0": 26,
+        "streak_1": 16,
+        "streak_2": 8,
+        "streak_3": 4,
+        "streak_4": 1
+      }
+    },
+    "rebounds": {
+      "candidates": 50,
+      "qualify": 4,
+      "excluded": {
+        "missing_line": 0,
+        "missing_logs": 0,
+        "short_streak": 46,
+        "no_upcoming_game": 0
+      },
+      "short_streak_breakdown": {
+        "streak_0": 16,
+        "streak_1": 13,
+        "streak_2": 7,
+        "streak_3": 9,
+        "streak_4": 1
+      }
+    },
+    "assists": {
+      "candidates": 46,
+      "qualify": 2,
+      "excluded": {
+        "missing_line": 0,
+        "missing_logs": 0,
+        "short_streak": 44,
+        "no_upcoming_game": 0
+      },
+      "short_streak_breakdown": {
+        "streak_0": 17,
+        "streak_1": 10,
+        "streak_2": 6,
+        "streak_3": 7,
+        "streak_4": 4
+      }
+    },
+    "threes": {
+      "candidates": 41,
+      "qualify": 4,
+      "excluded": {
+        "missing_line": 0,
+        "missing_logs": 0,
+        "short_streak": 37,
+        "no_upcoming_game": 0
+      },
+      "short_streak_breakdown": {
+        "streak_0": 12,
+        "streak_1": 12,
+        "streak_2": 9,
+        "streak_3": 2,
+        "streak_4": 2
+      }
+    }
+  },
+  "total_highlighted": 13
+}

@@ -4,6 +4,7 @@
    3. Starting 5, Rotations, Minutes Projections & Active Injury Usage Cascades (With vs Without Teammate)
    4. 30-Team Positional DvP (PG, SG, SF, PF, C across Season / L10 / L5) & 5-Zone Court Shot-Zone Defense Matrix
    5. Hot Streaks, Volume-Due Positive Regression & Correlated Non-Cannibalizing SGP Builder
+   5b. Low Hurdles — active no-miss streaks vs tonight's published floors (display-only)
    6. Interactive Player Profile Modal (Game-log bar chart with Minutes Overlay, Avg/Median toggle, Shot Chart, With/Without Teammate splits & Similar Players vs Opponent)
 */
 (function(){"use strict";
@@ -18,6 +19,7 @@ const rkCol=r=>{
 };
 
 let D=null;
+let LH=null;
 let TAB="slate";
 let F={
   q:"",team:"",game:"",mkt:"",spot:"all",
@@ -29,7 +31,10 @@ let F={
 
 function loadHub(){
   const v=Math.floor(Date.now()/18e4);
-  return fetch("data/nba_hub.json?v="+v).then(r=>r.json()).then(d=>{D=d;return d});
+  return Promise.all([
+    fetch("data/nba_hub.json?v="+v).then(r=>r.json()),
+    fetch("data/nba_low_hurdles.json?v="+v).then(r=>r.ok?r.json():null).catch(()=>null)
+  ]).then(([d,lh])=>{D=d;LH=lh;return d});
 }
 function renderKPIs(){
   const el=document.getElementById("kpi-strip");
@@ -44,6 +49,7 @@ function renderKPIs(){
     ["⚡ Off-Market Snipes",snipes,"Book A value vs projection"],
     ["🚨 Fake-Out Traps Flagged",fakes,"Mirage / Skew / DvP Shift warnings"],
     ["🔥 Hot Streaks & Volume-Due",(D.hot_streaks||[]).length+" / "+(D.volume_due||[]).length,"80%+ Hitters & Regression plays"],
+    ["Low Hurdles",LH?LH.total_highlighted||0:"—","Active no-miss floors vs tonight"],
     ["🔗 Correlated SGP Stacks",(D.sgp_cards||[]).length,"This season only"]
   ].map(x=>`<div class="kpi"><div class="l">${x[0]}</div><div class="v">${x[1]}</div><div class="s">${x[2]}</div></div>`).join("");
   const sub=document.getElementById("hub-sub");
@@ -409,7 +415,50 @@ function renderStreaks(){
   </div>`:""}`;
 }
 
+
+function renderLowHurdles(){
+  if(!LH){
+    return `<div class="card"><div class="lh-head"><h2>Low Hurdles</h2><p>Low Hurdles data is not published in this preview yet.</p></div></div>`;
+  }
+  const order=LH.order||["points","rebounds","assists","threes"];
+  const titles=LH.titles||{};
+  const cov=LH.coverage||{};
+  const def=LH.definition||{};
+  const mins=def.minimum_streaks||{};
+  const note=def.minimum_note||"";
+  const secs=order.map(key=>{
+    const rows=LH.sections?.[key]||[];
+    const c=cov[key]||{};
+    const title=titles[key]||key;
+    const minN=mins[{points:"Points",rebounds:"Rebounds",assists:"Assists",threes:"3-Point Field Goals"}[key]]||mins[title]||5;
+    const head=`<h3>${E(title)} <span class="mut" style="font-weight:600;font-size:12px">${rows.length} Highlighted · min ${E(minN)}-game streak · ${E(c.candidates||0)} lines checked</span></h3>`;
+    if(!rows.length){
+      const ex=c.excluded||{};
+      return `<div class="lh-sec">${head}<div class="lh-empty">No active streaks meet the floor tonight. Excluded: ${E(ex.short_streak||0)} short streak · ${E(ex.missing_logs||0)} missing logs · ${E(ex.missing_line||0)} missing line · ${E(ex.no_upcoming_game||0)} no upcoming game.</div></div>`;
+    }
+    const body=rows.map(r=>{
+      const totals=(r.recent_totals||[]).map(n=>Number.isInteger(n)?n:n).join(", ");
+      return `<div class="lh-row">
+        <div><a class="plink" data-player-aid="${E(r.aid)}" data-player-mkt="${E(r.market)}">${E(r.player)}</a><div class="meta">${E(r.team)}</div></div>
+        <div class="floor">${E(r.floor_label)}</div>
+        <div class="streak">${E(r.streak)} games</div>
+        <div><div>${E(r.opp)}</div><div class="meta">${E(r.time_et)}</div><div class="meta">Cleared: ${E(totals)}</div></div>
+      </div>`;
+    }).join("");
+    return `<div class="lh-sec">${head}${body}</div>`;
+  }).join("");
+  return `<div class="card">
+    <div class="lh-head">
+      <h2>Low Hurdles <span class="mut" style="font-size:12px;font-weight:600">${E(LH.total_highlighted||0)} Highlighted · built ${E(fmtET(LH.built_at||LH.updated))}</span></h2>
+      <p>Active no-miss streaks against tonight&rsquo;s published number. The floor is the integer that clears the line (24.5 → 25+). Streak length and opponent are shown on every row. Display-only — not a change to Highlighted plays or model weights.</p>
+      ${note?`<p>${E(note)}</p>`:""}
+    </div>
+    ${secs}
+  </div>`;
+}
+
 function renderTeams(){
+
   const T=Object.values(D.teams||{});
   const flt=T.filter(t=>!F.tmConf||t.conf===F.tmConf).sort((a,b)=>{
     const k=F.tmSort;
@@ -483,6 +532,7 @@ function render(){
   else if(TAB==="rotations")out.innerHTML=renderRotations();
   else if(TAB==="dvp")out.innerHTML=renderDvP();
   else if(TAB==="streaks")out.innerHTML=renderStreaks();
+  else if(TAB==="lowhurdles")out.innerHTML=renderLowHurdles();
   else if(TAB==="teams")out.innerHTML=renderTeams();
 
   NBAHubProfiles.wire(out);
@@ -535,6 +585,7 @@ loadHub().then(async()=>{
   else if(location.hash==="#rotations")TAB="rotations";
   else if(location.hash==="#props")TAB="props";
   else if(location.hash==="#streaks")TAB="streaks";
+  else if(location.hash==="#low-hurdles"||location.hash==="#lowhurdles")TAB="lowhurdles";
   else if(location.hash==="#teams")TAB="teams";
   renderKPIs();
   render();
