@@ -1,1 +1,29 @@
-{"updated":"2026-11-05T20:37:00Z","rows":[{"rank":1,"player":"Derrick Henry"},{"rank":2,"player":"Parker Washington"},{"rank":3,"player":"Bhayshul Tuten"},{"rank":4,"player":"Zay Flowers"},{"rank":5,"player":"Brenton Strange"}]}
+{
+ "updated": "2026-11-06T00:40:00Z",
+ "rows": [
+  {
+   "rank": 1,
+   "player": "Derrick Henry"
+  },
+  {
+   "rank": 2,
+   "player": "Parker Washington"
+  },
+  {
+   "rank": 3,
+   "player": "Bhayshul Tuten"
+  },
+  {
+   "rank": 4,
+   "player": "Brenton Strange"
+  },
+  {
+   "rank": 5,
+   "player": "Zay Flowers"
+  },
+  {
+   "rank": 6,
+   "player": "Ja'Kobi Lane"
+  }
+ ]
+}
