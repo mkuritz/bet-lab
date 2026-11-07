@@ -488,6 +488,7 @@ function renderTeams(){
 }
 
 function render(){
+  document.documentElement.classList.toggle("lhx-active",TAB==="lowhurdles");
   if(!D)return;
   document.querySelectorAll("#hub-tabs button").forEach(b=>b.classList.toggle("on",b.dataset.tab===TAB));
   const out=document.getElementById("hub-out");
