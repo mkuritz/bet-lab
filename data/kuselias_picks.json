@@ -4562,6 +4562,28 @@
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7705213390863600926",
    "source_label": "Video @ 0:31",
    "timestamp": "0:31"
+  },
+  {
+   "id": "ek-w9-lean-6",
+   "week": 9,
+   "date": "2026-11-08",
+   "episode_date": "2026-11-04",
+   "sport": "nfl",
+   "category": "leans",
+   "kind": "straight",
+   "type": "spread",
+   "team": "LAR",
+   "line": -5.5,
+   "espn_event_id": "401873043",
+   "desc": "Rams -5.5 at Commanders (QB/Coach/Defense Smart-Play Lean; Not an Official Play)",
+   "odds": -118,
+   "odds_source": "live",
+   "odds_book": "A",
+   "odds_note": "Release-time market snapshot Nov 4, 6:20:36 PM ET, before the 6:22:30 PM ET video; stated five or five-and-a-half, logged at the less favorable -5.5 available at Book A.",
+   "source_url": "https://www.tiktok.com/@erik.kuselias/video/7704460602856525070",
+   "source_label": "Video @ 0:47",
+   "timestamp": "0:47",
+   "note": "Public rule-of-thumb lean, not a claimed Discord official play. This later Rams lean differs from the Nov 3 Commanders +5.5 game pick, which remains unchanged in the historical log."
   }
  ],
  "record": {
@@ -4711,7 +4733,7 @@
    "units": -2.14,
    "units_n": 6
   },
-  "pending": 29,
+  "pending": 30,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }
