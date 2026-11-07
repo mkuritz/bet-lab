@@ -4539,6 +4539,29 @@
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7704462982285167886",
    "source_label": "Video @ 1:54",
    "timestamp": "1:54"
+  },
+  {
+   "id": "ek-w9-lean-5",
+   "week": 9,
+   "date": "2026-11-08",
+   "episode_date": "2026-11-06",
+   "sport": "nfl",
+   "category": "leans",
+   "kind": "straight",
+   "type": "team_total",
+   "team": "NE",
+   "side": "under",
+   "line": 24.5,
+   "espn_event_id": "401873049",
+   "desc": "Patriots Team Total Under 24.5 vs Packers (Packers 6-of-8 Under Trend \u00b7 \"A Free One for You\")",
+   "odds": -140,
+   "odds_source": "live",
+   "odds_book": "A",
+   "odds_note": "Live market price when the video posted (Nov 6, 7:03 PM ET) \u00b7 alt line",
+   "odds_stated_note": "Stated Under 24.5; Book A main team total was 23.5 (Under -105), priced at Book A alt Under 24.5 -140",
+   "source_url": "https://www.tiktok.com/@erik.kuselias/video/7705213390863600926",
+   "source_label": "Video @ 0:31",
+   "timestamp": "0:31"
   }
  ],
  "record": {
@@ -4688,7 +4711,7 @@
    "units": -2.14,
    "units_n": 6
   },
-  "pending": 28,
+  "pending": 29,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }
