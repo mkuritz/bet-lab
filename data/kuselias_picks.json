@@ -3967,7 +3967,12 @@
    "odds_note": "Live market price when the video posted (Nov 3, 6:34 PM ET)",
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7704092601443437855",
    "source_label": "Video @ 0:10",
-   "timestamp": "0:10"
+   "timestamp": "0:10",
+   "result": "loss",
+   "final": {
+    "ATL": 17.0,
+    "CIN": 34.0
+   }
   },
   {
    "id": "ek-w9-2",
@@ -4300,7 +4305,13 @@
    "odds_note": "Live market price when the video posted (Nov 3, 6:34 PM ET)",
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7704093578783378719",
    "source_label": "Video @ 0:25",
-   "timestamp": "0:25"
+   "timestamp": "0:25",
+   "actual": 32.0,
+   "result": "loss",
+   "final": {
+    "ATL": 17.0,
+    "CIN": 34.0
+   }
   },
   {
    "id": "ek-w9-lean-4",
@@ -4349,7 +4360,12 @@
    "odds_stated_note": "Stated buy at -140; Book A alt Under 23.5 was +110",
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7704462982285167886",
    "source_label": "Video @ 0:06",
-   "timestamp": "0:06"
+   "timestamp": "0:06",
+   "result": "win",
+   "final": {
+    "ATL": 17.0,
+    "CIN": 34.0
+   }
   },
   {
    "id": "ek-w9-15",
@@ -4589,18 +4605,18 @@
  "record": {
   "straight": {
    "overall": {
-    "w": 84,
-    "l": 60,
+    "w": 85,
+    "l": 62,
     "p": 2,
-    "units": 14.54,
-    "units_n": 146
+    "units": 13.64,
+    "units_n": 149
    },
    "nfl": {
-    "w": 76,
-    "l": 56,
+    "w": 77,
+    "l": 58,
     "p": 2,
-    "units": 11.3,
-    "units_n": 134
+    "units": 10.4,
+    "units_n": 137
    },
    "mlb": {
     "w": 0,
@@ -4662,18 +4678,18 @@
    }
   },
   "overall": {
-   "w": 84,
-   "l": 60,
+   "w": 85,
+   "l": 62,
    "p": 2,
-   "units": 14.54,
-   "units_n": 146
+   "units": 13.64,
+   "units_n": 149
   },
   "nfl": {
-   "w": 76,
-   "l": 56,
+   "w": 77,
+   "l": 58,
    "p": 2,
-   "units": 11.3,
-   "units_n": 134
+   "units": 10.4,
+   "units_n": 137
   },
   "mlb": {
    "w": 0,
@@ -4697,19 +4713,19 @@
    "units_n": 11
   },
   "full_season": {
-   "w": 84,
-   "l": 63,
+   "w": 85,
+   "l": 65,
    "p": 2,
-   "units": 11.54,
-   "units_n": 149
+   "units": 10.64,
+   "units_n": 152
   },
   "categories": {
    "games": {
-    "w": 50,
-    "l": 47,
+    "w": 51,
+    "l": 48,
     "p": 2,
-    "units": -2.87,
-    "units_n": 99
+    "units": -2.77,
+    "units_n": 101
    },
    "props": {
     "w": 19,
@@ -4720,10 +4736,10 @@
    },
    "leans": {
     "w": 15,
-    "l": 8,
+    "l": 9,
     "p": 0,
-    "units": 5.17,
-    "units_n": 23
+    "units": 4.17,
+    "units_n": 24
    }
   },
   "parlay_legs": {
@@ -4733,7 +4749,7 @@
    "units": -2.14,
    "units_n": 6
   },
-  "pending": 30,
+  "pending": 27,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }
