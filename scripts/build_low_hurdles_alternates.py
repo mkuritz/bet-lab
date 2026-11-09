@@ -13,13 +13,13 @@ def build():
  rows=[]
  if SPORT=='nfl':
   v=load('v2.json'); week=int(v['week']); updated=v['updated']
-  cats={'Receiving yards':('receiving_yards',[10,15,20,25,30,40,50,60,70]),'Receptions':('receptions',[1,2,3,4,5,6,7]),'Rushing yards':('rushing_yards',[5,10,15,20,25,40,50,60,70]),'Passing yards':('passing_yards',[150,170,175,180,200,210,225,250,260]),'Rush + Rec yards':('combo',[20,40,60,80,100]),'Kicking points':('kick',[3,4,5,6,7,8])}
+  cats={'Receiving yards':('receiving_yards',[10,15,20,25,30,40,50,60,70]),'Receptions':('receptions',[1,2,3,4,5,6,7]),'Rushing yards':('rushing_yards',[5,10,15,20,25,40,50,60,70]),'Passing yards':('passing_yards',[150,170,175,180,200,210,225,250,260]),'Passing TDs':('passing_tds',[1,2,3]),'Rush + Rec yards':('combo',[20,40,60,80,100]),'Kicking points':('kick',[3,4,5,6,7,8])}
   for f in sorted((D/'players').glob('*.json')):
    p=json.load(open(f)); nxt=p.get('next') or {}
    if not nxt or p.get('team')=='FA': continue
    logs=sorted([g for g in p.get('log',[]) if g.get('s')==2026 and g.get('w',99)<=week],key=lambda g:g['w'],reverse=True)
    for cat,(stat,presets) in cats.items():
-    if cat=='Passing yards' and p.get('pos')!='QB': continue
+    if cat in ('Passing yards','Passing TDs') and p.get('pos')!='QB': continue
     if cat=='Kicking points' and p.get('pos')!='K': continue
     if cat!='Kicking points' and p.get('pos') not in ['QB','RB','WR','TE','FB']: continue
     games=[]
