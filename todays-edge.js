@@ -21,6 +21,7 @@ const css=`.te{grid-column:1/-1;padding:12px 14px}.te h3{margin:0;display:flex;g
 .te-diff{display:inline-block;font-size:11px;font-weight:800;padding:1px 6px;border-radius:5px;margin-left:6px}
 .te-diff.pos{background:rgba(83,227,166,.15);color:#53e3a6;border:1px solid rgba(83,227,166,.35)}
 .te-diff.neg{background:rgba(255,93,108,.15);color:#ff5d6c;border:1px solid rgba(255,93,108,.35)}
+.te .r.scr{opacity:.62}.te .r.scr .t{text-decoration:line-through;text-decoration-color:rgba(148,163,184,.55)}.te .r.scr .ed,.te .r.scr .cf{display:none}.te .scr-tag{font-size:10px;font-weight:800;padding:1px 7px;border-radius:99px;background:rgba(148,163,184,.22);color:#cbd5e1;border:1px solid rgba(148,163,184,.4);letter-spacing:.02em;white-space:nowrap}
 @media(max-width:560px){.te .t{white-space:normal;font-size:13.5px}.te .k{min-width:38px}.te .cf{display:none}.te .x{padding-left:0}}`;
 const st=document.createElement("style");st.textContent=css;document.head.appendChild(st);
 
@@ -35,6 +36,7 @@ function playTitle(p){
 function row(p,kind){
   const title=playTitle(p);
   const id=p.id||title,o=OPEN[id];
+  const scratched=String(p.status||"").toLowerCase()==="scratched"||String(p.tier_badge||"").toLowerCase()==="scratched";
   const dec=D(p.price);
   const ours=p.ours??p.p_calibrated??p.p_raw??p.p??null;
   const bookP=p.book??p.p_book??p.nv??null;
@@ -42,18 +44,25 @@ function row(p,kind){
   const evRaw=p.ev!=null?p.ev:(p.ev_pct!=null?p.ev_pct/100:null);
   const ev=ours!=null&&dec?(ours*(1+(dec-1)*(1+B/100))-1):evRaw;
   const startT=p.start||p.time||"";
-  const conf=p.conf||(p.conviction_score>=85?"High":p.conviction_score>=70?"Medium":"");
-  const isStar=Boolean(p.star||p.official||(p.conviction_score||0)>=90);
+  const conf=scratched?"":(p.conf||(p.conviction_score>=85?"High":p.conviction_score>=70?"Medium":""));
+  const isStar=scratched?false:Boolean(p.star||p.official||(p.conviction_score||0)>=90);
   const bkName=p.best_book||p.book_name||"";
-  const lm=p.game&&(kind=="SGP"||kind=="BLOWOUT")&&(p.sport||"soccer")=="soccer"?`<button class="lmore" data-sgp-go="${E(p.game)}">Learn more ›</button>`:"";
-  const add=p.aid&&p.market?`<button class="add" data-te-add="${E(p.sport)}|${E(p.aid)}|${E(p.market)}" title="Add to slip">+</button>`:"";
+  const lm=!scratched&&p.game&&(kind=="SGP"||kind=="BLOWOUT")&&(p.sport||"soccer")=="soccer"?`<button class="lmore" data-sgp-go="${E(p.game)}">Learn more ›</button>`:"";
+  const add=!scratched&&p.aid&&p.market?`<button class="add" data-te-add="${E(p.sport)}|${E(p.aid)}|${E(p.market)}" title="Add to slip">+</button>`:"";
   const sideStr=p.side||(/\|under\||\bunder\b/i.test((p.id||"")+" "+title)?"under":"over");
-  return `<div class="r" data-te="${E(id)}"><div class="r1"><span class="k">${E(kind||SN[p.sport]||(p.sport||"").toUpperCase())}</span><span class="t">${isStar?'<span class="star">★</span> ':""}${E(title)}</span>${p.price!=null?`<span class="px">${A(p.price)}${bkName?` <small class="mut" style="font-weight:600;font-size:10px">${E(bkName.replace("Book ",""))}</small>`:""}</span>`:""}${edge!=null&&Math.abs(edge)>=0.0005?`<span class="ed">${edge>=0?"+":""}${(edge*100).toFixed(1)}%</span>`:ev!=null?`<span class="ed">EV ${ev>=0?"+":""}${(ev*100).toFixed(1)}%</span>`:""}${conf?`<span class="cf ${conf}">${conf}</span>`:""}${lm}${add}</div>${window.LR&&p.player?`<div style="padding-left:52px">${LR.tag(p.sport,p.aid||"",p.market,p.line,p.player,sideStr,startT,p.game||"")}</div>`:""}
-  ${o?`<div class="x">${startT?tm(startT)+" · ":""}${ours!=null?`<b style="color:var(--acc)">Our chance ${P(ours)}</b>${p.fair_odds?` (Fair ${E(p.fair_odds)})`:""}`:""}${bookP!=null?` · market no-vig ${P(bookP)}`:""}${ev!=null?` · EV <b style="color:var(--acc)">${ev>=0?"+":""}${(ev*100).toFixed(1)}%</b>${B?" with "+B+"% boost":""}`:""}${bkName?` · Best at <b>${E(bkName)} (${A(p.price)})</b>`:""}${p.entry_timing?` · <b>${E(p.entry_timing)}</b>`:""}
-  ${p.situational_setup?`<br><b style="color:var(--txt)">Situational:</b> ${E(p.situational_setup)}`:""}
-  ${p.strategic_matchup?`<br><b style="color:var(--txt)">Matchup:</b> ${E(p.strategic_matchup)}`:""}
-  ${p.tactical_exploits?`<br><b style="color:var(--acc)">Execution:</b> ${E(p.tactical_exploits)}`:""}
-  ${p.legs?"<br>"+p.legs.map(E).join(" + ")+(kind=="SGP"?` <span class="mut">(price: ${E(p.price_note||"legs multiplied, not an SGP quote")})</span>`:""):""}${p.call?"<br>"+E(p.call):""}${!p.situational_setup&&(p.why||[]).length?"<br>"+p.why.map(E).join(" · "):""}${p.status?"<br>"+E(p.status):""}</div>`:""}</div>`;
+  const entry=scratched?"":p.entry_timing;
+  const sit=scratched?"":p.situational_setup;
+  const match=scratched?"":p.strategic_matchup;
+  const tact=scratched?"":p.tactical_exploits;
+  const scrTag=scratched?`<span class="scr-tag">Scratched</span>`:"";
+  const px=p.price!=null?`<span class="px">${A(p.price)}${bkName?` <small class="mut" style="font-weight:600;font-size:10px">${E(bkName.replace("Book ",""))}</small>`:""}</span>`:"";
+  const ed=!scratched&&edge!=null&&Math.abs(edge)>=0.0005?`<span class="ed">${edge>=0?"+":""}${(edge*100).toFixed(1)}%</span>`:!scratched&&ev!=null?`<span class="ed">EV ${ev>=0?"+":""}${(ev*100).toFixed(1)}%</span>`:"";
+  return `<div class="r${scratched?" scr":""}" data-te="${E(id)}"><div class="r1"><span class="k">${E(kind||SN[p.sport]||(p.sport||"").toUpperCase())}</span><span class="t">${isStar?'<span class="star">★</span> ':""}${E(title)}</span>${scrTag}${px}${ed}${conf?`<span class="cf ${conf}">${conf}</span>`:""}${lm}${add}</div>${!scratched&&window.LR&&p.player?`<div style="padding-left:52px">${LR.tag(p.sport,p.aid||"",p.market,p.line,p.player,sideStr,startT,p.game||"")}</div>`:""}
+  ${o?`<div class="x">${scratched?`<b>Scratched</b> — listed Out; voids in the record.${p.price!=null?` Logged price ${A(p.price)}.`:""}${startT?` · ${tm(startT)}`:""}`:`${startT?tm(startT)+" · ":""}${ours!=null?`<b style="color:var(--acc)">Our chance ${P(ours)}</b>${p.fair_odds?` (Fair ${E(p.fair_odds)})`:""}`:""}${bookP!=null?` · market no-vig ${P(bookP)}`:""}${ev!=null?` · EV <b style="color:var(--acc)">${ev>=0?"+":""}${(ev*100).toFixed(1)}%</b>${B?" with "+B+"% boost":""}`:""}${bkName?` · Best at <b>${E(bkName)} (${A(p.price)})</b>`:""}${entry?` · <b>${E(entry)}</b>`:""}
+  ${sit?`<br><b style="color:var(--txt)">Situational:</b> ${E(sit)}`:""}
+  ${match?`<br><b style="color:var(--txt)">Matchup:</b> ${E(match)}`:""}
+  ${tact?`<br><b style="color:var(--acc)">Execution:</b> ${E(tact)}`:""}
+  ${p.legs?"<br>"+p.legs.map(E).join(" + ")+(kind=="SGP"?` <span class="mut">(price: ${E(p.price_note||"legs multiplied, not an SGP quote")})</span>`:""):""}${p.call?"<br>"+E(p.call):""}${!sit&&(p.why||[]).length?"<br>"+p.why.map(E).join(" · "):""}`}</div>`:""}</div>`;
 }
 
 const LDD=(L,sp)=>{if(sp!="nhl")return L;const d=L.reduce((m,r)=>!m||(r.start||"")<m?r.start:m,"");const s=new Set();return L.filter(r=>{if(d&&r.start!=d)return 0;const k=(r.nhl_id||r.player)+"|"+r.market;if(s.has(k))return 0;s.add(k);return 1})};
