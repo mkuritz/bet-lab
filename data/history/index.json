@@ -1,0 +1,41 @@
+{
+ "updated": "2026-11-09T22:36:37Z",
+ "months": [
+  "2026-10",
+  "2026-11"
+ ],
+ "shard_bytes": {
+  "2026-10": 11196,
+  "2026-11": 133403
+ },
+ "max_shard_bytes": 5242880,
+ "total": 177,
+ "earliest_by_sport": {
+  "mlb": "2026-10-28",
+  "nba": "2026-11-08",
+  "nfl": "2026-11-08",
+  "nhl": "2026-11-08",
+  "soccer": "2026-11-08"
+ },
+ "latest_by_sport": {
+  "mlb": "2026-10-28",
+  "nba": "2026-11-09",
+  "nfl": "2026-11-09",
+  "nhl": "2026-11-09",
+  "soccer": "2026-11-08"
+ },
+ "graded_by_sport": {
+  "nba": 18,
+  "nfl": 13,
+  "nhl": 15,
+  "soccer": 3
+ },
+ "total_by_sport": {
+  "mlb": 13,
+  "nba": 105,
+  "nfl": 22,
+  "nhl": 29,
+  "soccer": 8
+ },
+ "note": "Compact 5-Pillar Confirmed history (score>=80). Upserted daily; graded rows frozen. Lazy-load months from shards."
+}
