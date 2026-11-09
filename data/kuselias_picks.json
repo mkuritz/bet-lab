@@ -4179,7 +4179,12 @@
    "odds_note": "Live market price when the video posted (Nov 3, 6:34 PM ET)",
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7704092601443437855",
    "source_label": "Video @ 1:29",
-   "timestamp": "1:29"
+   "timestamp": "1:29",
+   "result": "win",
+   "final": {
+    "LAC": 22.0,
+    "HOU": 44.0
+   }
   },
   {
    "id": "ek-w9-10",
@@ -4201,7 +4206,12 @@
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7704092601443437855",
    "source_label": "Video @ 1:40",
    "timestamp": "1:40",
-   "bought": "+11 stated vs market +11.5; priced at market +11.5 (-108)"
+   "bought": "+11 stated vs market +11.5; priced at market +11.5 (-108)",
+   "result": "loss",
+   "final": {
+    "SEA": 17.0,
+    "ARI": 3.0
+   }
   },
   {
    "id": "ek-w9-11",
@@ -4223,7 +4233,12 @@
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7704092601443437855",
    "source_label": "Video @ 1:49",
    "timestamp": "1:49",
-   "bought": "-2.5 stated vs market -3; priced at market -3 (-115), no -2.5 price found"
+   "bought": "-2.5 stated vs market -3; priced at market -3 (-115), no -2.5 price found",
+   "result": "loss",
+   "final": {
+    "NE": 27.0,
+    "GB": 45.0
+   }
   },
   {
    "id": "ek-w9-12",
@@ -4244,7 +4259,12 @@
    "odds_note": "Live market price when the video posted (Nov 3, 6:34 PM ET)",
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7704092601443437855",
    "source_label": "Video @ 1:57",
-   "timestamp": "1:57"
+   "timestamp": "1:57",
+   "result": "loss",
+   "final": {
+    "SF": 38.0,
+    "LV": 17.0
+   }
   },
   {
    "id": "ek-w9-13",
@@ -4265,7 +4285,12 @@
    "odds_note": "Live market price when the video posted (Nov 3, 6:34 PM ET)",
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7704092601443437855",
    "source_label": "Video @ 2:12",
-   "timestamp": "2:12"
+   "timestamp": "2:12",
+   "result": "win",
+   "final": {
+    "CHI": 27.0,
+    "TB": 24.0
+   }
   },
   {
    "id": "ek-w9-lean-1",
@@ -4290,7 +4315,13 @@
    "odds_note": "Live market price when the video posted (Nov 3, 6:34 PM ET)",
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7704093578783378719",
    "source_label": "Video @ 0:04",
-   "timestamp": "0:04"
+   "timestamp": "0:04",
+   "actual": 216.0,
+   "result": "loss",
+   "final": {
+    "SF": 38.0,
+    "LV": 17.0
+   }
   },
   {
    "id": "ek-w9-lean-2",
@@ -4515,7 +4546,12 @@
    "odds_note": "Live market price when the video posted (Nov 4, 6:31 PM ET)",
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7704462982285167886",
    "source_label": "Video @ 1:15",
-   "timestamp": "1:15"
+   "timestamp": "1:15",
+   "result": "win",
+   "final": {
+    "LAC": 22.0,
+    "HOU": 44.0
+   }
   },
   {
    "id": "ek-w9-19",
@@ -4537,7 +4573,12 @@
    "odds_note": "Live market price when the video posted (Nov 4, 6:31 PM ET)",
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7704462982285167886",
    "source_label": "Video @ 2:15",
-   "timestamp": "2:15"
+   "timestamp": "2:15",
+   "result": "win",
+   "final": {
+    "CHI": 27.0,
+    "TB": 24.0
+   }
   },
   {
    "id": "ek-w9-prop-1",
@@ -4622,7 +4663,13 @@
    "odds_stated_note": "Stated -130; Book A was -114",
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7704462982285167886",
    "source_label": "Video @ 1:54",
-   "timestamp": "1:54"
+   "timestamp": "1:54",
+   "actual": 3.0,
+   "result": "win",
+   "final": {
+    "NE": 27.0,
+    "GB": 45.0
+   }
   },
   {
    "id": "ek-w9-lean-5",
@@ -4645,7 +4692,12 @@
    "odds_stated_note": "Stated Under 24.5; Book A main team total was 23.5 (Under -105), priced at Book A alt Under 24.5 -140",
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7705213390863600926",
    "source_label": "Video @ 0:31",
-   "timestamp": "0:31"
+   "timestamp": "0:31",
+   "result": "loss",
+   "final": {
+    "NE": 27.0,
+    "GB": 45.0
+   }
   },
   {
    "id": "ek-w9-lean-6",
@@ -4678,18 +4730,18 @@
  "record": {
   "straight": {
    "overall": {
-    "w": 91,
-    "l": 70,
+    "w": 96,
+    "l": 75,
     "p": 2,
-    "units": 10.6,
-    "units_n": 163
+    "units": 9.95,
+    "units_n": 173
    },
    "nfl": {
-    "w": 83,
-    "l": 66,
+    "w": 88,
+    "l": 71,
     "p": 2,
-    "units": 7.37,
-    "units_n": 151
+    "units": 6.71,
+    "units_n": 161
    },
    "mlb": {
     "w": 0,
@@ -4751,18 +4803,18 @@
    }
   },
   "overall": {
-   "w": 91,
-   "l": 70,
+   "w": 96,
+   "l": 75,
    "p": 2,
-   "units": 10.6,
-   "units_n": 163
+   "units": 9.95,
+   "units_n": 173
   },
   "nfl": {
-   "w": 83,
-   "l": 66,
+   "w": 88,
+   "l": 71,
    "p": 2,
-   "units": 7.37,
-   "units_n": 151
+   "units": 6.71,
+   "units_n": 161
   },
   "mlb": {
    "w": 0,
@@ -4786,33 +4838,33 @@
    "units_n": 11
   },
   "full_season": {
-   "w": 91,
-   "l": 73,
+   "w": 96,
+   "l": 78,
    "p": 2,
-   "units": 7.6,
-   "units_n": 166
+   "units": 6.95,
+   "units_n": 176
   },
   "categories": {
    "games": {
-    "w": 54,
-    "l": 55,
+    "w": 58,
+    "l": 58,
     "p": 2,
-    "units": -7.41,
-    "units_n": 111
+    "units": -6.94,
+    "units_n": 118
    },
    "props": {
-    "w": 19,
+    "w": 20,
     "l": 9,
     "p": 0,
-    "units": 8.24,
-    "units_n": 28
+    "units": 9.11,
+    "units_n": 29
    },
    "leans": {
     "w": 18,
-    "l": 9,
+    "l": 11,
     "p": 0,
-    "units": 6.77,
-    "units_n": 27
+    "units": 4.77,
+    "units_n": 29
    }
   },
   "parlay_legs": {
@@ -4822,7 +4874,7 @@
    "units": -2.14,
    "units_n": 6
   },
-  "pending": 13,
+  "pending": 3,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }

@@ -2431,7 +2431,12 @@
    "id": "aic-w9-90",
    "odds": -105,
    "odds_source": "live",
-   "odds_note": "ESPN pickcenter market price at episode time (Nov 4); look-ahead openers were stale"
+   "odds_note": "ESPN pickcenter market price at episode time (Nov 4); look-ahead openers were stale",
+   "result": "win",
+   "final": {
+    "NE": 27.0,
+    "GB": 45.0
+   }
   },
   {
    "sport": "nfl",
@@ -2449,7 +2454,12 @@
    "id": "aic-w9-91",
    "odds": -108,
    "odds_source": "live",
-   "odds_note": "ESPN pickcenter market price at episode time (Nov 4); look-ahead openers were stale"
+   "odds_note": "ESPN pickcenter market price at episode time (Nov 4); look-ahead openers were stale",
+   "result": "win",
+   "final": {
+    "CHI": 27.0,
+    "TB": 24.0
+   }
   },
   {
    "sport": "nfl",
@@ -2508,18 +2518,18 @@
  "record": {
   "straight": {
    "overall": {
-    "w": 48,
+    "w": 50,
     "l": 39,
     "p": 2,
-    "units": 8.27,
-    "units_n": 89
+    "units": 10.15,
+    "units_n": 91
    },
    "nfl": {
-    "w": 44,
+    "w": 46,
     "l": 36,
     "p": 2,
-    "units": 7.95,
-    "units_n": 82
+    "units": 9.83,
+    "units_n": 84
    },
    "mlb": {
     "w": 2,
@@ -2581,18 +2591,18 @@
    }
   },
   "overall": {
-   "w": 48,
+   "w": 50,
    "l": 39,
    "p": 2,
-   "units": 8.27,
-   "units_n": 89
+   "units": 10.15,
+   "units_n": 91
   },
   "nfl": {
-   "w": 44,
+   "w": 46,
    "l": 36,
    "p": 2,
-   "units": 7.95,
-   "units_n": 82
+   "units": 9.83,
+   "units_n": 84
   },
   "mlb": {
    "w": 2,
@@ -2622,7 +2632,7 @@
    "units": 5.29,
    "units_n": 23
   },
-  "pending": 5,
+  "pending": 3,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }
