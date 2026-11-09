@@ -15,7 +15,7 @@ header a{color:var(--mut);font-weight:700;font-size:13px;text-decoration:none}.c
 details.wk-det{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin-top:8px}
 details.wk-det>summary{cursor:pointer;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;font-weight:800;font-size:13.5px;list-style:none}
 details.wk-det>summary::-webkit-details-marker{display:none}
-.wk-badges{display:inline-flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:12px}</style><link rel="stylesheet" href="nav.css"><script src="liveres.js?v=6"></script><script src="https://sportslabshq.com/sl/sl.js?v=13" defer></script>
+.wk-badges{display:inline-flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:12px}</style><link rel="stylesheet" href="highlighted-evidence.css?v=1109a"><link rel="stylesheet" href="nav.css"><script src="liveres.js?v=6"></script><script src="https://sportslabshq.com/sl/sl.js?v=13" defer></script>
 <script src="/sl-neutral.js?v=2" defer></script></head>
 <body><div class="w"><header><a class="logo" href="./" style="color:var(--txt)">Bet <b>Lab</b></a></header>
 <h1 style="margin:4px 0">💎 Highlighted</h1><div class="mut" id="upd"></div>
@@ -30,8 +30,9 @@ details.wk-det>summary::-webkit-details-marker{display:none}
 </div>
 <div class="card"><h2 style="margin-top:0">🎙️ Third-party plays · All In Cousins (Marco Piemonte &amp; Tony)</h2><div class="mut" style="font-size:12px" id="aimeta"></div><div id="airec" style="margin:10px 0"></div><div class="wrap" id="aipicks"></div></div>
 <div class="card"><h2 style="margin-top:0">🎬 Third-party plays · Erik Kuselias (Emmy-Winning Sports Analyst)</h2><div class="mut" style="font-size:12px" id="ekmeta"></div><div id="ekrec" style="margin:10px 0"></div><div class="ctabs" id="ektabs"></div><div class="wrap" id="ekpicks"></div></div>
+<div class="card" id="hlGraded"><div class="he-empty">Loading graded results…</div></div>
 <div class="mut" style="font-size:11px;margin:18px 0">Sports Labs model. Prices from public market data. Third-party highlights credited to their source and graded from official final scores. Not betting advice. 21+ only. If you or someone you know has a gambling problem, call 1-800-GAMBLER.<br>Bet Lab · A <a href="https://sportslabshq.com/">Sports Labs</a> Product · © 2026 Sports Labs · <a href="#" data-lead="demo">Request a demo</a></div></div>
-<script>
+<script src="highlighted-evidence.js?v=1109a"></script><script>
 const $=id=>document.getElementById(id),j=(u,d)=>fetch(u+"?t="+Date.now()).then(r=>r.ok?r.json():d).catch(()=>d),esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const et=t=>t?new Date(t).toLocaleString("en-US",{timeZone:"America/New_York",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})+" ET":"";
 const am=d=>d?(d>=2?"+"+Math.round((d-1)*100):Math.round(-100/(d-1))):"—",amRaw=p=>p==null?"—":(p>0?"+"+p:String(p));
@@ -136,12 +137,16 @@ function renderCapper(A,metaId,recId,picksId,leadTxt,tabsId){
  }
 }
 (async()=>{
-const [T,G,txt,TE]=await Promise.all([
+const [T,G,txt,TE,LEDGER,INJ]=await Promise.all([
   j("data/edge_tiers.json",{}),
   j("data/edge_grades.json",{}),
   fetch("data/edge_log.jsonl?t="+Date.now()).then(r=>r.ok?r.text():"").catch(()=>""),
-  j("data/todays_edge_v2.json",{})
+  j("data/todays_edge_v2.json",{}),
+  j("data/results_ledger.json",{}),
+  j("data/early_injury_adjust.json",{})
 ]);
+const injuryIndex=(window.HighlightedEvidence&&HighlightedEvidence.buildInjuryIndex(INJ))||new Map();
+if(window.HighlightedEvidence)HighlightedEvidence.renderGraded(LEDGER,$("hlGraded"));
 const L=txt.split("\n").filter(Boolean).map(l=>{try{return JSON.parse(l)}catch(e){return null}}).filter(Boolean);
 const today=new Date().toLocaleDateString("en-CA",{timeZone:"America/New_York"});
 const day=p=>new Date(p.start||p.logged_at).toLocaleDateString("en-CA",{timeZone:"America/New_York"});
@@ -160,8 +165,9 @@ const recLog=L.filter(p=>(T[p.id]||{}).tier==="recommended"&&day(p)>=today).map(
 
 const seenT=new Set(recLog.map(x=>x.title.toLowerCase()));
 const tePlays=(TE.plays||[]).filter(p=>day(p)>=today).map(p=>({
+  ...p,
   id:p.id,title:p.title,sport:p.sport,start:p.start||p.time,
-  price_am:amRaw(p.price),book:p.best_book||"Book A",
+  price_am:amRaw(p.price),book:p.best_book||p.book||"Book A",
   ours:p.ours,fair_odds:p.fair_odds,edge:p.edge||p.ev||0.05,
   result:G[p.id]?G[p.id].result:null,
   aid:p.aid,player:p.player,market:p.market,line:p.line,side:p.side,game:p.game
@@ -171,6 +177,8 @@ const tePlays=(TE.plays||[]).filter(p=>day(p)>=today).map(p=>({
   seenT.add(k);return true;
 });
 
+const teById=new Map((TE.plays||[]).map(p=>[p.id,p]));
+recLog.forEach(p=>{const src=teById.get(p.id);if(!src)return;["why","spot","situational_setup","strategic_matchup","tactical_exploits","validation_status","conviction_score","entry_timing","risk_payoff_grade","reviewed_at","gemma_review","review","implied","fair_odds","line","side","aid","game","team","opp","logged_at"].forEach(k=>{if(p[k]==null&&src[k]!=null)p[k]=src[k]});});
 const allShow=[...recLog,...tePlays].sort((a,b)=>(b.result==="win"?1:0)-(a.result==="win"?1:0)||(b.ours||0)-(a.ours||0));
 $("upd").textContent="Updated "+new Date().toLocaleString("en-US",{timeZone:"America/New_York",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})+" ET · Today's & Upcoming Slate";
 
@@ -186,7 +194,7 @@ const drawHl=()=>{
   $("recs").innerHTML=rows.length?`<table><tr><th>Highlight</th><th>Sport</th><th>Start (ET)</th><th>Book Price</th><th>Our Chance</th><th>Edge</th><th>Status / Result</th></tr>${rows.map(p=>{
     const lr=window.LR&&p.player?LR.tag(p.sport,p.aid||"",p.market,p.line,p.player,p.side||"over",p.start||"",p.game||""):"";
     const resHtml=p.result?`<b class="${p.result}">${p.result==="win"?"✅ WON":esc(p.result.toUpperCase())}</b>`:(new Date(p.start)<=Date.now()?'<span class="pill" style="background:#e5484d33;color:#ff6b6b">🔴 LIVE</span>':'<span class="mut">Upcoming</span>');
-    return `<tr>
+    return `<tr data-he-id="${esc(p.id||"")}">
       <td><span class="pill">HIGHLIGHTED</span> <b>${esc(p.title)}</b>${lr}</td>
       <td>${esc((p.sport||"").toUpperCase())}</td>
       <td style="white-space:nowrap">${et(p.start)}</td>
@@ -197,6 +205,7 @@ const drawHl=()=>{
     </tr>`;
   }).join("")}</table>`:'<div class="mut">No Highlighted plays match this sport filter.</div>';
   if(window.LR)LR.fill($("recs"));
+  if(window.HighlightedEvidence)HighlightedEvidence.decorateRecs($("recs"),rows,injuryIndex);
 };
 drawHl();
 
