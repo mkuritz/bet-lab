@@ -1,5 +1,5 @@
 /* Soccer SGPs & Blowouts — collapsed History of settled cards.
-   Renders data/soccer_sgp_history.json. Does not grade, predict, or refresh. */
+   Renders data/soccer_sgp_history.json. Does not grade or predict; archive auto-refreshes from Build & publish. */
 (function(root){
  var esc=function(s){return String(s==null?"":s).replace(/[<>&"]/g,function(c){return{"<":"&lt;",">":"&gt;","&":"&amp;",'"':"&quot;"}[c]})};
  var P=function(x){return typeof x=="number"&&isFinite(x)?Math.round(x*100)+"%":"—"};

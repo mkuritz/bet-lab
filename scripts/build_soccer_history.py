@@ -9,9 +9,9 @@ Team scores are matched by abbreviation to the published card (and to a stable
 schedule abbreviation pair when one exists). live_stats lists two teams; their
 slot order is not treated as away/home.
 
-This script is not wired to a publisher. The only workflow in this repo grades
-an unrelated NFL article on its own schedule. Running it here once writes a
-snapshot. Nothing in this repo refreshes that snapshot when new finals land.
+Bet Lab Engine's Build & publish workflow refreshes this archive after each
+successful public publish (guarded: failure keeps the last good file and does
+not fail the main build). Running it locally also writes a snapshot.
 
 Usage:
   python3 scripts/build_soccer_history.py [--ref origin/main] [--days 21]
@@ -19,6 +19,7 @@ Usage:
 """
 import argparse, collections, json, re, subprocess, unicodedata
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
 
 ABBR = re.compile(r'^[A-Z0-9]{2,6}$')
 STAT_KEYS = {
@@ -34,8 +35,8 @@ METHOD = (
     'soccer_lopsided.json. Graded only from stored live_stats.json finals. '
     'Team scores are matched by abbreviation to the published card and, when '
     'stable, the schedule; live_stats slot order is not treated as home/away. '
-    'Unverifiable legs are unknown. This file is a snapshot from running '
-    'scripts/build_soccer_history.py. No publisher in this repo refreshes it.'
+    'Unverifiable legs are unknown. Bet Lab Engine Build & publish refreshes '
+    'this archive automatically after public publishes.'
 )
 
 
@@ -524,7 +525,7 @@ def build(ref, days, now):
         'updated': iso(stamp),
         'window_days': days,
         'source_ref': ref,
-        'auto_refresh': False,
+        'auto_refresh': True,
         'omitted_no_final': omitted_no_final,
         'omitted_future': omitted_future,
         'omitted_old': omitted_old,
@@ -543,9 +544,12 @@ def main():
     args = parser.parse_args()
     now = datetime.fromisoformat(args.now.replace('Z', '+00:00')) if args.now else datetime.now(timezone.utc)
     doc = build(args.ref, args.days, now)
-    with open(args.out, 'w', encoding='utf-8') as handle:
+    out = Path(args.out)
+    tmp = out.with_suffix(out.suffix + '.tmp')
+    with open(tmp, 'w', encoding='utf-8') as handle:
         json.dump(doc, handle, ensure_ascii=False, separators=(',', ':'))
         handle.write('\n')
+    tmp.replace(out)
     from collections import Counter
     leg_res = Counter()
     orient = Counter()

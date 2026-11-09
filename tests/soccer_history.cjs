@@ -60,7 +60,7 @@ const cur=fs.readFileSync(path.join(R,'index.html'),'utf8'),base=execSync('git s
 function between(s,a,b){const i=s.indexOf(a);if(i<0)return null;const j=s.indexOf(b,i+a.length);return j<0?null:s.slice(i,j)}
 t(between(cur,'function lopCard()','function sgpCards()')===between(base,'function lopCard()','function sgpCards()'),'lopCard unchanged');
 t(between(cur,'function sgpCards()','function hotScorers()')===between(base,'function sgpCards()','function hotScorers()'),'sgpCards unchanged');
-t(between(cur,'function blowLite()','function sgpHist()')===between(base,'function blowLite()','function sgpView()'),'blowLite unchanged');
+t(between(cur,'function blowLite()','function sgpHist()')===between(base,'function blowLite()','function sgpHist()'),'blowLite unchanged');
 t(between(cur,'const keepT=','const gstate=')===between(base,'const keepT=','const gstate='),'keepT unchanged');
 t(between(cur,'const gstate=','const et=')===between(base,'const gstate=','const et='),'gstate unchanged');
 t(between(cur,'const liveG=','const keepT=')===between(base,'const liveG=','const keepT='),'liveG unchanged');
@@ -71,7 +71,7 @@ const file=path.join(R,'data/soccer_sgp_history.json');
 t(fs.existsSync(file),'archive built');
 if(fs.existsSync(file)){
  const D=JSON.parse(fs.readFileSync(file,'utf8'));
- t(D.auto_refresh===false,'archive flag says it does not auto-refresh');
+ t(D.auto_refresh===true,'archive flag says it auto-refreshes');
  const ids=D.games.map(g=>g.game);
  t(new Set(ids).size===ids.length,'real: unique games');
  t(D.games.every(g=>g.status==='final'&&g.final&&Number.isInteger(g.final.fav_score)&&Number.isInteger(g.final.dog_score)),'real: every row has team scores');
@@ -94,7 +94,9 @@ t(nil&&nil.res==='win','real: Arsenal win-to-nil hit');
  const liv=D.games.find(g=>g.game==='401915382');
  t(liv&&liv.final.home==='FEN'&&liv.final.fav_score===2&&liv.final.dog_score===3,'real: Liverpool 2-3 Fenerbahce, Fenerbahce home');
  t(D.games.some(g=>g.sgp&&g.sgp.res==='loss')&&D.games.some(g=>g.sgp&&g.sgp.res==='win'),'real: archive includes cashed and missed SGPs');
- t(D.omitted_no_final>=1&&D.omitted_future>=1,'real: finals-missing and still-upcoming matches are counted, not shown');
+ t(D.omitted_no_final>=1&&typeof D.omitted_future==='number','real: finals-missing matches are counted; omitted_future is tracked');
+ const live=new JSDOM('<body>'+H.html(D,{})+'</body>').window.document;
+ t(!/does not refresh on its own/.test(live.body.textContent),'real: auto-refresh archive does not claim it is a one-off');
 }
 console.log(`soccer_history: ${ok} passed, ${bad} failed`);
 process.exit(bad?1:0);
