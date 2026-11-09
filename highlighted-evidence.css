@@ -83,3 +83,26 @@ body.he-open{overflow:hidden}
 }
 .ctab:hover{border-color:var(--he-acc,#32c9b5);color:var(--he-txt,#dfebea)}
 .ctab.on{background:var(--he-acc,#32c9b5);color:#06241e;border-color:var(--he-acc,#32c9b5);font-weight:800}
+
+/* Collapsible graded results (bottom board) */
+#hlGraded.card{padding:12px}
+.he-grade-tog{
+  appearance:none;-webkit-appearance:none;color-scheme:dark;width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  min-height:44px;padding:10px 16px;border-radius:999px;cursor:pointer;text-align:left;
+  background:#113d36;border:1px solid #3a675c;color:var(--he-txt);font:inherit;
+  transition:border-color .15s,background .15s
+}
+.he-grade-tog:hover{border-color:var(--he-acc)}
+.he-grade-tog:focus-visible{outline:2px solid var(--he-acc);outline-offset:2px}
+.he-grade-tog .he-grade-title{font-weight:800;font-size:15px;letter-spacing:-.2px;white-space:nowrap}
+.he-grade-tog .he-grade-sum{flex:1;min-width:0;font-size:12.5px;color:var(--he-mut);font-variant-numeric:tabular-nums;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.he-grade-tog .he-grade-sum b{color:var(--he-txt);font-weight:800}
+.he-grade-tog .he-grade-sum .he-pos{color:var(--he-good)}
+.he-grade-tog .he-grade-sum .he-neg{color:var(--he-bad)}
+.he-grade-tog .he-chev{flex-shrink:0;width:28px;height:28px;border-radius:999px;display:grid;place-items:center;
+  background:#0d1b1e;border:1px solid #2a4444;color:var(--he-acc);font-size:14px;font-weight:800;transition:transform .2s}
+.he-grade-tog[aria-expanded=true] .he-chev{transform:rotate(180deg)}
+.he-grade-panel{margin-top:12px}
+.he-grade-panel[hidden]{display:none!important}
+#hlGraded h2{display:none} /* title lives in the toggle */

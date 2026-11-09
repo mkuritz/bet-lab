@@ -303,11 +303,16 @@
         : aggregate(rows, (r) => `${(r.sport || '—').toUpperCase()} · ${r.market || 'Market'}`);
     const strat = (ledger.by_strategy || {}).Highlighted;
     const overallN = strat ? strat.w + strat.l : 0;
-    const overall = strat && overallN >= MIN_N
+    const hasOverall = !!(strat && overallN >= MIN_N);
+    const recTxt = hasOverall ? `${strat.w}-${strat.l}${strat.p ? '-' + strat.p : ''}` : '—';
+    const hitTxt = hasOverall && strat.hit_pct != null ? strat.hit_pct.toFixed(1) + '%' : '—';
+    const unitsTxt = hasOverall ? `${strat.units >= 0 ? '+' : ''}${strat.units}u` : '—';
+    const unitsCls = hasOverall ? (strat.units >= 0 ? 'he-pos' : 'he-neg') : '';
+    const overall = hasOverall
       ? `<div class="he-kpis" style="margin-bottom:12px">
-          <div class="he-kpi"><small>Highlighted record</small><strong>${strat.w}-${strat.l}${strat.p ? '-' + strat.p : ''}</strong></div>
-          <div class="he-kpi"><small>Hit rate</small><strong>${strat.hit_pct != null ? strat.hit_pct.toFixed(1) + '%' : '—'}</strong></div>
-          <div class="he-kpi"><small>Units</small><strong class="${strat.units >= 0 ? 'he-pos' : 'he-neg'}">${strat.units >= 0 ? '+' : ''}${strat.units}u</strong></div>
+          <div class="he-kpi"><small>Highlighted record</small><strong>${recTxt}</strong></div>
+          <div class="he-kpi"><small>Hit rate</small><strong>${hitTxt}</strong></div>
+          <div class="he-kpi"><small>Units</small><strong class="${unitsCls}">${unitsTxt}</strong></div>
           <div class="he-kpi"><small>Sample</small><strong>n=${strat.n}</strong></div>
         </div>`
       : '';
@@ -319,7 +324,24 @@
       return (b.hit || 0) - (a.hit || 0) || b.units - a.units;
     });
 
-    mount.innerHTML = `<h2>Graded results</h2>
+    // Collapsed by default; preserve open state across mode/sort re-renders
+    let expanded = opts.expanded;
+    if (expanded == null) {
+      const prev = mount.querySelector('.he-grade-tog');
+      expanded = prev ? prev.getAttribute('aria-expanded') === 'true' : false;
+    }
+
+    const summary = hasOverall
+      ? `<span class="he-grade-sum"><b>${esc(recTxt)}</b> · ${esc(hitTxt)} · <b class="${unitsCls}">${esc(unitsTxt)}</b>${strat.n != null ? ` · n=${strat.n}` : ''}</span>`
+      : `<span class="he-grade-sum">No graded sample yet</span>`;
+
+    const panelId = 'hlGradedPanel';
+    mount.innerHTML = `<button type="button" class="he-grade-tog" aria-expanded="${expanded ? 'true' : 'false'}" aria-controls="${panelId}">
+        <span class="he-grade-title">Graded results</span>
+        ${summary}
+        <span class="he-chev" aria-hidden="true">▾</span>
+      </button>
+      <div class="he-grade-panel" id="${panelId}"${expanded ? '' : ' hidden'}>
       <p class="he-sub">Consolidated Highlighted record from the results ledger (same source as the Results Hub). Rows need at least ${MIN_N} graded decisions. Window: ${rows === all ? 'full Highlighted sample' : `last ${windowDays} days`}.</p>
       <div class="he-ctl" role="group" aria-label="Results controls">
         <button type="button" data-mode="market" aria-pressed="${mode === 'market'}">By market</button>
@@ -348,13 +370,37 @@
           .join('')}
       </tbody></table></div>`
         : `<div class="he-empty">No graded Highlighted markets with at least ${MIN_N} decisions in this window yet.</div>`}
-      <p class="he-meta">Does not change which plays appear above or how they are validated.</p>`;
+      <p class="he-meta">Does not change which plays appear above or how they are validated.</p>
+      </div>`;
 
+    const tog = mount.querySelector('.he-grade-tog');
+    const panel = mount.querySelector('.he-grade-panel');
+    if (tog && panel) {
+      tog.onclick = () => {
+        const open = tog.getAttribute('aria-expanded') !== 'true';
+        tog.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (open) panel.removeAttribute('hidden');
+        else panel.setAttribute('hidden', '');
+      };
+    }
     mount.querySelectorAll('[data-mode]').forEach((btn) => {
-      btn.onclick = () => renderGraded(ledger, mount, { ...opts, mode: btn.dataset.mode, sort });
+      btn.onclick = () =>
+        renderGraded(ledger, mount, {
+          ...opts,
+          mode: btn.dataset.mode,
+          sort,
+          expanded: tog && tog.getAttribute('aria-expanded') === 'true',
+        });
     });
     const sel = mount.querySelector('[data-sort]');
-    if (sel) sel.onchange = () => renderGraded(ledger, mount, { ...opts, mode, sort: sel.value });
+    if (sel)
+      sel.onchange = () =>
+        renderGraded(ledger, mount, {
+          ...opts,
+          mode,
+          sort: sel.value,
+          expanded: tog && tog.getAttribute('aria-expanded') === 'true',
+        });
   }
 
   function decorateRecs(container, playsById, injuryIndex) {

@@ -77,18 +77,58 @@ describe('HighlightedEvidence', () => {
     HE.renderGraded(ledger, mount);
     const html = mount.innerHTML;
     assert.match(html, /Graded results/);
-    assert.match(html, /Highlighted record/);
-    assert.match(html, /Hit rate/);
-    assert.match(html, /Units/);
+    assert.match(html, /he-grade-tog/);
+    assert.match(html, /aria-expanded="false"/); // collapsed by default
+    assert.match(html, /he-grade-panel[^>]*\shidden|hidden"/);
     assert.match(html, /he-rec/);
     assert.match(html, /By market/);
     assert.match(html, /By sport/);
-    // Must NOT inject accuracy chips into page section headers (those live outside #hlGraded)
     assert.doesNotMatch(html, /accuracy badge/i);
     const strat = (ledger.by_strategy || {}).Highlighted;
     if (strat && strat.w + strat.l >= 5) {
       assert.match(html, new RegExp(`${strat.w}-${strat.l}`));
+      // one-line collapsed summary carries record / hit / units
+      const sum = mount.querySelector('.he-grade-sum');
+      assert.ok(sum);
+      assert.match(sum.textContent, new RegExp(`${strat.w}-${strat.l}`));
+      assert.match(sum.textContent, /%/);
+      assert.match(sum.textContent, /u/);
     }
+    // Toggle expands
+    const tog = mount.querySelector('.he-grade-tog');
+    tog.click();
+    assert.equal(tog.getAttribute('aria-expanded'), 'true');
+    assert.equal(mount.querySelector('.he-grade-panel').hasAttribute('hidden'), false);
+    assert.match(mount.innerHTML, /Highlighted record/);
+  });
+
+  it('MLB HR (1+) units match American long-odds flat stake math', () => {
+    const all = [];
+    (ledger.by_day || []).forEach((d) =>
+      (d.rows || []).forEach((r) => {
+        if (r.strategy === 'Highlighted' && (r.sport || '').toLowerCase() === 'mlb' && r.market === 'HR (1+)') all.push(r);
+      })
+    );
+    assert.equal(all.length, 12);
+    let w = 0, l = 0, units = 0;
+    const detail = [];
+    all.forEach((r) => {
+      const res = r.res || r.result;
+      const u = HE.unitsFrom(res, r.price);
+      if (res === 'win') w++;
+      else if (res === 'loss') l++;
+      if (u != null && (res === 'win' || res === 'loss')) units += u;
+      detail.push({ day: r.day, res, price: r.price, u });
+    });
+    units = Math.round(units * 100) / 100;
+    assert.equal(w, 2);
+    assert.equal(l, 10);
+    assert.equal(units, 7.64); // +11.5 (Bazzana +1150) +6.14 (Ohtani +614) -10 losses
+    const byM = HE.aggregate(all, (r) => `${(r.sport || '').toUpperCase()} · ${r.market}`);
+    assert.equal(byM.length, 1);
+    assert.equal(byM[0].w, 2);
+    assert.equal(byM[0].l, 10);
+    assert.equal(byM[0].units, 7.64);
   });
 
   it('decorateRecs marks rows clickable and open() builds drawer sections', () => {
