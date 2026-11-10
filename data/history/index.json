@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-10T19:06:12Z",
+ "updated": "2026-11-10T19:48:36Z",
  "months": [
   "2026-10",
   "2026-11"
@@ -14,10 +14,10 @@
  },
  "shard_bytes": {
   "2026-10-h2": 11471,
-  "2026-11-h1": 508498
+  "2026-11-h1": 510947
  },
  "max_shard_bytes": 5242880,
- "total": 690,
+ "total": 693,
  "earliest_by_sport": {
   "mlb": "2026-10-28",
   "nba": "2026-11-08",
@@ -40,10 +40,10 @@
  },
  "total_by_sport": {
   "mlb": 13,
-  "nba": 251,
+  "nba": 252,
   "nfl": 141,
-  "nhl": 184,
-  "soccer": 101
+  "nhl": 185,
+  "soccer": 102
  },
  "note": "Compact 5-Pillar Confirmed history (score>=70; A/B/C). Half-month shards; freeze graded; seed live 90+; lower-tier backfill only."
 }
