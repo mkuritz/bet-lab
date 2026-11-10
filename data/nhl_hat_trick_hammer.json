@@ -1,1 +1,136 @@
-{"feature":"Hat-Trick Hammer","sport":"NHL","preview":false,"updated":"2026-11-10T15:16:02+00:00","slate":"2026-11-10","hurdle":"3+ goals in the game (regulation and overtime; shootout goals do not count)","probability_label":"Research estimate - not calibrated, no graded record","record":"New, no track record yet","assumptions":"Goals per game = shots/game (half last 10, half since 2025-26) x shooting % regressed to 9.5% over 60 shots, x opponent shots-allowed factor (0.88-1.12) x goalie save % factor (0.85-1.20); P(3+) = Poisson tail, which ignores game-to-game variance in ice time and score effects. Not fitted to 3+ outcomes.","market":"No 3+ goals price in our feed; likelihood only, not value","candidate":{"id":"8478864","name":"Kirill Kaprizov","pos":"L","team":"MIN","opp":"MTL","home":false,"game":"2026020287","start":"2026-11-11T00:00:00Z","start_et":"Tue Nov 10, 7:00 PM ET","profile":"./#player/8478864","status":"Active roster, no injury listed","qualified":true,"est_lambda":0.661,"est_p3":0.0295,"evidence":{"games":97,"season_goals":16,"season_gp":19,"shots_pg_blend":3.2,"dup_rows_dropped":0,"shooting_pct_regressed":0.171,"toi_l10":21.6,"shots_l10":30,"hat_tricks_since_2025_26":2,"pp":{"unit":1,"conf":"High","asof":"2026-11-07"},"opp_shots_allowed_pg":28.29411,"opp_factor":1.033,"goalie":{"name":"Jakub Dobes","sv":0.8912,"l10_sv":0.868,"status":"projected starter (confirmation unknown)","tandem":true},"goalie_factor":1.169,"last5":[{"game_id":"2026020273","d":"2026-11-07","o":"TB","g":0,"s":5},{"game_id":"2026020263","d":"2026-11-06","o":"SJ","g":1,"s":2},{"game_id":"2026020241","d":"2026-11-03","o":"PHI","g":0,"s":1},{"game_id":"2026020228","d":"2026-11-01","o":"WSH","g":1,"s":2},{"game_id":"2026020210","d":"2026-10-29","o":"NYI","g":0,"s":3}]},"narrative":[{"text":"1 hat trick this season, most recently 2026-10-10 vs FLA","date":"2026-10-10","kind":"recent hat tricks","game_ids":["2026020073"]}],"fit":"3.2 shots a game (recent and since last season blended) with 21.6 minutes a night and a spot on power-play unit 1; MTL allows 28.3 shots a game and projected starter Jakub Dobes is at 0.868 over his last 10.","downside":"A hat trick is rare even for top scorers: the estimate is about 2.9%, so the most likely result is not a hat trick. The goalie is projected starter (confirmation unknown), and his team has two goalies splitting starts.","tiebreak":null,"narrative_note":null},"runners_up":[{"name":"Matt Boldy","team":"MIN","est_p3":0.026},{"name":"Nathan MacKinnon","team":"COL","est_p3":0.0236},{"name":"Jack Hughes","team":"NJ","est_p3":0.0182},{"name":"Steven Stamkos","team":"NSH","est_p3":0.017}],"n_checked":308,"record_stats":{"graded":0,"hits":0,"misses":0,"pending":1,"text":"0-0","label":"New, no track record yet"}}
+{
+ "feature": "Hat-Trick Hammer",
+ "sport": "NHL",
+ "preview": false,
+ "updated": "2026-11-10T22:03:19+00:00",
+ "slate": "2026-11-10",
+ "hurdle": "3+ goals in the game (regulation and overtime; shootout goals do not count)",
+ "probability_label": "Research estimate - not calibrated, no graded record",
+ "record": "New, no track record yet",
+ "assumptions": "Goals per game = shots/game (half last 10, half since 2025-26) x shooting % regressed to 9.5% over 60 shots, x opponent shots-allowed factor (0.88-1.12) x goalie save % factor (0.85-1.20); P(3+) = Poisson tail, which ignores game-to-game variance in ice time and score effects. Not fitted to 3+ outcomes.",
+ "market": "No 3+ goals price in our feed; likelihood only, not value",
+ "candidate": {
+  "id": "8478864",
+  "name": "Kirill Kaprizov",
+  "pos": "L",
+  "team": "MIN",
+  "opp": "MTL",
+  "home": false,
+  "game": "2026020287",
+  "start": "2026-11-11T00:00:00Z",
+  "start_et": "Tue Nov 10, 7:00 PM ET",
+  "profile": "./#player/8478864",
+  "status": "Active roster, no injury listed",
+  "qualified": true,
+  "est_lambda": 0.66,
+  "est_p3": 0.0295,
+  "evidence": {
+   "games": 97,
+   "season_goals": 16,
+   "season_gp": 19,
+   "shots_pg_blend": 3.2,
+   "dup_rows_dropped": 0,
+   "shooting_pct_regressed": 0.171,
+   "toi_l10": 21.6,
+   "shots_l10": 30,
+   "hat_tricks_since_2025_26": 2,
+   "pp": {
+    "unit": 1,
+    "conf": "High",
+    "asof": "2026-11-07"
+   },
+   "opp_shots_allowed_pg": 28.29411,
+   "opp_factor": 1.033,
+   "goalie": {
+    "name": "Jakub Dobes",
+    "sv": 0.8912,
+    "l10_sv": 0.868,
+    "status": "projected starter (confirmation unknown)",
+    "tandem": true
+   },
+   "goalie_factor": 1.169,
+   "last5": [
+    {
+     "game_id": "2026020273",
+     "d": "2026-11-07",
+     "o": "TB",
+     "g": 0,
+     "s": 5
+    },
+    {
+     "game_id": "2026020263",
+     "d": "2026-11-06",
+     "o": "SJ",
+     "g": 1,
+     "s": 2
+    },
+    {
+     "game_id": "2026020241",
+     "d": "2026-11-03",
+     "o": "PHI",
+     "g": 0,
+     "s": 1
+    },
+    {
+     "game_id": "2026020228",
+     "d": "2026-11-01",
+     "o": "WSH",
+     "g": 1,
+     "s": 2
+    },
+    {
+     "game_id": "2026020210",
+     "d": "2026-10-29",
+     "o": "NYI",
+     "g": 0,
+     "s": 3
+    }
+   ]
+  },
+  "narrative": [
+   {
+    "text": "1 hat trick this season, most recently 2026-10-10 vs FLA",
+    "date": "2026-10-10",
+    "kind": "recent hat tricks",
+    "game_ids": [
+     "2026020073"
+    ]
+   }
+  ],
+  "fit": "3.2 shots a game (recent and since last season blended) with 21.6 minutes a night and a spot on power-play unit 1; MTL allows 28.3 shots a game and projected starter Jakub Dobes is at 0.868 over his last 10.",
+  "downside": "A hat trick is rare even for top scorers: the estimate is about 2.9%, so the most likely result is not a hat trick. The goalie is projected starter (confirmation unknown), and his team has two goalies splitting starts.",
+  "tiebreak": null,
+  "narrative_note": null
+ },
+ "runners_up": [
+  {
+   "name": "Matt Boldy",
+   "team": "MIN",
+   "est_p3": 0.026
+  },
+  {
+   "name": "Nathan MacKinnon",
+   "team": "COL",
+   "est_p3": 0.0236
+  },
+  {
+   "name": "Jack Hughes",
+   "team": "NJ",
+   "est_p3": 0.0182
+  },
+  {
+   "name": "Steven Stamkos",
+   "team": "NSH",
+   "est_p3": 0.017
+  }
+ ],
+ "n_checked": 305,
+ "record_stats": {
+  "graded": 0,
+  "hits": 0,
+  "misses": 0,
+  "pending": 1,
+  "text": "0-0",
+  "label": "New, no track record yet"
+ }
+}
