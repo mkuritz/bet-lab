@@ -1,0 +1,964 @@
+{
+ "generated_at": "2026-11-10T01:19:35-05:00",
+ "asof": "2026-11-10",
+ "window": {
+  "from": "2026-11-03",
+  "to": "2026-11-09",
+  "tz": "America/New_York"
+ },
+ "min_wildness": 95.0,
+ "min_wildness_season_lane": 99.0,
+ "mlb": {
+  "status": "offseason, skipped"
+ },
+ "coverage": {
+  "nba": {
+   "games_in_window": 47,
+   "games_with_box_or_events": 47,
+   "season_games_loaded": 154,
+   "cards": 5,
+   "candidates_over_threshold": 19
+  },
+  "nfl": {
+   "games_in_window": 15,
+   "games_with_box_or_events": 15,
+   "season_games_loaded": 136,
+   "cards": 3,
+   "candidates_over_threshold": 14
+  },
+  "nhl": {
+   "games_in_window": 50,
+   "games_with_box_or_events": 50,
+   "season_games_loaded": 285,
+   "cards": 5,
+   "candidates_over_threshold": 30
+  },
+  "cfb": {
+   "games_in_window": 63,
+   "games_with_box_or_events": 63,
+   "season_games_loaded": 685,
+   "cards": 2,
+   "candidates_over_threshold": 25
+  },
+  "cbb": {
+   "games_in_window": 338,
+   "games_with_box_or_events": 338,
+   "season_games_loaded": 522,
+   "cards": 2,
+   "candidates_over_threshold": 38
+  },
+  "soccer": {
+   "games_in_window": 241,
+   "games_with_box_or_events": 241,
+   "season_games_loaded": 256,
+   "cards": 1,
+   "candidates_over_threshold": 8
+  }
+ },
+ "cards": [
+  {
+   "sport": "nba",
+   "type": "contrast",
+   "tag": "CONTRAST",
+   "hook": "Jalen Brunson outscores CHI by himself in the 1st quarter: 22-21",
+   "lines": [
+    {
+     "k": "22",
+     "t": "points in the 1st quarter by Jalen Brunson"
+    },
+    {
+     "k": "21",
+     "t": "points for CHI as a whole team in the 1st quarter"
+    },
+    {
+     "k": "33",
+     "t": "points in the game for him"
+    }
+   ],
+   "game": {
+    "eid": "401909926",
+    "sport": "nba",
+    "date_et": "2026-11-04",
+    "date_label": "Wed Nov 4, 2026",
+    "score": "NY 135, CHI 105",
+    "home": "NY",
+    "away": "CHI",
+    "home_score": 135,
+    "away_score": 105,
+    "ot": 0,
+    "so": false,
+    "home_lines": [
+     "43",
+     "41",
+     "29",
+     "22"
+    ],
+    "away_lines": [
+     "21",
+     "31",
+     "27",
+     "26"
+    ]
+   },
+   "rare": "Only 12 times a player outscored the other team in a quarter with 22+ points in our data since Oct 2023; the one before was Tue Mar 10, 2026 (187,214 player-periods)",
+   "scope": "history",
+   "wildness": 99.99,
+   "k": 12,
+   "n": 187214,
+   "id": "ws-nba-contrast-401909926-1"
+  },
+  {
+   "sport": "nba",
+   "type": "rare_line",
+   "tag": "RARE LINE",
+   "hook": "Victor Wembanyama posts a rare 52-24-2 line",
+   "lines": [
+    {
+     "k": "52-24-2",
+     "t": "points-rebounds-assists"
+    },
+    {
+     "k": "34",
+     "t": "minutes played"
+    },
+    {
+     "k": "16-28",
+     "t": "from the field, 19-of-23 at the line"
+    }
+   ],
+   "game": {
+    "eid": "401909933",
+    "sport": "nba",
+    "date_et": "2026-11-04",
+    "date_label": "Wed Nov 4, 2026",
+    "score": "SA 112, DAL 111",
+    "home": "SA",
+    "away": "DAL",
+    "home_score": 112,
+    "away_score": 111,
+    "ot": 0,
+    "so": false,
+    "home_lines": [
+     "32",
+     "36",
+     "22",
+     "22"
+    ],
+    "away_lines": [
+     "26",
+     "25",
+     "29",
+     "31"
+    ]
+   },
+   "rare": "The only game with 50+ points and 20+ rebounds in our data since Oct 2023 (82,700 player-games)",
+   "scope": "history",
+   "wildness": 99.99,
+   "k": 1,
+   "n": 82700,
+   "id": "ws-nba-rare_line-401909933-2"
+  },
+  {
+   "sport": "nba",
+   "type": "defense",
+   "tag": "DEFENSE",
+   "hook": "Victor Wembanyama swats 9 on defense",
+   "lines": [
+    {
+     "k": "9",
+     "t": "blocks"
+    },
+    {
+     "k": "40",
+     "t": "points"
+    },
+    {
+     "k": "11",
+     "t": "rebounds"
+    },
+    {
+     "k": "25",
+     "t": "minutes"
+    }
+   ],
+   "game": {
+    "eid": "401909958",
+    "sport": "nba",
+    "date_et": "2026-11-09",
+    "date_label": "Mon Nov 9, 2026",
+    "score": "SA 122, PHX 96",
+    "home": "PHX",
+    "away": "SA",
+    "home_score": 96,
+    "away_score": 122,
+    "ot": 0,
+    "so": false,
+    "home_lines": [
+     "25",
+     "21",
+     "22",
+     "28"
+    ],
+    "away_lines": [
+     "31",
+     "30",
+     "32",
+     "29"
+    ]
+   },
+   "rare": "Only 7 9+ block games in our data since Oct 2023; the one before was Fri Oct 24, 2025 (82,700 player-games)",
+   "scope": "history",
+   "wildness": 99.99,
+   "k": 7,
+   "n": 82700,
+   "id": "ws-nba-defense-401909958-3"
+  },
+  {
+   "sport": "nba",
+   "type": "contrast",
+   "tag": "CONTRAST",
+   "hook": "Luka Doncic outscores POR by himself in the 3rd quarter: 20-15",
+   "lines": [
+    {
+     "k": "20",
+     "t": "points in the 3rd quarter by Luka Doncic"
+    },
+    {
+     "k": "15",
+     "t": "points for POR as a whole team in the 3rd quarter"
+    },
+    {
+     "k": "53",
+     "t": "points in the game for him"
+    }
+   ],
+   "game": {
+    "eid": "401909294",
+    "sport": "nba",
+    "date_et": "2026-11-06",
+    "date_label": "Fri Nov 6, 2026",
+    "score": "LAL 124, POR 118",
+    "home": "LAL",
+    "away": "POR",
+    "home_score": 124,
+    "away_score": 118,
+    "ot": 0,
+    "so": false,
+    "home_lines": [
+     "20",
+     "33",
+     "34",
+     "37"
+    ],
+    "away_lines": [
+     "29",
+     "31",
+     "15",
+     "43"
+    ]
+   },
+   "rare": "Only 25 times a player outscored the other team in a quarter with 20+ points in our data since Oct 2023; the one before was Wed Nov 4, 2026 (187,214 player-periods)",
+   "scope": "history",
+   "wildness": 99.99,
+   "k": 25,
+   "n": 187214,
+   "id": "ws-nba-contrast-401909294-4"
+  },
+  {
+   "sport": "nfl",
+   "type": "rare_line",
+   "tag": "RARE LINE",
+   "hook": "CeeDee Lamb goes off for 195 receiving yards",
+   "lines": [
+    {
+     "k": "195",
+     "t": "receiving yards on 10 catches"
+    },
+    {
+     "k": "19.5",
+     "t": "yards per catch"
+    },
+    {
+     "k": "1",
+     "t": "receiving touchdown"
+    }
+   ],
+   "game": {
+    "eid": "401873040",
+    "sport": "nfl",
+    "date_et": "2026-11-08",
+    "date_label": "Sun Nov 8, 2026",
+    "score": "DAL 27, IND 23",
+    "home": "IND",
+    "away": "DAL",
+    "home_score": 23,
+    "away_score": 27,
+    "ot": 0,
+    "so": false,
+    "home_lines": [
+     "7",
+     "0",
+     "10",
+     "6"
+    ],
+    "away_lines": [
+     "3",
+     "14",
+     "3",
+     "7"
+    ]
+   },
+   "rare": "Top 0.07% of the 8,790 tracked player-games since Dec 2016 in our data (195+ yard receiving game). Tracked players only, so this is a share, not a league-wide count.",
+   "scope": "history",
+   "wildness": 99.94,
+   "k": 6,
+   "n": 8790,
+   "id": "ws-nfl-rare_line-401873040-5"
+  },
+  {
+   "sport": "cfb",
+   "type": "rare_line",
+   "tag": "RARE LINE",
+   "hook": "Drew Mestemaker scores 6 touchdowns",
+   "lines": [
+    {
+     "k": "6",
+     "t": "total touchdowns (4 passing, 1 rushing, 1 receiving)"
+    },
+    {
+     "k": "313",
+     "t": "passing yards"
+    },
+    {
+     "k": "11",
+     "t": "rushing yards"
+    },
+    {
+     "k": "5",
+     "t": "receiving yards"
+    }
+   ],
+   "game": {
+    "eid": "401856854",
+    "sport": "cfb",
+    "date_et": "2026-11-07",
+    "date_label": "Sat Nov 7, 2026",
+    "score": "OKST 66, KSU 28",
+    "home": "KSU",
+    "away": "OKST",
+    "home_score": 28,
+    "away_score": 66,
+    "ot": 0,
+    "so": false,
+    "home_lines": [
+     "7",
+     "7",
+     "7",
+     "7"
+    ],
+    "away_lines": [
+     "28",
+     "21",
+     "14",
+     "3"
+    ]
+   },
+   "rare": "Top 0.07% of the 25,295 tracked player-games since Aug 2022 in our data (6-touchdown game). Tracked players only, so this is a share, not a league-wide count.",
+   "scope": "history",
+   "wildness": 99.93,
+   "k": 18,
+   "n": 25295,
+   "id": "ws-cfb-rare_line-401856854-6"
+  },
+  {
+   "sport": "cfb",
+   "type": "rare_line",
+   "tag": "RARE LINE",
+   "hook": "Jackson Gutierrez scores 6 touchdowns",
+   "lines": [
+    {
+     "k": "6",
+     "t": "total touchdowns (1 passing, 5 rushing)"
+    },
+    {
+     "k": "178",
+     "t": "passing yards"
+    },
+    {
+     "k": "180",
+     "t": "rushing yards"
+    }
+   ],
+   "game": {
+    "eid": "401862820",
+    "sport": "cfb",
+    "date_et": "2026-11-07",
+    "date_label": "Sat Nov 7, 2026",
+    "score": "NAVY 42, TEM 35",
+    "home": "NAVY",
+    "away": "TEM",
+    "home_score": 42,
+    "away_score": 35,
+    "ot": 0,
+    "so": false,
+    "home_lines": [
+     "14",
+     "14",
+     "7",
+     "7"
+    ],
+    "away_lines": [
+     "0",
+     "7",
+     "7",
+     "21"
+    ]
+   },
+   "rare": "Top 0.07% of the 25,295 tracked player-games since Aug 2022 in our data (6-touchdown game). Tracked players only, so this is a share, not a league-wide count.",
+   "scope": "history",
+   "wildness": 99.93,
+   "k": 18,
+   "n": 25295,
+   "id": "ws-cfb-rare_line-401862820-7"
+  },
+  {
+   "sport": "nba",
+   "type": "defense",
+   "tag": "DEFENSE",
+   "hook": "Dyson Daniels steals 6 on defense",
+   "lines": [
+    {
+     "k": "6",
+     "t": "steals"
+    },
+    {
+     "k": "9",
+     "t": "points"
+    },
+    {
+     "k": "10",
+     "t": "rebounds"
+    },
+    {
+     "k": "31",
+     "t": "minutes"
+    }
+   ],
+   "game": {
+    "eid": "401909939",
+    "sport": "nba",
+    "date_et": "2026-11-07",
+    "date_label": "Sat Nov 7, 2026",
+    "score": "ATL 124, BKN 121",
+    "home": "ATL",
+    "away": "BKN",
+    "home_score": 124,
+    "away_score": 121,
+    "ot": 0,
+    "so": false,
+    "home_lines": [
+     "27",
+     "39",
+     "22",
+     "36"
+    ],
+    "away_lines": [
+     "37",
+     "33",
+     "25",
+     "26"
+    ]
+   },
+   "rare": "Top 0.1% of 82,700 player-games since Oct 2023 in our data (6+ steal game)",
+   "scope": "history",
+   "wildness": 99.9,
+   "k": 85,
+   "n": 82700,
+   "id": "ws-nba-defense-401909939-8"
+  },
+  {
+   "sport": "nfl",
+   "type": "rare_line",
+   "tag": "RARE LINE",
+   "hook": "C.J. Stroud scores 5 touchdowns",
+   "lines": [
+    {
+     "k": "5",
+     "t": "total touchdowns (5 passing)"
+    },
+    {
+     "k": "384",
+     "t": "passing yards"
+    },
+    {
+     "k": "20",
+     "t": "rushing yards"
+    }
+   ],
+   "game": {
+    "eid": "401873046",
+    "sport": "nfl",
+    "date_et": "2026-11-08",
+    "date_label": "Sun Nov 8, 2026",
+    "score": "HOU 44, LAC 22",
+    "home": "LAC",
+    "away": "HOU",
+    "home_score": 22,
+    "away_score": 44,
+    "ot": 0,
+    "so": false,
+    "home_lines": [
+     "3",
+     "6",
+     "0",
+     "13"
+    ],
+    "away_lines": [
+     "10",
+     "14",
+     "7",
+     "13"
+    ]
+   },
+   "rare": "Top 0.19% of the 11,290 tracked player-games since Dec 2016 in our data (5-touchdown game). Tracked players only, so this is a share, not a league-wide count.",
+   "scope": "history",
+   "wildness": 99.81,
+   "k": 22,
+   "n": 11290,
+   "id": "ws-nfl-rare_line-401873046-9"
+  },
+  {
+   "sport": "nhl",
+   "type": "rare_line",
+   "tag": "RARE LINE",
+   "hook": "Jason Robertson nets a hat trick against WSH",
+   "lines": [
+    {
+     "k": "3",
+     "t": "goals on 5 shots"
+    },
+    {
+     "k": "1",
+     "t": "assist"
+    },
+    {
+     "k": "4",
+     "t": "points"
+    }
+   ],
+   "game": {
+    "eid": "401892640",
+    "sport": "nhl",
+    "date_et": "2026-11-03",
+    "date_label": "Tue Nov 3, 2026",
+    "score": "DAL 6, WSH 5",
+    "home": "WSH",
+    "away": "DAL",
+    "home_score": 5,
+    "away_score": 6,
+    "ot": 0,
+    "so": false,
+    "home_lines": [
+     "0",
+     "3",
+     "2"
+    ],
+    "away_lines": [
+     "1",
+     "4",
+     "1"
+    ]
+   },
+   "rare": "Top 0.20% of the 73,320 tracked player-games since Apr 2021 in our data (3-goal game). Tracked players only, so this is a share, not a league-wide count.",
+   "scope": "history",
+   "wildness": 99.8,
+   "k": 148,
+   "n": 73320,
+   "id": "ws-nhl-rare_line-401892640-10"
+  },
+  {
+   "sport": "nhl",
+   "type": "rare_line",
+   "tag": "RARE LINE",
+   "hook": "Cutter Gauthier nets a hat trick against VAN",
+   "lines": [
+    {
+     "k": "3",
+     "t": "goals on 6 shots"
+    },
+    {
+     "k": "0",
+     "t": "assists"
+    },
+    {
+     "k": "3",
+     "t": "points"
+    }
+   ],
+   "game": {
+    "eid": "401892643",
+    "sport": "nhl",
+    "date_et": "2026-11-03",
+    "date_label": "Tue Nov 3, 2026",
+    "score": "ANA 5, VAN 4",
+    "home": "VAN",
+    "away": "ANA",
+    "home_score": 4,
+    "away_score": 5,
+    "ot": 0,
+    "so": false,
+    "home_lines": [
+     "1",
+     "1",
+     "2"
+    ],
+    "away_lines": [
+     "2",
+     "2",
+     "1"
+    ]
+   },
+   "rare": "Top 0.20% of the 73,320 tracked player-games since Apr 2021 in our data (3-goal game). Tracked players only, so this is a share, not a league-wide count.",
+   "scope": "history",
+   "wildness": 99.8,
+   "k": 148,
+   "n": 73320,
+   "id": "ws-nhl-rare_line-401892643-11"
+  },
+  {
+   "sport": "nhl",
+   "type": "goalie",
+   "tag": "GOALIE",
+   "hook": "Ilya Sorokin stands on his head: 45 saves",
+   "lines": [
+    {
+     "k": "45",
+     "t": "saves on 50 shots"
+    },
+    {
+     "k": "5",
+     "t": "goals allowed"
+    }
+   ],
+   "game": {
+    "eid": "401892667",
+    "sport": "nhl",
+    "date_et": "2026-11-07",
+    "date_label": "Sat Nov 7, 2026",
+    "score": "NJ 5, NYI 4 (OT)",
+    "home": "NYI",
+    "away": "NJ",
+    "home_score": 4,
+    "away_score": 5,
+    "ot": 1,
+    "so": false,
+    "home_lines": [
+     "2",
+     "2",
+     "0",
+     "0"
+    ],
+    "away_lines": [
+     "1",
+     "1",
+     "2",
+     "1"
+    ]
+   },
+   "rare": "Top 0.32% of the 4,681 tracked player-games since Oct 2023 in our data (45+ save game). Tracked players only, so this is a share, not a league-wide count.",
+   "scope": "history",
+   "wildness": 99.69,
+   "k": 15,
+   "n": 4681,
+   "id": "ws-nhl-goalie-401892667-12"
+  },
+  {
+   "sport": "nhl",
+   "type": "goalie",
+   "tag": "GOALIE",
+   "hook": "Jacob Fowler stands on his head: 42 saves",
+   "lines": [
+    {
+     "k": "42",
+     "t": "saves on 47 shots"
+    },
+    {
+     "k": "5",
+     "t": "goals allowed"
+    }
+   ],
+   "game": {
+    "eid": "401892634",
+    "sport": "nhl",
+    "date_et": "2026-11-03",
+    "date_label": "Tue Nov 3, 2026",
+    "score": "WPG 5, MTL 4 (OT)",
+    "home": "MTL",
+    "away": "WPG",
+    "home_score": 4,
+    "away_score": 5,
+    "ot": 1,
+    "so": false,
+    "home_lines": [
+     "2",
+     "1",
+     "1",
+     "0"
+    ],
+    "away_lines": [
+     "0",
+     "0",
+     "4",
+     "1"
+    ]
+   },
+   "rare": "Top 0.90% of the 4,681 tracked player-games since Oct 2023 in our data (42+ save game). Tracked players only, so this is a share, not a league-wide count.",
+   "scope": "history",
+   "wildness": 99.11,
+   "k": 42,
+   "n": 4681,
+   "id": "ws-nhl-goalie-401892634-13"
+  },
+  {
+   "sport": "cbb",
+   "type": "rare_line",
+   "tag": "RARE LINE",
+   "hook": "Baye Ndongo fills the stat sheet: 23-21-1",
+   "lines": [
+    {
+     "k": "23-21-1",
+     "t": "points-rebounds-assists"
+    },
+    {
+     "k": "33",
+     "t": "minutes played"
+    },
+    {
+     "k": "5-of-10",
+     "t": "from the field, 13-of-17 at the line"
+    }
+   ],
+   "game": {
+    "eid": "401909706",
+    "sport": "cbb",
+    "date_et": "2026-11-05",
+    "date_label": "Thu Nov 5, 2026",
+    "score": "PITT 80, BUF 61",
+    "home": "PITT",
+    "away": "BUF",
+    "home_score": 80,
+    "away_score": 61,
+    "ot": 0,
+    "so": false,
+    "home_lines": [
+     "32",
+     "48"
+    ],
+    "away_lines": [
+     "45",
+     "16"
+    ]
+   },
+   "rare": "First 21+ rebound game of the 2026-27 season so far (7,822 player-games compared since Nov 3, 2026). Earlier seasons are not in this comparison, so this is not a record.",
+   "scope": "season",
+   "wildness": null,
+   "k": 1,
+   "n": 7822,
+   "id": "ws-cbb-rare_line-401909706-14"
+  },
+  {
+   "sport": "cbb",
+   "type": "contrast",
+   "tag": "CONTRAST",
+   "hook": "Nikola Kusturica outscores UNF by himself in the 1st half: 26-20",
+   "lines": [
+    {
+     "k": "26",
+     "t": "points in the 1st half by Nikola Kusturica"
+    },
+    {
+     "k": "20",
+     "t": "points for UNF as a whole team in the 1st half"
+    },
+    {
+     "k": "29",
+     "t": "points in the game for him"
+    }
+   ],
+   "game": {
+    "eid": "401922219",
+    "sport": "cbb",
+    "date_et": "2026-11-06",
+    "date_label": "Fri Nov 6, 2026",
+    "score": "UCLA 114, UNF 63",
+    "home": "UCLA",
+    "away": "UNF",
+    "home_score": 114,
+    "away_score": 63,
+    "ot": 0,
+    "so": false,
+    "home_lines": [
+     "52",
+     "62"
+    ],
+    "away_lines": [
+     "20",
+     "43"
+    ]
+   },
+   "rare": "First time a player outscored the other team in a half with 26+ points of the 2026-27 season so far (9,434 player-periods compared since Nov 3, 2026). Earlier seasons are not in this comparison, so this is not a record.",
+   "scope": "season",
+   "wildness": null,
+   "k": 1,
+   "n": 9434,
+   "id": "ws-cbb-contrast-401922219-15"
+  },
+  {
+   "sport": "nhl",
+   "type": "streak",
+   "tag": "STREAK",
+   "hook": "Connor McDavid: 19 straight games with a point",
+   "lines": [
+    {
+     "k": "19",
+     "t": "straight games with a point"
+    },
+    {
+     "k": "11",
+     "t": "goals during the run"
+    },
+    {
+     "k": "48",
+     "t": "points during the run"
+    },
+    {
+     "k": "19",
+     "t": "games, Sep 29 to Nov 9 (ET); still active"
+    }
+   ],
+   "game": {
+    "eid": "401892680",
+    "sport": "nhl",
+    "date_et": "2026-11-09",
+    "date_label": "Mon Nov 9, 2026",
+    "score": "EDM 3, NYR 1",
+    "home": "EDM",
+    "away": "NYR",
+    "home_score": 3,
+    "away_score": 1,
+    "ot": 0,
+    "so": false,
+    "home_lines": [
+     "1",
+     "1",
+     "1"
+    ],
+    "away_lines": [
+     "0",
+     "1",
+     "0"
+    ]
+   },
+   "rare": "First streak of 19+ straight games with a point of the 2026-27 season so far (2,138 streaks compared since Sep 29, 2026). Earlier seasons are not in this comparison, so this is not a record.",
+   "scope": "season",
+   "wildness": null,
+   "k": 1,
+   "n": 2138,
+   "id": "ws-nhl-streak-401892680-16"
+  },
+  {
+   "sport": "soccer",
+   "type": "comeback",
+   "tag": "COMEBACK",
+   "hook": "Cardiff City come from 3 goals down to beat Burnley",
+   "lines": [
+    {
+     "k": "3",
+     "t": "goals is the biggest deficit Cardiff City overturned (down 4-1 at 62')"
+    },
+    {
+     "k": "5-4",
+     "t": "final (CAR-BUR)"
+    },
+    {
+     "k": "9",
+     "t": "goals in the match"
+    }
+   ],
+   "game": {
+    "eid": "401880169",
+    "sport": "soccer",
+    "date_et": "2026-11-07",
+    "date_label": "Sat Nov 7, 2026",
+    "score": "CAR 5, BUR 4",
+    "home": "CAR",
+    "away": "BUR",
+    "home_score": 5,
+    "away_score": 4,
+    "ot": 0,
+    "so": false,
+    "home_lines": [],
+    "away_lines": [],
+    "league": "EFL Championship"
+   },
+   "rare": "First win after trailing by 3+ goals of the 2026-27 season so far (256 matches compared since Nov 2, 2026). Earlier seasons are not in this comparison, so this is not a record.",
+   "scope": "season",
+   "wildness": null,
+   "k": 1,
+   "n": 256,
+   "league": "eng.2",
+   "id": "ws-soccer-comeback-401880169-17"
+  },
+  {
+   "sport": "nfl",
+   "type": "streak",
+   "tag": "STREAK",
+   "hook": "Christian McCaffrey: 7 straight games with a rushing or receiving touchdown",
+   "lines": [
+    {
+     "k": "7",
+     "t": "straight games with a rushing or receiving touchdown"
+    },
+    {
+     "k": "10",
+     "t": "touchdowns in the run"
+    },
+    {
+     "k": "7",
+     "t": "games, Sep 20 to Nov 8 (ET); still active"
+    }
+   ],
+   "game": {
+    "eid": "401873047",
+    "sport": "nfl",
+    "date_et": "2026-11-08",
+    "date_label": "Sun Nov 8, 2026",
+    "score": "SF 38, LV 17",
+    "home": "SF",
+    "away": "LV",
+    "home_score": 38,
+    "away_score": 17,
+    "ot": 0,
+    "so": false,
+    "home_lines": [
+     "14",
+     "7",
+     "14",
+     "3"
+    ],
+    "away_lines": [
+     "0",
+     "10",
+     "7",
+     "0"
+    ]
+   },
+   "rare": "One of 2 streaks of 7+ straight games with a rushing or receiving touchdown in the 2026-27 season so far (409 streaks compared since Sep 9, 2026). Earlier seasons are not in this comparison.",
+   "scope": "season",
+   "wildness": null,
+   "k": 2,
+   "n": 409,
+   "id": "ws-nfl-streak-401873047-18"
+  }
+ ]
+}
