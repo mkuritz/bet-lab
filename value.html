@@ -129,11 +129,13 @@ function drawActive(){
     const lrHtml=window.LR&&r.player?LR.tag(r.sport,r.aid||"",r.market,r.line,r.player,r.side&&r.side.toLowerCase()==="under"?"under":"over",r.start||"",r.game||""):"";
     const spotBadge=(r.spot&&r.spot.badge)?`<span class="tg layup" style="margin-left:4px">${esc(r.spot.badge)}</span>`:"";
     const liveBadge=r.live_status?`<div style="margin-top:3px"><span class="tg win">${esc(r.live_status)}</span></div>`:"";
+    const gradeBadge=r.lingering&&r.res?`<div style="margin-top:3px"><span class="tg ${r.res==="win"?"win":"plus"}">${r.res==="win"?"✓ Graded hit":(r.res==="push"?"○ Push":"✗ Graded miss")}${r.actual_str?" · "+esc(r.actual_str):""}</span></div>`:"";
+    const hitAt=r.hit_at?`<div class="mut" style="margin-top:2px;font-size:11px">Hit at ${esc(tm(r.hit_at))}</div>`:"";
     return `<div class="r">
       <span>
         <span class="tg ${badgeCls}">${esc(badgeTxt)}</span>
         <b>${esc(r.pick)}</b> <span class="mut">${EM[r.sport]||r.sport.toUpperCase()}${r.lg?` · ${esc(r.lg.toUpperCase())}`:""}</span>${spotBadge}
-        ${liveBadge}${lrHtml}
+        ${liveBadge}${gradeBadge}${hitAt}${lrHtml}
       </span>
       <span class="g mut">${esc(r.matchup)}<br>${tm(r.start)}</span>
       <span><b style="font-size:15px;color:${r.price>0?"var(--mid)":"var(--txt)"}">${am(r.price)}</b> <span class="mut">${esc(r.book||"Book A")}</span></span>
