@@ -1,1 +1,19 @@
-{"feature":"Hat-Trick Hammer","sport":"NHL","preview":false,"updated":"2026-11-12T00:18:11+00:00","slate":"2026-11-11","hurdle":"3+ goals in the game (regulation and overtime; shootout goals do not count)","probability_label":"Research estimate - not calibrated, no graded record","record":"0-1 graded 3+ goal picks","assumptions":"Goals per game = shots/game (half last 10, half since 2025-26) x shooting % regressed to 9.5% over 60 shots, x opponent shots-allowed factor (0.88-1.12) x goalie save % factor (0.85-1.20); P(3+) = Poisson tail, which ignores game-to-game variance in ice time and score effects. Not fitted to 3+ outcomes.","market":"No 3+ goals price in our feed; likelihood only, not value","candidate":{"id":"8477934","name":"Leon Draisaitl","pos":"C","team":"EDM","opp":"PHI","home":true,"game":"2026020295","start":"2026-11-12T02:00:00Z","start_et":"Wed Nov 11, 9:00 PM ET","profile":"./#player/8477934","status":"Active roster, no injury listed","qualified":true,"est_lambda":0.737,"est_p3":0.0387,"evidence":{"games":84,"season_goals":18,"season_gp":19,"shots_pg_blend":3.65,"dup_rows_dropped":0,"shooting_pct_regressed":0.1834,"toi_l10":22.4,"shots_l10":42,"hat_tricks_since_2025_26":1,"pp":{"unit":1,"conf":"High","asof":"2026-11-09"},"opp_shots_allowed_pg":28.6,"opp_factor":1.043,"goalie":{"name":"Dan Vladar","sv":0.8967,"l10_sv":0.886,"status":"projected starter (confirmation unknown)","tandem":true},"goalie_factor":1.055,"last5":[{"game_id":"2026020283","d":"2026-11-09","o":"NYR","g":2,"s":4},{"game_id":"2026020276","d":"2026-11-07","o":"VAN","g":2,"s":7},{"game_id":"2026020260","d":"2026-11-05","o":"ANA","g":1,"s":6},{"game_id":"2026020239","d":"2026-11-03","o":"NJ","g":1,"s":4},{"game_id":"2026020230","d":"2026-11-01","o":"NYR","g":0,"s":3}]},"narrative":[{"text":"6 goals in his last 5 games (through 2026-11-09)","date":"2026-11-09","kind":"form","game_ids":["2026020283","2026020276","2026020260","2026020239","2026020230"]}],"fit":"3.65 shots a game (recent and since last season blended) with 22.4 minutes a night and a spot on power-play unit 1; PHI allows 28.6 shots a game and projected starter Dan Vladar is at 0.886 over his last 10.","downside":"A hat trick is rare even for top scorers: the estimate is about 3.9%, so the most likely result is not a hat trick. The goalie is projected starter (confirmation unknown), and his team has two goalies splitting starts.","tiebreak":null,"narrative_note":null},"runners_up":[{"name":"Steven Stamkos","team":"NSH","est_p3":0.0242},{"name":"Cutter Gauthier","team":"ANA","est_p3":0.023},{"name":"Macklin Celebrini","team":"SJ","est_p3":0.0227},{"name":"Connor McDavid","team":"EDM","est_p3":0.0199}],"n_checked":227,"record_stats":{"graded":1,"hits":0,"misses":1,"pending":1,"text":"0-1","label":"0-1 graded 3+ goal picks"}}
+{
+ "feature": "Hat-Trick Hammer",
+ "sport": "NHL",
+ "preview": false,
+ "updated": "2026-11-12T07:24:10+00:00",
+ "slate": null,
+ "candidate": null,
+ "reason": "Today's pick posts at about 10 AM ET on game days.",
+ "probability_label": "Research estimate - not calibrated, no graded record",
+ "record_stats": {
+  "graded": 2,
+  "hits": 0,
+  "misses": 2,
+  "pending": 0,
+  "text": "0-2",
+  "label": "0-2 graded 3+ goal picks"
+ },
+ "record": "0-2 graded 3+ goal picks"
+}
