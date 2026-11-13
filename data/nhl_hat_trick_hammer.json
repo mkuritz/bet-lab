@@ -1,1 +1,19 @@
-{"feature":"Hat-Trick Hammer","sport":"NHL","preview":false,"updated":"2026-11-12T15:25:01+00:00","slate":"2026-11-12","hurdle":"3+ goals in the game (regulation and overtime; shootout goals do not count)","probability_label":"Research estimate - not calibrated, no graded record","record":"0-2 graded 3+ goal picks","assumptions":"Goals per game = shots/game (half last 10, half since 2025-26) x shooting % regressed to 9.5% over 60 shots, x opponent shots-allowed factor (0.88-1.12) x goalie save % factor (0.85-1.20); P(3+) = Poisson tail, which ignores game-to-game variance in ice time and score effects. Not fitted to 3+ outcomes.","market":"No 3+ goals price in our feed; likelihood only, not value","candidate":{"id":"8478864","name":"Kirill Kaprizov","pos":"L","team":"MIN","opp":"TOR","home":false,"game":"2026020300","start":"2026-11-13T00:00:00Z","start_et":"Thu Nov 12, 7:00 PM ET","profile":"./#player/8478864","status":"Active roster, no injury listed","qualified":true,"est_lambda":0.66,"est_p3":0.0295,"evidence":{"games":98,"season_goals":17,"season_gp":20,"shots_pg_blend":3.09,"dup_rows_dropped":0,"shooting_pct_regressed":0.1731,"toi_l10":21.5,"shots_l10":28,"hat_tricks_since_2025_26":2,"pp":{"unit":1,"conf":"High","asof":"2026-11-10"},"opp_shots_allowed_pg":29.5,"opp_factor":1.076,"goalie":{"name":"Sergei Bobrovsky","sv":0.8857,"l10_sv":0.878,"status":"projected starter (confirmation unknown)","tandem":true},"goalie_factor":1.147,"last5":[{"game_id":"2026020287","d":"2026-11-10","o":"MTL","g":1,"s":1},{"game_id":"2026020273","d":"2026-11-07","o":"TB","g":0,"s":5},{"game_id":"2026020263","d":"2026-11-06","o":"SJ","g":1,"s":2},{"game_id":"2026020241","d":"2026-11-03","o":"PHI","g":0,"s":1},{"game_id":"2026020228","d":"2026-11-01","o":"WSH","g":1,"s":2}]},"narrative":[{"text":"1 hat trick this season, most recently 2026-10-10 vs FLA","date":"2026-10-10","kind":"recent hat tricks","game_ids":["2026020073"]}],"fit":"3.09 shots a game (recent and since last season blended) with 21.5 minutes a night and a spot on power-play unit 1; TOR allows 29.5 shots a game and projected starter Sergei Bobrovsky is at 0.878 over his last 10.","downside":"A hat trick is rare even for top scorers: the estimate is about 2.9%, so the most likely result is not a hat trick. The goalie is projected starter (confirmation unknown), and his team has two goalies splitting starts.","tiebreak":null,"narrative_note":null},"runners_up":[{"name":"Matt Boldy","team":"MIN","est_p3":0.0263},{"name":"Jason Robertson","team":"DAL","est_p3":0.0243},{"name":"Tage Thompson","team":"BUF","est_p3":0.0221},{"name":"Wyatt Johnston","team":"DAL","est_p3":0.0213}],"n_checked":485,"record_stats":{"graded":2,"hits":0,"misses":2,"pending":1,"text":"0-2","label":"0-2 graded 3+ goal picks"}}
+{
+ "feature": "Hat-Trick Hammer",
+ "sport": "NHL",
+ "preview": false,
+ "updated": "2026-11-13T06:31:27+00:00",
+ "slate": null,
+ "candidate": null,
+ "reason": "Today's pick posts at about 10 AM ET on game days.",
+ "probability_label": "Research estimate - not calibrated, no graded record",
+ "record_stats": {
+  "graded": 3,
+  "hits": 0,
+  "misses": 3,
+  "pending": 0,
+  "text": "0-3",
+  "label": "0-3 graded 3+ goal picks"
+ },
+ "record": "0-3 graded 3+ goal picks"
+}
