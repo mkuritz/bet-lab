@@ -5022,6 +5022,27 @@
    "odds": -108,
    "odds_source": "live",
    "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter"
+  },
+  {
+   "week": 10,
+   "date": "2026-11-15",
+   "episode_date": "2026-11-13",
+   "sport": "nfl",
+   "category": "leans",
+   "kind": "straight",
+   "type": "total",
+   "team": "MIN",
+   "espn_event_id": "401872927",
+   "desc": "Vikings @ Packers Under 42",
+   "source_url": "https://www.tiktok.com/@erik.kuselias/video/7707740603877985566",
+   "source_label": "Video @ 0:05",
+   "timestamp": "0:05",
+   "line": 42,
+   "side": "under",
+   "id": "ek-w10-lean-3",
+   "odds": -108,
+   "odds_source": "live",
+   "odds_note": "Market price at video post (Nov 13, ~9:50 AM ET): consensus of US books at 42 (median Under -108) via historical odds snapshot"
   }
  ],
  "record": {
@@ -5171,7 +5192,7 @@
    "units": -2.14,
    "units_n": 6
   },
-  "pending": 16,
+  "pending": 17,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }
