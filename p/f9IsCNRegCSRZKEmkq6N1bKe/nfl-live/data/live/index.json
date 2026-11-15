@@ -1,6 +1,6 @@
 {
   "v": "0.1-preview",
-  "updated": "2026-11-15T15:15:45-05:00",
+  "updated": "2026-11-15T15:32:53-05:00",
   "games": {
     "401873037": {
       "gid": "401873037",
@@ -1010,7 +1010,7 @@
         }
       },
       "score": {
-        "away": 21,
+        "away": 28,
         "home": 3
       },
       "state": "in",
@@ -1044,11 +1044,21 @@
           "file": "401873056_h1.json",
           "injuries": 1,
           "props": 16
+        },
+        "q3": {
+          "built": "2026-11-15T15:25:43-05:00",
+          "score": {
+            "away": 17,
+            "home": 20
+          },
+          "file": "401873056_q3.json",
+          "injuries": 2,
+          "props": 16
         }
       },
       "score": {
         "away": 17,
-        "home": 17
+        "home": 20
       },
       "state": "in",
       "ended": null,
@@ -1081,11 +1091,21 @@
           "file": "401873060_h1.json",
           "injuries": 2,
           "props": 16
+        },
+        "q3": {
+          "built": "2026-11-15T15:25:43-05:00",
+          "score": {
+            "away": 20,
+            "home": 10
+          },
+          "file": "401873060_q3.json",
+          "injuries": 2,
+          "props": 16
         }
       },
       "score": {
         "away": 20,
-        "home": 7
+        "home": 10
       },
       "state": "in",
       "ended": null,
@@ -1118,11 +1138,21 @@
           "file": "401873057_h1.json",
           "injuries": 0,
           "props": 15
+        },
+        "q3": {
+          "built": "2026-11-15T15:31:52-05:00",
+          "score": {
+            "away": 23,
+            "home": 16
+          },
+          "file": "401873057_q3.json",
+          "injuries": 2,
+          "props": 16
         }
       },
       "score": {
         "away": 23,
-        "home": 13
+        "home": 16
       },
       "state": "in",
       "ended": null,
@@ -1155,10 +1185,20 @@
           "file": "401873059_h1.json",
           "injuries": 1,
           "props": 16
+        },
+        "q3": {
+          "built": "2026-11-15T15:26:46-05:00",
+          "score": {
+            "away": 16,
+            "home": 24
+          },
+          "file": "401873059_q3.json",
+          "injuries": 3,
+          "props": 16
         }
       },
       "score": {
-        "away": 16,
+        "away": 22,
         "home": 24
       },
       "state": "in",
@@ -1192,6 +1232,16 @@
           "file": "401873055_h1.json",
           "injuries": 0,
           "props": 16
+        },
+        "q3": {
+          "built": "2026-11-15T15:25:44-05:00",
+          "score": {
+            "away": 10,
+            "home": 7
+          },
+          "file": "401873055_q3.json",
+          "injuries": 2,
+          "props": 14
         }
       },
       "score": {
@@ -1229,10 +1279,20 @@
           "file": "401873054_h1.json",
           "injuries": 4,
           "props": 10
+        },
+        "q3": {
+          "built": "2026-11-15T15:25:44-05:00",
+          "score": {
+            "away": 24,
+            "home": 12
+          },
+          "file": "401873054_q3.json",
+          "injuries": 4,
+          "props": 16
         }
       },
       "score": {
-        "away": 17,
+        "away": 24,
         "home": 12
       },
       "state": "in",
