@@ -1,6 +1,6 @@
 {
   "v": "0.1-preview",
-  "updated": "2026-11-15T16:40:21-05:00",
+  "updated": "2026-11-15T16:49:10-05:00",
   "games": {
     "401873037": {
       "gid": "401873037",
@@ -1390,7 +1390,7 @@
       },
       "score": {
         "away": 7,
-        "home": 7
+        "home": 10
       },
       "state": "in",
       "ended": null,
@@ -1403,15 +1403,26 @@
       "home": "ARI",
       "date": "2026-11-15",
       "kickoff": "2026-11-15T21:05Z",
-      "stages": {},
+      "stages": {
+        "q1": {
+          "built": "2026-11-15T16:42:23-05:00",
+          "score": {
+            "away": 3,
+            "home": 6
+          },
+          "file": "401873061_q1.json",
+          "injuries": 1,
+          "props": 5
+        }
+      },
       "score": {
         "away": 3,
         "home": 6
       },
       "state": "in",
       "ended": null,
-      "pending": true,
-      "detail": "2:06 - 1st"
+      "pending": false,
+      "detail": "End of 1st"
     },
     "401873063": {
       "gid": "401873063",
@@ -1421,13 +1432,13 @@
       "kickoff": "2026-11-15T21:25Z",
       "stages": {},
       "score": {
-        "away": 0,
+        "away": 7,
         "home": 3
       },
       "state": "in",
       "ended": null,
       "pending": true,
-      "detail": "9:40 - 1st"
+      "detail": "6:27 - 1st"
     },
     "401873064": {
       "gid": "401873064",
