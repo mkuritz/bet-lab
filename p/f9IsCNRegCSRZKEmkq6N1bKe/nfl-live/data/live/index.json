@@ -1,6 +1,6 @@
 {
   "v": "0.1-preview",
-  "updated": "2026-11-15T16:11:24-05:00",
+  "updated": "2026-11-15T16:21:54-05:00",
   "games": {
     "401873037": {
       "gid": "401873037",
@@ -1007,14 +1007,24 @@
           "file": "401873058_q3.json",
           "injuries": 1,
           "props": 16
+        },
+        "final": {
+          "built": "2026-11-15T16:14:33-05:00",
+          "score": {
+            "away": 35,
+            "home": 13
+          },
+          "file": "401873058_final.json",
+          "injuries": 2,
+          "props": 16
         }
       },
       "score": {
         "away": 35,
         "home": 13
       },
-      "state": "in",
-      "ended": null,
+      "state": "post",
+      "ended": "FINAL",
       "pending": false,
       "detail": "15:00 - 2nd"
     },
@@ -1054,14 +1064,24 @@
           "file": "401873056_q3.json",
           "injuries": 2,
           "props": 16
+        },
+        "final": {
+          "built": "2026-11-15T16:16:36-05:00",
+          "score": {
+            "away": 24,
+            "home": 27
+          },
+          "file": "401873056_final.json",
+          "injuries": 3,
+          "props": 16
         }
       },
       "score": {
         "away": 24,
         "home": 27
       },
-      "state": "in",
-      "ended": null,
+      "state": "post",
+      "ended": "FINAL",
       "pending": false,
       "detail": "End of 1st"
     },
@@ -1158,14 +1178,24 @@
           "file": "401873057_q3.json",
           "injuries": 2,
           "props": 16
+        },
+        "final": {
+          "built": "2026-11-15T16:14:33-05:00",
+          "score": {
+            "away": 40,
+            "home": 23
+          },
+          "file": "401873057_final.json",
+          "injuries": 2,
+          "props": 16
         }
       },
       "score": {
         "away": 40,
         "home": 23
       },
-      "state": "in",
-      "ended": null,
+      "state": "post",
+      "ended": "FINAL",
       "pending": false,
       "detail": "15:00 - 2nd"
     },
@@ -1211,7 +1241,7 @@
         "away": 22,
         "home": 24
       },
-      "state": "in",
+      "state": "post",
       "ended": null,
       "pending": false,
       "detail": "15:00 - 2nd"
@@ -1252,14 +1282,24 @@
           "file": "401873055_q3.json",
           "injuries": 2,
           "props": 14
+        },
+        "final": {
+          "built": "2026-11-15T16:14:34-05:00",
+          "score": {
+            "away": 20,
+            "home": 17
+          },
+          "file": "401873055_final.json",
+          "injuries": 2,
+          "props": 11
         }
       },
       "score": {
-        "away": 17,
+        "away": 20,
         "home": 17
       },
-      "state": "in",
-      "ended": null,
+      "state": "post",
+      "ended": "FINAL",
       "pending": false,
       "detail": "14:31 - 2nd"
     },
@@ -1329,12 +1369,12 @@
       "stages": {},
       "score": {
         "away": 0,
-        "home": 0
+        "home": 7
       },
       "state": "in",
       "ended": null,
       "pending": true,
-      "detail": "12:09 - 1st"
+      "detail": "7:41 - 1st"
     },
     "401873061": {
       "gid": "401873061",
@@ -1345,12 +1385,12 @@
       "stages": {},
       "score": {
         "away": 0,
-        "home": 0
+        "home": 3
       },
       "state": "in",
       "ended": null,
       "pending": true,
-      "detail": "12:19 - 1st"
+      "detail": "8:55 - 1st"
     },
     "401873063": {
       "gid": "401873063",
