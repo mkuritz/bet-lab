@@ -2791,7 +2791,12 @@
    "episode_date": "2026-11-11",
    "odds_source": "live",
    "odds_note": "ESPN pickcenter (DraftKings) market price at episode time (Nov 11)",
-   "id": "aic-w10-107"
+   "id": "aic-w10-107",
+   "result": "loss",
+   "final": {
+    "DET": 35.0,
+    "NE": 10.0
+   }
   },
   {
    "sport": "nfl",
@@ -2915,7 +2920,12 @@
      "team": "NE",
      "desc": "Patriots +3 vs Lions",
      "odds": 100,
-     "odds_source": "live"
+     "odds_source": "live",
+     "result": "loss",
+     "final": {
+      "DET": 35.0,
+      "NE": 10.0
+     }
     },
     {
      "sport": "nfl",
@@ -2947,27 +2957,30 @@
    "odds": 1800,
    "odds_source": "stated",
    "legs_total": 4,
-   "legs_graded": 1,
+   "legs_graded": 2,
    "legs_hit": 1,
    "legs_push": 0,
-   "sunk_by": []
+   "sunk_by": [
+    "Patriots +3 vs Lions"
+   ],
+   "result": "loss"
   }
  ],
  "record": {
   "straight": {
    "overall": {
     "w": 54,
-    "l": 44,
+    "l": 45,
     "p": 2,
-    "units": 9.11,
-    "units_n": 100
+    "units": 8.11,
+    "units_n": 101
    },
    "nfl": {
     "w": 48,
-    "l": 39,
+    "l": 40,
     "p": 2,
-    "units": 8.94,
-    "units_n": 89
+    "units": 7.94,
+    "units_n": 90
    },
    "mlb": {
     "w": 2,
@@ -2994,17 +3007,17 @@
   "parlay": {
    "overall": {
     "w": 0,
-    "l": 4,
+    "l": 5,
     "p": 0,
-    "units": -4,
-    "units_n": 4
+    "units": -5,
+    "units_n": 5
    },
    "nfl": {
     "w": 0,
-    "l": 4,
+    "l": 5,
     "p": 0,
-    "units": -4,
-    "units_n": 4
+    "units": -5,
+    "units_n": 5
    },
    "mlb": {
     "w": 0,
@@ -3030,17 +3043,17 @@
   },
   "overall": {
    "w": 54,
-   "l": 44,
+   "l": 45,
    "p": 2,
-   "units": 9.11,
-   "units_n": 100
+   "units": 8.11,
+   "units_n": 101
   },
   "nfl": {
    "w": 48,
-   "l": 39,
+   "l": 40,
    "p": 2,
-   "units": 8.94,
-   "units_n": 89
+   "units": 7.94,
+   "units_n": 90
   },
   "mlb": {
    "w": 2,
@@ -3065,12 +3078,12 @@
   },
   "parlay_legs": {
    "w": 15,
-   "l": 7,
+   "l": 8,
    "p": 2,
-   "units": 6.2,
-   "units_n": 24
+   "units": 5.2,
+   "units_n": 25
   },
-  "pending": 13,
+  "pending": 11,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }

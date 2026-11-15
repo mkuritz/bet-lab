@@ -4774,7 +4774,12 @@
    "odds": -120,
    "odds_source": "live",
    "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter",
-   "bought": "-3 stated vs market -2.5; priced at market -2.5 (he also said he'd buy the half point)"
+   "bought": "-3 stated vs market -2.5; priced at market -2.5 (he also said he'd buy the half point)",
+   "result": "win",
+   "final": {
+    "DET": 35.0,
+    "NE": 10.0
+   }
   },
   {
    "week": 10,
@@ -5000,7 +5005,12 @@
    "odds": -110,
    "odds_source": "live",
    "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter",
-   "bought": "team total price not in market feed; -110 standard assumed"
+   "bought": "team total price not in market feed; -110 standard assumed",
+   "result": "win",
+   "final": {
+    "DET": 35.0,
+    "NE": 10.0
+   }
   },
   {
    "week": 10,
@@ -5053,18 +5063,18 @@
  "record": {
   "straight": {
    "overall": {
-    "w": 96,
+    "w": 98,
     "l": 77,
     "p": 2,
-    "units": 7.95,
-    "units_n": 175
+    "units": 9.69,
+    "units_n": 177
    },
    "nfl": {
-    "w": 88,
+    "w": 90,
     "l": 73,
     "p": 2,
-    "units": 4.71,
-    "units_n": 163
+    "units": 6.46,
+    "units_n": 165
    },
    "mlb": {
     "w": 0,
@@ -5126,18 +5136,18 @@
    }
   },
   "overall": {
-   "w": 96,
+   "w": 98,
    "l": 77,
    "p": 2,
-   "units": 7.95,
-   "units_n": 175
+   "units": 9.69,
+   "units_n": 177
   },
   "nfl": {
-   "w": 88,
+   "w": 90,
    "l": 73,
    "p": 2,
-   "units": 4.71,
-   "units_n": 163
+   "units": 6.46,
+   "units_n": 165
   },
   "mlb": {
    "w": 0,
@@ -5161,19 +5171,19 @@
    "units_n": 11
   },
   "full_season": {
-   "w": 96,
+   "w": 98,
    "l": 80,
    "p": 2,
-   "units": 4.95,
-   "units_n": 178
+   "units": 6.69,
+   "units_n": 180
   },
   "categories": {
    "games": {
-    "w": 58,
+    "w": 59,
     "l": 58,
     "p": 2,
-    "units": -6.94,
-    "units_n": 118
+    "units": -6.1,
+    "units_n": 119
    },
    "props": {
     "w": 20,
@@ -5183,11 +5193,11 @@
     "units_n": 29
    },
    "leans": {
-    "w": 18,
+    "w": 19,
     "l": 13,
     "p": 0,
-    "units": 2.77,
-    "units_n": 31
+    "units": 3.68,
+    "units_n": 32
    }
   },
   "parlay_legs": {
@@ -5197,7 +5207,7 @@
    "units": -2.14,
    "units_n": 6
   },
-  "pending": 16,
+  "pending": 14,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }
