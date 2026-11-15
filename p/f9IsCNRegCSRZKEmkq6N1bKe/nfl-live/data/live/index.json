@@ -1,6 +1,6 @@
 {
   "v": "0.1-preview",
-  "updated": "2026-11-15T13:46:37-05:00",
+  "updated": "2026-11-15T14:27:40-05:00",
   "games": {
     "401873037": {
       "gid": "401873037",
@@ -987,11 +987,21 @@
           "file": "401873058_q1.json",
           "injuries": 1,
           "props": 16
+        },
+        "h1": {
+          "built": "2026-11-15T14:27:40-05:00",
+          "score": {
+            "away": 14,
+            "home": 3
+          },
+          "file": "401873058_h1.json",
+          "injuries": 1,
+          "props": 16
         }
       },
       "score": {
-        "away": 7,
-        "home": 0
+        "away": 14,
+        "home": 3
       },
       "state": "in",
       "ended": null,
@@ -1014,11 +1024,21 @@
           "file": "401873056_q1.json",
           "injuries": 0,
           "props": 16
+        },
+        "h1": {
+          "built": "2026-11-15T14:27:40-05:00",
+          "score": {
+            "away": 17,
+            "home": 10
+          },
+          "file": "401873056_h1.json",
+          "injuries": 1,
+          "props": 16
         }
       },
       "score": {
         "away": 17,
-        "home": 0
+        "home": 10
       },
       "state": "in",
       "ended": null,
@@ -1044,7 +1064,7 @@
         }
       },
       "score": {
-        "away": 10,
+        "away": 17,
         "home": 0
       },
       "state": "in",
@@ -1071,8 +1091,8 @@
         }
       },
       "score": {
-        "away": 10,
-        "home": 3
+        "away": 13,
+        "home": 10
       },
       "state": "in",
       "ended": null,
@@ -1098,8 +1118,8 @@
         }
       },
       "score": {
-        "away": 0,
-        "home": 7
+        "away": 7,
+        "home": 14
       },
       "state": "in",
       "ended": null,
@@ -1122,10 +1142,20 @@
           "file": "401873055_q1.json",
           "injuries": 0,
           "props": 1
+        },
+        "h1": {
+          "built": "2026-11-15T14:24:17-05:00",
+          "score": {
+            "away": 7,
+            "home": 0
+          },
+          "file": "401873055_h1.json",
+          "injuries": 0,
+          "props": 16
         }
       },
       "score": {
-        "away": 0,
+        "away": 7,
         "home": 0
       },
       "state": "in",
@@ -1152,8 +1182,8 @@
         }
       },
       "score": {
-        "away": 7,
-        "home": 0
+        "away": 10,
+        "home": 3
       },
       "state": "in",
       "ended": null,
