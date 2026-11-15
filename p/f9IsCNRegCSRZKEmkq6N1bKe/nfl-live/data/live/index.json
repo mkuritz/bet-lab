@@ -1,6 +1,6 @@
 {
   "v": "0.1-preview",
-  "updated": "2026-11-15T16:33:12-05:00",
+  "updated": "2026-11-15T16:40:21-05:00",
   "games": {
     "401873037": {
       "gid": "401873037",
@@ -1376,15 +1376,26 @@
       "home": "LV",
       "date": "2026-11-15",
       "kickoff": "2026-11-15T21:05Z",
-      "stages": {},
+      "stages": {
+        "q1": {
+          "built": "2026-11-15T16:36:17-05:00",
+          "score": {
+            "away": 7,
+            "home": 7
+          },
+          "file": "401873062_q1.json",
+          "injuries": 1,
+          "props": 5
+        }
+      },
       "score": {
         "away": 7,
         "home": 7
       },
       "state": "in",
       "ended": null,
-      "pending": true,
-      "detail": "2:31 - 1st"
+      "pending": false,
+      "detail": "15:00 - 2nd"
     },
     "401873061": {
       "gid": "401873061",
@@ -1395,12 +1406,12 @@
       "stages": {},
       "score": {
         "away": 3,
-        "home": 3
+        "home": 6
       },
       "state": "in",
       "ended": null,
       "pending": true,
-      "detail": "4:43 - 1st"
+      "detail": "2:06 - 1st"
     },
     "401873063": {
       "gid": "401873063",
@@ -1411,12 +1422,12 @@
       "stages": {},
       "score": {
         "away": 0,
-        "home": 0
+        "home": 3
       },
       "state": "in",
       "ended": null,
       "pending": true,
-      "detail": "12:21 - 1st"
+      "detail": "9:40 - 1st"
     },
     "401873064": {
       "gid": "401873064",
