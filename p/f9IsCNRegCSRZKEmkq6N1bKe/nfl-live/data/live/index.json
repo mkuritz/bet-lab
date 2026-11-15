@@ -1,6 +1,6 @@
 {
   "v": "0.1-preview",
-  "updated": "2026-11-15T14:27:40-05:00",
+  "updated": "2026-11-15T14:33:25-05:00",
   "games": {
     "401873037": {
       "gid": "401873037",
@@ -1061,6 +1061,16 @@
           "file": "401873060_q1.json",
           "injuries": 1,
           "props": 16
+        },
+        "h1": {
+          "built": "2026-11-15T14:33:24-05:00",
+          "score": {
+            "away": 17,
+            "home": 0
+          },
+          "file": "401873060_h1.json",
+          "injuries": 2,
+          "props": 16
         }
       },
       "score": {
@@ -1115,6 +1125,16 @@
           "file": "401873059_q1.json",
           "injuries": 0,
           "props": 0
+        },
+        "h1": {
+          "built": "2026-11-15T14:27:41-05:00",
+          "score": {
+            "away": 7,
+            "home": 14
+          },
+          "file": "401873059_h1.json",
+          "injuries": 1,
+          "props": 16
         }
       },
       "score": {
@@ -1179,11 +1199,21 @@
           "file": "401873054_q1.json",
           "injuries": 0,
           "props": 16
+        },
+        "h1": {
+          "built": "2026-11-15T14:33:25-05:00",
+          "score": {
+            "away": 10,
+            "home": 6
+          },
+          "file": "401873054_h1.json",
+          "injuries": 4,
+          "props": 10
         }
       },
       "score": {
         "away": 10,
-        "home": 3
+        "home": 6
       },
       "state": "in",
       "ended": null,
