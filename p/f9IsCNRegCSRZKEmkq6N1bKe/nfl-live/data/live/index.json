@@ -1,0 +1,1137 @@
+{
+  "v": "0.1-preview",
+  "updated": "2026-11-15T10:22:07-05:00",
+  "games": {
+    "401873037": {
+      "gid": "401873037",
+      "away": "JAX",
+      "home": "BAL",
+      "date": "2026-11-06",
+      "kickoff": "2026-11-06T01:15Z",
+      "stages": {
+        "q1": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 10,
+            "home": 3
+          },
+          "file": "401873037_q1.json",
+          "injuries": 0,
+          "props": 3
+        },
+        "h1": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 17,
+            "home": 3
+          },
+          "file": "401873037_h1.json",
+          "injuries": 0,
+          "props": 8
+        },
+        "q3": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 20,
+            "home": 3
+          },
+          "file": "401873037_q3.json",
+          "injuries": 1,
+          "props": 8
+        },
+        "final": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 33,
+            "home": 10
+          },
+          "file": "401873037_final.json",
+          "injuries": 1,
+          "props": 11
+        }
+      },
+      "score": {
+        "away": 33,
+        "home": 10
+      },
+      "state": "post",
+      "ended": "FINAL",
+      "pending": false,
+      "detail": "Final"
+    },
+    "401873038": {
+      "gid": "401873038",
+      "away": "CIN",
+      "home": "ATL",
+      "date": "2026-11-08",
+      "kickoff": "2026-11-08T14:30Z",
+      "stages": {
+        "q1": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 7,
+            "home": 10
+          },
+          "file": "401873038_q1.json",
+          "injuries": 0,
+          "props": 5
+        },
+        "h1": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 24,
+            "home": 10
+          },
+          "file": "401873038_h1.json",
+          "injuries": 0,
+          "props": 10
+        },
+        "q3": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 31,
+            "home": 17
+          },
+          "file": "401873038_q3.json",
+          "injuries": 0,
+          "props": 16
+        },
+        "final": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 34,
+            "home": 17
+          },
+          "file": "401873038_final.json",
+          "injuries": 1,
+          "props": 16
+        }
+      },
+      "score": {
+        "away": 34,
+        "home": 17
+      },
+      "state": "post",
+      "ended": "FINAL",
+      "pending": false,
+      "detail": "Final"
+    },
+    "401873040": {
+      "gid": "401873040",
+      "away": "DAL",
+      "home": "IND",
+      "date": "2026-11-08",
+      "kickoff": "2026-11-08T18:00Z",
+      "stages": {
+        "q1": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 3,
+            "home": 7
+          },
+          "file": "401873040_q1.json",
+          "injuries": 0,
+          "props": 1
+        },
+        "h1": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 17,
+            "home": 7
+          },
+          "file": "401873040_h1.json",
+          "injuries": 1,
+          "props": 7
+        },
+        "q3": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 20,
+            "home": 17
+          },
+          "file": "401873040_q3.json",
+          "injuries": 4,
+          "props": 12
+        },
+        "final": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 27,
+            "home": 23
+          },
+          "file": "401873040_final.json",
+          "injuries": 6,
+          "props": 16
+        }
+      },
+      "score": {
+        "away": 27,
+        "home": 23
+      },
+      "state": "post",
+      "ended": "FINAL",
+      "pending": false,
+      "detail": "Final"
+    },
+    "401873045": {
+      "gid": "401873045",
+      "away": "NYJ",
+      "home": "KC",
+      "date": "2026-11-08",
+      "kickoff": "2026-11-08T18:00Z",
+      "stages": {
+        "q1": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 6,
+            "home": 0
+          },
+          "file": "401873045_q1.json",
+          "injuries": 0,
+          "props": 0
+        },
+        "h1": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 12,
+            "home": 14
+          },
+          "file": "401873045_h1.json",
+          "injuries": 1,
+          "props": 4
+        },
+        "q3": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 12,
+            "home": 28
+          },
+          "file": "401873045_q3.json",
+          "injuries": 2,
+          "props": 10
+        },
+        "final": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 12,
+            "home": 35
+          },
+          "file": "401873045_final.json",
+          "injuries": 2,
+          "props": 16
+        }
+      },
+      "score": {
+        "away": 12,
+        "home": 35
+      },
+      "state": "post",
+      "ended": "FINAL",
+      "pending": false,
+      "detail": "Final"
+    },
+    "401873042": {
+      "gid": "401873042",
+      "away": "DET",
+      "home": "MIA",
+      "date": "2026-11-08",
+      "kickoff": "2026-11-08T18:00Z",
+      "stages": {
+        "q1": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 3,
+            "home": 3
+          },
+          "file": "401873042_q1.json",
+          "injuries": 0,
+          "props": 0
+        },
+        "h1": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 6,
+            "home": 3
+          },
+          "file": "401873042_h1.json",
+          "injuries": 0,
+          "props": 3
+        },
+        "q3": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 16,
+            "home": 6
+          },
+          "file": "401873042_q3.json",
+          "injuries": 1,
+          "props": 9
+        },
+        "final": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 19,
+            "home": 9
+          },
+          "file": "401873042_final.json",
+          "injuries": 1,
+          "props": 11
+        }
+      },
+      "score": {
+        "away": 19,
+        "home": 9
+      },
+      "state": "post",
+      "ended": "FINAL",
+      "pending": false,
+      "detail": "Final"
+    },
+    "401873039": {
+      "gid": "401873039",
+      "away": "CLE",
+      "home": "NO",
+      "date": "2026-11-08",
+      "kickoff": "2026-11-08T18:00Z",
+      "stages": {
+        "q1": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 0,
+            "home": 3
+          },
+          "file": "401873039_q1.json",
+          "injuries": 0,
+          "props": 0
+        },
+        "h1": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 3,
+            "home": 3
+          },
+          "file": "401873039_h1.json",
+          "injuries": 2,
+          "props": 5
+        },
+        "q3": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 6,
+            "home": 6
+          },
+          "file": "401873039_q3.json",
+          "injuries": 4,
+          "props": 7
+        },
+        "final": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 22,
+            "home": 23
+          },
+          "file": "401873039_final.json",
+          "injuries": 5,
+          "props": 16
+        }
+      },
+      "score": {
+        "away": 22,
+        "home": 23
+      },
+      "state": "post",
+      "ended": "FINAL",
+      "pending": false,
+      "detail": "Final/OT"
+    },
+    "401873044": {
+      "gid": "401873044",
+      "away": "NYG",
+      "home": "PHI",
+      "date": "2026-11-08",
+      "kickoff": "2026-11-08T18:00Z",
+      "stages": {
+        "q1": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 6,
+            "home": 8
+          },
+          "file": "401873044_q1.json",
+          "injuries": 2,
+          "props": 1
+        },
+        "h1": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 6,
+            "home": 8
+          },
+          "file": "401873044_h1.json",
+          "injuries": 2,
+          "props": 7
+        },
+        "q3": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 13,
+            "home": 8
+          },
+          "file": "401873044_q3.json",
+          "injuries": 4,
+          "props": 10
+        },
+        "final": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 19,
+            "home": 11
+          },
+          "file": "401873044_final.json",
+          "injuries": 4,
+          "props": 14
+        }
+      },
+      "score": {
+        "away": 19,
+        "home": 11
+      },
+      "state": "post",
+      "ended": "FINAL",
+      "pending": false,
+      "detail": "Final"
+    },
+    "401873043": {
+      "gid": "401873043",
+      "away": "LAR",
+      "home": "WSH",
+      "date": "2026-11-08",
+      "kickoff": "2026-11-08T18:00Z",
+      "stages": {
+        "q1": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 3,
+            "home": 3
+          },
+          "file": "401873043_q1.json",
+          "injuries": 0,
+          "props": 0
+        },
+        "h1": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 6,
+            "home": 10
+          },
+          "file": "401873043_h1.json",
+          "injuries": 1,
+          "props": 6
+        },
+        "q3": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 13,
+            "home": 13
+          },
+          "file": "401873043_q3.json",
+          "injuries": 1,
+          "props": 9
+        },
+        "final": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 20,
+            "home": 13
+          },
+          "file": "401873043_final.json",
+          "injuries": 2,
+          "props": 16
+        }
+      },
+      "score": {
+        "away": 20,
+        "home": 13
+      },
+      "state": "post",
+      "ended": "FINAL",
+      "pending": false,
+      "detail": "Final"
+    },
+    "401873041": {
+      "gid": "401873041",
+      "away": "DEN",
+      "home": "CAR",
+      "date": "2026-11-08",
+      "kickoff": "2026-11-08T18:00Z",
+      "stages": {
+        "q1": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 10,
+            "home": 0
+          },
+          "file": "401873041_q1.json",
+          "injuries": 0,
+          "props": 1
+        },
+        "h1": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 13,
+            "home": 7
+          },
+          "file": "401873041_h1.json",
+          "injuries": 1,
+          "props": 6
+        },
+        "q3": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 13,
+            "home": 14
+          },
+          "file": "401873041_q3.json",
+          "injuries": 1,
+          "props": 9
+        },
+        "final": {
+          "built": "2026-11-15T10:22:06-05:00",
+          "score": {
+            "away": 26,
+            "home": 21
+          },
+          "file": "401873041_final.json",
+          "injuries": 2,
+          "props": 16
+        }
+      },
+      "score": {
+        "away": 26,
+        "home": 21
+      },
+      "state": "post",
+      "ended": "FINAL",
+      "pending": false,
+      "detail": "Final"
+    },
+    "401873046": {
+      "gid": "401873046",
+      "away": "HOU",
+      "home": "LAC",
+      "date": "2026-11-08",
+      "kickoff": "2026-11-08T21:05Z",
+      "stages": {
+        "q1": {
+          "built": "2026-11-15T10:22:07-05:00",
+          "score": {
+            "away": 10,
+            "home": 3
+          },
+          "file": "401873046_q1.json",
+          "injuries": 0,
+          "props": 1
+        },
+        "h1": {
+          "built": "2026-11-15T10:22:07-05:00",
+          "score": {
+            "away": 24,
+            "home": 9
+          },
+          "file": "401873046_h1.json",
+          "injuries": 1,
+          "props": 7
+        },
+        "q3": {
+          "built": "2026-11-15T10:22:07-05:00",
+          "score": {
+            "away": 31,
+            "home": 9
+          },
+          "file": "401873046_q3.json",
+          "injuries": 2,
+          "props": 13
+        },
+        "final": {
+          "built": "2026-11-15T10:22:07-05:00",
+          "score": {
+            "away": 44,
+            "home": 22
+          },
+          "file": "401873046_final.json",
+          "injuries": 3,
+          "props": 16
+        }
+      },
+      "score": {
+        "away": 44,
+        "home": 22
+      },
+      "state": "post",
+      "ended": "FINAL",
+      "pending": false,
+      "detail": "Final"
+    },
+    "401873049": {
+      "gid": "401873049",
+      "away": "GB",
+      "home": "NE",
+      "date": "2026-11-08",
+      "kickoff": "2026-11-08T21:25Z",
+      "stages": {
+        "q1": {
+          "built": "2026-11-15T10:22:07-05:00",
+          "score": {
+            "away": 14,
+            "home": 0
+          },
+          "file": "401873049_q1.json",
+          "injuries": 0,
+          "props": 5
+        },
+        "h1": {
+          "built": "2026-11-15T10:22:07-05:00",
+          "score": {
+            "away": 24,
+            "home": 14
+          },
+          "file": "401873049_h1.json",
+          "injuries": 2,
+          "props": 11
+        },
+        "q3": {
+          "built": "2026-11-15T10:22:07-05:00",
+          "score": {
+            "away": 42,
+            "home": 21
+          },
+          "file": "401873049_q3.json",
+          "injuries": 5,
+          "props": 16
+        },
+        "final": {
+          "built": "2026-11-15T10:22:07-05:00",
+          "score": {
+            "away": 45,
+            "home": 27
+          },
+          "file": "401873049_final.json",
+          "injuries": 7,
+          "props": 16
+        }
+      },
+      "score": {
+        "away": 45,
+        "home": 27
+      },
+      "state": "post",
+      "ended": "FINAL",
+      "pending": false,
+      "detail": "Final"
+    },
+    "401873047": {
+      "gid": "401873047",
+      "away": "LV",
+      "home": "SF",
+      "date": "2026-11-08",
+      "kickoff": "2026-11-08T21:25Z",
+      "stages": {
+        "q1": {
+          "built": "2026-11-15T10:22:07-05:00",
+          "score": {
+            "away": 0,
+            "home": 14
+          },
+          "file": "401873047_q1.json",
+          "injuries": 0,
+          "props": 4
+        },
+        "h1": {
+          "built": "2026-11-15T10:22:07-05:00",
+          "score": {
+            "away": 10,
+            "home": 21
+          },
+          "file": "401873047_h1.json",
+          "injuries": 0,
+          "props": 7
+        },
+        "q3": {
+          "built": "2026-11-15T10:22:07-05:00",
+          "score": {
+            "away": 17,
+            "home": 35
+          },
+          "file": "401873047_q3.json",
+          "injuries": 0,
+          "props": 15
+        },
+        "final": {
+          "built": "2026-11-15T10:22:07-05:00",
+          "score": {
+            "away": 17,
+            "home": 38
+          },
+          "file": "401873047_final.json",
+          "injuries": 2,
+          "props": 16
+        }
+      },
+      "score": {
+        "away": 17,
+        "home": 38
+      },
+      "state": "post",
+      "ended": "FINAL",
+      "pending": false,
+      "detail": "Final"
+    },
+    "401873048": {
+      "gid": "401873048",
+      "away": "ARI",
+      "home": "SEA",
+      "date": "2026-11-08",
+      "kickoff": "2026-11-08T21:25Z",
+      "stages": {
+        "q1": {
+          "built": "2026-11-15T10:22:07-05:00",
+          "score": {
+            "away": 3,
+            "home": 0
+          },
+          "file": "401873048_q1.json",
+          "injuries": 1,
+          "props": 0
+        },
+        "h1": {
+          "built": "2026-11-15T10:22:07-05:00",
+          "score": {
+            "away": 3,
+            "home": 14
+          },
+          "file": "401873048_h1.json",
+          "injuries": 1,
+          "props": 6
+        },
+        "q3": {
+          "built": "2026-11-15T10:22:07-05:00",
+          "score": {
+            "away": 3,
+            "home": 17
+          },
+          "file": "401873048_q3.json",
+          "injuries": 1,
+          "props": 9
+        },
+        "final": {
+          "built": "2026-11-15T10:22:07-05:00",
+          "score": {
+            "away": 3,
+            "home": 17
+          },
+          "file": "401873048_final.json",
+          "injuries": 1,
+          "props": 11
+        }
+      },
+      "score": {
+        "away": 3,
+        "home": 17
+      },
+      "state": "post",
+      "ended": "FINAL",
+      "pending": false,
+      "detail": "Final"
+    },
+    "401873050": {
+      "gid": "401873050",
+      "away": "TB",
+      "home": "CHI",
+      "date": "2026-11-09",
+      "kickoff": "2026-11-09T01:20Z",
+      "stages": {
+        "q1": {
+          "built": "2026-11-15T10:22:07-05:00",
+          "score": {
+            "away": 0,
+            "home": 14
+          },
+          "file": "401873050_q1.json",
+          "injuries": 0,
+          "props": 5
+        },
+        "h1": {
+          "built": "2026-11-15T10:22:07-05:00",
+          "score": {
+            "away": 6,
+            "home": 17
+          },
+          "file": "401873050_h1.json",
+          "injuries": 1,
+          "props": 8
+        },
+        "q3": {
+          "built": "2026-11-15T10:22:07-05:00",
+          "score": {
+            "away": 13,
+            "home": 24
+          },
+          "file": "401873050_q3.json",
+          "injuries": 3,
+          "props": 13
+        },
+        "final": {
+          "built": "2026-11-15T10:22:07-05:00",
+          "score": {
+            "away": 24,
+            "home": 27
+          },
+          "file": "401873050_final.json",
+          "injuries": 4,
+          "props": 16
+        }
+      },
+      "score": {
+        "away": 24,
+        "home": 27
+      },
+      "state": "post",
+      "ended": "FINAL",
+      "pending": false,
+      "detail": "Final"
+    },
+    "401873051": {
+      "gid": "401873051",
+      "away": "BUF",
+      "home": "MIN",
+      "date": "2026-11-10",
+      "kickoff": "2026-11-10T01:15Z",
+      "stages": {
+        "q1": {
+          "built": "2026-11-15T10:22:07-05:00",
+          "score": {
+            "away": 3,
+            "home": 0
+          },
+          "file": "401873051_q1.json",
+          "injuries": 2,
+          "props": 0
+        },
+        "h1": {
+          "built": "2026-11-15T10:22:07-05:00",
+          "score": {
+            "away": 10,
+            "home": 6
+          },
+          "file": "401873051_h1.json",
+          "injuries": 2,
+          "props": 2
+        },
+        "q3": {
+          "built": "2026-11-15T10:22:07-05:00",
+          "score": {
+            "away": 13,
+            "home": 6
+          },
+          "file": "401873051_q3.json",
+          "injuries": 6,
+          "props": 5
+        },
+        "final": {
+          "built": "2026-11-15T10:22:07-05:00",
+          "score": {
+            "away": 23,
+            "home": 6
+          },
+          "file": "401873051_final.json",
+          "injuries": 6,
+          "props": 10
+        }
+      },
+      "score": {
+        "away": 23,
+        "home": 6
+      },
+      "state": "post",
+      "ended": "FINAL",
+      "pending": false,
+      "detail": "Final"
+    },
+    "401873052": {
+      "gid": "401873052",
+      "away": "WSH",
+      "home": "NYG",
+      "date": "2026-11-13",
+      "kickoff": "2026-11-13T01:15Z",
+      "stages": {
+        "q1": {
+          "built": "2026-11-15T10:22:07-05:00",
+          "score": {
+            "away": 0,
+            "home": 0
+          },
+          "file": "401873052_q1.json",
+          "injuries": 0,
+          "props": 0
+        },
+        "h1": {
+          "built": "2026-11-15T10:22:07-05:00",
+          "score": {
+            "away": 10,
+            "home": 7
+          },
+          "file": "401873052_h1.json",
+          "injuries": 1,
+          "props": 5
+        },
+        "q3": {
+          "built": "2026-11-15T10:22:07-05:00",
+          "score": {
+            "away": 17,
+            "home": 14
+          },
+          "file": "401873052_q3.json",
+          "injuries": 3,
+          "props": 16
+        },
+        "final": {
+          "built": "2026-11-15T10:22:07-05:00",
+          "score": {
+            "away": 24,
+            "home": 21
+          },
+          "file": "401873052_final.json",
+          "injuries": 4,
+          "props": 16
+        }
+      },
+      "score": {
+        "away": 24,
+        "home": 21
+      },
+      "state": "post",
+      "ended": "FINAL",
+      "pending": false,
+      "detail": "Final"
+    },
+    "401873053": {
+      "gid": "401873053",
+      "away": "NE",
+      "home": "DET",
+      "date": "2026-11-15",
+      "kickoff": "2026-11-15T14:30Z",
+      "stages": {
+        "q1": {
+          "built": "2026-11-15T10:22:07-05:00",
+          "score": {
+            "away": 3,
+            "home": 7
+          },
+          "file": "401873053_q1.json",
+          "injuries": 3,
+          "props": 8
+        }
+      },
+      "score": {
+        "away": 3,
+        "home": 7
+      },
+      "state": "in",
+      "ended": null,
+      "pending": false,
+      "detail": "12:11 - 2nd"
+    },
+    "401873058": {
+      "gid": "401873058",
+      "away": "KC",
+      "home": "ATL",
+      "date": "2026-11-15",
+      "kickoff": "2026-11-15T18:00Z",
+      "stages": {},
+      "score": {
+        "away": 0,
+        "home": 0
+      },
+      "state": "pre",
+      "ended": null,
+      "pending": true,
+      "detail": "11/15 - 1:00 PM EST"
+    },
+    "401873056": {
+      "gid": "401873056",
+      "away": "HOU",
+      "home": "CLE",
+      "date": "2026-11-15",
+      "kickoff": "2026-11-15T18:00Z",
+      "stages": {},
+      "score": {
+        "away": 0,
+        "home": 0
+      },
+      "state": "pre",
+      "ended": null,
+      "pending": true,
+      "detail": "11/15 - 1:00 PM EST"
+    },
+    "401873060": {
+      "gid": "401873060",
+      "away": "MIN",
+      "home": "GB",
+      "date": "2026-11-15",
+      "kickoff": "2026-11-15T18:00Z",
+      "stages": {},
+      "score": {
+        "away": 0,
+        "home": 0
+      },
+      "state": "pre",
+      "ended": null,
+      "pending": true,
+      "detail": "11/15 - 1:00 PM EST"
+    },
+    "401873057": {
+      "gid": "401873057",
+      "away": "JAX",
+      "home": "TEN",
+      "date": "2026-11-15",
+      "kickoff": "2026-11-15T18:00Z",
+      "stages": {},
+      "score": {
+        "away": 0,
+        "home": 0
+      },
+      "state": "pre",
+      "ended": null,
+      "pending": true,
+      "detail": "11/15 - 1:00 PM EST"
+    },
+    "401873059": {
+      "gid": "401873059",
+      "away": "MIA",
+      "home": "IND",
+      "date": "2026-11-15",
+      "kickoff": "2026-11-15T18:00Z",
+      "stages": {},
+      "score": {
+        "away": 0,
+        "home": 0
+      },
+      "state": "pre",
+      "ended": null,
+      "pending": true,
+      "detail": "11/15 - 1:00 PM EST"
+    },
+    "401873055": {
+      "gid": "401873055",
+      "away": "CAR",
+      "home": "NO",
+      "date": "2026-11-15",
+      "kickoff": "2026-11-15T18:00Z",
+      "stages": {},
+      "score": {
+        "away": 0,
+        "home": 0
+      },
+      "state": "pre",
+      "ended": null,
+      "pending": true,
+      "detail": "11/15 - 1:00 PM EST"
+    },
+    "401873054": {
+      "gid": "401873054",
+      "away": "BUF",
+      "home": "NYJ",
+      "date": "2026-11-15",
+      "kickoff": "2026-11-15T18:00Z",
+      "stages": {},
+      "score": {
+        "away": 0,
+        "home": 0
+      },
+      "state": "pre",
+      "ended": null,
+      "pending": true,
+      "detail": "11/15 - 1:00 PM EST"
+    },
+    "401873062": {
+      "gid": "401873062",
+      "away": "SEA",
+      "home": "LV",
+      "date": "2026-11-15",
+      "kickoff": "2026-11-15T21:05Z",
+      "stages": {},
+      "score": {
+        "away": 0,
+        "home": 0
+      },
+      "state": "pre",
+      "ended": null,
+      "pending": true,
+      "detail": "11/15 - 4:05 PM EST"
+    },
+    "401873061": {
+      "gid": "401873061",
+      "away": "LAR",
+      "home": "ARI",
+      "date": "2026-11-15",
+      "kickoff": "2026-11-15T21:05Z",
+      "stages": {},
+      "score": {
+        "away": 0,
+        "home": 0
+      },
+      "state": "pre",
+      "ended": null,
+      "pending": true,
+      "detail": "11/15 - 4:05 PM EST"
+    },
+    "401873063": {
+      "gid": "401873063",
+      "away": "SF",
+      "home": "DAL",
+      "date": "2026-11-15",
+      "kickoff": "2026-11-15T21:25Z",
+      "stages": {},
+      "score": {
+        "away": 0,
+        "home": 0
+      },
+      "state": "pre",
+      "ended": null,
+      "pending": true,
+      "detail": "11/15 - 4:25 PM EST"
+    },
+    "401873064": {
+      "gid": "401873064",
+      "away": "PIT",
+      "home": "CIN",
+      "date": "2026-11-15",
+      "kickoff": "2026-11-16T01:20Z",
+      "stages": {},
+      "score": {
+        "away": 0,
+        "home": 0
+      },
+      "state": "pre",
+      "ended": null,
+      "pending": true,
+      "detail": "11/15 - 8:20 PM EST"
+    },
+    "401873065": {
+      "gid": "401873065",
+      "away": "LAC",
+      "home": "BAL",
+      "date": "2026-11-16",
+      "kickoff": "2026-11-17T01:15Z",
+      "stages": {},
+      "score": {
+        "away": 0,
+        "home": 0
+      },
+      "state": "pre",
+      "ended": null,
+      "pending": true,
+      "detail": "11/16 - 8:15 PM EST"
+    }
+  }
+}
