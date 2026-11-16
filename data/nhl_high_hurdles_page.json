@@ -1,1 +1,1975 @@
-{"updated":"2026-11-16T06:31:18+00:00","slate":"2026-11-16","players":[{"id":"8479343-p2","aid":"8479343","player":"Clayton Keller","pos":"R","team":"UTA","opp":"VAN","home":true,"market":"2+ Points","mk":"p2","hurdle":2,"p":0.4438,"fair":125,"book":null,"book_letter":null,"edge":null,"grade":"A","start":"2026-11-17T02:30:00Z","status":"Active (no injury listed)","last10":[{"d":"2026-10-24","o":"TB","at":"vs","v":1},{"d":"2026-10-27","o":"MIN","at":"vs","v":0},{"d":"2026-10-29","o":"PIT","at":"@","v":1},{"d":"2026-11-01","o":"PHI","at":"@","v":2},{"d":"2026-11-03","o":"TOR","at":"@","v":3},{"d":"2026-11-05","o":"MTL","at":"@","v":1},{"d":"2026-11-07","o":"OTT","at":"@","v":2},{"d":"2026-11-11","o":"VGK","at":"@","v":1},{"d":"2026-11-12","o":"STL","at":"vs","v":0},{"d":"2026-11-14","o":"SJ","at":"vs","v":2}],"rates":{"season":0.429,"season_n":21,"l10":0.4,"l40":0.4,"last_season":0.341,"last_season_n":82,"near":0.375,"ceiling_pct":0.775},"trend":"flat","vs_opp":{"games":3,"hits":2,"avg":2.33},"usage":{"toi_l10":20.29,"pp_pts_pg":0.62,"shots_pg":2.83,"pp_unit":{"unit":1,"conf":"High","asof":"2026-11-14"}},"matchup":{"allowed":{"goals_pg":3.91,"goals_rank":1,"shots_pg":23.0,"shots_rank":1,"of":32,"group":"forwards"},"opp_times_shorthanded_pg":3.23,"opp_sh_rank":13,"pace_5v5_attempts":88.3,"goalie":{"name":"Kevin Lankinen","sv":0.8725,"l10_sv":0.833,"l10_gsax":-11.9,"last_start":"2026-11-03","status":"projected starter"},"opp_form":{"games":5,"gf":12,"ga":21}},"parts":{"opp_factor":1.341,"goalie_factor":1.142},"asof":{"game_log":"2026-11-16T06:31:16+00:00","goalie":"2026-11-16T04:43:32+00:00","lines":"2026-11-16T04:42:00+00:00","injuries":"2026-11-16T04:43:32+00:00","book":"2026-11-16T03:24:00+00:00","team_stats":"2026-11-16T06:31:04+00:00"},"why":"Clayton Keller has two or more points in 43% of 21 games this season and 40% of his last 10 (34% last season). He reached 1+ point (one short of the line or better) in 78% of his last 40, on 20.3 minutes a night over the last 10 and 2.8 shots a game, with a spot on power-play unit 1. VAN allows 3.91 goals a game to forwards (#1 of 32, 1 = most). Projected goalie Kevin Lankinen is at a 0.833 save rate over his last 10.","check":"pending"},{"id":"8479410-p2","aid":"8479410","player":"Mikhail Sergachev","pos":"D","team":"UTA","opp":"VAN","home":true,"market":"2+ Points","mk":"p2","hurdle":2,"p":0.3814,"fair":162,"book":null,"book_letter":null,"edge":null,"grade":"A","start":"2026-11-17T02:30:00Z","status":"Active (no injury listed)","last10":[{"d":"2026-10-24","o":"TB","at":"vs","v":1},{"d":"2026-10-27","o":"MIN","at":"vs","v":1},{"d":"2026-10-29","o":"PIT","at":"@","v":1},{"d":"2026-11-01","o":"PHI","at":"@","v":1},{"d":"2026-11-03","o":"TOR","at":"@","v":2},{"d":"2026-11-05","o":"MTL","at":"@","v":1},{"d":"2026-11-07","o":"OTT","at":"@","v":0},{"d":"2026-11-11","o":"VGK","at":"@","v":0},{"d":"2026-11-12","o":"STL","at":"vs","v":0},{"d":"2026-11-14","o":"SJ","at":"vs","v":2}],"rates":{"season":0.286,"season_n":21,"l10":0.2,"l40":0.2,"last_season":0.128,"last_season_n":78,"near":0.5,"ceiling_pct":0.7},"trend":"down","vs_opp":{"games":3,"hits":1,"avg":1.33},"usage":{"toi_l10":26.13,"pp_pts_pg":0.53,"shots_pg":2.23,"pp_unit":{"unit":1,"conf":"High","asof":"2026-11-14"}},"matchup":{"allowed":{"goals_pg":0.55,"goals_rank":11,"shots_pg":7.3,"shots_rank":17,"of":32,"group":"defensemen"},"opp_times_shorthanded_pg":3.23,"opp_sh_rank":13,"pace_5v5_attempts":88.3,"goalie":{"name":"Kevin Lankinen","sv":0.8725,"l10_sv":0.833,"l10_gsax":-11.9,"last_start":"2026-11-03","status":"projected starter"},"opp_form":{"games":5,"gf":12,"ga":21}},"parts":{"opp_factor":1.341,"goalie_factor":1.142},"asof":{"game_log":"2026-11-16T06:31:16+00:00","goalie":"2026-11-16T04:43:32+00:00","lines":"2026-11-16T04:42:00+00:00","injuries":"2026-11-16T04:43:32+00:00","book":"2026-11-16T03:24:00+00:00","team_stats":"2026-11-16T06:31:04+00:00"},"why":"Mikhail Sergachev has two or more points in 29% of 21 games this season and 20% of his last 10 (13% last season). He reached 1+ point (one short of the line or better) in 70% of his last 40, on 26.1 minutes a night over the last 10 and 2.2 shots a game, with a spot on power-play unit 1. VAN allows 0.55 goals a game to defensemen (#11 of 32, 1 = most). Projected goalie Kevin Lankinen is at a 0.833 save rate over his last 10.","check":"pending"},{"id":"8483431-p2","aid":"8483431","player":"Logan Cooley","pos":"C","team":"UTA","opp":"VAN","home":true,"market":"2+ Points","mk":"p2","hurdle":2,"p":0.3366,"fair":197,"book":null,"book_letter":null,"edge":null,"grade":"A","start":"2026-11-17T02:30:00Z","status":{"status":"Day-To-Day","note":"day-to-day","date":"2026-11-15"},"last10":[{"d":"2026-10-17","o":"EDM","at":"vs","v":0},{"d":"2026-10-19","o":"PIT","at":"vs","v":1},{"d":"2026-10-22","o":"SEA","at":"@","v":2},{"d":"2026-10-24","o":"TB","at":"vs","v":0},{"d":"2026-10-27","o":"MIN","at":"vs","v":1},{"d":"2026-10-29","o":"PIT","at":"@","v":3},{"d":"2026-11-01","o":"PHI","at":"@","v":2},{"d":"2026-11-03","o":"TOR","at":"@","v":0},{"d":"2026-11-05","o":"MTL","at":"@","v":4},{"d":"2026-11-07","o":"OTT","at":"@","v":0}],"rates":{"season":0.333,"season_n":18,"l10":0.4,"l40":0.3,"last_season":0.167,"last_season_n":54,"near":0.275,"ceiling_pct":0.575},"trend":"flat","vs_opp":{"games":2,"hits":1,"avg":1.0},"usage":{"toi_l10":18.71,"pp_pts_pg":0.45,"shots_pg":1.73,"pp_unit":null},"matchup":{"allowed":{"goals_pg":3.91,"goals_rank":1,"shots_pg":23.0,"shots_rank":1,"of":32,"group":"forwards"},"opp_times_shorthanded_pg":3.23,"opp_sh_rank":13,"pace_5v5_attempts":88.3,"goalie":{"name":"Kevin Lankinen","sv":0.8725,"l10_sv":0.833,"l10_gsax":-11.9,"last_start":"2026-11-03","status":"projected starter"},"opp_form":{"games":5,"gf":12,"ga":21}},"parts":{"opp_factor":1.341,"goalie_factor":1.142},"asof":{"game_log":"2026-11-16T06:31:16+00:00","goalie":"2026-11-16T04:43:32+00:00","lines":"2026-11-16T04:42:00+00:00","injuries":"2026-11-16T04:43:32+00:00","book":"2026-11-16T03:24:00+00:00","team_stats":"2026-11-16T06:31:04+00:00"},"why":"Logan Cooley has two or more points in 33% of 18 games this season and 40% of his last 10 (17% last season). Listed status: {'status': 'Day-To-Day', 'note': 'day-to-day', 'date': '2026-11-15'}. He reached 1+ point (one short of the line or better) in 58% of his last 40, on 18.7 minutes a night over the last 10 and 1.7 shots a game. VAN allows 3.91 goals a game to forwards (#1 of 32, 1 = most). Projected goalie Kevin Lankinen is at a 0.833 save rate over his last 10.","check":"pending"},{"id":"8479323-p2","aid":"8479323","player":"Adam Fox","pos":"D","team":"NYR","opp":"MTL","home":true,"market":"2+ Points","mk":"p2","hurdle":2,"p":0.3311,"fair":202,"book":null,"book_letter":null,"edge":null,"grade":"A","start":"2026-11-17T00:30:00Z","status":"Active (no injury listed)","last10":[{"d":"2026-10-22","o":"TOR","at":"@","v":4},{"d":"2026-10-24","o":"OTT","at":"@","v":2},{"d":"2026-10-26","o":"LA","at":"vs","v":1},{"d":"2026-11-01","o":"EDM","at":"vs","v":0},{"d":"2026-11-03","o":"STL","at":"vs","v":2},{"d":"2026-11-05","o":"PHI","at":"vs","v":2},{"d":"2026-11-07","o":"SEA","at":"@","v":1},{"d":"2026-11-09","o":"EDM","at":"@","v":0},{"d":"2026-11-11","o":"CGY","at":"@","v":0},{"d":"2026-11-13","o":"VAN","at":"@","v":1}],"rates":{"season":0.286,"season_n":21,"l10":0.4,"l40":0.325,"last_season":0.309,"last_season_n":55,"near":0.425,"ceiling_pct":0.75},"trend":"up","vs_opp":{"games":2,"hits":1,"avg":1.5},"usage":{"toi_l10":24.52,"pp_pts_pg":0.53,"shots_pg":1.48,"pp_unit":{"unit":1,"conf":"High","asof":"2026-11-13"}},"matchup":{"allowed":{"goals_pg":0.4,"goals_rank":20,"shots_pg":6.8,"shots_rank":24,"of":32,"group":"defensemen"},"opp_times_shorthanded_pg":3.85,"opp_sh_rank":3,"pace_5v5_attempts":87.3,"goalie":{"name":"Jakub Dobes","sv":0.8915,"l10_sv":0.867,"l10_gsax":-6.2,"last_start":"2026-11-14","status":"projected starter"},"opp_form":{"games":5,"gf":16,"ga":14}},"parts":{"opp_factor":0.986,"goalie_factor":1.023},"asof":{"game_log":"2026-11-16T06:31:16+00:00","goalie":"2026-11-16T04:43:32+00:00","lines":"2026-11-16T04:42:00+00:00","injuries":"2026-11-16T04:43:32+00:00","book":"2026-11-16T03:24:00+00:00","team_stats":"2026-11-16T06:31:04+00:00"},"why":"Adam Fox has two or more points in 29% of 21 games this season and 40% of his last 10 (31% last season). He reached 1+ point (one short of the line or better) in 75% of his last 40, on 24.5 minutes a night over the last 10 and 1.5 shots a game, with a spot on power-play unit 1. MTL allows 0.4 goals a game to defensemen (#20 of 32, 1 = most). Projected goalie Jakub Dobes is at a 0.867 save rate over his last 10.","check":"pending"},{"id":"8480018-p2","aid":"8480018","player":"Nick Suzuki","pos":"C","team":"MTL","opp":"NYR","home":false,"market":"2+ Points","mk":"p2","hurdle":2,"p":0.2863,"fair":249,"book":null,"book_letter":null,"edge":null,"grade":"B","start":"2026-11-17T00:30:00Z","status":"Active (no injury listed)","last10":[{"d":"2026-10-10","o":"DET","at":"vs","v":0},{"d":"2026-10-13","o":"BUF","at":"vs","v":1},{"d":"2026-10-14","o":"WSH","at":"@","v":1},{"d":"2026-10-17","o":"BUF","at":"vs","v":1},{"d":"2026-10-20","o":"SJ","at":"vs","v":2},{"d":"2026-11-05","o":"UTA","at":"vs","v":3},{"d":"2026-11-07","o":"TOR","at":"@","v":0},{"d":"2026-11-10","o":"MIN","at":"vs","v":1},{"d":"2026-11-12","o":"BOS","at":"@","v":0},{"d":"2026-11-14","o":"COL","at":"vs","v":1}],"rates":{"season":0.286,"season_n":14,"l10":0.2,"l40":0.375,"last_season":0.354,"last_season_n":82,"near":0.375,"ceiling_pct":0.75},"trend":"down","vs_opp":{"games":3,"hits":2,"avg":1.67},"usage":{"toi_l10":20.84,"pp_pts_pg":0.38,"shots_pg":2.52,"pp_unit":{"unit":1,"conf":"High","asof":"2026-11-14"}},"matchup":{"allowed":{"goals_pg":1.95,"goals_rank":30,"shots_pg":18.0,"shots_rank":28,"of":32,"group":"forwards"},"opp_times_shorthanded_pg":3.05,"opp_sh_rank":20,"pace_5v5_attempts":87.3,"goalie":{"name":"Dylan Garand","sv":0.9017,"l10_sv":0.906,"l10_gsax":2.3,"last_start":"2026-11-13","status":"projected starter"},"opp_form":{"games":5,"gf":16,"ga":10}},"parts":{"opp_factor":0.878,"goalie_factor":0.975},"asof":{"game_log":"2026-11-16T06:31:16+00:00","goalie":"2026-11-16T04:43:32+00:00","lines":"2026-11-16T04:42:00+00:00","injuries":"2026-11-16T04:43:32+00:00","book":"2026-11-16T03:24:00+00:00","team_stats":"2026-11-16T06:31:04+00:00"},"why":"Nick Suzuki has two or more points in 29% of 14 games this season and 20% of his last 10 (35% last season). He reached 1+ point (one short of the line or better) in 75% of his last 40, on 20.8 minutes a night over the last 10 and 2.5 shots a game, with a spot on power-play unit 1. NYR allows 1.95 goals a game to forwards (#30 of 32, 1 = most). Projected goalie Dylan Garand is at a 0.906 save rate over his last 10.","check":"pending"},{"id":"8478444-p2","aid":"8478444","player":"Brock Boeser","pos":"R","team":"VAN","opp":"UTA","home":false,"market":"2+ Points","mk":"p2","hurdle":2,"p":0.2765,"fair":262,"book":null,"book_letter":null,"edge":null,"grade":"B","start":"2026-11-17T02:30:00Z","status":"Active (no injury listed)","last10":[{"d":"2026-10-25","o":"MIN","at":"vs","v":1},{"d":"2026-10-27","o":"ANA","at":"@","v":3},{"d":"2026-10-29","o":"SJ","at":"@","v":0},{"d":"2026-10-31","o":"TOR","at":"vs","v":1},{"d":"2026-11-03","o":"ANA","at":"vs","v":1},{"d":"2026-11-05","o":"WPG","at":"@","v":1},{"d":"2026-11-07","o":"EDM","at":"@","v":1},{"d":"2026-11-09","o":"PHI","at":"vs","v":1},{"d":"2026-11-13","o":"NYR","at":"vs","v":1},{"d":"2026-11-15","o":"VGK","at":"@","v":2}],"rates":{"season":0.136,"season_n":22,"l10":0.2,"l40":0.175,"last_season":0.12,"last_season_n":75,"near":0.525,"ceiling_pct":0.7},"trend":"flat","vs_opp":{"games":2,"hits":0,"avg":0.5},"usage":{"toi_l10":20.4,"pp_pts_pg":0.47,"shots_pg":1.9,"pp_unit":{"unit":1,"conf":"High","asof":"2026-11-13"}},"matchup":{"allowed":{"goals_pg":2.9,"goals_rank":10,"shots_pg":18.2,"shots_rank":26,"of":32,"group":"forwards"},"opp_times_shorthanded_pg":3.38,"opp_sh_rank":10,"pace_5v5_attempts":88.3,"goalie":{"name":"Karel Vejmelka","sv":0.8912,"l10_sv":0.868,"l10_gsax":-5.2,"last_start":"2026-11-14","status":"projected starter"},"opp_form":{"games":5,"gf":12,"ga":19}},"parts":{"opp_factor":1.092,"goalie_factor":1.028},"asof":{"game_log":"2026-11-16T06:31:16+00:00","goalie":"2026-11-16T04:43:32+00:00","lines":"2026-11-16T04:42:00+00:00","injuries":"2026-11-16T04:43:32+00:00","book":"2026-11-16T03:24:00+00:00","team_stats":"2026-11-16T06:31:04+00:00"},"why":"Brock Boeser has two or more points in 14% of 22 games this season and 20% of his last 10 (12% last season). He reached 1+ point (one short of the line or better) in 70% of his last 40, on 20.4 minutes a night over the last 10 and 1.9 shots a game, with a spot on power-play unit 1. UTA allows 2.9 goals a game to forwards (#10 of 32, 1 = most). Projected goalie Karel Vejmelka is at a 0.868 save rate over his last 10.","check":"pending"},{"id":"8480012-p2","aid":"8480012","player":"Elias Pettersson","pos":"C","team":"VAN","opp":"UTA","home":false,"market":"2+ Points","mk":"p2","hurdle":2,"p":0.2665,"fair":275,"book":null,"book_letter":null,"edge":null,"grade":"B","start":"2026-11-17T02:30:00Z","status":"Active (no injury listed)","last10":[{"d":"2026-10-25","o":"MIN","at":"vs","v":1},{"d":"2026-10-27","o":"ANA","at":"@","v":2},{"d":"2026-10-29","o":"SJ","at":"@","v":1},{"d":"2026-10-31","o":"TOR","at":"vs","v":0},{"d":"2026-11-03","o":"ANA","at":"vs","v":2},{"d":"2026-11-05","o":"WPG","at":"@","v":0},{"d":"2026-11-07","o":"EDM","at":"@","v":1},{"d":"2026-11-09","o":"PHI","at":"vs","v":1},{"d":"2026-11-13","o":"NYR","at":"vs","v":1},{"d":"2026-11-15","o":"VGK","at":"@","v":2}],"rates":{"season":0.227,"season_n":22,"l10":0.3,"l40":0.225,"last_season":0.162,"last_season_n":74,"near":0.425,"ceiling_pct":0.65},"trend":"flat","vs_opp":{"games":3,"hits":0,"avg":0.0},"usage":{"toi_l10":21.74,"pp_pts_pg":0.47,"shots_pg":1.52,"pp_unit":{"unit":1,"conf":"High","asof":"2026-11-13"}},"matchup":{"allowed":{"goals_pg":2.9,"goals_rank":10,"shots_pg":18.2,"shots_rank":26,"of":32,"group":"forwards"},"opp_times_shorthanded_pg":3.38,"opp_sh_rank":10,"pace_5v5_attempts":88.3,"goalie":{"name":"Karel Vejmelka","sv":0.8912,"l10_sv":0.868,"l10_gsax":-5.2,"last_start":"2026-11-14","status":"projected starter"},"opp_form":{"games":5,"gf":12,"ga":19}},"parts":{"opp_factor":1.092,"goalie_factor":1.028},"asof":{"game_log":"2026-11-16T06:31:16+00:00","goalie":"2026-11-16T04:43:32+00:00","lines":"2026-11-16T04:42:00+00:00","injuries":"2026-11-16T04:43:32+00:00","book":"2026-11-16T03:24:00+00:00","team_stats":"2026-11-16T06:31:04+00:00"},"why":"Elias Pettersson has two or more points in 23% of 22 games this season and 30% of his last 10 (16% last season). He reached 1+ point (one short of the line or better) in 65% of his last 40, on 21.7 minutes a night over the last 10 and 1.5 shots a game, with a spot on power-play unit 1. UTA allows 2.9 goals a game to forwards (#10 of 32, 1 = most). Projected goalie Karel Vejmelka is at a 0.868 save rate over his last 10.","check":"pending"},{"id":"8482109-p2","aid":"8482109","player":"Alexis Lafreni\u00e8re","pos":"L","team":"NYR","opp":"MTL","home":true,"market":"2+ Points","mk":"p2","hurdle":2,"p":0.2429,"fair":312,"book":null,"book_letter":null,"edge":null,"grade":"B","start":"2026-11-17T00:30:00Z","status":"Active (no injury listed)","last10":[{"d":"2026-10-22","o":"TOR","at":"@","v":1},{"d":"2026-10-24","o":"OTT","at":"@","v":1},{"d":"2026-10-26","o":"LA","at":"vs","v":1},{"d":"2026-11-01","o":"EDM","at":"vs","v":0},{"d":"2026-11-03","o":"STL","at":"vs","v":0},{"d":"2026-11-05","o":"PHI","at":"vs","v":0},{"d":"2026-11-07","o":"SEA","at":"@","v":2},{"d":"2026-11-09","o":"EDM","at":"@","v":0},{"d":"2026-11-11","o":"CGY","at":"@","v":2},{"d":"2026-11-13","o":"VAN","at":"@","v":2}],"rates":{"season":0.333,"season_n":21,"l10":0.3,"l40":0.3,"last_season":0.195,"last_season_n":82,"near":0.3,"ceiling_pct":0.6},"trend":"flat","vs_opp":{"games":3,"hits":0,"avg":0.0},"usage":{"toi_l10":18.07,"pp_pts_pg":0.35,"shots_pg":2.23,"pp_unit":{"unit":2,"conf":"Low","asof":"2026-11-13"}},"matchup":{"allowed":{"goals_pg":2.65,"goals_rank":16,"shots_pg":20.8,"shots_rank":8,"of":32,"group":"forwards"},"opp_times_shorthanded_pg":3.85,"opp_sh_rank":3,"pace_5v5_attempts":87.3,"goalie":{"name":"Jakub Dobes","sv":0.8915,"l10_sv":0.867,"l10_gsax":-6.2,"last_start":"2026-11-14","status":"projected starter"},"opp_form":{"games":5,"gf":16,"ga":14}},"parts":{"opp_factor":0.986,"goalie_factor":1.023},"asof":{"game_log":"2026-11-16T06:31:16+00:00","goalie":"2026-11-16T04:43:32+00:00","lines":"2026-11-16T04:42:00+00:00","injuries":"2026-11-16T04:43:32+00:00","book":"2026-11-16T03:24:00+00:00","team_stats":"2026-11-16T06:31:04+00:00"},"why":"Alexis Lafreni\u00e8re has two or more points in 33% of 21 games this season and 30% of his last 10 (20% last season). He reached 1+ point (one short of the line or better) in 60% of his last 40, on 18.1 minutes a night over the last 10 and 2.2 shots a game, with a spot on power-play unit 2. MTL allows 2.65 goals a game to forwards (#16 of 32, 1 = most). Projected goalie Jakub Dobes is at a 0.867 save rate over his last 10.","check":"pending"},{"id":"8476459-p2","aid":"8476459","player":"Mika Zibanejad","pos":"C","team":"NYR","opp":"MTL","home":true,"market":"2+ Points","mk":"p2","hurdle":2,"p":0.2307,"fair":334,"book":null,"book_letter":null,"edge":null,"grade":"B","start":"2026-11-17T00:30:00Z","status":"Active (no injury listed)","last10":[{"d":"2026-10-22","o":"TOR","at":"@","v":2},{"d":"2026-10-24","o":"OTT","at":"@","v":0},{"d":"2026-10-26","o":"LA","at":"vs","v":0},{"d":"2026-11-01","o":"EDM","at":"vs","v":1},{"d":"2026-11-03","o":"STL","at":"vs","v":0},{"d":"2026-11-05","o":"PHI","at":"vs","v":1},{"d":"2026-11-07","o":"SEA","at":"@","v":2},{"d":"2026-11-09","o":"EDM","at":"@","v":1},{"d":"2026-11-11","o":"CGY","at":"@","v":2},{"d":"2026-11-13","o":"VAN","at":"@","v":1}],"rates":{"season":0.286,"season_n":21,"l10":0.3,"l40":0.275,"last_season":0.235,"last_season_n":81,"near":0.375,"ceiling_pct":0.65},"trend":"flat","vs_opp":{"games":3,"hits":1,"avg":1.33},"usage":{"toi_l10":20.06,"pp_pts_pg":0.35,"shots_pg":2.12,"pp_unit":{"unit":2,"conf":"Low","asof":"2026-11-13"}},"matchup":{"allowed":{"goals_pg":2.65,"goals_rank":16,"shots_pg":20.8,"shots_rank":8,"of":32,"group":"forwards"},"opp_times_shorthanded_pg":3.85,"opp_sh_rank":3,"pace_5v5_attempts":87.3,"goalie":{"name":"Jakub Dobes","sv":0.8915,"l10_sv":0.867,"l10_gsax":-6.2,"last_start":"2026-11-14","status":"projected starter"},"opp_form":{"games":5,"gf":16,"ga":14}},"parts":{"opp_factor":0.986,"goalie_factor":1.023},"asof":{"game_log":"2026-11-16T06:31:16+00:00","goalie":"2026-11-16T04:43:32+00:00","lines":"2026-11-16T04:42:00+00:00","injuries":"2026-11-16T04:43:32+00:00","book":"2026-11-16T03:24:00+00:00","team_stats":"2026-11-16T06:31:04+00:00"},"why":"Mika Zibanejad has two or more points in 29% of 21 games this season and 30% of his last 10 (24% last season). He reached 1+ point (one short of the line or better) in 65% of his last 40, on 20.1 minutes a night over the last 10 and 2.1 shots a game, with a spot on power-play unit 2. MTL allows 2.65 goals a game to forwards (#16 of 32, 1 = most). Projected goalie Jakub Dobes is at a 0.867 save rate over his last 10.","check":"pending"},{"id":"8481540-s5","aid":"8481540","player":"Cole Caufield","pos":"R","team":"MTL","opp":"NYR","home":false,"market":"5+ Shots on Goal","mk":"s5","hurdle":5,"p":0.203,"fair":393,"book":null,"book_letter":null,"edge":null,"grade":"B","start":"2026-11-17T00:30:00Z","status":"Active (no injury listed)","last10":[{"d":"2026-10-25","o":"WPG","at":"@","v":0},{"d":"2026-10-27","o":"STL","at":"@","v":3},{"d":"2026-10-29","o":"DAL","at":"@","v":3},{"d":"2026-10-31","o":"PIT","at":"vs","v":2},{"d":"2026-11-03","o":"WPG","at":"vs","v":4},{"d":"2026-11-05","o":"UTA","at":"vs","v":6},{"d":"2026-11-07","o":"TOR","at":"@","v":3},{"d":"2026-11-10","o":"MIN","at":"vs","v":2},{"d":"2026-11-12","o":"BOS","at":"@","v":4},{"d":"2026-11-14","o":"COL","at":"vs","v":4}],"rates":{"season":0.25,"season_n":20,"l10":0.1,"l40":0.225,"last_season":0.21,"last_season_n":81,"near":0.2,"ceiling_pct":0.425},"trend":"down","vs_opp":{"games":3,"hits":1,"avg":3.0},"usage":{"toi_l10":17.54,"pp_pts_pg":0.3,"shots_pg":3.45,"pp_unit":{"unit":1,"conf":"High","asof":"2026-11-14"}},"matchup":{"allowed":{"goals_pg":1.95,"goals_rank":30,"shots_pg":18.0,"shots_rank":28,"of":32,"group":"forwards"},"opp_times_shorthanded_pg":3.05,"opp_sh_rank":20,"pace_5v5_attempts":87.3,"goalie":{"name":"Dylan Garand","sv":0.9017,"l10_sv":0.906,"l10_gsax":2.3,"last_start":"2026-11-13","status":"projected starter"},"opp_form":{"games":5,"gf":16,"ga":10}},"parts":{"opp_factor":0.974,"goalie_factor":0.975},"asof":{"game_log":"2026-11-16T06:31:16+00:00","goalie":"2026-11-16T04:43:32+00:00","lines":"2026-11-16T04:42:00+00:00","injuries":"2026-11-16T04:43:32+00:00","book":"2026-11-16T03:24:00+00:00","team_stats":"2026-11-16T06:31:04+00:00"},"why":"Cole Caufield has five or more shots on goal in 25% of 20 games this season and 10% of his last 10 (21% last season). He reached 4+ shots on goal (one short of the line or better) in 43% of his last 40, on 17.5 minutes a night over the last 10 and 3.5 shots a game, with a spot on power-play unit 1. NYR allows 18.0 shots a game to forwards (#28 of 32, 1 = most).","check":"pending"},{"id":"8479343-s5","aid":"8479343","player":"Clayton Keller","pos":"R","team":"UTA","opp":"VAN","home":true,"market":"5+ Shots on Goal","mk":"s5","hurdle":5,"p":0.1947,"fair":414,"book":null,"book_letter":null,"edge":null,"grade":"B","start":"2026-11-17T02:30:00Z","status":"Active (no injury listed)","last10":[{"d":"2026-10-24","o":"TB","at":"vs","v":1},{"d":"2026-10-27","o":"MIN","at":"vs","v":3},{"d":"2026-10-29","o":"PIT","at":"@","v":3},{"d":"2026-11-01","o":"PHI","at":"@","v":4},{"d":"2026-11-03","o":"TOR","at":"@","v":5},{"d":"2026-11-05","o":"MTL","at":"@","v":1},{"d":"2026-11-07","o":"OTT","at":"@","v":6},{"d":"2026-11-11","o":"VGK","at":"@","v":4},{"d":"2026-11-12","o":"STL","at":"vs","v":2},{"d":"2026-11-14","o":"SJ","at":"vs","v":2}],"rates":{"season":0.095,"season_n":21,"l10":0.2,"l40":0.1,"last_season":0.11,"last_season_n":82,"near":0.225,"ceiling_pct":0.325},"trend":"up","vs_opp":{"games":3,"hits":0,"avg":2.67},"usage":{"toi_l10":20.29,"pp_pts_pg":0.62,"shots_pg":2.83,"pp_unit":{"unit":1,"conf":"High","asof":"2026-11-14"}},"matchup":{"allowed":{"goals_pg":3.91,"goals_rank":1,"shots_pg":23.0,"shots_rank":1,"of":32,"group":"forwards"},"opp_times_shorthanded_pg":3.23,"opp_sh_rank":13,"pace_5v5_attempts":88.3,"goalie":{"name":"Kevin Lankinen","sv":0.8725,"l10_sv":0.833,"l10_gsax":-11.9,"last_start":"2026-11-03","status":"projected starter"},"opp_form":{"games":5,"gf":12,"ga":21}},"parts":{"opp_factor":1.096,"goalie_factor":1.142},"asof":{"game_log":"2026-11-16T06:31:16+00:00","goalie":"2026-11-16T04:43:32+00:00","lines":"2026-11-16T04:42:00+00:00","injuries":"2026-11-16T04:43:32+00:00","book":"2026-11-16T03:24:00+00:00","team_stats":"2026-11-16T06:31:04+00:00"},"why":"Clayton Keller has five or more shots on goal in 10% of 21 games this season and 20% of his last 10 (11% last season). He reached 4+ shots on goal (one short of the line or better) in 33% of his last 40, on 20.3 minutes a night over the last 10 and 2.8 shots a game, with a spot on power-play unit 1. VAN allows 23.0 shots a game to forwards (#1 of 32, 1 = most).","check":"pending"},{"id":"8481604-s5","aid":"8481604","player":"Pavel Dorofeyev","pos":"R","team":"NYR","opp":"MTL","home":true,"market":"5+ Shots on Goal","mk":"s5","hurdle":5,"p":0.1636,"fair":511,"book":null,"book_letter":null,"edge":null,"grade":"B","start":"2026-11-17T00:30:00Z","status":"Active (no injury listed)","last10":[{"d":"2026-10-22","o":"TOR","at":"@","v":2},{"d":"2026-10-24","o":"OTT","at":"@","v":4},{"d":"2026-10-26","o":"LA","at":"vs","v":1},{"d":"2026-11-01","o":"EDM","at":"vs","v":1},{"d":"2026-11-03","o":"STL","at":"vs","v":1},{"d":"2026-11-05","o":"PHI","at":"vs","v":4},{"d":"2026-11-07","o":"SEA","at":"@","v":3},{"d":"2026-11-09","o":"EDM","at":"@","v":6},{"d":"2026-11-11","o":"CGY","at":"@","v":3},{"d":"2026-11-13","o":"VAN","at":"@","v":4}],"rates":{"season":0.238,"season_n":21,"l10":0.1,"l40":0.225,"last_season":0.171,"last_season_n":82,"near":0.125,"ceiling_pct":0.35},"trend":"down","vs_opp":{"games":2,"hits":1,"avg":6.0},"usage":{"toi_l10":16.0,"pp_pts_pg":0.28,"shots_pg":3.02,"pp_unit":{"unit":2,"conf":"Low","asof":"2026-11-13"}},"matchup":{"allowed":{"goals_pg":2.65,"goals_rank":16,"shots_pg":20.8,"shots_rank":8,"of":32,"group":"forwards"},"opp_times_shorthanded_pg":3.85,"opp_sh_rank":3,"pace_5v5_attempts":87.3,"goalie":{"name":"Jakub Dobes","sv":0.8915,"l10_sv":0.867,"l10_gsax":-6.2,"last_start":"2026-11-14","status":"projected starter"},"opp_form":{"games":5,"gf":16,"ga":14}},"parts":{"opp_factor":1.02,"goalie_factor":1.023},"asof":{"game_log":"2026-11-16T06:31:16+00:00","goalie":"2026-11-16T04:43:32+00:00","lines":"2026-11-16T04:42:00+00:00","injuries":"2026-11-16T04:43:32+00:00","book":"2026-11-16T03:24:00+00:00","team_stats":"2026-11-16T06:31:04+00:00"},"why":"Pavel Dorofeyev has five or more shots on goal in 24% of 21 games this season and 10% of his last 10 (17% last season). He reached 4+ shots on goal (one short of the line or better) in 35% of his last 40, on 16.0 minutes a night over the last 10 and 3.0 shots a game, with a spot on power-play unit 2. MTL allows 20.8 shots a game to forwards (#8 of 32, 1 = most).","check":"pending"},{"id":"8481540-g2","aid":"8481540","player":"Cole Caufield","pos":"R","team":"MTL","opp":"NYR","home":false,"market":"2+ Goals","mk":"g2","hurdle":2,"p":0.0745,"fair":1242,"book":null,"book_letter":null,"edge":null,"grade":"B","start":"2026-11-17T00:30:00Z","status":"Active (no injury listed)","last10":[{"d":"2026-10-25","o":"WPG","at":"@","v":0},{"d":"2026-10-27","o":"STL","at":"@","v":0},{"d":"2026-10-29","o":"DAL","at":"@","v":2},{"d":"2026-10-31","o":"PIT","at":"vs","v":0},{"d":"2026-11-03","o":"WPG","at":"vs","v":2},{"d":"2026-11-05","o":"UTA","at":"vs","v":1},{"d":"2026-11-07","o":"TOR","at":"@","v":0},{"d":"2026-11-10","o":"MIN","at":"vs","v":0},{"d":"2026-11-12","o":"BOS","at":"@","v":1},{"d":"2026-11-14","o":"COL","at":"vs","v":0}],"rates":{"season":0.2,"season_n":20,"l10":0.2,"l40":0.15,"last_season":0.148,"last_season_n":81,"near":0.325,"ceiling_pct":0.475},"trend":"flat","vs_opp":{"games":3,"hits":1,"avg":0.67},"usage":{"toi_l10":17.54,"pp_pts_pg":0.3,"shots_pg":3.45,"pp_unit":{"unit":1,"conf":"High","asof":"2026-11-14"}},"matchup":{"allowed":{"goals_pg":1.95,"goals_rank":30,"shots_pg":18.0,"shots_rank":28,"of":32,"group":"forwards"},"opp_times_shorthanded_pg":3.05,"opp_sh_rank":20,"pace_5v5_attempts":87.3,"goalie":{"name":"Dylan Garand","sv":0.9017,"l10_sv":0.906,"l10_gsax":2.3,"last_start":"2026-11-13","status":"projected starter"},"opp_form":{"games":5,"gf":16,"ga":10}},"parts":{"opp_factor":0.878,"goalie_factor":0.975},"asof":{"game_log":"2026-11-16T06:31:16+00:00","goalie":"2026-11-16T04:43:32+00:00","lines":"2026-11-16T04:42:00+00:00","injuries":"2026-11-16T04:43:32+00:00","book":"2026-11-16T03:24:00+00:00","team_stats":"2026-11-16T06:31:04+00:00"},"why":"Cole Caufield has two or more goals in 20% of 20 games this season and 20% of his last 10 (15% last season). He reached 1+ goal (one short of the line or better) in 48% of his last 40, on 17.5 minutes a night over the last 10 and 3.5 shots a game, with a spot on power-play unit 1. NYR allows 1.95 goals a game to forwards (#30 of 32, 1 = most). Projected goalie Dylan Garand is at a 0.906 save rate over his last 10.","check":"pending"}],"record":{"2+ Goals":{"B":[1,39],"C":[1,30],"A":[4,20]},"2+ Points":{"A":[27,92],"B":[22,79]},"5+ Shots on Goal":{"A":[18,63],"B":[9,47],"C":[2,4]}},"bands":{"2+ Goals":"A 10%+, B 7%+","2+ Points":"A 30%+, B 22%+","5+ Shots on Goal":"A 22%+, B 16%+"}}
+{
+"updated": "2026-11-16T15:17:50+00:00",
+"slate": "2026-11-16",
+"players": [
+{
+"id": "8479343-p2",
+"aid": "8479343",
+"player": "Clayton Keller",
+"pos": "R",
+"team": "UTA",
+"opp": "VAN",
+"home": true,
+"market": "2+ Points",
+"mk": "p2",
+"hurdle": 2,
+"p": 0.4438,
+"fair": 125,
+"book": -110,
+"book_letter": "Book A",
+"edge": -0.153,
+"grade": "A",
+"start": "2026-11-17T02:30:00Z",
+"status": "Active (no injury listed)",
+"last10": [
+{
+"d": "2026-10-24",
+"o": "TB",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-10-27",
+"o": "MIN",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-10-29",
+"o": "PIT",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-11-01",
+"o": "PHI",
+"at": "@",
+"v": 2
+},
+{
+"d": "2026-11-03",
+"o": "TOR",
+"at": "@",
+"v": 3
+},
+{
+"d": "2026-11-05",
+"o": "MTL",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-11-07",
+"o": "OTT",
+"at": "@",
+"v": 2
+},
+{
+"d": "2026-11-11",
+"o": "VGK",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-11-12",
+"o": "STL",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-11-14",
+"o": "SJ",
+"at": "vs",
+"v": 2
+}
+],
+"rates": {
+"season": 0.429,
+"season_n": 21,
+"l10": 0.4,
+"l40": 0.4,
+"last_season": 0.341,
+"last_season_n": 82,
+"near": 0.375,
+"ceiling_pct": 0.775
+},
+"trend": "flat",
+"vs_opp": {
+"games": 3,
+"hits": 2,
+"avg": 2.33
+},
+"usage": {
+"toi_l10": 20.29,
+"pp_pts_pg": 0.62,
+"shots_pg": 2.83,
+"pp_unit": {
+"unit": 1,
+"conf": "High",
+"asof": "2026-11-14"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 3.91,
+"goals_rank": 1,
+"shots_pg": 23.0,
+"shots_rank": 1,
+"of": 32,
+"group": "forwards"
+},
+"opp_times_shorthanded_pg": 3.23,
+"opp_sh_rank": 13,
+"pace_5v5_attempts": 88.3,
+"goalie": {
+"name": "Kevin Lankinen",
+"sv": 0.8725,
+"l10_sv": 0.833,
+"l10_gsax": -11.9,
+"last_start": "2026-11-03",
+"status": "projected starter"
+},
+"opp_form": {
+"games": 5,
+"gf": 12,
+"ga": 21
+}
+},
+"parts": {
+"opp_factor": 1.341,
+"goalie_factor": 1.142
+},
+"asof": {
+"game_log": "2026-11-16T15:01:44+00:00",
+"goalie": "2026-11-16T14:10:15+00:00",
+"lines": "2026-11-16T14:07:00+00:00",
+"injuries": "2026-11-16T14:10:15+00:00",
+"book": "2026-11-16T11:18:00+00:00",
+"team_stats": "2026-11-16T15:01:20+00:00"
+},
+"why": "Clayton Keller has two or more points in 43% of 21 games this season and 40% of his last 10 (34% last season). He reached 1+ point (one short of the line or better) in 78% of his last 40, on 20.3 minutes a night over the last 10 and 2.8 shots a game, with a spot on power-play unit 1. VAN allows 3.91 goals a game to forwards (#1 of 32, 1 = most). Projected goalie Kevin Lankinen is at a 0.833 save rate over his last 10.",
+"check": "ok"
+},
+{
+"id": "8479410-p2",
+"aid": "8479410",
+"player": "Mikhail Sergachev",
+"pos": "D",
+"team": "UTA",
+"opp": "VAN",
+"home": true,
+"market": "2+ Points",
+"mk": "p2",
+"hurdle": 2,
+"p": 0.3813,
+"fair": 162,
+"book": 155,
+"book_letter": "Book A",
+"edge": -0.028,
+"grade": "A",
+"start": "2026-11-17T02:30:00Z",
+"status": "Active (no injury listed)",
+"last10": [
+{
+"d": "2026-10-24",
+"o": "TB",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-10-27",
+"o": "MIN",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-10-29",
+"o": "PIT",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-11-01",
+"o": "PHI",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-11-03",
+"o": "TOR",
+"at": "@",
+"v": 2
+},
+{
+"d": "2026-11-05",
+"o": "MTL",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-11-07",
+"o": "OTT",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-11-11",
+"o": "VGK",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-11-12",
+"o": "STL",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-11-14",
+"o": "SJ",
+"at": "vs",
+"v": 2
+}
+],
+"rates": {
+"season": 0.286,
+"season_n": 21,
+"l10": 0.2,
+"l40": 0.2,
+"last_season": 0.128,
+"last_season_n": 78,
+"near": 0.5,
+"ceiling_pct": 0.7
+},
+"trend": "down",
+"vs_opp": {
+"games": 3,
+"hits": 1,
+"avg": 1.33
+},
+"usage": {
+"toi_l10": 26.13,
+"pp_pts_pg": 0.53,
+"shots_pg": 2.23,
+"pp_unit": {
+"unit": 1,
+"conf": "High",
+"asof": "2026-11-14"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 0.55,
+"goals_rank": 11,
+"shots_pg": 7.3,
+"shots_rank": 17,
+"of": 32,
+"group": "defensemen"
+},
+"opp_times_shorthanded_pg": 3.23,
+"opp_sh_rank": 13,
+"pace_5v5_attempts": 88.3,
+"goalie": {
+"name": "Kevin Lankinen",
+"sv": 0.8725,
+"l10_sv": 0.833,
+"l10_gsax": -11.9,
+"last_start": "2026-11-03",
+"status": "projected starter"
+},
+"opp_form": {
+"games": 5,
+"gf": 12,
+"ga": 21
+}
+},
+"parts": {
+"opp_factor": 1.341,
+"goalie_factor": 1.142
+},
+"asof": {
+"game_log": "2026-11-16T15:01:44+00:00",
+"goalie": "2026-11-16T14:10:15+00:00",
+"lines": "2026-11-16T14:07:00+00:00",
+"injuries": "2026-11-16T14:10:15+00:00",
+"book": "2026-11-16T11:18:00+00:00",
+"team_stats": "2026-11-16T15:01:20+00:00"
+},
+"why": "Mikhail Sergachev has two or more points in 29% of 21 games this season and 20% of his last 10 (13% last season). He reached 1+ point (one short of the line or better) in 70% of his last 40, on 26.1 minutes a night over the last 10 and 2.2 shots a game, with a spot on power-play unit 1. VAN allows 0.55 goals a game to defensemen (#11 of 32, 1 = most). Projected goalie Kevin Lankinen is at a 0.833 save rate over his last 10.",
+"check": "ok"
+},
+{
+"id": "8483431-p2",
+"aid": "8483431",
+"player": "Logan Cooley",
+"pos": "C",
+"team": "UTA",
+"opp": "VAN",
+"home": true,
+"market": "2+ Points",
+"mk": "p2",
+"hurdle": 2,
+"p": 0.3365,
+"fair": 197,
+"book": null,
+"book_letter": null,
+"edge": null,
+"grade": "A",
+"start": "2026-11-17T02:30:00Z",
+"status": {
+"status": "Day-To-Day",
+"note": "day-to-day",
+"date": "2026-11-15"
+},
+"last10": [
+{
+"d": "2026-10-17",
+"o": "EDM",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-10-19",
+"o": "PIT",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-10-22",
+"o": "SEA",
+"at": "@",
+"v": 2
+},
+{
+"d": "2026-10-24",
+"o": "TB",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-10-27",
+"o": "MIN",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-10-29",
+"o": "PIT",
+"at": "@",
+"v": 3
+},
+{
+"d": "2026-11-01",
+"o": "PHI",
+"at": "@",
+"v": 2
+},
+{
+"d": "2026-11-03",
+"o": "TOR",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-11-05",
+"o": "MTL",
+"at": "@",
+"v": 4
+},
+{
+"d": "2026-11-07",
+"o": "OTT",
+"at": "@",
+"v": 0
+}
+],
+"rates": {
+"season": 0.333,
+"season_n": 18,
+"l10": 0.4,
+"l40": 0.3,
+"last_season": 0.167,
+"last_season_n": 54,
+"near": 0.275,
+"ceiling_pct": 0.575
+},
+"trend": "flat",
+"vs_opp": {
+"games": 2,
+"hits": 1,
+"avg": 1.0
+},
+"usage": {
+"toi_l10": 18.71,
+"pp_pts_pg": 0.45,
+"shots_pg": 1.73,
+"pp_unit": null
+},
+"matchup": {
+"allowed": {
+"goals_pg": 3.91,
+"goals_rank": 1,
+"shots_pg": 23.0,
+"shots_rank": 1,
+"of": 32,
+"group": "forwards"
+},
+"opp_times_shorthanded_pg": 3.23,
+"opp_sh_rank": 13,
+"pace_5v5_attempts": 88.3,
+"goalie": {
+"name": "Kevin Lankinen",
+"sv": 0.8725,
+"l10_sv": 0.833,
+"l10_gsax": -11.9,
+"last_start": "2026-11-03",
+"status": "projected starter"
+},
+"opp_form": {
+"games": 5,
+"gf": 12,
+"ga": 21
+}
+},
+"parts": {
+"opp_factor": 1.341,
+"goalie_factor": 1.142
+},
+"asof": {
+"game_log": "2026-11-16T15:01:44+00:00",
+"goalie": "2026-11-16T14:10:15+00:00",
+"lines": "2026-11-16T14:07:00+00:00",
+"injuries": "2026-11-16T14:10:15+00:00",
+"book": "2026-11-16T11:18:00+00:00",
+"team_stats": "2026-11-16T15:01:20+00:00"
+},
+"why": "Logan Cooley has two or more points in 33% of 18 games this season and 40% of his last 10 (17% last season). Listed status: {'status': 'Day-To-Day', 'note': 'day-to-day', 'date': '2026-11-15'}. He reached 1+ point (one short of the line or better) in 58% of his last 40, on 18.7 minutes a night over the last 10 and 1.7 shots a game. VAN allows 3.91 goals a game to forwards (#1 of 32, 1 = most). Projected goalie Kevin Lankinen is at a 0.833 save rate over his last 10.",
+"check": "ok"
+},
+{
+"id": "8479323-p2",
+"aid": "8479323",
+"player": "Adam Fox",
+"pos": "D",
+"team": "NYR",
+"opp": "MTL",
+"home": true,
+"market": "2+ Points",
+"mk": "p2",
+"hurdle": 2,
+"p": 0.3311,
+"fair": 202,
+"book": null,
+"book_letter": null,
+"edge": null,
+"grade": "A",
+"start": "2026-11-17T00:30:00Z",
+"status": "Active (no injury listed)",
+"last10": [
+{
+"d": "2026-10-22",
+"o": "TOR",
+"at": "@",
+"v": 4
+},
+{
+"d": "2026-10-24",
+"o": "OTT",
+"at": "@",
+"v": 2
+},
+{
+"d": "2026-10-26",
+"o": "LA",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-11-01",
+"o": "EDM",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-11-03",
+"o": "STL",
+"at": "vs",
+"v": 2
+},
+{
+"d": "2026-11-05",
+"o": "PHI",
+"at": "vs",
+"v": 2
+},
+{
+"d": "2026-11-07",
+"o": "SEA",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-11-09",
+"o": "EDM",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-11-11",
+"o": "CGY",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-11-13",
+"o": "VAN",
+"at": "@",
+"v": 1
+}
+],
+"rates": {
+"season": 0.286,
+"season_n": 21,
+"l10": 0.4,
+"l40": 0.325,
+"last_season": 0.309,
+"last_season_n": 55,
+"near": 0.425,
+"ceiling_pct": 0.75
+},
+"trend": "up",
+"vs_opp": {
+"games": 2,
+"hits": 1,
+"avg": 1.5
+},
+"usage": {
+"toi_l10": 24.52,
+"pp_pts_pg": 0.53,
+"shots_pg": 1.48,
+"pp_unit": {
+"unit": 1,
+"conf": "High",
+"asof": "2026-11-13"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 0.4,
+"goals_rank": 20,
+"shots_pg": 6.8,
+"shots_rank": 24,
+"of": 32,
+"group": "defensemen"
+},
+"opp_times_shorthanded_pg": 3.85,
+"opp_sh_rank": 3,
+"pace_5v5_attempts": 87.3,
+"goalie": {
+"name": "Jakub Dobes",
+"sv": 0.8915,
+"l10_sv": 0.867,
+"l10_gsax": -6.2,
+"last_start": "2026-11-14",
+"status": "projected starter"
+},
+"opp_form": {
+"games": 5,
+"gf": 16,
+"ga": 14
+}
+},
+"parts": {
+"opp_factor": 0.986,
+"goalie_factor": 1.023
+},
+"asof": {
+"game_log": "2026-11-16T15:01:44+00:00",
+"goalie": "2026-11-16T14:10:15+00:00",
+"lines": "2026-11-16T14:07:00+00:00",
+"injuries": "2026-11-16T14:10:15+00:00",
+"book": "2026-11-16T11:18:00+00:00",
+"team_stats": "2026-11-16T15:01:20+00:00"
+},
+"why": "Adam Fox has two or more points in 29% of 21 games this season and 40% of his last 10 (31% last season). He reached 1+ point (one short of the line or better) in 75% of his last 40, on 24.5 minutes a night over the last 10 and 1.5 shots a game, with a spot on power-play unit 1. MTL allows 0.4 goals a game to defensemen (#20 of 32, 1 = most). Projected goalie Jakub Dobes is at a 0.867 save rate over his last 10.",
+"check": "ok"
+},
+{
+"id": "8480018-p2",
+"aid": "8480018",
+"player": "Nick Suzuki",
+"pos": "C",
+"team": "MTL",
+"opp": "NYR",
+"home": false,
+"market": "2+ Points",
+"mk": "p2",
+"hurdle": 2,
+"p": 0.2863,
+"fair": 249,
+"book": null,
+"book_letter": null,
+"edge": null,
+"grade": "B",
+"start": "2026-11-17T00:30:00Z",
+"status": "Active (no injury listed)",
+"last10": [
+{
+"d": "2026-10-10",
+"o": "DET",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-10-13",
+"o": "BUF",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-10-14",
+"o": "WSH",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-17",
+"o": "BUF",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-10-20",
+"o": "SJ",
+"at": "vs",
+"v": 2
+},
+{
+"d": "2026-11-05",
+"o": "UTA",
+"at": "vs",
+"v": 3
+},
+{
+"d": "2026-11-07",
+"o": "TOR",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-11-10",
+"o": "MIN",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-11-12",
+"o": "BOS",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-11-14",
+"o": "COL",
+"at": "vs",
+"v": 1
+}
+],
+"rates": {
+"season": 0.286,
+"season_n": 14,
+"l10": 0.2,
+"l40": 0.375,
+"last_season": 0.354,
+"last_season_n": 82,
+"near": 0.375,
+"ceiling_pct": 0.75
+},
+"trend": "down",
+"vs_opp": {
+"games": 3,
+"hits": 2,
+"avg": 1.67
+},
+"usage": {
+"toi_l10": 20.84,
+"pp_pts_pg": 0.38,
+"shots_pg": 2.52,
+"pp_unit": {
+"unit": 1,
+"conf": "High",
+"asof": "2026-11-14"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 1.95,
+"goals_rank": 30,
+"shots_pg": 18.0,
+"shots_rank": 28,
+"of": 32,
+"group": "forwards"
+},
+"opp_times_shorthanded_pg": 3.05,
+"opp_sh_rank": 20,
+"pace_5v5_attempts": 87.3,
+"goalie": {
+"name": "Dylan Garand",
+"sv": 0.9017,
+"l10_sv": 0.906,
+"l10_gsax": 2.3,
+"last_start": "2026-11-13",
+"status": "projected starter"
+},
+"opp_form": {
+"games": 5,
+"gf": 16,
+"ga": 10
+}
+},
+"parts": {
+"opp_factor": 0.878,
+"goalie_factor": 0.975
+},
+"asof": {
+"game_log": "2026-11-16T15:01:44+00:00",
+"goalie": "2026-11-16T14:10:15+00:00",
+"lines": "2026-11-16T14:07:00+00:00",
+"injuries": "2026-11-16T14:10:15+00:00",
+"book": "2026-11-16T11:18:00+00:00",
+"team_stats": "2026-11-16T15:01:20+00:00"
+},
+"why": "Nick Suzuki has two or more points in 29% of 14 games this season and 20% of his last 10 (35% last season). He reached 1+ point (one short of the line or better) in 75% of his last 40, on 20.8 minutes a night over the last 10 and 2.5 shots a game, with a spot on power-play unit 1. NYR allows 1.95 goals a game to forwards (#30 of 32, 1 = most). Projected goalie Dylan Garand is at a 0.906 save rate over his last 10.",
+"check": "ok"
+},
+{
+"id": "8478444-p2",
+"aid": "8478444",
+"player": "Brock Boeser",
+"pos": "R",
+"team": "VAN",
+"opp": "UTA",
+"home": false,
+"market": "2+ Points",
+"mk": "p2",
+"hurdle": 2,
+"p": 0.2766,
+"fair": 262,
+"book": null,
+"book_letter": null,
+"edge": null,
+"grade": "B",
+"start": "2026-11-17T02:30:00Z",
+"status": "Active (no injury listed)",
+"last10": [
+{
+"d": "2026-10-25",
+"o": "MIN",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-10-27",
+"o": "ANA",
+"at": "@",
+"v": 3
+},
+{
+"d": "2026-10-29",
+"o": "SJ",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-10-31",
+"o": "TOR",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-11-03",
+"o": "ANA",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-11-05",
+"o": "WPG",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-11-07",
+"o": "EDM",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-11-09",
+"o": "PHI",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-11-13",
+"o": "NYR",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-11-15",
+"o": "VGK",
+"at": "@",
+"v": 2
+}
+],
+"rates": {
+"season": 0.136,
+"season_n": 22,
+"l10": 0.2,
+"l40": 0.175,
+"last_season": 0.12,
+"last_season_n": 75,
+"near": 0.525,
+"ceiling_pct": 0.7
+},
+"trend": "flat",
+"vs_opp": {
+"games": 2,
+"hits": 0,
+"avg": 0.5
+},
+"usage": {
+"toi_l10": 20.4,
+"pp_pts_pg": 0.47,
+"shots_pg": 1.9,
+"pp_unit": {
+"unit": 1,
+"conf": "High",
+"asof": "2026-11-15"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 2.9,
+"goals_rank": 10,
+"shots_pg": 18.2,
+"shots_rank": 26,
+"of": 32,
+"group": "forwards"
+},
+"opp_times_shorthanded_pg": 3.38,
+"opp_sh_rank": 10,
+"pace_5v5_attempts": 88.3,
+"goalie": {
+"name": "Karel Vejmelka",
+"sv": 0.8911,
+"l10_sv": 0.868,
+"l10_gsax": -5.2,
+"last_start": "2026-11-14",
+"status": "projected starter"
+},
+"opp_form": {
+"games": 5,
+"gf": 12,
+"ga": 19
+}
+},
+"parts": {
+"opp_factor": 1.092,
+"goalie_factor": 1.028
+},
+"asof": {
+"game_log": "2026-11-16T15:01:44+00:00",
+"goalie": "2026-11-16T14:10:15+00:00",
+"lines": "2026-11-16T14:07:00+00:00",
+"injuries": "2026-11-16T14:10:15+00:00",
+"book": "2026-11-16T11:18:00+00:00",
+"team_stats": "2026-11-16T15:01:20+00:00"
+},
+"why": "Brock Boeser has two or more points in 14% of 22 games this season and 20% of his last 10 (12% last season). He reached 1+ point (one short of the line or better) in 70% of his last 40, on 20.4 minutes a night over the last 10 and 1.9 shots a game, with a spot on power-play unit 1. UTA allows 2.9 goals a game to forwards (#10 of 32, 1 = most). Projected goalie Karel Vejmelka is at a 0.868 save rate over his last 10.",
+"check": "ok"
+},
+{
+"id": "8480012-p2",
+"aid": "8480012",
+"player": "Elias Pettersson",
+"pos": "C",
+"team": "VAN",
+"opp": "UTA",
+"home": false,
+"market": "2+ Points",
+"mk": "p2",
+"hurdle": 2,
+"p": 0.2666,
+"fair": 275,
+"book": null,
+"book_letter": null,
+"edge": null,
+"grade": "B",
+"start": "2026-11-17T02:30:00Z",
+"status": "Active (no injury listed)",
+"last10": [
+{
+"d": "2026-10-25",
+"o": "MIN",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-10-27",
+"o": "ANA",
+"at": "@",
+"v": 2
+},
+{
+"d": "2026-10-29",
+"o": "SJ",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-31",
+"o": "TOR",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-11-03",
+"o": "ANA",
+"at": "vs",
+"v": 2
+},
+{
+"d": "2026-11-05",
+"o": "WPG",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-11-07",
+"o": "EDM",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-11-09",
+"o": "PHI",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-11-13",
+"o": "NYR",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-11-15",
+"o": "VGK",
+"at": "@",
+"v": 2
+}
+],
+"rates": {
+"season": 0.227,
+"season_n": 22,
+"l10": 0.3,
+"l40": 0.225,
+"last_season": 0.162,
+"last_season_n": 74,
+"near": 0.425,
+"ceiling_pct": 0.65
+},
+"trend": "flat",
+"vs_opp": {
+"games": 3,
+"hits": 0,
+"avg": 0.0
+},
+"usage": {
+"toi_l10": 21.74,
+"pp_pts_pg": 0.47,
+"shots_pg": 1.52,
+"pp_unit": {
+"unit": 1,
+"conf": "High",
+"asof": "2026-11-15"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 2.9,
+"goals_rank": 10,
+"shots_pg": 18.2,
+"shots_rank": 26,
+"of": 32,
+"group": "forwards"
+},
+"opp_times_shorthanded_pg": 3.38,
+"opp_sh_rank": 10,
+"pace_5v5_attempts": 88.3,
+"goalie": {
+"name": "Karel Vejmelka",
+"sv": 0.8911,
+"l10_sv": 0.868,
+"l10_gsax": -5.2,
+"last_start": "2026-11-14",
+"status": "projected starter"
+},
+"opp_form": {
+"games": 5,
+"gf": 12,
+"ga": 19
+}
+},
+"parts": {
+"opp_factor": 1.092,
+"goalie_factor": 1.028
+},
+"asof": {
+"game_log": "2026-11-16T15:01:44+00:00",
+"goalie": "2026-11-16T14:10:15+00:00",
+"lines": "2026-11-16T14:07:00+00:00",
+"injuries": "2026-11-16T14:10:15+00:00",
+"book": "2026-11-16T11:18:00+00:00",
+"team_stats": "2026-11-16T15:01:20+00:00"
+},
+"why": "Elias Pettersson has two or more points in 23% of 22 games this season and 30% of his last 10 (16% last season). He reached 1+ point (one short of the line or better) in 65% of his last 40, on 21.7 minutes a night over the last 10 and 1.5 shots a game, with a spot on power-play unit 1. UTA allows 2.9 goals a game to forwards (#10 of 32, 1 = most). Projected goalie Karel Vejmelka is at a 0.868 save rate over his last 10.",
+"check": "ok"
+},
+{
+"id": "8482109-p2",
+"aid": "8482109",
+"player": "Alexis Lafreni\u00e8re",
+"pos": "L",
+"team": "NYR",
+"opp": "MTL",
+"home": true,
+"market": "2+ Points",
+"mk": "p2",
+"hurdle": 2,
+"p": 0.2429,
+"fair": 312,
+"book": null,
+"book_letter": null,
+"edge": null,
+"grade": "B",
+"start": "2026-11-17T00:30:00Z",
+"status": "Active (no injury listed)",
+"last10": [
+{
+"d": "2026-10-22",
+"o": "TOR",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-24",
+"o": "OTT",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-10-26",
+"o": "LA",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-11-01",
+"o": "EDM",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-11-03",
+"o": "STL",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-11-05",
+"o": "PHI",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-11-07",
+"o": "SEA",
+"at": "@",
+"v": 2
+},
+{
+"d": "2026-11-09",
+"o": "EDM",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-11-11",
+"o": "CGY",
+"at": "@",
+"v": 2
+},
+{
+"d": "2026-11-13",
+"o": "VAN",
+"at": "@",
+"v": 2
+}
+],
+"rates": {
+"season": 0.333,
+"season_n": 21,
+"l10": 0.3,
+"l40": 0.3,
+"last_season": 0.195,
+"last_season_n": 82,
+"near": 0.3,
+"ceiling_pct": 0.6
+},
+"trend": "flat",
+"vs_opp": {
+"games": 3,
+"hits": 0,
+"avg": 0.0
+},
+"usage": {
+"toi_l10": 18.07,
+"pp_pts_pg": 0.35,
+"shots_pg": 2.23,
+"pp_unit": {
+"unit": 2,
+"conf": "Low",
+"asof": "2026-11-13"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 2.65,
+"goals_rank": 16,
+"shots_pg": 20.8,
+"shots_rank": 8,
+"of": 32,
+"group": "forwards"
+},
+"opp_times_shorthanded_pg": 3.85,
+"opp_sh_rank": 3,
+"pace_5v5_attempts": 87.3,
+"goalie": {
+"name": "Jakub Dobes",
+"sv": 0.8915,
+"l10_sv": 0.867,
+"l10_gsax": -6.2,
+"last_start": "2026-11-14",
+"status": "projected starter"
+},
+"opp_form": {
+"games": 5,
+"gf": 16,
+"ga": 14
+}
+},
+"parts": {
+"opp_factor": 0.986,
+"goalie_factor": 1.023
+},
+"asof": {
+"game_log": "2026-11-16T15:01:44+00:00",
+"goalie": "2026-11-16T14:10:15+00:00",
+"lines": "2026-11-16T14:07:00+00:00",
+"injuries": "2026-11-16T14:10:15+00:00",
+"book": "2026-11-16T11:18:00+00:00",
+"team_stats": "2026-11-16T15:01:20+00:00"
+},
+"why": "Alexis Lafreni\u00e8re has two or more points in 33% of 21 games this season and 30% of his last 10 (20% last season). He reached 1+ point (one short of the line or better) in 60% of his last 40, on 18.1 minutes a night over the last 10 and 2.2 shots a game, with a spot on power-play unit 2. MTL allows 2.65 goals a game to forwards (#16 of 32, 1 = most). Projected goalie Jakub Dobes is at a 0.867 save rate over his last 10.",
+"check": "pending"
+},
+{
+"id": "8476459-p2",
+"aid": "8476459",
+"player": "Mika Zibanejad",
+"pos": "C",
+"team": "NYR",
+"opp": "MTL",
+"home": true,
+"market": "2+ Points",
+"mk": "p2",
+"hurdle": 2,
+"p": 0.2306,
+"fair": 334,
+"book": null,
+"book_letter": null,
+"edge": null,
+"grade": "B",
+"start": "2026-11-17T00:30:00Z",
+"status": "Active (no injury listed)",
+"last10": [
+{
+"d": "2026-10-22",
+"o": "TOR",
+"at": "@",
+"v": 2
+},
+{
+"d": "2026-10-24",
+"o": "OTT",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-10-26",
+"o": "LA",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-11-01",
+"o": "EDM",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-11-03",
+"o": "STL",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-11-05",
+"o": "PHI",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-11-07",
+"o": "SEA",
+"at": "@",
+"v": 2
+},
+{
+"d": "2026-11-09",
+"o": "EDM",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-11-11",
+"o": "CGY",
+"at": "@",
+"v": 2
+},
+{
+"d": "2026-11-13",
+"o": "VAN",
+"at": "@",
+"v": 1
+}
+],
+"rates": {
+"season": 0.286,
+"season_n": 21,
+"l10": 0.3,
+"l40": 0.275,
+"last_season": 0.235,
+"last_season_n": 81,
+"near": 0.375,
+"ceiling_pct": 0.65
+},
+"trend": "flat",
+"vs_opp": {
+"games": 3,
+"hits": 1,
+"avg": 1.33
+},
+"usage": {
+"toi_l10": 20.06,
+"pp_pts_pg": 0.35,
+"shots_pg": 2.12,
+"pp_unit": {
+"unit": 2,
+"conf": "Low",
+"asof": "2026-11-13"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 2.65,
+"goals_rank": 16,
+"shots_pg": 20.8,
+"shots_rank": 8,
+"of": 32,
+"group": "forwards"
+},
+"opp_times_shorthanded_pg": 3.85,
+"opp_sh_rank": 3,
+"pace_5v5_attempts": 87.3,
+"goalie": {
+"name": "Jakub Dobes",
+"sv": 0.8915,
+"l10_sv": 0.867,
+"l10_gsax": -6.2,
+"last_start": "2026-11-14",
+"status": "projected starter"
+},
+"opp_form": {
+"games": 5,
+"gf": 16,
+"ga": 14
+}
+},
+"parts": {
+"opp_factor": 0.986,
+"goalie_factor": 1.023
+},
+"asof": {
+"game_log": "2026-11-16T15:01:44+00:00",
+"goalie": "2026-11-16T14:10:15+00:00",
+"lines": "2026-11-16T14:07:00+00:00",
+"injuries": "2026-11-16T14:10:15+00:00",
+"book": "2026-11-16T11:18:00+00:00",
+"team_stats": "2026-11-16T15:01:20+00:00"
+},
+"why": "Mika Zibanejad has two or more points in 29% of 21 games this season and 30% of his last 10 (24% last season). He reached 1+ point (one short of the line or better) in 65% of his last 40, on 20.1 minutes a night over the last 10 and 2.1 shots a game, with a spot on power-play unit 2. MTL allows 2.65 goals a game to forwards (#16 of 32, 1 = most). Projected goalie Jakub Dobes is at a 0.867 save rate over his last 10.",
+"check": "pending"
+},
+{
+"id": "8481540-s5",
+"aid": "8481540",
+"player": "Cole Caufield",
+"pos": "R",
+"team": "MTL",
+"opp": "NYR",
+"home": false,
+"market": "5+ Shots on Goal",
+"mk": "s5",
+"hurdle": 5,
+"p": 0.203,
+"fair": 393,
+"book": null,
+"book_letter": null,
+"edge": null,
+"grade": "B",
+"start": "2026-11-17T00:30:00Z",
+"status": "Active (no injury listed)",
+"last10": [
+{
+"d": "2026-10-25",
+"o": "WPG",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-10-27",
+"o": "STL",
+"at": "@",
+"v": 3
+},
+{
+"d": "2026-10-29",
+"o": "DAL",
+"at": "@",
+"v": 3
+},
+{
+"d": "2026-10-31",
+"o": "PIT",
+"at": "vs",
+"v": 2
+},
+{
+"d": "2026-11-03",
+"o": "WPG",
+"at": "vs",
+"v": 4
+},
+{
+"d": "2026-11-05",
+"o": "UTA",
+"at": "vs",
+"v": 6
+},
+{
+"d": "2026-11-07",
+"o": "TOR",
+"at": "@",
+"v": 3
+},
+{
+"d": "2026-11-10",
+"o": "MIN",
+"at": "vs",
+"v": 2
+},
+{
+"d": "2026-11-12",
+"o": "BOS",
+"at": "@",
+"v": 4
+},
+{
+"d": "2026-11-14",
+"o": "COL",
+"at": "vs",
+"v": 4
+}
+],
+"rates": {
+"season": 0.25,
+"season_n": 20,
+"l10": 0.1,
+"l40": 0.225,
+"last_season": 0.21,
+"last_season_n": 81,
+"near": 0.2,
+"ceiling_pct": 0.425
+},
+"trend": "down",
+"vs_opp": {
+"games": 3,
+"hits": 1,
+"avg": 3.0
+},
+"usage": {
+"toi_l10": 17.54,
+"pp_pts_pg": 0.3,
+"shots_pg": 3.45,
+"pp_unit": {
+"unit": 1,
+"conf": "High",
+"asof": "2026-11-14"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 1.95,
+"goals_rank": 30,
+"shots_pg": 18.0,
+"shots_rank": 28,
+"of": 32,
+"group": "forwards"
+},
+"opp_times_shorthanded_pg": 3.05,
+"opp_sh_rank": 20,
+"pace_5v5_attempts": 87.3,
+"goalie": {
+"name": "Dylan Garand",
+"sv": 0.9017,
+"l10_sv": 0.906,
+"l10_gsax": 2.3,
+"last_start": "2026-11-13",
+"status": "projected starter"
+},
+"opp_form": {
+"games": 5,
+"gf": 16,
+"ga": 10
+}
+},
+"parts": {
+"opp_factor": 0.974,
+"goalie_factor": 0.975
+},
+"asof": {
+"game_log": "2026-11-16T15:01:44+00:00",
+"goalie": "2026-11-16T14:10:15+00:00",
+"lines": "2026-11-16T14:07:00+00:00",
+"injuries": "2026-11-16T14:10:15+00:00",
+"book": "2026-11-16T11:18:00+00:00",
+"team_stats": "2026-11-16T15:01:20+00:00"
+},
+"why": "Cole Caufield has five or more shots on goal in 25% of 20 games this season and 10% of his last 10 (21% last season). He reached 4+ shots on goal (one short of the line or better) in 43% of his last 40, on 17.5 minutes a night over the last 10 and 3.5 shots a game, with a spot on power-play unit 1. NYR allows 18.0 shots a game to forwards (#28 of 32, 1 = most).",
+"check": "pending"
+},
+{
+"id": "8479343-s5",
+"aid": "8479343",
+"player": "Clayton Keller",
+"pos": "R",
+"team": "UTA",
+"opp": "VAN",
+"home": true,
+"market": "5+ Shots on Goal",
+"mk": "s5",
+"hurdle": 5,
+"p": 0.1947,
+"fair": 414,
+"book": null,
+"book_letter": null,
+"edge": null,
+"grade": "B",
+"start": "2026-11-17T02:30:00Z",
+"status": "Active (no injury listed)",
+"last10": [
+{
+"d": "2026-10-24",
+"o": "TB",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-10-27",
+"o": "MIN",
+"at": "vs",
+"v": 3
+},
+{
+"d": "2026-10-29",
+"o": "PIT",
+"at": "@",
+"v": 3
+},
+{
+"d": "2026-11-01",
+"o": "PHI",
+"at": "@",
+"v": 4
+},
+{
+"d": "2026-11-03",
+"o": "TOR",
+"at": "@",
+"v": 5
+},
+{
+"d": "2026-11-05",
+"o": "MTL",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-11-07",
+"o": "OTT",
+"at": "@",
+"v": 6
+},
+{
+"d": "2026-11-11",
+"o": "VGK",
+"at": "@",
+"v": 4
+},
+{
+"d": "2026-11-12",
+"o": "STL",
+"at": "vs",
+"v": 2
+},
+{
+"d": "2026-11-14",
+"o": "SJ",
+"at": "vs",
+"v": 2
+}
+],
+"rates": {
+"season": 0.095,
+"season_n": 21,
+"l10": 0.2,
+"l40": 0.1,
+"last_season": 0.11,
+"last_season_n": 82,
+"near": 0.225,
+"ceiling_pct": 0.325
+},
+"trend": "up",
+"vs_opp": {
+"games": 3,
+"hits": 0,
+"avg": 2.67
+},
+"usage": {
+"toi_l10": 20.29,
+"pp_pts_pg": 0.62,
+"shots_pg": 2.83,
+"pp_unit": {
+"unit": 1,
+"conf": "High",
+"asof": "2026-11-14"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 3.91,
+"goals_rank": 1,
+"shots_pg": 23.0,
+"shots_rank": 1,
+"of": 32,
+"group": "forwards"
+},
+"opp_times_shorthanded_pg": 3.23,
+"opp_sh_rank": 13,
+"pace_5v5_attempts": 88.3,
+"goalie": {
+"name": "Kevin Lankinen",
+"sv": 0.8725,
+"l10_sv": 0.833,
+"l10_gsax": -11.9,
+"last_start": "2026-11-03",
+"status": "projected starter"
+},
+"opp_form": {
+"games": 5,
+"gf": 12,
+"ga": 21
+}
+},
+"parts": {
+"opp_factor": 1.096,
+"goalie_factor": 1.142
+},
+"asof": {
+"game_log": "2026-11-16T15:01:44+00:00",
+"goalie": "2026-11-16T14:10:15+00:00",
+"lines": "2026-11-16T14:07:00+00:00",
+"injuries": "2026-11-16T14:10:15+00:00",
+"book": "2026-11-16T11:18:00+00:00",
+"team_stats": "2026-11-16T15:01:20+00:00"
+},
+"why": "Clayton Keller has five or more shots on goal in 10% of 21 games this season and 20% of his last 10 (11% last season). He reached 4+ shots on goal (one short of the line or better) in 33% of his last 40, on 20.3 minutes a night over the last 10 and 2.8 shots a game, with a spot on power-play unit 1. VAN allows 23.0 shots a game to forwards (#1 of 32, 1 = most).",
+"check": "pending"
+},
+{
+"id": "8481604-s5",
+"aid": "8481604",
+"player": "Pavel Dorofeyev",
+"pos": "R",
+"team": "NYR",
+"opp": "MTL",
+"home": true,
+"market": "5+ Shots on Goal",
+"mk": "s5",
+"hurdle": 5,
+"p": 0.1636,
+"fair": 511,
+"book": null,
+"book_letter": null,
+"edge": null,
+"grade": "B",
+"start": "2026-11-17T00:30:00Z",
+"status": "Active (no injury listed)",
+"last10": [
+{
+"d": "2026-10-22",
+"o": "TOR",
+"at": "@",
+"v": 2
+},
+{
+"d": "2026-10-24",
+"o": "OTT",
+"at": "@",
+"v": 4
+},
+{
+"d": "2026-10-26",
+"o": "LA",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-11-01",
+"o": "EDM",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-11-03",
+"o": "STL",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-11-05",
+"o": "PHI",
+"at": "vs",
+"v": 4
+},
+{
+"d": "2026-11-07",
+"o": "SEA",
+"at": "@",
+"v": 3
+},
+{
+"d": "2026-11-09",
+"o": "EDM",
+"at": "@",
+"v": 6
+},
+{
+"d": "2026-11-11",
+"o": "CGY",
+"at": "@",
+"v": 3
+},
+{
+"d": "2026-11-13",
+"o": "VAN",
+"at": "@",
+"v": 4
+}
+],
+"rates": {
+"season": 0.238,
+"season_n": 21,
+"l10": 0.1,
+"l40": 0.225,
+"last_season": 0.171,
+"last_season_n": 82,
+"near": 0.125,
+"ceiling_pct": 0.35
+},
+"trend": "down",
+"vs_opp": {
+"games": 2,
+"hits": 1,
+"avg": 6.0
+},
+"usage": {
+"toi_l10": 16.0,
+"pp_pts_pg": 0.28,
+"shots_pg": 3.02,
+"pp_unit": {
+"unit": 2,
+"conf": "Low",
+"asof": "2026-11-13"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 2.65,
+"goals_rank": 16,
+"shots_pg": 20.8,
+"shots_rank": 8,
+"of": 32,
+"group": "forwards"
+},
+"opp_times_shorthanded_pg": 3.85,
+"opp_sh_rank": 3,
+"pace_5v5_attempts": 87.3,
+"goalie": {
+"name": "Jakub Dobes",
+"sv": 0.8915,
+"l10_sv": 0.867,
+"l10_gsax": -6.2,
+"last_start": "2026-11-14",
+"status": "projected starter"
+},
+"opp_form": {
+"games": 5,
+"gf": 16,
+"ga": 14
+}
+},
+"parts": {
+"opp_factor": 1.02,
+"goalie_factor": 1.023
+},
+"asof": {
+"game_log": "2026-11-16T15:01:44+00:00",
+"goalie": "2026-11-16T14:10:15+00:00",
+"lines": "2026-11-16T14:07:00+00:00",
+"injuries": "2026-11-16T14:10:15+00:00",
+"book": "2026-11-16T11:18:00+00:00",
+"team_stats": "2026-11-16T15:01:20+00:00"
+},
+"why": "Pavel Dorofeyev has five or more shots on goal in 24% of 21 games this season and 10% of his last 10 (17% last season). He reached 4+ shots on goal (one short of the line or better) in 35% of his last 40, on 16.0 minutes a night over the last 10 and 3.0 shots a game, with a spot on power-play unit 2. MTL allows 20.8 shots a game to forwards (#8 of 32, 1 = most).",
+"check": "pending"
+},
+{
+"id": "8481540-g2",
+"aid": "8481540",
+"player": "Cole Caufield",
+"pos": "R",
+"team": "MTL",
+"opp": "NYR",
+"home": false,
+"market": "2+ Goals",
+"mk": "g2",
+"hurdle": 2,
+"p": 0.0745,
+"fair": 1242,
+"book": null,
+"book_letter": null,
+"edge": null,
+"grade": "B",
+"start": "2026-11-17T00:30:00Z",
+"status": "Active (no injury listed)",
+"last10": [
+{
+"d": "2026-10-25",
+"o": "WPG",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-10-27",
+"o": "STL",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-10-29",
+"o": "DAL",
+"at": "@",
+"v": 2
+},
+{
+"d": "2026-10-31",
+"o": "PIT",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-11-03",
+"o": "WPG",
+"at": "vs",
+"v": 2
+},
+{
+"d": "2026-11-05",
+"o": "UTA",
+"at": "vs",
+"v": 1
+},
+{
+"d": "2026-11-07",
+"o": "TOR",
+"at": "@",
+"v": 0
+},
+{
+"d": "2026-11-10",
+"o": "MIN",
+"at": "vs",
+"v": 0
+},
+{
+"d": "2026-11-12",
+"o": "BOS",
+"at": "@",
+"v": 1
+},
+{
+"d": "2026-11-14",
+"o": "COL",
+"at": "vs",
+"v": 0
+}
+],
+"rates": {
+"season": 0.2,
+"season_n": 20,
+"l10": 0.2,
+"l40": 0.15,
+"last_season": 0.148,
+"last_season_n": 81,
+"near": 0.325,
+"ceiling_pct": 0.475
+},
+"trend": "flat",
+"vs_opp": {
+"games": 3,
+"hits": 1,
+"avg": 0.67
+},
+"usage": {
+"toi_l10": 17.54,
+"pp_pts_pg": 0.3,
+"shots_pg": 3.45,
+"pp_unit": {
+"unit": 1,
+"conf": "High",
+"asof": "2026-11-14"
+}
+},
+"matchup": {
+"allowed": {
+"goals_pg": 1.95,
+"goals_rank": 30,
+"shots_pg": 18.0,
+"shots_rank": 28,
+"of": 32,
+"group": "forwards"
+},
+"opp_times_shorthanded_pg": 3.05,
+"opp_sh_rank": 20,
+"pace_5v5_attempts": 87.3,
+"goalie": {
+"name": "Dylan Garand",
+"sv": 0.9017,
+"l10_sv": 0.906,
+"l10_gsax": 2.3,
+"last_start": "2026-11-13",
+"status": "projected starter"
+},
+"opp_form": {
+"games": 5,
+"gf": 16,
+"ga": 10
+}
+},
+"parts": {
+"opp_factor": 0.878,
+"goalie_factor": 0.975
+},
+"asof": {
+"game_log": "2026-11-16T15:01:44+00:00",
+"goalie": "2026-11-16T14:10:15+00:00",
+"lines": "2026-11-16T14:07:00+00:00",
+"injuries": "2026-11-16T14:10:15+00:00",
+"book": "2026-11-16T11:18:00+00:00",
+"team_stats": "2026-11-16T15:01:20+00:00"
+},
+"why": "Cole Caufield has two or more goals in 20% of 20 games this season and 20% of his last 10 (15% last season). He reached 1+ goal (one short of the line or better) in 48% of his last 40, on 17.5 minutes a night over the last 10 and 3.5 shots a game, with a spot on power-play unit 1. NYR allows 1.95 goals a game to forwards (#30 of 32, 1 = most). Projected goalie Dylan Garand is at a 0.906 save rate over his last 10.",
+"check": "pending"
+}
+],
+"record": {
+"2+ Goals": {
+"B": [
+1,
+39
+],
+"C": [
+1,
+30
+],
+"A": [
+4,
+20
+]
+},
+"2+ Points": {
+"A": [
+27,
+92
+],
+"B": [
+22,
+79
+]
+},
+"5+ Shots on Goal": {
+"A": [
+18,
+63
+],
+"B": [
+9,
+47
+],
+"C": [
+2,
+4
+]
+}
+},
+"bands": {
+"2+ Goals": "A 10%+, B 7%+",
+"2+ Points": "A 30%+, B 22%+",
+"5+ Shots on Goal": "A 22%+, B 16%+"
+}
+}
