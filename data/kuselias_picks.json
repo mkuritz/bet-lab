@@ -4799,7 +4799,12 @@
    "id": "ek-w10-2",
    "odds": -112,
    "odds_source": "live",
-   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter"
+   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter",
+   "result": "loss",
+   "final": {
+    "NYJ": 12.0,
+    "BUF": 31.0
+   }
   },
   {
    "week": 10,
@@ -4820,7 +4825,12 @@
    "odds": -112,
    "odds_source": "live",
    "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter",
-   "bought": "+3 stated vs market +2.5; priced at market +2.5"
+   "bought": "+3 stated vs market +2.5; priced at market +2.5",
+   "result": "win",
+   "final": {
+    "NO": 17.0,
+    "CAR": 20.0
+   }
   },
   {
    "week": 10,
@@ -4841,7 +4851,12 @@
    "odds": -110,
    "odds_source": "live",
    "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter",
-   "bought": "+5 stated vs market +4.5; priced at market +4.5"
+   "bought": "+5 stated vs market +4.5; priced at market +4.5",
+   "result": "win",
+   "final": {
+    "CLE": 27.0,
+    "HOU": 24.0
+   }
   },
   {
    "week": 10,
@@ -4861,7 +4876,12 @@
    "id": "ek-w10-5",
    "odds": -108,
    "odds_source": "live",
-   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter"
+   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter",
+   "result": "loss",
+   "final": {
+    "TEN": 23.0,
+    "JAX": 40.0
+   }
   },
   {
    "week": 10,
@@ -4882,7 +4902,12 @@
    "odds": -118,
    "odds_source": "live",
    "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter",
-   "bought": "-3 stated vs market -3.5; priced at market -3.5"
+   "bought": "-3 stated vs market -3.5; priced at market -3.5",
+   "result": "loss",
+   "final": {
+    "IND": 24.0,
+    "MIA": 22.0
+   }
   },
   {
    "week": 10,
@@ -4901,7 +4926,12 @@
    "id": "ek-w10-7",
    "odds": -148,
    "odds_source": "live",
-   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter"
+   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter",
+   "result": "loss",
+   "final": {
+    "GB": 10.0,
+    "MIN": 30.0
+   }
   },
   {
    "week": 10,
@@ -4921,7 +4951,12 @@
    "id": "ek-w10-8",
    "odds": -120,
    "odds_source": "live",
-   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter"
+   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter",
+   "result": "win",
+   "final": {
+    "ATL": 13.0,
+    "KC": 35.0
+   }
   },
   {
    "week": 10,
@@ -4941,7 +4976,12 @@
    "id": "ek-w10-9",
    "odds": -112,
    "odds_source": "live",
-   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter"
+   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter",
+   "result": "win",
+   "final": {
+    "ARI": 6.0,
+    "LAR": 34.0
+   }
   },
   {
    "week": 10,
@@ -4962,7 +5002,12 @@
    "odds": -115,
    "odds_source": "live",
    "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter",
-   "bought": "-4 stated vs market -3.5; priced at market -3.5"
+   "bought": "-4 stated vs market -3.5; priced at market -3.5",
+   "result": "win",
+   "final": {
+    "DAL": 40.0,
+    "SF": 46.0
+   }
   },
   {
    "week": 10,
@@ -4982,7 +5027,12 @@
    "id": "ek-w10-11",
    "odds": -110,
    "odds_source": "live",
-   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter"
+   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter",
+   "result": "loss",
+   "final": {
+    "CIN": 38.0,
+    "PIT": 18.0
+   }
   },
   {
    "week": 10,
@@ -5031,7 +5081,12 @@
    "id": "ek-w10-lean-2",
    "odds": -108,
    "odds_source": "live",
-   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter"
+   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter",
+   "result": "win",
+   "final": {
+    "CLE": 27.0,
+    "HOU": 24.0
+   }
   },
   {
    "week": 10,
@@ -5063,18 +5118,18 @@
  "record": {
   "straight": {
    "overall": {
-    "w": 98,
-    "l": 77,
+    "w": 104,
+    "l": 82,
     "p": 2,
-    "units": 9.69,
-    "units_n": 177
+    "units": 10.01,
+    "units_n": 188
    },
    "nfl": {
-    "w": 90,
-    "l": 73,
+    "w": 96,
+    "l": 78,
     "p": 2,
-    "units": 6.46,
-    "units_n": 165
+    "units": 6.78,
+    "units_n": 176
    },
    "mlb": {
     "w": 0,
@@ -5136,18 +5191,18 @@
    }
   },
   "overall": {
-   "w": 98,
-   "l": 77,
+   "w": 104,
+   "l": 82,
    "p": 2,
-   "units": 9.69,
-   "units_n": 177
+   "units": 10.01,
+   "units_n": 188
   },
   "nfl": {
-   "w": 90,
-   "l": 73,
+   "w": 96,
+   "l": 78,
    "p": 2,
-   "units": 6.46,
-   "units_n": 165
+   "units": 6.78,
+   "units_n": 176
   },
   "mlb": {
    "w": 0,
@@ -5171,19 +5226,19 @@
    "units_n": 11
   },
   "full_season": {
-   "w": 98,
-   "l": 80,
+   "w": 104,
+   "l": 85,
    "p": 2,
-   "units": 6.69,
-   "units_n": 180
+   "units": 7.01,
+   "units_n": 191
   },
   "categories": {
    "games": {
-    "w": 59,
-    "l": 58,
+    "w": 64,
+    "l": 63,
     "p": 2,
-    "units": -6.1,
-    "units_n": 119
+    "units": -6.71,
+    "units_n": 129
    },
    "props": {
     "w": 20,
@@ -5193,11 +5248,11 @@
     "units_n": 29
    },
    "leans": {
-    "w": 19,
+    "w": 20,
     "l": 13,
     "p": 0,
-    "units": 3.68,
-    "units_n": 32
+    "units": 4.6,
+    "units_n": 33
    }
   },
   "parlay_legs": {
@@ -5207,7 +5262,7 @@
    "units": -2.14,
    "units_n": 6
   },
-  "pending": 14,
+  "pending": 3,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }
