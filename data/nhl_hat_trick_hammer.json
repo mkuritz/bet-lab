@@ -1,1 +1,117 @@
-{"feature":"Hat-Trick Hammer","sport":"NHL","preview":false,"updated":"2026-11-18T06:31:20+00:00","slate":null,"candidate":null,"reason":"Today's pick posts at about 10 AM ET on game days.","probability_label":"Research estimate - not calibrated, no graded record","record_stats":{"graded":8,"hits":0,"misses":8,"pending":0,"text":"0-8","label":"0-8 graded 3+ goal picks"},"record":"0-8 graded 3+ goal picks"}
+{
+ "feature": "Hat-Trick Hammer",
+ "sport": "NHL",
+ "preview": false,
+ "updated": "2026-11-18T15:24:06+00:00",
+ "slate": "2026-11-18",
+ "hurdle": "3+ goals in the game (regulation and overtime; shootout goals do not count)",
+ "probability_label": "Research estimate - not calibrated, no graded record",
+ "record": "0-8 graded 3+ goal picks",
+ "assumptions": "Goals per game = shots/game (half last 10, half since 2025-26) x shooting % regressed to 9.5% over 60 shots, x opponent shots-allowed factor (0.88-1.12) x goalie save % factor (0.85-1.20); P(3+) = Poisson tail, which ignores game-to-game variance in ice time and score effects. Not fitted to 3+ outcomes.",
+ "market": "No 3+ goals price in our feed; likelihood only, not value",
+ "candidate": {
+  "id": "8481559",
+  "name": "Jack Hughes",
+  "pos": "C",
+  "team": "NJ",
+  "opp": "MTL",
+  "home": true,
+  "game": "2026020345",
+  "start": "2026-11-19T00:30:00Z",
+  "start_et": "Wed Nov 18, 7:30 PM ET",
+  "profile": "./#player/8481559",
+  "status": "Active roster, no injury listed",
+  "qualified": true,
+  "est_lambda": 0.553,
+  "est_p3": 0.0187,
+  "evidence": {
+   "games": 82,
+   "season_goals": 10,
+   "season_gp": 21,
+   "shots_pg_blend": 3.98,
+   "dup_rows_dropped": 0,
+   "shooting_pct_regressed": 0.1157,
+   "toi_l10": 21.0,
+   "shots_l10": 42,
+   "hat_tricks_since_2025_26": 2,
+   "pp": {
+    "unit": 1,
+    "conf": "High",
+    "asof": "2026-11-14"
+   },
+   "opp_shots_allowed_pg": 28.09523,
+   "opp_factor": 1.024,
+   "goalie": {
+    "name": "Jakub Dobes",
+    "sv": 0.8914,
+    "l10_sv": 0.867,
+    "status": "projected starter (confirmation unknown)",
+    "tandem": true
+   },
+   "goalie_factor": 1.173,
+   "last5": [
+    {
+     "game_id": "2026020318",
+     "d": "2026-11-14",
+     "o": "WSH",
+     "g": 0,
+     "s": 2
+    },
+    {
+     "game_id": "2026020303",
+     "d": "2026-11-12",
+     "o": "WSH",
+     "g": 1,
+     "s": 3
+    },
+    {
+     "game_id": "2026020291",
+     "d": "2026-11-10",
+     "o": "WPG",
+     "g": 0,
+     "s": 3
+    },
+    {
+     "game_id": "2026020279",
+     "d": "2026-11-08",
+     "o": "TOR",
+     "g": 0,
+     "s": 3
+    },
+    {
+     "game_id": "2026020270",
+     "d": "2026-11-07",
+     "o": "NYI",
+     "g": 1,
+     "s": 5
+    }
+   ]
+  },
+  "narrative": [],
+  "fit": "3.98 shots a game (recent and since last season blended) with 21.0 minutes a night and a spot on power-play unit 1; MTL allows 28.1 shots a game and projected starter Jakub Dobes is at 0.867 over his last 10.",
+  "downside": "A hat trick is rare even for top scorers: the estimate is about 1.9%, so the most likely result is not a hat trick. The goalie is projected starter (confirmation unknown), and his team has two goalies splitting starts.",
+  "tiebreak": null,
+  "narrative_note": "No verified narrative for this player today"
+ },
+ "runners_up": [
+  {
+   "name": "Cole Caufield",
+   "team": "MTL",
+   "est_p3": 0.0181
+  },
+  {
+   "name": "David Pastrnak",
+   "team": "BOS",
+   "est_p3": 0.011
+  }
+ ],
+ "n_checked": 137,
+ "record_stats": {
+  "graded": 8,
+  "hits": 0,
+  "misses": 8,
+  "pending": 1,
+  "text": "0-8",
+  "label": "0-8 graded 3+ goal picks"
+ }
+}
