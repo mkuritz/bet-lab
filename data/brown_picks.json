@@ -1,0 +1,596 @@
+{
+ "handicapper": "Cody Brown",
+ "show": "Cody Brown \u2014 Free Daily NFL & NBA Picks (@CodyBrownBets)",
+ "source_url": "https://x.com/CodyBrownBets",
+ "tracked_since": "2026 NFL Week 11",
+ "note": "Former data analyst sharing free NFL & NBA picks daily. Every ticket he posts to play is logged: Top Plays & Straights, and Parlays, Double Ups & Flyers. Research lists (\"hit-rate\" menus) are not counted as picks. Tickets whose legs are not shown, or that settle on stats not in the official box score, are not logged.",
+ "skipped": [
+  {
+   "date": "2026-11-18",
+   "ticket": "GASpecial",
+   "desc": "Giannis Special (points in the first 3 minutes)",
+   "reason": "settles on a first-3-minutes stat not in the official box score",
+   "source_url": "https://x.com/CodyBrownBets/status/2123182250359664914"
+  },
+  {
+   "date": "2026-11-18",
+   "ticket": "1LPGNov18",
+   "desc": "NBA One Leg Per Game Lotto",
+   "reason": "legs not shown on the public ticket",
+   "source_url": "https://x.com/CodyBrownBets/status/2123182250359664914"
+  }
+ ],
+ "picks": [
+  {
+   "desc": "NBA Top Play \u00b7 Deni Avdija Over 23.5 Points (POR @ MIN)",
+   "sport": "nba",
+   "espn_event_id": "401910003",
+   "team": "POR",
+   "type": "prop",
+   "player": "Deni Avdija",
+   "stat_cat": "",
+   "stat_key": "PTS",
+   "side": "over",
+   "line": 23.5,
+   "odds": -118,
+   "odds_source": "stated",
+   "id": "cb-w11-bb-1117",
+   "date": "2026-11-17",
+   "week": 11,
+   "category": "best",
+   "kind": "straight",
+   "book": "Book B",
+   "source_url": "https://x.com/CodyBrownBets/status/2122779955025281215",
+   "source_label": "X post",
+   "posted_at": "2026-11-17T19:52:00Z",
+   "ticket": "BB1117",
+   "odds_note": "Price shown on his posted ticket at release",
+   "void": "did not play",
+   "result": "push",
+   "final": {
+    "MIN": 106.0,
+    "POR": 105.0
+   }
+  },
+  {
+   "id": "cb-w11-par-1117",
+   "date": "2026-11-17",
+   "week": 11,
+   "category": "parlays",
+   "kind": "parlay",
+   "type": "parlay",
+   "sport": "nba",
+   "desc": "NBA Parlay (4 legs)",
+   "odds": 240,
+   "odds_source": "stated",
+   "book": "Book B",
+   "legs": [
+    {
+     "desc": "Scottie Barnes 30+ Pts+Reb+Ast (NY @ TOR)",
+     "sport": "nba",
+     "espn_event_id": "401910002",
+     "team": "TOR",
+     "type": "prop",
+     "player": "Scottie Barnes",
+     "stat_cat": "",
+     "stat_key": "PTS+REB+AST",
+     "side": "over",
+     "line": 29.5,
+     "odds": -296,
+     "odds_source": "stated",
+     "actual": 26.0,
+     "result": "loss",
+     "final": {
+      "TOR": 102.0,
+      "NY": 111.0
+     }
+    },
+    {
+     "desc": "Jalen Brunson 30+ Pts+Ast (NY @ TOR)",
+     "sport": "nba",
+     "espn_event_id": "401910002",
+     "team": "NY",
+     "type": "prop",
+     "player": "Jalen Brunson",
+     "stat_cat": "",
+     "stat_key": "PTS+AST",
+     "side": "over",
+     "line": 29.5,
+     "odds": -241,
+     "odds_source": "stated",
+     "actual": 36.0,
+     "result": "win",
+     "final": {
+      "TOR": 102.0,
+      "NY": 111.0
+     }
+    },
+    {
+     "desc": "Victor Wembanyama 35+ Pts+Reb (DET @ SA)",
+     "sport": "nba",
+     "espn_event_id": "401910004",
+     "team": "SA",
+     "type": "prop",
+     "player": "Victor Wembanyama",
+     "stat_cat": "",
+     "stat_key": "PTS+REB",
+     "side": "over",
+     "line": 34.5,
+     "odds": -332,
+     "odds_source": "stated",
+     "actual": 43.0,
+     "result": "win",
+     "final": {
+      "SA": 93.0,
+      "DET": 105.0
+     }
+    },
+    {
+     "desc": "Cade Cunningham 30+ Pts+Ast (DET @ SA)",
+     "sport": "nba",
+     "espn_event_id": "401910004",
+     "team": "DET",
+     "type": "prop",
+     "player": "Cade Cunningham",
+     "stat_cat": "",
+     "stat_key": "PTS+AST",
+     "side": "over",
+     "line": 29.5,
+     "odds": -253,
+     "odds_source": "stated",
+     "actual": 33.0,
+     "result": "win",
+     "final": {
+      "SA": 93.0,
+      "DET": 105.0
+     }
+    }
+   ],
+   "source_url": "https://x.com/CodyBrownBets/status/2122738749381451892",
+   "source_label": "X post",
+   "posted_at": "2026-11-17T17:08:00Z",
+   "ticket": "NBA1117",
+   "odds_note": "Price shown on his posted ticket at release (pre-boost); promo boost to +312 not used for units",
+   "boosted_odds": 312,
+   "result": "loss",
+   "legs_total": 4,
+   "legs_graded": 4,
+   "legs_hit": 3,
+   "legs_push": 0,
+   "sunk_by": [
+    "Scottie Barnes 30+ Pts+Reb+Ast (NY @ TOR)"
+   ]
+  },
+  {
+   "desc": "NBA Top Play \u00b7 Davion Mitchell Over 22.5 Pts+Ast (MIL @ MIA)",
+   "sport": "nba",
+   "espn_event_id": "401910009",
+   "team": "MIA",
+   "type": "prop",
+   "player": "Davion Mitchell",
+   "stat_cat": "",
+   "stat_key": "PTS+AST",
+   "side": "over",
+   "line": 22.5,
+   "odds": -130,
+   "odds_source": "stated",
+   "id": "cb-w11-bb-1118",
+   "date": "2026-11-18",
+   "week": 11,
+   "category": "best",
+   "kind": "straight",
+   "book": "Book B",
+   "source_url": "https://x.com/CodyBrownBets/status/2123182250359664914",
+   "source_label": "X post",
+   "posted_at": "2026-11-18T22:31:00Z",
+   "ticket": "BB1118",
+   "odds_note": "Price shown on his posted ticket at release",
+   "actual": 30.0,
+   "result": "win",
+   "final": {
+    "MIA": 137.0,
+    "MIL": 130.0
+   }
+  },
+  {
+   "id": "cb-w11-dbl-1118",
+   "date": "2026-11-18",
+   "week": 11,
+   "category": "parlays",
+   "kind": "parlay",
+   "type": "parlay",
+   "sport": "nba",
+   "desc": "NBA Double Up (2 legs)",
+   "odds": -111,
+   "odds_source": "stated",
+   "book": "Book B",
+   "legs": [
+    {
+     "desc": "Nolan Traor\u00e9 15+ Pts+Ast (CHI @ BKN)",
+     "sport": "nba",
+     "espn_event_id": "401910011",
+     "team": "BKN",
+     "type": "prop",
+     "player": "Nolan Traor\u00e9",
+     "stat_cat": "",
+     "stat_key": "PTS+AST",
+     "side": "over",
+     "line": 14.5,
+     "odds": -263,
+     "odds_source": "stated",
+     "actual": 17.0,
+     "result": "win",
+     "final": {
+      "BKN": 107.0,
+      "CHI": 137.0
+     }
+    },
+    {
+     "desc": "Darius Acuff Jr. 25+ Pts+Reb (PHX @ SAC)",
+     "sport": "nba",
+     "espn_event_id": "401910018",
+     "team": "SAC",
+     "type": "prop",
+     "player": "Darius Acuff Jr.",
+     "stat_cat": "",
+     "stat_key": "PTS+REB",
+     "side": "over",
+     "line": 24.5,
+     "odds": -264,
+     "odds_source": "stated",
+     "actual": 40.0,
+     "result": "win",
+     "final": {
+      "SAC": 107.0,
+      "PHX": 128.0
+     }
+    }
+   ],
+   "source_url": "https://x.com/CodyBrownBets/status/2123144696524386592",
+   "source_label": "X post",
+   "posted_at": "2026-11-18T20:01:00Z",
+   "ticket": "DBL1118",
+   "odds_note": "Price shown on his posted ticket at release (pre-boost)",
+   "legs_total": 2,
+   "legs_graded": 2,
+   "legs_hit": 2,
+   "legs_push": 0,
+   "sunk_by": [],
+   "result": "win"
+  },
+  {
+   "id": "cb-w11-td-1122",
+   "date": "2026-11-22",
+   "week": 11,
+   "category": "parlays",
+   "kind": "parlay",
+   "type": "parlay",
+   "sport": "nfl",
+   "desc": "Week 11 Touchdown Parlay (6 legs)",
+   "odds": 2702,
+   "odds_source": "stated",
+   "book": "Book B",
+   "legs": [
+    {
+     "desc": "Jahmyr Gibbs Anytime TD (TB @ DET)",
+     "sport": "nfl",
+     "espn_event_id": "401873072",
+     "team": "DET",
+     "type": "prop",
+     "player": "Jahmyr Gibbs",
+     "stat_cat": "td",
+     "stat_key": "TD",
+     "side": "over",
+     "line": 0.5,
+     "odds": -260,
+     "odds_source": "stated"
+    },
+    {
+     "desc": "James Cook Anytime TD (MIA @ BUF)",
+     "sport": "nfl",
+     "espn_event_id": "401873070",
+     "team": "BUF",
+     "type": "prop",
+     "player": "James Cook",
+     "stat_cat": "td",
+     "stat_key": "TD",
+     "side": "over",
+     "line": 0.5,
+     "odds": -180,
+     "odds_source": "stated"
+    },
+    {
+     "desc": "Tony Pollard Anytime TD (TEN @ DAL)",
+     "sport": "nfl",
+     "espn_event_id": "401873073",
+     "team": "TEN",
+     "type": "prop",
+     "player": "Tony Pollard",
+     "stat_cat": "td",
+     "stat_key": "TD",
+     "side": "over",
+     "line": 0.5,
+     "odds": -125,
+     "odds_source": "stated"
+    },
+    {
+     "desc": "Luther Burden III Anytime TD (NO @ CHI)",
+     "sport": "nfl",
+     "espn_event_id": "401873071",
+     "team": "CHI",
+     "type": "prop",
+     "player": "Luther Burden III",
+     "stat_cat": "td",
+     "stat_key": "TD",
+     "side": "over",
+     "line": 0.5,
+     "odds": 130,
+     "odds_source": "stated"
+    },
+    {
+     "desc": "Bhayshul Tuten Anytime TD (JAX @ NYG)",
+     "sport": "nfl",
+     "espn_event_id": "401873069",
+     "team": "JAX",
+     "type": "prop",
+     "player": "Bhayshul Tuten",
+     "stat_cat": "td",
+     "stat_key": "TD",
+     "side": "over",
+     "line": 0.5,
+     "odds": -105,
+     "odds_source": "stated"
+    },
+    {
+     "desc": "Christian McCaffrey Anytime TD (MIN vs SF)",
+     "sport": "nfl",
+     "espn_event_id": "401873077",
+     "team": "SF",
+     "type": "prop",
+     "player": "Christian McCaffrey",
+     "stat_cat": "td",
+     "stat_key": "TD",
+     "side": "over",
+     "line": 0.5,
+     "odds": -165,
+     "odds_source": "stated"
+    }
+   ],
+   "source_url": "https://x.com/CodyBrownBets/status/2123198169387503883",
+   "source_label": "X post",
+   "posted_at": "2026-11-18T23:34:00Z",
+   "ticket": "TDsW11",
+   "odds_note": "Parlay price on his ticket at release; leg prices read from the ticket on Nov 19",
+   "legs_total": 6,
+   "legs_graded": 0,
+   "legs_hit": 0,
+   "legs_push": 0,
+   "sunk_by": []
+  },
+  {
+   "id": "cb-w11-cs-1119",
+   "date": "2026-11-19",
+   "week": 11,
+   "category": "parlays",
+   "kind": "parlay",
+   "type": "parlay",
+   "sport": "multi",
+   "desc": "TNF x NBA Cross Sport Flyer (4 legs)",
+   "odds": 855,
+   "odds_source": "stated",
+   "book": "Book B",
+   "legs": [
+    {
+     "desc": "Nico Collins Anytime TD (IND @ HOU)",
+     "sport": "nfl",
+     "espn_event_id": "401873066",
+     "team": "HOU",
+     "type": "prop",
+     "player": "Nico Collins",
+     "stat_cat": "td",
+     "stat_key": "TD",
+     "side": "over",
+     "line": 0.5,
+     "odds": 105,
+     "odds_source": "stated"
+    },
+    {
+     "desc": "David Montgomery Anytime TD (IND @ HOU)",
+     "sport": "nfl",
+     "espn_event_id": "401873066",
+     "team": "HOU",
+     "type": "prop",
+     "player": "David Montgomery",
+     "stat_cat": "td",
+     "stat_key": "TD",
+     "side": "over",
+     "line": 0.5,
+     "odds": -130,
+     "odds_source": "stated"
+    },
+    {
+     "desc": "Jalen Brunson 25+ Points (NY @ MIN)",
+     "sport": "nba",
+     "espn_event_id": "401910021",
+     "team": "NY",
+     "type": "prop",
+     "player": "Jalen Brunson",
+     "stat_cat": "",
+     "stat_key": "PTS",
+     "side": "over",
+     "line": 24.5,
+     "odds": -157,
+     "odds_source": "stated"
+    },
+    {
+     "desc": "Jaden McDaniels 15+ Points (NY @ MIN)",
+     "sport": "nba",
+     "espn_event_id": "401910021",
+     "team": "MIN",
+     "type": "prop",
+     "player": "Jaden McDaniels",
+     "stat_cat": "",
+     "stat_key": "PTS",
+     "side": "over",
+     "line": 14.5,
+     "odds": -171,
+     "odds_source": "stated"
+    }
+   ],
+   "source_url": "https://x.com/CodyBrownBets/status/2123449662955024761",
+   "source_label": "X post",
+   "posted_at": "2026-11-19T16:13:00Z",
+   "ticket": "CS1119",
+   "odds_note": "Price shown on his posted ticket at release (pre-boost); promo boost to +1112 not used for units",
+   "boosted_odds": 1112,
+   "legs_total": 4,
+   "legs_graded": 0,
+   "legs_hit": 0,
+   "legs_push": 0,
+   "sunk_by": []
+  }
+ ],
+ "record": {
+  "straight": {
+   "overall": {
+    "w": 1,
+    "l": 0,
+    "p": 1,
+    "units": 0.77,
+    "units_n": 2
+   },
+   "nfl": {
+    "w": 0,
+    "l": 0,
+    "p": 0,
+    "units": 0,
+    "units_n": 0
+   },
+   "mlb": {
+    "w": 0,
+    "l": 0,
+    "p": 0,
+    "units": 0,
+    "units_n": 0
+   },
+   "nba": {
+    "w": 1,
+    "l": 0,
+    "p": 1,
+    "units": 0.77,
+    "units_n": 2
+   },
+   "ncaaf": {
+    "w": 0,
+    "l": 0,
+    "p": 0,
+    "units": 0,
+    "units_n": 0
+   }
+  },
+  "parlay": {
+   "overall": {
+    "w": 1,
+    "l": 1,
+    "p": 0,
+    "units": -0.1,
+    "units_n": 2
+   },
+   "nfl": {
+    "w": 0,
+    "l": 0,
+    "p": 0,
+    "units": 0,
+    "units_n": 0
+   },
+   "mlb": {
+    "w": 0,
+    "l": 0,
+    "p": 0,
+    "units": 0,
+    "units_n": 0
+   },
+   "nba": {
+    "w": 1,
+    "l": 1,
+    "p": 0,
+    "units": -0.1,
+    "units_n": 2
+   },
+   "ncaaf": {
+    "w": 0,
+    "l": 0,
+    "p": 0,
+    "units": 0,
+    "units_n": 0
+   }
+  },
+  "overall": {
+   "w": 1,
+   "l": 0,
+   "p": 1,
+   "units": 0.77,
+   "units_n": 2
+  },
+  "nfl": {
+   "w": 0,
+   "l": 0,
+   "p": 0,
+   "units": 0,
+   "units_n": 0
+  },
+  "mlb": {
+   "w": 0,
+   "l": 0,
+   "p": 0,
+   "units": 0,
+   "units_n": 0
+  },
+  "nba": {
+   "w": 1,
+   "l": 0,
+   "p": 1,
+   "units": 0.77,
+   "units_n": 2
+  },
+  "ncaaf": {
+   "w": 0,
+   "l": 0,
+   "p": 0,
+   "units": 0,
+   "units_n": 0
+  },
+  "full_season": {
+   "w": 2,
+   "l": 1,
+   "p": 1,
+   "units": 0.67,
+   "units_n": 4
+  },
+  "categories": {
+   "best": {
+    "w": 1,
+    "l": 0,
+    "p": 1,
+    "units": 0.77,
+    "units_n": 2
+   },
+   "parlays": {
+    "w": 1,
+    "l": 1,
+    "p": 0,
+    "units": -0.1,
+    "units_n": 2
+   }
+  },
+  "parlay_legs": {
+   "w": 5,
+   "l": 1,
+   "p": 0,
+   "units": 0.87,
+   "units_n": 6
+  },
+  "pending": 2,
+  "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
+ }
+}

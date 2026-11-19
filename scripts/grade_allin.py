@@ -1,4 +1,4 @@
-"""Grade All In Cousins and Erik Kuselias third-party picks against ESPN public final scores, boxscores & opening odds.
+"""Grade All In Cousins, Erik Kuselias and Cody Brown third-party picks against ESPN public final scores, boxscores & opening odds.
 Pick schema: {id, date, week, sport: nfl|mlb|nba|ncaaf, category: games|props|leans, kind: straight|parlay,
  type: spread|ml|total|team_total|1h_spread|1h_ml|1h_total|1q_ml|prop|parlay,
  team, player(optional), stat_cat(optional), stat_key(optional), side(over|under), line,
@@ -6,7 +6,7 @@ Pick schema: {id, date, week, sport: nfl|mlb|nba|ncaaf, category: games|props|le
  book(optional), bought(optional note), espn_event_id, legs[] (for parlays, same leg schema), source_url, timestamp, desc}"""
 import json, math, os, urllib.request
 
-FILES = ["data/allin_picks.json", "data/kuselias_picks.json"]
+FILES = ["data/allin_picks.json", "data/kuselias_picks.json", "data/brown_picks.json"]
 LG = {"nfl": "football/nfl", "mlb": "baseball/mlb", "nba": "basketball/nba", "ncaaf": "football/college-football"}
 TEAM_ALIAS = {"WAS": "WSH", "WSH": "WAS", "LA": "LAR", "LAR": "LA", "UTAH": "UTA", "UTA": "UTAH"}
 _cache = {}
@@ -47,7 +47,7 @@ def summary(sport, eid):
                 "h1": sum(ls[:2]) if len(ls) >= 2 else None,
             }
             if ab in TEAM_ALIAS: sc[TEAM_ALIAS[ab]] = sc[ab]
-    pstats = {}
+    pstats, dnp = {}, set()
     if done:
         for tm in (j.get("boxscore") or {}).get("players") or []:
             for cat in tm.get("statistics") or []:
@@ -56,9 +56,10 @@ def summary(sport, eid):
                 for ath in cat.get("athletes") or []:
                     nm = (ath.get("athlete") or {}).get("displayName") or ""
                     if not nm: continue
+                    if ath.get("didNotPlay"): dnp.add(nm.lower())   # explicit DNP -> player prop voids (push)
                     pstats.setdefault(nm.lower(), {})[cname] = dict(zip(lbls, ath.get("stats") or []))
     pc = (j.get("pickcenter") or [{}])[0] if j.get("pickcenter") else {}
-    _cache[k] = {"done": done, "sc": sc, "pstats": pstats, "ha": ha_map, "pc": pc}
+    _cache[k] = {"done": done, "sc": sc, "pstats": pstats, "ha": ha_map, "pc": pc, "dnp": dnp}
     return _cache[k]
 
 
@@ -216,13 +217,22 @@ def ensure_odds(p):
             p["odds"] = o
             p["odds_source"] = "opening"
 
+def _fold(s):   # accent-insensitive name key ("Nolan Traoré" == "Nolan Traore")
+    import unicodedata
+    return unicodedata.normalize("NFKD", s or "").encode("ascii", "ignore").decode().lower().strip()
+
 def extract_stat(pstats, player, stat_cat, stat_key):
     pl = pstats.get((player or "").lower()) or {}
+    if not pl:
+        pl = next((v for k, v in pstats.items() if _fold(k) == _fold(player)), {})
     if not pl:
         for k, v in pstats.items():
             if (player or "").lower() in k:
                 pl = v; break
     if not pl: return None
+    if stat_key and "+" in stat_key:   # combo props, e.g. "PTS+REB+AST" (PRA), "PTS+AST" (PAs)
+        parts = [extract_stat(pstats, player, stat_cat, k) for k in stat_key.split("+")]
+        return None if any(v is None for v in parts) else float(sum(parts))
     if stat_cat == "td":
         tot_td = 0.0
         for c in ("rushing", "receiving"):
@@ -235,6 +245,8 @@ def extract_stat(pstats, player, stat_cat, stat_key):
         return float(parts[0] if stat_key == "COMP" else parts[1])
     if stat_key == "FG" and "FG" in cat:
         return float(str(cat["FG"]).split("/")[0])
+    if stat_key in ("3PT", "FT") and stat_key in cat and "-" in str(cat[stat_key]):   # "made-attempted" -> made
+        return float(str(cat[stat_key]).split("-")[0])
     v = cat.get(stat_key)
     return float(v) if v is not None else None
 
@@ -249,7 +261,10 @@ def grade_leg(p):
     tp = p["type"]
     if tp == "prop":
         val = extract_stat(pstats, p.get("player"), p.get("stat_cat"), p.get("stat_key"))
-        if val is None: return None, None
+        if val is None:
+            if _fold(p.get("player")) in {_fold(x) for x in (sm.get("dnp") or set())}:
+                p["void"] = "did not play"; return "push", f_scores
+            return None, None
         p["actual"] = val
         d = val - p["line"] if p.get("side", "over") == "over" else p["line"] - val
         return ("win" if d > 0 else "loss" if d < 0 else "push"), f_scores
@@ -284,10 +299,16 @@ def grade(p):
         rs.append(l.get("result"))
     if "loss" in rs: return "loss", None
     if None in rs or "unknown" in rs: return None, None
-    return ("push" if all(r == "push" for r in rs) else "win"), None
+    if all(r == "push" for r in rs): return "push", None
+    if "push" in rs and all(l.get("odds") is not None for l in p["legs"]):   # void legs drop out: settle at the remaining legs' price
+        prod = 1.0
+        for l in p["legs"]:
+            if l.get("result") != "push": prod *= am_to_dec(l["odds"])
+        p["settled_odds"] = dec_to_am(prod)
+    return "win", None
 
 def units(p):
-    o = p.get("odds")
+    o = p.get("settled_odds", p.get("odds"))
     if o is None: return None
     return (o / 100 if o > 0 else 100 / -o) if p["result"] == "win" else -1 if p["result"] == "loss" else 0
 
@@ -324,16 +345,15 @@ def grade_file(path):
     R = {}
     for kind in ("straight", "parlay"):
         gk = [p for p in g if p.get("kind", "straight") == kind]
-        R[kind] = {"overall": rec([p for p in gk if p["sport"] in ("nfl", "mlb", "nba", "ncaaf")]), "nfl": rec([p for p in gk if p["sport"] == "nfl"]),
+        R[kind] = {"overall": rec([p for p in gk if p["sport"] in ("nfl", "mlb", "nba", "ncaaf", "multi")]), "nfl": rec([p for p in gk if p["sport"] == "nfl"]),
                    "mlb": rec([p for p in gk if p["sport"] == "mlb"]), "nba": rec([p for p in gk if p["sport"] == "nba"]), "ncaaf": rec([p for p in gk if p["sport"] == "ncaaf"])}
     R["overall"] = R["straight"]["overall"]; R["nfl"] = R["straight"]["nfl"]; R["mlb"] = R["straight"]["mlb"]; R["nba"] = R["straight"]["nba"]; R["ncaaf"] = R["straight"]["ncaaf"]
     if any(p.get("category") for p in d["picks"]):
         R["full_season"] = rec(g)
-        R["categories"] = {
-            "games": rec([p for p in g if p.get("category") == "games"]),
-            "props": rec([p for p in g if p.get("category") == "props"]),
-            "leans": rec([p for p in g if p.get("category") == "leans"]),
-        }
+        cats = sorted({p.get("category") for p in d["picks"] if p.get("category")})
+        if any(c in ("games", "props", "leans") for c in cats):
+            cats = ["games", "props", "leans"] + [c for c in cats if c not in ("games", "props", "leans")]
+        R["categories"] = {c: rec([p for p in g if p.get("category") == c]) for c in cats}
     R["parlay_legs"] = rec(L)
     R["pending"] = len(d["picks"]) - len(g)
     R["units_note"] = "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
