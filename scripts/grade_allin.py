@@ -239,6 +239,13 @@ def extract_stat(pstats, player, stat_cat, stat_key):
             v = (pl.get(c) or {}).get("TD")
             if v is not None: tot_td += float(v)
         return tot_td
+    if (stat_cat or "").lower() in ("rush_rec", "rush_recv", "rec_rush", "receiving_rushing", "rushing_receiving"):
+        parts = []
+        for c in ("rushing", "receiving"):
+            v = (pl.get(c) or {}).get(stat_key)
+            if v is not None:
+                parts.append(float(v))
+        return sum(parts) if parts else None
     cat = pl.get(stat_cat) or {}
     if stat_key in ("COMP", "ATT") and "C/ATT" in cat:
         parts = str(cat["C/ATT"]).split("/")

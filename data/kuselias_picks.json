@@ -4603,7 +4603,13 @@
    "odds_note": "Live market price when the video posted (Nov 4, 6:31 PM ET) \u00b7 alt ladder line",
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7704462982285167886",
    "source_label": "Video @ 0:27",
-   "timestamp": "0:27"
+   "timestamp": "0:27",
+   "actual": 124.0,
+   "result": "win",
+   "final": {
+    "IND": 23.0,
+    "DAL": 27.0
+   }
   },
   {
    "id": "ek-w9-prop-2",
@@ -5324,18 +5330,18 @@
  "record": {
   "straight": {
    "overall": {
-    "w": 104,
+    "w": 105,
     "l": 82,
     "p": 2,
-    "units": 10.01,
-    "units_n": 188
+    "units": 11.69,
+    "units_n": 189
    },
    "nfl": {
-    "w": 96,
+    "w": 97,
     "l": 78,
     "p": 2,
-    "units": 6.78,
-    "units_n": 176
+    "units": 8.46,
+    "units_n": 177
    },
    "mlb": {
     "w": 0,
@@ -5397,18 +5403,18 @@
    }
   },
   "overall": {
-   "w": 104,
+   "w": 105,
    "l": 82,
    "p": 2,
-   "units": 10.01,
-   "units_n": 188
+   "units": 11.69,
+   "units_n": 189
   },
   "nfl": {
-   "w": 96,
+   "w": 97,
    "l": 78,
    "p": 2,
-   "units": 6.78,
-   "units_n": 176
+   "units": 8.46,
+   "units_n": 177
   },
   "mlb": {
    "w": 0,
@@ -5432,11 +5438,11 @@
    "units_n": 11
   },
   "full_season": {
-   "w": 104,
+   "w": 105,
    "l": 85,
    "p": 2,
-   "units": 7.01,
-   "units_n": 191
+   "units": 8.69,
+   "units_n": 192
   },
   "categories": {
    "games": {
@@ -5447,11 +5453,11 @@
     "units_n": 129
    },
    "props": {
-    "w": 20,
+    "w": 21,
     "l": 9,
     "p": 0,
-    "units": 9.11,
-    "units_n": 29
+    "units": 10.79,
+    "units_n": 30
    },
    "leans": {
     "w": 20,
@@ -5468,7 +5474,7 @@
    "units": -2.14,
    "units_n": 6
   },
-  "pending": 13,
+  "pending": 12,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }
