@@ -25,6 +25,9 @@ with sync_playwright() as p:
         assert pg.locator(".sz-card").count() == len(D["stars"])
         assert pg.locator(".sz-card").first.locator("svg title").count() >= 5
         pg.click("[data-hh-color=opp]"); pg.wait_for_selector(".sz-card svg")
+        assert all(z.get("opp_r") for s_ in D["stars"] for z in s_["shots"]["zones"]), "star zone missing opponent rank"
+        opp_txt = pg.inner_text(".sz-grid"); assert "undefined" not in opp_txt and "opp #–" not in opp_txt, "opponent layer not populated"
+        assert pg.locator(".sz-card").first.locator("svg text", has_text="#").count() >= 5, "opponent ranks not drawn on court"
         assert pg.evaluate("document.documentElement.scrollWidth") <= w, "horizontal overflow"
         pg.click(".sz-card a.plink >> nth=0"); pg.wait_for_timeout(1200)
         assert pg.evaluate("getComputedStyle(document.querySelector('#nba-modal-ov')).display") != "none", "profile did not open"
