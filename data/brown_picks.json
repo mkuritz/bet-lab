@@ -392,7 +392,13 @@
      "side": "over",
      "line": 0.5,
      "odds": 105,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 1.0,
+     "result": "win",
+     "final": {
+      "HOU": 26.0,
+      "IND": 3.0
+     }
     },
     {
      "desc": "David Montgomery Anytime TD (IND @ HOU)",
@@ -406,7 +412,13 @@
      "side": "over",
      "line": 0.5,
      "odds": -130,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 0.0,
+     "result": "loss",
+     "final": {
+      "HOU": 26.0,
+      "IND": 3.0
+     }
     },
     {
      "desc": "Jalen Brunson 25+ Points (NY @ MIN)",
@@ -420,7 +432,13 @@
      "side": "over",
      "line": 24.5,
      "odds": -157,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 21.0,
+     "result": "loss",
+     "final": {
+      "MIN": 99.0,
+      "NY": 102.0
+     }
     },
     {
      "desc": "Jaden McDaniels 15+ Points (NY @ MIN)",
@@ -434,7 +452,13 @@
      "side": "over",
      "line": 14.5,
      "odds": -171,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 17.0,
+     "result": "win",
+     "final": {
+      "MIN": 99.0,
+      "NY": 102.0
+     }
     }
    ],
    "source_url": "https://x.com/CodyBrownBets/status/2123449662955024761",
@@ -444,10 +468,14 @@
    "odds_note": "Price shown on his posted ticket at release (pre-boost); promo boost to +1112 not used for units",
    "boosted_odds": 1112,
    "legs_total": 4,
-   "legs_graded": 0,
-   "legs_hit": 0,
+   "legs_graded": 4,
+   "legs_hit": 2,
    "legs_push": 0,
-   "sunk_by": []
+   "sunk_by": [
+    "David Montgomery Anytime TD (IND @ HOU)",
+    "Jalen Brunson 25+ Points (NY @ MIN)"
+   ],
+   "result": "loss"
   },
   {
    "id": "cb-w11-sgp-1119",
@@ -474,7 +502,13 @@
      "side": "over",
      "line": 29.5,
      "odds": -169,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 13.0,
+     "result": "loss",
+     "final": {
+      "HOU": 26.0,
+      "IND": 3.0
+     }
     },
     {
      "desc": "Tyler Warren 30+ Receiving Yards (IND @ HOU)",
@@ -488,7 +522,13 @@
      "side": "over",
      "line": 29.5,
      "odds": -247,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 22.0,
+     "result": "loss",
+     "final": {
+      "HOU": 26.0,
+      "IND": 3.0
+     }
     },
     {
      "desc": "David Montgomery 30+ Rushing Yards (IND @ HOU)",
@@ -502,7 +542,13 @@
      "side": "over",
      "line": 29.5,
      "odds": -654,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 107.0,
+     "result": "win",
+     "final": {
+      "HOU": 26.0,
+      "IND": 3.0
+     }
     },
     {
      "desc": "Jonathan Taylor 30+ Rushing Yards (IND @ HOU)",
@@ -516,7 +562,13 @@
      "side": "over",
      "line": 29.5,
      "odds": -583,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 21.0,
+     "result": "loss",
+     "final": {
+      "HOU": 26.0,
+      "IND": 3.0
+     }
     }
    ],
    "source_url": "https://x.com/CodyBrownBets/status/2123482450860875913",
@@ -526,10 +578,15 @@
    "odds_note": "Price shown on his posted ticket at release (pre-boost); promo boost to +306 not used for units",
    "boosted_odds": 306,
    "legs_total": 4,
-   "legs_graded": 0,
-   "legs_hit": 0,
+   "legs_graded": 4,
+   "legs_hit": 1,
    "legs_push": 0,
-   "sunk_by": []
+   "sunk_by": [
+    "Xavier Hutchinson 30+ Receiving Yards (IND @ HOU)",
+    "Tyler Warren 30+ Receiving Yards (IND @ HOU)",
+    "Jonathan Taylor 30+ Rushing Yards (IND @ HOU)"
+   ],
+   "result": "loss"
   },
   {
    "id": "cb-w11-dbl-1119",
@@ -556,7 +613,13 @@
      "side": "over",
      "line": 3.5,
      "odds": -254,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 0.0,
+     "result": "loss",
+     "final": {
+      "MIL": 114.0,
+      "POR": 124.0
+     }
     },
     {
      "desc": "Karl-Anthony Towns 30+ Pts+Reb (NY @ MIN)",
@@ -570,7 +633,13 @@
      "side": "over",
      "line": 29.5,
      "odds": -253,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 34.0,
+     "result": "win",
+     "final": {
+      "MIN": 99.0,
+      "NY": 102.0
+     }
     }
    ],
    "source_url": "https://x.com/CodyBrownBets/status/2123506896950988989",
@@ -578,10 +647,13 @@
    "posted_at": "2026-11-19T20:01:00Z",
    "ticket": "DBL1119",
    "legs_total": 2,
-   "legs_graded": 0,
-   "legs_hit": 0,
+   "legs_graded": 2,
+   "legs_hit": 1,
    "legs_push": 0,
-   "sunk_by": []
+   "sunk_by": [
+    "Damian Lillard 4+ Assists (POR @ MIL)"
+   ],
+   "result": "loss"
   }
  ],
  "record": {
@@ -625,17 +697,17 @@
   "parlay": {
    "overall": {
     "w": 1,
-    "l": 1,
+    "l": 4,
     "p": 0,
-    "units": -0.1,
-    "units_n": 2
+    "units": -3.1,
+    "units_n": 5
    },
    "nfl": {
     "w": 0,
-    "l": 0,
+    "l": 1,
     "p": 0,
-    "units": 0,
-    "units_n": 0
+    "units": -1,
+    "units_n": 1
    },
    "mlb": {
     "w": 0,
@@ -646,10 +718,10 @@
    },
    "nba": {
     "w": 1,
-    "l": 1,
+    "l": 2,
     "p": 0,
-    "units": -0.1,
-    "units_n": 2
+    "units": -1.1,
+    "units_n": 3
    },
    "ncaaf": {
     "w": 0,
@@ -696,10 +768,10 @@
   },
   "full_season": {
    "w": 2,
-   "l": 1,
+   "l": 4,
    "p": 1,
-   "units": 0.67,
-   "units_n": 4
+   "units": -2.33,
+   "units_n": 7
   },
   "categories": {
    "best": {
@@ -711,20 +783,20 @@
    },
    "parlays": {
     "w": 1,
-    "l": 1,
+    "l": 4,
     "p": 0,
-    "units": -0.1,
-    "units_n": 2
+    "units": -3.1,
+    "units_n": 5
    }
   },
   "parlay_legs": {
-   "w": 5,
-   "l": 1,
+   "w": 9,
+   "l": 7,
    "p": 0,
-   "units": 0.87,
-   "units_n": 6
+   "units": -2.95,
+   "units_n": 16
   },
-  "pending": 4,
+  "pending": 1,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }
