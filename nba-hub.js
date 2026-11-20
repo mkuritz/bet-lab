@@ -499,6 +499,7 @@ function render(){
   else if(TAB==="dvp")out.innerHTML=renderDvP();
   else if(TAB==="streaks")out.innerHTML=renderStreaks();
   else if(TAB==="lowhurdles")out.innerHTML=renderLowHurdles();
+  else if(TAB==="highhurdles"){out.innerHTML='<div id="nba-hh"></div>';window.NBAHH&&window.NBAHH.render(document.getElementById("nba-hh"))}
   else if(TAB==="teams")out.innerHTML=renderTeams();
 
   NBAHubProfiles.wire(out);
@@ -553,6 +554,7 @@ loadHub().then(async()=>{
   else if(location.hash==="#streaks")TAB="streaks";
   else if(location.hash==="#low-hurdles"||location.hash==="#lowhurdles")TAB="lowhurdles";
   else if(location.hash==="#teams")TAB="teams";
+  else if(location.hash==="#high-hurdles"||location.hash==="#highhurdles"||location.hash==="#stars")TAB="highhurdles";
   renderKPIs();
   render();
 });
