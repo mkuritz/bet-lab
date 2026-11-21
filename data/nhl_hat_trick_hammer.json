@@ -1,1 +1,151 @@
-{"feature":"Hat-Trick Hammer","sport":"NHL","preview":false,"updated":"2026-11-21T19:55:41+00:00","slate":"2026-11-21","hurdle":"3+ goals in the game (regulation and overtime; shootout goals do not count)","probability_label":"Research estimate - not calibrated, no graded record","record":"0-10 graded 3+ goal picks","assumptions":"Goals per game = shots/game (half last 10, half since 2025-26) x shooting % regressed to 9.5% over 60 shots, x opponent shots-allowed factor (0.88-1.12) x goalie save % factor (0.85-1.20); P(3+) = Poisson tail, which ignores game-to-game variance in ice time and score effects. Not fitted to 3+ outcomes.","market":"No 3+ goals price in our feed; likelihood only, not value","candidate":{"id":"8483445","name":"Cutter Gauthier","pos":"L","team":"ANA","opp":"UTA","home":false,"game":"2026020370","start":"2026-11-22T02:00:00Z","start_et":"Sat Nov 21, 9:00 PM ET","profile":"./#player/8483445","status":"Active roster, no injury listed","qualified":true,"est_lambda":0.723,"est_p3":0.037,"evidence":{"games":98,"season_goals":21,"season_gp":22,"shots_pg_blend":4.45,"dup_rows_dropped":0,"shooting_pct_regressed":0.1528,"toi_l10":19.8,"shots_l10":50,"hat_tricks_since_2025_26":5,"pp":{"unit":1,"conf":"High","asof":"2026-11-19"},"opp_shots_allowed_pg":25.13043,"opp_factor":0.916,"goalie":{"name":"Karel Vejmelka","sv":0.8909,"l10_sv":0.87,"status":"projected starter (confirmation unknown)","tandem":true},"goalie_factor":1.161,"last5":[{"game_id":"2026020356","d":"2026-11-19","o":"COL","g":0,"s":3},{"game_id":"2026020339","d":"2026-11-17","o":"STL","g":3,"s":8},{"game_id":"2026020328","d":"2026-11-15","o":"CGY","g":1,"s":5},{"game_id":"2026020324","d":"2026-11-14","o":"NYI","g":1,"s":3},{"game_id":"2026020297","d":"2026-11-11","o":"NSH","g":1,"s":7}]},"narrative":[{"text":"4 hat tricks this season, most recently 2026-11-17 vs STL (2026-11-08 vs PIT, 2026-11-03 vs VAN, 2026-11-01 vs OTT also)","date":"2026-11-17","kind":"recent hat tricks","game_ids":["2026020339","2026020282","2026020246","2026020231"]},{"text":"6 goals in his last 5 games (through 2026-11-19)","date":"2026-11-19","kind":"form","game_ids":["2026020356","2026020339","2026020328","2026020324","2026020297"]}],"fit":"4.45 shots a game (recent and since last season blended) with 19.8 minutes a night and a spot on power-play unit 1; UTA allows 25.1 shots a game and projected starter Karel Vejmelka is at 0.870 over his last 10.","downside":"A hat trick is rare even for top scorers: the estimate is about 3.7%, so the most likely result is not a hat trick. The goalie is projected starter (confirmation unknown), and his team has two goalies splitting starts.","tiebreak":null,"narrative_note":null},"runners_up":[{"name":"Matt Boldy","team":"MIN","est_p3":0.0328},{"name":"Kirill Kaprizov","team":"MIN","est_p3":0.0303},{"name":"Macklin Celebrini","team":"SJ","est_p3":0.0292},{"name":"Cole Caufield","team":"MTL","est_p3":0.0252}],"n_checked":587,"record_stats":{"graded":10,"hits":0,"misses":10,"pending":1,"text":"0-10","label":"0-10 graded 3+ goal picks"}}
+{
+ "feature": "Hat-Trick Hammer",
+ "sport": "NHL",
+ "preview": false,
+ "updated": "2026-11-21T22:42:06+00:00",
+ "slate": "2026-11-21",
+ "hurdle": "3+ goals in the game (regulation and overtime; shootout goals do not count)",
+ "probability_label": "Research estimate - not calibrated, no graded record",
+ "record": "0-10 graded 3+ goal picks",
+ "assumptions": "Goals per game = shots/game (half last 10, half since 2025-26) x shooting % regressed to 9.5% over 60 shots, x opponent shots-allowed factor (0.88-1.12) x goalie save % factor (0.85-1.20); P(3+) = Poisson tail, which ignores game-to-game variance in ice time and score effects. Not fitted to 3+ outcomes.",
+ "market": "No 3+ goals price in our feed; likelihood only, not value",
+ "candidate": {
+  "id": "8483445",
+  "name": "Cutter Gauthier",
+  "pos": "L",
+  "team": "ANA",
+  "opp": "UTA",
+  "home": false,
+  "game": "2026020370",
+  "start": "2026-11-22T02:00:00Z",
+  "start_et": "Sat Nov 21, 9:00 PM ET",
+  "profile": "./#player/8483445",
+  "status": "Active roster, no injury listed",
+  "qualified": true,
+  "est_lambda": 0.723,
+  "est_p3": 0.037,
+  "evidence": {
+   "games": 98,
+   "season_goals": 21,
+   "season_gp": 22,
+   "shots_pg_blend": 4.45,
+   "dup_rows_dropped": 0,
+   "shooting_pct_regressed": 0.1528,
+   "toi_l10": 19.8,
+   "shots_l10": 50,
+   "hat_tricks_since_2025_26": 5,
+   "pp": {
+    "unit": 1,
+    "conf": "High",
+    "asof": "2026-11-19"
+   },
+   "opp_shots_allowed_pg": 25.13043,
+   "opp_factor": 0.916,
+   "goalie": {
+    "name": "Karel Vejmelka",
+    "sv": 0.8909,
+    "l10_sv": 0.87,
+    "status": "projected starter (confirmation unknown)",
+    "tandem": true
+   },
+   "goalie_factor": 1.161,
+   "last5": [
+    {
+     "game_id": "2026020356",
+     "d": "2026-11-19",
+     "o": "COL",
+     "g": 0,
+     "s": 3
+    },
+    {
+     "game_id": "2026020339",
+     "d": "2026-11-17",
+     "o": "STL",
+     "g": 3,
+     "s": 8
+    },
+    {
+     "game_id": "2026020328",
+     "d": "2026-11-15",
+     "o": "CGY",
+     "g": 1,
+     "s": 5
+    },
+    {
+     "game_id": "2026020324",
+     "d": "2026-11-14",
+     "o": "NYI",
+     "g": 1,
+     "s": 3
+    },
+    {
+     "game_id": "2026020297",
+     "d": "2026-11-11",
+     "o": "NSH",
+     "g": 1,
+     "s": 7
+    }
+   ]
+  },
+  "narrative": [
+   {
+    "text": "4 hat tricks this season, most recently 2026-11-17 vs STL (2026-11-08 vs PIT, 2026-11-03 vs VAN, 2026-11-01 vs OTT also)",
+    "date": "2026-11-17",
+    "kind": "recent hat tricks",
+    "game_ids": [
+     "2026020339",
+     "2026020282",
+     "2026020246",
+     "2026020231"
+    ]
+   },
+   {
+    "text": "6 goals in his last 5 games (through 2026-11-19)",
+    "date": "2026-11-19",
+    "kind": "form",
+    "game_ids": [
+     "2026020356",
+     "2026020339",
+     "2026020328",
+     "2026020324",
+     "2026020297"
+    ]
+   }
+  ],
+  "fit": "4.45 shots a game (recent and since last season blended) with 19.8 minutes a night and a spot on power-play unit 1; UTA allows 25.1 shots a game and projected starter Karel Vejmelka is at 0.870 over his last 10.",
+  "downside": "A hat trick is rare even for top scorers: the estimate is about 3.7%, so the most likely result is not a hat trick. The goalie is projected starter (confirmation unknown), and his team has two goalies splitting starts.",
+  "tiebreak": null,
+  "narrative_note": null
+ },
+ "runners_up": [
+  {
+   "name": "Matt Boldy",
+   "team": "MIN",
+   "est_p3": 0.0328
+  },
+  {
+   "name": "Kirill Kaprizov",
+   "team": "MIN",
+   "est_p3": 0.0303
+  },
+  {
+   "name": "Macklin Celebrini",
+   "team": "SJ",
+   "est_p3": 0.0292
+  },
+  {
+   "name": "Cole Caufield",
+   "team": "MTL",
+   "est_p3": 0.0252
+  }
+ ],
+ "n_checked": 544,
+ "record_stats": {
+  "graded": 10,
+  "hits": 0,
+  "misses": 10,
+  "pending": 1,
+  "text": "0-10",
+  "label": "0-10 graded 3+ goal picks"
+ }
+}
