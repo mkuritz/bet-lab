@@ -678,7 +678,13 @@
    "stat_key": "PTS+AST",
    "side": "over",
    "line": 32.5,
-   "odds_note": "Price shown on his posted ticket at release"
+   "odds_note": "Price shown on his posted ticket at release",
+   "actual": 42.0,
+   "result": "win",
+   "final": {
+    "BKN": 111.0,
+    "ORL": 113.0
+   }
   },
   {
    "id": "cb-w11-up-1120",
@@ -709,7 +715,13 @@
      "side": "over",
      "line": 24.5,
      "odds": -241,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 34.0,
+     "result": "win",
+     "final": {
+      "OKC": 126.0,
+      "NO": 120.0
+     }
     },
     {
      "desc": "Jalen Smith 20+ Pts+Reb (WSH @ CHI)",
@@ -755,8 +767,8 @@
     }
    ],
    "legs_total": 4,
-   "legs_graded": 0,
-   "legs_hit": 0,
+   "legs_graded": 1,
+   "legs_hit": 1,
    "legs_push": 0,
    "sunk_by": []
   },
@@ -789,7 +801,13 @@
      "side": "over",
      "line": 9.5,
      "odds": -236,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 8.0,
+     "result": "loss",
+     "final": {
+      "OKC": 126.0,
+      "NO": 120.0
+     }
     },
     {
      "desc": "Devin Booker 30+ Pts+Ast (PHX @ UTAH)",
@@ -807,10 +825,13 @@
     }
    ],
    "legs_total": 2,
-   "legs_graded": 0,
+   "legs_graded": 1,
    "legs_hit": 0,
    "legs_push": 0,
-   "sunk_by": []
+   "sunk_by": [
+    "Isaiah Hartenstein 10+ Reb (NO @ OKC)"
+   ],
+   "result": "loss"
   },
   {
    "id": "cb-w11-cup-1120",
@@ -843,7 +864,13 @@
      "side": "over",
      "line": 5.5,
      "odds": -431,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 7.0,
+     "result": "win",
+     "final": {
+      "ATL": 111.0,
+      "CHA": 97.0
+     }
     },
     {
      "desc": "Jarrett Allen 8+ Reb (IND @ CLE)",
@@ -857,7 +884,13 @@
      "side": "over",
      "line": 7.5,
      "odds": -334,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 8.0,
+     "result": "win",
+     "final": {
+      "CLE": 128.0,
+      "IND": 119.0
+     }
     },
     {
      "desc": "Nolan Traor\u00e9 10+ Pts+Ast (ORL @ BKN)",
@@ -871,7 +904,13 @@
      "side": "over",
      "line": 9.5,
      "odds": -552,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 6.0,
+     "result": "loss",
+     "final": {
+      "BKN": 111.0,
+      "ORL": 113.0
+     }
     },
     {
      "desc": "Scottie Barnes 25+ Pts+Ast (TOR @ DET)",
@@ -885,7 +924,13 @@
      "side": "over",
      "line": 24.5,
      "odds": -292,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 34.0,
+     "result": "win",
+     "final": {
+      "DET": 102.0,
+      "TOR": 105.0
+     }
     },
     {
      "desc": "Shai Gilgeous-Alexander 25+ Pts (NO @ OKC)",
@@ -899,7 +944,13 @@
      "side": "over",
      "line": 24.5,
      "odds": -621,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 40.0,
+     "result": "win",
+     "final": {
+      "OKC": 126.0,
+      "NO": 120.0
+     }
     },
     {
      "desc": "Alexandre Sarr 6+ Reb (WSH @ CHI)",
@@ -973,10 +1024,13 @@
     }
    ],
    "legs_total": 10,
-   "legs_graded": 0,
-   "legs_hit": 0,
+   "legs_graded": 5,
+   "legs_hit": 4,
    "legs_push": 0,
-   "sunk_by": []
+   "sunk_by": [
+    "Nolan Traor\u00e9 10+ Pts+Ast (ORL @ BKN)"
+   ],
+   "result": "loss"
   },
   {
    "id": "cb-w11-lotto-1122",
@@ -1218,11 +1272,11 @@
  "record": {
   "straight": {
    "overall": {
-    "w": 1,
+    "w": 2,
     "l": 0,
     "p": 1,
-    "units": 0.77,
-    "units_n": 2
+    "units": 1.66,
+    "units_n": 3
    },
    "nfl": {
     "w": 0,
@@ -1239,11 +1293,11 @@
     "units_n": 0
    },
    "nba": {
-    "w": 1,
+    "w": 2,
     "l": 0,
     "p": 1,
-    "units": 0.77,
-    "units_n": 2
+    "units": 1.66,
+    "units_n": 3
    },
    "ncaaf": {
     "w": 0,
@@ -1256,10 +1310,10 @@
   "parlay": {
    "overall": {
     "w": 1,
-    "l": 4,
+    "l": 6,
     "p": 0,
-    "units": -3.1,
-    "units_n": 5
+    "units": -5.1,
+    "units_n": 7
    },
    "nfl": {
     "w": 0,
@@ -1277,10 +1331,10 @@
    },
    "nba": {
     "w": 1,
-    "l": 2,
+    "l": 4,
     "p": 0,
-    "units": -1.1,
-    "units_n": 3
+    "units": -3.1,
+    "units_n": 5
    },
    "ncaaf": {
     "w": 0,
@@ -1291,11 +1345,11 @@
    }
   },
   "overall": {
-   "w": 1,
+   "w": 2,
    "l": 0,
    "p": 1,
-   "units": 0.77,
-   "units_n": 2
+   "units": 1.66,
+   "units_n": 3
   },
   "nfl": {
    "w": 0,
@@ -1312,11 +1366,11 @@
    "units_n": 0
   },
   "nba": {
-   "w": 1,
+   "w": 2,
    "l": 0,
    "p": 1,
-   "units": 0.77,
-   "units_n": 2
+   "units": 1.66,
+   "units_n": 3
   },
   "ncaaf": {
    "w": 0,
@@ -1326,36 +1380,36 @@
    "units_n": 0
   },
   "full_season": {
-   "w": 2,
-   "l": 4,
+   "w": 3,
+   "l": 6,
    "p": 1,
-   "units": -2.33,
-   "units_n": 7
+   "units": -3.44,
+   "units_n": 10
   },
   "categories": {
    "best": {
-    "w": 1,
+    "w": 2,
     "l": 0,
     "p": 1,
-    "units": 0.77,
-    "units_n": 2
+    "units": 1.66,
+    "units_n": 3
    },
    "parlays": {
     "w": 1,
-    "l": 4,
+    "l": 6,
     "p": 0,
-    "units": -3.1,
-    "units_n": 5
+    "units": -5.1,
+    "units_n": 7
    }
   },
   "parlay_legs": {
-   "w": 9,
-   "l": 7,
+   "w": 14,
+   "l": 9,
    "p": 0,
-   "units": -2.95,
-   "units_n": 16
+   "units": -3.5,
+   "units_n": 23
   },
-  "pending": 6,
+  "pending": 3,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }
