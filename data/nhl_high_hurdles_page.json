@@ -1,5 +1,5 @@
 {
-"updated": "2026-11-21T23:36:39+00:00",
+"updated": "2026-11-21T23:55:36+00:00",
 "slate": "2026-11-21",
 "players": [
 {
@@ -9032,7 +9032,7 @@
 "team_stats": "2026-11-21T22:01:21+00:00"
 },
 "why": "Zach Werenski has five or more shots on goal in 20% of 20 games this season and 30% of his last 10 (29% last season). He reached 4+ shots on goal (one short of the line or better) in 35% of his last 40, on 26.1 minutes a night over the last 10 and 3.2 shots a game, with a spot on power-play unit 1. TOR allows 8.0 shots a game to defensemen (#4 of 32, 1 = most).",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8477934-s5",
@@ -9180,7 +9180,7 @@
 "team_stats": "2026-11-21T22:01:21+00:00"
 },
 "why": "Leon Draisaitl has five or more shots on goal in 29% of 24 games this season and 30% of his last 10 (15% last season). He reached 4+ shots on goal (one short of the line or better) in 50% of his last 40, on 22.0 minutes a night over the last 10 and 3.5 shots a game, with a spot on power-play unit 1. CAR allows 16.1 shots a game to forwards (#32 of 32, 1 = most).",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8478402-s5",
@@ -9328,7 +9328,7 @@
 "team_stats": "2026-11-21T22:01:21+00:00"
 },
 "why": "Connor McDavid has five or more shots on goal in 4% of 24 games this season and 10% of his last 10 (35% last season). He reached 4+ shots on goal (one short of the line or better) in 40% of his last 40, on 23.6 minutes a night over the last 10 and 3.3 shots a game, with a spot on power-play unit 1. CAR allows 16.1 shots a game to forwards (#32 of 32, 1 = most).",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8477500-s5",
@@ -9476,7 +9476,7 @@
 "team_stats": "2026-11-21T22:01:21+00:00"
 },
 "why": "Bo Horvat has five or more shots on goal in 10% of 21 games this season and 10% of his last 10 (24% last season). He reached 4+ shots on goal (one short of the line or better) in 33% of his last 40, on 21.1 minutes a night over the last 10 and 3.3 shots a game, with a spot on power-play unit 1. DET allows 18.9 shots a game to forwards (#20 of 32, 1 = most).",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8478493-s5",
@@ -9623,8 +9623,8 @@
 "book": "2026-11-21T22:40:00+00:00",
 "team_stats": "2026-11-21T22:01:21+00:00"
 },
-"why": "Joel Eriksson Ek has five or more shots on goal in 17% of 24 games this season and 10% of his last 10 (20% last season). He reached 4+ shots on goal (one short of the line or better) in 33% of his last 40, on 17.4 minutes a night over the last 10 and 3.0 shots a game, with a spot on power-play unit 1. VAN allows 23.2 shots a game to forwards (#1 of 32, 1 = most).",
-"check": "pending"
+"why": null,
+"check": "veto"
 },
 {
 "id": "8478403-s5",
