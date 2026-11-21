@@ -749,7 +749,13 @@
      "side": "over",
      "line": 14.5,
      "odds": -219,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 13.0,
+     "result": "loss",
+     "final": {
+      "LAL": 106.0,
+      "SAC": 104.0
+     }
     },
     {
      "desc": "Keyonte George 6+ Ast (PHX @ UTAH)",
@@ -763,14 +769,23 @@
      "side": "over",
      "line": 5.5,
      "odds": -324,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 6.0,
+     "result": "win",
+     "final": {
+      "UTAH": 101.0,
+      "PHX": 111.0
+     }
     }
    ],
    "legs_total": 4,
-   "legs_graded": 1,
-   "legs_hit": 1,
+   "legs_graded": 3,
+   "legs_hit": 2,
    "legs_push": 0,
-   "sunk_by": []
+   "sunk_by": [
+    "Quentin Grimes 15+ Pts (SAC @ LAL)"
+   ],
+   "result": "loss"
   },
   {
    "id": "cb-w11-dbl-1120",
@@ -1310,10 +1325,10 @@
   "parlay": {
    "overall": {
     "w": 1,
-    "l": 6,
+    "l": 7,
     "p": 0,
-    "units": -5.1,
-    "units_n": 7
+    "units": -6.1,
+    "units_n": 8
    },
    "nfl": {
     "w": 0,
@@ -1331,10 +1346,10 @@
    },
    "nba": {
     "w": 1,
-    "l": 4,
+    "l": 5,
     "p": 0,
-    "units": -3.1,
-    "units_n": 5
+    "units": -4.1,
+    "units_n": 6
    },
    "ncaaf": {
     "w": 0,
@@ -1381,10 +1396,10 @@
   },
   "full_season": {
    "w": 3,
-   "l": 6,
+   "l": 7,
    "p": 1,
-   "units": -3.44,
-   "units_n": 10
+   "units": -4.44,
+   "units_n": 11
   },
   "categories": {
    "best": {
@@ -1396,20 +1411,20 @@
    },
    "parlays": {
     "w": 1,
-    "l": 6,
+    "l": 7,
     "p": 0,
-    "units": -5.1,
-    "units_n": 7
+    "units": -6.1,
+    "units_n": 8
    }
   },
   "parlay_legs": {
-   "w": 14,
-   "l": 9,
+   "w": 15,
+   "l": 10,
    "p": 0,
-   "units": -3.5,
-   "units_n": 23
+   "units": -4.19,
+   "units_n": 25
   },
-  "pending": 3,
+  "pending": 2,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }
