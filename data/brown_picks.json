@@ -1348,7 +1348,13 @@
      "side": "over",
      "line": 24.5,
      "odds": -272,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 18.0,
+     "result": "loss",
+     "final": {
+      "DAL": 110.0,
+      "LAC": 100.0
+     }
     },
     {
      "desc": "Stephon Castle 6+ Assists (NO @ SA)",
@@ -1362,14 +1368,23 @@
      "side": "over",
      "line": 5.5,
      "odds": -284,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 6.0,
+     "result": "win",
+     "final": {
+      "SA": 114.0,
+      "NO": 91.0
+     }
     }
    ],
    "legs_total": 4,
-   "legs_graded": 1,
-   "legs_hit": 1,
+   "legs_graded": 3,
+   "legs_hit": 2,
    "legs_push": 0,
-   "sunk_by": []
+   "sunk_by": [
+    "Darius Garland 25+ Pts+Ast (LAC @ DAL)"
+   ],
+   "result": "loss"
   },
   {
    "desc": "NBA Top Play \u00b7 Jonathan Kuminga Over 22.5 Pts+Reb+Ast (MEM @ MIN)",
@@ -1394,7 +1409,13 @@
    "source_label": "X post",
    "posted_at": "2026-11-21T15:46:42Z",
    "ticket": "BB1121",
-   "odds_note": "Price shown on his posted ticket at release"
+   "odds_note": "Price shown on his posted ticket at release",
+   "actual": 22.0,
+   "result": "loss",
+   "final": {
+    "MIN": 104.0,
+    "MEM": 95.0
+   }
   },
   {
    "id": "cb-w11-lotto2-1122",
@@ -1703,10 +1724,10 @@
   "straight": {
    "overall": {
     "w": 2,
-    "l": 0,
+    "l": 1,
     "p": 1,
-    "units": 1.66,
-    "units_n": 3
+    "units": 0.66,
+    "units_n": 4
    },
    "nfl": {
     "w": 0,
@@ -1724,10 +1745,10 @@
    },
    "nba": {
     "w": 2,
-    "l": 0,
+    "l": 1,
     "p": 1,
-    "units": 1.66,
-    "units_n": 3
+    "units": 0.66,
+    "units_n": 4
    },
    "ncaaf": {
     "w": 0,
@@ -1740,10 +1761,10 @@
   "parlay": {
    "overall": {
     "w": 1,
-    "l": 7,
+    "l": 8,
     "p": 0,
-    "units": -6.1,
-    "units_n": 8
+    "units": -7.1,
+    "units_n": 9
    },
    "nfl": {
     "w": 0,
@@ -1761,10 +1782,10 @@
    },
    "nba": {
     "w": 1,
-    "l": 5,
+    "l": 6,
     "p": 0,
-    "units": -4.1,
-    "units_n": 6
+    "units": -5.1,
+    "units_n": 7
    },
    "ncaaf": {
     "w": 0,
@@ -1776,10 +1797,10 @@
   },
   "overall": {
    "w": 2,
-   "l": 0,
+   "l": 1,
    "p": 1,
-   "units": 1.66,
-   "units_n": 3
+   "units": 0.66,
+   "units_n": 4
   },
   "nfl": {
    "w": 0,
@@ -1797,10 +1818,10 @@
   },
   "nba": {
    "w": 2,
-   "l": 0,
+   "l": 1,
    "p": 1,
-   "units": 1.66,
-   "units_n": 3
+   "units": 0.66,
+   "units_n": 4
   },
   "ncaaf": {
    "w": 0,
@@ -1811,35 +1832,35 @@
   },
   "full_season": {
    "w": 3,
-   "l": 7,
+   "l": 9,
    "p": 1,
-   "units": -4.44,
-   "units_n": 11
+   "units": -6.44,
+   "units_n": 13
   },
   "categories": {
    "best": {
     "w": 2,
-    "l": 0,
+    "l": 1,
     "p": 1,
-    "units": 1.66,
-    "units_n": 3
+    "units": 0.66,
+    "units_n": 4
    },
    "parlays": {
     "w": 1,
-    "l": 7,
+    "l": 8,
     "p": 0,
-    "units": -6.1,
-    "units_n": 8
+    "units": -7.1,
+    "units_n": 9
    }
   },
   "parlay_legs": {
-   "w": 16,
-   "l": 10,
+   "w": 17,
+   "l": 11,
    "p": 0,
-   "units": -3.9,
-   "units_n": 26
+   "units": -4.55,
+   "units_n": 28
   },
-  "pending": 6,
+  "pending": 4,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }
