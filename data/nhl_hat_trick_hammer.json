@@ -1,1 +1,130 @@
-{"feature":"Hat-Trick Hammer","sport":"NHL","preview":false,"updated":"2026-11-22T15:40:47+00:00","slate":"2026-11-22","hurdle":"3+ goals in the game (regulation and overtime; shootout goals do not count)","probability_label":"Research estimate - not calibrated, no graded record","record":"0-11 graded 3+ goal picks","assumptions":"Goals per game = shots/game (half last 10, half since 2025-26) x shooting % regressed to 9.5% over 60 shots, x opponent shots-allowed factor (0.88-1.12) x goalie save % factor (0.85-1.20); P(3+) = Poisson tail, which ignores game-to-game variance in ice time and score effects. Not fitted to 3+ outcomes.","market":"No 3+ goals price in our feed; likelihood only, not value","candidate":{"id":"8477934","name":"Leon Draisaitl","pos":"C","team":"EDM","opp":"STL","home":false,"game":"2026020375","start":"2026-11-23T00:00:00Z","start_et":"Sun Nov 22, 7:00 PM ET","profile":"./#player/8477934","status":"Active roster, no injury listed","qualified":true,"est_lambda":0.633,"est_p3":0.0265,"evidence":{"games":90,"season_goals":22,"season_gp":25,"shots_pg_blend":3.72,"dup_rows_dropped":0,"shooting_pct_regressed":0.1833,"toi_l10":22.4,"shots_l10":43,"hat_tricks_since_2025_26":1,"pp":{"unit":1,"conf":"High","asof":"2026-11-21"},"opp_shots_allowed_pg":29.73913,"opp_factor":1.085,"goalie":{"name":"Joel Hofer","sv":0.9067,"l10_sv":0.917,"status":"projected starter (confirmation unknown)","tandem":true},"goalie_factor":0.856,"last5":[{"game_id":"2026020359","d":"2026-11-21","o":"CAR","g":1,"s":4},{"game_id":"2026020349","d":"2026-11-19","o":"TB","g":0,"s":5},{"game_id":"2026020335","d":"2026-11-17","o":"FLA","g":1,"s":2},{"game_id":"2026020326","d":"2026-11-15","o":"PHI","g":2,"s":3},{"game_id":"2026020314","d":"2026-11-14","o":"TOR","g":0,"s":4}]},"narrative":[{"text":"4 goals in his last 5 games (through 2026-11-21)","date":"2026-11-21","kind":"form","game_ids":["2026020359","2026020349","2026020335","2026020326","2026020314"]}],"fit":"3.72 shots a game (recent and since last season blended) with 22.4 minutes a night and a spot on power-play unit 1; STL allows 29.7 shots a game and projected starter Joel Hofer is at 0.917 over his last 10.","downside":"A hat trick is rare even for top scorers: the estimate is about 2.6%, so the most likely result is not a hat trick. The goalie is projected starter (confirmation unknown), and his team has two goalies splitting starts. He also played yesterday (2026-11-21 vs CAR), so this is the second night of a back-to-back.","tiebreak":null,"narrative_note":null},"runners_up":[{"name":"Wyatt Johnston","team":"DAL","est_p3":0.0209},{"name":"Jason Robertson","team":"DAL","est_p3":0.0205},{"name":"Nikita Kucherov","team":"TB","est_p3":0.0181},{"name":"Tage Thompson","team":"BUF","est_p3":0.0115}],"n_checked":231,"record_stats":{"graded":11,"hits":0,"misses":11,"pending":1,"text":"0-11","label":"0-11 graded 3+ goal picks"}}
+{
+ "feature": "Hat-Trick Hammer",
+ "sport": "NHL",
+ "preview": false,
+ "updated": "2026-11-22T22:32:43+00:00",
+ "slate": "2026-11-22",
+ "hurdle": "3+ goals in the game (regulation and overtime; shootout goals do not count)",
+ "probability_label": "Research estimate - not calibrated, no graded record",
+ "record": "0-11 graded 3+ goal picks",
+ "assumptions": "Goals per game = shots/game (half last 10, half since 2025-26) x shooting % regressed to 9.5% over 60 shots, x opponent shots-allowed factor (0.88-1.12) x goalie save % factor (0.85-1.20); P(3+) = Poisson tail, which ignores game-to-game variance in ice time and score effects. Not fitted to 3+ outcomes.",
+ "market": "No 3+ goals price in our feed; likelihood only, not value",
+ "candidate": {
+  "id": "8477934",
+  "name": "Leon Draisaitl",
+  "pos": "C",
+  "team": "EDM",
+  "opp": "STL",
+  "home": false,
+  "game": "2026020375",
+  "start": "2026-11-23T00:00:00Z",
+  "start_et": "Sun Nov 22, 7:00 PM ET",
+  "profile": "./#player/8477934",
+  "status": "Active roster, no injury listed",
+  "qualified": true,
+  "est_lambda": 0.633,
+  "est_p3": 0.0265,
+  "evidence": {
+   "games": 90,
+   "season_goals": 22,
+   "season_gp": 25,
+   "shots_pg_blend": 3.72,
+   "dup_rows_dropped": 0,
+   "shooting_pct_regressed": 0.1833,
+   "toi_l10": 22.4,
+   "shots_l10": 43,
+   "hat_tricks_since_2025_26": 1,
+   "pp": {
+    "unit": 1,
+    "conf": "High",
+    "asof": "2026-11-21"
+   },
+   "opp_shots_allowed_pg": 29.73913,
+   "opp_factor": 1.084,
+   "goalie": {
+    "name": "Joel Hofer",
+    "sv": 0.9067,
+    "l10_sv": 0.917,
+    "status": "projected starter (confirmation unknown)",
+    "tandem": true
+   },
+   "goalie_factor": 0.856,
+   "last5": [
+    {
+     "game_id": "2026020359",
+     "d": "2026-11-21",
+     "o": "CAR",
+     "g": 1,
+     "s": 4
+    },
+    {
+     "game_id": "2026020349",
+     "d": "2026-11-19",
+     "o": "TB",
+     "g": 0,
+     "s": 5
+    },
+    {
+     "game_id": "2026020335",
+     "d": "2026-11-17",
+     "o": "FLA",
+     "g": 1,
+     "s": 2
+    },
+    {
+     "game_id": "2026020326",
+     "d": "2026-11-15",
+     "o": "PHI",
+     "g": 2,
+     "s": 3
+    },
+    {
+     "game_id": "2026020314",
+     "d": "2026-11-14",
+     "o": "TOR",
+     "g": 0,
+     "s": 4
+    }
+   ]
+  },
+  "narrative": [
+   {
+    "text": "4 goals in his last 5 games (through 2026-11-21)",
+    "date": "2026-11-21",
+    "kind": "form",
+    "game_ids": [
+     "2026020359",
+     "2026020349",
+     "2026020335",
+     "2026020326",
+     "2026020314"
+    ]
+   }
+  ],
+  "fit": "3.72 shots a game (recent and since last season blended) with 22.4 minutes a night and a spot on power-play unit 1; STL allows 29.7 shots a game and projected starter Joel Hofer is at 0.917 over his last 10.",
+  "downside": "A hat trick is rare even for top scorers: the estimate is about 2.6%, so the most likely result is not a hat trick. The goalie is projected starter (confirmation unknown), and his team has two goalies splitting starts. He also played yesterday (2026-11-21 vs CAR), so this is the second night of a back-to-back.",
+  "tiebreak": null,
+  "narrative_note": null
+ },
+ "runners_up": [
+  {
+   "name": "Wyatt Johnston",
+   "team": "DAL",
+   "est_p3": 0.0208
+  },
+  {
+   "name": "Jason Robertson",
+   "team": "DAL",
+   "est_p3": 0.0205
+  }
+ ],
+ "n_checked": 139,
+ "record_stats": {
+  "graded": 11,
+  "hits": 0,
+  "misses": 11,
+  "pending": 1,
+  "text": "0-11",
+  "label": "0-11 graded 3+ goal picks"
+ }
+}
