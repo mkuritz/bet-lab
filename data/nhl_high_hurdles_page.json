@@ -1,5 +1,5 @@
 {
-"updated": "2026-11-23T22:42:46+00:00",
+"updated": "2026-11-23T23:06:50+00:00",
 "slate": "2026-11-23",
 "players": [
 {
@@ -3260,7 +3260,7 @@
 "team_stats": "2026-11-23T22:01:32+00:00"
 },
 "why": "Matthew Schaefer has two or more points in 27% of 22 games this season and 40% of his last 10 (15% last season). He reached 1+ point (one short of the line or better) in 70% of his last 40, on 26.8 minutes a night over the last 10 and 3.7 shots a game, with a spot on power-play unit 1. TOR allows 0.6 goals a game to defensemen (#6 of 32, 1 = most). Projected goalie Sergei Bobrovsky is at a 0.868 save rate over his last 10.",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8478550-p2",
@@ -3552,7 +3552,7 @@
 "team_stats": "2026-11-23T22:01:32+00:00"
 },
 "why": "Jake Sanderson has two or more points in 31% of 16 games this season and 30% of his last 10 (18% last season). He reached 1+ point (one short of the line or better) in 53% of his last 40, on 24.0 minutes a night over the last 10 and 2.2 shots a game, with a spot on power-play unit 1. CGY allows 0.54 goals a game to defensemen (#10 of 32, 1 = most). Projected goalie Dustin Wolf is at a 0.892 save rate over his last 10.",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8479318-p2",
@@ -3700,7 +3700,7 @@
 "team_stats": "2026-11-23T22:01:32+00:00"
 },
 "why": "Auston Matthews has two or more points in 32% of 25 games this season and 20% of his last 10 (20% last season). He reached 1+ point (one short of the line or better) in 70% of his last 40, on 21.2 minutes a night over the last 10 and 3.5 shots a game, with a spot on power-play unit 1. NYI allows 2.45 goals a game to forwards (#22 of 32, 1 = most). Projected goalie Ilya Sorokin is at a 0.908 save rate over his last 10.",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8477939-p2",
@@ -5032,7 +5032,7 @@
 "team_stats": "2026-11-23T22:01:32+00:00"
 },
 "why": "Kirill Kaprizov has five or more shots on goal in 16% of 25 games this season and 20% of his last 10 (27% last season). He reached 4+ shots on goal (one short of the line or better) in 40% of his last 40, on 21.2 minutes a night over the last 10 and 3.1 shots a game, with a spot on power-play unit 1. SJ allows 22.2 shots a game to forwards (#3 of 32, 1 = most).",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8481540-s5",
@@ -5180,7 +5180,7 @@
 "team_stats": "2026-11-23T22:01:32+00:00"
 },
 "why": "Cole Caufield has five or more shots on goal in 25% of 24 games this season and 20% of his last 10 (21% last season). He reached 4+ shots on goal (one short of the line or better) in 43% of his last 40, on 18.2 minutes a night over the last 10 and 3.5 shots a game, with a spot on power-play unit 1. LA allows 19.8 shots a game to forwards (#17 of 32, 1 = most).",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8478414-s5",
@@ -5328,7 +5328,7 @@
 "team_stats": "2026-11-23T22:01:32+00:00"
 },
 "why": "Timo Meier has five or more shots on goal in 30% of 23 games this season and 30% of his last 10 (30% last season). He reached 4+ shots on goal (one short of the line or better) in 40% of his last 40, on 17.6 minutes a night over the last 10 and 3.5 shots a game, with a spot on power-play unit 2. CBJ allows 18.2 shots a game to forwards (#25 of 32, 1 = most).",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8477500-s5",
@@ -5476,7 +5476,7 @@
 "team_stats": "2026-11-23T22:01:32+00:00"
 },
 "why": "Bo Horvat has five or more shots on goal in 9% of 22 games this season and 10% of his last 10 (24% last season). He reached 4+ shots on goal (one short of the line or better) in 30% of his last 40, on 20.6 minutes a night over the last 10 and 3.2 shots a game, with a spot on power-play unit 1. TOR allows 20.7 shots a game to forwards (#8 of 32, 1 = most).",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8478460-s5",
@@ -5624,7 +5624,7 @@
 "team_stats": "2026-11-23T22:01:32+00:00"
 },
 "why": "Zach Werenski has five or more shots on goal in 19% of 21 games this season and 30% of his last 10 (29% last season). He reached 4+ shots on goal (one short of the line or better) in 38% of his last 40, on 26.4 minutes a night over the last 10 and 3.2 shots a game, with a spot on power-play unit 1. NJ allows 7.9 shots a game to defensemen (#7 of 32, 1 = most).",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8478178-s5",
@@ -5772,7 +5772,7 @@
 "team_stats": "2026-11-23T22:01:32+00:00"
 },
 "why": "Darren Raddysh has five or more shots on goal in 16% of 25 games this season and 30% of his last 10 (23% last season). He reached 4+ shots on goal (one short of the line or better) in 35% of his last 40, on 24.1 minutes a night over the last 10 and 3.0 shots a game, with a spot on power-play unit 1. NYI allows 7.4 shots a game to defensemen (#16 of 32, 1 = most).",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8478493-s5",
@@ -5920,7 +5920,7 @@
 "team_stats": "2026-11-23T22:01:32+00:00"
 },
 "why": "Joel Eriksson Ek has five or more shots on goal in 16% of 25 games this season and 10% of his last 10 (20% last season). He reached 4+ shots on goal (one short of the line or better) in 33% of his last 40, on 17.9 minutes a night over the last 10 and 3.0 shots a game, with a spot on power-play unit 1. SJ allows 22.2 shots a game to forwards (#3 of 32, 1 = most).",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8482155-s5",
@@ -6068,7 +6068,7 @@
 "team_stats": "2026-11-23T22:01:32+00:00"
 },
 "why": "Alex Laferriere has five or more shots on goal in 29% of 21 games this season and 50% of his last 10 (15% last season). He reached 4+ shots on goal (one short of the line or better) in 28% of his last 40, on 20.1 minutes a night over the last 10 and 3.0 shots a game, with a spot on power-play unit 1. MTL allows 20.5 shots a game to forwards (#12 of 32, 1 = most).",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8483445-g2",
@@ -6216,7 +6216,7 @@
 "team_stats": "2026-11-23T22:01:32+00:00"
 },
 "why": "Cutter Gauthier has two or more goals in 26% of 23 games this season and 30% of his last 10 (9% last season). He reached 1+ goal (one short of the line or better) in 53% of his last 40, on 19.7 minutes a night over the last 10 and 3.9 shots a game, with a spot on power-play unit 1. SEA allows 3.25 goals a game to forwards (#4 of 32, 1 = most). Projected goalie Joey Daccord is at a 0.880 save rate over his last 10.",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8478864-g2",
@@ -6512,7 +6512,7 @@
 "team_stats": "2026-11-23T22:01:32+00:00"
 },
 "why": "Kyle Connor has two or more goals in 17% of 24 games this season and 20% of his last 10 (6% last season). He reached 1+ goal (one short of the line or better) in 53% of his last 40, on 22.3 minutes a night over the last 10 and 4.1 shots a game, with a spot on power-play unit 1. UTA allows 2.75 goals a game to forwards (#12 of 32, 1 = most). Projected goalie Karel Vejmelka is at a 0.869 save rate over his last 10.",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8481540-g2",
@@ -6660,7 +6660,7 @@
 "team_stats": "2026-11-23T22:01:32+00:00"
 },
 "why": "Cole Caufield has two or more goals in 17% of 24 games this season and 10% of his last 10 (15% last season). He reached 1+ goal (one short of the line or better) in 43% of his last 40, on 18.2 minutes a night over the last 10 and 3.5 shots a game, with a spot on power-play unit 1. LA allows 2.86 goals a game to forwards (#11 of 32, 1 = most). Projected goalie Darcy Kuemper is at a 0.892 save rate over his last 10.",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8480018-g2",
@@ -6808,7 +6808,7 @@
 "team_stats": "2026-11-23T22:01:32+00:00"
 },
 "why": "Nick Suzuki has two or more goals in 0% of 18 games this season and 0% of his last 10 (5% last season). He reached 1+ goal (one short of the line or better) in 45% of his last 40, on 19.9 minutes a night over the last 10 and 2.5 shots a game, with a spot on power-play unit 1. LA allows 2.86 goals a game to forwards (#11 of 32, 1 = most). Projected goalie Darcy Kuemper is at a 0.892 save rate over his last 10.",
-"check": "pending"
+"check": "ok"
 }
 ],
 "record": {
