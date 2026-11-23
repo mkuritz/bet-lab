@@ -5369,24 +5369,29 @@
    "odds": -102,
    "odds_source": "non-post-time",
    "odds_note": "Current market juice as of Nov 20, 12:08 AM ET. Not the post-time price (video posted Nov 18, ~7:00 PM ET).",
-   "bought": "-3 stated vs market -3.5; priced at market -3.5 (-102)"
+   "bought": "-3 stated vs market -3.5; priced at market -3.5 (-102)",
+   "result": "win",
+   "final": {
+    "SF": 35.0,
+    "MIN": 10.0
+   }
   }
  ],
  "record": {
   "straight": {
    "overall": {
-    "w": 109,
+    "w": 110,
     "l": 87,
     "p": 2,
-    "units": 10.37,
-    "units_n": 198
+    "units": 11.35,
+    "units_n": 199
    },
    "nfl": {
-    "w": 101,
+    "w": 102,
     "l": 83,
     "p": 2,
-    "units": 7.14,
-    "units_n": 186
+    "units": 8.12,
+    "units_n": 187
    },
    "mlb": {
     "w": 0,
@@ -5448,18 +5453,18 @@
    }
   },
   "overall": {
-   "w": 109,
+   "w": 110,
    "l": 87,
    "p": 2,
-   "units": 10.37,
-   "units_n": 198
+   "units": 11.35,
+   "units_n": 199
   },
   "nfl": {
-   "w": 101,
+   "w": 102,
    "l": 83,
    "p": 2,
-   "units": 7.14,
-   "units_n": 186
+   "units": 8.12,
+   "units_n": 187
   },
   "mlb": {
    "w": 0,
@@ -5483,19 +5488,19 @@
    "units_n": 11
   },
   "full_season": {
-   "w": 109,
+   "w": 110,
    "l": 90,
    "p": 2,
-   "units": 7.37,
-   "units_n": 201
+   "units": 8.35,
+   "units_n": 202
   },
   "categories": {
    "games": {
-    "w": 68,
+    "w": 69,
     "l": 68,
     "p": 2,
-    "units": -8.02,
-    "units_n": 138
+    "units": -7.04,
+    "units_n": 139
    },
    "props": {
     "w": 21,
@@ -5519,7 +5524,7 @@
    "units": -2.14,
    "units_n": 6
   },
-  "pending": 3,
+  "pending": 2,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }

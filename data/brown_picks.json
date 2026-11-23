@@ -2186,7 +2186,13 @@
      "side": "over",
      "line": 0.5,
      "odds": 110,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 1.0,
+     "result": "win",
+     "final": {
+      "SF": 35.0,
+      "MIN": 10.0
+     }
     },
     {
      "desc": "Justin Jefferson 100+ Receiving Yards (MIN vs SF)",
@@ -2200,7 +2206,13 @@
      "side": "over",
      "line": 99.5,
      "odds": 152,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 86.0,
+     "result": "loss",
+     "final": {
+      "SF": 35.0,
+      "MIN": 10.0
+     }
     },
     {
      "desc": "Mike Evans 4+ Receptions (MIN vs SF)",
@@ -2214,7 +2226,13 @@
      "side": "over",
      "line": 3.5,
      "odds": -130,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 6.0,
+     "result": "win",
+     "final": {
+      "SF": 35.0,
+      "MIN": 10.0
+     }
     },
     {
      "desc": "Christian McCaffrey 50+ Rushing Yards (MIN vs SF)",
@@ -2228,14 +2246,24 @@
      "side": "over",
      "line": 49.5,
      "odds": -133,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 49.0,
+     "result": "loss",
+     "final": {
+      "SF": 35.0,
+      "MIN": 10.0
+     }
     }
    ],
    "legs_total": 4,
-   "legs_graded": 0,
-   "legs_hit": 0,
+   "legs_graded": 4,
+   "legs_hit": 2,
    "legs_push": 0,
-   "sunk_by": []
+   "sunk_by": [
+    "Justin Jefferson 100+ Receiving Yards (MIN vs SF)",
+    "Christian McCaffrey 50+ Rushing Yards (MIN vs SF)"
+   ],
+   "result": "loss"
   },
   {
    "id": "cb-w11-snf-1122",
@@ -2267,7 +2295,13 @@
      "side": "over",
      "line": 19.5,
      "odds": -284,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 8.0,
+     "result": "loss",
+     "final": {
+      "SF": 35.0,
+      "MIN": 10.0
+     }
     },
     {
      "desc": "Kirk Cousins 200+ Passing Yards (MIN vs SF)",
@@ -2281,7 +2315,13 @@
      "side": "over",
      "line": 199.5,
      "odds": -261,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 235.0,
+     "result": "win",
+     "final": {
+      "SF": 35.0,
+      "MIN": 10.0
+     }
     },
     {
      "desc": "George Kittle 30+ Receiving Yards (MIN vs SF)",
@@ -2295,14 +2335,23 @@
      "side": "over",
      "line": 29.5,
      "odds": -323,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 34.0,
+     "result": "win",
+     "final": {
+      "SF": 35.0,
+      "MIN": 10.0
+     }
     }
    ],
    "legs_total": 3,
-   "legs_graded": 0,
-   "legs_hit": 0,
+   "legs_graded": 3,
+   "legs_hit": 2,
    "legs_push": 0,
-   "sunk_by": []
+   "sunk_by": [
+    "Kaelon Black 20+ Rushing Yards (MIN vs SF)"
+   ],
+   "result": "loss"
   }
  ],
  "record": {
@@ -2346,17 +2395,17 @@
   "parlay": {
    "overall": {
     "w": 1,
-    "l": 14,
+    "l": 16,
     "p": 0,
-    "units": -13.1,
-    "units_n": 15
+    "units": -15.1,
+    "units_n": 17
    },
    "nfl": {
     "w": 0,
-    "l": 7,
+    "l": 9,
     "p": 0,
-    "units": -7,
-    "units_n": 7
+    "units": -9,
+    "units_n": 9
    },
    "mlb": {
     "w": 0,
@@ -2417,10 +2466,10 @@
   },
   "full_season": {
    "w": 4,
-   "l": 15,
+   "l": 17,
    "p": 1,
-   "units": -11.56,
-   "units_n": 20
+   "units": -13.56,
+   "units_n": 22
   },
   "categories": {
    "best": {
@@ -2432,20 +2481,20 @@
    },
    "parlays": {
     "w": 1,
-    "l": 14,
+    "l": 16,
     "p": 0,
-    "units": -13.1,
-    "units_n": 15
+    "units": -15.1,
+    "units_n": 17
    }
   },
   "parlay_legs": {
-   "w": 47,
-   "l": 22,
+   "w": 51,
+   "l": 25,
    "p": 0,
-   "units": -4.36,
-   "units_n": 69
+   "units": -4.8,
+   "units_n": 76
   },
-  "pending": 2,
+  "pending": 0,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }
