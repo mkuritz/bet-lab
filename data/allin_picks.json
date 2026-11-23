@@ -3037,7 +3037,12 @@
    "kind": "straight",
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-11-huge-spreads-and-slicing-it-thin-all-in-sports/",
    "episode_date": "2026-11-18",
-   "id": "aic-w11-113"
+   "id": "aic-w11-113",
+   "result": "push",
+   "final": {
+    "BUF": 26.0,
+    "MIA": 9.0
+   }
   },
   {
    "sport": "nfl",
@@ -3055,7 +3060,12 @@
    "kind": "straight",
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-11-huge-spreads-and-slicing-it-thin-all-in-sports/",
    "episode_date": "2026-11-18",
-   "id": "aic-w11-114"
+   "id": "aic-w11-114",
+   "result": "win",
+   "final": {
+    "CHI": 21.0,
+    "NO": 13.0
+   }
   },
   {
    "sport": "nfl",
@@ -3074,7 +3084,12 @@
    "kind": "straight",
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-11-huge-spreads-and-slicing-it-thin-all-in-sports/",
    "episode_date": "2026-11-18",
-   "id": "aic-w11-115"
+   "id": "aic-w11-115",
+   "result": "loss",
+   "final": {
+    "DET": 31.0,
+    "TB": 21.0
+   }
   },
   {
    "sport": "nfl",
@@ -3091,7 +3106,12 @@
    "kind": "straight",
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-11-huge-spreads-and-slicing-it-thin-all-in-sports/",
    "episode_date": "2026-11-18",
-   "id": "aic-w11-116"
+   "id": "aic-w11-116",
+   "result": "loss",
+   "final": {
+    "DET": 31.0,
+    "TB": 21.0
+   }
   },
   {
    "sport": "nfl",
@@ -3110,7 +3130,12 @@
    "kind": "straight",
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-11-huge-spreads-and-slicing-it-thin-all-in-sports/",
    "episode_date": "2026-11-18",
-   "id": "aic-w11-117"
+   "id": "aic-w11-117",
+   "result": "loss",
+   "final": {
+    "KC": 34.0,
+    "ARI": 7.0
+   }
   },
   {
    "sport": "nfl",
@@ -3129,7 +3154,12 @@
    "kind": "straight",
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-11-huge-spreads-and-slicing-it-thin-all-in-sports/",
    "episode_date": "2026-11-18",
-   "id": "aic-w11-118"
+   "id": "aic-w11-118",
+   "result": "win",
+   "final": {
+    "CAR": 35.0,
+    "BAL": 33.0
+   }
   },
   {
    "sport": "nfl",
@@ -3148,7 +3178,12 @@
    "kind": "straight",
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-11-huge-spreads-and-slicing-it-thin-all-in-sports/",
    "episode_date": "2026-11-18",
-   "id": "aic-w11-119"
+   "id": "aic-w11-119",
+   "result": "loss",
+   "final": {
+    "LAC": 24.0,
+    "NYJ": 27.0
+   }
   },
   {
    "sport": "nfl",
@@ -3165,7 +3200,12 @@
    "kind": "straight",
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-11-huge-spreads-and-slicing-it-thin-all-in-sports/",
    "episode_date": "2026-11-18",
-   "id": "aic-w11-120"
+   "id": "aic-w11-120",
+   "result": "loss",
+   "final": {
+    "LAC": 24.0,
+    "NYJ": 27.0
+   }
   },
   {
    "sport": "nfl",
@@ -3184,7 +3224,12 @@
    "kind": "straight",
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-11-huge-spreads-and-slicing-it-thin-all-in-sports/",
    "episode_date": "2026-11-18",
-   "id": "aic-w11-121"
+   "id": "aic-w11-121",
+   "result": "win",
+   "final": {
+    "DEN": 38.0,
+    "LV": 24.0
+   }
   },
   {
    "sport": "nfl",
@@ -3201,7 +3246,12 @@
    "kind": "straight",
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-11-huge-spreads-and-slicing-it-thin-all-in-sports/",
    "episode_date": "2026-11-18",
-   "id": "aic-w11-122"
+   "id": "aic-w11-122",
+   "result": "loss",
+   "final": {
+    "NYG": 23.0,
+    "JAX": 18.0
+   }
   },
   {
    "sport": "nfl",
@@ -3226,18 +3276,18 @@
  "record": {
   "straight": {
    "overall": {
-    "w": 56,
-    "l": 54,
-    "p": 2,
-    "units": 0.93,
-    "units_n": 112
+    "w": 59,
+    "l": 60,
+    "p": 3,
+    "units": -2.36,
+    "units_n": 122
    },
    "nfl": {
-    "w": 50,
-    "l": 49,
-    "p": 2,
-    "units": 0.76,
-    "units_n": 101
+    "w": 53,
+    "l": 55,
+    "p": 3,
+    "units": -2.53,
+    "units_n": 111
    },
    "mlb": {
     "w": 2,
@@ -3299,18 +3349,18 @@
    }
   },
   "overall": {
-   "w": 56,
-   "l": 54,
-   "p": 2,
-   "units": 0.93,
-   "units_n": 112
+   "w": 59,
+   "l": 60,
+   "p": 3,
+   "units": -2.36,
+   "units_n": 122
   },
   "nfl": {
-   "w": 50,
-   "l": 49,
-   "p": 2,
-   "units": 0.76,
-   "units_n": 101
+   "w": 53,
+   "l": 55,
+   "p": 3,
+   "units": -2.53,
+   "units_n": 111
   },
   "mlb": {
    "w": 2,
@@ -3340,7 +3390,7 @@
    "units": 5.2,
    "units_n": 25
   },
-  "pending": 11,
+  "pending": 1,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }

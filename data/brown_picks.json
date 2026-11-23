@@ -283,7 +283,13 @@
      "side": "over",
      "line": 0.5,
      "odds": -260,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 2.0,
+     "result": "win",
+     "final": {
+      "DET": 31.0,
+      "TB": 21.0
+     }
     },
     {
      "desc": "James Cook Anytime TD (MIA @ BUF)",
@@ -297,7 +303,13 @@
      "side": "over",
      "line": 0.5,
      "odds": -180,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 1.0,
+     "result": "win",
+     "final": {
+      "BUF": 26.0,
+      "MIA": 9.0
+     }
     },
     {
      "desc": "Tony Pollard Anytime TD (TEN @ DAL)",
@@ -311,7 +323,13 @@
      "side": "over",
      "line": 0.5,
      "odds": -125,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 0.0,
+     "result": "loss",
+     "final": {
+      "DAL": 51.0,
+      "TEN": 30.0
+     }
     },
     {
      "desc": "Luther Burden III Anytime TD (NO @ CHI)",
@@ -325,7 +343,13 @@
      "side": "over",
      "line": 0.5,
      "odds": 130,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 0.0,
+     "result": "loss",
+     "final": {
+      "CHI": 21.0,
+      "NO": 13.0
+     }
     },
     {
      "desc": "Bhayshul Tuten Anytime TD (JAX @ NYG)",
@@ -339,7 +363,13 @@
      "side": "over",
      "line": 0.5,
      "odds": -105,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 0.0,
+     "result": "loss",
+     "final": {
+      "NYG": 23.0,
+      "JAX": 18.0
+     }
     },
     {
      "desc": "Christian McCaffrey Anytime TD (MIN vs SF)",
@@ -362,10 +392,15 @@
    "ticket": "TDsW11",
    "odds_note": "Parlay price on his ticket at release; leg prices read from the ticket on Nov 19",
    "legs_total": 6,
-   "legs_graded": 0,
-   "legs_hit": 0,
+   "legs_graded": 5,
+   "legs_hit": 2,
    "legs_push": 0,
-   "sunk_by": []
+   "sunk_by": [
+    "Tony Pollard Anytime TD (TEN @ DAL)",
+    "Luther Burden III Anytime TD (NO @ CHI)",
+    "Bhayshul Tuten Anytime TD (JAX @ NYG)"
+   ],
+   "result": "loss"
   },
   {
    "id": "cb-w11-cs-1119",
@@ -1078,7 +1113,13 @@
      "side": "over",
      "line": 39.5,
      "odds": -504,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 102.0,
+     "result": "win",
+     "final": {
+      "DAL": 51.0,
+      "TEN": 30.0
+     }
     },
     {
      "desc": "Dallas Goedert 3+ Receptions (PIT @ PHI)",
@@ -1092,7 +1133,13 @@
      "side": "over",
      "line": 2.5,
      "odds": -242,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 1.0,
+     "result": "loss",
+     "final": {
+      "PHI": 19.0,
+      "PIT": 16.0
+     }
     },
     {
      "desc": "Pat Freiermuth 2+ Receptions (PIT @ PHI)",
@@ -1106,7 +1153,13 @@
      "side": "over",
      "line": 1.5,
      "odds": -392,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 5.0,
+     "result": "win",
+     "final": {
+      "PHI": 19.0,
+      "PIT": 16.0
+     }
     },
     {
      "desc": "James Cook Anytime TD (MIA @ BUF)",
@@ -1120,7 +1173,13 @@
      "side": "over",
      "line": 0.5,
      "odds": -195,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 1.0,
+     "result": "win",
+     "final": {
+      "BUF": 26.0,
+      "MIA": 9.0
+     }
     },
     {
      "desc": "Khalil Shakir 25+ Receiving Yards (MIA @ BUF)",
@@ -1134,7 +1193,13 @@
      "side": "over",
      "line": 24.5,
      "odds": -203,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 101.0,
+     "result": "win",
+     "final": {
+      "BUF": 26.0,
+      "MIA": 9.0
+     }
     },
     {
      "desc": "Bucky Irving 40+ Rushing Yards (TB @ DET)",
@@ -1148,7 +1213,13 @@
      "side": "over",
      "line": 39.5,
      "odds": -604,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 68.0,
+     "result": "win",
+     "final": {
+      "DET": 31.0,
+      "TB": 21.0
+     }
     },
     {
      "desc": "Jameson Williams 30+ Receiving Yards (TB @ DET)",
@@ -1162,7 +1233,13 @@
      "side": "over",
      "line": 29.5,
      "odds": -352,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 93.0,
+     "result": "win",
+     "final": {
+      "DET": 31.0,
+      "TB": 21.0
+     }
     },
     {
      "desc": "Braelon Allen 20+ Rushing Yards (NYJ @ LAC)",
@@ -1176,7 +1253,13 @@
      "side": "over",
      "line": 19.5,
      "odds": -311,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 75.0,
+     "result": "win",
+     "final": {
+      "LAC": 24.0,
+      "NYJ": 27.0
+     }
     },
     {
      "desc": "Breece Hall 2+ Receptions (NYJ @ LAC)",
@@ -1190,7 +1273,13 @@
      "side": "over",
      "line": 1.5,
      "odds": -353,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 3.0,
+     "result": "win",
+     "final": {
+      "LAC": 24.0,
+      "NYJ": 27.0
+     }
     },
     {
      "desc": "Ashton Jeanty 3+ Receptions (LV @ DEN)",
@@ -1204,7 +1293,13 @@
      "side": "over",
      "line": 2.5,
      "odds": -321,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 5.0,
+     "result": "win",
+     "final": {
+      "DEN": 38.0,
+      "LV": 24.0
+     }
     },
     {
      "desc": "Trevor Lawrence 200+ Passing Yards (JAX @ NYG)",
@@ -1218,7 +1313,13 @@
      "side": "over",
      "line": 199.5,
      "odds": -394,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 301.0,
+     "result": "win",
+     "final": {
+      "NYG": 23.0,
+      "JAX": 18.0
+     }
     },
     {
      "desc": "Malik Nabers 5+ Receptions (JAX @ NYG)",
@@ -1232,7 +1333,13 @@
      "side": "over",
      "line": 4.5,
      "odds": -254,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 7.0,
+     "result": "win",
+     "final": {
+      "NYG": 23.0,
+      "JAX": 18.0
+     }
     },
     {
      "desc": "Christian McCaffrey Anytime TD (MIN @ SF)",
@@ -1278,10 +1385,13 @@
     }
    ],
    "legs_total": 15,
-   "legs_graded": 0,
-   "legs_hit": 0,
+   "legs_graded": 12,
+   "legs_hit": 11,
    "legs_push": 0,
-   "sunk_by": []
+   "sunk_by": [
+    "Dallas Goedert 3+ Receptions (PIT @ PHI)"
+   ],
+   "result": "loss"
   },
   {
    "id": "cb-w11-par-1121",
@@ -1447,7 +1557,13 @@
      "side": "over",
      "line": 29.5,
      "odds": -583,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 69.0,
+     "result": "win",
+     "final": {
+      "BUF": 26.0,
+      "MIA": 9.0
+     }
     },
     {
      "desc": "DJ Moore 30+ Receiving Yards (MIA @ BUF)",
@@ -1461,7 +1577,13 @@
      "side": "over",
      "line": 29.5,
      "odds": -312,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 91.0,
+     "result": "win",
+     "final": {
+      "BUF": 26.0,
+      "MIA": 9.0
+     }
     },
     {
      "desc": "Chuba Hubbard 50+ Rushing Yards (BAL @ CAR)",
@@ -1475,7 +1597,13 @@
      "side": "over",
      "line": 49.5,
      "odds": -391,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 120.0,
+     "result": "win",
+     "final": {
+      "CAR": 35.0,
+      "BAL": 33.0
+     }
     },
     {
      "desc": "Zay Flowers 5+ Receptions (BAL @ CAR)",
@@ -1489,7 +1617,13 @@
      "side": "over",
      "line": 4.5,
      "odds": -403,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 8.0,
+     "result": "win",
+     "final": {
+      "CAR": 35.0,
+      "BAL": 33.0
+     }
     },
     {
      "desc": "CeeDee Lamb 60+ Receiving Yards (TEN @ DAL)",
@@ -1503,7 +1637,13 @@
      "side": "over",
      "line": 59.5,
      "odds": -491,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 132.0,
+     "result": "win",
+     "final": {
+      "DAL": 51.0,
+      "TEN": 30.0
+     }
     },
     {
      "desc": "Tony Pollard 50+ Rushing Yards (TEN @ DAL)",
@@ -1517,7 +1657,13 @@
      "side": "over",
      "line": 49.5,
      "odds": -249,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 110.0,
+     "result": "win",
+     "final": {
+      "DAL": 51.0,
+      "TEN": 30.0
+     }
     },
     {
      "desc": "Emmett Johnson Anytime TD (ARI @ KC)",
@@ -1531,7 +1677,13 @@
      "side": "over",
      "line": 0.5,
      "odds": -220,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 1.0,
+     "result": "win",
+     "final": {
+      "KC": 34.0,
+      "ARI": 7.0
+     }
     },
     {
      "desc": "Trey McBride 5+ Receptions (ARI @ KC)",
@@ -1545,7 +1697,13 @@
      "side": "over",
      "line": 4.5,
      "odds": -324,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 9.0,
+     "result": "win",
+     "final": {
+      "KC": 34.0,
+      "ARI": 7.0
+     }
     },
     {
      "desc": "Jaylen Warren 50+ Rushing Yards (PIT @ PHI)",
@@ -1559,7 +1717,13 @@
      "side": "over",
      "line": 49.5,
      "odds": -311,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 28.0,
+     "result": "loss",
+     "final": {
+      "PHI": 19.0,
+      "PIT": 16.0
+     }
     },
     {
      "desc": "Dallas Goedert 20+ Receiving Yards (PIT @ PHI)",
@@ -1573,7 +1737,13 @@
      "side": "over",
      "line": 19.5,
      "odds": -314,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 38.0,
+     "result": "win",
+     "final": {
+      "PHI": 19.0,
+      "PIT": 16.0
+     }
     },
     {
      "desc": "Luther Burden III 40+ Receiving Yards (NO @ CHI)",
@@ -1587,7 +1757,13 @@
      "side": "over",
      "line": 39.5,
      "odds": -313,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 10.0,
+     "result": "loss",
+     "final": {
+      "CHI": 21.0,
+      "NO": 13.0
+     }
     },
     {
      "desc": "Tyler Shough 200+ Passing Yards (NO @ CHI)",
@@ -1601,7 +1777,13 @@
      "side": "over",
      "line": 199.5,
      "odds": -311,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 222.0,
+     "result": "win",
+     "final": {
+      "CHI": 21.0,
+      "NO": 13.0
+     }
     },
     {
      "desc": "Amon-Ra St. Brown 50+ Receiving Yards (TB @ DET)",
@@ -1615,7 +1797,13 @@
      "side": "over",
      "line": 49.5,
      "odds": -552,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 37.0,
+     "result": "loss",
+     "final": {
+      "DET": 31.0,
+      "TB": 21.0
+     }
     },
     {
      "desc": "Bucky Irving 50+ Rushing Yards (TB @ DET)",
@@ -1629,14 +1817,25 @@
      "side": "over",
      "line": 49.5,
      "odds": -274,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 68.0,
+     "result": "win",
+     "final": {
+      "DET": 31.0,
+      "TB": 21.0
+     }
     }
    ],
    "legs_total": 14,
-   "legs_graded": 0,
-   "legs_hit": 0,
+   "legs_graded": 14,
+   "legs_hit": 11,
    "legs_push": 0,
-   "sunk_by": []
+   "sunk_by": [
+    "Jaylen Warren 50+ Rushing Yards (PIT @ PHI)",
+    "Luther Burden III 40+ Receiving Yards (NO @ CHI)",
+    "Amon-Ra St. Brown 50+ Receiving Yards (TB @ DET)"
+   ],
+   "result": "loss"
   },
   {
    "id": "cb-w11-fly-1122",
@@ -1668,7 +1867,13 @@
      "side": "over",
      "line": 79.5,
      "odds": -194,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 89.0,
+     "result": "win",
+     "final": {
+      "BUF": 26.0,
+      "MIA": 9.0
+     }
     },
     {
      "desc": "Josh Downs 40+ Receiving Yards (ARI @ KC)",
@@ -1682,7 +1887,13 @@
      "side": "over",
      "line": 39.5,
      "odds": -106,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 59.0,
+     "result": "win",
+     "final": {
+      "KC": 34.0,
+      "ARI": 7.0
+     }
     },
     {
      "desc": "Jordyn Tyson 5+ Receptions (NO @ CHI)",
@@ -1696,7 +1907,13 @@
      "side": "over",
      "line": 4.5,
      "odds": -184,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 1.0,
+     "result": "loss",
+     "final": {
+      "CHI": 21.0,
+      "NO": 13.0
+     }
     },
     {
      "desc": "Bo Nix Over 1.5 Passing TDs (LV @ DEN)",
@@ -1710,14 +1927,24 @@
      "side": "over",
      "line": 1.5,
      "odds": -115,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 1.0,
+     "result": "loss",
+     "final": {
+      "DEN": 38.0,
+      "LV": 24.0
+     }
     }
    ],
    "legs_total": 4,
-   "legs_graded": 0,
-   "legs_hit": 0,
+   "legs_graded": 4,
+   "legs_hit": 2,
    "legs_push": 0,
-   "sunk_by": []
+   "sunk_by": [
+    "Jordyn Tyson 5+ Receptions (NO @ CHI)",
+    "Bo Nix Over 1.5 Passing TDs (LV @ DEN)"
+   ],
+   "result": "loss"
   },
   {
    "desc": "NFL Best Bet \u00b7 CeeDee Lamb Over 92.5 Receiving Yards (TEN @ DAL)",
@@ -1742,7 +1969,13 @@
    "source_label": "X post",
    "posted_at": "2026-11-22T14:52:50Z",
    "ticket": "W11BB",
-   "odds_note": "Price shown on his posted ticket at release"
+   "odds_note": "Price shown on his posted ticket at release",
+   "actual": 132.0,
+   "result": "win",
+   "final": {
+    "DAL": 51.0,
+    "TEN": 30.0
+   }
   },
   {
    "id": "cb-w11-5050-1122",
@@ -1775,7 +2008,13 @@
      "side": "over",
      "line": 49.5,
      "odds": -185,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 71.0,
+     "result": "win",
+     "final": {
+      "CAR": 35.0,
+      "BAL": 33.0
+     }
     },
     {
      "desc": "George Pickens 50+ Receiving Yards (TEN @ DAL)",
@@ -1789,7 +2028,13 @@
      "side": "over",
      "line": 49.5,
      "odds": -243,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 102.0,
+     "result": "win",
+     "final": {
+      "DAL": 51.0,
+      "TEN": 30.0
+     }
     },
     {
      "desc": "Garrett Wilson 50+ Receiving Yards (NYJ @ LAC)",
@@ -1803,14 +2048,23 @@
      "side": "over",
      "line": 49.5,
      "odds": -204,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 39.0,
+     "result": "loss",
+     "final": {
+      "LAC": 24.0,
+      "NYJ": 27.0
+     }
     }
    ],
    "legs_total": 3,
-   "legs_graded": 0,
-   "legs_hit": 0,
+   "legs_graded": 3,
+   "legs_hit": 2,
    "legs_push": 0,
-   "sunk_by": []
+   "sunk_by": [
+    "Garrett Wilson 50+ Receiving Yards (NYJ @ LAC)"
+   ],
+   "result": "loss"
   },
   {
    "id": "cb-w11-lw-1122",
@@ -1843,7 +2097,13 @@
      "side": "over",
      "line": 49.5,
      "odds": -201,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 89.0,
+     "result": "win",
+     "final": {
+      "LAC": 24.0,
+      "NYJ": 27.0
+     }
     },
     {
      "desc": "Bhayshul Tuten 50+ Rushing Yards (JAX @ NYG)",
@@ -1857,7 +2117,13 @@
      "side": "over",
      "line": 49.5,
      "odds": -278,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 33.0,
+     "result": "loss",
+     "final": {
+      "NYG": 23.0,
+      "JAX": 18.0
+     }
     },
     {
      "desc": "Ashton Jeanty 20+ Receiving Yards (LV @ DEN)",
@@ -1871,6 +2137,164 @@
      "side": "over",
      "line": 19.5,
      "odds": -201,
+     "odds_source": "stated",
+     "actual": 90.0,
+     "result": "win",
+     "final": {
+      "DEN": 38.0,
+      "LV": 24.0
+     }
+    }
+   ],
+   "legs_total": 3,
+   "legs_graded": 3,
+   "legs_hit": 2,
+   "legs_push": 0,
+   "sunk_by": [
+    "Bhayshul Tuten 50+ Rushing Yards (JAX @ NYG)"
+   ],
+   "result": "loss"
+  },
+  {
+   "id": "cb-w11-mex-1122",
+   "date": "2026-11-22",
+   "week": 11,
+   "category": "parlays",
+   "kind": "parlay",
+   "type": "parlay",
+   "sport": "nfl",
+   "desc": "Week 11 NFL Mexico Flyer (4 legs)",
+   "odds": 850,
+   "odds_source": "stated",
+   "book": "Book B",
+   "source_url": "https://x.com/CodyBrownBets/status/2124585607297200413",
+   "source_label": "X post",
+   "posted_at": "2026-11-22T19:27:36Z",
+   "ticket": "NFLMEX",
+   "odds_note": "Price shown on his posted ticket at release (pre-boost); promo boost to +1105 not used for units",
+   "boosted_odds": 1105,
+   "legs": [
+    {
+     "desc": "Christian McCaffrey Anytime TD (MIN vs SF)",
+     "sport": "nfl",
+     "espn_event_id": "401873077",
+     "team": "SF",
+     "type": "prop",
+     "player": "Christian McCaffrey",
+     "stat_cat": "td",
+     "stat_key": "TD",
+     "side": "over",
+     "line": 0.5,
+     "odds": 110,
+     "odds_source": "stated"
+    },
+    {
+     "desc": "Justin Jefferson 100+ Receiving Yards (MIN vs SF)",
+     "sport": "nfl",
+     "espn_event_id": "401873077",
+     "team": "MIN",
+     "type": "prop",
+     "player": "Justin Jefferson",
+     "stat_cat": "receiving",
+     "stat_key": "YDS",
+     "side": "over",
+     "line": 99.5,
+     "odds": 152,
+     "odds_source": "stated"
+    },
+    {
+     "desc": "Mike Evans 4+ Receptions (MIN vs SF)",
+     "sport": "nfl",
+     "espn_event_id": "401873077",
+     "team": "SF",
+     "type": "prop",
+     "player": "Mike Evans",
+     "stat_cat": "receiving",
+     "stat_key": "REC",
+     "side": "over",
+     "line": 3.5,
+     "odds": -130,
+     "odds_source": "stated"
+    },
+    {
+     "desc": "Christian McCaffrey 50+ Rushing Yards (MIN vs SF)",
+     "sport": "nfl",
+     "espn_event_id": "401873077",
+     "team": "SF",
+     "type": "prop",
+     "player": "Christian McCaffrey",
+     "stat_cat": "rushing",
+     "stat_key": "YDS",
+     "side": "over",
+     "line": 49.5,
+     "odds": -133,
+     "odds_source": "stated"
+    }
+   ],
+   "legs_total": 4,
+   "legs_graded": 0,
+   "legs_hit": 0,
+   "legs_push": 0,
+   "sunk_by": []
+  },
+  {
+   "id": "cb-w11-snf-1122",
+   "date": "2026-11-22",
+   "week": 11,
+   "category": "parlays",
+   "kind": "parlay",
+   "type": "parlay",
+   "sport": "nfl",
+   "desc": "Week 11 NFL SNF Parlay (3 legs)",
+   "odds": -115,
+   "odds_source": "stated",
+   "book": "Book B",
+   "source_url": "https://x.com/CodyBrownBets/status/2124635637521473812",
+   "source_label": "X post",
+   "posted_at": "2026-11-22T22:46:24Z",
+   "ticket": "SNFW11",
+   "odds_note": "Price shown on his posted ticket at release",
+   "legs": [
+    {
+     "desc": "Kaelon Black 20+ Rushing Yards (MIN vs SF)",
+     "sport": "nfl",
+     "espn_event_id": "401873077",
+     "team": "SF",
+     "type": "prop",
+     "player": "Kaelon Black",
+     "stat_cat": "rushing",
+     "stat_key": "YDS",
+     "side": "over",
+     "line": 19.5,
+     "odds": -284,
+     "odds_source": "stated"
+    },
+    {
+     "desc": "Kirk Cousins 200+ Passing Yards (MIN vs SF)",
+     "sport": "nfl",
+     "espn_event_id": "401873077",
+     "team": "MIN",
+     "type": "prop",
+     "player": "Kirk Cousins",
+     "stat_cat": "passing",
+     "stat_key": "YDS",
+     "side": "over",
+     "line": 199.5,
+     "odds": -261,
+     "odds_source": "stated"
+    },
+    {
+     "desc": "George Kittle 30+ Receiving Yards (MIN vs SF)",
+     "sport": "nfl",
+     "espn_event_id": "401873077",
+     "team": "SF",
+     "type": "prop",
+     "player": "George Kittle",
+     "stat_cat": "receiving",
+     "stat_key": "YDS",
+     "side": "over",
+     "line": 29.5,
+     "odds": -323,
      "odds_source": "stated"
     }
    ],
@@ -1884,18 +2308,18 @@
  "record": {
   "straight": {
    "overall": {
-    "w": 2,
+    "w": 3,
     "l": 1,
     "p": 1,
-    "units": 0.66,
-    "units_n": 4
+    "units": 1.54,
+    "units_n": 5
    },
    "nfl": {
-    "w": 0,
+    "w": 1,
     "l": 0,
     "p": 0,
-    "units": 0,
-    "units_n": 0
+    "units": 0.88,
+    "units_n": 1
    },
    "mlb": {
     "w": 0,
@@ -1922,17 +2346,17 @@
   "parlay": {
    "overall": {
     "w": 1,
-    "l": 8,
+    "l": 14,
     "p": 0,
-    "units": -7.1,
-    "units_n": 9
+    "units": -13.1,
+    "units_n": 15
    },
    "nfl": {
     "w": 0,
-    "l": 1,
+    "l": 7,
     "p": 0,
-    "units": -1,
-    "units_n": 1
+    "units": -7,
+    "units_n": 7
    },
    "mlb": {
     "w": 0,
@@ -1957,18 +2381,18 @@
    }
   },
   "overall": {
-   "w": 2,
+   "w": 3,
    "l": 1,
    "p": 1,
-   "units": 0.66,
-   "units_n": 4
+   "units": 1.54,
+   "units_n": 5
   },
   "nfl": {
-   "w": 0,
+   "w": 1,
    "l": 0,
    "p": 0,
-   "units": 0,
-   "units_n": 0
+   "units": 0.88,
+   "units_n": 1
   },
   "mlb": {
    "w": 0,
@@ -1992,36 +2416,36 @@
    "units_n": 0
   },
   "full_season": {
-   "w": 3,
-   "l": 9,
+   "w": 4,
+   "l": 15,
    "p": 1,
-   "units": -6.44,
-   "units_n": 13
+   "units": -11.56,
+   "units_n": 20
   },
   "categories": {
    "best": {
-    "w": 2,
+    "w": 3,
     "l": 1,
     "p": 1,
-    "units": 0.66,
-    "units_n": 4
+    "units": 1.54,
+    "units_n": 5
    },
    "parlays": {
     "w": 1,
-    "l": 8,
+    "l": 14,
     "p": 0,
-    "units": -7.1,
-    "units_n": 9
+    "units": -13.1,
+    "units_n": 15
    }
   },
   "parlay_legs": {
-   "w": 17,
-   "l": 11,
+   "w": 47,
+   "l": 22,
    "p": 0,
-   "units": -4.55,
-   "units_n": 28
+   "units": -4.36,
+   "units_n": 69
   },
-  "pending": 7,
+  "pending": 2,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }

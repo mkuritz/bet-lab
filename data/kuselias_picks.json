@@ -5138,7 +5138,12 @@
    "id": "ek-w11-1",
    "odds": -112,
    "odds_source": "non-post-time",
-   "odds_note": "Current market juice as of Nov 20, 12:08 AM ET. Not the post-time price (video posted Nov 18, ~7:00 PM ET)."
+   "odds_note": "Current market juice as of Nov 20, 12:08 AM ET. Not the post-time price (video posted Nov 18, ~7:00 PM ET).",
+   "result": "loss",
+   "final": {
+    "BUF": 26.0,
+    "MIA": 9.0
+   }
   },
   {
    "week": 11,
@@ -5158,7 +5163,12 @@
    "id": "ek-w11-2",
    "odds": -115,
    "odds_source": "non-post-time",
-   "odds_note": "Current market juice as of Nov 20, 12:08 AM ET. Not the post-time price (video posted Nov 18, ~7:00 PM ET)."
+   "odds_note": "Current market juice as of Nov 20, 12:08 AM ET. Not the post-time price (video posted Nov 18, ~7:00 PM ET).",
+   "result": "loss",
+   "final": {
+    "DAL": 51.0,
+    "TEN": 30.0
+   }
   },
   {
    "week": 11,
@@ -5179,7 +5189,12 @@
    "odds": -109,
    "odds_source": "non-post-time",
    "odds_note": "Current market juice as of Nov 20, 12:08 AM ET. Not the post-time price (video posted Nov 18, ~7:00 PM ET).",
-   "bought": "-7 stated vs market -6; priced at market -6 (-109)"
+   "bought": "-7 stated vs market -6; priced at market -6 (-109)",
+   "result": "win",
+   "final": {
+    "DET": 31.0,
+    "TB": 21.0
+   }
   },
   {
    "week": 11,
@@ -5200,7 +5215,12 @@
    "odds": -106,
    "odds_source": "non-post-time",
    "odds_note": "Current market juice as of Nov 20, 12:08 AM ET. Not the post-time price (video posted Nov 18, ~7:00 PM ET).",
-   "bought": "-16 stated vs market -16.5; priced at market -16.5 (-106)"
+   "bought": "-16 stated vs market -16.5; priced at market -16.5 (-106)",
+   "result": "win",
+   "final": {
+    "KC": 34.0,
+    "ARI": 7.0
+   }
   },
   {
    "week": 11,
@@ -5221,7 +5241,12 @@
    "odds": -115,
    "odds_source": "non-post-time",
    "odds_note": "Current market juice as of Nov 20, 12:08 AM ET. Not the post-time price (video posted Nov 18, ~7:00 PM ET).",
-   "bought": "-4 stated vs market -3.5; priced at market -3.5 (-115)"
+   "bought": "-4 stated vs market -3.5; priced at market -3.5 (-115)",
+   "result": "loss",
+   "final": {
+    "PHI": 19.0,
+    "PIT": 16.0
+   }
   },
   {
    "week": 11,
@@ -5241,7 +5266,12 @@
    "id": "ek-w11-6",
    "odds": -115,
    "odds_source": "non-post-time",
-   "odds_note": "Current market juice as of Nov 20, 12:08 AM ET. Not the post-time price (video posted Nov 18, ~7:00 PM ET)."
+   "odds_note": "Current market juice as of Nov 20, 12:08 AM ET. Not the post-time price (video posted Nov 18, ~7:00 PM ET).",
+   "result": "win",
+   "final": {
+    "CAR": 35.0,
+    "BAL": 33.0
+   }
   },
   {
    "week": 11,
@@ -5261,7 +5291,12 @@
    "id": "ek-w11-7",
    "odds": -114,
    "odds_source": "non-post-time",
-   "odds_note": "Current market juice as of Nov 20, 12:08 AM ET. Not the post-time price (video posted Nov 18, ~7:00 PM ET)."
+   "odds_note": "Current market juice as of Nov 20, 12:08 AM ET. Not the post-time price (video posted Nov 18, ~7:00 PM ET).",
+   "result": "loss",
+   "final": {
+    "LAC": 24.0,
+    "NYJ": 27.0
+   }
   },
   {
    "week": 11,
@@ -5282,7 +5317,12 @@
    "odds": -105,
    "odds_source": "non-post-time",
    "odds_note": "Current market juice as of Nov 20, 12:08 AM ET. Not the post-time price (video posted Nov 18, ~7:00 PM ET).",
-   "bought": "-10 stated vs market -10.5; priced at market -10.5 (-105)"
+   "bought": "-10 stated vs market -10.5; priced at market -10.5 (-105)",
+   "result": "win",
+   "final": {
+    "DEN": 38.0,
+    "LV": 24.0
+   }
   },
   {
    "week": 11,
@@ -5303,7 +5343,12 @@
    "odds": -110,
    "odds_source": "non-post-time",
    "odds_note": "Current market juice as of Nov 20, 12:08 AM ET. Not the post-time price (video posted Nov 18, ~7:00 PM ET).",
-   "bought": "-5.5 stated vs market -6; priced at market -6 (-110)"
+   "bought": "-5.5 stated vs market -6; priced at market -6 (-110)",
+   "result": "loss",
+   "final": {
+    "NYG": 23.0,
+    "JAX": 18.0
+   }
   },
   {
    "week": 11,
@@ -5330,18 +5375,18 @@
  "record": {
   "straight": {
    "overall": {
-    "w": 105,
-    "l": 82,
+    "w": 109,
+    "l": 87,
     "p": 2,
-    "units": 11.69,
-    "units_n": 189
+    "units": 10.37,
+    "units_n": 198
    },
    "nfl": {
-    "w": 97,
-    "l": 78,
+    "w": 101,
+    "l": 83,
     "p": 2,
-    "units": 8.46,
-    "units_n": 177
+    "units": 7.14,
+    "units_n": 186
    },
    "mlb": {
     "w": 0,
@@ -5403,18 +5448,18 @@
    }
   },
   "overall": {
-   "w": 105,
-   "l": 82,
+   "w": 109,
+   "l": 87,
    "p": 2,
-   "units": 11.69,
-   "units_n": 189
+   "units": 10.37,
+   "units_n": 198
   },
   "nfl": {
-   "w": 97,
-   "l": 78,
+   "w": 101,
+   "l": 83,
    "p": 2,
-   "units": 8.46,
-   "units_n": 177
+   "units": 7.14,
+   "units_n": 186
   },
   "mlb": {
    "w": 0,
@@ -5438,19 +5483,19 @@
    "units_n": 11
   },
   "full_season": {
-   "w": 105,
-   "l": 85,
+   "w": 109,
+   "l": 90,
    "p": 2,
-   "units": 8.69,
-   "units_n": 192
+   "units": 7.37,
+   "units_n": 201
   },
   "categories": {
    "games": {
-    "w": 64,
-    "l": 63,
+    "w": 68,
+    "l": 68,
     "p": 2,
-    "units": -6.71,
-    "units_n": 129
+    "units": -8.02,
+    "units_n": 138
    },
    "props": {
     "w": 21,
@@ -5474,7 +5519,7 @@
    "units": -2.14,
    "units_n": 6
   },
-  "pending": 12,
+  "pending": 3,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }
