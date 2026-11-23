@@ -1,4 +1,4 @@
-"""Grade All In Cousins, Erik Kuselias and Cody Brown third-party picks against ESPN public final scores, boxscores & opening odds.
+"""Grade All In Cousins, Erik Kuselias, Cody Brown and Cody Thrive third-party picks against ESPN public final scores, boxscores & opening odds.
 Pick schema: {id, date, week, sport: nfl|mlb|nba|ncaaf, category: games|props|leans, kind: straight|parlay,
  type: spread|ml|total|team_total|1h_spread|1h_ml|1h_total|1q_ml|prop|parlay,
  team, player(optional), stat_cat(optional), stat_key(optional), side(over|under), line,
@@ -6,7 +6,7 @@ Pick schema: {id, date, week, sport: nfl|mlb|nba|ncaaf, category: games|props|le
  book(optional), bought(optional note), espn_event_id, legs[] (for parlays, same leg schema), source_url, timestamp, desc}"""
 import json, math, os, urllib.request
 
-FILES = ["data/allin_picks.json", "data/kuselias_picks.json", "data/brown_picks.json"]
+FILES = ["data/allin_picks.json", "data/kuselias_picks.json", "data/brown_picks.json", "data/thrive_picks.json"]
 LG = {"nfl": "football/nfl", "mlb": "baseball/mlb", "nba": "basketball/nba", "ncaaf": "football/college-football"}
 TEAM_ALIAS = {"WAS": "WSH", "WSH": "WAS", "LA": "LAR", "LAR": "LA", "UTAH": "UTA", "UTA": "UTAH"}
 _cache = {}
@@ -364,6 +364,15 @@ def grade_file(path):
     R["parlay_legs"] = rec(L)
     R["pending"] = len(d["picks"]) - len(g)
     R["units_note"] = "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
+    if any(p.get("backtest") for p in d["picks"]):   # only files with backtest rows (Cody Thrive) get the split
+        ng = [p for p in g if p.get("kind") != "future"]
+        R["backtest"] = rec([p for p in ng if p.get("backtest")])
+        R["forward"] = rec([p for p in ng if not p.get("backtest")])
+        R["backtest_legs"] = rec([l for p in ng if p.get("backtest") for l in (p.get("legs") or []) if l.get("result") in ("win", "loss", "push")])
+        R["futures"] = rec([p for p in g if p.get("kind") == "future"])
+        R["futures_open"] = sum(1 for p in d["picks"] if p.get("kind") == "future" and not p.get("result"))
+        R["skipped"] = len(d.get("skipped") or [])
+        R["units_note"] = "1 unit per ticket at the price shown on his ticket; his stated stakes are not used."
     if "note" in d:
         d["note"] = d["note"].replace("Spreads and totals without a stated price use -110 (standard vig). Moneylines and parlays without a stated price count toward W/L only.", "Plays without a price spoken on the show/video are priced at their actual opening market odds.")
     d["record"] = R

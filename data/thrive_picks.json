@@ -1,0 +1,508 @@
+{
+ "handicapper": "Cody Thrive",
+ "show": "Cody Thrive (@sportsbettingeducation on Instagram)",
+ "source_url": "https://www.instagram.com/sportsbettingeducation/",
+ "tracked_since": "2026-11-23",
+ "note": "Only picks he posted before the games count; tickets shown after they settled, live reactions and tickets whose legs aren't readable are skipped. The backtest is kept separate from the forward record that starts Nov 23. 1 unit per ticket at the price on his ticket; his stated stakes are not used.",
+ "backtest_window": "Oct 15\u2013Nov 22, 2026",
+ "skipped": [
+  {
+   "date": "2026-11-21",
+   "desc": "CFB 3-leg moneyline parlay (Wake Forest, Texas Tech, Texas)",
+   "reason": "posted after result",
+   "source_url": "https://www.instagram.com/sportsbettingeducation/p/DgBKtzTEnAT/"
+  },
+  {
+   "date": "2026-11-15",
+   "desc": "5-leg combo ticket (slide 1, already won)",
+   "reason": "posted after result",
+   "source_url": "https://www.instagram.com/sportsbettingeducation/p/DfyDn9zkQAM/"
+  },
+  {
+   "date": "2026-11-15",
+   "desc": "Three combo tickets and a total (soccer, CFB, MMA), all already settled",
+   "reason": "posted after result",
+   "source_url": "https://www.instagram.com/sportsbettingeducation/p/Dfw-dYbkTKJ/"
+  },
+  {
+   "date": "2026-11-09",
+   "desc": "Commentary showing settled tickets",
+   "reason": "posted after result",
+   "source_url": "https://www.instagram.com/sportsbettingeducation/reel/DfiQRmOoHJL/"
+  },
+  {
+   "date": "2026-11-08",
+   "desc": "7-leg combo and four player-prop entries, all already settled",
+   "reason": "posted after result",
+   "source_url": "https://www.instagram.com/sportsbettingeducation/p/DfgGWfagBvc/"
+  },
+  {
+   "date": "2026-11-07",
+   "desc": "CFB 4-leg parlay (New Mexico, Arizona, OKST team total, South Carolina), already won",
+   "reason": "posted after result",
+   "source_url": "https://www.instagram.com/sportsbettingeducation/p/DfdZHX2kYRl/"
+  },
+  {
+   "date": "2026-11-07",
+   "desc": "Live in-game reaction on the South Carolina leg",
+   "reason": "posted after result",
+   "source_url": "https://www.instagram.com/sportsbettingeducation/reel/DfdXbQbRS4H/"
+  },
+  {
+   "date": "2026-11-07",
+   "desc": "Live in-game reaction on the South Carolina leg",
+   "reason": "posted after result",
+   "source_url": "https://www.instagram.com/sportsbettingeducation/reel/DfdWQFcRTT_/"
+  },
+  {
+   "date": "2026-11-03",
+   "desc": "4-leg soccer combo, already won",
+   "reason": "posted after result",
+   "source_url": "https://www.instagram.com/sportsbettingeducation/p/DfS7oJXET0z/"
+  },
+  {
+   "date": "2026-10-24",
+   "desc": "Commentary on the Oklahoma State win-total ticket (no new pick)",
+   "reason": "no new pick",
+   "source_url": "https://www.instagram.com/sportsbettingeducation/reel/De5lhW3R9ij/"
+  },
+  {
+   "date": "2026-10-22",
+   "desc": "Thursday 3-leg CFB combo",
+   "reason": "legs not shown",
+   "source_url": "https://www.instagram.com/sportsbettingeducation/reel/DezURF_R2bA/"
+  },
+  {
+   "date": "2026-10-18",
+   "desc": "NFL Colts, Rams, Chiefs ML in caption",
+   "reason": "posting time not shown, so it can't be confirmed as pre-game",
+   "source_url": "https://www.instagram.com/sportsbettingeducation/reel/DepDL8VxMX6/"
+  },
+  {
+   "date": "2026-10-18",
+   "desc": "5-leg ladder combo, already won",
+   "reason": "posted after result",
+   "source_url": "https://www.instagram.com/sportsbettingeducation/reel/DepDL8VxMX6/"
+  },
+  {
+   "date": "2026-10-17",
+   "desc": "5-leg ladder combo (spreads and moneylines)",
+   "reason": "legs not shown",
+   "source_url": "https://www.instagram.com/sportsbettingeducation/reel/Dem6EDKoO7q/"
+  }
+ ],
+ "picks": [
+  {
+   "id": "ct-bt-par-1120",
+   "date": "2026-11-20",
+   "week": 12,
+   "category": "parlays",
+   "kind": "parlay",
+   "type": "parlay",
+   "sport": "ncaaf",
+   "desc": "CFB Moneyline Parlay (6 legs)",
+   "odds": 266,
+   "odds_source": "stated",
+   "book": "Book A",
+   "legs": [
+    {
+     "desc": "Oregon ML (ORE @ MSU)",
+     "sport": "ncaaf",
+     "espn_event_id": "401858529",
+     "team": "ORE",
+     "type": "ml",
+     "odds": -950,
+     "odds_source": "stated",
+     "event_date": "2026-11-20",
+     "result": "win",
+     "final": {
+      "MSU": 7.0,
+      "ORE": 45.0
+     }
+    },
+    {
+     "desc": "Memphis ML (MEM @ NAVY)",
+     "sport": "ncaaf",
+     "espn_event_id": "401862834",
+     "team": "MEM",
+     "type": "ml",
+     "odds": -150,
+     "odds_source": "stated",
+     "event_date": "2026-11-21",
+     "result": "loss",
+     "final": {
+      "NAVY": 38.0,
+      "MEM": 34.0
+     }
+    },
+    {
+     "desc": "USC ML (MD @ USC)",
+     "sport": "ncaaf",
+     "espn_event_id": "401858534",
+     "team": "USC",
+     "type": "ml",
+     "odds": -950,
+     "odds_source": "stated",
+     "event_date": "2026-11-21",
+     "result": "win",
+     "final": {
+      "USC": 35.0,
+      "MD": 21.0
+     }
+    },
+    {
+     "desc": "Florida ML (VAN @ FLA)",
+     "sport": "ncaaf",
+     "espn_event_id": "401856748",
+     "team": "FLA",
+     "type": "ml",
+     "odds": -525,
+     "odds_source": "stated",
+     "event_date": "2026-11-21",
+     "result": "win",
+     "final": {
+      "FLA": 34.0,
+      "VAN": 27.0
+     }
+    },
+    {
+     "desc": "Oklahoma ML (TA&M @ OU)",
+     "sport": "ncaaf",
+     "espn_event_id": "401856752",
+     "team": "OU",
+     "type": "ml",
+     "odds": -300,
+     "odds_source": "stated",
+     "event_date": "2026-11-21",
+     "result": "win",
+     "final": {
+      "OU": 28.0,
+      "TA&M": 7.0
+     }
+    },
+    {
+     "desc": "Georgia ML (UGA @ SC)",
+     "sport": "ncaaf",
+     "espn_event_id": "401856753",
+     "team": "UGA",
+     "type": "ml",
+     "odds": -750,
+     "odds_source": "stated",
+     "event_date": "2026-11-21",
+     "result": "win",
+     "final": {
+      "SC": 6.0,
+      "UGA": 34.0
+     }
+    }
+   ],
+   "source_url": "https://www.instagram.com/sportsbettingeducation/reel/Df-1m2UgFQV/",
+   "source_label": "Instagram reel",
+   "posted_date": "2026-11-20",
+   "odds_note": "Price shown on his posted ticket before the first game",
+   "backtest": true,
+   "pregame": true,
+   "result": "loss",
+   "legs_total": 6,
+   "legs_graded": 6,
+   "legs_hit": 5,
+   "legs_push": 0,
+   "sunk_by": [
+    "Memphis ML (MEM @ NAVY)"
+   ]
+  },
+  {
+   "id": "ct-bt-combo-1115",
+   "date": "2026-11-21",
+   "week": 12,
+   "category": "parlays",
+   "kind": "parlay",
+   "type": "parlay",
+   "sport": "ncaaf",
+   "desc": "CFB Moneyline Combo, open legs only (3 legs)",
+   "odds": 262,
+   "odds_source": "stated",
+   "book": "Book B",
+   "legs": [
+    {
+     "desc": "Texas Tech ML (TTU @ BAY)",
+     "sport": "ncaaf",
+     "espn_event_id": "401856871",
+     "team": "TTU",
+     "type": "ml",
+     "odds": -150,
+     "odds_source": "stated",
+     "event_date": "2026-11-21",
+     "result": "win",
+     "final": {
+      "BAY": 10.0,
+      "TTU": 20.0
+     }
+    },
+    {
+     "desc": "Utah ML (UTAH @ TCU)",
+     "sport": "ncaaf",
+     "espn_event_id": "401856872",
+     "team": "UTAH",
+     "type": "ml",
+     "odds": -257,
+     "odds_source": "stated",
+     "event_date": "2026-11-21",
+     "result": "win",
+     "final": {
+      "TCU": 17.0,
+      "UTAH": 38.0
+     }
+    },
+    {
+     "desc": "Oklahoma State ML (OKST @ ASU)",
+     "sport": "ncaaf",
+     "espn_event_id": "401856870",
+     "team": "OKST",
+     "type": "ml",
+     "odds": -178,
+     "odds_source": "stated",
+     "event_date": "2026-11-21",
+     "result": "win",
+     "final": {
+      "ASU": 27.0,
+      "OKST": 30.0
+     }
+    }
+   ],
+   "source_url": "https://www.instagram.com/sportsbettingeducation/p/DfyDn9zkQAM/",
+   "source_label": "Instagram post",
+   "posted_date": "2026-11-15",
+   "odds_note": "Posted Nov 15 as a 5-leg combo with 2 soccer legs already won. Only the 3 legs still to play count. No price shown for those 3 alone, so it is the product of each leg's shown price (60%, 72%, 64%, i.e. -150, -257, -178) = +262. The full ticket showed 8.78x, which is not used.",
+   "backtest": true,
+   "pregame": true,
+   "result": "win",
+   "legs_total": 3,
+   "legs_graded": 3,
+   "legs_hit": 3,
+   "legs_push": 0,
+   "sunk_by": []
+  },
+  {
+   "id": "ct-fut-byu-1020",
+   "date": "2026-10-20",
+   "week": 8,
+   "category": "futures",
+   "kind": "future",
+   "type": "future",
+   "sport": "ncaaf",
+   "desc": "Future \u00b7 BYU to win the 2026-27 CFB national title",
+   "odds": 4500,
+   "odds_source": "stated",
+   "book": "Book A",
+   "settles": "2027-01-25",
+   "source_url": "https://www.instagram.com/sportsbettingeducation/reel/DeumVW7I3uy/",
+   "source_label": "Instagram reel",
+   "posted_date": "2026-10-20",
+   "also_shown": [
+    "https://www.instagram.com/sportsbettingeducation/reel/DfmzD8ZRw06/"
+   ],
+   "odds_note": "Price shown on his ticket (45/1); shown again Nov 11",
+   "backtest": true,
+   "pregame": true
+  },
+  {
+   "id": "ct-fut-okst-1025",
+   "date": "2026-10-25",
+   "week": 8,
+   "category": "futures",
+   "kind": "future",
+   "type": "future",
+   "sport": "ncaaf",
+   "desc": "Future \u00b7 Oklahoma State Over 6.5 regular-season wins",
+   "odds": 120,
+   "odds_source": "stated",
+   "book": "Book A",
+   "settles": "2026-11-28",
+   "source_url": "https://www.instagram.com/sportsbettingeducation/p/De665-DEd6n/",
+   "source_label": "Instagram post",
+   "posted_date": "2026-10-25",
+   "odds_note": "Price on his ticket, placed before he posted it (OKST was 5-2 at posting, so +120 was likely no longer available)",
+   "backtest": true,
+   "pregame": true,
+   "result": "win",
+   "final": {
+    "OKST record": "7-4"
+   },
+   "graded_note": "7th regular-season win: OKST 30, ASU 27 on Nov 21 (official final). Over 6.5 cannot lose."
+  }
+ ],
+ "record": {
+  "straight": {
+   "overall": {
+    "w": 0,
+    "l": 0,
+    "p": 0,
+    "units": 0,
+    "units_n": 0
+   },
+   "nfl": {
+    "w": 0,
+    "l": 0,
+    "p": 0,
+    "units": 0,
+    "units_n": 0
+   },
+   "mlb": {
+    "w": 0,
+    "l": 0,
+    "p": 0,
+    "units": 0,
+    "units_n": 0
+   },
+   "nba": {
+    "w": 0,
+    "l": 0,
+    "p": 0,
+    "units": 0,
+    "units_n": 0
+   },
+   "ncaaf": {
+    "w": 0,
+    "l": 0,
+    "p": 0,
+    "units": 0,
+    "units_n": 0
+   }
+  },
+  "parlay": {
+   "overall": {
+    "w": 1,
+    "l": 1,
+    "p": 0,
+    "units": 1.62,
+    "units_n": 2
+   },
+   "nfl": {
+    "w": 0,
+    "l": 0,
+    "p": 0,
+    "units": 0,
+    "units_n": 0
+   },
+   "mlb": {
+    "w": 0,
+    "l": 0,
+    "p": 0,
+    "units": 0,
+    "units_n": 0
+   },
+   "nba": {
+    "w": 0,
+    "l": 0,
+    "p": 0,
+    "units": 0,
+    "units_n": 0
+   },
+   "ncaaf": {
+    "w": 1,
+    "l": 1,
+    "p": 0,
+    "units": 1.62,
+    "units_n": 2
+   }
+  },
+  "overall": {
+   "w": 0,
+   "l": 0,
+   "p": 0,
+   "units": 0,
+   "units_n": 0
+  },
+  "nfl": {
+   "w": 0,
+   "l": 0,
+   "p": 0,
+   "units": 0,
+   "units_n": 0
+  },
+  "mlb": {
+   "w": 0,
+   "l": 0,
+   "p": 0,
+   "units": 0,
+   "units_n": 0
+  },
+  "nba": {
+   "w": 0,
+   "l": 0,
+   "p": 0,
+   "units": 0,
+   "units_n": 0
+  },
+  "ncaaf": {
+   "w": 0,
+   "l": 0,
+   "p": 0,
+   "units": 0,
+   "units_n": 0
+  },
+  "full_season": {
+   "w": 2,
+   "l": 1,
+   "p": 0,
+   "units": 2.82,
+   "units_n": 3
+  },
+  "categories": {
+   "futures": {
+    "w": 1,
+    "l": 0,
+    "p": 0,
+    "units": 1.2,
+    "units_n": 1
+   },
+   "parlays": {
+    "w": 1,
+    "l": 1,
+    "p": 0,
+    "units": 1.62,
+    "units_n": 2
+   }
+  },
+  "parlay_legs": {
+   "w": 8,
+   "l": 1,
+   "p": 0,
+   "units": 1.49,
+   "units_n": 9
+  },
+  "pending": 1,
+  "units_note": "1 unit per ticket at the price shown on his ticket; his stated stakes are not used.",
+  "backtest": {
+   "w": 1,
+   "l": 1,
+   "p": 0,
+   "units": 1.62,
+   "units_n": 2
+  },
+  "forward": {
+   "w": 0,
+   "l": 0,
+   "p": 0,
+   "units": 0,
+   "units_n": 0
+  },
+  "backtest_legs": {
+   "w": 8,
+   "l": 1,
+   "p": 0,
+   "units": 1.49,
+   "units_n": 9
+  },
+  "futures": {
+   "w": 1,
+   "l": 0,
+   "p": 0,
+   "units": 1.2,
+   "units_n": 1
+  },
+  "futures_open": 1,
+  "skipped": 14
+ }
+}
