@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-11-23T08:01:28-05:00",
- "asof": "2026-11-23",
+ "generated_at": "2026-11-24T08:01:27-05:00",
+ "asof": "2026-11-24",
  "window": {
-  "from": "2026-11-16",
-  "to": "2026-11-22",
+  "from": "2026-11-17",
+  "to": "2026-11-23",
   "tz": "America/New_York"
  },
  "min_wildness": 95.0,
@@ -13,25 +13,25 @@
  },
  "coverage": {
   "nba": {
-   "games_in_window": 51,
-   "games_with_box_or_events": 51,
-   "season_games_loaded": 248,
+   "games_in_window": 53,
+   "games_with_box_or_events": 53,
+   "season_games_loaded": 258,
    "cards": 4,
-   "candidates_over_threshold": 16
+   "candidates_over_threshold": 15
   },
   "nfl": {
    "games_in_window": 13,
    "games_with_box_or_events": 13,
-   "season_games_loaded": 162,
+   "season_games_loaded": 163,
    "cards": 2,
    "candidates_over_threshold": 11
   },
   "nhl": {
-   "games_in_window": 47,
-   "games_with_box_or_events": 47,
-   "season_games_loaded": 377,
+   "games_in_window": 52,
+   "games_with_box_or_events": 52,
+   "season_games_loaded": 384,
    "cards": 4,
-   "candidates_over_threshold": 21
+   "candidates_over_threshold": 24
   },
   "cfb": {
    "games_in_window": 70,
@@ -41,18 +41,18 @@
    "candidates_over_threshold": 34
   },
   "cbb": {
-   "games_in_window": 366,
-   "games_with_box_or_events": 366,
-   "season_games_loaded": 1226,
+   "games_in_window": 379,
+   "games_with_box_or_events": 379,
+   "season_games_loaded": 1272,
    "cards": 2,
-   "candidates_over_threshold": 51
+   "candidates_over_threshold": 53
   },
   "soccer": {
-   "games_in_window": 171,
-   "games_with_box_or_events": 171,
-   "season_games_loaded": 181,
+   "games_in_window": 168,
+   "games_with_box_or_events": 168,
+   "season_games_loaded": 188,
    "cards": 1,
-   "candidates_over_threshold": 4
+   "candidates_over_threshold": 5
   }
  },
  "cards": [
@@ -100,11 +100,11 @@
      "44"
     ]
    },
-   "rare": "Only 3 times a player outscored the other team in a quarter with 25+ points in our data since Oct 2023; the one before was Tue Mar 10, 2026 (191,770 player-periods)",
+   "rare": "Only 3 times a player outscored the other team in a quarter with 25+ points in our data since Oct 2023; the one before was Tue Mar 10, 2026 (192,272 player-periods)",
    "scope": "history",
    "wildness": 99.99,
    "k": 3,
-   "n": 191770,
+   "n": 192272,
    "id": "ws-nba-contrast-401910006-1"
   },
   {
@@ -149,11 +149,11 @@
      "1"
     ]
    },
-   "rare": "Top 0.00% of the 80,742 tracked player-games since Mar 2021 in our data (4-goal game). Tracked players only, so this is a share, not a league-wide count.",
+   "rare": "Top 0.00% of the 81,162 tracked player-games since Mar 2021 in our data (4-goal game). Tracked players only, so this is a share, not a league-wide count.",
    "scope": "history",
    "wildness": 99.99,
    "k": 4,
-   "n": 80742,
+   "n": 81162,
    "id": "ws-nhl-rare_line-401892758-2"
   },
   {
@@ -200,11 +200,11 @@
      "25"
     ]
    },
-   "rare": "Only 5 games with 50+ points and 15+ rebounds in our data since Oct 2023; the one before was Wed Nov 4, 2026 (84,762 player-games)",
+   "rare": "Only 5 games with 50+ points and 15+ rebounds in our data since Oct 2023; the one before was Wed Nov 4, 2026 (84,988 player-games)",
    "scope": "history",
    "wildness": 99.99,
    "k": 5,
-   "n": 84762,
+   "n": 84988,
    "id": "ws-nba-rare_line-401910027-3"
   },
   {
@@ -253,11 +253,11 @@
      "3"
     ]
    },
-   "rare": "Only 21 times a player outscored the other team in a quarter with 21+ points in our data since Oct 2023; the one before was Wed Nov 4, 2026 (191,770 player-periods)",
+   "rare": "Only 21 times a player outscored the other team in a quarter with 21+ points in our data since Oct 2023; the one before was Wed Nov 4, 2026 (192,272 player-periods)",
    "scope": "history",
    "wildness": 99.99,
    "k": 21,
-   "n": 191770,
+   "n": 192272,
    "id": "ws-nba-contrast-401910005-4"
   },
   {
@@ -306,11 +306,11 @@
      "20"
     ]
    },
-   "rare": "Only 22 games with 35+ points and 15+ rebounds and 10+ assists in our data since Oct 2023; the one before was Sat Oct 24, 2026 (84,762 player-games)",
+   "rare": "Only 22 games with 35+ points and 15+ rebounds and 10+ assists in our data since Oct 2023; the one before was Sat Oct 24, 2026 (84,988 player-games)",
    "scope": "history",
    "wildness": 99.97,
    "k": 22,
-   "n": 84762,
+   "n": 84988,
    "id": "ws-nba-rare_line-401910032-5"
   },
   {
@@ -406,11 +406,11 @@
      "2"
     ]
    },
-   "rare": "Top 0.06% of the 80,742 tracked player-games since Mar 2021 in our data (5-point game). Tracked players only, so this is a share, not a league-wide count.",
+   "rare": "Top 0.06% of the 81,162 tracked player-games since Mar 2021 in our data (5-point game). Tracked players only, so this is a share, not a league-wide count.",
    "scope": "history",
    "wildness": 99.94,
    "k": 49,
-   "n": 80742,
+   "n": 81162,
    "id": "ws-nhl-rare_line-401892763-7"
   },
   {
@@ -508,11 +508,11 @@
      "7"
     ]
    },
-   "rare": "Top 0.21% of the 12,010 tracked player-games since Dec 2016 in our data (5-touchdown game). Tracked players only, so this is a share, not a league-wide count.",
+   "rare": "Top 0.21% of the 12,027 tracked player-games since Dec 2016 in our data (5-touchdown game). Tracked players only, so this is a share, not a league-wide count.",
    "scope": "history",
    "wildness": 99.8,
    "k": 25,
-   "n": 12010,
+   "n": 12027,
    "id": "ws-nfl-rare_line-401873073-9"
   },
   {
@@ -553,11 +553,11 @@
      "0"
     ]
    },
-   "rare": "Top 2.23% of the 5,504 tracked player-games since Oct 2023 in our data (39+ save game). Tracked players only, so this is a share, not a league-wide count.",
+   "rare": "Top 2.26% of the 5,623 tracked player-games since Oct 2023 in our data (39+ save game). Tracked players only, so this is a share, not a league-wide count.",
    "scope": "history",
-   "wildness": 97.77,
-   "k": 123,
-   "n": 5504,
+   "wildness": 97.75,
+   "k": 127,
+   "n": 5623,
    "id": "ws-nhl-goalie-401892752-10"
   },
   {
@@ -604,11 +604,11 @@
      "0"
     ]
    },
-   "rare": "Top 3.18% of the 12,010 tracked player-games since Dec 2016 in our data (3-touchdown game). Tracked players only, so this is a share, not a league-wide count.",
+   "rare": "Top 3.18% of the 12,027 tracked player-games since Dec 2016 in our data (3-touchdown game). Tracked players only, so this is a share, not a league-wide count.",
    "scope": "history",
-   "wildness": 96.82,
+   "wildness": 96.83,
    "k": 382,
-   "n": 12010,
+   "n": 12027,
    "id": "ws-nfl-rare_line-401873066-11"
   },
   {
@@ -655,12 +655,59 @@
      "57"
     ]
    },
-   "rare": "First 46+ point game of the 2026-27 season so far (8,075 player-games compared since Nov 16, 2026). Earlier seasons are not in this comparison, so this is not a record.",
+   "rare": "First 46+ point game of the 2026-27 season so far (8,302 player-games compared since Nov 17, 2026). Earlier seasons are not in this comparison, so this is not a record.",
    "scope": "season",
    "wildness": null,
    "k": 1,
-   "n": 8075,
+   "n": 8302,
    "id": "ws-cbb-rare_line-401909566-12"
+  },
+  {
+   "sport": "cbb",
+   "type": "contrast",
+   "tag": "CONTRAST",
+   "hook": "Imoh Erims outscores ECCL by himself in the 2nd half: 25-21",
+   "lines": [
+    {
+     "k": "25",
+     "t": "points in the 2nd half by Imoh Erims"
+    },
+    {
+     "k": "21",
+     "t": "points for ECCL as a whole team in the 2nd half"
+    },
+    {
+     "k": "33",
+     "t": "points in the game for him"
+    }
+   ],
+   "game": {
+    "eid": "401928389",
+    "sport": "cbb",
+    "date_et": "2026-11-23",
+    "date_label": "Mon Nov 23, 2026",
+    "score": "GRAM 126, ECCL 45",
+    "home": "GRAM",
+    "away": "ECCL",
+    "home_score": 126,
+    "away_score": 45,
+    "ot": 0,
+    "so": false,
+    "home_lines": [
+     "62",
+     "64"
+    ],
+    "away_lines": [
+     "24",
+     "21"
+    ]
+   },
+   "rare": "First time a player outscored the other team in a half with 25+ points of the 2026-27 season so far (10,330 player-periods compared since Nov 17, 2026). Earlier seasons are not in this comparison, so this is not a record.",
+   "scope": "season",
+   "wildness": null,
+   "k": 1,
+   "n": 10330,
+   "id": "ws-cbb-contrast-401928389-13"
   },
   {
    "sport": "nhl",
@@ -708,12 +755,12 @@
      "1"
     ]
    },
-   "rare": "First streak of 23+ straight games with a point of the 2026-27 season so far (2,827 streaks compared since Sep 29, 2026). Earlier seasons are not in this comparison, so this is not a record.",
+   "rare": "First streak of 23+ straight games with a point of the 2026-27 season so far (2,872 streaks compared since Sep 29, 2026). Earlier seasons are not in this comparison, so this is not a record.",
    "scope": "season",
    "wildness": null,
    "k": 1,
-   "n": 2827,
-   "id": "ws-nhl-streak-401892730-13"
+   "n": 2872,
+   "id": "ws-nhl-streak-401892730-14"
   },
   {
    "sport": "soccer",
@@ -750,12 +797,12 @@
     "away_lines": [],
     "league": "Serie A"
    },
-   "rare": "First 4-goal match of the 2026-27 season so far (469 player-matches with a goal compared since Nov 15, 2026). Earlier seasons are not in this comparison, so this is not a record.",
+   "rare": "First 4-goal match of the 2026-27 season so far (495 player-matches with a goal compared since Nov 16, 2026). Earlier seasons are not in this comparison, so this is not a record.",
    "scope": "season",
    "wildness": null,
    "k": 1,
-   "n": 469,
-   "id": "ws-soccer-hat_trick-401874967-14"
+   "n": 495,
+   "id": "ws-soccer-hat_trick-401874967-15"
   },
   {
    "sport": "cfb",
@@ -806,54 +853,7 @@
    "wildness": null,
    "k": 1,
    "n": 400,
-   "id": "ws-cfb-win_streak-401856872-15"
-  },
-  {
-   "sport": "cbb",
-   "type": "comeback",
-   "tag": "COMEBACK",
-   "hook": "Tulsa Golden Hurricane storm back from 23 down",
-   "lines": [
-    {
-     "k": "23",
-     "t": "points is the biggest hole TLSA climbed out of (down 38-15 in the 1st half)"
-    },
-    {
-     "k": "3",
-     "t": "point final margin"
-    },
-    {
-     "k": "14",
-     "t": "points behind after the 1st half"
-    }
-   ],
-   "game": {
-    "eid": "401925864",
-    "sport": "cbb",
-    "date_et": "2026-11-16",
-    "date_label": "Mon Nov 16, 2026",
-    "score": "TLSA 67, WKU 64",
-    "home": "TLSA",
-    "away": "WKU",
-    "home_score": 67,
-    "away_score": 64,
-    "ot": 0,
-    "so": false,
-    "home_lines": [
-     "26",
-     "41"
-    ],
-    "away_lines": [
-     "40",
-     "24"
-    ]
-   },
-   "rare": "First comeback from 23+ points down of the 2026-27 season so far (364 games compared since Nov 16, 2026). Earlier seasons are not in this comparison, so this is not a record.",
-   "scope": "season",
-   "wildness": null,
-   "k": 1,
-   "n": 364,
-   "id": "ws-cbb-comeback-401925864-16"
+   "id": "ws-cfb-win_streak-401856872-16"
   }
  ]
 }
