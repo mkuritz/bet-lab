@@ -1,1 +1,125 @@
-{"feature":"Hat-Trick Hammer","sport":"NHL","preview":false,"updated":"2026-11-24T15:20:08+00:00","slate":"2026-11-24","hurdle":"3+ goals in the game (regulation and overtime; shootout goals do not count)","probability_label":"Research estimate - not calibrated, no graded record","record":"0-13 graded 3+ goal picks","assumptions":"Goals per game = shots/game (half last 10, half since 2025-26) x shooting % regressed to 9.5% over 60 shots, x opponent shots-allowed factor (0.88-1.12) x goalie save % factor (0.85-1.20); P(3+) = Poisson tail, which ignores game-to-game variance in ice time and score effects. Not fitted to 3+ outcomes.","market":"No 3+ goals price in our feed; likelihood only, not value","candidate":{"id":"8477934","name":"Leon Draisaitl","pos":"C","team":"EDM","opp":"VGK","home":true,"game":"2026020385","start":"2026-11-25T01:00:00Z","start_et":"Tue Nov 24, 8:00 PM ET","profile":"./#player/8477934","status":"Active roster, no injury listed","qualified":true,"est_lambda":0.665,"est_p3":0.03,"evidence":{"games":91,"season_goals":23,"season_gp":26,"shots_pg_blend":3.61,"dup_rows_dropped":0,"shooting_pct_regressed":0.1852,"toi_l10":22.7,"shots_l10":41,"hat_tricks_since_2025_26":1,"pp":{"unit":1,"conf":"High","asof":"2026-11-22"},"opp_shots_allowed_pg":25.68,"opp_factor":0.936,"goalie":{"name":"Adin Hill","sv":0.8863,"l10_sv":0.895,"status":"projected starter (confirmation unknown)","tandem":true},"goalie_factor":1.062,"last5":[{"game_id":"2026020375","d":"2026-11-22","o":"STL","g":1,"s":2},{"game_id":"2026020359","d":"2026-11-21","o":"CAR","g":1,"s":4},{"game_id":"2026020349","d":"2026-11-19","o":"TB","g":0,"s":5},{"game_id":"2026020335","d":"2026-11-17","o":"FLA","g":1,"s":2},{"game_id":"2026020326","d":"2026-11-15","o":"PHI","g":2,"s":3}]},"narrative":[{"text":"5 goals in his last 5 games (through 2026-11-22)","date":"2026-11-22","kind":"form","game_ids":["2026020375","2026020359","2026020349","2026020335","2026020326"]}],"fit":"3.61 shots a game (recent and since last season blended) with 22.7 minutes a night and a spot on power-play unit 1; VGK allows 25.7 shots a game and projected starter Adin Hill is at 0.895 over his last 10.","downside":"A hat trick is rare even for top scorers: the estimate is about 3.0%, so the most likely result is not a hat trick. The goalie is projected starter (confirmation unknown), and his team has two goalies splitting starts.","tiebreak":null,"narrative_note":null},"runners_up":[{"name":"Connor McDavid","team":"EDM","est_p3":0.0112}],"n_checked":44,"record_stats":{"graded":13,"hits":0,"misses":13,"pending":1,"text":"0-13","label":"0-13 graded 3+ goal picks"}}
+{
+ "feature": "Hat-Trick Hammer",
+ "sport": "NHL",
+ "preview": false,
+ "updated": "2026-11-24T22:13:27+00:00",
+ "slate": "2026-11-24",
+ "hurdle": "3+ goals in the game (regulation and overtime; shootout goals do not count)",
+ "probability_label": "Research estimate - not calibrated, no graded record",
+ "record": "0-13 graded 3+ goal picks",
+ "assumptions": "Goals per game = shots/game (half last 10, half since 2025-26) x shooting % regressed to 9.5% over 60 shots, x opponent shots-allowed factor (0.88-1.12) x goalie save % factor (0.85-1.20); P(3+) = Poisson tail, which ignores game-to-game variance in ice time and score effects. Not fitted to 3+ outcomes.",
+ "market": "No 3+ goals price in our feed; likelihood only, not value",
+ "candidate": {
+  "id": "8477934",
+  "name": "Leon Draisaitl",
+  "pos": "C",
+  "team": "EDM",
+  "opp": "VGK",
+  "home": true,
+  "game": "2026020385",
+  "start": "2026-11-25T01:00:00Z",
+  "start_et": "Tue Nov 24, 8:00 PM ET",
+  "profile": "./#player/8477934",
+  "status": "Active roster, no injury listed",
+  "qualified": true,
+  "est_lambda": 0.665,
+  "est_p3": 0.03,
+  "evidence": {
+   "games": 91,
+   "season_goals": 23,
+   "season_gp": 26,
+   "shots_pg_blend": 3.61,
+   "dup_rows_dropped": 0,
+   "shooting_pct_regressed": 0.1852,
+   "toi_l10": 22.7,
+   "shots_l10": 41,
+   "hat_tricks_since_2025_26": 1,
+   "pp": {
+    "unit": 1,
+    "conf": "High",
+    "asof": "2026-11-22"
+   },
+   "opp_shots_allowed_pg": 25.68,
+   "opp_factor": 0.936,
+   "goalie": {
+    "name": "Adin Hill",
+    "sv": 0.8863,
+    "l10_sv": 0.895,
+    "status": "projected starter (confirmation unknown)",
+    "tandem": true
+   },
+   "goalie_factor": 1.062,
+   "last5": [
+    {
+     "game_id": "2026020375",
+     "d": "2026-11-22",
+     "o": "STL",
+     "g": 1,
+     "s": 2
+    },
+    {
+     "game_id": "2026020359",
+     "d": "2026-11-21",
+     "o": "CAR",
+     "g": 1,
+     "s": 4
+    },
+    {
+     "game_id": "2026020349",
+     "d": "2026-11-19",
+     "o": "TB",
+     "g": 0,
+     "s": 5
+    },
+    {
+     "game_id": "2026020335",
+     "d": "2026-11-17",
+     "o": "FLA",
+     "g": 1,
+     "s": 2
+    },
+    {
+     "game_id": "2026020326",
+     "d": "2026-11-15",
+     "o": "PHI",
+     "g": 2,
+     "s": 3
+    }
+   ]
+  },
+  "narrative": [
+   {
+    "text": "5 goals in his last 5 games (through 2026-11-22)",
+    "date": "2026-11-22",
+    "kind": "form",
+    "game_ids": [
+     "2026020375",
+     "2026020359",
+     "2026020349",
+     "2026020335",
+     "2026020326"
+    ]
+   }
+  ],
+  "fit": "3.61 shots a game (recent and since last season blended) with 22.7 minutes a night and a spot on power-play unit 1; VGK allows 25.7 shots a game and projected starter Adin Hill is at 0.895 over his last 10.",
+  "downside": "A hat trick is rare even for top scorers: the estimate is about 3.0%, so the most likely result is not a hat trick. The goalie is projected starter (confirmation unknown), and his team has two goalies splitting starts.",
+  "tiebreak": null,
+  "narrative_note": null
+ },
+ "runners_up": [
+  {
+   "name": "Connor McDavid",
+   "team": "EDM",
+   "est_p3": 0.0112
+  }
+ ],
+ "n_checked": 44,
+ "record_stats": {
+  "graded": 13,
+  "hits": 0,
+  "misses": 13,
+  "pending": 1,
+  "text": "0-13",
+  "label": "0-13 graded 3+ goal picks"
+ }
+}
