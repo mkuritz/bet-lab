@@ -5401,24 +5401,30 @@
    "odds_stated_note": "Stated +130; matches Book A",
    "source_url": "https://www.tiktok.com/@erik.kuselias/video/7711050201569463583",
    "source_label": "Video @ 0:12",
-   "timestamp": "0:12"
+   "timestamp": "0:12",
+   "actual": 0.0,
+   "result": "loss",
+   "final": {
+    "CHI": 21.0,
+    "NO": 13.0
+   }
   }
  ],
  "record": {
   "straight": {
    "overall": {
     "w": 110,
-    "l": 87,
+    "l": 88,
     "p": 2,
-    "units": 11.35,
-    "units_n": 199
+    "units": 10.35,
+    "units_n": 200
    },
    "nfl": {
     "w": 102,
-    "l": 83,
+    "l": 84,
     "p": 2,
-    "units": 8.12,
-    "units_n": 187
+    "units": 7.12,
+    "units_n": 188
    },
    "mlb": {
     "w": 0,
@@ -5481,17 +5487,17 @@
   },
   "overall": {
    "w": 110,
-   "l": 87,
+   "l": 88,
    "p": 2,
-   "units": 11.35,
-   "units_n": 199
+   "units": 10.35,
+   "units_n": 200
   },
   "nfl": {
    "w": 102,
-   "l": 83,
+   "l": 84,
    "p": 2,
-   "units": 8.12,
-   "units_n": 187
+   "units": 7.12,
+   "units_n": 188
   },
   "mlb": {
    "w": 0,
@@ -5516,10 +5522,10 @@
   },
   "full_season": {
    "w": 110,
-   "l": 90,
+   "l": 91,
    "p": 2,
-   "units": 8.35,
-   "units_n": 202
+   "units": 7.35,
+   "units_n": 203
   },
   "categories": {
    "games": {
@@ -5531,10 +5537,10 @@
    },
    "props": {
     "w": 21,
-    "l": 9,
+    "l": 10,
     "p": 0,
-    "units": 10.79,
-    "units_n": 30
+    "units": 9.79,
+    "units_n": 31
    },
    "leans": {
     "w": 20,
