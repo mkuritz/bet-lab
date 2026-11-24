@@ -3270,24 +3270,29 @@
    "kind": "straight",
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-11-huge-spreads-and-slicing-it-thin-all-in-sports/",
    "episode_date": "2026-11-18",
-   "id": "aic-w11-123"
+   "id": "aic-w11-123",
+   "result": "win",
+   "final": {
+    "WSH": 22.0,
+    "CIN": 20.0
+   }
   }
  ],
  "record": {
   "straight": {
    "overall": {
-    "w": 59,
+    "w": 60,
     "l": 60,
     "p": 3,
-    "units": -2.36,
-    "units_n": 122
+    "units": -1.42,
+    "units_n": 123
    },
    "nfl": {
-    "w": 53,
+    "w": 54,
     "l": 55,
     "p": 3,
-    "units": -2.53,
-    "units_n": 111
+    "units": -1.59,
+    "units_n": 112
    },
    "mlb": {
     "w": 2,
@@ -3349,18 +3354,18 @@
    }
   },
   "overall": {
-   "w": 59,
+   "w": 60,
    "l": 60,
    "p": 3,
-   "units": -2.36,
-   "units_n": 122
+   "units": -1.42,
+   "units_n": 123
   },
   "nfl": {
-   "w": 53,
+   "w": 54,
    "l": 55,
    "p": 3,
-   "units": -2.53,
-   "units_n": 111
+   "units": -1.59,
+   "units_n": 112
   },
   "mlb": {
    "w": 2,
@@ -3390,7 +3395,7 @@
    "units": 5.2,
    "units_n": 25
   },
-  "pending": 1,
+  "pending": 0,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }

@@ -2376,7 +2376,13 @@
    "book": "Book B",
    "source_url": "https://x.com/CodyBrownBets/status/2125005818601116056",
    "source_label": "X post",
-   "posted_at": "2026-11-23T23:17:22Z"
+   "posted_at": "2026-11-23T23:17:22Z",
+   "actual": 77.0,
+   "result": "win",
+   "final": {
+    "WSH": 22.0,
+    "CIN": 20.0
+   }
   },
   {
    "id": "cb-w11-nba-1123",
@@ -2401,7 +2407,13 @@
    "book": "Book B",
    "source_url": "https://x.com/CodyBrownBets/status/2125005818601116056",
    "source_label": "X post",
-   "posted_at": "2026-11-23T23:17:22Z"
+   "posted_at": "2026-11-23T23:17:22Z",
+   "actual": 23.0,
+   "result": "win",
+   "final": {
+    "NO": 119.0,
+    "PHX": 123.0
+   }
   },
   {
    "id": "cb-w11-mnfsgp-1123",
@@ -2428,7 +2440,13 @@
      "side": "over",
      "line": 199.5,
      "odds": 155,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 289.0,
+     "result": "win",
+     "final": {
+      "WSH": 22.0,
+      "CIN": 20.0
+     }
     },
     {
      "desc": "Chig Okonkwo 30+ Receiving Yards (CIN @ WAS)",
@@ -2442,7 +2460,13 @@
      "side": "over",
      "line": 29.5,
      "odds": 124,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 66.0,
+     "result": "win",
+     "final": {
+      "WSH": 22.0,
+      "CIN": 20.0
+     }
     },
     {
      "desc": "Tee Higgins 5+ Receptions (CIN @ WAS)",
@@ -2456,7 +2480,13 @@
      "side": "over",
      "line": 4.5,
      "odds": 277,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 2.0,
+     "result": "loss",
+     "final": {
+      "WSH": 22.0,
+      "CIN": 20.0
+     }
     }
    ],
    "legs_total": 3,
@@ -2466,27 +2496,30 @@
    "source_url": "https://x.com/CodyBrownBets/status/2125005818601116056",
    "source_label": "X post",
    "posted_at": "2026-11-23T23:17:22Z",
-   "legs_graded": 0,
-   "legs_hit": 0,
+   "legs_graded": 3,
+   "legs_hit": 2,
    "legs_push": 0,
-   "sunk_by": []
+   "sunk_by": [
+    "Tee Higgins 5+ Receptions (CIN @ WAS)"
+   ],
+   "result": "loss"
   }
  ],
  "record": {
   "straight": {
    "overall": {
-    "w": 3,
+    "w": 5,
     "l": 1,
     "p": 1,
-    "units": 1.54,
-    "units_n": 5
+    "units": 2.96,
+    "units_n": 7
    },
    "nfl": {
-    "w": 1,
+    "w": 2,
     "l": 0,
     "p": 0,
-    "units": 0.88,
-    "units_n": 1
+    "units": 1.45,
+    "units_n": 2
    },
    "mlb": {
     "w": 0,
@@ -2496,11 +2529,11 @@
     "units_n": 0
    },
    "nba": {
-    "w": 2,
+    "w": 3,
     "l": 1,
     "p": 1,
-    "units": 0.66,
-    "units_n": 4
+    "units": 1.51,
+    "units_n": 5
    },
    "ncaaf": {
     "w": 0,
@@ -2513,17 +2546,17 @@
   "parlay": {
    "overall": {
     "w": 1,
-    "l": 16,
+    "l": 17,
     "p": 0,
-    "units": -15.1,
-    "units_n": 17
+    "units": -16.1,
+    "units_n": 18
    },
    "nfl": {
     "w": 0,
-    "l": 9,
+    "l": 10,
     "p": 0,
-    "units": -9,
-    "units_n": 9
+    "units": -10,
+    "units_n": 10
    },
    "mlb": {
     "w": 0,
@@ -2548,18 +2581,18 @@
    }
   },
   "overall": {
-   "w": 3,
+   "w": 5,
    "l": 1,
    "p": 1,
-   "units": 1.54,
-   "units_n": 5
+   "units": 2.96,
+   "units_n": 7
   },
   "nfl": {
-   "w": 1,
+   "w": 2,
    "l": 0,
    "p": 0,
-   "units": 0.88,
-   "units_n": 1
+   "units": 1.45,
+   "units_n": 2
   },
   "mlb": {
    "w": 0,
@@ -2569,11 +2602,11 @@
    "units_n": 0
   },
   "nba": {
-   "w": 2,
+   "w": 3,
    "l": 1,
    "p": 1,
-   "units": 0.66,
-   "units_n": 4
+   "units": 1.51,
+   "units_n": 5
   },
   "ncaaf": {
    "w": 0,
@@ -2583,36 +2616,36 @@
    "units_n": 0
   },
   "full_season": {
-   "w": 4,
-   "l": 17,
+   "w": 6,
+   "l": 18,
    "p": 1,
-   "units": -13.56,
-   "units_n": 22
+   "units": -13.14,
+   "units_n": 25
   },
   "categories": {
    "best": {
-    "w": 3,
+    "w": 5,
     "l": 1,
     "p": 1,
-    "units": 1.54,
-    "units_n": 5
+    "units": 2.96,
+    "units_n": 7
    },
    "parlays": {
     "w": 1,
-    "l": 16,
+    "l": 17,
     "p": 0,
-    "units": -15.1,
-    "units_n": 17
+    "units": -16.1,
+    "units_n": 18
    }
   },
   "parlay_legs": {
-   "w": 51,
-   "l": 25,
+   "w": 53,
+   "l": 26,
    "p": 0,
-   "units": -4.8,
-   "units_n": 76
+   "units": -3.01,
+   "units_n": 79
   },
-  "pending": 3,
+  "pending": 0,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }
