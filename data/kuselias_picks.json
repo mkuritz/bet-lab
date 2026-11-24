@@ -5375,6 +5375,33 @@
     "SF": 35.0,
     "MIN": 10.0
    }
+  },
+  {
+   "id": "ek-w11-prop-1",
+   "week": 11,
+   "date": "2026-11-22",
+   "episode_date": "2026-11-22",
+   "sport": "nfl",
+   "category": "props",
+   "kind": "straight",
+   "type": "prop",
+   "team": "CHI",
+   "player": "Kyle Monangai",
+   "stat_cat": "td",
+   "stat_key": "TD",
+   "side": "over",
+   "line": 0.5,
+   "espn_event_id": "401873071",
+   "desc": "Kyle Monangai Anytime TD (NO @ CHI \u00b7 return from injury)",
+   "odds": 130,
+   "odds_source": "live",
+   "odds_book": "A",
+   "odds_note": "Market price when the video posted (Nov 22, 12:33 PM ET); Book A +130 per 12:23 PM ET snapshot",
+   "stated_odds": 130,
+   "odds_stated_note": "Stated +130; matches Book A",
+   "source_url": "https://www.tiktok.com/@erik.kuselias/video/7711050201569463583",
+   "source_label": "Video @ 0:12",
+   "timestamp": "0:12"
   }
  ],
  "record": {
