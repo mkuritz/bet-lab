@@ -18,6 +18,27 @@
    "desc": "NBA One Leg Per Game Lotto",
    "reason": "legs not shown on the public ticket",
    "source_url": "https://x.com/CodyBrownBets/status/2123182250359664914"
+  },
+  {
+   "date": "2026-11-24",
+   "ticket": "TG1STTD",
+   "desc": "Thanksgiving First Touchdown Scorers parlay",
+   "reason": "settles on first touchdown scorer, a stat not in the official box score",
+   "source_url": "https://x.com/CodyBrownBets/status/2125297457710149703"
+  },
+  {
+   "date": "2026-11-24",
+   "ticket": "UCL1124",
+   "desc": "UCL Tuesday Flyer (soccer)",
+   "reason": "soccer is outside the tracked NFL & NBA scope",
+   "source_url": "https://x.com/CodyBrownBets/status/2125237020146757794"
+  },
+  {
+   "date": "2026-11-24",
+   "ticket": "NMESOT",
+   "desc": "UCL Straight 3 (soccer)",
+   "reason": "soccer is outside the tracked NFL & NBA scope",
+   "source_url": "https://x.com/CodyBrownBets/status/2125272833110737067"
   }
  ],
  "picks": [
@@ -2503,6 +2524,58 @@
     "Tee Higgins 5+ Receptions (CIN @ WAS)"
    ],
    "result": "loss"
+  },
+  {
+   "id": "cb-w12-lad-1125",
+   "date": "2026-11-25",
+   "week": 12,
+   "category": "parlays",
+   "kind": "parlay",
+   "type": "parlay",
+   "sport": "nfl",
+   "desc": "Thanksgiving Ladder Bet 1 (2 legs)",
+   "odds": -157,
+   "odds_source": "stated",
+   "book": "Book B",
+   "source_url": "https://x.com/CodyBrownBets/status/2125356447542215046",
+   "source_label": "X post",
+   "posted_at": "2026-11-24T23:17:07Z",
+   "ticket": "TGLADDER1",
+   "legs": [
+    {
+     "desc": "Tyler Higbee 3+ Receptions (GB @ LAR)",
+     "sport": "nfl",
+     "espn_event_id": "401873079",
+     "team": "LAR",
+     "type": "prop",
+     "player": "Tyler Higbee",
+     "stat_cat": "receiving",
+     "stat_key": "REC",
+     "side": "over",
+     "line": 2.5,
+     "odds": -254,
+     "odds_source": "stated"
+    },
+    {
+     "desc": "Matthew Golden 4+ Receptions (GB @ LAR)",
+     "sport": "nfl",
+     "espn_event_id": "401873079",
+     "team": "GB",
+     "type": "prop",
+     "player": "Matthew Golden",
+     "stat_cat": "receiving",
+     "stat_key": "REC",
+     "side": "over",
+     "line": 3.5,
+     "odds": -652,
+     "odds_source": "stated"
+    }
+   ],
+   "legs_total": 2,
+   "legs_graded": 0,
+   "legs_hit": 0,
+   "legs_push": 0,
+   "sunk_by": []
   }
  ],
  "record": {
@@ -2645,7 +2718,7 @@
    "units": -3.01,
    "units_n": 79
   },
-  "pending": 0,
+  "pending": 1,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }
