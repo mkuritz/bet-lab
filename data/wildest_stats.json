@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-11-24T08:01:27-05:00",
- "asof": "2026-11-24",
+ "generated_at": "2026-11-25T08:01:47-05:00",
+ "asof": "2026-11-25",
  "window": {
-  "from": "2026-11-17",
-  "to": "2026-11-23",
+  "from": "2026-11-18",
+  "to": "2026-11-24",
   "tz": "America/New_York"
  },
  "min_wildness": 95.0,
@@ -13,11 +13,11 @@
  },
  "coverage": {
   "nba": {
-   "games_in_window": 53,
-   "games_with_box_or_events": 53,
-   "season_games_loaded": 258,
-   "cards": 4,
-   "candidates_over_threshold": 15
+   "games_in_window": 51,
+   "games_with_box_or_events": 51,
+   "season_games_loaded": 261,
+   "cards": 2,
+   "candidates_over_threshold": 11
   },
   "nfl": {
    "games_in_window": 13,
@@ -27,86 +27,35 @@
    "candidates_over_threshold": 11
   },
   "nhl": {
-   "games_in_window": 52,
-   "games_with_box_or_events": 52,
-   "season_games_loaded": 384,
+   "games_in_window": 42,
+   "games_with_box_or_events": 42,
+   "season_games_loaded": 385,
    "cards": 4,
-   "candidates_over_threshold": 24
+   "candidates_over_threshold": 15
   },
   "cfb": {
-   "games_in_window": 70,
-   "games_with_box_or_events": 70,
-   "season_games_loaded": 822,
+   "games_in_window": 69,
+   "games_with_box_or_events": 69,
+   "season_games_loaded": 824,
    "cards": 3,
-   "candidates_over_threshold": 34
+   "candidates_over_threshold": 35
   },
   "cbb": {
-   "games_in_window": 379,
-   "games_with_box_or_events": 379,
-   "season_games_loaded": 1272,
+   "games_in_window": 396,
+   "games_with_box_or_events": 396,
+   "season_games_loaded": 1359,
    "cards": 2,
-   "candidates_over_threshold": 53
+   "candidates_over_threshold": 55
   },
   "soccer": {
-   "games_in_window": 168,
-   "games_with_box_or_events": 168,
-   "season_games_loaded": 188,
+   "games_in_window": 162,
+   "games_with_box_or_events": 162,
+   "season_games_loaded": 199,
    "cards": 1,
-   "candidates_over_threshold": 5
+   "candidates_over_threshold": 4
   }
  },
  "cards": [
-  {
-   "sport": "nba",
-   "type": "contrast",
-   "tag": "CONTRAST",
-   "hook": "Brice Sensabaugh outscores LAC by himself in the 4th quarter: 25-21",
-   "lines": [
-    {
-     "k": "25",
-     "t": "points in the 4th quarter by Brice Sensabaugh"
-    },
-    {
-     "k": "21",
-     "t": "points for LAC as a whole team in the 4th quarter"
-    },
-    {
-     "k": "40",
-     "t": "points in the game for him"
-    }
-   ],
-   "game": {
-    "eid": "401910006",
-    "sport": "nba",
-    "date_et": "2026-11-17",
-    "date_label": "Tue Nov 17, 2026",
-    "score": "UTAH 132, LAC 107",
-    "home": "LAC",
-    "away": "UTAH",
-    "home_score": 107,
-    "away_score": 132,
-    "ot": 0,
-    "so": false,
-    "home_lines": [
-     "29",
-     "33",
-     "24",
-     "21"
-    ],
-    "away_lines": [
-     "35",
-     "23",
-     "30",
-     "44"
-    ]
-   },
-   "rare": "Only 3 times a player outscored the other team in a quarter with 25+ points in our data since Oct 2023; the one before was Tue Mar 10, 2026 (192,272 player-periods)",
-   "scope": "history",
-   "wildness": 99.99,
-   "k": 3,
-   "n": 192272,
-   "id": "ws-nba-contrast-401910006-1"
-  },
   {
    "sport": "nhl",
    "type": "rare_line",
@@ -149,21 +98,21 @@
      "1"
     ]
    },
-   "rare": "Top 0.00% of the 81,162 tracked player-games since Mar 2021 in our data (4-goal game). Tracked players only, so this is a share, not a league-wide count.",
+   "rare": "Top 0.01% of the 81,713 tracked player-games since Mar 2021 in our data (4-goal game). Tracked players only, so this is a share, not a league-wide count.",
    "scope": "history",
    "wildness": 99.99,
-   "k": 4,
-   "n": 81162,
-   "id": "ws-nhl-rare_line-401892758-2"
+   "k": 5,
+   "n": 81713,
+   "id": "ws-nhl-rare_line-401892758-1"
   },
   {
    "sport": "nba",
    "type": "rare_line",
    "tag": "RARE LINE",
-   "hook": "Victor Wembanyama posts a rare 50-19-1 line",
+   "hook": "Victor Wembanyama posts a rare 50-18-1 line",
    "lines": [
     {
-     "k": "50-19-1",
+     "k": "50-18-1",
      "t": "points-rebounds-assists"
     },
     {
@@ -200,65 +149,12 @@
      "25"
     ]
    },
-   "rare": "Only 5 games with 50+ points and 15+ rebounds in our data since Oct 2023; the one before was Wed Nov 4, 2026 (84,988 player-games)",
+   "rare": "Only 5 games with 50+ points and 15+ rebounds in our data since Oct 2023; the one before was Wed Nov 4, 2026 (85,058 player-games)",
    "scope": "history",
    "wildness": 99.99,
    "k": 5,
-   "n": 84988,
-   "id": "ws-nba-rare_line-401910027-3"
-  },
-  {
-   "sport": "nba",
-   "type": "contrast",
-   "tag": "CONTRAST",
-   "hook": "Quentin Grimes outscores CHA by himself in the 4th quarter: 21-17",
-   "lines": [
-    {
-     "k": "21",
-     "t": "points in the 4th quarter by Quentin Grimes"
-    },
-    {
-     "k": "17",
-     "t": "points for CHA as a whole team in the 4th quarter"
-    },
-    {
-     "k": "47",
-     "t": "points in the game for him"
-    }
-   ],
-   "game": {
-    "eid": "401910005",
-    "sport": "nba",
-    "date_et": "2026-11-17",
-    "date_label": "Tue Nov 17, 2026",
-    "score": "LAL 118, CHA 114 (OT)",
-    "home": "LAL",
-    "away": "CHA",
-    "home_score": 118,
-    "away_score": 114,
-    "ot": 1,
-    "so": false,
-    "home_lines": [
-     "30",
-     "29",
-     "22",
-     "30",
-     "7"
-    ],
-    "away_lines": [
-     "34",
-     "32",
-     "28",
-     "17",
-     "3"
-    ]
-   },
-   "rare": "Only 21 times a player outscored the other team in a quarter with 21+ points in our data since Oct 2023; the one before was Wed Nov 4, 2026 (192,272 player-periods)",
-   "scope": "history",
-   "wildness": 99.99,
-   "k": 21,
-   "n": 192272,
-   "id": "ws-nba-contrast-401910005-4"
+   "n": 85058,
+   "id": "ws-nba-rare_line-401910027-2"
   },
   {
    "sport": "nba",
@@ -306,12 +202,12 @@
      "20"
     ]
    },
-   "rare": "Only 22 games with 35+ points and 15+ rebounds and 10+ assists in our data since Oct 2023; the one before was Sat Oct 24, 2026 (84,988 player-games)",
+   "rare": "Only 22 games with 35+ points and 15+ rebounds and 10+ assists in our data since Oct 2023; the one before was Sat Oct 24, 2026 (85,058 player-games)",
    "scope": "history",
    "wildness": 99.97,
    "k": 22,
-   "n": 84988,
-   "id": "ws-nba-rare_line-401910032-5"
+   "n": 85058,
+   "id": "ws-nba-rare_line-401910032-3"
   },
   {
    "sport": "cfb",
@@ -357,12 +253,12 @@
      "6"
     ]
    },
-   "rare": "Top 0.07% of the 17,937 tracked player-games since Sep 2022 in our data (212+ yard receiving game). Tracked players only, so this is a share, not a league-wide count.",
+   "rare": "Top 0.07% of the 17,925 tracked player-games since Sep 2022 in our data (212+ yard receiving game). Tracked players only, so this is a share, not a league-wide count.",
    "scope": "history",
    "wildness": 99.94,
    "k": 12,
-   "n": 17937,
-   "id": "ws-cfb-rare_line-401858309-6"
+   "n": 17925,
+   "id": "ws-cfb-rare_line-401858309-4"
   },
   {
    "sport": "nhl",
@@ -406,12 +302,12 @@
      "2"
     ]
    },
-   "rare": "Top 0.06% of the 81,162 tracked player-games since Mar 2021 in our data (5-point game). Tracked players only, so this is a share, not a league-wide count.",
+   "rare": "Top 0.06% of the 81,713 tracked player-games since Mar 2021 in our data (5-point game). Tracked players only, so this is a share, not a league-wide count.",
    "scope": "history",
    "wildness": 99.94,
-   "k": 49,
-   "n": 81162,
-   "id": "ws-nhl-rare_line-401892763-7"
+   "k": 50,
+   "n": 81713,
+   "id": "ws-nhl-rare_line-401892763-5"
   },
   {
    "sport": "cfb",
@@ -457,12 +353,12 @@
      "7"
     ]
    },
-   "rare": "Top 0.12% of the 13,240 tracked player-games since Aug 2022 in our data (241+ yard rushing game). Tracked players only, so this is a share, not a league-wide count.",
+   "rare": "Top 0.12% of the 13,227 tracked player-games since Aug 2022 in our data (241+ yard rushing game). Tracked players only, so this is a share, not a league-wide count.",
    "scope": "history",
    "wildness": 99.88,
    "k": 16,
-   "n": 13240,
-   "id": "ws-cfb-rare_line-401862834-8"
+   "n": 13227,
+   "id": "ws-cfb-rare_line-401862834-6"
   },
   {
    "sport": "nfl",
@@ -508,12 +404,12 @@
      "7"
     ]
    },
-   "rare": "Top 0.21% of the 12,027 tracked player-games since Dec 2016 in our data (5-touchdown game). Tracked players only, so this is a share, not a league-wide count.",
+   "rare": "Top 0.21% of the 12,035 tracked player-games since Dec 2016 in our data (5-touchdown game). Tracked players only, so this is a share, not a league-wide count.",
    "scope": "history",
    "wildness": 99.8,
    "k": 25,
-   "n": 12027,
-   "id": "ws-nfl-rare_line-401873073-9"
+   "n": 12035,
+   "id": "ws-nfl-rare_line-401873073-7"
   },
   {
    "sport": "nhl",
@@ -553,12 +449,12 @@
      "0"
     ]
    },
-   "rare": "Top 2.26% of the 5,623 tracked player-games since Oct 2023 in our data (39+ save game). Tracked players only, so this is a share, not a league-wide count.",
+   "rare": "Top 2.26% of the 5,628 tracked player-games since Oct 2023 in our data (39+ save game). Tracked players only, so this is a share, not a league-wide count.",
    "scope": "history",
    "wildness": 97.75,
    "k": 127,
-   "n": 5623,
-   "id": "ws-nhl-goalie-401892752-10"
+   "n": 5628,
+   "id": "ws-nhl-goalie-401892752-8"
   },
   {
    "sport": "nfl",
@@ -604,63 +500,59 @@
      "0"
     ]
    },
-   "rare": "Top 3.18% of the 12,027 tracked player-games since Dec 2016 in our data (3-touchdown game). Tracked players only, so this is a share, not a league-wide count.",
+   "rare": "Top 3.17% of the 12,035 tracked player-games since Dec 2016 in our data (3-touchdown game). Tracked players only, so this is a share, not a league-wide count.",
    "scope": "history",
    "wildness": 96.83,
    "k": 382,
-   "n": 12027,
-   "id": "ws-nfl-rare_line-401873066-11"
+   "n": 12035,
+   "id": "ws-nfl-rare_line-401873066-9"
   },
   {
    "sport": "cbb",
    "type": "rare_line",
    "tag": "RARE LINE",
-   "hook": "Andrej Stojakovic drops 46 on DUKE",
+   "hook": "Demetrius Lilley fills the stat sheet: 16-20-1",
    "lines": [
     {
-     "k": "46",
-     "t": "points on 14-of-21 shooting"
+     "k": "16-20-1",
+     "t": "points-rebounds-assists"
     },
     {
-     "k": "2",
-     "t": "three-pointers"
+     "k": "32",
+     "t": "minutes played"
     },
     {
-     "k": "6",
-     "t": "rebounds and 1 assist"
-    },
-    {
-     "k": "16-of-20",
-     "t": "at the line"
+     "k": "5-of-11",
+     "t": "from the field, 5-of-6 at the line"
     }
    ],
    "game": {
-    "eid": "401909566",
+    "eid": "401911278",
     "sport": "cbb",
-    "date_et": "2026-11-17",
-    "date_label": "Tue Nov 17, 2026",
-    "score": "ILL 99, DUKE 78",
-    "home": "DUKE",
-    "away": "ILL",
-    "home_score": 78,
-    "away_score": 99,
+    "date_et": "2026-11-21",
+    "date_label": "Sat Nov 21, 2026",
+    "score": "BING 67, ARMY 46",
+    "home": "BING",
+    "away": "ARMY",
+    "home_score": 67,
+    "away_score": 46,
     "ot": 0,
     "so": false,
     "home_lines": [
-     "32",
-     "46"
+     "35",
+     "32"
     ],
     "away_lines": [
-     "42",
-     "57"
+     "18",
+     "28"
     ]
    },
-   "rare": "First 46+ point game of the 2026-27 season so far (8,302 player-games compared since Nov 17, 2026). Earlier seasons are not in this comparison, so this is not a record.",
+   "rare": "First 20+ rebound game of the 2026-27 season so far (8,693 player-games compared since Nov 18, 2026). Earlier seasons are not in this comparison, so this is not a record.",
    "scope": "season",
    "wildness": null,
    "k": 1,
-   "n": 8302,
-   "id": "ws-cbb-rare_line-401909566-12"
+   "n": 8693,
+   "id": "ws-cbb-rare_line-401911278-10"
   },
   {
    "sport": "cbb",
@@ -702,65 +594,65 @@
      "21"
     ]
    },
-   "rare": "First time a player outscored the other team in a half with 25+ points of the 2026-27 season so far (10,330 player-periods compared since Nov 17, 2026). Earlier seasons are not in this comparison, so this is not a record.",
+   "rare": "First time a player outscored the other team in a half with 25+ points of the 2026-27 season so far (10,737 player-periods compared since Nov 18, 2026). Earlier seasons are not in this comparison, so this is not a record.",
    "scope": "season",
    "wildness": null,
    "k": 1,
-   "n": 10330,
-   "id": "ws-cbb-contrast-401928389-13"
+   "n": 10737,
+   "id": "ws-cbb-contrast-401928389-11"
   },
   {
    "sport": "nhl",
    "type": "streak",
    "tag": "STREAK",
-   "hook": "Connor McDavid: 23 straight games with a point",
+   "hook": "Kirill Kaprizov: 6 straight multi-point games",
    "lines": [
     {
-     "k": "23",
-     "t": "straight games with a point"
+     "k": "6",
+     "t": "straight multi-point games"
     },
     {
-     "k": "13",
+     "k": "2",
      "t": "goals during the run"
     },
     {
-     "k": "55",
+     "k": "17",
      "t": "points during the run"
     },
     {
-     "k": "23",
-     "t": "games, Sep 29 to Nov 17 (ET)"
+     "k": "6",
+     "t": "games, Nov 12 to Nov 23 (ET); still active"
     }
    ],
    "game": {
-    "eid": "401892730",
+    "eid": "401892779",
     "sport": "nhl",
-    "date_et": "2026-11-17",
-    "date_label": "Tue Nov 17, 2026",
-    "score": "EDM 5, FLA 2",
-    "home": "FLA",
-    "away": "EDM",
+    "date_et": "2026-11-23",
+    "date_label": "Mon Nov 23, 2026",
+    "score": "MIN 5, SJ 2",
+    "home": "SJ",
+    "away": "MIN",
     "home_score": 2,
     "away_score": 5,
     "ot": 0,
     "so": false,
     "home_lines": [
+     "2",
      "0",
-     "0",
-     "2"
+     "0"
     ],
     "away_lines": [
      "2",
-     "2",
-     "1"
+     "1",
+     "2"
     ]
    },
-   "rare": "First streak of 23+ straight games with a point of the 2026-27 season so far (2,872 streaks compared since Sep 29, 2026). Earlier seasons are not in this comparison, so this is not a record.",
+   "rare": "First streak of 6+ straight multi-point games of the 2026-27 season so far (1,080 streaks compared since Sep 29, 2026). Earlier seasons are not in this comparison, so this is not a record.",
    "scope": "season",
    "wildness": null,
    "k": 1,
-   "n": 2872,
-   "id": "ws-nhl-streak-401892730-14"
+   "n": 1080,
+   "id": "ws-nhl-streak-401892779-12"
   },
   {
    "sport": "soccer",
@@ -797,12 +689,12 @@
     "away_lines": [],
     "league": "Serie A"
    },
-   "rare": "First 4-goal match of the 2026-27 season so far (495 player-matches with a goal compared since Nov 16, 2026). Earlier seasons are not in this comparison, so this is not a record.",
+   "rare": "First 4-goal match of the 2026-27 season so far (510 player-matches with a goal compared since Nov 17, 2026). Earlier seasons are not in this comparison, so this is not a record.",
    "scope": "season",
    "wildness": null,
    "k": 1,
-   "n": 495,
-   "id": "ws-soccer-hat_trick-401874967-15"
+   "n": 510,
+   "id": "ws-soccer-hat_trick-401874967-13"
   },
   {
    "sport": "cfb",
@@ -848,12 +740,12 @@
      "21"
     ]
    },
-   "rare": "First win streak of 11+ of the 2026-27 season so far (400 win streaks compared since Aug 2026). Earlier seasons are not in this comparison, so this is not a record.",
+   "rare": "First win streak of 11+ of the 2026-27 season so far (401 win streaks compared since Aug 2026). Earlier seasons are not in this comparison, so this is not a record.",
    "scope": "season",
    "wildness": null,
    "k": 1,
-   "n": 400,
-   "id": "ws-cfb-win_streak-401856872-16"
+   "n": 401,
+   "id": "ws-cfb-win_streak-401856872-14"
   }
  ]
 }
