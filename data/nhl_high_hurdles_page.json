@@ -1,5 +1,5 @@
 {
-"updated": "2026-11-25T23:37:06+00:00",
+"updated": "2026-11-25T23:56:50+00:00",
 "slate": "2026-11-25",
 "players": [
 {
@@ -7697,7 +7697,7 @@
 "team_stats": "2026-11-25T22:01:32+00:00"
 },
 "why": "Roman Josi has two or more points in 30% of 23 games this season and 30% of his last 10 (16% last season). He reached 1+ point (one short of the line or better) in 60% of his last 40, on 26.0 minutes a night over the last 10 and 2.6 shots a game, with a spot on power-play unit 1. DAL allows 0.3 goals a game to defensemen (#29 of 32, 1 = most). Projected goalie Jake Oettinger is at a 0.894 save rate over his last 10.",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8478414-s5",
@@ -8289,7 +8289,7 @@
 "team_stats": "2026-11-25T22:01:32+00:00"
 },
 "why": "Zach Werenski has five or more shots on goal in 23% of 22 games this season and 40% of his last 10 (29% last season). He reached 4+ shots on goal (one short of the line or better) in 40% of his last 40, on 26.7 minutes a night over the last 10 and 3.4 shots a game, with a spot on power-play unit 1. NJ allows 8.0 shots a game to defensemen (#6 of 32, 1 = most).",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8480801-s5",
@@ -8437,7 +8437,7 @@
 "team_stats": "2026-11-25T22:01:32+00:00"
 },
 "why": "Brady Tkachuk has five or more shots on goal in 21% of 24 games this season and 20% of his last 10 (30% last season). He reached 4+ shots on goal (one short of the line or better) in 38% of his last 40, on 16.8 minutes a night over the last 10 and 3.3 shots a game, with a spot on power-play unit 1. OTT allows 18.9 shots a game to forwards (#20 of 32, 1 = most).",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8479542-s5",
@@ -8585,7 +8585,7 @@
 "team_stats": "2026-11-25T22:01:32+00:00"
 },
 "why": "Brandon Hagel has five or more shots on goal in 45% of 20 games this season and 40% of his last 10 (21% last season). Listed status: {'status': 'Injured Reserve', 'note': 'Hagel (lower body) was placed on injured reserve by the Lightning on Thursday, retroactive to Nov. 15, Eduardo A. Encina of the Tampa Bay Times reports.', 'date': '2026-11-19'}. He reached 4+ shots on goal (one short of the line or better) in 43% of his last 40, on 19.6 minutes a night over the last 10 and 3.6 shots a game. CAR allows 16.1 shots a game to forwards (#32 of 32, 1 = most).",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8477500-s5",
@@ -8733,7 +8733,7 @@
 "team_stats": "2026-11-25T22:01:32+00:00"
 },
 "why": "Bo Horvat has five or more shots on goal in 9% of 23 games this season and 10% of his last 10 (24% last season). He reached 4+ shots on goal (one short of the line or better) in 28% of his last 40, on 20.3 minutes a night over the last 10 and 3.0 shots a game, with a spot on power-play unit 1. STL allows 19.5 shots a game to forwards (#18 of 32, 1 = most).",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8478864-s5",
@@ -8881,7 +8881,7 @@
 "team_stats": "2026-11-25T22:01:32+00:00"
 },
 "why": "Kirill Kaprizov has five or more shots on goal in 15% of 26 games this season and 20% of his last 10 (27% last season). He reached 4+ shots on goal (one short of the line or better) in 38% of his last 40, on 20.9 minutes a night over the last 10 and 3.1 shots a game, with a spot on power-play unit 1. UTA allows 17.9 shots a game to forwards (#27 of 32, 1 = most).",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8483445-g2",
