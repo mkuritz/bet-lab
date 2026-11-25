@@ -348,6 +348,84 @@
     "OKST record": "7-4"
    },
    "graded_note": "7th regular-season win: OKST 30, ASU 27 on Nov 21 (official final). Over 6.5 cannot lose."
+  },
+  {
+   "id": "ct-par-1124",
+   "date": "2026-11-25",
+   "week": 13,
+   "category": "parlays",
+   "kind": "parlay",
+   "type": "parlay",
+   "sport": "soccer",
+   "desc": "Top Play Mixed Moneyline Parlay (4 legs: 3 soccer, 1 CFB)",
+   "odds": 191,
+   "odds_source": "stated",
+   "book": "Book A",
+   "legs": [
+    {
+     "desc": "Barcelona ML (BAR @ SABAH)",
+     "sport": "soccer",
+     "espn_event_id": "401915378",
+     "team": "Barcelona",
+     "type": "ml",
+     "stat_key": "ml",
+     "side": "win",
+     "line": null,
+     "odds": -1011,
+     "odds_source": "stated",
+     "event_date": "2026-11-25"
+    },
+    {
+     "desc": "Inter ML (STU @ INT)",
+     "sport": "soccer",
+     "espn_event_id": "401915376",
+     "team": "Internazionale",
+     "type": "ml",
+     "stat_key": "ml",
+     "side": "win",
+     "line": null,
+     "odds": -223,
+     "odds_source": "stated",
+     "event_date": "2026-11-25"
+    },
+    {
+     "desc": "Bayern Munich ML (BAY @ LIL)",
+     "sport": "soccer",
+     "espn_event_id": "401915377",
+     "team": "Bayern Munich",
+     "type": "ml",
+     "stat_key": "ml",
+     "side": "win",
+     "line": null,
+     "odds": -144,
+     "odds_source": "stated",
+     "event_date": "2026-11-25"
+    },
+    {
+     "desc": "Texas Tech ML (TCU @ TTU)",
+     "sport": "ncaaf",
+     "espn_event_id": "401856879",
+     "team": "TTU",
+     "type": "ml",
+     "stat_key": "ml",
+     "side": "win",
+     "line": null,
+     "odds": -614,
+     "odds_source": "stated",
+     "event_date": "2026-11-26"
+    }
+   ],
+   "source_url": "https://www.instagram.com/sportsbettingeducation/",
+   "source_label": "Instagram story",
+   "posted_date": "2026-11-24",
+   "posted_at": "2026-11-24T18:50:00-05:00 (approx; story showed 31-33 min old at ~7:20 PM ET)",
+   "odds_note": "Instagram story; ticket price shown: 1 unit to return 2.91x (+191). Leg prices shown as win percentages (91%, 69%, 59%, 86%) converted to American odds for display only. Posted before the first kickoff.",
+   "pregame": true,
+   "legs_total": 4,
+   "legs_graded": 0,
+   "legs_hit": 0,
+   "legs_push": 0,
+   "sunk_by": []
   }
  ],
  "record": {
@@ -490,7 +568,7 @@
    "units": 1.49,
    "units_n": 9
   },
-  "pending": 1,
+  "pending": 2,
   "units_note": "1 unit per ticket at the price shown on his ticket; his stated stakes are not used.",
   "backtest": {
    "w": 1,
