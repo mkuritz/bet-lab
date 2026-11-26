@@ -107,6 +107,42 @@
    "desc": "Oklahoma State win total, already logged (ct-fut-okst-1025); commentary on the comeback",
    "reason": "no new pick",
    "source_url": "https://www.instagram.com/p/DgC1Tr9EWH3/"
+  },
+  {
+   "date": "2026-11-25",
+   "desc": "Thanks and commentary",
+   "reason": "no new pick",
+   "source_url": "https://www.instagram.com/sportsbettingeducation/reel/DgD1nRXxvB1/"
+  },
+  {
+   "date": "2026-11-25",
+   "desc": "Commentary post",
+   "reason": "no new pick",
+   "source_url": "https://www.instagram.com/sportsbettingeducation/p/DgDOzskkc4a/"
+  },
+  {
+   "date": "2026-11-25",
+   "desc": "Commentary reel",
+   "reason": "no new pick",
+   "source_url": "https://www.instagram.com/sportsbettingeducation/reel/DgD7fGwxCQ6/"
+  },
+  {
+   "date": "2026-11-25",
+   "desc": "Commentary post",
+   "reason": "no new pick",
+   "source_url": "https://www.instagram.com/sportsbettingeducation/p/DgEbZ0mxjQi/"
+  },
+  {
+   "date": "2026-11-25",
+   "desc": "Settled slip reel",
+   "reason": "posted after result",
+   "source_url": "https://www.instagram.com/sportsbettingeducation/reel/DgB4Fy2RypM/"
+  },
+  {
+   "date": "2026-11-25",
+   "desc": "Instagram story: settled 3-leg parlay screenshot",
+   "reason": "posted after result",
+   "source_url": "https://www.instagram.com/sportsbettingeducation/"
   }
  ],
  "picks": [
@@ -426,6 +462,45 @@
    "legs_hit": 0,
    "legs_push": 0,
    "sunk_by": []
+  },
+  {
+   "id": "ct-ml-1125",
+   "date": "2026-11-26",
+   "week": 13,
+   "category": "parlays",
+   "kind": "ml",
+   "type": "ml",
+   "sport": "ncaaf",
+   "desc": "Texas Tech moneyline (TCU @ TTU)",
+   "odds": -614,
+   "odds_source": "stated",
+   "book": "Book A",
+   "legs": [
+    {
+     "desc": "Texas Tech ML (TCU @ TTU)",
+     "sport": "ncaaf",
+     "espn_event_id": "401856879",
+     "team": "TTU",
+     "type": "ml",
+     "stat_key": "ml",
+     "side": "win",
+     "line": null,
+     "odds": -614,
+     "odds_source": "stated",
+     "event_date": "2026-11-26"
+    }
+   ],
+   "source_url": "https://www.instagram.com/sportsbettingeducation/reel/DgLvctaAm8t/",
+   "source_label": "Instagram reel",
+   "posted_date": "2026-11-25",
+   "posted_at": "2026-11-25T18:46:00-05:00",
+   "odds_note": "Stated 86% converted to American; ticket overlay showed a different multiple, unreliable. The same reel also showed a 6-market combo ticket whose other 5 legs are not shown, so it is not logged.",
+   "pregame": true,
+   "legs_total": 1,
+   "legs_graded": 0,
+   "legs_hit": 0,
+   "legs_push": 0,
+   "sunk_by": []
   }
  ],
  "record": {
@@ -568,7 +643,7 @@
    "units": 1.49,
    "units_n": 9
   },
-  "pending": 2,
+  "pending": 3,
   "units_note": "1 unit per ticket at the price shown on his ticket; his stated stakes are not used.",
   "backtest": {
    "w": 1,
@@ -599,6 +674,6 @@
    "units_n": 1
   },
   "futures_open": 1,
-  "skipped": 17
+  "skipped": 23
  }
 }
