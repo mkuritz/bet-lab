@@ -3292,7 +3292,12 @@
    "kind": "straight",
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-12-cant-quit-atlanta-the-thanksgiving-slate/",
    "episode_date": "2026-11-24",
-   "id": "aic-w12-124"
+   "id": "aic-w12-124",
+   "result": "win",
+   "final": {
+    "LAR": 26.0,
+    "GB": 13.0
+   }
   },
   {
    "sport": "nfl",
@@ -3311,7 +3316,12 @@
    "kind": "straight",
    "source_url": "https://CousinsAllIn.podbean.com/e/nfl-week-12-cant-quit-atlanta-the-thanksgiving-slate/",
    "episode_date": "2026-11-24",
-   "id": "aic-w12-125"
+   "id": "aic-w12-125",
+   "result": "win",
+   "final": {
+    "LAR": 26.0,
+    "GB": 13.0
+   }
   },
   {
    "sport": "nfl",
@@ -3579,18 +3589,18 @@
  "record": {
   "straight": {
    "overall": {
-    "w": 60,
+    "w": 62,
     "l": 60,
     "p": 3,
-    "units": -1.42,
-    "units_n": 123
+    "units": 0.2,
+    "units_n": 125
    },
    "nfl": {
-    "w": 54,
+    "w": 56,
     "l": 55,
     "p": 3,
-    "units": -1.59,
-    "units_n": 112
+    "units": 0.03,
+    "units_n": 114
    },
    "mlb": {
     "w": 2,
@@ -3652,18 +3662,18 @@
    }
   },
   "overall": {
-   "w": 60,
+   "w": 62,
    "l": 60,
    "p": 3,
-   "units": -1.42,
-   "units_n": 123
+   "units": 0.2,
+   "units_n": 125
   },
   "nfl": {
-   "w": 54,
+   "w": 56,
    "l": 55,
    "p": 3,
-   "units": -1.59,
-   "units_n": 112
+   "units": 0.03,
+   "units_n": 114
   },
   "mlb": {
    "w": 2,
@@ -3693,7 +3703,7 @@
    "units": 5.2,
    "units_n": 25
   },
-  "pending": 16,
+  "pending": 14,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }

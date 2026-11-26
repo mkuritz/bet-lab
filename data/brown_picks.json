@@ -2561,7 +2561,13 @@
      "side": "over",
      "line": 2.5,
      "odds": -254,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 1.0,
+     "result": "loss",
+     "final": {
+      "LAR": 26.0,
+      "GB": 13.0
+     }
     },
     {
      "desc": "Matthew Golden 4+ Receptions (GB @ LAR)",
@@ -2575,14 +2581,24 @@
      "side": "over",
      "line": 3.5,
      "odds": -652,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 1.0,
+     "result": "loss",
+     "final": {
+      "LAR": 26.0,
+      "GB": 13.0
+     }
     }
    ],
    "legs_total": 2,
-   "legs_graded": 0,
+   "legs_graded": 2,
    "legs_hit": 0,
    "legs_push": 0,
-   "sunk_by": []
+   "sunk_by": [
+    "Tyler Higbee 3+ Receptions (GB @ LAR)",
+    "Matthew Golden 4+ Receptions (GB @ LAR)"
+   ],
+   "result": "loss"
   },
   {
    "id": "cb-w12-tgfly-1126",
@@ -2725,7 +2741,13 @@
      "side": "over",
      "line": 0.5,
      "odds": 170,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 1.0,
+     "result": "win",
+     "final": {
+      "LAR": 26.0,
+      "GB": 13.0
+     }
     },
     {
      "desc": "Blake Corum Anytime TD (GB @ LAR)",
@@ -2739,7 +2761,13 @@
      "side": "over",
      "line": 0.5,
      "odds": 135,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 1.0,
+     "result": "win",
+     "final": {
+      "LAR": 26.0,
+      "GB": 13.0
+     }
     },
     {
      "desc": "Jordan Love 225+ Passing Yards (GB @ LAR)",
@@ -2753,7 +2781,13 @@
      "side": "over",
      "line": 224.5,
      "odds": -404,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 198.0,
+     "result": "loss",
+     "final": {
+      "LAR": 26.0,
+      "GB": 13.0
+     }
     },
     {
      "desc": "Matthew Stafford 225+ Passing Yards (GB @ LAR)",
@@ -2767,14 +2801,24 @@
      "side": "over",
      "line": 224.5,
      "odds": -141,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 140.0,
+     "result": "loss",
+     "final": {
+      "LAR": 26.0,
+      "GB": 13.0
+     }
     }
    ],
    "legs_total": 4,
-   "legs_graded": 0,
-   "legs_hit": 0,
+   "legs_graded": 4,
+   "legs_hit": 2,
    "legs_push": 0,
-   "sunk_by": []
+   "sunk_by": [
+    "Jordan Love 225+ Passing Yards (GB @ LAR)",
+    "Matthew Stafford 225+ Passing Yards (GB @ LAR)"
+   ],
+   "result": "loss"
   },
   {
    "id": "cb-w12-gbsgp-1125",
@@ -2805,7 +2849,13 @@
      "side": "over",
      "line": 49.5,
      "odds": -354,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 39.0,
+     "result": "loss",
+     "final": {
+      "LAR": 26.0,
+      "GB": 13.0
+     }
     },
     {
      "desc": "Kyren Williams 15+ Receiving Yards (GB @ LAR)",
@@ -2819,7 +2869,13 @@
      "side": "over",
      "line": 14.5,
      "odds": -234,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 19.0,
+     "result": "win",
+     "final": {
+      "LAR": 26.0,
+      "GB": 13.0
+     }
     },
     {
      "desc": "Blake Corum 40+ Rushing Yards (GB @ LAR)",
@@ -2833,14 +2889,23 @@
      "side": "over",
      "line": 39.5,
      "odds": -363,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 184.0,
+     "result": "win",
+     "final": {
+      "LAR": 26.0,
+      "GB": 13.0
+     }
     }
    ],
    "legs_total": 3,
-   "legs_graded": 0,
-   "legs_hit": 0,
+   "legs_graded": 3,
+   "legs_hit": 2,
    "legs_push": 0,
-   "sunk_by": []
+   "sunk_by": [
+    "Matthew Golden 50+ Receiving Yards (GB @ LAR)"
+   ],
+   "result": "loss"
   },
   {
    "id": "cb-w12-nba1leg-1125",
@@ -2893,7 +2958,13 @@
      "side": "over",
      "line": 7.5,
      "odds": -461,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 14.0,
+     "result": "win",
+     "final": {
+      "CHA": 105.0,
+      "CHI": 107.0
+     }
     },
     {
      "desc": "Jaden McDaniels 20+ Pts+Reb (MIN @ OKC)",
@@ -2907,7 +2978,13 @@
      "side": "over",
      "line": 19.5,
      "odds": -314,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 42.0,
+     "result": "win",
+     "final": {
+      "OKC": 106.0,
+      "MIN": 113.0
+     }
     },
     {
      "desc": "Donovan Mitchell 20+ Points (CLE @ NY)",
@@ -2921,7 +2998,13 @@
      "side": "over",
      "line": 19.5,
      "odds": -392,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 30.0,
+     "result": "win",
+     "final": {
+      "NY": 121.0,
+      "CLE": 102.0
+     }
     },
     {
      "desc": "Kel'el Ware 10+ Pts+Reb (BKN @ MIL)",
@@ -2935,7 +3018,13 @@
      "side": "over",
      "line": 9.5,
      "odds": -433,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 27.0,
+     "result": "win",
+     "final": {
+      "MIL": 97.0,
+      "BKN": 104.0
+     }
     },
     {
      "desc": "Ty Jerome 25+ Pts+Ast (LAC @ MEM)",
@@ -2949,7 +3038,13 @@
      "side": "over",
      "line": 24.5,
      "odds": -301,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 24.0,
+     "result": "loss",
+     "final": {
+      "MEM": 115.0,
+      "LAC": 97.0
+     }
     },
     {
      "desc": "Amen Thompson 20+ Pts+Reb+Ast (PHX @ HOU)",
@@ -2963,7 +3058,13 @@
      "side": "over",
      "line": 19.5,
      "odds": -414,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 32.0,
+     "result": "win",
+     "final": {
+      "HOU": 116.0,
+      "PHX": 104.0
+     }
     },
     {
      "desc": "Stephon Castle 15+ Points (SAS @ POR)",
@@ -2977,7 +3078,13 @@
      "side": "over",
      "line": 14.5,
      "odds": -334,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 20.0,
+     "result": "win",
+     "final": {
+      "POR": 116.0,
+      "SA": 111.0
+     }
     },
     {
      "desc": "Domantas Sabonis 10+ Rebounds (SAC @ GS)",
@@ -2991,14 +3098,23 @@
      "side": "over",
      "line": 9.5,
      "odds": -393,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 10.0,
+     "result": "win",
+     "final": {
+      "GS": 129.0,
+      "SAC": 110.0
+     }
     }
    ],
    "legs_total": 9,
-   "legs_graded": 1,
-   "legs_hit": 1,
+   "legs_graded": 9,
+   "legs_hit": 8,
    "legs_push": 0,
-   "sunk_by": []
+   "sunk_by": [
+    "Ty Jerome 25+ Pts+Ast (LAC @ MEM)"
+   ],
+   "result": "loss"
   }
  ],
  "record": {
@@ -3042,17 +3158,17 @@
   "parlay": {
    "overall": {
     "w": 1,
-    "l": 17,
+    "l": 21,
     "p": 0,
-    "units": -16.1,
-    "units_n": 18
+    "units": -20.1,
+    "units_n": 22
    },
    "nfl": {
     "w": 0,
-    "l": 10,
+    "l": 13,
     "p": 0,
-    "units": -10,
-    "units_n": 10
+    "units": -13,
+    "units_n": 13
    },
    "mlb": {
     "w": 0,
@@ -3063,10 +3179,10 @@
    },
    "nba": {
     "w": 1,
-    "l": 6,
+    "l": 7,
     "p": 0,
-    "units": -5.1,
-    "units_n": 7
+    "units": -6.1,
+    "units_n": 8
    },
    "ncaaf": {
     "w": 0,
@@ -3113,10 +3229,10 @@
   },
   "full_season": {
    "w": 6,
-   "l": 18,
+   "l": 22,
    "p": 1,
-   "units": -13.14,
-   "units_n": 25
+   "units": -17.14,
+   "units_n": 29
   },
   "categories": {
    "best": {
@@ -3128,20 +3244,20 @@
    },
    "parlays": {
     "w": 1,
-    "l": 17,
+    "l": 21,
     "p": 0,
-    "units": -16.1,
-    "units_n": 18
+    "units": -20.1,
+    "units_n": 22
    }
   },
   "parlay_legs": {
-   "w": 54,
-   "l": 26,
+   "w": 65,
+   "l": 32,
    "p": 0,
-   "units": -2.78,
-   "units_n": 80
+   "units": -3.21,
+   "units_n": 97
   },
-  "pending": 5,
+  "pending": 1,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }
