@@ -527,7 +527,13 @@
      "stat_cat": "td",
      "stat_key": "TD",
      "side": "over",
-     "line": 0.5
+     "line": 0.5,
+     "actual": 3.0,
+     "result": "win",
+     "final": {
+      "DET": 35.0,
+      "CHI": 39.0
+     }
     },
     {
      "desc": "D'Andre Swift Anytime TD (CHI @ DET)",
@@ -541,7 +547,13 @@
      "stat_cat": "td",
      "stat_key": "TD",
      "side": "over",
-     "line": 0.5
+     "line": 0.5,
+     "actual": 1.0,
+     "result": "win",
+     "final": {
+      "DET": 35.0,
+      "CHI": 39.0
+     }
     },
     {
      "desc": "George Pickens 70+ Receiving Yards (PHI @ DAL)",
@@ -578,8 +590,8 @@
    "odds_note": "Instagram story; ticket price shown: 1 unit to return 8.07x (+707). Leg prices shown as win percentages (70%, 53%, 49%, 57%) converted to American odds for display only. Posted before the first kickoff.",
    "pregame": true,
    "legs_total": 4,
-   "legs_graded": 0,
-   "legs_hit": 0,
+   "legs_graded": 2,
+   "legs_hit": 2,
    "legs_push": 0,
    "sunk_by": []
   }
@@ -718,11 +730,11 @@
    }
   },
   "parlay_legs": {
-   "w": 8,
+   "w": 10,
    "l": 1,
    "p": 0,
-   "units": 1.49,
-   "units_n": 9
+   "units": 2.8,
+   "units_n": 11
   },
   "pending": 4,
   "units_note": "1 unit per ticket at the price shown on his ticket; his stated stakes are not used.",

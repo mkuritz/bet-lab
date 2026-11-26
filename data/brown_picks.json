@@ -2631,7 +2631,13 @@
      "side": "over",
      "line": 59.5,
      "odds": -504,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 205.0,
+     "result": "win",
+     "final": {
+      "DET": 35.0,
+      "CHI": 39.0
+     }
     },
     {
      "desc": "Luther Burden III 40+ Receiving Yards (CHI @ DET)",
@@ -2645,7 +2651,13 @@
      "side": "over",
      "line": 39.5,
      "odds": -333,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 44.0,
+     "result": "win",
+     "final": {
+      "DET": 35.0,
+      "CHI": 39.0
+     }
     },
     {
      "desc": "Dak Prescott 225+ Passing Yards (PHI @ DAL)",
@@ -2705,8 +2717,8 @@
     }
    ],
    "legs_total": 6,
-   "legs_graded": 0,
-   "legs_hit": 0,
+   "legs_graded": 2,
+   "legs_hit": 2,
    "legs_push": 0,
    "sunk_by": []
   },
@@ -3251,11 +3263,11 @@
    }
   },
   "parlay_legs": {
-   "w": 65,
+   "w": 67,
    "l": 32,
    "p": 0,
-   "units": -3.21,
-   "units_n": 97
+   "units": -2.71,
+   "units_n": 99
   },
   "pending": 1,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
