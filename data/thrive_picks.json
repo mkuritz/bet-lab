@@ -501,6 +501,87 @@
    "legs_hit": 0,
    "legs_push": 0,
    "sunk_by": []
+  },
+  {
+   "id": "ct-par-1126",
+   "date": "2026-11-26",
+   "week": 13,
+   "category": "parlays",
+   "kind": "parlay",
+   "type": "parlay",
+   "sport": "nfl",
+   "desc": "Top Play Mixed Parlay (4 legs: 3 NFL props, 1 CFB spread)",
+   "odds": 707,
+   "odds_source": "stated",
+   "book": "Book A",
+   "legs": [
+    {
+     "desc": "Jahmyr Gibbs Anytime TD (CHI @ DET)",
+     "sport": "nfl",
+     "espn_event_id": "401873081",
+     "type": "prop",
+     "odds": -233,
+     "odds_source": "stated",
+     "event_date": "2026-11-26",
+     "player": "Jahmyr Gibbs",
+     "stat_cat": "td",
+     "stat_key": "TD",
+     "side": "over",
+     "line": 0.5
+    },
+    {
+     "desc": "D'Andre Swift Anytime TD (CHI @ DET)",
+     "sport": "nfl",
+     "espn_event_id": "401873081",
+     "type": "prop",
+     "odds": -113,
+     "odds_source": "stated",
+     "event_date": "2026-11-26",
+     "player": "D'Andre Swift",
+     "stat_cat": "td",
+     "stat_key": "TD",
+     "side": "over",
+     "line": 0.5
+    },
+    {
+     "desc": "George Pickens 70+ Receiving Yards (PHI @ DAL)",
+     "sport": "nfl",
+     "espn_event_id": "401873080",
+     "type": "prop",
+     "odds": 104,
+     "odds_source": "stated",
+     "event_date": "2026-11-26",
+     "player": "George Pickens",
+     "stat_cat": "receiving",
+     "stat_key": "YDS",
+     "side": "over",
+     "line": 69.5
+    },
+    {
+     "desc": "Texas Tech -13.5 (TCU @ TTU)",
+     "sport": "ncaaf",
+     "espn_event_id": "401856879",
+     "type": "spread",
+     "odds": -133,
+     "odds_source": "stated",
+     "event_date": "2026-11-26",
+     "team": "TTU",
+     "stat_key": "spread",
+     "side": "cover",
+     "line": -13.5
+    }
+   ],
+   "source_url": "https://www.instagram.com/sportsbettingeducation/",
+   "source_label": "Instagram story",
+   "posted_date": "2026-11-26",
+   "posted_at": "2026-11-26T08:25:00-05:00 (approx; story showed 3h old at ~11:25 AM ET)",
+   "odds_note": "Instagram story; ticket price shown: 1 unit to return 8.07x (+707). Leg prices shown as win percentages (70%, 53%, 49%, 57%) converted to American odds for display only. Posted before the first kickoff.",
+   "pregame": true,
+   "legs_total": 4,
+   "legs_graded": 0,
+   "legs_hit": 0,
+   "legs_push": 0,
+   "sunk_by": []
   }
  ],
  "record": {
@@ -643,7 +724,7 @@
    "units": 1.49,
    "units_n": 9
   },
-  "pending": 3,
+  "pending": 4,
   "units_note": "1 unit per ticket at the price shown on his ticket; his stated stakes are not used.",
   "backtest": {
    "w": 1,
