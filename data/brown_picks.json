@@ -46,6 +46,13 @@
    "desc": "UCL Wednesday Parlay (soccer)",
    "reason": "soccer is outside the tracked NFL & NBA scope",
    "source_url": "https://x.com/CodyBrownBets/status/2125599541860696285"
+  },
+  {
+   "date": "2026-11-26",
+   "ticket": "TGLADDER2",
+   "desc": "Thanksgiving Ladder Bet 2 (2 legs)",
+   "reason": "one leg is an either-player touchdown (Allen or Cook) that can't be graded from a single player's box-score line",
+   "source_url": "https://x.com/CodyBrownBets/status/2126077656659566850"
   }
  ],
  "picks": [
@@ -2671,7 +2678,13 @@
      "side": "over",
      "line": 224.5,
      "odds": -271,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 291.0,
+     "result": "win",
+     "final": {
+      "DAL": 38.0,
+      "PHI": 39.0
+     }
     },
     {
      "desc": "Joe Milton III 25+ Rushing Yards (PHI @ DAL)",
@@ -2717,8 +2730,8 @@
     }
    ],
    "legs_total": 6,
-   "legs_graded": 2,
-   "legs_hit": 2,
+   "legs_graded": 3,
+   "legs_hit": 3,
    "legs_push": 0,
    "sunk_by": []
   },
@@ -3127,6 +3140,334 @@
     "Ty Jerome 25+ Pts+Ast (LAC @ MEM)"
    ],
    "result": "loss"
+  },
+  {
+   "id": "cb-w12-kclotto-1126",
+   "date": "2026-11-26",
+   "week": 12,
+   "category": "parlays",
+   "kind": "parlay",
+   "type": "parlay",
+   "sport": "nfl",
+   "desc": "Chiefs @ Bills Lotto (6 legs)",
+   "odds": 2894,
+   "odds_source": "stated",
+   "book": "Book B",
+   "source_url": "https://x.com/CodyBrownBets/status/2126090610033717674",
+   "source_label": "X post",
+   "posted_at": "2026-11-26T23:07:56Z",
+   "ticket": "KCBUFLOT",
+   "odds_note": "Price shown on his posted ticket at release (pre-boost); promo boost to +3762 not used for units",
+   "boosted_odds": 3762,
+   "legs": [
+    {
+     "desc": "Emmett Johnson Anytime TD (KC @ BUF)",
+     "sport": "nfl",
+     "espn_event_id": "401873082",
+     "team": "KC",
+     "type": "prop",
+     "player": "Emmett Johnson",
+     "stat_cat": "td",
+     "stat_key": "TD",
+     "side": "over",
+     "line": 0.5,
+     "odds": -170,
+     "odds_source": "stated"
+    },
+    {
+     "desc": "James Cook Anytime TD (KC @ BUF)",
+     "sport": "nfl",
+     "espn_event_id": "401873082",
+     "team": "BUF",
+     "type": "prop",
+     "player": "James Cook",
+     "stat_cat": "td",
+     "stat_key": "TD",
+     "side": "over",
+     "line": 0.5,
+     "odds": -105,
+     "odds_source": "stated"
+    },
+    {
+     "desc": "Emmett Johnson 4+ Receptions (KC @ BUF)",
+     "sport": "nfl",
+     "espn_event_id": "401873082",
+     "team": "KC",
+     "type": "prop",
+     "player": "Emmett Johnson",
+     "stat_cat": "receiving",
+     "stat_key": "REC",
+     "side": "over",
+     "line": 3.5,
+     "odds": -132,
+     "odds_source": "stated"
+    },
+    {
+     "desc": "Khalil Shakir 4+ Receptions (KC @ BUF)",
+     "sport": "nfl",
+     "espn_event_id": "401873082",
+     "team": "BUF",
+     "type": "prop",
+     "player": "Khalil Shakir",
+     "stat_cat": "receiving",
+     "stat_key": "REC",
+     "side": "over",
+     "line": 3.5,
+     "odds": 100,
+     "odds_source": "stated"
+    },
+    {
+     "desc": "Josh Allen 40+ Rushing Yards (KC @ BUF)",
+     "sport": "nfl",
+     "espn_event_id": "401873082",
+     "team": "BUF",
+     "type": "prop",
+     "player": "Josh Allen",
+     "stat_cat": "rushing",
+     "stat_key": "YDS",
+     "side": "over",
+     "line": 39.5,
+     "odds": -110,
+     "odds_source": "stated"
+    },
+    {
+     "desc": "Patrick Mahomes 10+ Rushing Yards (KC @ BUF)",
+     "sport": "nfl",
+     "espn_event_id": "401873082",
+     "team": "KC",
+     "type": "prop",
+     "player": "Patrick Mahomes",
+     "stat_cat": "rushing",
+     "stat_key": "YDS",
+     "side": "over",
+     "line": 9.5,
+     "odds": -182,
+     "odds_source": "stated"
+    }
+   ],
+   "legs_total": 6,
+   "legs_graded": 0,
+   "legs_hit": 0,
+   "legs_push": 0,
+   "sunk_by": []
+  },
+  {
+   "id": "cb-w12-phisgp-1126",
+   "date": "2026-11-26",
+   "week": 12,
+   "category": "parlays",
+   "kind": "parlay",
+   "type": "parlay",
+   "sport": "nfl",
+   "desc": "Eagles @ Cowboys SGP (3 legs)",
+   "odds": 167,
+   "odds_source": "stated",
+   "book": "Book B",
+   "source_url": "https://x.com/CodyBrownBets/status/2126028487924359288",
+   "source_label": "X post",
+   "posted_at": "2026-11-26T19:01:05Z",
+   "ticket": "PHIDAL1",
+   "legs": [
+    {
+     "desc": "Dak Prescott 250+ Passing Yards (PHI @ DAL)",
+     "sport": "nfl",
+     "espn_event_id": "401873080",
+     "team": "DAL",
+     "type": "prop",
+     "player": "Dak Prescott",
+     "stat_cat": "passing",
+     "stat_key": "YDS",
+     "side": "over",
+     "line": 249.5,
+     "odds": -155,
+     "odds_source": "stated",
+     "actual": 291.0,
+     "result": "win",
+     "final": {
+      "DAL": 38.0,
+      "PHI": 39.0
+     }
+    },
+    {
+     "desc": "George Pickens 50+ Receiving Yards (PHI @ DAL)",
+     "sport": "nfl",
+     "espn_event_id": "401873080",
+     "team": "DAL",
+     "type": "prop",
+     "player": "George Pickens",
+     "stat_cat": "receiving",
+     "stat_key": "YDS",
+     "side": "over",
+     "line": 49.5,
+     "odds": -279,
+     "odds_source": "stated",
+     "actual": 67.0,
+     "result": "win",
+     "final": {
+      "DAL": 38.0,
+      "PHI": 39.0
+     }
+    },
+    {
+     "desc": "Dallas Goedert 20+ Receiving Yards (PHI @ DAL)",
+     "sport": "nfl",
+     "espn_event_id": "401873080",
+     "team": "PHI",
+     "type": "prop",
+     "player": "Dallas Goedert",
+     "stat_cat": "receiving",
+     "stat_key": "YDS",
+     "side": "over",
+     "line": 19.5,
+     "odds": -284,
+     "odds_source": "stated",
+     "actual": 9.0,
+     "result": "loss",
+     "final": {
+      "DAL": 38.0,
+      "PHI": 39.0
+     }
+    }
+   ],
+   "result": "loss",
+   "legs_total": 3,
+   "legs_graded": 3,
+   "legs_hit": 2,
+   "legs_push": 0,
+   "sunk_by": [
+    "Dallas Goedert 20+ Receiving Yards (PHI @ DAL)"
+   ]
+  },
+  {
+   "id": "cb-w12-philot-1126",
+   "date": "2026-11-26",
+   "week": 12,
+   "category": "parlays",
+   "kind": "parlay",
+   "type": "parlay",
+   "sport": "nfl",
+   "desc": "Eagles @ Cowboys Lotto (5 legs)",
+   "odds": 2786,
+   "odds_source": "stated",
+   "book": "Book B",
+   "source_url": "https://x.com/CodyBrownBets/status/2126028487924359288",
+   "source_label": "X post",
+   "posted_at": "2026-11-26T19:01:05Z",
+   "ticket": "PHIDAL4K",
+   "odds_note": "Price shown on his posted ticket at release (pre-boost); promo boost to +4179 not used for units",
+   "boosted_odds": 4179,
+   "legs": [
+    {
+     "desc": "CeeDee Lamb 100+ Receiving Yards (PHI @ DAL)",
+     "sport": "nfl",
+     "espn_event_id": "401873080",
+     "team": "DAL",
+     "type": "prop",
+     "player": "CeeDee Lamb",
+     "stat_cat": "receiving",
+     "stat_key": "YDS",
+     "side": "over",
+     "line": 99.5,
+     "odds": 131,
+     "odds_source": "stated",
+     "actual": 134.0,
+     "result": "win",
+     "final": {
+      "DAL": 38.0,
+      "PHI": 39.0
+     }
+    },
+    {
+     "desc": "Saquon Barkley 80+ Rushing Yards (PHI @ DAL)",
+     "sport": "nfl",
+     "espn_event_id": "401873080",
+     "team": "PHI",
+     "type": "prop",
+     "player": "Saquon Barkley",
+     "stat_cat": "rushing",
+     "stat_key": "YDS",
+     "side": "over",
+     "line": 79.5,
+     "odds": 192,
+     "odds_source": "stated",
+     "actual": 7.0,
+     "result": "loss",
+     "final": {
+      "DAL": 38.0,
+      "PHI": 39.0
+     }
+    },
+    {
+     "desc": "DeVonta Smith 60+ Receiving Yards (PHI @ DAL)",
+     "sport": "nfl",
+     "espn_event_id": "401873080",
+     "team": "PHI",
+     "type": "prop",
+     "player": "DeVonta Smith",
+     "stat_cat": "receiving",
+     "stat_key": "YDS",
+     "side": "over",
+     "line": 59.5,
+     "odds": -161,
+     "odds_source": "stated",
+     "actual": 200.0,
+     "result": "win",
+     "final": {
+      "DAL": 38.0,
+      "PHI": 39.0
+     }
+    },
+    {
+     "desc": "George Pickens Anytime TD (PHI @ DAL)",
+     "sport": "nfl",
+     "espn_event_id": "401873080",
+     "team": "DAL",
+     "type": "prop",
+     "player": "George Pickens",
+     "stat_cat": "td",
+     "stat_key": "TD",
+     "side": "over",
+     "line": 0.5,
+     "odds": -115,
+     "odds_source": "stated",
+     "actual": 0.0,
+     "result": "loss",
+     "final": {
+      "DAL": 38.0,
+      "PHI": 39.0
+     }
+    },
+    {
+     "desc": "Saquon Barkley Anytime TD (PHI @ DAL)",
+     "sport": "nfl",
+     "espn_event_id": "401873080",
+     "team": "PHI",
+     "type": "prop",
+     "player": "Saquon Barkley",
+     "stat_cat": "td",
+     "stat_key": "TD",
+     "side": "over",
+     "line": 0.5,
+     "odds": 105,
+     "odds_source": "stated",
+     "actual": 0.0,
+     "result": "loss",
+     "final": {
+      "DAL": 38.0,
+      "PHI": 39.0
+     }
+    }
+   ],
+   "result": "loss",
+   "legs_total": 5,
+   "legs_graded": 5,
+   "legs_hit": 2,
+   "legs_push": 0,
+   "sunk_by": [
+    "Saquon Barkley 80+ Rushing Yards (PHI @ DAL)",
+    "George Pickens Anytime TD (PHI @ DAL)",
+    "Saquon Barkley Anytime TD (PHI @ DAL)"
+   ]
   }
  ],
  "record": {
@@ -3170,17 +3511,17 @@
   "parlay": {
    "overall": {
     "w": 1,
-    "l": 21,
+    "l": 23,
     "p": 0,
-    "units": -20.1,
-    "units_n": 22
+    "units": -22.1,
+    "units_n": 24
    },
    "nfl": {
     "w": 0,
-    "l": 13,
+    "l": 15,
     "p": 0,
-    "units": -13,
-    "units_n": 13
+    "units": -15,
+    "units_n": 15
    },
    "mlb": {
     "w": 0,
@@ -3241,10 +3582,10 @@
   },
   "full_season": {
    "w": 6,
-   "l": 22,
+   "l": 24,
    "p": 1,
-   "units": -17.14,
-   "units_n": 29
+   "units": -19.14,
+   "units_n": 31
   },
   "categories": {
    "best": {
@@ -3256,20 +3597,20 @@
    },
    "parlays": {
     "w": 1,
-    "l": 21,
+    "l": 23,
     "p": 0,
-    "units": -20.1,
-    "units_n": 22
+    "units": -22.1,
+    "units_n": 24
    }
   },
   "parlay_legs": {
-   "w": 67,
-   "l": 32,
+   "w": 72,
+   "l": 36,
    "p": 0,
-   "units": -2.71,
-   "units_n": 99
+   "units": -3.41,
+   "units_n": 108
   },
-  "pending": 1,
+  "pending": 2,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }
