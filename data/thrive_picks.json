@@ -143,6 +143,24 @@
    "desc": "Instagram story: settled 3-leg parlay screenshot",
    "reason": "posted after result",
    "source_url": "https://www.instagram.com/sportsbettingeducation/"
+  },
+  {
+   "date": "2026-11-26",
+   "desc": "Instagram story: unplaced DFS-style entry, two player lines, no price shown",
+   "reason": "legs not shown",
+   "source_url": "https://www.instagram.com/sportsbettingeducation/"
+  },
+  {
+   "date": "2026-11-26",
+   "desc": "Instagram story: settled combo slip",
+   "reason": "posted after result",
+   "source_url": "https://www.instagram.com/sportsbettingeducation/"
+  },
+  {
+   "date": "2026-11-26",
+   "desc": "Instagram story: in-game score screenshot (TCU @ TTU)",
+   "reason": "posted after result",
+   "source_url": "https://www.instagram.com/sportsbettingeducation/"
   }
  ],
  "picks": [
@@ -781,6 +799,6 @@
    "units_n": 1
   },
   "futures_open": 1,
-  "skipped": 23
+  "skipped": 26
  }
 }
