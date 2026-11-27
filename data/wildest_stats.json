@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-11-26T08:01:36-05:00",
- "asof": "2026-11-26",
+ "generated_at": "2026-11-27T08:01:24-05:00",
+ "asof": "2026-11-27",
  "window": {
-  "from": "2026-11-19",
-  "to": "2026-11-25",
+  "from": "2026-11-20",
+  "to": "2026-11-26",
   "tz": "America/New_York"
  },
  "min_wildness": 95.0,
@@ -13,44 +13,44 @@
  },
  "coverage": {
   "nba": {
-   "games_in_window": 48,
-   "games_with_box_or_events": 48,
+   "games_in_window": 44,
+   "games_with_box_or_events": 44,
    "season_games_loaded": 270,
    "cards": 2,
    "candidates_over_threshold": 13
   },
   "nfl": {
-   "games_in_window": 14,
-   "games_with_box_or_events": 14,
-   "season_games_loaded": 164,
-   "cards": 2,
-   "candidates_over_threshold": 13
+   "games_in_window": 16,
+   "games_with_box_or_events": 16,
+   "season_games_loaded": 167,
+   "cards": 3,
+   "candidates_over_threshold": 20
   },
   "nhl": {
-   "games_in_window": 53,
-   "games_with_box_or_events": 53,
+   "games_in_window": 41,
+   "games_with_box_or_events": 41,
    "season_games_loaded": 399,
-   "cards": 4,
-   "candidates_over_threshold": 13
+   "cards": 3,
+   "candidates_over_threshold": 9
   },
   "cfb": {
    "games_in_window": 67,
    "games_with_box_or_events": 67,
-   "season_games_loaded": 824,
-   "cards": 3,
-   "candidates_over_threshold": 33
+   "season_games_loaded": 825,
+   "cards": 2,
+   "candidates_over_threshold": 32
   },
   "cbb": {
-   "games_in_window": 394,
-   "games_with_box_or_events": 394,
-   "season_games_loaded": 1428,
+   "games_in_window": 381,
+   "games_with_box_or_events": 381,
+   "season_games_loaded": 1449,
    "cards": 2,
-   "candidates_over_threshold": 58
+   "candidates_over_threshold": 54
   },
   "soccer": {
-   "games_in_window": 168,
-   "games_with_box_or_events": 168,
-   "season_games_loaded": 180,
+   "games_in_window": 205,
+   "games_with_box_or_events": 205,
+   "season_games_loaded": 210,
    "cards": 1,
    "candidates_over_threshold": 3
   }
@@ -98,11 +98,11 @@
      "1"
     ]
    },
-   "rare": "Top 0.01% of the 82,320 tracked player-games since Mar 2021 in our data (4-goal game). Tracked players only, so this is a share, not a league-wide count.",
+   "rare": "Top 0.01% of the 82,506 tracked player-games since Mar 2021 in our data (4-goal game). Tracked players only, so this is a share, not a league-wide count.",
    "scope": "history",
    "wildness": 99.99,
    "k": 5,
-   "n": 82320,
+   "n": 82506,
    "id": "ws-nhl-rare_line-401892758-1"
   },
   {
@@ -210,6 +210,57 @@
    "id": "ws-nba-rare_line-401910032-3"
   },
   {
+   "sport": "nfl",
+   "type": "rare_line",
+   "tag": "RARE LINE",
+   "hook": "DeVonta Smith goes off for 200 receiving yards",
+   "lines": [
+    {
+     "k": "200",
+     "t": "receiving yards on 11 catches"
+    },
+    {
+     "k": "18.2",
+     "t": "yards per catch"
+    },
+    {
+     "k": "2",
+     "t": "receiving touchdowns"
+    }
+   ],
+   "game": {
+    "eid": "401873080",
+    "sport": "nfl",
+    "date_et": "2026-11-26",
+    "date_label": "Thu Nov 26, 2026",
+    "score": "PHI 39, DAL 38",
+    "home": "DAL",
+    "away": "PHI",
+    "home_score": 38,
+    "away_score": 39,
+    "ot": 0,
+    "so": false,
+    "home_lines": [
+     "14",
+     "14",
+     "3",
+     "7"
+    ],
+    "away_lines": [
+     "0",
+     "10",
+     "7",
+     "22"
+    ]
+   },
+   "rare": "Top 0.05% of the 9,426 tracked player-games since Dec 2016 in our data (200+ yard receiving game). Tracked players only, so this is a share, not a league-wide count.",
+   "scope": "history",
+   "wildness": 99.95,
+   "k": 5,
+   "n": 9426,
+   "id": "ws-nfl-rare_line-401873080-4"
+  },
+  {
    "sport": "cfb",
    "type": "rare_line",
    "tag": "RARE LINE",
@@ -253,12 +304,12 @@
      "6"
     ]
    },
-   "rare": "Top 0.07% of the 17,901 tracked player-games since Sep 2022 in our data (212+ yard receiving game). Tracked players only, so this is a share, not a league-wide count.",
+   "rare": "Top 0.07% of the 17,912 tracked player-games since Sep 2022 in our data (212+ yard receiving game). Tracked players only, so this is a share, not a league-wide count.",
    "scope": "history",
    "wildness": 99.94,
    "k": 12,
-   "n": 17901,
-   "id": "ws-cfb-rare_line-401858309-4"
+   "n": 17912,
+   "id": "ws-cfb-rare_line-401858309-5"
   },
   {
    "sport": "nhl",
@@ -302,12 +353,12 @@
      "2"
     ]
    },
-   "rare": "Top 0.06% of the 82,320 tracked player-games since Mar 2021 in our data (5-point game). Tracked players only, so this is a share, not a league-wide count.",
+   "rare": "Top 0.06% of the 82,506 tracked player-games since Mar 2021 in our data (5-point game). Tracked players only, so this is a share, not a league-wide count.",
    "scope": "history",
    "wildness": 99.94,
-   "k": 50,
-   "n": 82320,
-   "id": "ws-nhl-rare_line-401892763-5"
+   "k": 49,
+   "n": 82506,
+   "id": "ws-nhl-rare_line-401892763-6"
   },
   {
    "sport": "cfb",
@@ -358,154 +409,58 @@
    "wildness": 99.88,
    "k": 16,
    "n": 13208,
-   "id": "ws-cfb-rare_line-401862834-6"
+   "id": "ws-cfb-rare_line-401862834-7"
   },
   {
    "sport": "nfl",
    "type": "rare_line",
    "tag": "RARE LINE",
-   "hook": "Dak Prescott scores 5 touchdowns",
+   "hook": "Jahmyr Gibbs runs wild: 205 rushing yards",
    "lines": [
     {
-     "k": "5",
-     "t": "total touchdowns (4 passing, 1 rushing)"
+     "k": "205",
+     "t": "rushing yards on 21 carries"
     },
     {
-     "k": "325",
-     "t": "passing yards"
-    },
-    {
-     "k": "9",
-     "t": "rushing yards"
-    }
-   ],
-   "game": {
-    "eid": "401873073",
-    "sport": "nfl",
-    "date_et": "2026-11-22",
-    "date_label": "Sun Nov 22, 2026",
-    "score": "DAL 51, TEN 30",
-    "home": "DAL",
-    "away": "TEN",
-    "home_score": 51,
-    "away_score": 30,
-    "ot": 0,
-    "so": false,
-    "home_lines": [
-     "13",
-     "14",
-     "14",
-     "10"
-    ],
-    "away_lines": [
-     "3",
-     "6",
-     "14",
-     "7"
-    ]
-   },
-   "rare": "Top 0.21% of the 12,065 tracked player-games since Dec 2016 in our data (5-touchdown game). Tracked players only, so this is a share, not a league-wide count.",
-   "scope": "history",
-   "wildness": 99.8,
-   "k": 25,
-   "n": 12065,
-   "id": "ws-nfl-rare_line-401873073-7"
-  },
-  {
-   "sport": "nfl",
-   "type": "rare_line",
-   "tag": "RARE LINE",
-   "hook": "Blake Corum runs wild: 184 rushing yards",
-   "lines": [
-    {
-     "k": "184",
-     "t": "rushing yards on 32 carries"
-    },
-    {
-     "k": "5.8",
+     "k": "9.8",
      "t": "yards per carry"
     },
     {
-     "k": "1",
-     "t": "rushing touchdown"
+     "k": "3",
+     "t": "rushing touchdowns"
     }
    ],
    "game": {
-    "eid": "401873079",
+    "eid": "401873081",
     "sport": "nfl",
-    "date_et": "2026-11-25",
-    "date_label": "Wed Nov 25, 2026",
-    "score": "LAR 26, GB 13",
-    "home": "LAR",
-    "away": "GB",
-    "home_score": 26,
-    "away_score": 13,
+    "date_et": "2026-11-26",
+    "date_label": "Thu Nov 26, 2026",
+    "score": "CHI 39, DET 35",
+    "home": "DET",
+    "away": "CHI",
+    "home_score": 35,
+    "away_score": 39,
     "ot": 0,
     "so": false,
     "home_lines": [
-     "6",
-     "7",
-     "7",
-     "6"
-    ],
-    "away_lines": [
      "3",
-     "10",
-     "0",
-     "0"
-    ]
-   },
-   "rare": "Top 0.24% of the 5,383 tracked player-games since Oct 2017 in our data (184+ yard rushing game). Tracked players only, so this is a share, not a league-wide count.",
-   "scope": "history",
-   "wildness": 99.77,
-   "k": 13,
-   "n": 5383,
-   "id": "ws-nfl-rare_line-401873079-8"
-  },
-  {
-   "sport": "nhl",
-   "type": "goalie",
-   "tag": "GOALIE",
-   "hook": "Leevi Merilainen stands on his head: 39 saves",
-   "lines": [
-    {
-     "k": "39",
-     "t": "saves on 43 shots"
-    },
-    {
-     "k": "4",
-     "t": "goals allowed"
-    }
-   ],
-   "game": {
-    "eid": "401892752",
-    "sport": "nhl",
-    "date_et": "2026-11-19",
-    "date_label": "Thu Nov 19, 2026",
-    "score": "SEA 5, VAN 1",
-    "home": "SEA",
-    "away": "VAN",
-    "home_score": 5,
-    "away_score": 1,
-    "ot": 0,
-    "so": false,
-    "home_lines": [
-     "1",
-     "2",
-     "2"
+     "16",
+     "7",
+     "9"
     ],
     "away_lines": [
-     "1",
      "0",
-     "0"
+     "10",
+     "14",
+     "15"
     ]
    },
-   "rare": "Top 2.24% of the 5,669 tracked player-games since Oct 2023 in our data (39+ save game). Tracked players only, so this is a share, not a league-wide count.",
+   "rare": "Top 0.17% of the 5,409 tracked player-games since Oct 2017 in our data (205+ yard rushing game). Tracked players only, so this is a share, not a league-wide count.",
    "scope": "history",
-   "wildness": 97.77,
-   "k": 127,
-   "n": 5669,
-   "id": "ws-nhl-goalie-401892752-9"
+   "wildness": 99.84,
+   "k": 9,
+   "n": 5409,
+   "id": "ws-nfl-rare_line-401873081-8"
   },
   {
    "sport": "cbb",
@@ -547,12 +502,12 @@
      "28"
     ]
    },
-   "rare": "First 20+ rebound game of the 2026-27 season so far (8,594 player-games compared since Nov 19, 2026). Earlier seasons are not in this comparison, so this is not a record.",
+   "rare": "First 20+ rebound game of the 2026-27 season so far (8,217 player-games compared since Nov 20, 2026). Earlier seasons are not in this comparison, so this is not a record.",
    "scope": "season",
    "wildness": null,
    "k": 1,
-   "n": 8594,
-   "id": "ws-cbb-rare_line-401911278-10"
+   "n": 8217,
+   "id": "ws-cbb-rare_line-401911278-9"
   },
   {
    "sport": "cbb",
@@ -594,12 +549,12 @@
      "21"
     ]
    },
-   "rare": "First time a player outscored the other team in a half with 25+ points of the 2026-27 season so far (10,686 player-periods compared since Nov 19, 2026). Earlier seasons are not in this comparison, so this is not a record.",
+   "rare": "First time a player outscored the other team in a half with 25+ points of the 2026-27 season so far (10,262 player-periods compared since Nov 20, 2026). Earlier seasons are not in this comparison, so this is not a record.",
    "scope": "season",
    "wildness": null,
    "k": 1,
-   "n": 10686,
-   "id": "ws-cbb-contrast-401928389-11"
+   "n": 10262,
+   "id": "ws-cbb-contrast-401928389-10"
   },
   {
    "sport": "nhl",
@@ -652,7 +607,7 @@
    "wildness": null,
    "k": 1,
    "n": 1117,
-   "id": "ws-nhl-streak-401892779-12"
+   "id": "ws-nhl-streak-401892779-11"
   },
   {
    "sport": "soccer",
@@ -689,63 +644,63 @@
     "away_lines": [],
     "league": "Serie A"
    },
-   "rare": "First 4-goal match of the 2026-27 season so far (460 player-matches with a goal compared since Nov 18, 2026). Earlier seasons are not in this comparison, so this is not a record.",
+   "rare": "First 4-goal match of the 2026-27 season so far (544 player-matches with a goal compared since Nov 19, 2026). Earlier seasons are not in this comparison, so this is not a record.",
    "scope": "season",
    "wildness": null,
    "k": 1,
-   "n": 460,
-   "id": "ws-soccer-hat_trick-401874967-13"
+   "n": 544,
+   "id": "ws-soccer-hat_trick-401874967-12"
   },
   {
-   "sport": "cfb",
-   "type": "win_streak",
-   "tag": "TEAM RUN",
-   "hook": "Utah Utes have won 11 straight",
+   "sport": "nfl",
+   "type": "streak",
+   "tag": "STREAK",
+   "hook": "James Cook III: 10 straight games with a rushing or receiving touchdown",
    "lines": [
     {
-     "k": "11",
-     "t": "straight wins, still active"
-    },
-    {
-     "k": "1-52",
-     "t": "range of winning margins in the run"
+     "k": "10",
+     "t": "straight games with a rushing or receiving touchdown"
     },
     {
      "k": "11",
-     "t": "games, Sep 3 to Nov 21 (ET)"
+     "t": "touchdowns in the run"
+    },
+    {
+     "k": "10",
+     "t": "games, Sep 17 to Nov 26 (ET); still active"
     }
    ],
    "game": {
-    "eid": "401856872",
-    "sport": "cfb",
-    "date_et": "2026-11-21",
-    "date_label": "Sat Nov 21, 2026",
-    "score": "UTAH 38, TCU 17",
-    "home": "TCU",
-    "away": "UTAH",
-    "home_score": 17,
-    "away_score": 38,
+    "eid": "401873082",
+    "sport": "nfl",
+    "date_et": "2026-11-26",
+    "date_label": "Thu Nov 26, 2026",
+    "score": "BUF 13, KC 10",
+    "home": "BUF",
+    "away": "KC",
+    "home_score": 13,
+    "away_score": 10,
     "ot": 0,
     "so": false,
     "home_lines": [
      "0",
-     "0",
-     "14",
-     "3"
-    ],
-    "away_lines": [
-     "10",
      "7",
      "0",
-     "21"
+     "6"
+    ],
+    "away_lines": [
+     "0",
+     "3",
+     "7",
+     "0"
     ]
    },
-   "rare": "First win streak of 11+ of the 2026-27 season so far (401 win streaks compared since Aug 2026). Earlier seasons are not in this comparison, so this is not a record.",
+   "rare": "First streak of 10+ straight games with a rushing or receiving touchdown of the 2026-27 season so far (499 streaks compared since Sep 2026). Earlier seasons are not in this comparison, so this is not a record.",
    "scope": "season",
    "wildness": null,
    "k": 1,
-   "n": 401,
-   "id": "ws-cfb-win_streak-401856872-14"
+   "n": 499,
+   "id": "ws-nfl-streak-401873082-13"
   }
  ]
 }
