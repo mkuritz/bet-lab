@@ -2712,7 +2712,13 @@
      "side": "over",
      "line": 59.5,
      "odds": -362,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 117.0,
+     "result": "win",
+     "final": {
+      "BUF": 13.0,
+      "KC": 10.0
+     }
     },
     {
      "desc": "Khalil Shakir 30+ Receiving Yards (KC @ BUF)",
@@ -2726,12 +2732,18 @@
      "side": "over",
      "line": 29.5,
      "odds": -213,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 33.0,
+     "result": "win",
+     "final": {
+      "BUF": 13.0,
+      "KC": 10.0
+     }
     }
    ],
    "legs_total": 6,
-   "legs_graded": 3,
-   "legs_hit": 3,
+   "legs_graded": 5,
+   "legs_hit": 5,
    "legs_push": 0,
    "sunk_by": []
   },
@@ -3172,7 +3184,13 @@
      "side": "over",
      "line": 0.5,
      "odds": -170,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 1.0,
+     "result": "win",
+     "final": {
+      "BUF": 13.0,
+      "KC": 10.0
+     }
     },
     {
      "desc": "James Cook Anytime TD (KC @ BUF)",
@@ -3186,7 +3204,13 @@
      "side": "over",
      "line": 0.5,
      "odds": -105,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 1.0,
+     "result": "win",
+     "final": {
+      "BUF": 13.0,
+      "KC": 10.0
+     }
     },
     {
      "desc": "Emmett Johnson 4+ Receptions (KC @ BUF)",
@@ -3200,7 +3224,13 @@
      "side": "over",
      "line": 3.5,
      "odds": -132,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 4.0,
+     "result": "win",
+     "final": {
+      "BUF": 13.0,
+      "KC": 10.0
+     }
     },
     {
      "desc": "Khalil Shakir 4+ Receptions (KC @ BUF)",
@@ -3214,7 +3244,13 @@
      "side": "over",
      "line": 3.5,
      "odds": 100,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 3.0,
+     "result": "loss",
+     "final": {
+      "BUF": 13.0,
+      "KC": 10.0
+     }
     },
     {
      "desc": "Josh Allen 40+ Rushing Yards (KC @ BUF)",
@@ -3228,7 +3264,13 @@
      "side": "over",
      "line": 39.5,
      "odds": -110,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 43.0,
+     "result": "win",
+     "final": {
+      "BUF": 13.0,
+      "KC": 10.0
+     }
     },
     {
      "desc": "Patrick Mahomes 10+ Rushing Yards (KC @ BUF)",
@@ -3242,14 +3284,24 @@
      "side": "over",
      "line": 9.5,
      "odds": -182,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 2.0,
+     "result": "loss",
+     "final": {
+      "BUF": 13.0,
+      "KC": 10.0
+     }
     }
    ],
    "legs_total": 6,
-   "legs_graded": 0,
-   "legs_hit": 0,
+   "legs_graded": 6,
+   "legs_hit": 4,
    "legs_push": 0,
-   "sunk_by": []
+   "sunk_by": [
+    "Khalil Shakir 4+ Receptions (KC @ BUF)",
+    "Patrick Mahomes 10+ Rushing Yards (KC @ BUF)"
+   ],
+   "result": "loss"
   },
   {
    "id": "cb-w12-phisgp-1126",
@@ -3511,17 +3563,17 @@
   "parlay": {
    "overall": {
     "w": 1,
-    "l": 23,
+    "l": 24,
     "p": 0,
-    "units": -22.1,
-    "units_n": 24
+    "units": -23.1,
+    "units_n": 25
    },
    "nfl": {
     "w": 0,
-    "l": 15,
+    "l": 16,
     "p": 0,
-    "units": -15,
-    "units_n": 15
+    "units": -16,
+    "units_n": 16
    },
    "mlb": {
     "w": 0,
@@ -3582,10 +3634,10 @@
   },
   "full_season": {
    "w": 6,
-   "l": 24,
+   "l": 25,
    "p": 1,
-   "units": -19.14,
-   "units_n": 31
+   "units": -20.14,
+   "units_n": 32
   },
   "categories": {
    "best": {
@@ -3597,20 +3649,20 @@
    },
    "parlays": {
     "w": 1,
-    "l": 23,
+    "l": 24,
     "p": 0,
-    "units": -22.1,
-    "units_n": 24
+    "units": -23.1,
+    "units_n": 25
    }
   },
   "parlay_legs": {
-   "w": 72,
-   "l": 36,
+   "w": 78,
+   "l": 38,
    "p": 0,
-   "units": -3.41,
-   "units_n": 108
+   "units": -1.45,
+   "units_n": 116
   },
-  "pending": 2,
+  "pending": 1,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }

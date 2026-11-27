@@ -567,7 +567,13 @@
      "stat_cat": "receiving",
      "stat_key": "YDS",
      "side": "over",
-     "line": 69.5
+     "line": 69.5,
+     "actual": 67.0,
+     "result": "loss",
+     "final": {
+      "DAL": 38.0,
+      "PHI": 39.0
+     }
     },
     {
      "desc": "Texas Tech -13.5 (TCU @ TTU)",
@@ -580,7 +586,12 @@
      "team": "TTU",
      "stat_key": "spread",
      "side": "cover",
-     "line": -13.5
+     "line": -13.5,
+     "result": "win",
+     "final": {
+      "TTU": 48.0,
+      "TCU": 27.0
+     }
     }
    ],
    "source_url": "https://www.instagram.com/sportsbettingeducation/",
@@ -590,10 +601,13 @@
    "odds_note": "Instagram story; ticket price shown: 1 unit to return 8.07x (+707). Leg prices shown as win percentages (70%, 53%, 49%, 57%) converted to American odds for display only. Posted before the first kickoff.",
    "pregame": true,
    "legs_total": 4,
-   "legs_graded": 2,
-   "legs_hit": 2,
+   "legs_graded": 4,
+   "legs_hit": 3,
    "legs_push": 0,
-   "sunk_by": []
+   "sunk_by": [
+    "George Pickens 70+ Receiving Yards (PHI @ DAL)"
+   ],
+   "result": "loss"
   }
  ],
  "record": {
@@ -637,17 +651,17 @@
   "parlay": {
    "overall": {
     "w": 1,
-    "l": 1,
+    "l": 2,
     "p": 0,
-    "units": 1.62,
-    "units_n": 2
+    "units": 0.62,
+    "units_n": 3
    },
    "nfl": {
     "w": 0,
-    "l": 0,
+    "l": 1,
     "p": 0,
-    "units": 0,
-    "units_n": 0
+    "units": -1,
+    "units_n": 1
    },
    "mlb": {
     "w": 0,
@@ -708,10 +722,10 @@
   },
   "full_season": {
    "w": 2,
-   "l": 1,
+   "l": 2,
    "p": 0,
-   "units": 2.82,
-   "units_n": 3
+   "units": 1.82,
+   "units_n": 4
   },
   "categories": {
    "futures": {
@@ -723,20 +737,20 @@
    },
    "parlays": {
     "w": 1,
-    "l": 1,
+    "l": 2,
     "p": 0,
-    "units": 1.62,
-    "units_n": 2
+    "units": 0.62,
+    "units_n": 3
    }
   },
   "parlay_legs": {
-   "w": 10,
-   "l": 1,
+   "w": 11,
+   "l": 2,
    "p": 0,
-   "units": 2.8,
-   "units_n": 11
+   "units": 2.55,
+   "units_n": 13
   },
-  "pending": 4,
+  "pending": 3,
   "units_note": "1 unit per ticket at the price shown on his ticket; his stated stakes are not used.",
   "backtest": {
    "w": 1,
@@ -747,10 +761,10 @@
   },
   "forward": {
    "w": 0,
-   "l": 0,
+   "l": 1,
    "p": 0,
-   "units": 0,
-   "units_n": 0
+   "units": -1,
+   "units_n": 1
   },
   "backtest_legs": {
    "w": 8,
