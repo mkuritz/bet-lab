@@ -1,5 +1,5 @@
 {
-"updated": "2026-11-27T23:41:44+00:00",
+"updated": "2026-11-28T00:06:41+00:00",
 "slate": "2026-11-27",
 "players": [
 {
@@ -7552,7 +7552,7 @@
 "team_stats": "2026-11-27T22:01:33+00:00"
 },
 "why": "Connor McDavid has five or more shots on goal in 4% of 27 games this season and 0% of his last 10 (35% last season). He reached 4+ shots on goal (one short of the line or better) in 38% of his last 40, on 23.9 minutes a night over the last 10 and 3.2 shots a game, with a spot on power-play unit 1. SEA allows 20.1 shots a game to forwards (#14 of 32, 1 = most).",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8479407-p2",
@@ -7700,7 +7700,7 @@
 "team_stats": "2026-11-27T22:01:33+00:00"
 },
 "why": "Jesper Bratt has two or more points in 20% of 25 games this season and 20% of his last 10 (22% last season). He reached 1+ point (one short of the line or better) in 65% of his last 40, on 17.6 minutes a night over the last 10 and 2.1 shots a game, with a spot on power-play unit 1. CGY allows 2.92 goals a game to forwards (#8 of 32, 1 = most). Projected goalie Dustin Wolf is at a 0.898 save rate over his last 10.",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8482116-p2",
@@ -7848,7 +7848,7 @@
 "team_stats": "2026-11-27T22:01:33+00:00"
 },
 "why": "Tim St\u00fctzle has two or more points in 35% of 26 games this season and 20% of his last 10 (30% last season). He reached 1+ point (one short of the line or better) in 70% of his last 40, on 21.8 minutes a night over the last 10 and 2.3 shots a game, with a spot on power-play unit 1. TB allows 2.46 goals a game to forwards (#21 of 32, 1 = most). Projected goalie Andrei Vasilevskiy is at a 0.907 save rate over his last 10.",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8480027-s5",
@@ -7996,7 +7996,7 @@
 "team_stats": "2026-11-27T22:01:33+00:00"
 },
 "why": "Jason Robertson has five or more shots on goal in 13% of 24 games this season and 20% of his last 10 (31% last season). He reached 4+ shots on goal (one short of the line or better) in 45% of his last 40, on 19.9 minutes a night over the last 10 and 3.4 shots a game, with a spot on power-play unit 1. STL allows 19.3 shots a game to forwards (#18 of 32, 1 = most).",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8477956-s5",
@@ -8148,7 +8148,7 @@
 "team_stats": "2026-11-27T22:01:33+00:00"
 },
 "why": "David Pastrnak has five or more shots on goal in 21% of 24 games this season and 30% of his last 10 (27% last season). Listed status: {'status': 'Day-To-Day', 'note': \"Pastrnak sustained a lower-body injury and is unlikely to return to Friday's game against Toronto.\", 'date': '2026-11-27'}. He reached 4+ shots on goal (one short of the line or better) in 48% of his last 40, on 20.2 minutes a night over the last 10 and 3.4 shots a game, with a spot on power-play unit 1. TOR allows 20.6 shots a game to forwards (#7 of 32, 1 = most).",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8482740-p2",
@@ -8296,7 +8296,7 @@
 "team_stats": "2026-11-27T22:01:33+00:00"
 },
 "why": "Wyatt Johnston has two or more points in 27% of 22 games this season and 20% of his last 10 (29% last season). He reached 1+ point (one short of the line or better) in 63% of his last 40, on 19.0 minutes a night over the last 10 and 2.5 shots a game, with a spot on power-play unit 1. STL allows 2.64 goals a game to forwards (#16 of 32, 1 = most). Projected goalie Joel Hofer is at a 0.916 save rate over his last 10.",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8484762-p2",
@@ -8444,7 +8444,7 @@
 "team_stats": "2026-11-27T22:01:33+00:00"
 },
 "why": "Beckett Sennecke has two or more points in 32% of 22 games this season and 50% of his last 10 (17% last season). Listed status: {'status': 'Injured Reserve', 'note': 'Sennecke (upper body) is now considered day-to-day, Zach Cavanagh of The Sporting Tribune reports Wednesday.', 'date': '2026-11-25'}. He reached 1+ point (one short of the line or better) in 55% of his last 40, on 20.0 minutes a night over the last 10 and 2.5 shots a game. LA allows 2.77 goals a game to forwards (#13 of 32, 1 = most). Projected goalie Darcy Kuemper is at a 0.902 save rate over his last 10.",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8475913-p2",
@@ -8592,7 +8592,7 @@
 "team_stats": "2026-11-27T22:01:33+00:00"
 },
 "why": "Mark Stone has two or more points in 15% of 26 games this season and 0% of his last 10 (35% last season). He reached 1+ point (one short of the line or better) in 60% of his last 40, on 19.8 minutes a night over the last 10 and 1.9 shots a game, with a spot on power-play unit 1. SJ allows 2.89 goals a game to forwards (#9 of 32, 1 = most). Projected goalie Yaroslav Askarov is at a 0.890 save rate over his last 10.",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8482109-p2",
@@ -8740,7 +8740,7 @@
 "team_stats": "2026-11-27T22:01:33+00:00"
 },
 "why": "Alexis Lafreni\u00e8re has two or more points in 29% of 24 games this season and 30% of his last 10 (20% last season). He reached 1+ point (one short of the line or better) in 55% of his last 40, on 17.9 minutes a night over the last 10 and 2.2 shots a game, with a spot on power-play unit 1. CHI allows 3.24 goals a game to forwards (#3 of 32, 1 = most). Projected goalie Spencer Knight is at a 0.890 save rate over his last 10.",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8476459-p2",
@@ -8888,7 +8888,7 @@
 "team_stats": "2026-11-27T22:01:33+00:00"
 },
 "why": "Mika Zibanejad has two or more points in 25% of 24 games this season and 20% of his last 10 (24% last season). He reached 1+ point (one short of the line or better) in 63% of his last 40, on 19.8 minutes a night over the last 10 and 2.2 shots a game, with a spot on power-play unit 1. CHI allows 3.24 goals a game to forwards (#3 of 32, 1 = most). Projected goalie Spencer Knight is at a 0.890 save rate over his last 10.",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8479420-s5",
@@ -9036,7 +9036,7 @@
 "team_stats": "2026-11-27T22:01:33+00:00"
 },
 "why": "Tage Thompson has five or more shots on goal in 36% of 25 games this season and 20% of his last 10 (30% last season). He reached 4+ shots on goal (one short of the line or better) in 48% of his last 40, on 20.3 minutes a night over the last 10 and 3.5 shots a game, with a spot on power-play unit 1. PIT allows 20.5 shots a game to forwards (#10 of 32, 1 = most).",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8478414-s5",
@@ -9332,7 +9332,7 @@
 "team_stats": "2026-11-27T22:01:33+00:00"
 },
 "why": "J.T. Miller has two or more points in 21% of 24 games this season and 30% of his last 10 (19% last season). He reached 1+ point (one short of the line or better) in 60% of his last 40, on 20.1 minutes a night over the last 10 and 2.0 shots a game, with a spot on power-play unit 1. CHI allows 3.24 goals a game to forwards (#3 of 32, 1 = most). Projected goalie Spencer Knight is at a 0.890 save rate over his last 10.",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8480023-p2",
@@ -9480,7 +9480,7 @@
 "team_stats": "2026-11-27T22:01:33+00:00"
 },
 "why": "Robert Thomas has two or more points in 24% of 25 games this season and 40% of his last 10 (28% last season). He reached 1+ point (one short of the line or better) in 68% of his last 40, on 19.8 minutes a night over the last 10 and 1.5 shots a game, with a spot on power-play unit 1. DAL allows 2.08 goals a game to forwards (#29 of 32, 1 = most). Projected goalie Jake Oettinger is at a 0.900 save rate over his last 10.",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8479318-s5",
@@ -9628,7 +9628,7 @@
 "team_stats": "2026-11-27T22:01:33+00:00"
 },
 "why": "Auston Matthews has five or more shots on goal in 19% of 26 games this season and 30% of his last 10 (35% last season). He reached 4+ shots on goal (one short of the line or better) in 45% of his last 40, on 21.2 minutes a night over the last 10 and 3.3 shots a game, with a spot on power-play unit 1. BOS allows 20.5 shots a game to forwards (#9 of 32, 1 = most).",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8479542-s5",
@@ -9780,7 +9780,7 @@
 "team_stats": "2026-11-27T22:01:33+00:00"
 },
 "why": "Brandon Hagel has five or more shots on goal in 43% of 21 games this season and 30% of his last 10 (21% last season). Listed status: {'status': 'Injured Reserve', 'note': 'Hagel (lower body) was placed on injured reserve by the Lightning on Thursday, retroactive to Nov. 15, Eduardo A. Encina of the Tampa Bay Times reports.', 'date': '2026-11-19'}. He reached 4+ shots on goal (one short of the line or better) in 43% of his last 40, on 19.3 minutes a night over the last 10 and 3.6 shots a game, with a spot on power-play unit 2. OTT allows 19.1 shots a game to forwards (#19 of 32, 1 = most).",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8478403-s5",
@@ -9928,7 +9928,7 @@
 "team_stats": "2026-11-27T22:01:33+00:00"
 },
 "why": "Jack Eichel has five or more shots on goal in 19% of 26 games this season and 30% of his last 10 (24% last season). He reached 4+ shots on goal (one short of the line or better) in 43% of his last 40, on 21.6 minutes a night over the last 10 and 3.0 shots a game, with a spot on power-play unit 1. SJ allows 22.0 shots a game to forwards (#3 of 32, 1 = most).",
-"check": "pending"
+"check": "ok"
 },
 {
 "id": "8478460-s5",
