@@ -155,7 +155,7 @@ const today=new Date().toLocaleDateString("en-CA",{timeZone:"America/New_York"})
 const day=p=>new Date(p.start||p.logged_at).toLocaleDateString("en-CA",{timeZone:"America/New_York"});
 
 // Combine today's/upcoming edge_tiers recommended plays AND Today's Edge active validated highlights (never yesterday's slate!)
-const recLog=L.filter(p=>(T[p.id]||{}).tier==="recommended"&&day(p)>=today).map(p=>{
+const recLog=L.filter(p=>["recommended","highlighted"].includes((T[p.id]||{}).tier)&&day(p)>=today).map(p=>{
   const ti=T[p.id]||{},g=G[p.id];
   const pCal=ti.p_cal||p.p_model||0.55;
   return {

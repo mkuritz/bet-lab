@@ -4779,7 +4779,7 @@
    "id": "ek-w10-1",
    "odds": -120,
    "odds_source": "live",
-   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter",
+   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET)",
    "bought": "-3 stated vs market -2.5; priced at market -2.5 (he also said he'd buy the half point)",
    "result": "win",
    "final": {
@@ -4805,7 +4805,7 @@
    "id": "ek-w10-2",
    "odds": -112,
    "odds_source": "live",
-   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter",
+   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET)",
    "result": "loss",
    "final": {
     "NYJ": 12.0,
@@ -4830,7 +4830,7 @@
    "id": "ek-w10-3",
    "odds": -112,
    "odds_source": "live",
-   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter",
+   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET)",
    "bought": "+3 stated vs market +2.5; priced at market +2.5",
    "result": "win",
    "final": {
@@ -4856,7 +4856,7 @@
    "id": "ek-w10-4",
    "odds": -110,
    "odds_source": "live",
-   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter",
+   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET)",
    "bought": "+5 stated vs market +4.5; priced at market +4.5",
    "result": "win",
    "final": {
@@ -4882,7 +4882,7 @@
    "id": "ek-w10-5",
    "odds": -108,
    "odds_source": "live",
-   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter",
+   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET)",
    "result": "loss",
    "final": {
     "TEN": 23.0,
@@ -4907,7 +4907,7 @@
    "id": "ek-w10-6",
    "odds": -118,
    "odds_source": "live",
-   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter",
+   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET)",
    "bought": "-3 stated vs market -3.5; priced at market -3.5",
    "result": "loss",
    "final": {
@@ -4932,7 +4932,7 @@
    "id": "ek-w10-7",
    "odds": -148,
    "odds_source": "live",
-   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter",
+   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET)",
    "result": "loss",
    "final": {
     "GB": 10.0,
@@ -4957,7 +4957,7 @@
    "id": "ek-w10-8",
    "odds": -120,
    "odds_source": "live",
-   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter",
+   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET)",
    "result": "win",
    "final": {
     "ATL": 13.0,
@@ -4982,7 +4982,7 @@
    "id": "ek-w10-9",
    "odds": -112,
    "odds_source": "live",
-   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter",
+   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET)",
    "result": "win",
    "final": {
     "ARI": 6.0,
@@ -5007,7 +5007,7 @@
    "id": "ek-w10-10",
    "odds": -115,
    "odds_source": "live",
-   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter",
+   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET)",
    "bought": "-4 stated vs market -3.5; priced at market -3.5",
    "result": "win",
    "final": {
@@ -5033,7 +5033,7 @@
    "id": "ek-w10-11",
    "odds": -110,
    "odds_source": "live",
-   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter",
+   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET)",
    "result": "loss",
    "final": {
     "CIN": 38.0,
@@ -5060,7 +5060,7 @@
    "odds_assumed": true,
    "odds": -110,
    "odds_source": "live",
-   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter",
+   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET)",
    "bought": "team total price not in market feed; -110 standard assumed",
    "result": "win",
    "final": {
@@ -5087,7 +5087,7 @@
    "id": "ek-w10-lean-2",
    "odds": -108,
    "odds_source": "live",
-   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET) via ESPN pickcenter",
+   "odds_note": "Market price at video post (Nov 12, 11:27 AM ET)",
    "result": "win",
    "final": {
     "CLE": 27.0,

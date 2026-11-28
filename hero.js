@@ -20,7 +20,7 @@ async function render(el){const SP=el.dataset.sport||"";if(SP==="analyst"){el.hi
   const YD=new Date(Date.now()-864e5).toLocaleDateString("en-CA",{timeZone:"America/New_York"});
   const mlbHits=(cML||[]).filter(c=>(c.date||"")>=YD).map(c=>({t:c.title,s:c.stat,p:c.pick,d:c.date,lab:"Official · posted pre-game"}));
   const inScope=x=>!ONLY.has(SP)||x.sport===SP;
-  const rec=Object.entries(tiers||{}).filter(([k,v])=>v.tier==="recommended"&&L[k]&&inScope(L[k]));
+  const rec=Object.entries(tiers||{}).filter(([k,v])=>(v.tier==="recommended"||v.tier==="highlighted")&&L[k]&&inScope(L[k]));
   const dayOf=([k,v])=>v.day||L[k].start.slice(0,10);
   // Slate = today's picks if any, else the most recent slate (results stay up until the next slate takes over).
   const days=[...new Set(rec.map(dayOf))].sort();const day=days.includes(today)?today:(days.filter(d=>d>=today)[0]||days.filter(d=>d<today).pop()||days[0]);

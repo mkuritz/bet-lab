@@ -4,12 +4,22 @@ Pick schema: {id, date, week, sport: nfl|mlb|nba|ncaaf, category: games|props|le
  team, player(optional), stat_cat(optional), stat_key(optional), side(over|under), line,
  odds(American; stated on show/video or pulled from ESPN pickcenter opening odds), odds_source(stated|opening),
  book(optional), bought(optional note), espn_event_id, legs[] (for parlays, same leg schema), source_url, timestamp, desc}"""
-import json, math, os, urllib.request
+import json, math, os, re, urllib.request
 
 FILES = ["data/allin_picks.json", "data/kuselias_picks.json", "data/brown_picks.json", "data/thrive_picks.json"]
 LG = {"nfl": "football/nfl", "mlb": "baseball/mlb", "nba": "basketball/nba", "ncaaf": "football/college-football"}
 TEAM_ALIAS = {"WAS": "WSH", "WSH": "WAS", "LA": "LAR", "LAR": "LA", "UTAH": "UTA", "UTA": "UTAH"}
 _cache = {}
+
+
+_PC = re.compile(r"\s*\bvia ESPN pickcenter\b|\bESPN pickcenter\b\s*(?:\((?:DraftKings|FanDuel|BetMGM|Caesars)\)\s*)?")
+def pub_note(v):
+    """Public odds notes keep the timing facts but never name the data source or sportsbook."""
+    o = v
+    v = _PC.sub(" ", v)
+    for a, b in (("DraftKings", "Book A"), ("FanDuel", "Book B"), ("BetMGM", "Book C"), ("Caesars", "Book D")): v = v.replace(a, b)
+    v = re.sub(r"\s{2,}", " ", v).strip()
+    return (v[:1].upper() + v[1:]) if v != o and v else v
 
 def parse_am(v):
     if v is None: return None
@@ -376,6 +386,8 @@ def grade_file(path):
     if "note" in d:
         d["note"] = d["note"].replace("Spreads and totals without a stated price use -110 (standard vig). Moneylines and parlays without a stated price count toward W/L only.", "Plays without a price spoken on the show/video are priced at their actual opening market odds.")
     d["record"] = R
+    for p in d.get("picks") or []:   # standing rule: no data-source / book names in public text (Nov 27 2026)
+        if isinstance(p.get("odds_note"), str): p["odds_note"] = pub_note(p["odds_note"])
     json.dump(d, open(path, "w"), indent=1)
     print(path, "graded:", len(g), "overall straight:", R["straight"]["overall"], "parlay:", R["parlay"]["overall"], "categories:", R.get("categories"))
 
