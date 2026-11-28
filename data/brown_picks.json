@@ -3520,6 +3520,288 @@
     "George Pickens Anytime TD (PHI @ DAL)",
     "Saquon Barkley Anytime TD (PHI @ DAL)"
    ]
+  },
+  {
+   "id": "cb-w12-lalsa-1127",
+   "date": "2026-11-27",
+   "week": 12,
+   "category": "parlays",
+   "kind": "parlay",
+   "type": "parlay",
+   "sport": "nba",
+   "desc": "Lakers @ Spurs SGP (4 legs)",
+   "odds": 310,
+   "odds_source": "stated",
+   "book": "Book B",
+   "source_url": "https://x.com/CodyBrownBets/status/2126414964197834860",
+   "source_label": "X post",
+   "posted_at": "2026-11-27T20:36:49Z",
+   "ticket": "LALSASGP",
+   "odds_note": "Price shown on his posted ticket at release",
+   "legs": [
+    {
+     "desc": "Luka Doncic 30+ Points (LAL @ SA)",
+     "sport": "nba",
+     "espn_event_id": "401909333",
+     "team": "LAL",
+     "type": "prop",
+     "player": "Luka Doncic",
+     "stat_cat": "",
+     "stat_key": "PTS",
+     "side": "over",
+     "line": 29.5,
+     "odds": -246,
+     "odds_source": "stated"
+    },
+    {
+     "desc": "Victor Wembanyama 30+ Pts+Ast (LAL @ SA)",
+     "sport": "nba",
+     "espn_event_id": "401909333",
+     "team": "SA",
+     "type": "prop",
+     "player": "Victor Wembanyama",
+     "stat_cat": "",
+     "stat_key": "PTS+AST",
+     "side": "over",
+     "line": 29.5,
+     "odds": -291,
+     "odds_source": "stated"
+    },
+    {
+     "desc": "Stephon Castle 20+ Pts+Reb (LAL @ SA)",
+     "sport": "nba",
+     "espn_event_id": "401909333",
+     "team": "SA",
+     "type": "prop",
+     "player": "Stephon Castle",
+     "stat_cat": "",
+     "stat_key": "PTS+REB",
+     "side": "over",
+     "line": 19.5,
+     "odds": -218,
+     "odds_source": "stated"
+    },
+    {
+     "desc": "Quentin Grimes 15+ Pts+Reb+Ast (LAL @ SA)",
+     "sport": "nba",
+     "espn_event_id": "401909333",
+     "team": "LAL",
+     "type": "prop",
+     "player": "Quentin Grimes",
+     "stat_cat": "",
+     "stat_key": "PTS+REB+AST",
+     "side": "over",
+     "line": 14.5,
+     "odds": -221,
+     "odds_source": "stated"
+    }
+   ],
+   "legs_total": 4,
+   "legs_graded": 0,
+   "legs_hit": 0,
+   "legs_push": 0,
+   "sunk_by": []
+  },
+  {
+   "id": "cb-w12-denpit1-1127",
+   "date": "2026-11-27",
+   "week": 12,
+   "category": "parlays",
+   "kind": "parlay",
+   "type": "parlay",
+   "sport": "nfl",
+   "desc": "Broncos @ Steelers SGP (3 legs)",
+   "odds": 146,
+   "odds_source": "stated",
+   "book": "Book B",
+   "source_url": "https://x.com/CodyBrownBets/status/2126364009733480475",
+   "source_label": "X post",
+   "posted_at": "2026-11-27T17:14:20Z",
+   "ticket": "DENPIT1",
+   "odds_note": "Price shown on his posted ticket at release",
+   "legs": [
+    {
+     "desc": "Jaylen Warren 70+ Rushing + Receiving Yards (DEN @ PIT)",
+     "sport": "nfl",
+     "espn_event_id": "401873083",
+     "team": "PIT",
+     "type": "prop",
+     "player": "Jaylen Warren",
+     "stat_cat": "rush_rec",
+     "stat_key": "YDS",
+     "side": "over",
+     "line": 69.5,
+     "odds": 146,
+     "odds_source": "stated",
+     "actual": 46.0,
+     "result": "loss",
+     "final": {
+      "PIT": 27.0,
+      "DEN": 5.0
+     }
+    },
+    {
+     "desc": "Jonah Coleman 70+ Rushing + Receiving Yards (DEN @ PIT)",
+     "sport": "nfl",
+     "espn_event_id": "401873083",
+     "team": "DEN",
+     "type": "prop",
+     "player": "Jonah Coleman",
+     "stat_cat": "rush_rec",
+     "stat_key": "YDS",
+     "side": "over",
+     "line": 69.5,
+     "odds": 146,
+     "odds_source": "stated",
+     "actual": 72.0,
+     "result": "win",
+     "final": {
+      "PIT": 27.0,
+      "DEN": 5.0
+     }
+    },
+    {
+     "desc": "Pat Freiermuth 2+ Receptions (DEN @ PIT)",
+     "sport": "nfl",
+     "espn_event_id": "401873083",
+     "team": "PIT",
+     "type": "prop",
+     "player": "Pat Freiermuth",
+     "stat_cat": "receiving",
+     "stat_key": "REC",
+     "side": "over",
+     "line": 1.5,
+     "odds": -277,
+     "odds_source": "stated",
+     "actual": 1.0,
+     "result": "loss",
+     "final": {
+      "PIT": 27.0,
+      "DEN": 5.0
+     }
+    }
+   ],
+   "result": "loss",
+   "legs_total": 3,
+   "legs_graded": 3,
+   "legs_hit": 1,
+   "legs_push": 0,
+   "sunk_by": [
+    "Jaylen Warren 70+ Rushing + Receiving Yards (DEN @ PIT)",
+    "Pat Freiermuth 2+ Receptions (DEN @ PIT)"
+   ]
+  },
+  {
+   "id": "cb-w12-denpitfly-1127",
+   "date": "2026-11-27",
+   "week": 12,
+   "category": "parlays",
+   "kind": "parlay",
+   "type": "parlay",
+   "sport": "nfl",
+   "desc": "Broncos @ Steelers Flyer (4 legs)",
+   "odds": 610,
+   "odds_source": "stated",
+   "book": "Book B",
+   "source_url": "https://x.com/CodyBrownBets/status/2126348075728073013",
+   "source_label": "X post",
+   "posted_at": "2026-11-27T16:11:01Z",
+   "ticket": "DENPITFLY",
+   "odds_note": "Price shown on his posted ticket at release (pre-boost); promo boost to +793 not used for units",
+   "boosted_odds": 793,
+   "legs": [
+    {
+     "desc": "Jonah Coleman 50+ Rushing Yards (DEN @ PIT)",
+     "sport": "nfl",
+     "espn_event_id": "401873083",
+     "team": "DEN",
+     "type": "prop",
+     "player": "Jonah Coleman",
+     "stat_cat": "rushing",
+     "stat_key": "YDS",
+     "side": "over",
+     "line": 49.5,
+     "odds": -441,
+     "odds_source": "stated",
+     "actual": 26.0,
+     "result": "loss",
+     "final": {
+      "PIT": 27.0,
+      "DEN": 5.0
+     }
+    },
+    {
+     "desc": "Jaylen Warren 50+ Rushing Yards (DEN @ PIT)",
+     "sport": "nfl",
+     "espn_event_id": "401873083",
+     "team": "PIT",
+     "type": "prop",
+     "player": "Jaylen Warren",
+     "stat_cat": "rushing",
+     "stat_key": "YDS",
+     "side": "over",
+     "line": 49.5,
+     "odds": -241,
+     "odds_source": "stated",
+     "actual": 46.0,
+     "result": "loss",
+     "final": {
+      "PIT": 27.0,
+      "DEN": 5.0
+     }
+    },
+    {
+     "desc": "Jonah Coleman Anytime TD (DEN @ PIT)",
+     "sport": "nfl",
+     "espn_event_id": "401873083",
+     "team": "DEN",
+     "type": "prop",
+     "player": "Jonah Coleman",
+     "stat_cat": "td",
+     "stat_key": "TD",
+     "side": "over",
+     "line": 0.5,
+     "odds": -130,
+     "odds_source": "stated",
+     "actual": 0.0,
+     "result": "loss",
+     "final": {
+      "PIT": 27.0,
+      "DEN": 5.0
+     }
+    },
+    {
+     "desc": "Jaylen Warren Anytime TD (DEN @ PIT)",
+     "sport": "nfl",
+     "espn_event_id": "401873083",
+     "team": "PIT",
+     "type": "prop",
+     "player": "Jaylen Warren",
+     "stat_cat": "td",
+     "stat_key": "TD",
+     "side": "over",
+     "line": 0.5,
+     "odds": 195,
+     "odds_source": "stated",
+     "actual": 0.0,
+     "result": "loss",
+     "final": {
+      "PIT": 27.0,
+      "DEN": 5.0
+     }
+    }
+   ],
+   "result": "loss",
+   "legs_total": 4,
+   "legs_graded": 4,
+   "legs_hit": 0,
+   "legs_push": 0,
+   "sunk_by": [
+    "Jonah Coleman 50+ Rushing Yards (DEN @ PIT)",
+    "Jaylen Warren 50+ Rushing Yards (DEN @ PIT)",
+    "Jonah Coleman Anytime TD (DEN @ PIT)",
+    "Jaylen Warren Anytime TD (DEN @ PIT)"
+   ]
   }
  ],
  "record": {
@@ -3563,17 +3845,17 @@
   "parlay": {
    "overall": {
     "w": 1,
-    "l": 24,
+    "l": 26,
     "p": 0,
-    "units": -23.1,
-    "units_n": 25
+    "units": -25.1,
+    "units_n": 27
    },
    "nfl": {
     "w": 0,
-    "l": 16,
+    "l": 18,
     "p": 0,
-    "units": -16,
-    "units_n": 16
+    "units": -18,
+    "units_n": 18
    },
    "mlb": {
     "w": 0,
@@ -3634,10 +3916,10 @@
   },
   "full_season": {
    "w": 6,
-   "l": 25,
+   "l": 27,
    "p": 1,
-   "units": -20.14,
-   "units_n": 32
+   "units": -22.14,
+   "units_n": 34
   },
   "categories": {
    "best": {
@@ -3649,20 +3931,20 @@
    },
    "parlays": {
     "w": 1,
-    "l": 24,
+    "l": 26,
     "p": 0,
-    "units": -23.1,
-    "units_n": 25
+    "units": -25.1,
+    "units_n": 27
    }
   },
   "parlay_legs": {
-   "w": 78,
-   "l": 38,
+   "w": 79,
+   "l": 44,
    "p": 0,
-   "units": -1.45,
-   "units_n": 116
+   "units": -5.99,
+   "units_n": 123
   },
-  "pending": 1,
+  "pending": 2,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }
