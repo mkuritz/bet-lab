@@ -3551,7 +3551,13 @@
      "side": "over",
      "line": 29.5,
      "odds": -246,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 31.0,
+     "result": "win",
+     "final": {
+      "SA": 99.0,
+      "LAL": 96.0
+     }
     },
     {
      "desc": "Victor Wembanyama 30+ Pts+Ast (LAL @ SA)",
@@ -3565,7 +3571,13 @@
      "side": "over",
      "line": 29.5,
      "odds": -291,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 27.0,
+     "result": "loss",
+     "final": {
+      "SA": 99.0,
+      "LAL": 96.0
+     }
     },
     {
      "desc": "Stephon Castle 20+ Pts+Reb (LAL @ SA)",
@@ -3579,7 +3591,13 @@
      "side": "over",
      "line": 19.5,
      "odds": -218,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 30.0,
+     "result": "win",
+     "final": {
+      "SA": 99.0,
+      "LAL": 96.0
+     }
     },
     {
      "desc": "Quentin Grimes 15+ Pts+Reb+Ast (LAL @ SA)",
@@ -3593,14 +3611,24 @@
      "side": "over",
      "line": 14.5,
      "odds": -221,
-     "odds_source": "stated"
+     "odds_source": "stated",
+     "actual": 10.0,
+     "result": "loss",
+     "final": {
+      "SA": 99.0,
+      "LAL": 96.0
+     }
     }
    ],
    "legs_total": 4,
-   "legs_graded": 0,
-   "legs_hit": 0,
+   "legs_graded": 4,
+   "legs_hit": 2,
    "legs_push": 0,
-   "sunk_by": []
+   "sunk_by": [
+    "Victor Wembanyama 30+ Pts+Ast (LAL @ SA)",
+    "Quentin Grimes 15+ Pts+Reb+Ast (LAL @ SA)"
+   ],
+   "result": "loss"
   },
   {
    "id": "cb-w12-denpit1-1127",
@@ -3845,10 +3873,10 @@
   "parlay": {
    "overall": {
     "w": 1,
-    "l": 26,
+    "l": 27,
     "p": 0,
-    "units": -25.1,
-    "units_n": 27
+    "units": -26.1,
+    "units_n": 28
    },
    "nfl": {
     "w": 0,
@@ -3866,10 +3894,10 @@
    },
    "nba": {
     "w": 1,
-    "l": 7,
+    "l": 8,
     "p": 0,
-    "units": -6.1,
-    "units_n": 8
+    "units": -7.1,
+    "units_n": 9
    },
    "ncaaf": {
     "w": 0,
@@ -3916,10 +3944,10 @@
   },
   "full_season": {
    "w": 6,
-   "l": 27,
+   "l": 28,
    "p": 1,
-   "units": -22.14,
-   "units_n": 34
+   "units": -23.14,
+   "units_n": 35
   },
   "categories": {
    "best": {
@@ -3931,20 +3959,20 @@
    },
    "parlays": {
     "w": 1,
-    "l": 26,
+    "l": 27,
     "p": 0,
-    "units": -25.1,
-    "units_n": 27
+    "units": -26.1,
+    "units_n": 28
    }
   },
   "parlay_legs": {
-   "w": 79,
-   "l": 44,
+   "w": 81,
+   "l": 46,
    "p": 0,
-   "units": -5.99,
-   "units_n": 123
+   "units": -7.13,
+   "units_n": 127
   },
-  "pending": 2,
+  "pending": 1,
   "units_note": "1 unit per highlight. Uses the exact price stated on the show/video when given, and the actual opening market price otherwise."
  }
 }
